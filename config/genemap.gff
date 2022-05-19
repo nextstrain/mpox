@@ -1,0 +1,202 @@
+##sequence-region HQ857562.1 1 196849
+##species https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=10244
+HQ857562.1	Genbank	region	1	196849	.	+	.	ID=HQ857562.1:1..196849;Dbxref=taxon:10244;country=Zaire;gbkey=Src;genome=genomic;mol_type=genomic DNA;nat-host=Homo sapiens;note=passage 5;strain=V79-I-005
+HQ857562.1	Genbank	CDS	863	1603	.	-	0	ID=cds-ADX22649.1;Dbxref=NCBI_GP:ADX22649.1;Name=ADX22649.1;gbkey=CDS;product=chemokine-binding protein;protein_id=ADX22649.1
+HQ857562.1	Genbank	CDS	1732	2778	.	-	0	ID=cds-ADX22650.1;Dbxref=NCBI_GP:ADX22650.1;Name=ADX22650.1;gbkey=CDS;product=TNF-alpha-receptor-like protein;protein_id=ADX22650.1
+HQ857562.1	Genbank	CDS	2869	4632	.	-	0	ID=cds-ADX22651.1;Dbxref=NCBI_GP:ADX22651.1;Name=ADX22651.1;gbkey=CDS;product=ankyrin-like protein;protein_id=ADX22651.1
+HQ857562.1	Genbank	CDS	4789	6102	.	-	0	ID=cds-ADX22652.1;Dbxref=NCBI_GP:ADX22652.1;Name=ADX22652.1;gbkey=CDS;product=ankyrin-like protein;protein_id=ADX22652.1
+HQ857562.1	Genbank	CDS	6331	6501	.	-	0	ID=cds-ADX22653.1;Dbxref=NCBI_GP:ADX22653.1;Name=ADX22653.1;gbkey=CDS;product=unknown;protein_id=ADX22653.1
+HQ857562.1	Genbank	CDS	6701	6868	.	-	0	ID=cds-ADX22654.1;Dbxref=NCBI_GP:ADX22654.1;Name=ADX22654.1;gbkey=CDS;product=unknown;protein_id=ADX22654.1
+HQ857562.1	Genbank	CDS	6919	7113	.	-	0	ID=cds-ADX22655.1;Dbxref=NCBI_GP:ADX22655.1;Name=ADX22655.1;gbkey=CDS;product=unknown;protein_id=ADX22655.1
+HQ857562.1	Genbank	CDS	7548	7976	.	+	0	ID=cds-ADX22656.1;Dbxref=NCBI_GP:ADX22656.1;Name=ADX22656.1;gbkey=CDS;product=secreted epidermal growth factor-like protein;protein_id=ADX22656.1
+HQ857562.1	Genbank	CDS	8822	9073	.	-	0	ID=cds-ADX22657.1;Dbxref=NCBI_GP:ADX22657.1;Name=ADX22657.1;gbkey=CDS;product=interleukin-1 receptor antagonist-like protein;protein_id=ADX22657.1
+HQ857562.1	Genbank	CDS	9559	10287	.	+	0	ID=cds-ADX22658.1;Dbxref=NCBI_GP:ADX22658.1;Name=ADX22658.1;gbkey=CDS;product=bifunctional zinc finger-like protein/E3 ubiquitin ligase;protein_id=ADX22658.1
+HQ857562.1	Genbank	CDS	10515	10895	.	-	0	ID=cds-ADX22659.1;Dbxref=NCBI_GP:ADX22659.1;Name=ADX22659.1;gbkey=CDS;product=interleukin-18-binding protein;protein_id=ADX22659.1
+HQ857562.1	Genbank	CDS	10955	12937	.	-	0	ID=cds-ADX22660.1;Dbxref=NCBI_GP:ADX22660.1;Name=ADX22660.1;gbkey=CDS;product=ankyrin-like protein;protein_id=ADX22660.1
+HQ857562.1	Genbank	CDS	13071	13265	.	-	0	ID=cds-ADX22661.1;Dbxref=NCBI_GP:ADX22661.1;Name=ADX22661.1;gbkey=CDS;product=unknown;protein_id=ADX22661.1
+HQ857562.1	Genbank	CDS	13425	15317	.	-	0	ID=cds-ADX22662.1;Dbxref=NCBI_GP:ADX22662.1;Name=ADX22662.1;gbkey=CDS;product=ankyrin-like protein;protein_id=ADX22662.1
+HQ857562.1	Genbank	CDS	15972	16424	.	-	0	ID=cds-ADX22663.1;Dbxref=NCBI_GP:ADX22663.1;Name=ADX22663.1;gbkey=CDS;product=unknown;protein_id=ADX22663.1
+HQ857562.1	Genbank	CDS	16653	17114	.	-	0	ID=cds-ADX22664.1;Dbxref=NCBI_GP:ADX22664.1;Name=ADX22664.1;gbkey=CDS;product=unknown;protein_id=ADX22664.1
+HQ857562.1	Genbank	CDS	17258	17878	.	-	0	ID=cds-ADX22665.1;Dbxref=NCBI_GP:ADX22665.1;Name=ADX22665.1;gbkey=CDS;product=BTB domain of kelch-like protein;protein_id=ADX22665.1
+HQ857562.1	Genbank	CDS	17923	18870	.	-	0	ID=cds-ADX22666.1;Dbxref=NCBI_GP:ADX22666.1;Name=ADX22666.1;gbkey=CDS;product=unknown;protein_id=ADX22666.1
+HQ857562.1	Genbank	CDS	19052	19702	.	-	0	ID=cds-ADX22667.1;Dbxref=NCBI_GP:ADX22667.1;Name=ADX22667.1;gbkey=CDS;product=complement control protein;protein_id=ADX22667.1
+HQ857562.1	Genbank	CDS	19826	20143	.	-	0	ID=cds-ADX22668.1;Dbxref=NCBI_GP:ADX22668.1;Name=ADX22668.1;gbkey=CDS;product=kelch-like protein;protein_id=ADX22668.1
+HQ857562.1	Genbank	CDS	20811	21134	.	-	0	ID=cds-ADX22669.1;Dbxref=NCBI_GP:ADX22669.1;Name=ADX22669.1;gbkey=CDS;product=kelch-like protein;protein_id=ADX22669.1
+HQ857562.1	Genbank	CDS	21358	22002	.	-	0	ID=cds-ADX22670.1;Dbxref=NCBI_GP:ADX22670.1;Name=ADX22670.1;gbkey=CDS;product=unknown;protein_id=ADX22670.1
+HQ857562.1	Genbank	CDS	22048	22401	.	-	0	ID=cds-ADX22671.1;Dbxref=NCBI_GP:ADX22671.1;Name=ADX22671.1;gbkey=CDS;product=virokine protein;protein_id=ADX22671.1
+HQ857562.1	Genbank	CDS	22528	23061	.	-	0	ID=cds-ADX22672.1;Dbxref=NCBI_GP:ADX22672.1;Name=ADX22672.1;gbkey=CDS;product=alpha-amanitin target protein;protein_id=ADX22672.1
+HQ857562.1	Genbank	CDS	23102	24430	.	-	0	ID=cds-ADX22673.1;Dbxref=NCBI_GP:ADX22673.1;Name=ADX22673.1;gbkey=CDS;product=ankyrin-like protein;protein_id=ADX22673.1
+HQ857562.1	Genbank	CDS	24500	25162	.	-	0	ID=cds-ADX22674.1;Dbxref=NCBI_GP:ADX22674.1;Name=ADX22674.1;gbkey=CDS;product=unknown;protein_id=ADX22674.1
+HQ857562.1	Genbank	CDS	25291	26145	.	-	0	ID=cds-ADX22675.1;Dbxref=NCBI_GP:ADX22675.1;Name=ADX22675.1;gbkey=CDS;product=ankyrin-like protein;protein_id=ADX22675.1
+HQ857562.1	Genbank	CDS	26376	27503	.	-	0	ID=cds-ADX22676.1;Dbxref=NCBI_GP:ADX22676.1;Name=ADX22676.1;gbkey=CDS;product=serine protease inhibitor-like protein SPI-3;protein_id=ADX22676.1
+HQ857562.1	Genbank	CDS	27851	29125	.	-	0	ID=cds-ADX22677.1;Dbxref=NCBI_GP:ADX22677.1;Name=ADX22677.1;gbkey=CDS;product=phospholipase-D-like protein;protein_id=ADX22677.1
+HQ857562.1	Genbank	CDS	29152	29982	.	-	0	ID=cds-ADX22678.1;Dbxref=NCBI_GP:ADX22678.1;Name=ADX22678.1;gbkey=CDS;product=putative monoglyceride lipase;protein_id=ADX22678.1
+HQ857562.1	Genbank	CDS	30118	30567	.	+	0	ID=cds-ADX22679.1;Dbxref=NCBI_GP:ADX22679.1;Name=ADX22679.1;gbkey=CDS;product=B15R-like protein;protein_id=ADX22679.1
+HQ857562.1	Genbank	CDS	30611	31270	.	-	0	ID=cds-ADX22680.1;Dbxref=NCBI_GP:ADX22680.1;Name=ADX22680.1;gbkey=CDS;product=unknown;protein_id=ADX22680.1
+HQ857562.1	Genbank	CDS	31282	31737	.	-	0	ID=cds-ADX22681.1;Dbxref=NCBI_GP:ADX22681.1;Name=ADX22681.1;gbkey=CDS;product=dUTPase;protein_id=ADX22681.1
+HQ857562.1	Genbank	CDS	31754	33217	.	-	0	ID=cds-ADX22682.1;Dbxref=NCBI_GP:ADX22682.1;Name=ADX22682.1;gbkey=CDS;product=kelch-like protein;protein_id=ADX22682.1
+HQ857562.1	Genbank	CDS	33228	34187	.	-	0	ID=cds-ADX22683.1;Dbxref=NCBI_GP:ADX22683.1;Name=ADX22683.1;gbkey=CDS;product=ribonucleotide reductase small subunit;protein_id=ADX22683.1
+HQ857562.1	Genbank	CDS	34195	35250	.	-	0	ID=cds-ADX22684.1;Dbxref=NCBI_GP:ADX22684.1;Name=ADX22684.1;gbkey=CDS;product=unknown;protein_id=ADX22684.1
+HQ857562.1	Genbank	CDS	35207	35428	.	-	0	ID=cds-ADX22685.1;Dbxref=NCBI_GP:ADX22685.1;Name=ADX22685.1;gbkey=CDS;product=unknown;protein_id=ADX22685.1
+HQ857562.1	Genbank	CDS	35444	35668	.	-	0	ID=cds-ADX22686.1;Dbxref=NCBI_GP:ADX22686.1;Name=ADX22686.1;gbkey=CDS;product=unknown;protein_id=ADX22686.1
+HQ857562.1	Genbank	CDS	35820	36014	.	-	0	ID=cds-ADX22687.1;Dbxref=NCBI_GP:ADX22687.1;Name=ADX22687.1;gbkey=CDS;product=unknown;protein_id=ADX22687.1
+HQ857562.1	Genbank	CDS	36071	36709	.	-	0	ID=cds-ADX22688.1;Dbxref=NCBI_GP:ADX22688.1;Name=ADX22688.1;gbkey=CDS;product=unknown;protein_id=ADX22688.1
+HQ857562.1	Genbank	CDS	36696	38015	.	-	0	ID=cds-ADX22689.1;Dbxref=NCBI_GP:ADX22689.1;Name=ADX22689.1;gbkey=CDS;product=ser/thr kinase;protein_id=ADX22689.1
+HQ857562.1	Genbank	CDS	38038	39102	.	-	0	ID=cds-ADX22690.1;Dbxref=NCBI_GP:ADX22690.1;Name=ADX22690.1;gbkey=CDS;product=unknown;protein_id=ADX22690.1
+HQ857562.1	Genbank	CDS	39146	41053	.	-	0	ID=cds-ADX22691.1;Dbxref=NCBI_GP:ADX22691.1;Name=ADX22691.1;gbkey=CDS;product=unknown;protein_id=ADX22691.1
+HQ857562.1	Genbank	CDS	41096	42214	.	-	0	ID=cds-ADX22692.1;Dbxref=NCBI_GP:ADX22692.1;Name=ADX22692.1;gbkey=CDS;product=palmytilated EEV membrane protein;protein_id=ADX22692.1
+HQ857562.1	Genbank	CDS	42232	42453	.	-	0	ID=cds-ADX22693.1;Dbxref=NCBI_GP:ADX22693.1;Name=ADX22693.1;gbkey=CDS;product=unknown;protein_id=ADX22693.1
+HQ857562.1	Genbank	CDS	42725	43201	.	-	0	ID=cds-ADX22694.1;Dbxref=NCBI_GP:ADX22694.1;Name=ADX22694.1;gbkey=CDS;product=unknown;protein_id=ADX22694.1
+HQ857562.1	Genbank	CDS	43208	43903	.	-	0	ID=cds-ADX22695.1;Dbxref=NCBI_GP:ADX22695.1;Name=ADX22695.1;gbkey=CDS;product=unknown;protein_id=ADX22695.1
+HQ857562.1	Genbank	CDS	43965	44270	.	+	0	ID=cds-ADX22696.1;Dbxref=NCBI_GP:ADX22696.1;Name=ADX22696.1;gbkey=CDS;product=putative DNA-binding phosphoprotein;protein_id=ADX22696.1
+HQ857562.1	Genbank	CDS	44267	45706	.	-	0	ID=cds-ADX22697.1;Dbxref=NCBI_GP:ADX22697.1;Name=ADX22697.1;gbkey=CDS;product=poly-A polymerase catalytic subunit VP55;protein_id=ADX22697.1
+HQ857562.1	Genbank	CDS	45703	47916	.	-	0	ID=cds-ADX22698.1;Dbxref=NCBI_GP:ADX22698.1;Name=ADX22698.1;gbkey=CDS;product=unknown;protein_id=ADX22698.1
+HQ857562.1	Genbank	CDS	48040	48501	.	-	0	ID=cds-ADX22699.1;Dbxref=NCBI_GP:ADX22699.1;Name=ADX22699.1;gbkey=CDS;product=double-stranded RNA binding protein;protein_id=ADX22699.1
+HQ857562.1	Genbank	CDS	48662	49441	.	-	0	ID=cds-ADX22700.1;Dbxref=NCBI_GP:ADX22700.1;Name=ADX22700.1;gbkey=CDS;product=bifunctional DNA-dependent RNA polymerase subunit rpo30;protein_id=ADX22700.1
+HQ857562.1	Genbank	CDS	50469	52172	.	+	0	ID=cds-ADX22701.1;Dbxref=NCBI_GP:ADX22701.1;Name=ADX22701.1;gbkey=CDS;product=unknown;protein_id=ADX22701.1
+HQ857562.1	Genbank	CDS	52254	52754	.	+	0	ID=cds-ADX22702.1;Dbxref=NCBI_GP:ADX22702.1;Name=ADX22702.1;gbkey=CDS;product=myristylprotein;protein_id=ADX22702.1
+HQ857562.1	Genbank	CDS	52854	53675	.	+	0	ID=cds-ADX22703.1;Dbxref=NCBI_GP:ADX22703.1;Name=ADX22703.1;gbkey=CDS;product=membrane protein;protein_id=ADX22703.1
+HQ857562.1	Genbank	CDS	53683	56703	.	-	0	ID=cds-ADX22704.1;Dbxref=NCBI_GP:ADX22704.1;Name=ADX22704.1;gbkey=CDS;product=DNA polymerase;protein_id=ADX22704.1
+HQ857562.1	Genbank	CDS	56735	57022	.	+	0	ID=cds-ADX22705.1;Dbxref=NCBI_GP:ADX22705.1;Name=ADX22705.1;gbkey=CDS;product=sulfhydryl oxidase;protein_id=ADX22705.1
+HQ857562.1	Genbank	CDS	57017	57406	.	-	0	ID=cds-ADX22706.1;Dbxref=NCBI_GP:ADX22706.1;Name=ADX22706.1;gbkey=CDS;product=virion core protein;protein_id=ADX22706.1
+HQ857562.1	Genbank	CDS	57393	59390	.	-	0	ID=cds-ADX22707.1;Dbxref=NCBI_GP:ADX22707.1;Name=ADX22707.1;gbkey=CDS;product=unknown;protein_id=ADX22707.1
+HQ857562.1	Genbank	CDS	59437	59763	.	-	0	ID=cds-ADX22708.1;Dbxref=NCBI_GP:ADX22708.1;Name=ADX22708.1;gbkey=CDS;product=glutaredoxin;protein_id=ADX22708.1
+HQ857562.1	Genbank	CDS	59910	60848	.	-	0	ID=cds-ADX22709.1;Dbxref=NCBI_GP:ADX22709.1;Name=ADX22709.1;gbkey=CDS;product=DNA-binding core protein;protein_id=ADX22709.1
+HQ857562.1	Genbank	CDS	60855	61076	.	-	0	ID=cds-ADX22710.1;Dbxref=NCBI_GP:ADX22710.1;Name=ADX22710.1;gbkey=CDS;product=unknown;protein_id=ADX22710.1
+HQ857562.1	Genbank	CDS	61077	61886	.	-	0	ID=cds-ADX22711.1;Dbxref=NCBI_GP:ADX22711.1;Name=ADX22711.1;gbkey=CDS;product=ssDNA-binding phosphoprotein;protein_id=ADX22711.1
+HQ857562.1	Genbank	CDS	61968	64283	.	-	0	ID=cds-ADX22712.1;Dbxref=NCBI_GP:ADX22712.1;Name=ADX22712.1;gbkey=CDS;product=large subunit of ribonucleotide reductase protein;protein_id=ADX22712.1
+HQ857562.1	Genbank	CDS	64312	64551	.	-	0	ID=cds-ADX22713.1;Dbxref=NCBI_GP:ADX22713.1;Name=ADX22713.1;gbkey=CDS;product=IMV protein VP13;protein_id=ADX22713.1
+HQ857562.1	Genbank	CDS	64570	65718	.	-	0	ID=cds-ADX22714.1;Dbxref=NCBI_GP:ADX22714.1;Name=ADX22714.1;gbkey=CDS;product=unknown;protein_id=ADX22714.1
+HQ857562.1	Genbank	CDS	65711	66982	.	-	0	ID=cds-ADX22715.1;Dbxref=NCBI_GP:ADX22715.1;Name=ADX22715.1;gbkey=CDS;product=viral core cysteine proteinase;protein_id=ADX22715.1
+HQ857562.1	Genbank	CDS	66988	69018	.	+	0	ID=cds-ADX22716.1;Dbxref=NCBI_GP:ADX22716.1;Name=ADX22716.1;gbkey=CDS;product=bifunctional DNA/RNA-helicase/DExH-NPH-II;protein_id=ADX22716.1
+HQ857562.1	Genbank	CDS	69022	70797	.	-	0	ID=cds-ADX22717.1;Dbxref=NCBI_GP:ADX22717.1;Name=ADX22717.1;gbkey=CDS;product=insulin metalloproteinase-like protein;protein_id=ADX22717.1
+HQ857562.1	Genbank	CDS	70794	71129	.	-	0	ID=cds-ADX22718.1;Dbxref=NCBI_GP:ADX22718.1;Name=ADX22718.1;gbkey=CDS;product=unknown;protein_id=ADX22718.1
+HQ857562.1	Genbank	CDS	71123	71785	.	+	0	ID=cds-ADX22719.1;Dbxref=NCBI_GP:ADX22719.1;Name=ADX22719.1;gbkey=CDS;product=late transcription elongation factor;protein_id=ADX22719.1
+HQ857562.1	Genbank	CDS	71755	72129	.	-	0	ID=cds-ADX22720.1;Dbxref=NCBI_GP:ADX22720.1;Name=ADX22720.1;gbkey=CDS;product=unknown;protein_id=ADX22720.1
+HQ857562.1	Genbank	CDS	72132	73436	.	+	0	ID=cds-ADX22721.1;Dbxref=NCBI_GP:ADX22721.1;Name=ADX22721.1;gbkey=CDS;product=unknown;protein_id=ADX22721.1
+HQ857562.1	Genbank	CDS	73444	73635	.	+	0	ID=cds-ADX22722.1;Dbxref=NCBI_GP:ADX22722.1;Name=ADX22722.1;gbkey=CDS;product=DNA-dependent RNA polymerase subunit rpo7;protein_id=ADX22722.1
+HQ857562.1	Genbank	CDS	73635	74132	.	+	0	ID=cds-ADX22723.1;Dbxref=NCBI_GP:ADX22723.1;Name=ADX22723.1;gbkey=CDS;product=unknown;protein_id=ADX22723.1
+HQ857562.1	Genbank	CDS	74097	75212	.	-	0	ID=cds-ADX22724.1;Dbxref=NCBI_GP:ADX22724.1;Name=ADX22724.1;gbkey=CDS;product=virion structural protein;protein_id=ADX22724.1
+HQ857562.1	Genbank	CDS	75243	76025	.	+	0	ID=cds-ADX22725.1;Dbxref=NCBI_GP:ADX22725.1;Name=ADX22725.1;gbkey=CDS;product=late gene transcription VLTF-1;protein_id=ADX22725.1
+HQ857562.1	Genbank	CDS	76045	77067	.	+	0	ID=cds-ADX22726.1;Dbxref=NCBI_GP:ADX22726.1;Name=ADX22726.1;gbkey=CDS;product=myristylprotein;protein_id=ADX22726.1
+HQ857562.1	Genbank	CDS	77068	77820	.	+	0	ID=cds-ADX22727.1;Dbxref=NCBI_GP:ADX22727.1;Name=ADX22727.1;gbkey=CDS;product=myristylprotein;protein_id=ADX22727.1
+HQ857562.1	Genbank	CDS	77852	78130	.	+	0	ID=cds-ADX22728.1;Dbxref=NCBI_GP:ADX22728.1;Name=ADX22728.1;gbkey=CDS;product=unknown;protein_id=ADX22728.1
+HQ857562.1	Genbank	CDS	78106	79140	.	-	0	ID=cds-ADX22729.1;Dbxref=NCBI_GP:ADX22729.1;Name=ADX22729.1;gbkey=CDS;product=unknown;protein_id=ADX22729.1
+HQ857562.1	Genbank	CDS	79165	79920	.	+	0	ID=cds-ADX22730.1;Dbxref=NCBI_GP:ADX22730.1;Name=ADX22730.1;gbkey=CDS;product=core protein vp8;protein_id=ADX22730.1
+HQ857562.1	Genbank	CDS	79930	80316	.	+	0	ID=cds-ADX22731.1;Dbxref=NCBI_GP:ADX22731.1;Name=ADX22731.1;gbkey=CDS;product=putative membrane protein;protein_id=ADX22731.1
+HQ857562.1	Genbank	CDS	80273	80731	.	+	0	ID=cds-ADX22732.1;Dbxref=NCBI_GP:ADX22732.1;Name=ADX22732.1;gbkey=CDS;product=unknown;protein_id=ADX22732.1
+HQ857562.1	Genbank	CDS	80751	81284	.	+	0	ID=cds-ADX22733.1;Dbxref=NCBI_GP:ADX22733.1;Name=ADX22733.1;gbkey=CDS;product=thymidine kinase;protein_id=ADX22733.1
+HQ857562.1	Genbank	CDS	81350	82351	.	+	0	ID=cds-ADX22734.1;Dbxref=NCBI_GP:ADX22734.1;Name=ADX22734.1;gbkey=CDS;product=bifunctional subunit of multifunctional poly-A polymerase;protein_id=ADX22734.1
+HQ857562.1	Genbank	CDS	82266	82823	.	+	0	ID=cds-ADX22735.1;Dbxref=NCBI_GP:ADX22735.1;Name=ADX22735.1;gbkey=CDS;product=DNA-dependent RNA polymerase subunit rpo22;protein_id=ADX22735.1
+HQ857562.1	Genbank	CDS	82883	83284	.	-	0	ID=cds-ADX22736.1;Dbxref=NCBI_GP:ADX22736.1;Name=ADX22736.1;gbkey=CDS;product=late 16 kDa putative membrane protein;protein_id=ADX22736.1
+HQ857562.1	Genbank	CDS	83391	87251	.	+	0	ID=cds-ADX22737.1;Dbxref=NCBI_GP:ADX22737.1;Name=ADX22737.1;gbkey=CDS;product=DNA-dependent RNA polymerase subunit rpo147;protein_id=ADX22737.1
+HQ857562.1	Genbank	CDS	87248	87763	.	-	0	ID=cds-ADX22738.1;Dbxref=NCBI_GP:ADX22738.1;Name=ADX22738.1;gbkey=CDS;product=tyr/ser protein phosphatase;protein_id=ADX22738.1
+HQ857562.1	Genbank	CDS	87777	88346	.	+	0	ID=cds-ADX22739.1;Dbxref=NCBI_GP:ADX22739.1;Name=ADX22739.1;gbkey=CDS;product=unknown;protein_id=ADX22739.1
+HQ857562.1	Genbank	CDS	88350	89324	.	-	0	ID=cds-ADX22740.1;Dbxref=NCBI_GP:ADX22740.1;Name=ADX22740.1;gbkey=CDS;product=IMV heparin binding surface protein;protein_id=ADX22740.1
+HQ857562.1	Genbank	CDS	89325	91712	.	-	0	ID=cds-ADX22741.1;Dbxref=NCBI_GP:ADX22741.1;Name=ADX22741.1;gbkey=CDS;product=RAP94;protein_id=ADX22741.1
+HQ857562.1	Genbank	CDS	91897	92538	.	+	0	ID=cds-ADX22742.1;Dbxref=NCBI_GP:ADX22742.1;Name=ADX22742.1;gbkey=CDS;product=late gene transcription factor VLTF-4;protein_id=ADX22742.1
+HQ857562.1	Genbank	CDS	92539	93483	.	+	0	ID=cds-ADX22743.1;Dbxref=NCBI_GP:ADX22743.1;Name=ADX22743.1;gbkey=CDS;product=topoisomerase type IB;protein_id=ADX22743.1
+HQ857562.1	Genbank	CDS	93521	93961	.	+	0	ID=cds-ADX22744.1;Dbxref=NCBI_GP:ADX22744.1;Name=ADX22744.1;gbkey=CDS;product=unknown;protein_id=ADX22744.1
+HQ857562.1	Genbank	CDS	94005	96542	.	+	0	ID=cds-ADX22745.1;Dbxref=NCBI_GP:ADX22745.1;Name=ADX22745.1;gbkey=CDS;product=bifunctional large subunit of mRNA capping enzyme protein;protein_id=ADX22745.1
+HQ857562.1	Genbank	CDS	96501	96941	.	-	0	ID=cds-ADX22746.1;Dbxref=NCBI_GP:ADX22746.1;Name=ADX22746.1;gbkey=CDS;product=virion core protein;protein_id=ADX22746.1
+HQ857562.1	Genbank	CDS	96934	97635	.	+	0	ID=cds-ADX22747.1;Dbxref=NCBI_GP:ADX22747.1;Name=ADX22747.1;gbkey=CDS;product=virion core protein;protein_id=ADX22747.1
+HQ857562.1	Genbank	CDS	97635	98291	.	+	0	ID=cds-ADX22748.1;Dbxref=NCBI_GP:ADX22748.1;Name=ADX22748.1;gbkey=CDS;product=uracil-DNA glycosylase;protein_id=ADX22748.1
+HQ857562.1	Genbank	CDS	98323	100680	.	+	0	ID=cds-ADX22749.1;Dbxref=NCBI_GP:ADX22749.1;Name=ADX22749.1;gbkey=CDS;product=NTPase;protein_id=ADX22749.1
+HQ857562.1	Genbank	CDS	100720	102633	.	+	0	ID=cds-ADX22750.1;Dbxref=NCBI_GP:ADX22750.1;Name=ADX22750.1;gbkey=CDS;product=70 kDa small subunit of early gene transcription factor VETF;protein_id=ADX22750.1
+HQ857562.1	Genbank	CDS	102660	103145	.	+	0	ID=cds-ADX22751.1;Dbxref=NCBI_GP:ADX22751.1;Name=ADX22751.1;gbkey=CDS;product=DNA-dependent RNA polymerase subunit rpo18;protein_id=ADX22751.1
+HQ857562.1	Genbank	CDS	103108	104022	.	-	0	ID=cds-ADX22752.1;Dbxref=NCBI_GP:ADX22752.1;Name=ADX22752.1;gbkey=CDS;product=IMV membrane protein;protein_id=ADX22752.1
+HQ857562.1	Genbank	CDS	104064	104705	.	+	0	ID=cds-ADX22753.1;Dbxref=NCBI_GP:ADX22753.1;Name=ADX22753.1;gbkey=CDS;product=unknown;protein_id=ADX22753.1
+HQ857562.1	Genbank	CDS	104702	105448	.	+	0	ID=cds-ADX22754.1;Dbxref=NCBI_GP:ADX22754.1;Name=ADX22754.1;gbkey=CDS;product=unknown;protein_id=ADX22754.1
+HQ857562.1	Genbank	CDS	105449	107344	.	-	0	ID=cds-ADX22755.1;Dbxref=NCBI_GP:ADX22755.1;Name=ADX22755.1;gbkey=CDS;product=bifunctional ATPase/nucleoside triphosphate phosphohydrolase-I;protein_id=ADX22755.1
+HQ857562.1	Genbank	CDS	107379	108242	.	-	0	ID=cds-ADX22756.1;Dbxref=NCBI_GP:ADX22756.1;Name=ADX22756.1;gbkey=CDS;product=bifunctional small subunit of mRNA capping enzyme protein;protein_id=ADX22756.1
+HQ857562.1	Genbank	CDS	108273	109928	.	-	0	ID=cds-ADX22757.1;Dbxref=NCBI_GP:ADX22757.1;Name=ADX22757.1;gbkey=CDS;product=unknown;protein_id=ADX22757.1
+HQ857562.1	Genbank	CDS	109953	110405	.	-	0	ID=cds-ADX22758.1;Dbxref=NCBI_GP:ADX22758.1;Name=ADX22758.1;gbkey=CDS;product=late gene transcription factor VLTF-2;protein_id=ADX22758.1
+HQ857562.1	Genbank	CDS	110426	111100	.	-	0	ID=cds-ADX22759.1;Dbxref=NCBI_GP:ADX22759.1;Name=ADX22759.1;gbkey=CDS;product=late gene transcription factor VLTF-3;protein_id=ADX22759.1
+HQ857562.1	Genbank	CDS	111097	111330	.	-	0	ID=cds-ADX22760.1;Dbxref=NCBI_GP:ADX22760.1;Name=ADX22760.1;gbkey=CDS;product=bifunctional unknown/involved in S-S bond formation pathway;protein_id=ADX22760.1
+HQ857562.1	Genbank	CDS	111345	113279	.	-	0	ID=cds-ADX22761.1;Dbxref=NCBI_GP:ADX22761.1;Name=ADX22761.1;gbkey=CDS;product=p4b precursor of core protein 4b;protein_id=ADX22761.1
+HQ857562.1	Genbank	CDS	113332	114177	.	-	0	ID=cds-ADX22762.1;Dbxref=NCBI_GP:ADX22762.1;Name=ADX22762.1;gbkey=CDS;product=39 kDa core protein;protein_id=ADX22762.1
+HQ857562.1	Genbank	CDS	114215	114700	.	+	0	ID=cds-ADX22763.1;Dbxref=NCBI_GP:ADX22763.1;Name=ADX22763.1;gbkey=CDS;product=DNA-dependent RNA polymerase subunit rpo19;protein_id=ADX22763.1
+HQ857562.1	Genbank	CDS	114697	115815	.	-	0	ID=cds-ADX22764.1;Dbxref=NCBI_GP:ADX22764.1;Name=ADX22764.1;gbkey=CDS;product=unknown;protein_id=ADX22764.1
+HQ857562.1	Genbank	CDS	115839	117971	.	-	0	ID=cds-ADX22765.1;Dbxref=NCBI_GP:ADX22765.1;Name=ADX22765.1;gbkey=CDS;product=82 kDa large subunit of early gene transcription factor VETF;protein_id=ADX22765.1
+HQ857562.1	Genbank	CDS	118025	118903	.	+	0	ID=cds-ADX22766.1;Dbxref=NCBI_GP:ADX22766.1;Name=ADX22766.1;gbkey=CDS;product=32 kDa small subunit of transcription factor VITF-3;protein_id=ADX22766.1
+HQ857562.1	Genbank	CDS	118884	119186	.	-	0	ID=cds-ADX22767.1;Dbxref=NCBI_GP:ADX22767.1;Name=ADX22767.1;gbkey=CDS;product=IMV membrane protein;protein_id=ADX22767.1
+HQ857562.1	Genbank	CDS	119187	121862	.	-	0	ID=cds-ADX22768.1;Dbxref=NCBI_GP:ADX22768.1;Name=ADX22768.1;gbkey=CDS;product=precursor p4a of core protein 4a;protein_id=ADX22768.1
+HQ857562.1	Genbank	CDS	121877	122833	.	+	0	ID=cds-ADX22769.1;Dbxref=NCBI_GP:ADX22769.1;Name=ADX22769.1;gbkey=CDS;product=unknown;protein_id=ADX22769.1
+HQ857562.1	Genbank	CDS	122835	123407	.	-	0	ID=cds-ADX22770.1;Dbxref=NCBI_GP:ADX22770.1;Name=ADX22770.1;gbkey=CDS;product=core protein;protein_id=ADX22770.1
+HQ857562.1	Genbank	CDS	123431	123643	.	-	0	ID=cds-ADX22771.1;Dbxref=NCBI_GP:ADX22771.1;Name=ADX22771.1;gbkey=CDS;product=IMV membrane protein;protein_id=ADX22771.1
+HQ857562.1	Genbank	CDS	123749	124021	.	-	0	ID=cds-ADX22772.1;Dbxref=NCBI_GP:ADX22772.1;Name=ADX22772.1;gbkey=CDS;product=phosphorylated IMV membrane protein;protein_id=ADX22772.1
+HQ857562.1	Genbank	CDS	124026	124199	.	-	0	ID=cds-ADX22773.1;Dbxref=NCBI_GP:ADX22773.1;Name=ADX22773.1;gbkey=CDS;product=IV and IMV membrane protein;protein_id=ADX22773.1
+HQ857562.1	Genbank	CDS	124189	124473	.	-	0	ID=cds-ADX22774.1;Dbxref=NCBI_GP:ADX22774.1;Name=ADX22774.1;gbkey=CDS;product=virion core-associated protein;protein_id=ADX22774.1
+HQ857562.1	Genbank	CDS	124457	125590	.	-	0	ID=cds-ADX22775.1;Dbxref=NCBI_GP:ADX22775.1;Name=ADX22775.1;gbkey=CDS;product=soluble myristylprotein;protein_id=ADX22775.1
+HQ857562.1	Genbank	CDS	125593	126207	.	-	0	ID=cds-ADX22776.1;Dbxref=NCBI_GP:ADX22776.1;Name=ADX22776.1;gbkey=CDS;product=bifunctional unknown/IMV membrane protein undergoes phosphorylation and proteolytic processing;protein_id=ADX22776.1
+HQ857562.1	Genbank	CDS	126222	127700	.	+	0	ID=cds-ADX22777.1;Dbxref=NCBI_GP:ADX22777.1;Name=ADX22777.1;gbkey=CDS;product=DNA helicase;protein_id=ADX22777.1
+HQ857562.1	Genbank	CDS	127681	127914	.	-	0	ID=cds-ADX22778.1;Dbxref=NCBI_GP:ADX22778.1;Name=ADX22778.1;gbkey=CDS;product=unknown;protein_id=ADX22778.1
+HQ857562.1	Genbank	CDS	127915	128262	.	-	0	ID=cds-ADX22779.1;Dbxref=NCBI_GP:ADX22779.1;Name=ADX22779.1;gbkey=CDS;product=unknown;protein_id=ADX22779.1
+HQ857562.1	Genbank	CDS	128261	129541	.	+	0	ID=cds-ADX22780.1;Dbxref=NCBI_GP:ADX22780.1;Name=ADX22780.1;gbkey=CDS;product=viral DNA polymerase processivity factor;protein_id=ADX22780.1
+HQ857562.1	Genbank	CDS	129471	130034	.	+	0	ID=cds-ADX22781.1;Dbxref=NCBI_GP:ADX22781.1;Name=ADX22781.1;gbkey=CDS;product=bifunctional palmitylprotein/Holliday junction endonuclease;protein_id=ADX22781.1
+HQ857562.1	Genbank	CDS	130054	131202	.	+	0	ID=cds-ADX22782.1;Dbxref=NCBI_GP:ADX22782.1;Name=ADX22782.1;gbkey=CDS;product=45 kDa large subunit of intermediate gene transcription factor VITF-3;protein_id=ADX22782.1
+HQ857562.1	Genbank	CDS	131199	134693	.	+	0	ID=cds-ADX22783.1;Dbxref=NCBI_GP:ADX22783.1;Name=ADX22783.1;gbkey=CDS;product=DNA-dependent RNA polymerase subunit rpo132;protein_id=ADX22783.1
+HQ857562.1	Genbank	CDS	135161	135325	.	-	0	ID=cds-ADX22784.1;Dbxref=NCBI_GP:ADX22784.1;Name=ADX22784.1;gbkey=CDS;product=cowpox A-type inclusion protein;protein_id=ADX22784.1
+HQ857562.1	Genbank	CDS	135465	135692	.	-	0	ID=cds-ADX22785.1;Dbxref=NCBI_GP:ADX22785.1;Name=ADX22785.1;gbkey=CDS;product=cowpox A-type inclusion protein;protein_id=ADX22785.1
+HQ857562.1	Genbank	CDS	135634	135840	.	-	0	ID=cds-ADX22786.1;Dbxref=NCBI_GP:ADX22786.1;Name=ADX22786.1;gbkey=CDS;product=cowpox A-type inclusion protein;protein_id=ADX22786.1
+HQ857562.1	Genbank	CDS	135807	137897	.	-	0	ID=cds-ADX22787.1;Dbxref=NCBI_GP:ADX22787.1;Name=ADX22787.1;gbkey=CDS;product=cowpox A-type inclusion protein;protein_id=ADX22787.1
+HQ857562.1	Genbank	CDS	137943	139505	.	-	0	ID=cds-ADX22788.1;Dbxref=NCBI_GP:ADX22788.1;Name=ADX22788.1;gbkey=CDS;product=cowpox A-type inclusion protein;protein_id=ADX22788.1
+HQ857562.1	Genbank	CDS	139556	139888	.	-	0	ID=cds-ADX22789.1;Dbxref=NCBI_GP:ADX22789.1;Name=ADX22789.1;gbkey=CDS;product=IMV surface protein;protein_id=ADX22789.1
+HQ857562.1	Genbank	CDS	139889	140329	.	-	0	ID=cds-ADX22790.1;Dbxref=NCBI_GP:ADX22790.1;Name=ADX22790.1;gbkey=CDS;product=IMV surface protein;protein_id=ADX22790.1
+HQ857562.1	Genbank	CDS	140330	141247	.	-	0	ID=cds-ADX22791.1;Dbxref=NCBI_GP:ADX22791.1;Name=ADX22791.1;gbkey=CDS;product=DNA-dependent RNA polymerase rpo35;protein_id=ADX22791.1
+HQ857562.1	Genbank	CDS	141210	141443	.	-	0	ID=cds-ADX22792.1;Dbxref=NCBI_GP:ADX22792.1;Name=ADX22792.1;gbkey=CDS;product=unknown;protein_id=ADX22792.1
+HQ857562.1	Genbank	CDS	141603	142031	.	+	0	ID=cds-ADX22793.1;Dbxref=NCBI_GP:ADX22793.1;Name=ADX22793.1;gbkey=CDS;product=unknown;protein_id=ADX22793.1
+HQ857562.1	Genbank	CDS	141998	142900	.	-	0	ID=cds-ADX22794.1;Dbxref=NCBI_GP:ADX22794.1;Name=ADX22794.1;gbkey=CDS;product=putative ATPase;protein_id=ADX22794.1
+HQ857562.1	Genbank	CDS	142928	143473	.	+	0	ID=cds-ADX22795.1;Dbxref=NCBI_GP:ADX22795.1;Name=ADX22795.1;gbkey=CDS;product=bifunctional EEV membrane phosphoglycoprotein;protein_id=ADX22795.1
+HQ857562.1	Genbank	CDS	143478	143984	.	+	0	ID=cds-ADX22796.1;Dbxref=NCBI_GP:ADX22796.1;Name=ADX22796.1;gbkey=CDS;product=EEV glycoprotein;protein_id=ADX22796.1
+HQ857562.1	Genbank	CDS	144028	144558	.	+	0	ID=cds-ADX22797.1;Dbxref=NCBI_GP:ADX22797.1;Name=ADX22797.1;gbkey=CDS;product=unknown;protein_id=ADX22797.1
+HQ857562.1	Genbank	CDS	144603	145241	.	+	0	ID=cds-ADX22798.1;Dbxref=NCBI_GP:ADX22798.1;Name=ADX22798.1;gbkey=CDS;product=IEV transmembrane phosphoprotein;protein_id=ADX22798.1
+HQ857562.1	Genbank	CDS	145355	146161	.	+	0	ID=cds-ADX22799.1;Dbxref=NCBI_GP:ADX22799.1;Name=ADX22799.1;gbkey=CDS;product=unknown;protein_id=ADX22799.1
+HQ857562.1	Genbank	CDS	146243	146410	.	-	0	ID=cds-ADX22800.1;Dbxref=NCBI_GP:ADX22800.1;Name=ADX22800.1;gbkey=CDS;product=unknown;protein_id=ADX22800.1
+HQ857562.1	Genbank	CDS	146413	147246	.	-	0	ID=cds-ADX22801.1;Dbxref=NCBI_GP:ADX22801.1;Name=ADX22801.1;gbkey=CDS;product=CD47-like putative membrane protein;protein_id=ADX22801.1
+HQ857562.1	Genbank	CDS	147973	148638	.	-	0	ID=cds-ADX22802.1;Dbxref=NCBI_GP:ADX22802.1;Name=ADX22802.1;gbkey=CDS;product=bifunctional secreted glycoprotein/deletion causes more severe lesion and enhanced viral clearance in VAC-mouse skin model;protein_id=ADX22802.1
+HQ857562.1	Genbank	CDS	148834	149235	.	+	0	ID=cds-ADX22803.1;Dbxref=NCBI_GP:ADX22803.1;Name=ADX22803.1;gbkey=CDS;product=profilin-like protein;protein_id=ADX22803.1
+HQ857562.1	Genbank	CDS	149273	149866	.	+	0	ID=cds-ADX22804.1;Dbxref=NCBI_GP:ADX22804.1;Name=ADX22804.1;gbkey=CDS;product=putative type-I membrane glycoprotein;protein_id=ADX22804.1
+HQ857562.1	Genbank	CDS	149886	150110	.	+	0	ID=cds-ADX22805.1;Dbxref=NCBI_GP:ADX22805.1;Name=ADX22805.1;gbkey=CDS;product=unknown;protein_id=ADX22805.1
+HQ857562.1	Genbank	CDS	150204	151244	.	-	0	ID=cds-ADX22806.1;Dbxref=NCBI_GP:ADX22806.1;Name=ADX22806.1;gbkey=CDS;product=bifunctional hydroxysteroid dehydrogenase;protein_id=ADX22806.1
+HQ857562.1	Genbank	CDS	151291	151668	.	+	0	ID=cds-ADX22807.1;Dbxref=NCBI_GP:ADX22807.1;Name=ADX22807.1;gbkey=CDS;product=Cu-Zn superoxide dismutase-like protein;protein_id=ADX22807.1
+HQ857562.1	Genbank	CDS	151658	152380	.	+	0	ID=cds-ADX22808.1;Dbxref=NCBI_GP:ADX22808.1;Name=ADX22808.1;gbkey=CDS;product=Toll/IL1-receptor [TIR]-like protein;protein_id=ADX22808.1
+HQ857562.1	Genbank	CDS	152752	152925	.	-	0	ID=cds-ADX22809.1;Dbxref=NCBI_GP:ADX22809.1;Name=ADX22809.1;gbkey=CDS;product=unknown;protein_id=ADX22809.1
+HQ857562.1	Genbank	CDS	153351	153533	.	-	0	ID=cds-ADX22810.1;Dbxref=NCBI_GP:ADX22810.1;Name=ADX22810.1;gbkey=CDS;product=unknown;protein_id=ADX22810.1
+HQ857562.1	Genbank	CDS	153460	154074	.	+	0	ID=cds-ADX22811.1;Dbxref=NCBI_GP:ADX22811.1;Name=ADX22811.1;gbkey=CDS;product=thymidylate kinase;protein_id=ADX22811.1
+HQ857562.1	Genbank	CDS	154640	156304	.	+	0	ID=cds-ADX22812.1;Dbxref=NCBI_GP:ADX22812.1;Name=ADX22812.1;gbkey=CDS;product=DNA ligase;protein_id=ADX22812.1
+HQ857562.1	Genbank	CDS	156358	157362	.	+	0	ID=cds-ADX22813.1;Dbxref=NCBI_GP:ADX22813.1;Name=ADX22813.1;gbkey=CDS;product=unknown;protein_id=ADX22813.1
+HQ857562.1	Genbank	CDS	158310	158522	.	+	0	ID=cds-ADX22814.1;Dbxref=NCBI_GP:ADX22814.1;Name=ADX22814.1;gbkey=CDS;product=kelch-like protein;protein_id=ADX22814.1
+HQ857562.1	Genbank	CDS	158609	159550	.	+	0	ID=cds-ADX22815.1;Dbxref=NCBI_GP:ADX22815.1;Name=ADX22815.1;gbkey=CDS;product=bifunctional hemagglutinin/type-I membrane glycoprotein;protein_id=ADX22815.1
+HQ857562.1	Genbank	CDS	160317	161216	.	+	0	ID=cds-ADX22816.1;Dbxref=NCBI_GP:ADX22816.1;Name=ADX22816.1;gbkey=CDS;product=ser/thr kinase;protein_id=ADX22816.1
+HQ857562.1	Genbank	CDS	161291	162802	.	+	0	ID=cds-ADX22817.1;Dbxref=NCBI_GP:ADX22817.1;Name=ADX22817.1;gbkey=CDS;product=unknown;protein_id=ADX22817.1
+HQ857562.1	Genbank	CDS	163050	164735	.	+	0	ID=cds-ADX22818.1;Dbxref=NCBI_GP:ADX22818.1;Name=ADX22818.1;gbkey=CDS;product=ankyrin-like protein;protein_id=ADX22818.1
+HQ857562.1	Genbank	CDS	164837	165790	.	+	0	ID=cds-ADX22819.1;Dbxref=NCBI_GP:ADX22819.1;Name=ADX22819.1;gbkey=CDS;product=EEV type-I membrane glycoprotein;protein_id=ADX22819.1
+HQ857562.1	Genbank	CDS	166054	166413	.	+	0	ID=cds-ADX22820.1;Dbxref=NCBI_GP:ADX22820.1;Name=ADX22820.1;gbkey=CDS;product=ankyrin-like protein;protein_id=ADX22820.1
+HQ857562.1	Genbank	CDS	166450	166998	.	+	0	ID=cds-ADX22821.1;Dbxref=NCBI_GP:ADX22821.1;Name=ADX22821.1;gbkey=CDS;product=bifunctional 21 kDa precursor protein of 18 kDa membrane protein;protein_id=ADX22821.1
+HQ857562.1	Genbank	CDS	167053	167856	.	+	0	ID=cds-ADX22822.1;Dbxref=NCBI_GP:ADX22822.1;Name=ADX22822.1;gbkey=CDS;product=soluble interferon-gamma receptor-like protein;protein_id=ADX22822.1
+HQ857562.1	Genbank	CDS	167949	168614	.	+	0	ID=cds-ADX22823.1;Dbxref=NCBI_GP:ADX22823.1;Name=ADX22823.1;gbkey=CDS;product=6 kDa intracellular viral protein;protein_id=ADX22823.1
+HQ857562.1	Genbank	CDS	169736	170584	.	+	0	ID=cds-ADX22824.1;Dbxref=NCBI_GP:ADX22824.1;Name=ADX22824.1;gbkey=CDS;product=ser/thr protein kinase-like protein;protein_id=ADX22824.1
+HQ857562.1	Genbank	CDS	170699	171733	.	+	0	ID=cds-ADX22825.1;Dbxref=NCBI_GP:ADX22825.1;Name=ADX22825.1;gbkey=CDS;product=bifunctional SPI-2/CrmA protein/IL-1 convertase;protein_id=ADX22825.1
+HQ857562.1	Genbank	CDS	171860	172309	.	+	0	ID=cds-ADX22826.1;Dbxref=NCBI_GP:ADX22826.1;Name=ADX22826.1;gbkey=CDS;product=unknown;protein_id=ADX22826.1
+HQ857562.1	Genbank	CDS	172395	173375	.	+	0	ID=cds-ADX22827.1;Dbxref=NCBI_GP:ADX22827.1;Name=ADX22827.1;gbkey=CDS;product=bifunctional IL-1-beta-inhibitor/prevents febrile response in VAC-mouse intranasal model;protein_id=ADX22827.1
+HQ857562.1	Genbank	CDS	172995	173375	.	+	0	ID=cds-ADX22828.1;Dbxref=NCBI_GP:ADX22828.1;Name=ADX22828.1;gbkey=CDS;product=bifunctional IL-1-beta-inhibitor/prevents febrile response in VAC-mouse intranasal model;protein_id=ADX22828.1
+HQ857562.1	Genbank	CDS	173421	173657	.	-	0	ID=cds-ADX22829.1;Dbxref=NCBI_GP:ADX22829.1;Name=ADX22829.1;gbkey=CDS;product=unknown;protein_id=ADX22829.1
+HQ857562.1	Genbank	CDS	173641	173808	.	-	0	ID=cds-ADX22830.1;Dbxref=NCBI_GP:ADX22830.1;Name=ADX22830.1;gbkey=CDS;product=unknown;protein_id=ADX22830.1
+HQ857562.1	Genbank	CDS	174195	175253	.	+	0	ID=cds-ADX22831.1;Dbxref=NCBI_GP:ADX22831.1;Name=ADX22831.1;gbkey=CDS;product=IFN-alpha/beta-receptor-like secreted glycoprotein;protein_id=ADX22831.1
+HQ857562.1	Genbank	CDS	175322	177703	.	+	0	ID=cds-ADX22832.1;Dbxref=NCBI_GP:ADX22832.1;Name=ADX22832.1;gbkey=CDS;product=ankyrin-like protein;protein_id=ADX22832.1
+HQ857562.1	Genbank	CDS	177849	178061	.	+	0	ID=cds-ADX22833.1;Dbxref=NCBI_GP:ADX22833.1;Name=ADX22833.1;gbkey=CDS;product=kelch-like protein;protein_id=ADX22833.1
+HQ857562.1	Genbank	CDS	178761	178976	.	+	0	ID=cds-ADX22834.1;Dbxref=NCBI_GP:ADX22834.1;Name=ADX22834.1;gbkey=CDS;product=serine protease inhibitor-like SPI-1 protein;protein_id=ADX22834.1
+HQ857562.1	Genbank	CDS	178955	180028	.	+	0	ID=cds-ADX22835.1;Dbxref=NCBI_GP:ADX22835.1;Name=ADX22835.1;gbkey=CDS;product=serine protease inhibitor-like SPI-1 protein;protein_id=ADX22835.1
+HQ857562.1	Genbank	CDS	180207	180779	.	+	0	ID=cds-ADX22836.1;Dbxref=NCBI_GP:ADX22836.1;Name=ADX22836.1;gbkey=CDS;product=unknown;protein_id=ADX22836.1
+HQ857562.1	Genbank	CDS	181038	186677	.	+	0	ID=cds-ADX22837.1;Dbxref=NCBI_GP:ADX22837.1;Name=ADX22837.1;gbkey=CDS;product=putative membrane-associated glycoprotein;protein_id=ADX22837.1
+HQ857562.1	Genbank	CDS	187559	187771	.	+	0	ID=cds-ADX22838.1;Dbxref=NCBI_GP:ADX22838.1;Name=ADX22838.1;gbkey=CDS;product=TNF-alpha-receptor-like protein;protein_id=ADX22838.1
+HQ857562.1	Genbank	CDS	188364	188681	.	+	0	ID=cds-ADX22839.1;Dbxref=NCBI_GP:ADX22839.1;Name=ADX22839.1;gbkey=CDS;product=unknown;protein_id=ADX22839.1
+HQ857562.1	Genbank	CDS	188886	189347	.	+	0	ID=cds-ADX22840.1;Dbxref=NCBI_GP:ADX22840.1;Name=ADX22840.1;gbkey=CDS;product=unknown;protein_id=ADX22840.1
+HQ857562.1	Genbank	CDS	189695	189916	.	+	0	ID=cds-ADX22841.1;Dbxref=NCBI_GP:ADX22841.1;Name=ADX22841.1;gbkey=CDS;product=unknown;protein_id=ADX22841.1
+HQ857562.1	Genbank	CDS	190095	190625	.	+	0	ID=cds-ADX22842.1;Dbxref=NCBI_GP:ADX22842.1;Name=ADX22842.1;gbkey=CDS;product=unknown;protein_id=ADX22842.1
+HQ857562.1	Genbank	CDS	190741	192054	.	+	0	ID=cds-ADX22843.1;Dbxref=NCBI_GP:ADX22843.1;Name=ADX22843.1;gbkey=CDS;product=ankyrin-like protein;protein_id=ADX22843.1
+HQ857562.1	Genbank	CDS	192211	193974	.	+	0	ID=cds-ADX22844.1;Dbxref=NCBI_GP:ADX22844.1;Name=ADX22844.1;gbkey=CDS;product=ankyrin-like protein;protein_id=ADX22844.1
+HQ857562.1	Genbank	CDS	194065	195111	.	+	0	ID=cds-ADX22845.1;Dbxref=NCBI_GP:ADX22845.1;Name=ADX22845.1;gbkey=CDS;product=TNF-alpha-receptor-like protein;protein_id=ADX22845.1
+HQ857562.1	Genbank	CDS	195240	195980	.	+	0	ID=cds-ADX22846.1;Dbxref=NCBI_GP:ADX22846.1;Name=ADX22846.1;gbkey=CDS;product=chemokine-binding protein;protein_id=ADX22846.1
+

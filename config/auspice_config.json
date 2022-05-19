@@ -1,0 +1,33 @@
+{
+  "title": "Real-time tracking of monkeypox virus evolution",
+  "maintainers": [
+    {"name": "Trevor Bedford", "url": "http://bedford.io/team/trevor-bedford/"}
+  ],
+  "build_url": "https://github.com/nextstrain/monkeypox",
+  "colorings": [
+    {
+      "key": "gt",
+      "title": "genotype",
+      "type": "categorical"
+    },
+    {
+      "key": "num_date",
+      "title": "date",
+      "type": "continuous"
+    },
+    {
+      "key": "country",
+      "title": "country",
+      "type": "categorical"
+    }
+  ],
+  "geo_resolutions": [
+    "country"
+  ],
+  "display_defaults": {
+    "map_triplicate": true
+  },
+  "filters": [
+    "country"
+  ]
+}
