@@ -25,7 +25,8 @@
     "country"
   ],
   "display_defaults": {
-    "map_triplicate": true
+    "map_triplicate": true,
+    "distance_measure": "div"
   },
   "filters": [
     "country"

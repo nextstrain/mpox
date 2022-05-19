@@ -34,7 +34,7 @@ rule filter:
         sequences = "results/filtered.fasta"
     params:
         group_by = "country year month",
-        sequences_per_group = 40,
+        sequences_per_group = 1000,
         min_date = 1950,
         min_length = 10000
     shell:
@@ -63,7 +63,9 @@ rule align:
         alignment = "results/aligned.fasta"
     shell:
         """
-        nextalign \
+        ./nextalign_rs run \
+            --max-indel 4000 \
+            --jobs 1 \
             --sequences {input.sequences} \
             --reference {input.reference} \
             --output-fasta {output.alignment}
@@ -109,10 +111,9 @@ rule refine:
             --alignment {input.alignment} \
             --metadata {input.metadata} \
             --output-tree {output.tree} \
-            --output-node-data {output.node_data} \
             --timetree \
+            --output-node-data {output.node_data} \
             --coalescent {params.coalescent} \
-            --date-confidence \
             --date-inference {params.date_inference} \
             --clock-filter-iqd {params.clock_filter_iqd}
         """
@@ -207,7 +208,6 @@ rule export:
 rule clean:
     message: "Removing directories: {params}"
     params:
-        "data ",
         "results ",
         "auspice"
     shell:
