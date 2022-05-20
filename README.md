@@ -37,6 +37,8 @@ rule should be able to be reasoned with on its own.
 
 ## Input data
 
+### GenBank data
+
 Input data is downloaded from [ViPR Poxviridae resource](https://www.viprbrc.org/brc/home.spg?decorator=pox).
 - Subfamily: Chordopoxvirinae
 - Genus: Orthopoxvirus
@@ -64,6 +66,13 @@ This data is versioned on `example_data/`. The first step in the workflow is to 
 ```
 mkdir -p data/
 cp -v example_data/* data/
+```
+
+### Other data
+
+- [Monkeypox/PT0001/2022](https://virological.org/t/first-draft-genome-sequence-of-monkeypox-virus-associated-with-the-suspected-multi-country-outbreak-may-2022-confirmed-case-in-portugal/799): Download FASTA from Virological post, append to sequences and add the following to metadata:
+```
+Monkeypox/PT0001/2022	?	2022-05-04	Portugal	Human
 ```
 
 Data from GenBank follows Open Data principles, such that we can make input data and intermediate
