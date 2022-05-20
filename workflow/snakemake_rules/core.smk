@@ -48,17 +48,34 @@ rule align:
         """
         ./nextalign_rs run \
             --max-indel 4000 \
-            -vvv \
+            -v \
             --jobs 1 \
             --sequences {input.sequences} \
             --reference {input.reference} \
             --output-fasta {output.alignment}
         """
 
+rule mask:
+    message:
+        "Mask ends of the alignement:"
+        "   from start: {params.from_start}"
+        "   from end: {params.from_end}"
+    input:
+        build_dir + "/{build_name}/aligned.fasta"
+    output:
+        build_dir + "/{build_name}/masked.fasta"
+    params:
+        from_start = config["mask"]["from_beginning"],
+        from_end = config["mask"]["from_end"]
+    shell:
+        """
+        augur mask --sequences {input} --mask-from-beginning {params.from_start} --mask-from-end {params.from_end} --output {output}
+        """
+
 rule tree:
     message: "Building tree"
     input:
-        alignment = rules.align.output.alignment
+        alignment = build_dir + "/{build_name}/masked.fasta"
     output:
         tree = build_dir + "/{build_name}/tree_raw.nwk"
     shell:
@@ -79,7 +96,7 @@ rule refine:
         """
     input:
         tree = rules.tree.output.tree,
-        alignment = rules.align.output,
+        alignment = build_dir + "/{build_name}/masked.fasta",
         metadata = build_dir +"/{build_name}/metadata.tsv"
     output:
         tree = build_dir + "/{build_name}/tree.nwk",
@@ -106,7 +123,7 @@ rule ancestral:
     message: "Reconstructing ancestral sequences and mutations"
     input:
         tree = rules.refine.output.tree,
-        alignment = rules.align.output
+        alignment = build_dir + "/{build_name}/masked.fasta",
     output:
         node_data = build_dir + "/{build_name}/nt_muts.json"
     params:
