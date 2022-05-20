@@ -1,8 +1,7 @@
 {
   "title": "Real-time tracking of monkeypox virus evolution",
   "maintainers": [
-    {"name": "Trevor Bedford", "url": "http://bedford.io/team/trevor-bedford/"},
-    {"name": "Richard Neher", "url": "http://neherlab.org"}
+    {"name": "Nextstrain team", "url": "http://nextstrain.org"}
   ],
   "build_url": "https://github.com/nextstrain/monkeypox",
   "colorings": [
