@@ -69,9 +69,11 @@ rule align:
 
 rule mask:
     message:
-        "Mask ends of the alignement:"
-        "  - from start: {params.from_start}"
-        "  - from end: {params.from_end}"
+        """
+        Mask ends of the alignement:
+          - from start: {params.from_start}
+          - from end: {params.from_end}
+        """
     input:
         build_dir + "/{build_name}/aligned.fasta"
     output:
@@ -116,7 +118,8 @@ rule refine:
     params:
         coalescent = "opt",
         date_inference = "marginal",
-        clock_filter_iqd = 10
+        clock_filter_iqd = 10,
+        root = config["root"]
     shell:
         """
         augur refine \
@@ -125,6 +128,7 @@ rule refine:
             --metadata {input.metadata} \
             --output-tree {output.tree} \
             --timetree \
+            --root {params.root} \
             --output-node-data {output.node_data} \
             --coalescent {params.coalescent} \
             --date-inference {params.date_inference} \
