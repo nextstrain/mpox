@@ -61,30 +61,35 @@ augur parse \
 
 ViPR dates are weird with a format of `2006_12_14`. This needs to be manually corrected to `2006-12-14` via regex.
 
-This data is versioned on `example_data/`. The first step in the workflow is to copy `example_data/` to `data/` via:
+This data is versioned on `example_data/`.
+
+### Outbreak data
+
+[Monkeypox/PT0001/2022](https://virological.org/t/first-draft-genome-sequence-of-monkeypox-virus-associated-with-the-suspected-multi-country-outbreak-may-2022-confirmed-case-in-portugal/799): Download FASTA from Virological post and place in `outbreak-data/` as `Monkeypox_PT0001_2022.fasta`. Rename header to `>Monkeypox/PT0001/2022`.
+
+[ITM_MPX_1_Belgium](https://virological.org/t/belgian-case-of-monkeypox-virus-linked-to-outbreak-in-portugal/801):
+Download FASTA from Virological post and place in `outbreak-data/` as `ITM_MPX_1_Belgium_sampling_date_2022-05-13.fasta`. Rename header to `>ITM_MPX_1_Belgium`.
+
+### Data preparation
+
+Move metadata to `data/`:
 ```
-mkdir -p data/
-cp -v example_data/* data/
+cp example_data/metadata.tsv data/metadata.tsv
 ```
 
-### Other data
-
-- [Monkeypox/PT0001/2022](https://virological.org/t/first-draft-genome-sequence-of-monkeypox-virus-associated-with-the-suspected-multi-country-outbreak-may-2022-confirmed-case-in-portugal/799): Download FASTA from Virological post, append to sequences and add the following to metadata:
+Move and append sequences to `data/`
 ```
-Monkeypox/PT0001/2022	?	2022-05-04	Portugal	Human
+cat example_data/sequences.fasta outbreak_data/Monkeypox_PT0001_2022.fasta outbreak_data/ITM_MPX_1_Belgium_sampling_date_2022-05-13.fasta > data/sequences.fasta
 ```
 
-Data from GenBank follows Open Data principles, such that we can make input data and intermediate
-files available for further analysis. Open Data is data that can be freely used, re-used and
-redistributed by anyone - subject only, at most, to the requirement to attribute and sharealike.
+### Data use
 
 We gratefully acknowledge the authors, originating and submitting laboratories of the genetic
-sequences and metadata for sharing their work in open databases. Please note that although data
-generators have generously shared data in an open fashion, that does not mean there should be free
-license to publish on this data. Data generators should be cited where possible and collaborations
-should be sought in some circumstances. Please try to avoid scooping someone else's work. Reach out
-if uncertain. Authors, paper references (where available) and links to GenBank entries are provided
-in the metadata file.
+sequences and metadata for sharing their work. Please note that although data generators have
+generously shared data in an open fashion, that does not mean there should be free license to
+publish on this data. Data generators should be cited where possible and collaborations should be
+sought in some circumstances. Please try to avoid scooping someone else's work. Reach out if
+uncertain.
 
 ## Installation
 
@@ -139,7 +144,7 @@ Test installation
   --output-basename=nextalign
 ```
 
-Copy `nextalign` binary to somewhere globally accessible
+Copy `nextalign` binary as `nextalign_rs` to somewhere globally accessible
 ```
-sudo cp target/release/nextalign /usr/local/bin/
+sudo cp target/release/nextalign /usr/local/bin/nextalign_rs
 ```

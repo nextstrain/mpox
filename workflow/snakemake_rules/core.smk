@@ -215,6 +215,7 @@ rule export:
         aa_muts = rules.translate.output.node_data,
         colors = config["colors"],
         lat_longs = config["lat_longs"],
+        description = config["description"],
         auspice_config = config["auspice_config"]
     output:
         auspice_json = auspice_dir + "/monkeypox_{build_name}.json",
@@ -227,6 +228,7 @@ rule export:
             --node-data {input.branch_lengths} {input.traits} {input.nt_muts} {input.aa_muts} \
             --colors {input.colors} \
             --lat-longs {input.lat_longs} \
+            --description {input.description} \
             --auspice-config {input.auspice_config} \
             --include-root-sequence \
             --output {output.auspice_json}

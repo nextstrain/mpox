@@ -1,87 +1,88 @@
-strain	accession	date	country	host
-Liberia_1970_184	DQ011156	NA	NA	Human
-COP_58	AY753185	NA	NA	Unknown
-MPXV_WRAIR7_61__Walter_Reed_267	AY603973	NA	NA	Unknown
-Zaire_1979_005	HM172544	NA	Zaire	Human
-Congo_2003_358	DQ011154	NA	NA	Human
-USA_2003_039	DQ011157	NA	NA	Human
-Sierra_Leone	AY741551	NA	NA	Unknown
-USA_2003_044	DQ011153	NA	NA	Dog
-UNKNOWN_FV537349	FV537349	NA	NA	Unknown
-UNKNOWN_FV537350	FV537350	NA	NA	Unknown
-UNKNOWN_FV537351	FV537351	NA	NA	Unknown
-UNKNOWN_FV537352	FV537352	NA	NA	Unknown
-Zaire_96_I_16	NC_003310	NA	NA	Unknown
-V79_I_005	HQ857562	NA	Zaire	Human
-D14L_knockout	HQ857563	2007-10-30	NA	Unknown
-DRC_Yandongi_1985	KC257460	1985-XX-XX	Democratic_Republic_of_the_Congo	Human
-Sudan_2005_01	KC257459	2005-XX-XX	Sudan	Human
-DRC_07_0662	JX878429	2007-09-04	Democratic_Republic_of_the_Congo	Human
-DRC_07_0450	JX878426	2007-05-27	Democratic_Republic_of_the_Congo	Human
-DRC_07_0337	JX878423	2007-03-25	Democratic_Republic_of_the_Congo	Human
-DRC_07_0338	JX878424	2007-03-25	Democratic_Republic_of_the_Congo	Human
-DRC_07_0046	JX878414	2006-12-14	Democratic_Republic_of_the_Congo	Human
-DRC_07_0286	JX878421	2007-03-22	Democratic_Republic_of_the_Congo	Human
-DRC_06_0950	JX878407	2006-10-09	Democratic_Republic_of_the_Congo	Human
-DRC_07_0514	JX878428	2007-06-30	Democratic_Republic_of_the_Congo	Human
-DRC_06_1075	JX878411	2006-11-30	Democratic_Republic_of_the_Congo	Human
-DRC_07_0287	JX878422	2007-03-20	Democratic_Republic_of_the_Congo	Human
-DRC_06_1076	JX878412	2006-11-30	Democratic_Republic_of_the_Congo	Human
-DRC_07_0092	JX878415	2006-12-26	Democratic_Republic_of_the_Congo	Human
-DRC_07_0283	JX878420	2007-02-26	Democratic_Republic_of_the_Congo	Human
-DRC_07_0480	JX878427	2007-05-25	Democratic_Republic_of_the_Congo	Human
-DRC_06_0999	JX878409	2006-11-09	Democratic_Republic_of_the_Congo	Human
-DRC_06_0970	JX878408	2006-10-31	Democratic_Republic_of_the_Congo	Human
-DRC_07_0120	JX878418	2007-01-02	Democratic_Republic_of_the_Congo	Human
-DRC_07_0104	JX878417	2006-12-14	Democratic_Republic_of_the_Congo	Human
-DRC_07_0354	JX878425	2007-04-20	Democratic_Republic_of_the_Congo	Human
-DRC_07_0045	JX878413	2006-12-14	Democratic_Republic_of_the_Congo	Human
-DRC_06_1070	JX878410	2006-11-24	Democratic_Republic_of_the_Congo	Human
-DRC_07_0093	JX878416	2006-12-26	Democratic_Republic_of_the_Congo	Human
-DRC_07_0275	JX878419	2007-02-10	Democratic_Republic_of_the_Congo	Human
-Ivory_Coast_2012	KJ136820	2012_03	Cote_dIvoire	Monkey
-UTC	KJ642614	1965-XX-XX	Netherlands	Unknown
-Cameroon_1990	KJ642618	1990-XX-XX	Cameroon	Unknown
-Congo_8	KJ642613	1970-XX-XX	Zaire	Unknown
-Nigeria_SE_1971	KJ642617	1971-XX-XX	Nigeria	Unknown
-Cote_d'Ivoire_1971	KP849470	1971-XX-XX	Cote_dIvoire	Unknown
-W_Nigeria	KJ642615	1978-XX-XX	Nigeria	Unknown
-Gabon_1988	KJ642619	1988-XX-XX	Gabon	Unknown
-Yambuku_DRC_1985	KP849471	1985-XX-XX	Democratic_Republic_of_the_Congo	Unknown
-PCH	KJ642616	1968-XX-XX	France	Unknown
-Ikubi	KJ642612	1986-XX-XX	Zaire	Unknown
-Boende_DRC_2008	KP849469	2008-XX-XX	Democratic_Republic_of_the_Congo	Unknown
-3019	MK783028	2017-11-09	Nigeria	Human
-3029	MK783029	2017-12-06	Nigeria	Human
-3025	MK783030	2017-11-30	Nigeria	Human
-3020	MK783031	2017-11-09	Nigeria	Human
-3030	MK783032	2017_11	Nigeria	Human
-Israel_2018	MN648051	2018-10-04	Israel	Human
-MPXV_TNP_2017_South_Ravel_1	MN346699	2017-01-23	Cote_dIvoire	Chimpanzee
-MPXV_TNP_2017_North_Ponan	MN346693	2017-04-08	Cote_dIvoire	Chimpanzee
-MPXV_TNP_2017_North_Bic	MN346690	2017-03-13	Cote_dIvoire	Chimpanzee
-MPXV_TNP_2018_East_Paddy	MN346702	2018-05-11	Cote_dIvoire	Chimpanzee
-MPXV_TNP_2017_South_Pushkin	MN346698	2017-01-24	Cote_dIvoire	Chimpanzee
-MPXV_TNP_2017_North_Saro	MN346694	2017-03-28	Cote_dIvoire	Chimpanzee
-MPXV_TNP_2017_North_Surprise_1	MN346696	2017-04-03	Cote_dIvoire	Chimpanzee
-MPXV_TNP_2017_South_Ravel_2	MN346700	2017-01-31	Cote_dIvoire	Chimpanzee
-MPXV_TNP_2017_North_Sidonie	MN346695	2017-04-02	Cote_dIvoire	Chimpanzee
-MPXV_TNP_2017_North_Mama	MN346692	2017-03-05	Cote_dIvoire	Chimpanzee
-A5_contig_SPADES	MN702444	2017-02-06	Central_African_Republic	Human
-A4_contig_SPADES	MN702445	2017-02-06	Central_African_Republic	Human
-38c_contig_SPADES	MN702446	2018-04-14	Central_African_Republic	Human
-18_contig_SPADES	MN702447	2018-03-20	Central_African_Republic	Human
-015c_contig_SPADES	MN702448	2018-03-07	Central_African_Republic	Human
-B2_contig_SPADES	MN702449	2016-01-02	Central_African_Republic	Human
-B1_contig_SPADES	MN702450	2016-01-01	Central_African_Republic	Human
-A6_contig_SPADES	MN702451	2017-04-14	Central_African_Republic	Human
-A2_contig_SPADES	MN702452	2010-08-10	Central_African_Republic	Human
-A1_contig_SPADES	MN702453	2001-08-11	Central_African_Republic	Human
-MPXV_DRC_2012_Malacomys_longipes_EPU30	MT724769	2012-01-01	Democratic_Republic_of_the_Congo	Rat
-MPXV_DRC_2014_Crocidura__littoralis_COB771	MT724770	2014-01-01	Democratic_Republic_of_the_Congo	Shrew
-MPXV_DRC_2014_Funisciurus_bayonii_Y081	MT724771	2014-01-01	Democratic_Republic_of_the_Congo	Squirrel
-Funisciurus_anerythrus_2014_DRC	MT724772	2014-01-01	Democratic_Republic_of_the_Congo	Squirrel
-MPXV-UK_P1	MT903343.1	2018-XX-XX	United Kingdom	human
-MPXV-UK_P2	MT903344.1	2018-XX-XX	United Kingdom	human
-MPXV-UK_P3	MT903345.1	2018-XX-XX	United Kingdom	human
-Monkeypox/PT0001/2022	XXXXXXXX	2022-05-04	Portugal	human
+strain	accession	date	country	host	outbreak_associated
+Liberia_1970_184	DQ011156	NA	NA	human	no
+COP_58	AY753185	NA	NA	Unknown	no
+MPXV_WRAIR7_61__Walter_Reed_267	AY603973	NA	NA	Unknown	no
+Zaire_1979_005	HM172544	NA	Zaire	human	no
+Congo_2003_358	DQ011154	NA	NA	human	no
+USA_2003_039	DQ011157	NA	NA	human	no
+Sierra_Leone	AY741551	NA	NA	Unknown	no
+USA_2003_044	DQ011153	NA	NA	dog	no
+UNKNOWN_FV537349	FV537349	NA	NA	Unknown	no
+UNKNOWN_FV537350	FV537350	NA	NA	Unknown	no
+UNKNOWN_FV537351	FV537351	NA	NA	Unknown	no
+UNKNOWN_FV537352	FV537352	NA	NA	Unknown	no
+Zaire_96_I_16	NC_003310	NA	NA	Unknown	no
+V79_I_005	HQ857562	NA	Zaire	human	no
+D14L_knockout	HQ857563	2007-10-30	NA	Unknown	no
+DRC_Yandongi_1985	KC257460	1985-XX-XX	Democratic Republic of the Congo	human	no
+Sudan_2005_01	KC257459	2005-XX-XX	Sudan	human	no
+DRC_07_0662	JX878429	2007-09-04	Democratic Republic of the Congo	human	no
+DRC_07_0450	JX878426	2007-05-27	Democratic Republic of the Congo	human	no
+DRC_07_0337	JX878423	2007-03-25	Democratic Republic of the Congo	human	no
+DRC_07_0338	JX878424	2007-03-25	Democratic Republic of the Congo	human	no
+DRC_07_0046	JX878414	2006-12-14	Democratic Republic of the Congo	human	no
+DRC_07_0286	JX878421	2007-03-22	Democratic Republic of the Congo	human	no
+DRC_06_0950	JX878407	2006-10-09	Democratic Republic of the Congo	human	no
+DRC_07_0514	JX878428	2007-06-30	Democratic Republic of the Congo	human	no
+DRC_06_1075	JX878411	2006-11-30	Democratic Republic of the Congo	human	no
+DRC_07_0287	JX878422	2007-03-20	Democratic Republic of the Congo	human	no
+DRC_06_1076	JX878412	2006-11-30	Democratic Republic of the Congo	human	no
+DRC_07_0092	JX878415	2006-12-26	Democratic Republic of the Congo	human	no
+DRC_07_0283	JX878420	2007-02-26	Democratic Republic of the Congo	human	no
+DRC_07_0480	JX878427	2007-05-25	Democratic Republic of the Congo	human	no
+DRC_06_0999	JX878409	2006-11-09	Democratic Republic of the Congo	human	no
+DRC_06_0970	JX878408	2006-10-31	Democratic Republic of the Congo	human	no
+DRC_07_0120	JX878418	2007-01-02	Democratic Republic of the Congo	human	no
+DRC_07_0104	JX878417	2006-12-14	Democratic Republic of the Congo	human	no
+DRC_07_0354	JX878425	2007-04-20	Democratic Republic of the Congo	human	no
+DRC_07_0045	JX878413	2006-12-14	Democratic Republic of the Congo	human	no
+DRC_06_1070	JX878410	2006-11-24	Democratic Republic of the Congo	human	no
+DRC_07_0093	JX878416	2006-12-26	Democratic Republic of the Congo	human	no
+DRC_07_0275	JX878419	2007-02-10	Democratic Republic of the Congo	human	no
+Ivory_Coast_2012	KJ136820	2012_03	Cote dIvoire	Monkey	no
+UTC	KJ642614	1965-XX-XX	Netherlands	Unknown	no
+Cameroon_1990	KJ642618	1990-XX-XX	Cameroon	Unknown	no
+Congo_8	KJ642613	1970-XX-XX	Zaire	Unknown	no
+Nigeria_SE_1971	KJ642617	1971-XX-XX	Nigeria	Unknown	no
+Cote_d'Ivoire_1971	KP849470	1971-XX-XX	Cote dIvoire	Unknown	no
+W_Nigeria	KJ642615	1978-XX-XX	Nigeria	Unknown	no
+Gabon_1988	KJ642619	1988-XX-XX	Gabon	Unknown	no
+Yambuku_DRC_1985	KP849471	1985-XX-XX	Democratic Republic of the Congo	Unknown	no
+PCH	KJ642616	1968-XX-XX	France	Unknown	no
+Ikubi	KJ642612	1986-XX-XX	Zaire	Unknown	no
+Boende_DRC_2008	KP849469	2008-XX-XX	Democratic Republic of the Congo	Unknown	no
+3019	MK783028	2017-11-09	Nigeria	human	no
+3029	MK783029	2017-12-06	Nigeria	human	no
+3025	MK783030	2017-11-30	Nigeria	human	no
+3020	MK783031	2017-11-09	Nigeria	human	no
+3030	MK783032	2017_11	Nigeria	human	no
+Israel_2018	MN648051	2018-10-04	Israel	human	no
+MPXV_TNP_2017_South_Ravel_1	MN346699	2017-01-23	Cote dIvoire	chimpanzee	no
+MPXV_TNP_2017_North_Ponan	MN346693	2017-04-08	Cote dIvoire	chimpanzee	no
+MPXV_TNP_2017_North_Bic	MN346690	2017-03-13	Cote dIvoire	chimpanzee	no
+MPXV_TNP_2018_East_Paddy	MN346702	2018-05-11	Cote dIvoire	chimpanzee	no
+MPXV_TNP_2017_South_Pushkin	MN346698	2017-01-24	Cote dIvoire	chimpanzee	no
+MPXV_TNP_2017_North_Saro	MN346694	2017-03-28	Cote dIvoire	chimpanzee	no
+MPXV_TNP_2017_North_Surprise_1	MN346696	2017-04-03	Cote dIvoire	chimpanzee	no
+MPXV_TNP_2017_South_Ravel_2	MN346700	2017-01-31	Cote dIvoire	chimpanzee	no
+MPXV_TNP_2017_North_Sidonie	MN346695	2017-04-02	Cote dIvoire	chimpanzee	no
+MPXV_TNP_2017_North_Mama	MN346692	2017-03-05	Cote dIvoire	chimpanzee	no
+A5_contig_SPADES	MN702444	2017-02-06	Central African Republic	human	no
+A4_contig_SPADES	MN702445	2017-02-06	Central African Republic	human	no
+38c_contig_SPADES	MN702446	2018-04-14	Central African Republic	human	no
+18_contig_SPADES	MN702447	2018-03-20	Central African Republic	human	no
+015c_contig_SPADES	MN702448	2018-03-07	Central African Republic	human	no
+B2_contig_SPADES	MN702449	2016-01-02	Central African Republic	human	no
+B1_contig_SPADES	MN702450	2016-01-01	Central African Republic	human	no
+A6_contig_SPADES	MN702451	2017-04-14	Central African Republic	human	no
+A2_contig_SPADES	MN702452	2010-08-10	Central African Republic	human	no
+A1_contig_SPADES	MN702453	2001-08-11	Central African Republic	human	no
+MPXV_DRC_2012_Malacomys_longipes_EPU30	MT724769	2012-01-01	Democratic Republic of the Congo	rat	no
+MPXV_DRC_2014_Crocidura__littoralis_COB771	MT724770	2014-01-01	Democratic Republic of the Congo	shrew	no
+MPXV_DRC_2014_Funisciurus_bayonii_Y081	MT724771	2014-01-01	Democratic Republic of the Congo	squirrel	no
+Funisciurus_anerythrus_2014_DRC	MT724772	2014-01-01	Democratic Republic of the Congo	squirrel	no
+MPXV-UK_P1	MT903343.1	2018-XX-XX	United Kingdom	human	no
+MPXV-UK_P2	MT903344.1	2018-XX-XX	United Kingdom	human	no
+MPXV-UK_P3	MT903345.1	2018-XX-XX	United Kingdom	human	no
+Monkeypox/PT0001/2022	XXXXXXXX	2022-05-04	Portugal	human	yes
+ITM_MPX_1_Belgium	XXXXXXXX	2022-05-13	Belgium	human	yes

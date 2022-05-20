@@ -3,26 +3,31 @@
   "maintainers": [
     {"name": "Nextstrain team", "url": "http://nextstrain.org"}
   ],
+  "data_provenance": [
+    {
+      "name": "GenBank",
+      "url": "https://www.ncbi.nlm.nih.gov/genbank/"
+    },
+    {
+      "name": "Virological",
+      "url": "https://virological.org/"
+    }
+  ],
   "build_url": "https://github.com/nextstrain/monkeypox",
   "colorings": [
     {
-      "key": "gt",
-      "title": "genotype",
-      "type": "categorical"
-    },
-    {
-      "key": "num_date",
-      "title": "date",
-      "type": "continuous"
-    },
-    {
       "key": "country",
-      "title": "country",
+      "title": "Country",
       "type": "categorical"
     },
     {
       "key": "host",
-      "title": "host",
+      "title": "Host",
+      "type": "categorical"
+    },
+    {
+      "key": "outbreak_associated",
+      "title": "Outbreak Associated",
       "type": "categorical"
     }
   ],
@@ -30,6 +35,7 @@
     "country"
   ],
   "display_defaults": {
+    "color_by": "outbreak_associated",
     "map_triplicate": true,
     "distance_measure": "div",
     "transmission_lines": false
