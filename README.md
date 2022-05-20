@@ -14,12 +14,9 @@ Add any additional sequences and metadata in separate fasta or metadata-tsv file
 
 Run pipeline with:
 ```
-snakemake -j 1 -p
+snakemake -j 1 -p --configfile=config/config.yaml
 ```
-or with:
-```
-nextstrain build .
-```
+
 
 View results with:
 ```
