@@ -80,3 +80,61 @@ license to publish on this data. Data generators should be cited where possible 
 should be sought in some circumstances. Please try to avoid scooping someone else's work. Reach out
 if uncertain. Authors, paper references (where available) and links to GenBank entries are provided
 in the metadata file.
+
+## Installation
+
+This pipeline uses:
+ - [augur](https://github.com/nextstrain/augur) >v15.0
+ - [nextalign](https://github.com/nextstrain/nextclade) >v2.0.1
+ - [TreeTime](https://github.com/neherlab/treetime) >v0.9.0
+ - [IQTREE](https://github.com/Cibiv/IQ-TREE) >v2.1.2
+
+Augur, TreeTime and IQTREE can be installed as is standard. Nextalign requires installation of latest (not yet released) version.
+
+Clone and checkout `experiment-stripes-updated` branch
+```
+git clone https://github.com/nextstrain/nextclade
+cd nextclade
+git checkout experiment-stripes-updated
+```
+
+Install `rustup`
+```
+# Check if rustup (Rust toolchain manager) is installed
+which rustup
+
+# If not installed, install (https://rustup.rs/)
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# Add toolchain bin directory to $PATH
+export PATH="$PATH:$HOME/.cargo/bin"
+```
+
+Building
+```
+# Build Nextalign in release mode (fast to run, slow to build, no debug info)
+cargo build --release --bin nextalign
+```
+
+Environment variables
+```
+echo "DATA_FULL_DOMAIN=https://data.master.clades.nextstrain.org" > .env
+```
+
+Test installation
+```
+./target/release/nextalign run \
+  --in-order \
+  --include-reference \
+  --sequences=data/sars-cov-2/sequences.fasta \
+  --reference=data/sars-cov-2/reference.fasta \
+  --genemap=data/sars-cov-2/genemap.gff \
+  --genes=E,M,N,ORF1a,ORF1b,ORF3a,ORF6,ORF7a,ORF7b,ORF8,ORF9b,S \
+  --output-dir=tmp/ \
+  --output-basename=nextalign
+```
+
+Copy `nextalign` binary to somewhere globally accessible
+```
+sudo cp target/release/nextalign /usr/local/bin/
+```

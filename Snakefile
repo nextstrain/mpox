@@ -63,7 +63,7 @@ rule align:
         alignment = "results/aligned.fasta"
     shell:
         """
-        ./nextalign_rs run \
+        nextalign run \
             --max-indel 4000 \
             --jobs 1 \
             --sequences {input.sequences} \
