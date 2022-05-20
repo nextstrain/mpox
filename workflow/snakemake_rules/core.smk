@@ -56,14 +56,18 @@ rule align:
         reference = config["reference"]
     output:
         alignment = build_dir + "/{build_name}/aligned.fasta"
+    params:
+        max_indel = config["max_indel"],
+        seed_spacing = config["seed_spacing"]
     shell:
         """
         ./nextalign_rs run \
-            --max-indel 4000 \
             -v \
             --jobs 1 \
             --sequences {input.sequences} \
             --reference {input.reference} \
+            --max-indel {params.max_indel} \
+            --seed-spacing {params.seed_spacing} \
             --output-fasta {output.alignment}
         """
 
