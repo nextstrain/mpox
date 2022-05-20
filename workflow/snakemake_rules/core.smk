@@ -61,7 +61,7 @@ rule align:
         seed_spacing = config["seed_spacing"]
     shell:
         """
-        ./nextalign_rs run \
+        nextalign run \
             -v \
             --jobs 1 \
             --sequences {input.sequences} \
@@ -123,7 +123,9 @@ rule refine:
         coalescent = "opt",
         date_inference = "marginal",
         clock_filter_iqd = 10,
-        root = config["root"]
+        root = config["root"],
+        clock_rate = config["clock_rate"],
+        clock_std_dev = config["clock_std_dev"]
     shell:
         """
         augur refine \
@@ -133,6 +135,8 @@ rule refine:
             --output-tree {output.tree} \
             --timetree \
             --root {params.root} \
+            --clock-rate {params.clock_rate} \
+            --clock-std-dev {params.clock_std_dev} \
             --output-node-data {output.node_data} \
             --coalescent {params.coalescent} \
             --date-inference {params.date_inference} \
@@ -212,7 +216,8 @@ rule export:
         lat_longs = config["lat_longs"],
         auspice_config = config["auspice_config"]
     output:
-        auspice_json = auspice_dir + "/monkeypox_{build_name}.json"
+        auspice_json = auspice_dir + "/monkeypox_{build_name}.json",
+        root_sequence = auspice_dir + "/monkeypox_{build_name}_root-sequence.json"
     shell:
         """
         augur export v2 \
