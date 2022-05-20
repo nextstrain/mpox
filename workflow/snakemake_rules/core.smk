@@ -1,4 +1,16 @@
+'''
+This part of the workflow expects input files
 
+        sequences = build_dir + "/{build_name}/sequences.fasta",
+        metadata = build_dir + "/{build_name}/metadata.tsv",
+
+and will produce output files as
+
+        auspice_json = auspice_dir + "/monkeypox_{build_name}.json"
+
+Parameter are expected to sit in the `config` data structure.
+In addition, `build_dir` and `auspice_dir` need to be defined upstream.
+'''
 
 rule filter:
     message:
@@ -18,8 +30,8 @@ rule filter:
     params:
         group_by = "country year",
         sequences_per_group = 1000,
-        min_date = 1950,
-        min_length = 10000
+        min_date = config['min_date'],
+        min_length = config['min_length']
     shell:
         """
         augur filter \
@@ -58,8 +70,8 @@ rule align:
 rule mask:
     message:
         "Mask ends of the alignement:"
-        "   from start: {params.from_start}"
-        "   from end: {params.from_end}"
+        "  - from start: {params.from_start}"
+        "  - from end: {params.from_end}"
     input:
         build_dir + "/{build_name}/aligned.fasta"
     output:

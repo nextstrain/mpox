@@ -10,6 +10,7 @@ Copy input data with:
 mkdir -p data/
 cp -v example_data/* data/
 ```
+Add any additional sequences and metadata in separate fasta or metadata-tsv files to `data`, respectively.
 
 Run pipeline with:
 ```
@@ -31,9 +32,10 @@ nextstrain view auspice/
 
 ## Configuration
 
-Configuration takes place entirely with the `Snakefile`. This can be read top-to-bottom, each rule
-specifies its file inputs and output and also its parameters. There is little redirection and each
-rule should be able to be reasoned with on its own.
+Configuration takes place the `config/config.yml`.
+The analysis pipeline is contained in `workflow/snakemake_rule/core.smk`.
+This can be read top-to-bottom, each rule specifies its file inputs and output and pulls its parameters from `config`.
+There is little redirection and each rule should be able to be reasoned with on its own.
 
 ## Input data
 
