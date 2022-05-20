@@ -33,7 +33,7 @@ rule filter:
     output:
         sequences = "results/filtered.fasta"
     params:
-        group_by = "country year month",
+        group_by = "country year",
         sequences_per_group = 1000,
         min_date = 1950,
         min_length = 10000
@@ -65,6 +65,7 @@ rule align:
         """
         nextalign run \
             --max-indel 4000 \
+            -v \
             --jobs 1 \
             --sequences {input.sequences} \
             --reference {input.reference} \
