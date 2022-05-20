@@ -79,7 +79,8 @@ rule mask:
           - from end: {params.from_end}
         """
     input:
-        build_dir + "/{build_name}/aligned.fasta"
+        sequences = build_dir + "/{build_name}/aligned.fasta",
+        mask = config["mask"]["maskfile"]
     output:
         build_dir + "/{build_name}/masked.fasta"
     params:
@@ -87,7 +88,7 @@ rule mask:
         from_end = config["mask"]["from_end"]
     shell:
         """
-        augur mask --sequences {input} --mask-from-beginning {params.from_start} --mask-from-end {params.from_end} --output {output}
+        augur mask --sequences {input.sequences} --mask-file {input.mask} --mask-from-beginning {params.from_start} --mask-from-end {params.from_end} --output {output}
         """
 
 rule tree:
