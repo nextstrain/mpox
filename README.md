@@ -42,23 +42,20 @@ Input data is downloaded from [ViPR Poxviridae resource](https://www.viprbrc.org
 - Genus: Orthopoxvirus
 - Species: Monkeypox virus
 
-Download Genome FASTA, select custom format, and select all fields:
-1. GenBank accession
-2. Strain name
-3. Segment
+Download Genome FASTA, select custom format, and choose the following fields in this order:
+1. Strain name
+2. GenBank accession
+3. Country
 4. Date
 5. Host
-6. Country
-7. Subtype
-8. Virus Species
 
 This downloads the file `GenomicFastaResults.fasta`. Parse this file into sequences and metadata using:
 ```
 augur parse \
  --sequences example_data/GenomicFastaResults.fasta \
- --fields acession strain segment date host country subtype species \
- --output-sequences sequences.fasta \
- --output-metadata metadata.tsv
+ --fields strain accession date country host \
+ --output-sequences example_data/sequences.fasta \
+ --output-metadata example_data/metadata.tsv
 ```
 
 ViPR dates are weird with a format of `2006_12_14`. This needs to be manually corrected to `2006-12-14` via regex.
