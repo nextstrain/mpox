@@ -17,8 +17,8 @@ seed_spacing: 1000
 
 ## refine
 root: "min_dev"
-clock_rate: 2e-6
-clock_std_dev: 8e-7
+clock_rate: 5e-6
+clock_std_dev: 3e-6
 
 mask:
   from_beginning: 7500

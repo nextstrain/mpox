@@ -6,4 +6,4 @@ Monkeypox outbreak genomes come from the following sources:
 
 We gratefully acknowledge the authors, originating and submitting laboratories of the genetic sequences and metadata for sharing their work. Please note that although data generators have generously shared data in an open fashion, that does not mean there should be free license to publish on this data. Data generators should be cited where possible and collaborations should be sought in some circumstances. Please try to avoid scooping someone else's work. Reach out if uncertain.
 
-This analysis focuses on just West African clade viruses. For molecular clock analyses we assume an evolutionary rate of 2 &times; 10<sup>-6</sup> (following estimates of variola virus from [Firth et al](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3107591/)).
+This analysis focuses on just West African clade viruses. For molecular clock analyses we assume an evolutionary rate of 5 &times; 10<sup>-6</sup> (following estimates of variola virus from [Firth et al](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3107591/)).
