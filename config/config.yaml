@@ -21,6 +21,6 @@ clock_rate: 2e-6
 clock_std_dev: 8e-7
 
 mask:
-  from_beginning: 7000
-  from_end: 7000
+  from_beginning: 7500
+  from_end: 7500
   maskfile: "config/mask.bed"
