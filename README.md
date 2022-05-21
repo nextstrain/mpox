@@ -16,8 +16,6 @@ Run pipeline with:
 ```
 snakemake -j 1 -p --configfile=config/config.yaml
 ```
-
-
 View results with:
 ```
 auspice view --datasetDir auspice/
@@ -90,7 +88,7 @@ in the metadata file.
 
 This pipeline uses:
  - [augur](https://github.com/nextstrain/augur) >v15.0
- - [nextalign](https://github.com/nextstrain/nextclade) >v2.0.1
+ - [nextalign](https://github.com/nextstrain/nextclade) >v2.0.0
  - [TreeTime](https://github.com/neherlab/treetime) >v0.9.0
  - [IQTREE](https://github.com/Cibiv/IQ-TREE) >v2.1.2
 

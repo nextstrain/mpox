@@ -19,18 +19,13 @@
       "key": "country",
       "title": "country",
       "type": "categorical"
-    },
-    {
-      "key": "host",
-      "title": "host",
-      "type": "categorical"
     }
   ],
   "geo_resolutions": [
     "country"
   ],
   "display_defaults": {
-    "map_triplicate": true,
+    "map_triplicate": false,
     "distance_measure": "div",
     "transmission_lines": false
   },

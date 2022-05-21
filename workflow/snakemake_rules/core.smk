@@ -11,7 +11,6 @@ and will produce output files as
 Parameter are expected to sit in the `config` data structure.
 In addition, `build_dir` and `auspice_dir` need to be defined upstream.
 '''
-
 rule filter:
     message:
         """
@@ -24,7 +23,8 @@ rule filter:
     input:
         sequences = build_dir + "/{build_name}/sequences.fasta",
         metadata = build_dir + "/{build_name}/metadata.tsv",
-        exclude = config["exclude"]
+        exclude = config["exclude"],
+        include = config["include"]
     output:
         sequences = build_dir + "/{build_name}/filtered.fasta"
     params:
@@ -38,6 +38,7 @@ rule filter:
             --sequences {input.sequences} \
             --metadata {input.metadata} \
             --exclude {input.exclude} \
+            --include {input.include} \
             --output {output.sequences} \
             --group-by {params.group_by} \
             --sequences-per-group {params.sequences_per_group} \
@@ -61,7 +62,7 @@ rule align:
         seed_spacing = config["seed_spacing"]
     shell:
         """
-        nextalign run \
+        ~/code/nextclade.stripes/target/release/nextalign run \
             -v \
             --jobs 1 \
             --sequences {input.sequences} \
@@ -108,10 +109,6 @@ rule refine:
     message:
         """
         Refining tree
-          - estimate timetree
-          - use {params.coalescent} coalescent timescale
-          - estimate {params.date_inference} node dates
-          - filter tips more than {params.clock_filter_iqd} IQDs from clock expectation
         """
     input:
         tree = rules.tree.output.tree,
@@ -121,12 +118,8 @@ rule refine:
         tree = build_dir + "/{build_name}/tree.nwk",
         node_data = build_dir + "/{build_name}/branch_lengths.json"
     params:
-        coalescent = "opt",
-        date_inference = "marginal",
-        clock_filter_iqd = 10,
         root = config["root"],
-        clock_rate = config["clock_rate"],
-        clock_std_dev = config["clock_std_dev"]
+        divergence_unit = config["divergence_unit"],
     shell:
         """
         augur refine \
@@ -134,14 +127,9 @@ rule refine:
             --alignment {input.alignment} \
             --metadata {input.metadata} \
             --output-tree {output.tree} \
-            --timetree \
             --root {params.root} \
-            --clock-rate {params.clock_rate} \
-            --clock-std-dev {params.clock_std_dev} \
+            --divergence-unit {params.divergence_unit} \
             --output-node-data {output.node_data} \
-            --coalescent {params.coalescent} \
-            --date-inference {params.date_inference} \
-            --clock-filter-iqd {params.clock_filter_iqd}
         """
 
 rule ancestral:
