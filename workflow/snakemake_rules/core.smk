@@ -89,7 +89,7 @@ rule mask:
         from_end = config["mask"]["from_end"]
     shell:
         """
-        augur mask --sequences {input.sequences} --mask {input.mask} --mask-from-beginning {params.from_start} --mask-from-end {params.from_end} --output {output}
+        augur mask --sequences {input.sequences} --mask-from-beginning {params.from_start} --mask-from-end {params.from_end} --output {output}
         """
 
 rule tree:
@@ -167,30 +167,6 @@ rule translate:
             --output {output.node_data}
         """
 
-rule traits:
-    message:
-        """
-        Inferring ancestral traits for {params.columns!s}
-          - increase uncertainty of reconstruction by {params.sampling_bias_correction} to partially account for sampling bias
-        """
-    input:
-        tree = rules.refine.output.tree,
-        metadata = build_dir+"/{build_name}/metadata.tsv"
-    output:
-        node_data = build_dir + "/{build_name}/traits.json",
-    params:
-        columns = "country",
-        sampling_bias_correction = 3
-    shell:
-        """
-        augur traits \
-            --tree {input.tree} \
-            --metadata {input.metadata} \
-            --output {output.node_data} \
-            --columns {params.columns} \
-            --confidence \
-            --sampling-bias-correction {params.sampling_bias_correction}
-        """
 
 rule export:
     message: "Exporting data files for for auspice"
@@ -198,7 +174,6 @@ rule export:
         tree = rules.refine.output.tree,
         metadata = build_dir+"/{build_name}/metadata.tsv",
         branch_lengths = rules.refine.output.node_data,
-        traits = rules.traits.output.node_data,
         nt_muts = rules.ancestral.output.node_data,
         aa_muts = rules.translate.output.node_data,
         colors = config["colors"],
@@ -212,7 +187,7 @@ rule export:
         augur export v2 \
             --tree {input.tree} \
             --metadata {input.metadata} \
-            --node-data {input.branch_lengths} {input.traits} {input.nt_muts} {input.aa_muts} \
+            --node-data {input.branch_lengths} {input.nt_muts} {input.aa_muts} \
             --colors {input.colors} \
             --lat-longs {input.lat_longs} \
             --auspice-config {input.auspice_config} \
