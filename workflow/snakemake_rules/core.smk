@@ -62,7 +62,7 @@ rule align:
         seed_spacing = config["seed_spacing"]
     shell:
         """
-        ~/code/nextclade.stripes/target/release/nextalign run \
+        ~/code/nextclade/target/release/nextalign run \
             -v \
             --jobs 1 \
             --sequences {input.sequences} \
@@ -180,8 +180,7 @@ rule export:
         lat_longs = config["lat_longs"],
         auspice_config = config["auspice_config"]
     output:
-        auspice_json = auspice_dir + "/monkeypox_{build_name}.json",
-        root_sequence = auspice_dir + "/monkeypox_{build_name}_root-sequence.json"
+        auspice_json = auspice_dir + "/raw_monkeypox_{build_name}.json",
     shell:
         """
         augur export v2 \
@@ -191,6 +190,20 @@ rule export:
             --colors {input.colors} \
             --lat-longs {input.lat_longs} \
             --auspice-config {input.auspice_config} \
-            --include-root-sequence \
             --output {output.auspice_json}
         """
+
+rule add_fake_clades:
+    input: rules.export.output.auspice_json
+    output:
+        auspice_json = auspice_dir + "/monkeypox_{build_name}.json"
+    shell: """
+            jq <{input} \
+            'walk( 
+                if type == "object" and has("node_attrs") \
+                    then .node_attrs += {{"clade_membership": {{ "value": "" }} }} \
+                    else . \
+                end
+            )' \
+            > {output.auspice_json}
+            """
