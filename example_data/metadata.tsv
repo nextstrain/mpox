@@ -1,7 +1,7 @@
 strain	accession	date	region	country	host	outbreak_associated	clade
-Liberia_1970_184	DQ011156	Africa	Liberia	human	no	CA
+Liberia_1970_184	DQ011156	NA	Africa	Liberia	human	no	CA
 COP_58	AY753185	NA	NA	NA	Unknown	no	CA
-MPXV_WRAIR7_61__Walter_Reed_267	AY603973	NA	NA	Unknown	no	CA
+MPXV_WRAIR7_61__Walter_Reed_267	AY603973	NA	NA	NA	Unknown	no	CA
 Zaire_1979_005	HM172544	NA	Africa	Zaire	human	no	CA
 Congo_2003_358	DQ011154	NA	Africa	NA	human	no	CA
 USA_2003_039	DQ011157	NA	North America	NA	human	no	CA
