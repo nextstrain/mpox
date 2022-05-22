@@ -79,7 +79,7 @@ cp example_data/metadata.tsv data/metadata.tsv
 
 Move and append sequences to `data/`
 ```
-cat example_data/sequences.fasta outbreak_data/Monkeypox_PT0001_2022.fasta outbreak_data/ITM_MPX_1_Belgium_sampling_date_2022-05-13.fasta > data/sequences.fasta
+cat example_data/sequences.fasta example_data/outbreak.fasta > data/sequences.fasta
 ```
 
 ### Data use
