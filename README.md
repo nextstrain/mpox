@@ -1,7 +1,6 @@
 # nextstrain.org/monkeypox
 
-This is the [Nextstrain](https://nextstrain.org) build for monkeypox virus. This build is currently
-work-in-progress and is not yet publicly visible.
+This is the [Nextstrain](https://nextstrain.org) build for monkeypox virus. Output from this build is visible at [nextstrain.org/monkeypox](https://nextstrain.org/monkeypox).
 
 ## Usage
 
@@ -16,7 +15,6 @@ Run pipeline with:
 ```
 snakemake -j 1 -p --configfile=config/config.yaml
 ```
-
 
 View results with:
 ```
@@ -61,14 +59,15 @@ augur parse \
 
 ViPR dates are weird with a format of `2006_12_14`. This needs to be manually corrected to `2006-12-14` via regex.
 
-This data is versioned on `example_data/`.
+This data is versioned as `example_data/sequences.fasta`.
 
 ### Outbreak data
 
-[Monkeypox/PT0001/2022](https://virological.org/t/first-draft-genome-sequence-of-monkeypox-virus-associated-with-the-suspected-multi-country-outbreak-may-2022-confirmed-case-in-portugal/799): Download FASTA from Virological post and place in `outbreak-data/` as `Monkeypox_PT0001_2022.fasta`. Rename header to `>Monkeypox/PT0001/2022`.
+- [Monkeypox/PT0001/2022](https://virological.org/t/first-draft-genome-sequence-of-monkeypox-virus-associated-with-the-suspected-multi-country-outbreak-may-2022-confirmed-case-in-portugal/799)
+- [ITM_MPX_1_Belgium](https://virological.org/t/belgian-case-of-monkeypox-virus-linked-to-outbreak-in-portugal/801)
+- [MPXV_USA_2022_MA001](https://www.ncbi.nlm.nih.gov/nuccore/ON563414)
 
-[ITM_MPX_1_Belgium](https://virological.org/t/belgian-case-of-monkeypox-virus-linked-to-outbreak-in-portugal/801):
-Download FASTA from Virological post and place in `outbreak-data/` as `ITM_MPX_1_Belgium_sampling_date_2022-05-13.fasta`. Rename header to `>ITM_MPX_1_Belgium`.
+has been saved to `example_data/outbreak.fasta`.
 
 ### Data preparation
 
@@ -101,11 +100,10 @@ This pipeline uses:
 
 Augur, TreeTime and IQTREE can be installed as is standard. Nextalign requires installation of latest (not yet released) version.
 
-Clone and checkout `experiment-stripes-updated` branch
+Clone repo
 ```
 git clone https://github.com/nextstrain/nextclade
 cd nextclade
-git checkout experiment-stripes-updated
 ```
 
 Install `rustup`
