@@ -120,15 +120,15 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 export PATH="$PATH:$HOME/.cargo/bin"
 ```
 
+Set environment variables
+```
+echo "DATA_FULL_DOMAIN=https://data.master.clades.nextstrain.org" > .env
+```
+
 Building
 ```
 # Build Nextalign in release mode (fast to run, slow to build, no debug info)
 cargo build --release --bin nextalign
-```
-
-Environment variables
-```
-echo "DATA_FULL_DOMAIN=https://data.master.clades.nextstrain.org" > .env
 ```
 
 Test installation
@@ -144,7 +144,7 @@ Test installation
   --output-basename=nextalign
 ```
 
-Copy `nextalign` binary as `nextalign_rs` to somewhere globally accessible
+Copy `nextalign` binary to somewhere globally accessible
 ```
-sudo cp target/release/nextalign /usr/local/bin/nextalign_rs
+sudo cp target/release/nextalign /usr/local/bin/
 ```
