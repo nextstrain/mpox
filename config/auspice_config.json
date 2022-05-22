@@ -16,6 +16,11 @@
   "build_url": "https://github.com/nextstrain/monkeypox",
   "colorings": [
     {
+      "key": "region",
+      "title": "Region",
+      "type": "categorical"
+    },
+    {
       "key": "country",
       "title": "Country",
       "type": "categorical"
