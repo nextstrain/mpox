@@ -13,14 +13,10 @@ Add any additional sequences and metadata in separate fasta or metadata-tsv file
 
 Run pipeline with:
 ```
-snakemake -j 1 -p --configfile=config/config.yaml
+nextstrain build --image=nextstrain/base:branch-nextalign-v2 . --configfile=config/config.yaml
 ```
 
 View results with:
-```
-auspice view --datasetDir auspice/
-```
-or with:
 ```
 nextstrain view auspice/
 ```
@@ -92,57 +88,5 @@ uncertain.
 
 ## Installation
 
-This pipeline uses:
- - [augur](https://github.com/nextstrain/augur) >v15.0
- - [nextalign](https://github.com/nextstrain/nextclade) >v2.0.1
- - [TreeTime](https://github.com/neherlab/treetime) >v0.9.0
- - [IQTREE](https://github.com/Cibiv/IQ-TREE) >v2.1.2
-
-Augur, TreeTime and IQTREE can be installed as is standard. Nextalign requires installation of latest (not yet released) version.
-
-Clone repo
-```
-git clone https://github.com/nextstrain/nextclade
-cd nextclade
-```
-
-Install `rustup`
-```
-# Check if rustup (Rust toolchain manager) is installed
-which rustup
-
-# If not installed, install (https://rustup.rs/)
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-
-# Add toolchain bin directory to $PATH
-export PATH="$PATH:$HOME/.cargo/bin"
-```
-
-Set environment variables
-```
-echo "DATA_FULL_DOMAIN=https://data.master.clades.nextstrain.org" > .env
-```
-
-Building
-```
-# Build Nextalign in release mode (fast to run, slow to build, no debug info)
-cargo build --release --bin nextalign
-```
-
-Test installation
-```
-./target/release/nextalign run \
-  --in-order \
-  --include-reference \
-  --sequences=data/sars-cov-2/sequences.fasta \
-  --reference=data/sars-cov-2/reference.fasta \
-  --genemap=data/sars-cov-2/genemap.gff \
-  --genes=E,M,N,ORF1a,ORF1b,ORF3a,ORF6,ORF7a,ORF7b,ORF8,ORF9b,S \
-  --output-dir=tmp/ \
-  --output-basename=nextalign
-```
-
-Copy `nextalign` binary to somewhere globally accessible
-```
-sudo cp target/release/nextalign /usr/local/bin/
-```
+Follow the [standard installation instructions](https://docs.nextstrain.org/en/latest/install.html) for Nextstrain's suite of software tools.
+Please choose the installation method for your operating system which uses Docker, as currently a pre-release version of Nextalign is required which we've baked into the `--image` argument to `nextstrain build` above.
