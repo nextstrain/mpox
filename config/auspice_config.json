@@ -4,10 +4,39 @@
     {"name": "Nextstrain team", "url": "http://nextstrain.org"}
   ],
   "build_url": "https://github.com/nextstrain/monkeypox",
+  "data_provenance": [
+    {
+      "name": "GenBank",
+      "url": "https://www.ncbi.nlm.nih.gov/genbank/"
+    },
+    {
+      "name": "INSA",
+      "url": "https://virological.org/t/first-draft-genome-sequence-of-monkeypox-virus-associated-with-the-suspected-multi-country-outbreak-may-2022-confirmed-case-in-portugal/799"
+    },
+    {
+      "name": "CDC",
+      "url": "https://www.ncbi.nlm.nih.gov/nuccore/ON563414"
+    }
+  ],
   "colorings": [
     {
-      "key": "gt",
-      "title": "genotype",
+      "key": "outbreak_associated",
+      "title": "Outbreak Associated",
+      "type": "categorical"
+    },    
+    {
+      "key": "region",
+      "title": "Region",
+      "type": "categorical"
+    },
+    {
+      "key": "country",
+      "title": "Country",
+      "type": "categorical"
+    },
+    {
+      "key": "host",
+      "title": "Host",
       "type": "categorical"
     },
     {
@@ -16,8 +45,13 @@
       "type": "continuous"
     },
     {
-      "key": "country",
-      "title": "country",
+      "key": "gt",
+      "title": "genotype",
+      "type": "categorical"
+    },
+    {
+      "key": "clades",
+      "title": "Clades",
       "type": "categorical"
     }
   ],
@@ -31,6 +65,8 @@
   },
   "filters": [
     "country",
-    "host"
+    "host",
+    "outbreak_associated",
+    "clades"
   ]
 }

@@ -1,0 +1,5 @@
+clade	gene	site	alt
+2018_outbreak	nuc	45	T
+2022_outbreak	clade	2018_outbreak	
+2022_outbreak	nuc	21732	A
+2022_outbreak	nuc	95043	A

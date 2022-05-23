@@ -11,6 +11,15 @@ and will produce output files as
 Parameter are expected to sit in the `config` data structure.
 In addition, `build_dir` and `auspice_dir` need to be defined upstream.
 '''
+
+rule download_nextalign:
+    output:
+        executable = "bin/nextalign"
+    shell:
+        """
+        curl -fsSL "https://github.com/nextstrain/nextclade/releases/download/2.0.0-alpha.2/nextalign-x86_64-apple-darwin" -o {output.executable} && chmod +x {output.executable} && ./{output.executable} --version
+        """
+
 rule filter:
     message:
         """
@@ -54,7 +63,8 @@ rule align:
         """
     input:
         sequences = rules.filter.output.sequences,
-        reference = config["reference"]
+        reference = config["reference"],
+        nextalign = rules.download_nextalign.output.executable
     output:
         alignment = build_dir + "/{build_name}/aligned.fasta"
     params:
@@ -62,7 +72,7 @@ rule align:
         seed_spacing = config["seed_spacing"]
     shell:
         """
-        ~/code/nextclade/target/release/nextalign run \
+        ./{input.nextalign} run \
             -v \
             --jobs 1 \
             --sequences {input.sequences} \
@@ -167,6 +177,23 @@ rule translate:
             --output {output.node_data}
         """
 
+rule clades:
+    message: "Adding internal clade labels"
+    input:
+        tree = rules.refine.output.tree,
+        aa_muts = rules.translate.output.node_data,
+        nuc_muts = rules.ancestral.output.node_data,
+        clades = config["clades"]
+    output:
+        node_data = build_dir + "/{build_name}/clades.json"
+    shell:
+        """
+        augur clades --tree {input.tree} \
+            --mutations {input.nuc_muts} {input.aa_muts} \
+            --clades {input.clades} \
+            --output-node-data {output.node_data} 2>&1 | tee {log}
+        """
+
 
 rule export:
     message: "Exporting data files for for auspice"
@@ -176,34 +203,35 @@ rule export:
         branch_lengths = rules.refine.output.node_data,
         nt_muts = rules.ancestral.output.node_data,
         aa_muts = rules.translate.output.node_data,
+        clades = rules.clades.output.node_data,
         colors = config["colors"],
         lat_longs = config["lat_longs"],
         auspice_config = config["auspice_config"]
     output:
-        auspice_json = auspice_dir + "/raw_monkeypox_{build_name}.json",
+        auspice_json = auspice_dir + "/monkeypox_{build_name}.json",
     shell:
         """
         augur export v2 \
             --tree {input.tree} \
             --metadata {input.metadata} \
-            --node-data {input.branch_lengths} {input.nt_muts} {input.aa_muts} \
+            --node-data {input.branch_lengths} {input.clades} {input.nt_muts} {input.aa_muts} \
             --colors {input.colors} \
             --lat-longs {input.lat_longs} \
             --auspice-config {input.auspice_config} \
             --output {output.auspice_json}
         """
 
-rule add_fake_clades:
-    input: rules.export.output.auspice_json
-    output:
-        auspice_json = auspice_dir + "/monkeypox_{build_name}.json"
-    shell: """
-            jq <{input} \
-            'walk( 
-                if type == "object" and has("node_attrs") \
-                    then .node_attrs += {{"clade_membership": {{ "value": "" }} }} \
-                    else . \
-                end
-            )' \
-            > {output.auspice_json}
-            """
+# rule add_fake_clades:
+#     input: rules.export.output.auspice_json
+#     output:
+#         auspice_json = auspice_dir + "/monkeypox_{build_name}.json"
+#     shell: """
+#             jq <{input} \
+#             'walk( 
+#                 if type == "object" and has("node_attrs") \
+#                     then .node_attrs += {{"clade_membership": {{ "value": "WA" }} }} \
+#                     else . \
+#                 end
+#             )' \
+#             > {output.auspice_json}
+#             """
