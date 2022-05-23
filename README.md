@@ -13,7 +13,7 @@ Add any additional sequences and metadata in separate fasta or metadata-tsv file
 
 Run pipeline with:
 ```
-nextstrain build --image=nextstrain/base:branch-nextalign-v2 . --configfile=config/config.yaml
+nextstrain build --image=nextstrain/base:branch-nextalign-v2 .
 ```
 
 View results with:
@@ -23,7 +23,7 @@ nextstrain view auspice/
 
 ## Configuration
 
-Configuration takes place the `config/config.yml`.
+Configuration takes place in `config/config.yml` by default.
 The analysis pipeline is contained in `workflow/snakemake_rule/core.smk`.
 This can be read top-to-bottom, each rule specifies its file inputs and output and pulls its parameters from `config`.
 There is little redirection and each rule should be able to be reasoned with on its own.

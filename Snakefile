@@ -1,3 +1,6 @@
+if not config:
+    configfile: "config/config.yaml"
+
 build_dir = "results"
 auspice_dir = "auspice"
 
