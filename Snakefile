@@ -6,7 +6,7 @@ auspice_dir = "auspice"
 
 rule all:
     input:
-        auspice_json = auspice_dir + "/monkeypox.json"
+        auspice_json = auspice_dir + f"/monkeypox{config.get('auspice_suffix','')}.json"
 
 rule rename:
     input:
