@@ -1,0 +1,4 @@
+if not config:
+    configfile: "config/config.yaml"
+
+include: "workflow/snakemake_rules/fetch_sequences.smk"
