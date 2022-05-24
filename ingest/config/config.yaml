@@ -1,0 +1,2 @@
+# Sources of sequences to include in the ingest run
+sources: ['genbank']
