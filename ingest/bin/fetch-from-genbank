@@ -1,0 +1,20 @@
+#!/bin/bash
+#
+# Originally copied from "bin/fetch-from-genbank" in nextstrain/ncov-ingest:
+#   https://github.com/nextstrain/ncov-ingest/blob/2a5f255329ee5bdf0cabc8b8827a700c92becbe4/bin/fetch-from-genbank
+#
+set -euo pipefail
+
+bin="$(dirname "$0")"
+
+main() {
+    fetch | "$bin"/csv-to-ndjson
+}
+
+fetch() {
+    curl "$("$bin"/genbank-url)" \
+        --fail --silent --show-error --http1.1 \
+        --header 'User-Agent: https://github.com/nextstrain/monkeypox (hello@nextstrain.org)'
+}
+
+main "$@"
