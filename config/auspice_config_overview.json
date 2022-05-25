@@ -25,6 +25,11 @@
         "type": "categorical"
       },
       {
+        "key": "clade2",
+        "title": "Clade Alt",
+        "type": "categorical"
+      },
+      {
       "key": "outbreak_associated",
       "title": "Outbreak Associated",
       "type": "categorical"
