@@ -1,4 +1,11 @@
 if not config:
     configfile: "config/config.yaml"
 
+rule all:
+    input:
+        sequences = "data/sequences.fasta",
+        metadata = "data/metadata.tsv"
+
 include: "workflow/snakemake_rules/fetch_sequences.smk"
+
+include: "workflow/snakemake_rules/transform.smk"
