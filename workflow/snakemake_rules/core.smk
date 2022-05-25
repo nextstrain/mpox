@@ -59,11 +59,12 @@ rule align:
     params:
         max_indel = config["max_indel"],
         seed_spacing = config["seed_spacing"]
+    threads: workflow.cores
     shell:
         """
         nextalign run \
             -v \
-            --jobs 1 \
+            --jobs {threads} \
             --sequences {input.sequences} \
             --reference {input.reference} \
             --max-indel {params.max_indel} \
@@ -97,11 +98,13 @@ rule tree:
         alignment = build_dir + "/{build_name}/masked.fasta"
     output:
         tree = build_dir + "/{build_name}/tree_raw.nwk"
+    threads: 8
     shell:
         """
         augur tree \
             --alignment {input.alignment} \
-            --output {output.tree}
+            --output {output.tree} \
+            --nthreads {threads}
         """
 
 rule refine:
@@ -127,6 +130,7 @@ rule refine:
         root = config["root"],
         clock_rate = config["clock_rate"],
         clock_std_dev = config["clock_std_dev"]
+    threads: 1
     shell:
         """
         augur refine \
