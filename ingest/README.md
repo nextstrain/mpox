@@ -9,6 +9,15 @@ Fetch sequences with
 nextstrain build . data/sequences.ndjson
 ```
 
+Run the complete ingest pipeline with
+```
+nextstrain build .
+```
+This will produce two files:
+
+    - data/metadata.tsv
+    - data/sequences.fasta
+
 ## Configuration
 
 Configuration takes place in `config/config.yaml` by default.

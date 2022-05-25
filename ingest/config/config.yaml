@@ -1,2 +1,18 @@
 # Sources of sequences to include in the ingest run
 sources: ['genbank']
+
+# Params for the transform rule
+transform:
+  # Field to use as the sequence ID in the FASTA file
+  id_field: 'strain'
+  # Field to use as the sequence in the FASTA file
+  sequence_field: 'sequence'
+  # Final output columns for the metadata TSV
+  metadata_columns: [
+    'strain',
+    'genbank_accession',
+    'collected',
+    'region',
+    'location',
+    'host'
+  ]
