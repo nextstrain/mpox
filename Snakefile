@@ -6,19 +6,20 @@ auspice_dir = "auspice"
 
 rule all:
     input:
-        auspice_json = auspice_dir + f"/monkeypox{config.get('auspice_suffix','')}.json"
+        auspice_json = auspice_dir + f"/{config.get('auspice_name','tree')}.json",
+        root_sequence_json = auspice_dir + f"/{config.get('auspice_name','')}_root-sequence.json",
 
 rule rename:
     input:
-        auspice_json = auspice_dir + "/monkeypox_global.json",
-        root_sequence = auspice_dir + "/monkeypox_global_root-sequence.json"
+        auspice_json = build_dir + f"/{config.get('build_name')}/tree.json",
+        root_sequence = build_dir + f"/{config.get('build_name')}/tree_root-sequence.json"
     output:
-        auspice_json = auspice_dir + "/monkeypox.json",
-        root_sequence = auspice_dir + "/monkeypox_root-sequence.json"
+        auspice_json = auspice_dir + f"/{config.get('auspice_name','tree')}.json",
+        root_sequence_json = auspice_dir + f"/{config.get('auspice_name','')}_root-sequence.json",
     shell:
         """
-        mv {input.auspice_json} {output.auspice_json}
-        mv {input.root_sequence} {output.root_sequence}
+        cp {input.auspice_json} {output.auspice_json}
+        cp {input.root_sequence} {output.root_sequence_json}
         """
 
 

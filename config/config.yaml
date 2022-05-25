@@ -7,6 +7,9 @@ lat_longs: "config/lat_longs.tsv"
 auspice_config: "config/auspice_config.json"
 description: "config/description.md"
 
+build_name: "cladeX"
+auspice_name: "monkeypox"
+
 ## filter
 min_date: 1950
 min_length: 10000

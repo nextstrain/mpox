@@ -221,8 +221,8 @@ rule export:
         description = config["description"],
         auspice_config = config["auspice_config"]
     output:
-        auspice_json = auspice_dir + "/monkeypox_{build_name}.json",
-        root_sequence = auspice_dir + "/monkeypox_{build_name}_root-sequence.json"
+        auspice_json =  build_dir + "/{build_name}/tree.json",
+        root_sequence = build_dir + "/{build_name}/tree_root-sequence.json"
     shell:
         """
         augur export v2 \
