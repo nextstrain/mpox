@@ -128,9 +128,8 @@ rule refine:
         date_inference = "marginal",
         clock_filter_iqd = 10,
         root = config["root"],
-        clock_rate = config["clock_rate"],
-        clock_std_dev = config["clock_std_dev"]
-    threads: 1
+        clock_rate = lambda w: f"--clock-rate {config['clock_rate']}" if "clock_rate" in config else "",
+        clock_std_dev = lambda w: f"--clock-std-dev {config['clock_std_dev']}" if "clock_std_dev" in config else ""
     shell:
         """
         augur refine \
@@ -140,8 +139,8 @@ rule refine:
             --output-tree {output.tree} \
             --timetree \
             --root {params.root} \
-            --clock-rate {params.clock_rate} \
-            --clock-std-dev {params.clock_std_dev} \
+            {params.clock_rate} \
+            {params.clock_std_dev} \
             --output-node-data {output.node_data} \
             --coalescent {params.coalescent} \
             --date-inference {params.date_inference} \
