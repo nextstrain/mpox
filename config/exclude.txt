@@ -1,3 +1,6 @@
+# for now, too many sequencing errors
+MPXV-CH-38134631/2022
+
 # exclude viruses from Congo Basin clade
 015c_contig_SPADES
 18_contig_SPADES

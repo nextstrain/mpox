@@ -59,11 +59,12 @@ rule align:
     params:
         max_indel = config["max_indel"],
         seed_spacing = config["seed_spacing"]
+    threads: workflow.cores
     shell:
         """
         nextalign run \
             -v \
-            --jobs 1 \
+            --jobs {threads} \
             --sequences {input.sequences} \
             --reference {input.reference} \
             --max-indel {params.max_indel} \
@@ -97,11 +98,13 @@ rule tree:
         alignment = build_dir + "/{build_name}/masked.fasta"
     output:
         tree = build_dir + "/{build_name}/tree_raw.nwk"
+    threads: 8
     shell:
         """
         augur tree \
             --alignment {input.alignment} \
-            --output {output.tree}
+            --output {output.tree} \
+            --nthreads {threads}
         """
 
 rule refine:
@@ -125,8 +128,8 @@ rule refine:
         date_inference = "marginal",
         clock_filter_iqd = 10,
         root = config["root"],
-        clock_rate = config["clock_rate"],
-        clock_std_dev = config["clock_std_dev"]
+        clock_rate = lambda w: f"--clock-rate {config['clock_rate']}" if "clock_rate" in config else "",
+        clock_std_dev = lambda w: f"--clock-std-dev {config['clock_std_dev']}" if "clock_std_dev" in config else ""
     shell:
         """
         augur refine \
@@ -136,8 +139,8 @@ rule refine:
             --output-tree {output.tree} \
             --timetree \
             --root {params.root} \
-            --clock-rate {params.clock_rate} \
-            --clock-std-dev {params.clock_std_dev} \
+            {params.clock_rate} \
+            {params.clock_std_dev} \
             --output-node-data {output.node_data} \
             --coalescent {params.coalescent} \
             --date-inference {params.date_inference} \
@@ -218,8 +221,8 @@ rule export:
         description = config["description"],
         auspice_config = config["auspice_config"]
     output:
-        auspice_json = auspice_dir + "/monkeypox_{build_name}.json",
-        root_sequence = auspice_dir + "/monkeypox_{build_name}_root-sequence.json"
+        auspice_json =  build_dir + "/{build_name}/tree.json",
+        root_sequence = build_dir + "/{build_name}/tree_root-sequence.json"
     shell:
         """
         augur export v2 \

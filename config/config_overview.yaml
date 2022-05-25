@@ -1,16 +1,14 @@
-exclude: "config/exclude.txt"
+exclude: "config/exclude_overview.txt"
 reference: "config/reference.fasta"
 genemap: "config/genemap.gff"
 genbank_reference: "config/reference.gb"
 colors: "config/colors.tsv"
 lat_longs: "config/lat_longs.tsv"
-auspice_config: "config/auspice_config.json"
+auspice_config: "config/auspice_config_overview.json"
 description: "config/description.md"
 
-data_source: "lapis"
-
-build_name: "cladeX"
-auspice_name: "monkeypox"
+build_name: "outbreakAll"
+auspice_name: "monkeypox_overview"
 
 ## filter
 min_date: 1950
@@ -22,10 +20,10 @@ seed_spacing: 1000
 
 ## refine
 root: "min_dev"
-clock_rate: 5e-6
-clock_std_dev: 3e-6
+clock_rate: 3e-6
+clock_std_dev: 6e-6
 
 mask:
-  from_beginning: 1500
-  from_end: 1000
-  maskfile: "config/mask.bed"
+  from_beginning: 7500
+  from_end: 7500
+  maskfile: "config/mask_overview.bed"

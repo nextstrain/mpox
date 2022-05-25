@@ -13,8 +13,10 @@ Add any additional sequences and metadata in separate fasta or metadata-tsv file
 
 Run pipeline with:
 ```
-nextstrain build --image=nextstrain/base:branch-nextalign-v2 .
+nextstrain build --docker --image=nextstrain/base:branch-nextalign-v2 --cpus 1 .
 ```
+
+Adjust the number of CPUs to what your machine has available you want to perform alignment and tree building a bit faster.
 
 View results with:
 ```
