@@ -38,21 +38,6 @@
       "key": "host",
       "title": "Host",
       "type": "categorical"
-    },
-    {
-      "key": "num_date",
-      "title": "date",
-      "type": "continuous"
-    },
-    {
-      "key": "gt",
-      "title": "genotype",
-      "type": "categorical"
-    },
-    {
-      "key": "clades",
-      "title": "Clades",
-      "type": "categorical"
     }
   ],
   "geo_resolutions": [
@@ -67,6 +52,6 @@
     "country",
     "host",
     "outbreak_associated",
-    "clades"
+    "clade_membership"
   ]
 }

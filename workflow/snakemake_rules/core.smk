@@ -165,7 +165,8 @@ rule translate:
     input:
         tree = rules.refine.output.tree,
         node_data = rules.ancestral.output.node_data,
-        genbank_reference = config["genbank_reference"]
+        genbank_reference = config["genemap"]
+        
     output:
         node_data = build_dir + "/{build_name}/aa_muts.json"
     shell:
@@ -218,7 +219,8 @@ rule export:
             --colors {input.colors} \
             --lat-longs {input.lat_longs} \
             --auspice-config {input.auspice_config} \
-            --output {output.auspice_json}
+            --output {output.auspice_json} \
+            # --skip-validation
         """
 
 # rule add_fake_clades:
