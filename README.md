@@ -67,14 +67,23 @@ has been saved to `example_data/outbreak.fasta`.
 
 ### Data preparation
 
-Move metadata to `data/`:
+**Option 1:**
+
+Collect data as described above and store in one or more `data/*.fasta` and `data/*.tsv` file(s).
+
+**Option 2:**
+
+Move the provided metadata and sequences to `data/`:
 ```
 cp example_data/metadata.tsv data/metadata.tsv
+cat example_data/sequences.fasta example_data/outbreak.fasta > data/sequences.fasta
 ```
 
-Move and append sequences to `data/`
+**Option 3:**
+
+Download data using [LAPIS](https://mpox-lapis.gen-spectrum.org/docs)
 ```
-cat example_data/sequences.fasta example_data/outbreak.fasta > data/sequences.fasta
+snakemake --cores 1 -f download_via_lapis
 ```
 
 ### Data use
