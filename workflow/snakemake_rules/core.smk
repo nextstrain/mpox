@@ -139,6 +139,7 @@ rule refine:
             --output-tree {output.tree} \
             --timetree \
             --root {params.root} \
+            --keep-polytomies \
             {params.clock_rate} \
             {params.clock_std_dev} \
             --output-node-data {output.node_data} \
@@ -207,6 +208,21 @@ rule traits:
             --sampling-bias-correction {params.sampling_bias_correction}
         """
 
+rule mutation_context:
+    input:
+        tree = rules.refine.output.tree,
+        node_data = build_dir + "/{build_name}/nt_muts.json"
+    output:
+        node_data = build_dir + "/{build_name}/mutation_context.json",
+    shell:
+        """
+        python3 scripts/mutation_context.py \
+            --tree {input.tree} \
+            --mutations {input.node_data} \
+            --output {output.node_data}
+        """
+
+
 rule export:
     message: "Exporting data files for for auspice"
     input:
@@ -216,6 +232,7 @@ rule export:
         traits = rules.traits.output.node_data,
         nt_muts = rules.ancestral.output.node_data,
         aa_muts = rules.translate.output.node_data,
+        mutation_context = rules.mutation_context.output.node_data,
         colors = config["colors"],
         lat_longs = config["lat_longs"],
         description = config["description"],
@@ -228,7 +245,7 @@ rule export:
         augur export v2 \
             --tree {input.tree} \
             --metadata {input.metadata} \
-            --node-data {input.branch_lengths} {input.traits} {input.nt_muts} {input.aa_muts} \
+            --node-data {input.branch_lengths} {input.traits} {input.nt_muts} {input.aa_muts} {input.mutation_context} \
             --colors {input.colors} \
             --lat-longs {input.lat_longs} \
             --description {input.description} \

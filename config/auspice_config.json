@@ -23,7 +23,7 @@
       "key": "outbreak_associated",
       "title": "Outbreak Associated",
       "type": "categorical"
-    },    
+    },
     {
       "key": "region",
       "title": "Region",
@@ -38,6 +38,21 @@
       "key": "host",
       "title": "Host",
       "type": "categorical"
+    },
+    {
+      "key": "GA_CT_fraction",
+      "title": "G->A or C->T fraction",
+      "type": "continuous"
+    },
+    {
+      "key": "dinuc_context_fraction",
+      "title": "NGA or TCN context",
+      "type": "continuous"
+    },
+    {
+      "key": "CT_fraction",
+      "title": "CT/(CT+GA)",
+      "type": "continuous"
     }
   ],
   "geo_resolutions": [
