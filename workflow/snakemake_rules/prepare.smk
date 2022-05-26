@@ -1,10 +1,11 @@
 
-rule prepare:
+rule concatenate_data:
     output:
-        sequences = build_dir + "/{build_name}/sequences.fasta",
-        metadata = build_dir + "/{build_name}/metadata.tsv"
+        sequences = "data/sequences.fasta",
+        metadata =  "data/metadata.tsv"
     shell:
         """
-        cat data/*fasta > {output.sequences}
-        cat data/*tsv > {output.metadata}
+        cat example_data/*fasta > {output.sequences}
+        cat example_data/*tsv > {output.metadata}
         """
+

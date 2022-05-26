@@ -1,8 +1,8 @@
 '''
 This part of the workflow expects input files
 
-        sequences = build_dir + "/{build_name}/sequences.fasta",
-        metadata = build_dir + "/{build_name}/metadata.tsv",
+        sequences = "data/sequences.fasta",
+        metadata =  "data/metadata.tsv",
 
 and will produce output files as
 
@@ -22,8 +22,8 @@ rule filter:
           - minimum genome length of {params.min_length}
         """
     input:
-        sequences = build_dir + "/{build_name}/sequences.fasta",
-        metadata = build_dir + "/{build_name}/metadata.tsv",
+        sequences = "data/sequences.fasta",
+        metadata =  "data/metadata.tsv",
         exclude = config["exclude"]
     output:
         sequences = build_dir + "/{build_name}/filtered.fasta"
@@ -119,7 +119,7 @@ rule refine:
     input:
         tree = rules.tree.output.tree,
         alignment = build_dir + "/{build_name}/masked.fasta",
-        metadata = build_dir +"/{build_name}/metadata.tsv"
+        metadata = "data/metadata.tsv"
     output:
         tree = build_dir + "/{build_name}/tree.nwk",
         node_data = build_dir + "/{build_name}/branch_lengths.json"
@@ -190,7 +190,7 @@ rule traits:
         """
     input:
         tree = rules.refine.output.tree,
-        metadata = build_dir+"/{build_name}/metadata.tsv"
+        metadata = "data/metadata.tsv"
     output:
         node_data = build_dir + "/{build_name}/traits.json",
     params:
@@ -211,7 +211,7 @@ rule export:
     message: "Exporting data files for for auspice"
     input:
         tree = rules.refine.output.tree,
-        metadata = build_dir+"/{build_name}/metadata.tsv",
+        metadata = "data/metadata.tsv",
         branch_lengths = rules.refine.output.node_data,
         traits = rules.traits.output.node_data,
         nt_muts = rules.ancestral.output.node_data,
