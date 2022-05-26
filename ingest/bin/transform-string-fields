@@ -1,0 +1,35 @@
+#!/usr/bin/env python3
+"""
+Standardizes string fields of the NDJSON record from stdin and outputs the
+modified record to stdout.
+"""
+import argparse
+import json
+import unicodedata
+from sys import stdin, stdout
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(
+        description=__doc__,
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter
+    )
+    parser.add_argument("--normalize", action='store_true',
+        help="Normalize all string data to Unicode Normalization Form C, " +
+             "for consistent, predictable string comparisons")
+
+    args = parser.parse_args()
+
+    for record in stdin:
+        record = json.loads(record)
+
+        if args.normalize:
+            str_kvs = {
+                key: unicodedata.normalize('NFC', value).strip()
+                for key, value in record.items()
+                if isinstance(value, str)
+            }
+            record.update(str_kvs)
+
+        json.dump(record, stdout, allow_nan=False, indent=None, separators=',:')
+        print()
