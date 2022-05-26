@@ -16,6 +16,17 @@ transform:
   date_fields: ['date', 'date_submitted']
   # Expected date formats present in date fields
   expected_date_formats: ['%Y-%m-%d', '%Y_%m_%d', '%Y-%m-%dT%H:%M:%SZ']
+  # Titlecase rules
+  titlecase:
+    # Abbreviations not cast to titlecase, keeps uppercase
+    abbreviations: ['USA']
+    # Articles that should not be cast to titlecase
+    articles: [
+      'and', 'd', 'de', 'del', 'des', 'di', 'do', 'en', 'l', 'la', 'las', 'le',
+      'los', 'nad', 'of', 'op', 'sur', 'the', 'y'
+    ]
+    # List of string fields to titlecase
+    fields: ['region', 'country', 'division', 'location']
   # Field to use as the sequence ID in the FASTA file
   id_field: 'strain'
   # Field to use as the sequence in the FASTA file

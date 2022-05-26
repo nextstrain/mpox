@@ -24,6 +24,9 @@ rule transform:
         strain_backup_fields = config['transform']['strain_backup_fields'],
         date_fields = config['transform']['date_fields'],
         expected_date_formats = config['transform']['expected_date_formats'],
+        articles = config['transform']['titlecase']['articles'],
+        abbreviations = config['transform']['titlecase']['abbreviations'],
+        titlecase_fields = config['transform']['titlecase']['fields'],
         metadata_columns = config['transform']['metadata_columns'],
         id_field = config['transform']['id_field'],
         sequence_field = config['transform']['sequence_field']
@@ -40,6 +43,10 @@ rule transform:
                 --date-fields {params.date_fields} \
                 --expected-date-formats {params.expected_date_formats} \
             | ./bin/transform-genbank-location \
+            | ./bin/transform-string-fields \
+                --titlecase-fields {params.titlecase_fields} \
+                --articles {params.articles} \
+                --abbreviations {params.abbreviations} \
             | ./bin/ndjson-to-tsv-and-fasta \
                 --metadata-columns {params.metadata_columns} \
                 --id-field {params.id_field} \
