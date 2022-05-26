@@ -28,6 +28,7 @@ rule transform:
         cat {input.sequences_ndjson} \
             | ./bin/transform-field-names \
                 --field-map {params.field_map} \
+            | ./bin/transform-string-fields --normalize \
             | ./bin/ndjson-to-tsv-and-fasta \
                 --metadata-columns {params.metadata_columns} \
                 --id-field {params.id_field} \
