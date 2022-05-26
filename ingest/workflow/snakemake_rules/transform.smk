@@ -39,6 +39,7 @@ rule transform:
             | ./bin/transform-date-fields \
                 --date-fields {params.date_fields} \
                 --expected-date-formats {params.expected_date_formats} \
+            | ./bin/transform-genbank-location \
             | ./bin/ndjson-to-tsv-and-fasta \
                 --metadata-columns {params.metadata_columns} \
                 --id-field {params.id_field} \

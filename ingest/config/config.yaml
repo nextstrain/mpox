@@ -26,6 +26,8 @@ transform:
     'accession',
     'date',
     'region',
+    'country',
+    'division',
     'location',
     'host',
     'date_submitted'
