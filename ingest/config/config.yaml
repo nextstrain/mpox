@@ -12,6 +12,10 @@ transform:
   strain_regex: '^.+$'
   # Back up strain name field if 'strain' doesn't match regex above
   strain_backup_fields: ['accession']
+  # List of date fields to standardize
+  date_fields: ['date', 'date_submitted']
+  # Expected date formats present in date fields
+  expected_date_formats: ['%Y-%m-%d', '%Y_%m_%d', '%Y-%m-%dT%H:%M:%SZ']
   # Field to use as the sequence ID in the FASTA file
   id_field: 'strain'
   # Field to use as the sequence in the FASTA file
