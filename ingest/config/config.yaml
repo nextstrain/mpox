@@ -3,6 +3,10 @@ sources: ['genbank']
 
 # Params for the transform rule
 transform:
+  # Fields to rename.
+  # This is the first step in the pipeline, so any references to field names
+  # in the configs below should use the new field names
+  field_map: ['collected=date', 'submitted=date_submitted', 'genbank_accession=accession']
   # Field to use as the sequence ID in the FASTA file
   id_field: 'strain'
   # Field to use as the sequence in the FASTA file
@@ -10,9 +14,10 @@ transform:
   # Final output columns for the metadata TSV
   metadata_columns: [
     'strain',
-    'genbank_accession',
-    'collected',
+    'accession',
+    'date',
     'region',
     'location',
-    'host'
+    'host',
+    'date_submitted'
   ]
