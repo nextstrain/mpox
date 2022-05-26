@@ -19,12 +19,15 @@ rule transform:
         metadata = "data/metadata.tsv",
         sequences = "data/sequences.fasta"
     params:
+        field_map = config['transform']['field_map'],
         metadata_columns = config['transform']['metadata_columns'],
         id_field = config['transform']['id_field'],
         sequence_field = config['transform']['sequence_field']
     shell:
         """
         cat {input.sequences_ndjson} \
+            | ./bin/transform-field-names \
+                --field-map {params.field_map} \
             | ./bin/ndjson-to-tsv-and-fasta \
                 --metadata-columns {params.metadata_columns} \
                 --id-field {params.id_field} \
