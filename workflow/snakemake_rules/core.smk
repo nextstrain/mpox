@@ -247,7 +247,7 @@ rule export:
         augur export v2 \
             --tree {input.tree} \
             --metadata {input.metadata} \
-            --node-data {input.branch_lengths} {input.traits} {input.nt_muts} {input.aa_muts} {input.mutation_context} \
+            --node-data {input.branch_lengths} {input.nt_muts} {input.aa_muts} {input.mutation_context} \
             --colors {input.colors} \
             --lat-longs {input.lat_longs} \
             --description {input.description} \
