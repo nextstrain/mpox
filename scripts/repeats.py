@@ -47,7 +47,8 @@ if __name__=="__main__":
             pos = int(entries[0])
             seq = entries[1]
             if pos in insertion_positions:
-                tmp[pos] = len(seq)
+                orig_pos = insertion_positions[pos]
+                tmp[f"repeat-{orig_pos}"] = len(seq)
         node_data[seq_info.seqName] = tmp
 
     with open(args.output,'w') as fh:

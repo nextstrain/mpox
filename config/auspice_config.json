@@ -48,6 +48,21 @@
       "key": "dinuc_context_fraction",
       "title": "NGA/CTN context of G->A/C->T mutations",
       "type": "continuous"
+    },
+    {
+      "key": "repeat-4680",
+      "title": "repeat length following 4680",
+      "type": "categorical"
+    },
+    {
+      "key": "repeat-173280",
+      "title": "repeat length following 173280",
+      "type": "categorical"
+    },
+    {
+      "key": "repeat-192400",
+      "title": "repeat length following 192400",
+      "type": "categorical"
     }
   ],
   "geo_resolutions": [
