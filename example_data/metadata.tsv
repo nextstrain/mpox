@@ -6,7 +6,7 @@ Zaire_1979_005	HM172544	NA	Africa	Democratic Republic of the Congo	human	no	CA
 Congo_2003_358	DQ011154	NA	Africa	Democratic Republic of the Congo	human	no	CA
 USA_2003_039	DQ011157	2003-XX-XX	North America	NA	human	no	WA
 Sierra_Leone	AY741551	1970-XX-XX	Africa	Sierra Leone	Unknown	no	WA
-USA_2003_044	DQ011153	2003-XX-XX	North America	NA	dog	no	WA
+USA_2003_044	DQ011153	2003-XX-XX	North America	NA	prairie dog	no	WA
 UNKNOWN_FV537349	FV537349	NA	NA	NA	Unknown	no	CA
 UNKNOWN_FV537350	FV537350	NA	NA	NA	Unknown	no	CA
 UNKNOWN_FV537351	FV537351	NA	NA	NA	Unknown	no	CA
@@ -105,5 +105,9 @@ Monkeypox/PT0008/2022	ON585038	2022-05-15	Europe	Portugal	human	yes	WA
 MPXV-BY-IMB25241	ON568298	2022-05-19	Europe	Germany	human	yes	WA
 Monkeypox_virus_MPX/Human/mpx_UZ-REGA-1/Belgium/2022_version_8	XXXXXXXX	2022-05-19	Europe	Belgium	human	yes	WA
 MPXV-CH-38134631/2022	ON595760	2022-05-19	Europe	Switzerland	human	yes	WA
-SLO	ON609725	2022-05-26	Europe	Slovenia	human	yes	WA
-MPXV_FRA_2022_TLS67	ON602722	2022-05-25	Europe	France	human	yes	WA
+SLO	ON609725	2022-05-23	Europe	Slovenia	human	yes	WA
+MPXV_FRA_2022_TLS67	ON602722	2022-XX-XX	Europe	France	human	yes	WA
+MPXV-USA2003_099_Gambian_Rat	MT903346	2003-XX-XX	North America	USA	gambian rat	no	WA
+MPXV-USA2003_099_Dormouse	MT903347	2003-XX-XX	North America	USA	dormouse	no	WA
+MPXV-USA2003_099_Rope_Squirrel	MT903348	2003-XX-XX	North America	USA	squirrel	no	WA
+NL001_2022	XXXXXXXX	2022-XX-XX	Europe	Netherlands	human	yes	WA
