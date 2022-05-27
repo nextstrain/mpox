@@ -224,6 +224,25 @@ rule mutation_context:
             --output {output.node_data}
         """
 
+rule repeat_analysis:
+    input:
+        sequences = build_dir + "/{build_name}/filtered.fasta",
+        repeats = config['repeat_loci'],
+        reference = config['reference']
+    output:
+        node_data = build_dir + "/{build_name}/repeats.json",
+        insertions = build_dir + "/{build_name}/repeat_analysis/insertions.csv"
+    params:
+        outdir = build_dir + "/{build_name}/repeat_analysis"
+    shell:
+        """
+        python3 scripts/repeats.py \
+            --sequences {input.sequences} \
+            --reference {input.reference} \
+            --repeats {input.repeats} \
+            --output-dir {params.outdir} \
+            --output {output.node_data}
+        """
 
 rule export:
     message: "Exporting data files for for auspice"
@@ -235,6 +254,7 @@ rule export:
         nt_muts = rules.ancestral.output.node_data,
         aa_muts = rules.translate.output.node_data,
         mutation_context = rules.mutation_context.output.node_data,
+        repeats = rules.repeat_analysis.output.node_data,
         colors = config["colors"],
         lat_longs = config["lat_longs"],
         description = config["description"],
@@ -247,7 +267,7 @@ rule export:
         augur export v2 \
             --tree {input.tree} \
             --metadata {input.metadata} \
-            --node-data {input.branch_lengths} {input.nt_muts} {input.aa_muts} {input.mutation_context} \
+            --node-data {input.branch_lengths} {input.nt_muts} {input.aa_muts} {input.mutation_context} {input.repeats} \
             --colors {input.colors} \
             --lat-longs {input.lat_longs} \
             --description {input.description} \
