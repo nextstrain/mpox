@@ -110,4 +110,5 @@ MPXV_FRA_2022_TLS67	ON602722	2022-XX-XX	Europe	France	human	yes	WA
 MPXV-USA2003_099_Gambian_Rat	MT903346	2003-XX-XX	North America	USA	gambian rat	no	WA
 MPXV-USA2003_099_Dormouse	MT903347	2003-XX-XX	North America	USA	dormouse	no	WA
 MPXV-USA2003_099_Rope_Squirrel	MT903348	2003-XX-XX	North America	USA	squirrel	no	WA
-NL001_2022	XXXXXXXX	2022-XX-XX	Europe	Netherlands	human	yes	WA
+MPXV_2022_NL001	ON615424	2022-05-XX	Europe	Netherlands	human	yes	WA
+MPXV-INMI-Pt1	ON614676	2022-05-18	Europe	Italy	human	yes	WA
