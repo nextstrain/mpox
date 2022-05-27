@@ -46,7 +46,7 @@ if __name__=="__main__":
 
         dinuc_count = 0
         if GA_CT_count:
-            node_data[name]["CT_fraction"] = CT_count/GA_CT_count
+            #node_data[name]["CT_fraction"] = CT_count/GA_CT_count
             for mut in node["muts"]:
                 a, pos, d = mut[0], int(mut[1:-1]), mut[-1]
                 if a in 'ACGT' and d in 'ACGT':
@@ -57,7 +57,7 @@ if __name__=="__main__":
             node_data[name]["dinuc_context_fraction"] = dinuc_count/GA_CT_count
         else:
             node_data[name]["dinuc_context_fraction"] = None
-            node_data[name]["CT_fraction"] = None
+            #node_data[name]["CT_fraction"] = None
 
     with open(args.output, 'w') as fh:
         json.dump({"nodes":node_data}, fh)

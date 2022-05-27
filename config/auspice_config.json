@@ -46,12 +46,7 @@
     },
     {
       "key": "dinuc_context_fraction",
-      "title": "NGA or TCN context",
-      "type": "continuous"
-    },
-    {
-      "key": "CT_fraction",
-      "title": "CT/(CT+GA)",
+      "title": "NGA/CTN context of G->A/C->T mutations",
       "type": "continuous"
     }
   ],
