@@ -47,3 +47,7 @@ MPXV_TNP_2017_North_Ponan
 Yambuku_DRC_1985
 UTC
 Sudan_2005_01
+
+# potentially problematic
+MPXV_1_IT_Milan_2022  # many extra mutations
+MPXV_FR_HCL0001_2022  # any reversions in terminal regions
