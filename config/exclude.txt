@@ -47,3 +47,4 @@ MPXV_TNP_2017_North_Ponan
 Yambuku_DRC_1985
 UTC
 Sudan_2005_01
+W_Nigeria   # not very clocky

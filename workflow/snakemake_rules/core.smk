@@ -109,7 +109,48 @@ rule tree:
             --nthreads {threads}
         """
 
-rule refine:
+# rule refine:
+#     message:
+#         """
+#         Refining tree
+#           - estimate timetree
+#           - use {params.coalescent} coalescent timescale
+#           - estimate {params.date_inference} node dates
+#           - filter tips more than {params.clock_filter_iqd} IQDs from clock expectation
+#         """
+#     input:
+#         tree = rules.tree.output.tree,
+#         alignment = build_dir + "/{build_name}/masked.fasta",
+#         metadata = "data/metadata.tsv"
+#     output:
+#         tree = build_dir + "/{build_name}/tree.nwk",
+#         node_data = build_dir + "/{build_name}/branch_lengths.json"
+#     params:
+#         coalescent = "opt",
+#         date_inference = "marginal",
+#         clock_filter_iqd = 10,
+#         root = config["root"],
+#         clock_rate = lambda w: f"--clock-rate {config['clock_rate']}" if "clock_rate" in config else "",
+#         clock_std_dev = lambda w: f"--clock-std-dev {config['clock_std_dev']}" if "clock_std_dev" in config else ""
+#     shell:
+#         """
+#         augur refine \
+#             --tree {input.tree} \
+#             --alignment {input.alignment} \
+#             --metadata {input.metadata} \
+#             --output-tree {output.tree} \
+#             --timetree \
+#             --root {params.root} \
+#             --keep-polytomies \
+#             {params.clock_rate} \
+#             {params.clock_std_dev} \
+#             --output-node-data {output.node_data} \
+#             --coalescent {params.coalescent} \
+#             --date-inference {params.date_inference} \
+#             --clock-filter-iqd {params.clock_filter_iqd}
+#         """
+
+rule refine_relax:
     message:
         """
         Refining tree
@@ -134,26 +175,19 @@ rule refine:
         clock_std_dev = lambda w: f"--clock-std-dev {config['clock_std_dev']}" if "clock_std_dev" in config else ""
     shell:
         """
-        augur refine \
-            --tree {input.tree} \
+        python3 scripts/explore_relax.py --tree {input.tree}\
             --alignment {input.alignment} \
             --metadata {input.metadata} \
             --output-tree {output.tree} \
-            --timetree \
-            --root {params.root} \
-            --keep-polytomies \
-            {params.clock_rate} \
-            {params.clock_std_dev} \
             --output-node-data {output.node_data} \
-            --coalescent {params.coalescent} \
-            --date-inference {params.date_inference} \
-            --clock-filter-iqd {params.clock_filter_iqd}
+            --root {params.root} \
+            --coalescent {params.coalescent}
         """
 
 rule ancestral:
     message: "Reconstructing ancestral sequences and mutations"
     input:
-        tree = rules.refine.output.tree,
+        tree = build_dir + "/{build_name}/tree.nwk",
         alignment = build_dir + "/{build_name}/masked.fasta",
     output:
         node_data = build_dir + "/{build_name}/nt_muts.json"
@@ -171,7 +205,7 @@ rule ancestral:
 rule translate:
     message: "Translating amino acid sequences"
     input:
-        tree = rules.refine.output.tree,
+        tree = build_dir + "/{build_name}/tree.nwk",
         node_data = rules.ancestral.output.node_data,
         genbank_reference = config["genbank_reference"]
     output:
@@ -192,7 +226,7 @@ rule traits:
           - increase uncertainty of reconstruction by {params.sampling_bias_correction} to partially account for sampling bias
         """
     input:
-        tree = rules.refine.output.tree,
+        tree = build_dir + "/{build_name}/tree.nwk",
         metadata = "data/metadata.tsv"
     output:
         node_data = build_dir + "/{build_name}/traits.json",
@@ -212,7 +246,7 @@ rule traits:
 
 rule mutation_context:
     input:
-        tree = rules.refine.output.tree,
+        tree = build_dir + "/{build_name}/tree.nwk",
         node_data = build_dir + "/{build_name}/nt_muts.json"
     output:
         node_data = build_dir + "/{build_name}/mutation_context.json",
@@ -228,9 +262,9 @@ rule mutation_context:
 rule export:
     message: "Exporting data files for for auspice"
     input:
-        tree = rules.refine.output.tree,
+        tree = build_dir + "/{build_name}/tree.nwk",
         metadata = "data/metadata.tsv",
-        branch_lengths = rules.refine.output.node_data,
+        branch_lengths = build_dir + "/{build_name}/branch_lengths.json",
         traits = rules.traits.output.node_data,
         nt_muts = rules.ancestral.output.node_data,
         aa_muts = rules.translate.output.node_data,
