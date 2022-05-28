@@ -1,3 +1,4 @@
+from ast import Assign
 from collections import defaultdict
 import json, argparse
 import matplotlib.pyplot as plt
@@ -35,18 +36,21 @@ if __name__=="__main__":
 
     tt = TreeTime(tree=args.tree, aln=args.alignment, dates=dates, use_fft=False)
 
-    tt.reroot(args.root)
-    relaxed_clock = {n.name:1.0 for n in tt.tree.find_clades()}
-    root_of_outbreak = tt.tree.common_ancestor(["3025", "MPXV_UK_2022_3"])
-    for n in root_of_outbreak.find_clades():
-        if n.name == root_of_outbreak.name:
-            continue
-        relaxed_clock[n.name]=20
-        print(n.name)
+    def assign_gamma(T):
+        for n in T.find_clades():
+            if n.up:
+                n.branch_length_interpolator.gamma = 1.0
+
+        root_of_outbreak = T.common_ancestor(["3025", "MPXV_UK_2022_3"])
+        for n in root_of_outbreak.find_clades():
+            if n.name == root_of_outbreak.name:
+                n.branch_length_interpolator.gamma=10
+            else:
+                n.branch_length_interpolator.gamma=20
 
     tt.run(Tc=Tc, max_iter=3, resolve_polytomies=False, branch_length_mode='joint',
-           root=args.root, relaxed_clock=relaxed_clock, vary_rate=2e-6,
-           time_marginal=True, fixed_clock_rate=4e-6)
+           root=args.root, vary_rate=2e-6,
+           time_marginal=True, fixed_clock_rate=3e-6, assign_gamma=assign_gamma)
 
     node_data = {}
 
