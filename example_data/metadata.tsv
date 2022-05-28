@@ -85,7 +85,6 @@ MPXV-UK_P1	MT903343.1	2018-XX-XX	Europe	United Kingdom	human	no	WA
 MPXV-UK_P2	MT903344.1	2018-XX-XX	Europe	United Kingdom	human	no	WA
 MPXV-UK_P3	MT903345.1	2018-XX-XX	Europe	United Kingdom	human	no	WA
 ITM_MPX_1_Belgium	XXXXXXXX	2022-05-13	Europe	Belgium	human	yes	WA
-MPXV_USA_2022_MA001	ON563414	2022-05-XX	North America	USA	human	yes	WA
 MPXV-M5320_M15_Bayelsa	MT903341	2018-08-14	Africa	Nigeria	human	no	WA
 MPXV-Singapore	MT903342	2019-04-30	Asia	Singapore	human	no	WA
 MPXV-M5312_HM12_Rivers	MT903340	2018-XX-XX	Africa	Nigeria	human	no	WA
@@ -103,7 +102,8 @@ Monkeypox/PT0010/2022	ON585036	2022-05-15	Europe	Portugal	human	yes	WA
 Monkeypox/PT0005/2022	ON585037	2022-05-15	Europe	Portugal	human	yes	WA
 Monkeypox/PT0008/2022	ON585038	2022-05-15	Europe	Portugal	human	yes	WA
 MPXV-BY-IMB25241	ON568298	2022-05-19	Europe	Germany	human	yes	WA
-Monkeypox_virus_MPX/Human/mpx_UZ-REGA-1/Belgium/2022_version_8	XXXXXXXX	2022-05-19	Europe	Belgium	human	yes	WA
+MPX/UZ_REGA_1/Belgium/2022	ON622712	2022-05-19	Europe	Belgium	human	yes	WA
+MPX/UZ_REGA_2/Belgium/2022	ON622713	2022-05-22	Europe	Belgium	human	yes	WA
 MPXV-CH-38134631/2022	ON595760	2022-05-19	Europe	Switzerland	human	yes	WA
 SLO	ON609725	2022-05-23	Europe	Slovenia	human	yes	WA
 MPXV_FRA_2022_TLS67	ON602722	2022-05-XX	Europe	France	human	yes	WA
@@ -112,10 +112,13 @@ MPXV-USA2003_099_Dormouse	MT903347	2003-XX-XX	North America	USA	dormouse	no	WA
 MPXV-USA2003_099_Rope_Squirrel	MT903348	2003-XX-XX	North America	USA	squirrel	no	WA
 MPXV_2022_NL001	ON615424	2022-05-XX	Europe	Netherlands	human	yes	WA
 INMI-Pt1	ON614676	2022-05-18	Europe	Italy	human	yes	WA
+MPXV_USA_2022_MA001	ON563414	2022-05-XX	North America	USA	human	yes	WA
 MPXV_UK_2022_1	ON619835	2022-05-XX	Europe	United Kingdom	human	yes	WA
 MPXV_UK_2022_2	ON619836	2022-05-XX	Europe	United Kingdom	human	yes	WA
 MPXV_UK_2022_3	ON619837	2022-05-XX	Europe	United Kingdom	human	yes	WA
 MPXV_UK_2022_4	ON619838	2022-05-XX	Europe	United Kingdom	human	yes	WA
-MPXV-CH-38156923/2022	XXXXXXX	2022-05-24	Europe	Switzerland	human	yes	WA
 mpx-37-Finland_consensus	XXXXXXXX	2022-05-24	Europe	Finland	human	yes	WA
-MPXV/ES0001/HUGTiP/2022	XXXXXXXX	2022-05-XX	Europe	Spain	human	yes	WA
+MPXV-CH-38156923/2022	XXXXXXXX	2022-05-24	Europe	Switzerland	human	yes	WA
+MPXV/ES0001/HUGTiP/2022	ON622718	2022-05-XX	Europe	Spain	human	yes	WA
+MPXV_1_IT_Milan_2022	ON622721	2022-05-25	Europe	Italy	human	yes	WA
+MPXV_FR_HCL0001_2022	ON622722	2022-05-22	Europe	France	human	yes	WA
