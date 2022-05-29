@@ -39,9 +39,9 @@ FEATURES             Location/Qualifiers
                      /db_xref="taxon:10244"
                      /country="United Kingdom: Great Britain"
      gene            complement(844..1584)
-                     /locus_tag="MPXV-UK_P2-001"
+                     /locus_tag="001-chemokine-binding-protein"
      CDS             complement(844..1584)
-                     /locus_tag="MPXV-UK_P2-001"
+                     /locus_tag="001-chemokine-binding-protein"
                      /note="Chemokine binding protein (Cop-C23L); J1L; similar
                      to Vaccinia virus strain Copenhagen C23L; most abundant
                      secreted protein; CC-chemokine binding"
@@ -54,9 +54,9 @@ FEATURES             Location/Qualifiers
                      SDIKTHPVLGSNISHKKVSYKDIIGSTIVDTKCVKNLEFSVRIGDMCEESSELEVKDG
                      FKYVDGSASEGATDDTSLIDSTKLKACV"
      gene            complement(1711..2760)
-                     /locus_tag="MPXV-UK_P2-002"
+                     /locus_tag="002-TNF-alpha-receptor-like-protein"
      CDS             complement(1711..2760)
-                     /locus_tag="MPXV-UK_P2-002"
+                     /locus_tag="002-TNF-alpha-receptor-like-protein"
                      /note="TNF receptor (CrmB) (Cop-C22L); J2L"
                      /codon_start=1
                      /product="MPXVgp002"
@@ -69,9 +69,9 @@ FEATURES             Location/Qualifiers
                      NDTIMPHSETVTLVGDCLSSVDIYILYSNTNTQDYENDTISYHMGNVLDVNSHMPASC
                      DIHKLITNSQNPTHL"
      gene            complement(2850..4616)
-                     /locus_tag="MPXV-UK_P2-003"
+                     /locus_tag="003-ankyrin-like-protein"
      CDS             complement(2850..4616)
-                     /locus_tag="MPXV-UK_P2-003"
+                     /locus_tag="003-ankyrin-like-protein"
                      /note="Ankyrin (Cop-C19L); J3L"
                      /codon_start=1
                      /product="MPXVgp003"
@@ -88,9 +88,9 @@ FEATURES             Location/Qualifiers
                      HSDKRISFPMYDDLIEQCHLSMEHKSKLVDKALNKLESTIDSQSRLSYLPPEIMRNII
                      TKLSDYHLNSMLYGKNHYKYYP"
      gene            complement(4852..6165)
-                     /locus_tag="MPXV-UK_P2-004"
+                     /locus_tag="004-ankyrin-like-protein"
      CDS             complement(4852..6165)
-                     /locus_tag="MPXV-UK_P2-004"
+                     /locus_tag="004-ankyrin-like-protein"
                      /note="Ankyrin (CPXV-017); D1L"
                      /codon_start=1
                      /product="MPXVgp004"
@@ -114,9 +114,9 @@ FEATURES             Location/Qualifiers
                      /codon_start=1
                      /product="MPXVgp005"
      gene            7589..8017
-                     /locus_tag="MPXV-UK_P2-006"
+                     /locus_tag="006-epidermal-growth-factor-like-protein-(EGF-like-protein)"
      CDS             7589..8017
-                     /locus_tag="MPXV-UK_P2-006"
+                     /locus_tag="006-epidermal-growth-factor-like-protein-(EGF-like-protein)"
                      /note="Secreted EGF-like protein (Cop-C11R); D3R; similar
                      to Vaccinia virus strain Copenhagen C11R; secreted growth
                      factor"
@@ -137,9 +137,9 @@ FEATURES             Location/Qualifiers
                      /codon_start=1
                      /product="MPXVgp007"
      gene            9596..10324
-                     /locus_tag="MPXV-UK_P2-008"
+                     /locus_tag="008-zinc-finger-like-protein"
      CDS             9596..10324
-                     /locus_tag="MPXV-UK_P2-008"
+                     /locus_tag="008-zinc-finger-like-protein"
                      /note="Zinc finger-like protein; D5R; zinc binding;
                      virosome localization; virulence factor; inhibition of
                      apoptosis induced by UV irradiation"
@@ -152,9 +152,9 @@ FEATURES             Location/Qualifiers
                      YEDMYRVSKEKECGICYEVVYSKRLENDRYFGLLDSCNHIFCITCINIWHRTRRETGA
                      SDNCPICRTRFKKITMSKFYKLVN"
      gene            complement(10487..10867)
-                     /locus_tag="MPXV-UK_P2-009"
+                     /locus_tag="009-IL-18-binding-protein"
      CDS             complement(10487..10867)
-                     /locus_tag="MPXV-UK_P2-009"
+                     /locus_tag="009-IL-18-binding-protein"
                      /note="Soluble IL-18 binding protein (Bsh-D7L); D6L;
                      secreted IL-18 binding protein"
                      /codon_start=1
@@ -164,9 +164,9 @@ FEATURES             Location/Qualifiers
                      RMPGFSYMYWLANDMKSDEDTKFIEHLGGGIKEDETVRTTDGGITTLRKVLHVTDTNK
                      FAHYRFTCVLITLDGVSKKNIWLK"
      gene            complement(10927..12909)
-                     /locus_tag="MPXV-UK_P2-010"
+                     /locus_tag="010-ankyrin-like-protein"
      CDS             complement(10927..12909)
-                     /locus_tag="MPXV-UK_P2-010"
+                     /locus_tag="010-ankyrin-like-protein"
                      /note="Ankyrin/Host Range (Bang-D8L); D7L; host range;
                      ankyrin-like"
                      /codon_start=1
@@ -185,9 +185,9 @@ FEATURES             Location/Qualifiers
                      LNEMKKIMVGGNTMFSLIFTEHGAKIIHRYANNPELRAYYESKQNKIYVEAYDIISDA
                      IVKHNKIHKTIIKSVDDNTYISNLPYTIKYKIFEQQ"
      gene            complement(13043..13237)
-                     /locus_tag="MPXV-UK_P2-011"
+                     /locus_tag="011"
      CDS             complement(13043..13237)
-                     /locus_tag="MPXV-UK_P2-011"
+                     /locus_tag="011"
                      /note="ANK-containing protein; D8L"
                      /codon_start=1
                      /product="MPXVgp011"
@@ -195,10 +195,10 @@ FEATURES             Location/Qualifiers
                      /translation="MSSKGGSSGGMWSVFIHGHDGSNKGSKTYTSSGSGMWGGGSSSG
                      VKSGVNGGVNGGVKSGTGKI"
      gene            complement(13384..15276)
-                     /locus_tag="MPXV-UK_P2-012"
+                     /locus_tag="012-ankyrin-like-protein"
      CDS             complement(13384..15276)
-                     /locus_tag="MPXV-UK_P2-012"
-                     /note="Ankyrin; Type I IFN resistance (Cop-C9L); D9L;
+                     /locus_tag="012-ankyrin-like-protein"
+                     /note="Ankyrin Type I IFN resistance (Cop-C9L); D9L;
                      similar to Vaccinia virus strain Copenhagen C9L;
                      ankyrin-like"
                      /codon_start=1
@@ -217,9 +217,9 @@ FEATURES             Location/Qualifiers
                      NNPIFTDWANKQYKFYNQIIYNANRLIEQSKKIDNMIDEVSADNNRLSTLPLELRHLI
                      FSYAFL"
      gene            complement(15934..16386)
-                     /locus_tag="MPXV-UK_P2-013"
+                     /locus_tag="013-host-range-protein"
      CDS             complement(15934..16386)
-                     /locus_tag="MPXV-UK_P2-013"
+                     /locus_tag="013-host-range-protein"
                      /note="Type 1 IFN inhibitor (Cop-C7L); D10L; similar to
                      Vaccinia virus strain Copenhagen C7L; host range"
                      /codon_start=1
@@ -229,9 +229,9 @@ FEATURES             Location/Qualifiers
                      RFIIRPDWSEIDEVKGLTVFANNYAVKVNKVDYTFYYVIYEAVIHLYNKKTEILIYSD
                      DENELFKHYYPYISLNMISKKYKVKEENYSSPYIEHPLIPYRDYESMD"
      gene            complement(16611..17078)
-                     /locus_tag="MPXV-UK_P2-014"
+                     /locus_tag="014-bcl-2-like-protein"
      CDS             complement(16611..17078)
-                     /locus_tag="MPXV-UK_P2-014"
+                     /locus_tag="014-bcl-2-like-protein"
                      /note="Bcl-2-like protein, IFN-beta inhibitor (Cop-C6L);
                      D11L; similar to Vaccinia virus strain Copenhagen C6L"
                      /codon_start=1
@@ -241,9 +241,9 @@ FEATURES             Location/Qualifiers
                      METFKIDAVRYYDGNIYDLAKDINTMSFDSFIRSLQNITSKKDKLTVYGTMGLLSIVV
                      DINKGRDVSNIKFAAGIIILMEYIFDDTDLSHLKIALYRRIQRCYPIDDDDDR"
      gene            complement(17222..17842)
-                     /locus_tag="MPXV-UK_P2-015"
+                     /locus_tag="015-D12L"
      CDS             complement(17222..17842)
-                     /locus_tag="MPXV-UK_P2-015"
+                     /locus_tag="015-D12L"
                      /note="Kelch-like protein (Cop-C5L); D12L; similar to
                      Vaccinia virus strain Copenhagen C5L; BTB domain of
                      kelch-like protein"
@@ -255,9 +255,9 @@ FEATURES             Location/Qualifiers
                      YINNNIEEICSTDQFLKLDVDSVCDILDNDEIVVTREYTILNMVLRWLENKRVNIDDF
                      TKVMFVIRFKFITYSELTNAIEKIAPEYRQRLQDLYHKKLRVLDIL"
      gene            complement(17887..18837)
-                     /locus_tag="MPXV-UK_P2-016"
+                     /locus_tag="016-IL-1-receptor-antagonist"
      CDS             complement(17887..18837)
-                     /locus_tag="MPXV-UK_P2-016"
+                     /locus_tag="016-IL-1-receptor-antagonist"
                      /note="IL-1 receptor antagonist (Cop-C10L); D13L; similar
                      to Vaccinia virus strain Copenhagen C4L"
                      /codon_start=1
@@ -270,10 +270,10 @@ FEATURES             Location/Qualifiers
                      SFVDICMDHIFELPNTKELFTLCNDDGRNIAWDNDKLESGNNTWIPKTDDEYMFLSKL
                      MNIAKFNNTKFDYYVLVGDTDPCTVFTFKVTKYYININYE"
      gene            complement(18768..19148)
-                     /locus_tag="MPXV-UK_P2-017"
+                     /locus_tag="017-kelch-like-protein"
      CDS             complement(18768..19148)
-                     /locus_tag="MPXV-UK_P2-017"
-                     /note="POZ/BTB Kelch domain protein (Cop-C2L); kelch-like
+                     /locus_tag="017-kelch-like-protein"
+                     /note="POZ/BTB Kelch domain protein (Cop-C2L) kelch-like
                      fragment; D18L"
                      /codon_start=1
                      /product="MPXVgp021"
@@ -282,9 +282,9 @@ FEATURES             Location/Qualifiers
                      CIRMFNFSKRYGIKKLYNTSMSEIINNITAVTSDPGTYFQNVYTNKHKKYTMVYVRSD
                      IKWILLKYLIMESLILLEMNWSTC"
      gene            complement(19370..20014)
-                     /locus_tag="MPXV-UK_P2-018"
+                     /locus_tag="018-putative-tlr-signaling-inhibitor"
      CDS             complement(19370..20014)
-                     /locus_tag="MPXV-UK_P2-018"
+                     /locus_tag="018-putative-tlr-signaling-inhibitor"
                      /note="Putative TLR signalling inhibitor (Cop-C1L); D19L;
                      similar to Vaccinia virus strain Copenhagen C1L"
                      /codon_start=1
@@ -295,9 +295,9 @@ FEATURES             Location/Qualifiers
                      DIKLTDLVRHYFRYIEQDIPLGPLFKKIDSYRIRAINNYSKELGLATEYFNKYGHLMF
                      YTLPIPYNRFFCRNSIGFLAVLSPTIGYVKAFYKFIEYVSIDDRLKFKKELMSK"
      gene            complement(20060..20413)
-                     /locus_tag="MPXV-UK_P2-019"
+                     /locus_tag="019-putative-virulence-factor"
      CDS             complement(20060..20413)
-                     /locus_tag="MPXV-UK_P2-019"
+                     /locus_tag="019-putative-virulence-factor"
                      /note="Anti-apoptotic Bcl-2-like protein (Cop-N1L); P1L;
                      similar to Vaccinia virus strain Copenhagen N1L; secreted
                      virulence factor"
@@ -308,9 +308,9 @@ FEATURES             Location/Qualifiers
                      NMRMTLSDGPLLDRLNQPVNNVEDVKRMIAISAKVARDIGRRSEIRWEDSFTILFRMI
                      EKYFDDLMTDLYGEK"
      gene            complement(20540..21073)
-                     /locus_tag="MPXV-UK_P2-020"
+                     /locus_tag="020-putative-alpha-aminitin-sensitive-protein"
      CDS             complement(20540..21073)
-                     /locus_tag="MPXV-UK_P2-020"
+                     /locus_tag="020-putative-alpha-aminitin-sensitive-protein"
                      /note="Alpha amanatin target protein (Cop-N2L); P2L;
                      similar to Vaccinia virus strain Copenhagen N2L"
                      /codon_start=1
@@ -321,10 +321,10 @@ FEATURES             Location/Qualifiers
                      KRPNQHHTIDLFKRIKRTRYDTFKVNPVEFVKKVIGFVSILNKYKPIYSYVLYENVLY
                      DELKCFIDYVETKYFQN"
      gene            complement(21114..22442)
-                     /locus_tag="MPXV-UK_P2-021"
+                     /locus_tag="021-ankyin-like-protein"
      CDS             complement(21114..22442)
-                     /locus_tag="MPXV-UK_P2-021"
-                     /note="ANK-containing protein; apoptosis inihibitor
+                     /locus_tag="021-ankyin-like-protein"
+                     /note="ANK-containing protein apoptosis inihibitor
                      (Cop-M1L); O1L; similar to Vaccinia virus strain
                      Copenhagen M1L; ankyrin-like"
                      /codon_start=1
@@ -339,9 +339,9 @@ FEATURES             Location/Qualifiers
                      VDYLLFNHFSVDSIVNGHTCMSECVRLNNPVILSKLMLHNPTSETMYITMKEIEKDKL
                      DKSIIIPFIAYFVLMHPDFCKNCRYFTSYKRFVTDYVHEGVSYEVFDDYF"
      gene            complement(22506..23168)
-                     /locus_tag="MPXV-UK_P2-022"
+                     /locus_tag="022-nfkb-inhibitor"
      CDS             complement(22506..23168)
-                     /locus_tag="MPXV-UK_P2-022"
+                     /locus_tag="022-nfkb-inhibitor"
                      /note="NFkB inhibitor (Cop-M2L); O2L; similar to Vaccinia
                      virus strain Copenhagen M2L"
                      /codon_start=1
@@ -353,9 +353,9 @@ FEATURES             Location/Qualifiers
                      VNLETDPTKINPHYLHPKNKYLYHNSEYSMRGSYGVTFIDELNQCLLDIKELSYDICY
                      RE"
      gene            complement(23273..24127)
-                     /locus_tag="MPXV-UK_P2-023"
+                     /locus_tag="023-ankyrin-like-protein"
      CDS             complement(23273..24127)
-                     /locus_tag="MPXV-UK_P2-023"
+                     /locus_tag="023-ankyrin-like-protein"
                      /note="Ankyrin/NFkB inhibitor (Cop-K1L); C1L; similar to
                      Vaccinia virus strain Copenhagen K1L; host range;
                      ankyrin-like"
@@ -369,10 +369,10 @@ FEATURES             Location/Qualifiers
                      IYSVNLENVLLDDAEIAKMIIEKHVEYKSDSYTKDLDDVKNNKLDEIISKNEELRLMY
                      VNCVRKNY"
      gene            complement(24360..25487)
-                     /locus_tag="MPXV-UK_P2-024"
+                     /locus_tag="024-serine-protease-inhibitor-like-protein"
      CDS             complement(24360..25487)
-                     /locus_tag="MPXV-UK_P2-024"
-                     /note="Serpin 1,2,3 (Cop-K2L); SPI-3; C2L; similar to
+                     /locus_tag="024-serine-protease-inhibitor-like-protein"
+                     /note="Serpin 1,2,3 (Cop-K2L) SPI-3; C2L; similar to
                      Vaccinia virus strain Copenhagen K2L; serine protease
                      inhibitor-like, SPI-3; inhibition of the ability of
                      infected cells to fuse"
@@ -387,9 +387,9 @@ FEATURES             Location/Qualifiers
                      SIENKRDIKSIAEMMAPSMFNPDKASFKHMTRDPLYIYKMFQNVKIDVDEQGTVAEAS
                      TIMVATARSSPEELEFNTPFVFIIRHDITGFILFMGKVEYT"
      gene            complement(25645..25776)
-                     /locus_tag="MPXV-UK_P2-025"
+                     /locus_tag="025"
      CDS             complement(25645..25776)
-                     /locus_tag="MPXV-UK_P2-025"
+                     /locus_tag="025"
                      /note="IFN resistance, PKR/eIF-alpha inhibitor (Cop-K3 L);
                      C3L"
                      /codon_start=1
@@ -397,9 +397,9 @@ FEATURES             Location/Qualifiers
                      /protein_id="QNP13622.1"
                      /translation="MLAFCYSLPNAGDVIKGRVYENDYTLYIYLFDYPHFEAILAEC"
      gene            complement(25832..27106)
-                     /locus_tag="MPXV-UK_P2-026"
+                     /locus_tag="026-phospholipase-D-like-protein"
      CDS             complement(25832..27106)
-                     /locus_tag="MPXV-UK_P2-026"
+                     /locus_tag="026-phospholipase-D-like-protein"
                      /note="Phospholipase-D-like protein (Cop-K4L); C4L;
                      similar to Vaccinia virus strain Copenhagen K4L;
                      phospholipase D-like"
@@ -415,9 +415,9 @@ FEATURES             Location/Qualifiers
                      AYIGTSNWTGNYFTDICGASINITPDDGLGLRQQLEDIFIRDWNSKYSYELYDTSPTK
                      RCRLLKNMKQCTNDIYCDEIQPEKELPEYSLE"
      gene            complement(27134..27964)
-                     /locus_tag="MPXV-UK_P2-027"
+                     /locus_tag="027-putative-monoglyceride-lipase"
      CDS             complement(27134..27964)
-                     /locus_tag="MPXV-UK_P2-027"
+                     /locus_tag="027-putative-monoglyceride-lipase"
                      /note="Monoglyceride lipase (Cop-K5L); C5L;
                      lysophospholipase-like"
                      /codon_start=1
@@ -430,9 +430,9 @@ FEATURES             Location/Qualifiers
                      TNNEISDVSGAYYFMQHANCNREIKIYEGAKHHLHKETDEVKKSVMKEIETWIFNRVK
                      "
      gene            28100..28549
-                     /locus_tag="MPXV-UK_P2-028"
+                     /locus_tag="028-unchracterized-protein"
      CDS             28100..28549
-                     /locus_tag="MPXV-UK_P2-028"
+                     /locus_tag="028-unchracterized-protein"
                      /note="Host immune response repressor (Cop-K7R); C6R;
                      similar to Vaccinia virus strain Copenhagen K7R; VAC
                      B15R-like"
@@ -443,9 +443,9 @@ FEATURES             Location/Qualifiers
                      KDITSCGRLYKELIKFDDVAIRYYGIDKINEIVEAMSEGDHYINLTEVHDQESLFATI
                      GICAKITEHWGYKKISESKFQSLGNITDLMTDDNINILILFLEKKMN"
      gene            complement(28612..29271)
-                     /locus_tag="MPXV-UK_P2-029"
+                     /locus_tag="029-caspase-9-inhibitor"
      CDS             complement(28612..29271)
-                     /locus_tag="MPXV-UK_P2-029"
+                     /locus_tag="029-caspase-9-inhibitor"
                      /note="Caspase-9 (apoptosis) inhibitor (mitochondrial-
                      associated) (Cop-F1L); C7L; similar to Vaccinia virus
                      strain Copenhagen F1L"
@@ -458,9 +458,9 @@ FEATURES             Location/Qualifiers
                      IKMFTLLSHTICDDYFVDYITYISAPRDNAIHSTREYLKIMGIAVIMFATYKTLKYMI
                      G"
      gene            complement(29283..29738)
-                     /locus_tag="MPXV-UK_P2-030"
+                     /locus_tag="030-dUTPase"
      CDS             complement(29283..29738)
-                     /locus_tag="MPXV-UK_P2-030"
+                     /locus_tag="030-dUTPase"
                      /note="dUTPase (Cop-F2L); C8L; similar to Vaccinia virus
                      strain Copenhagen F2L; deoxyuridine triphosphatase"
                      /codon_start=1
@@ -470,9 +470,9 @@ FEATURES             Location/Qualifiers
                      TIPPGERQLIKTDISMSMPKFCYGRIAPRSGLSLKGIDIGGGVIDEDYRGSIGVILIN
                      NGKCTFNVNTGDRIAQLIYQRIYYPELEEVQSLDSTDRGDQGFGSTGLR"
      gene            complement(29755..31203)
-                     /locus_tag="MPXV-UK_P2-031"
+                     /locus_tag="031-Kelch-like-protein"
      CDS             complement(29755..31203)
-                     /locus_tag="MPXV-UK_P2-031"
+                     /locus_tag="031-Kelch-like-protein"
                      /note="Kelch-like protein (Cop-F3L); C9L; similar to
                      Vaccinia virus strain Copenhagen F3L; kelch-like"
                      /codon_start=1
@@ -488,9 +488,9 @@ FEATURES             Location/Qualifiers
                      STYYPHYKSCALVFGRRLFLVGRNAEFYCESSNTWTLIDDPIYPRDNPELIIVDNKLL
                      LIGGFYRGSYIDTIEVYNNRTYSWNIWDGMEW"
      gene            complement(31214..32173)
-                     /locus_tag="MPXV-UK_P2-032"
+                     /locus_tag="032-ribonucleotide-reductase-small-subunit"
      CDS             complement(31214..32173)
-                     /locus_tag="MPXV-UK_P2-032"
+                     /locus_tag="032-ribonucleotide-reductase-small-subunit"
                      /note="Ribonucleotide reductase small subunit (Cop-F4L);
                      C10L; similar to Vaccinia virus strain Copenhagen F4L;
                      ribonucleotide reductase, small subunit, R2"
@@ -504,9 +504,9 @@ FEATURES             Location/Qualifiers
                      TVRFIITNAVSIEQEFLTVALPVKLIGMNCEMMKTYIEFVADRLISELGFKKIYNVTN
                      PFDFMENISLEGKTNFFEKRVGEYQKMGVMSQEDNHFSLDVDF"
      gene            complement(32204..33160)
-                     /locus_tag="MPXV-UK_P2-033"
+                     /locus_tag="033-36kDa-major-membrane-protein"
      CDS             complement(32204..33160)
-                     /locus_tag="MPXV-UK_P2-033"
+                     /locus_tag="033-36kDa-major-membrane-protein"
                      /note="36kDa major membrane protein (Cop-F5L); C11L;
                      similar to Vaccinia virus strain Copenhagen F5L"
                      /codon_start=1
@@ -519,9 +519,9 @@ FEATURES             Location/Qualifiers
                      NYSFHKTLNVRNICESEWEALNNNDNASSVPASHNNLTNDLSSMTSQLQNDDNDYSTP
                      MNVDNLIMIVVITMLSIILVIIVVIAAIAIYKRSKYSRHTDN"
      gene            complement(33190..33417)
-                     /locus_tag="MPXV-UK_P2-034"
+                     /locus_tag="034-hypothetical-protein-MPXVgp038"
      CDS             complement(33190..33417)
-                     /locus_tag="MPXV-UK_P2-034"
+                     /locus_tag="034-hypothetical-protein-MPXVgp038"
                      /note="Hypothetical protein (Cop-F6L); C12L; similar to
                      Vaccinia virus strain Copenhagen F6L"
                      /codon_start=1
@@ -530,9 +530,9 @@ FEATURES             Location/Qualifiers
                      /translation="MSKILTFVKNKIIDLINNDHQIKYSRVMMIEESDSLLPVDEVHV
                      NHGFDCVEMIDENISNENIEQYKTESFFTIN"
      gene            complement(33434..33658)
-                     /locus_tag="MPXV-UK_P2-035"
+                     /locus_tag="035-hypothetical-protein-MPXVgp039"
      CDS             complement(33434..33658)
-                     /locus_tag="MPXV-UK_P2-035"
+                     /locus_tag="035-hypothetical-protein-MPXVgp039"
                      /note="Hypothetical protein (Cop-F7L); C13L; similar to
                      Vaccinia virus strain Copenhagen F7L"
                      /codon_start=1
@@ -541,9 +541,9 @@ FEATURES             Location/Qualifiers
                      /translation="MGSCCGRFCDAKNKKEDVEDGREGCCDYKNLNDLDESEARVEFG
                      PLYMINEEKSDINTLDIKRRYRHTIESVYF"
      gene            complement(33810..34004)
-                     /locus_tag="MPXV-UK_P2-036"
+                     /locus_tag="036-Hypothetical-protein-MPXVgp040"
      CDS             complement(33810..34004)
-                     /locus_tag="MPXV-UK_P2-036"
+                     /locus_tag="036-Hypothetical-protein-MPXVgp040"
                      /note="Cytoplasmic protein (Cop-F8L); C14L; similar to
                      Vaccinia virus strain Copenhagen F8L"
                      /codon_start=1
@@ -552,9 +552,9 @@ FEATURES             Location/Qualifiers
                      /translation="MEGSKRKHDSRRLQEQEQPRPRTPPSYEEIAKYGHSFNVKRFTN
                      EEMCLKNDYPRIISYNPPPK"
      gene            complement(34061..34699)
-                     /locus_tag="MPXV-UK_P2-037"
+                     /locus_tag="037-S-S-bond-formation-pathway-protein"
      CDS             complement(34061..34699)
-                     /locus_tag="MPXV-UK_P2-037"
+                     /locus_tag="037-S-S-bond-formation-pathway-protein"
                      /note="S-S bond formation pathway protein substrate
                      (Cop-F9L); C15L; similar to Vaccinia virus strain
                      Copenhagen F9L"
@@ -566,9 +566,9 @@ FEATURES             Location/Qualifiers
                      LEKNCNAYAEVNNIIDIQKLNIGECSAPPGQHMLLQIVNTGSAEANCGLQTIVKSLNK
                      IYVPPIIENRLPYYDPWFLVGVAIILVIFTVAICSIRRNLALKYRYGTFLYV"
      gene            complement(34686..36005)
-                     /locus_tag="MPXV-UK_P2-038"
+                     /locus_tag="038-Ser/Thr-kinase"
      CDS             complement(34686..36005)
-                     /locus_tag="MPXV-UK_P2-038"
+                     /locus_tag="038-Ser/Thr-kinase"
                      /note="Essential Ser/Thr kinase morph (Cop-F10L); C16L;
                      similar to Vaccinia virus strain Copenhagen F10L; serine"
                      /codon_start=1
@@ -583,9 +583,9 @@ FEATURES             Location/Qualifiers
                      ERIKSALNDFDFSQVAGIINKKIKNNFKVEHNWYYDFHFFVHTLLKTYPEIEKDIEFS
                      TALEEFIMCTKTDCDKYRLKVSILHPISFLEKFIMRDIFSDWINGRN"
      gene            complement(36028..37092)
-                     /locus_tag="MPXV-UK_P2-039"
+                     /locus_tag="039-rhoa-signaling-inhibitor"
      CDS             complement(36028..37092)
-                     /locus_tag="MPXV-UK_P2-039"
+                     /locus_tag="039-rhoa-signaling-inhibitor"
                      /note="RhoA signalling inhibitor, virus release protein
                      (Cop-F11L); C17L; similar to Vaccinia virus strain
                      Copenhagen F11L"
@@ -600,9 +600,9 @@ FEATURES             Location/Qualifiers
                      ESLLKETIQKDINIIHTNITTLLNETAKVIKLVKSLVDKEDTDIVNNFITKEIKNCGG
                      VKNRDKIVNSLSLSNLDFRL"
      gene            complement(37136..39043)
-                     /locus_tag="MPXV-UK_P2-040"
+                     /locus_tag="040-EEV-maturation-protein"
      CDS             complement(37136..39043)
-                     /locus_tag="MPXV-UK_P2-040"
+                     /locus_tag="040-EEV-maturation-protein"
                      /note="EEV maturation protein (Cop-F12L); C18L; similar to
                      Vaccinia virus strain Copenhagen F12L; actin tail
                      formation"
@@ -622,9 +622,9 @@ FEATURES             Location/Qualifiers
                      EQLIENINFNNSSIISLFYTFAISYCRAFIYSIMETIDPVYISQFSYKELYVSSSCKD
                      INESMSQMVKL"
      gene            complement(39086..40204)
-                     /locus_tag="MPXV-UK_P2-041"
+                     /locus_tag="041-palmytilated-EEV-membrane-glycoprotein"
      CDS             complement(39086..40204)
-                     /locus_tag="MPXV-UK_P2-041"
+                     /locus_tag="041-palmytilated-EEV-membrane-glycoprotein"
                      /note="Palmitylated EEV membrane glycoprotein (Cop-F13 L);
                      C19L; similar to Vaccinia virus strain Copenhagen F13L;
                      major envelope antigen of EEV; wrapping of IMV to form
@@ -640,9 +640,9 @@ FEATURES             Location/Qualifiers
                      GNWDKNDVYSMATARSLDALCVQNDLSVKVFTIQNNTKLLIVDDEYVHITSANFDGTH
                      YQNHGFVSFNSIDKQLVSEAKKIFERDWVSSHSKSLKI"
      gene            complement(40222..40443)
-                     /locus_tag="MPXV-UK_P2-042"
+                     /locus_tag="042-hypothetical-protein-MPXVgp046"
      CDS             complement(40222..40443)
-                     /locus_tag="MPXV-UK_P2-042"
+                     /locus_tag="042-hypothetical-protein-MPXVgp046"
                      /note="Unknown (Cop-F14L); C20L; similar to Vaccinia virus
                      strain Copenhagen F14L"
                      /codon_start=1
@@ -651,19 +651,19 @@ FEATURES             Location/Qualifiers
                      /translation="MKHRLYSEGLSISNDLNSIIGQQSTMDTDIEIDEDDIMELLNIL
                      TELGCDVDFDENFSDIADDILESLIEQDI"
      gene            complement(40493..40642)
-                     /locus_tag="MPXV-UK_P2-043"
+                     /locus_tag="043"
      CDS             complement(40493..40642)
-                     /locus_tag="MPXV-UK_P2-043"
-                     /note="IMV protein (Cop-F14.5L)"
+                     /locus_tag="043"
+                     /note="IMV protein (Cop-F14.5L);C20.5L"
                      /codon_start=1
-                     /product="C20.5L"
+                     /product="C20.5L-IMV-protein"
                      /protein_id="QNP13640.1"
                      /translation="MVIGLVIFVSVAATIVGVLSNVLDMIMYVEENNEEDAKIKEEQE
                      LLLLY"
      gene            complement(40715..41191)
-                     /locus_tag="MPXV-UK_P2-044"
+                     /locus_tag="044-hypothetical-protein-MPXVgp047"
      CDS             complement(40715..41191)
-                     /locus_tag="MPXV-UK_P2-044"
+                     /locus_tag="044-hypothetical-protein-MPXVgp047"
                      /note="Unknown conserved protein (Cop-F15L); C21L; similar
                      to Vaccinia virus strain Copenhagen F15L"
                      /codon_start=1
@@ -673,9 +673,9 @@ FEATURES             Location/Qualifiers
                      RCFVKIDTPRYIPSTSISSSNIIRIRNHDFTLSELLYSPFHFQQPQFQYLLPGFVLTC
                      IDKVSKQQKECKYCISNRGDDDSLSINIFIPTINKSIYIIIGLRMKNFWKPKFEIE"
      gene            complement(41198..41893)
-                     /locus_tag="MPXV-UK_P2-045"
+                     /locus_tag="045-nonfunctional-serine-recombinase"
      CDS             complement(41198..41893)
-                     /locus_tag="MPXV-UK_P2-045"
+                     /locus_tag="045-nonfunctional-serine-recombinase"
                      /note="Non-functional Serine Recombinase (Cop-F16L); C22L;
                      similar to Vaccinia virus strain Copenhagen F16L"
                      /codon_start=1
@@ -687,10 +687,10 @@ FEATURES             Location/Qualifiers
                      IINSNVTWVTSVINNSNGRGINIRVSNNKMLTITSFRRFVNKLKMYKTTKCASQLDNL
                      CTKMNKMGILDKK"
      gene            41956..42261
-                     /locus_tag="MPXV-UK_P2-046"
+                     /locus_tag="046-DNA-binding-virion-core-protein"
      CDS             41956..42261
-                     /locus_tag="MPXV-UK_P2-046"
-                     /note="DNA-binding phosphoprotein (VP11); mTOR antagonist
+                     /locus_tag="046-DNA-binding-virion-core-protein"
+                     /note="DNA-binding phosphoprotein (VP11) mTOR antagonist
                      (Cop-F17R); C23R; similar to Vaccinia virus strain
                      Copenhagen F17R; virion core DNA-binding phosphoprotein"
                      /codon_start=1
@@ -699,9 +699,9 @@ FEATURES             Location/Qualifiers
                      /translation="MNSHFVSAHTPFYINTKEGRYLVLKAVKVCDVRTVECEGSKASC
                      VLKVDKPSSPTCERRPSSPSRCERMNNPGKQVPFMRTDMLQNMFAANRDNVTSRLLN"
      gene            complement(42258..43697)
-                     /locus_tag="MPXV-UK_P2-047"
+                     /locus_tag="047-poly(A)-polymerase-large-subunit"
      CDS             complement(42258..43697)
-                     /locus_tag="MPXV-UK_P2-047"
+                     /locus_tag="047-poly(A)-polymerase-large-subunit"
                      /note="Poly (A) polymerase catalytic subunit (VP55)
                      (Cop-E1L); F1L; similar to Vaccinia virus strain
                      Copenhagen E1L; poly-A polymerase, catalytic subunit"
@@ -718,9 +718,9 @@ FEATURES             Location/Qualifiers
                      DNIMYTYFSNTILLSDKGKVHEISARGLCAHILLYQMLTSGEYKQCLSDLLNSMMNRD
                      KIPIYSHTERDKKPGRHGFINIEKDIIVF"
      gene            complement(43694..45907)
-                     /locus_tag="MPXV-UK_P2-048"
+                     /locus_tag="048-iev-morphogenesis-protein"
      CDS             complement(43694..45907)
-                     /locus_tag="MPXV-UK_P2-048"
+                     /locus_tag="048-iev-morphogenesis-protein"
                      /note="IEV morphogenesis (Cop-E2L); F2L; similar to
                      Vaccinia virus strain Copenhagen E2L"
                      /codon_start=1
@@ -740,9 +740,9 @@ FEATURES             Location/Qualifiers
                      EYTISNYQAAINCLMSTLLIYLVLGSIRSISRTEDFVLSILNIFYKGLKINELLSEPV
                      SGVCIELDKIKDRASSGDSSFIFLKKNELSKTLSLCEKVCVETILDNNQSFKSSK"
      gene            complement(46031..46492)
-                     /locus_tag="MPXV-UK_P2-049"
+                     /locus_tag="049-double-strand-RNA-binding-protein"
      CDS             complement(46031..46492)
-                     /locus_tag="MPXV-UK_P2-049"
+                     /locus_tag="049-double-strand-RNA-binding-protein"
                      /note="dsRNA-binding protein, IFN resistance/PKR inhibitor
                      (Z-DNA binding) (Cop-E3L); F3L; similar to Vaccinia virus
                      strain Copenhagen E3L; interferon resistance factor; two
@@ -756,9 +756,9 @@ FEATURES             Location/Qualifiers
                      DAIIDDVSREKSMREDHKSFDDVIPVKKIIYWKGVNPVTVINEYCQITRRDWSFRIES
                      VGPSNSPTFYACVDIDGRVFDKADGKSKRDAKNNAAKLAVDKLLSYVIIRF"
      gene            complement(46658..47437)
-                     /locus_tag="MPXV-UK_P2-050"
+                     /locus_tag="050-RNA-polymerase-subunit"
      CDS             complement(46658..47437)
-                     /locus_tag="MPXV-UK_P2-050"
+                     /locus_tag="050-RNA-polymerase-subunit"
                      /note="RNA polymerase subunit (RPO30) (Cop-E4L); F4L;
                      similar to Vaccinia virus strain Copenhagen E4L; RNA
                      polymerase 30 kDa subunit; simultaneously intermediate
@@ -772,9 +772,10 @@ FEATURES             Location/Qualifiers
                      NCKSRNTTPMMIQTRAADEPPLVRHACRDCKQHFKPPKFRAFRNLNVTTQSIHENKEI
                      TEILPDNNPSPPESPEPASPIDDGLIRATFDRNDEPPEDDE"
      gene            47555..47956
-                     /locus_tag="MPXV-UK_P2-051"
+                     /locus_tag="051-abundant-component-of-virosome"
      CDS             47555..47956
-                     /locus_tag="MPXV-UK_P2-051"
+                     /locus_tag="051-abundant-component-of-virosome"
+                     /note="unknown;unknown"
                      /codon_start=1
                      /product="Virosome component (Cop-E5R)"
                      /protein_id="QNP13648.1"
@@ -782,9 +783,9 @@ FEATURES             Location/Qualifiers
                      IRAAQTHYETLKLGYIKFKGMIRTTTLEDIAPSIPNNQKTYKLFSDISVIGKASQNPS
                      KMIYARCFTCFPICLEMTIDSFVIECIQHCS"
      gene            48210..49913
-                     /locus_tag="MPXV-UK_P2-052"
+                     /locus_tag="052-virion-protein"
      CDS             48210..49913
-                     /locus_tag="MPXV-UK_P2-052"
+                     /locus_tag="052-virion-protein"
                      /note="Virion protein (Cop-E6R); F5R; similar to Vaccinia
                      virus strain Copenhagen E6R"
                      /codon_start=1
@@ -802,9 +803,9 @@ FEATURES             Location/Qualifiers
                      ILPSLIKTILASYNISIIVLFQRFLRDNLYHVEEFLDKSIHLTKTDKKYILQLIRHGR
                      S"
      gene            49995..50495
-                     /locus_tag="MPXV-UK_P2-053"
+                     /locus_tag="053-putative-myristoylated-protein"
      CDS             49995..50495
-                     /locus_tag="MPXV-UK_P2-053"
+                     /locus_tag="053-putative-myristoylated-protein"
                      /note="Myristylated protein (Cop-E7R); F6R; similar to
                      Vaccinia virus strain Copenhagen E7R; soluble myristylated
                      protein"
@@ -816,9 +817,9 @@ FEATURES             Location/Qualifiers
                      LLKPIMSMGDIFTYNGCKDNEWMLEQLSTLNFNNLYTWNSCSIGNVTRLFYTFFSYLM
                      KDKLNI"
      gene            50599..51420
-                     /locus_tag="MPXV-UK_P2-054"
+                     /locus_tag="054-ER-localized-membrane-protein"
      CDS             50599..51420
-                     /locus_tag="MPXV-UK_P2-054"
+                     /locus_tag="054-ER-localized-membrane-protein"
                      /note="ER-localized membrane protein, virion core protein
                      (Cop-E8R); F7R; similar to Vaccinia virus strain
                      Copenhagen E8R"
@@ -831,9 +832,9 @@ FEATURES             Location/Qualifiers
                      TDNTKHLALARYIHQTGDYKPLFSRLKENYIFTGPVPIGIKDIDHPNLSRARSPSDYE
                      TLANISTILYFTKYDPVLMFLLFYVPGYSITTKITPAVEYLMDKLNLTKSDVQLL"
      gene            complement(51427..54447)
-                     /locus_tag="MPXV-UK_P2-055"
+                     /locus_tag="055-DNA-polymerase"
      CDS             complement(51427..54447)
-                     /locus_tag="MPXV-UK_P2-055"
+                     /locus_tag="055-DNA-polymerase"
                      /note="DNA polymerase (Cop-E9L); F8L; similar to Vaccinia
                      virus strain Copenhagen E9L; DNA polymerase, catalytic
                      subunit"
@@ -859,9 +860,9 @@ FEATURES             Location/Qualifiers
                      NKNNPETIELGERYYFAYICPANVPWTKKLVNIKTYETIIDRSFKLGSNQRIFYEVYF
                      KRLTSEIVNLLDNKVLCISFFQRMFGSRPTFYEA"
      gene            54479..54766
-                     /locus_tag="MPXV-UK_P2-056"
+                     /locus_tag="056-sulfhydryl-oxidase"
      CDS             54479..54766
-                     /locus_tag="MPXV-UK_P2-056"
+                     /locus_tag="056-sulfhydryl-oxidase"
                      /note="Sulfhydryl oxidase (FAD-linked) (Cop-E10R); F9R;
                      similar to Vaccinia virus strain Copenhagen E10R; protein
                      disulfide bond-forming enzyme"
@@ -871,9 +872,9 @@ FEATURES             Location/Qualifiers
                      /translation="MNPKHWGRAVWTIIFIVLSQAGLDGNIEACKRKLYTIVSTLPCP
                      ACRRHATIAIEDNNVMSSDDLNYIYYFFIRLFNNLAFDPKYAIDVSKVKPL"
      gene            complement(54761..55150)
-                     /locus_tag="MPXV-UK_P2-057"
+                     /locus_tag="057-putative-virion-core-protein"
      CDS             complement(54761..55150)
-                     /locus_tag="MPXV-UK_P2-057"
+                     /locus_tag="057-putative-virion-core-protein"
                      /note="Virion core protein (Cop-E11L); F10L; similar to
                      Vaccinia virus strain Copenhagen E11L; virion core
                      protein"
@@ -884,9 +885,9 @@ FEATURES             Location/Qualifiers
                      DQSEFYLVVKDKDIFYFKCDRGSISIVNNEFYVFDEPLLFVKDFTKITGVEFIVTETM
                      PCRIIPKNNHAVISVVTNHKFYNGLSL"
      gene            complement(55137..57134)
-                     /locus_tag="MPXV-UK_P2-058"
+                     /locus_tag="058-Hypothetical-protein-MPXVgp060"
      CDS             complement(55137..57134)
-                     /locus_tag="MPXV-UK_P2-058"
+                     /locus_tag="058-Hypothetical-protein-MPXVgp060"
                      /note="Membrane protein (Cop-O1L); Q1L; similar to
                      Vaccinia virus strain Copenhagen O1L"
                      /codon_start=1
@@ -905,9 +906,9 @@ FEATURES             Location/Qualifiers
                      NDQYAKVVIFFNTIIEYIIATIYYRLTVLDNYTNVKHFVSKVLHTVMEACGVLFSHIK
                      VNDKIEYELEEMVDKGTVPSYLYHLSINVISIILDDINGTR"
      gene            complement(57181..57507)
-                     /locus_tag="MPXV-UK_P2-059"
+                     /locus_tag="059-glutaredoxin"
      CDS             complement(57181..57507)
-                     /locus_tag="MPXV-UK_P2-059"
+                     /locus_tag="059-glutaredoxin"
                      /note="Glutaredoxin 1 (Cop-O2L); Q2L; similar to Vaccinia
                      virus strain Copenhagen O2L; virion-associated
                      glutaredoxin"
@@ -918,9 +919,9 @@ FEATURES             Location/Qualifiers
                      IVDIKEFKPENELRDYFEQITGGRTVPRIFFGKTSIGGYSDLLEIDNMDALGDILLSI
                      GVLRTC"
      gene            complement(57654..58592)
-                     /locus_tag="MPXV-UK_P2-060"
+                     /locus_tag="060-putative-DNA-binding-virion-core-protein"
      CDS             complement(57654..58592)
-                     /locus_tag="MPXV-UK_P2-060"
+                     /locus_tag="060-putative-DNA-binding-virion-core-protein"
                      /note="DNA-binding core protein (Cop-I1L); I1L; similar to
                      Vaccinia virus strain Copenhagen I1L; virosomal protein
                      essential for virus multiplication"
@@ -934,9 +935,9 @@ FEATURES             Location/Qualifiers
                      VTKRDESSIYVILKDPRIASILSLETVKMGAFMYTKHSMLTNAISSRVDRYSKKFQES
                      FYEDIAEFVKENERVNVSRVVECLTVPNITISSNTE"
      gene            complement(58599..58820)
-                     /locus_tag="MPXV-UK_P2-061"
+                     /locus_tag="061-IMV-membrane-protein"
      CDS             complement(58599..58820)
-                     /locus_tag="MPXV-UK_P2-061"
+                     /locus_tag="061-IMV-membrane-protein"
                      /note="IMV membrane protein (Cop-I2L); I2L; similar to
                      Vaccinia virus strain Copenhagen I2L"
                      /codon_start=1
@@ -945,9 +946,9 @@ FEATURES             Location/Qualifiers
                      /translation="MDKLYAAIFGVFMGSQEDDLTDFIEIVKSVLSDEKTVTSTNNTG
                      CWGWYWLIIIFFIVLILLLLIYLYLKVVW"
      gene            complement(58821..59630)
-                     /locus_tag="MPXV-UK_P2-062"
+                     /locus_tag="062-DNA-binding-phosphoprotein"
      CDS             complement(58821..59630)
-                     /locus_tag="MPXV-UK_P2-062"
+                     /locus_tag="062-DNA-binding-phosphoprotein"
                      /note="ssDNA-binding phosphoprotein (Cop-I3L); I3L;
                      similar to Vaccinia virus strain Copenhagen I3L; virosomal
                      ssDNA-binding phosphoprotein; interacts with R2 subunit of
@@ -961,9 +962,9 @@ FEATURES             Location/Qualifiers
                      YVSTGESSILRSIEGELESLSKRERQLAKAIITPVVFYRSGTETKITFALKKLIIDRE
                      VVANVIGLSGDSERVSMTENVEEDLVRNLGLVDIDDEYDEDSDKEKPIFNV"
      gene            complement(59712..62027)
-                     /locus_tag="MPXV-UK_P2-063"
+                     /locus_tag="063-ribonucleotide-reductase-large-subunit"
      CDS             complement(59712..62027)
-                     /locus_tag="MPXV-UK_P2-063"
+                     /locus_tag="063-ribonucleotide-reductase-large-subunit"
                      /note="Ribonucleotide reductase large subunit (Cop-I4L);
                      I4L; similar to Vaccinia virus strain Copenhagen I4L;
                      ribonucleotide reductase, large subunit, R1"
@@ -985,9 +986,9 @@ FEATURES             Location/Qualifiers
                      EIPQKTIIKMAADRGAFIDQSQSMNIHIADPSYSKLTSMHFYGWSLGLKTGMYYLRTK
                      PASAPIQFTLDKDKIKPQVVCDSEICTSCSG"
      gene            complement(62055..62294)
-                     /locus_tag="MPXV-UK_P2-064"
+                     /locus_tag="064-IMV-protein-VP13"
      CDS             complement(62055..62294)
-                     /locus_tag="MPXV-UK_P2-064"
+                     /locus_tag="064-IMV-protein-VP13"
                      /note="IMV protein VP13 (Cop-I5L); I5L; similar to
                      Vaccinia virus strain Copenhagen I5L; IMV surface membrane
                      protein"
@@ -997,9 +998,9 @@ FEATURES             Location/Qualifiers
                      /translation="MVDAITVLTAICITVLMLLMVISGTAMIVKELNPNDIFTMQSLK
                      FNRTVTIFKYIGLFIYIPGTIILYATYVKSLLMKN"
      gene            complement(62313..63461)
-                     /locus_tag="MPXV-UK_P2-065"
+                     /locus_tag="065-telomere-binding-protein"
      CDS             complement(62313..63461)
-                     /locus_tag="MPXV-UK_P2-065"
+                     /locus_tag="065-telomere-binding-protein"
                      /note="Telomere-binding protein (Cop-I6L); I6L; similar to
                      Vaccinia virus strain Copenhagen I6L"
                      /codon_start=1
@@ -1013,9 +1014,9 @@ FEATURES             Location/Qualifiers
                      VSLLDLPSNVEIKAISRSGVDFITHINNKRLTTILVIAKDNFLKNSTFSGTFIKENII
                      WKGIYTYRIIKSSFPVPTIKSVTNKKKICKKHCFVNSQYTTRTLSHIL"
      gene            complement(63454..64725)
-                     /locus_tag="MPXV-UK_P2-066"
+                     /locus_tag="066-viral-core-cysteine-proteinase"
      CDS             complement(63454..64725)
-                     /locus_tag="MPXV-UK_P2-066"
+                     /locus_tag="066-viral-core-cysteine-proteinase"
                      /note="Virion core cysteine protease (Cop-I7L); I7L;
                      similar to Vaccinia virus strain Copenhagen I7L; virion
                      core protein; similar to DNA topoisomerase II"
@@ -1031,9 +1032,9 @@ FEATURES             Location/Qualifiers
                      FMILCTRTPPKSFKSLKKVYTFFKFLADKKMTLFKSILFNLQDLSLYITETDNAGLKE
                      YKRMEKWTKKSINVICDKLTTKLNRIVDDDE"
      gene            64731..66761
-                     /locus_tag="MPXV-UK_P2-067"
+                     /locus_tag="067-RNA-helicase-NPH-II"
      CDS             64731..66761
-                     /locus_tag="MPXV-UK_P2-067"
+                     /locus_tag="067-RNA-helicase-NPH-II"
                      /note="RNA helicase, DExH-NPH-II domain (Cop-I8R); I8R;
                      similar to Vaccinia virus strain Copenhagen I8R;
                      nucleoside triphosphate phosphohydrolase II, NPH-II; DNA
@@ -1054,9 +1055,9 @@ FEATURES             Location/Qualifiers
                      ETWNKLLSNYYMKMIEYAKLYVLSPILAEELDNFERTGELTSIVQEAILSLNLQIKIL
                      KFKHKDDDTYIHFCRILFGVYNGTNATIYYHRPLTGYMNMISDTIFVPVDNN"
      gene            complement(66765..68540)
-                     /locus_tag="MPXV-UK_P2-068"
+                     /locus_tag="068-putative-metalloprotease"
      CDS             complement(66765..68540)
-                     /locus_tag="MPXV-UK_P2-068"
+                     /locus_tag="068-putative-metalloprotease"
                      /note="Metalloprotease (Cop-G1L); G1L; similar to Vaccinia
                      virus strain Copenhagen G1L; proteinase"
                      /codon_start=1
@@ -1074,9 +1075,9 @@ FEATURES             Location/Qualifiers
                      SLDKTSLVEMMWDLKKKGLIYSMEFTNLLSKNTFYLFTFTIYTDEVYDYLNNNKLFSA
                      KCLVVSTKGDVENFSSLKKDVVIRF"
      gene            complement(68537..68872)
-                     /locus_tag="MPXV-UK_P2-069"
+                     /locus_tag="069-entry/fusion-complex-component"
      CDS             complement(68537..68872)
-                     /locus_tag="MPXV-UK_P2-069"
+                     /locus_tag="069-entry/fusion-complex-component"
                      /note="Entry/fusion complex component (Cop-G3L); G2L;
                      similar to Vaccinia virus strain Copenhagen G3L"
                      /codon_start=1
@@ -1086,9 +1087,9 @@ FEATURES             Location/Qualifiers
                      RNEEIPTRTLDTAIFTDASTVSSAQIHLYYNSNIGKIIMSLNGKKHTFNLYDDNDIRT
                      LLPILLLSK"
      gene            68866..69528
-                     /locus_tag="MPXV-UK_P2-070"
+                     /locus_tag="070-transcriptional-elongation-factor"
      CDS             68866..69528
-                     /locus_tag="MPXV-UK_P2-070"
+                     /locus_tag="070-transcriptional-elongation-factor"
                      /note="VLTF (late transcription elongation factor)
                      (Cop-G2R); G3R; similar to Vaccinia virus strain
                      Copenhagen G2R"
@@ -1101,9 +1102,9 @@ FEATURES             Location/Qualifiers
                      TTSHITTNKKVDVLVSKKCIDELVDPINYQILQNLFDKGSGTINKILRKIFYSVTGGQ
                      TP"
      gene            complement(69498..69872)
-                     /locus_tag="MPXV-UK_P2-071"
+                     /locus_tag="071-glutaredoxin-like-protein"
      CDS             complement(69498..69872)
-                     /locus_tag="MPXV-UK_P2-071"
+                     /locus_tag="071-glutaredoxin-like-protein"
                      /note="Glutaredoxin-like protein (Cop-G4L); G4L; similar
                      to Vaccinia virus strain Copenhagen G4L; virion-associated
                      glutaredoxin"
@@ -1114,9 +1115,9 @@ FEATURES             Location/Qualifiers
                      GDSSMLGDVKRGTLIGNFAAHLSNYIVSIFKYNPQTKQMAFVDINKSLDFTKTDKSLV
                      NLEILKSEIEKATYGVWPPVTE"
      gene            69875..71179
-                     /locus_tag="MPXV-UK_P2-072"
+                     /locus_tag="072-fen1-like-nuclease"
      CDS             69875..71179
-                     /locus_tag="MPXV-UK_P2-072"
+                     /locus_tag="072-fen1-like-nuclease"
                      /note="FEN1-like nuclease (Cop-G5R); G5R; similar to
                      Vaccinia virus strain Copenhagen G5R"
                      /codon_start=1
@@ -1131,9 +1132,9 @@ FEATURES             Location/Qualifiers
                      YLESVPLPCQLMYALEPRKEIDVSEVKTLSSYIDFENTKSDIDVIKSISSIFGYSNEN
                      CNTIVFGIYKDNLLLSINNSFYFNDSLLITNTKSDNIINIGY"
      gene            71188..71379
-                     /locus_tag="MPXV-UK_P2-073"
+                     /locus_tag="073-RNA-polymerase"
      CDS             71188..71379
-                     /locus_tag="MPXV-UK_P2-073"
+                     /locus_tag="073-RNA-polymerase"
                      /note="RNA polymerase subunit (RPO7) (Cop-G5.5R); G6R; RNA
                      polymerase, 7 kDa subunit"
                      /codon_start=1
@@ -1142,9 +1143,9 @@ FEATURES             Location/Qualifiers
                      /translation="MVFQLVCSTCGKDISHERYKLIIRKKSLKDVLVSVKNECCRLKL
                      STQIEPQRNLTVQPLLDIN"
      gene            71379..71876
-                     /locus_tag="MPXV-UK_P2-074"
+                     /locus_tag="074-nlpc/p60-superfamily-protein"
      CDS             71379..71876
-                     /locus_tag="MPXV-UK_P2-074"
+                     /locus_tag="074-nlpc/p60-superfamily-protein"
                      /note="NLPc/P60 superfamily protein (Cop-G6R); G7R;
                      similar to Vaccinia virus strain Copenhagen G6R"
                      /codon_start=1
@@ -1155,9 +1156,9 @@ FEATURES             Location/Qualifiers
                      GHDRMYCFKLVAECYKNAGIDTSSKRILGKDIFLSQNFTDDNRWIKIYDSNNLTFWQI
                      DYLKG"
      gene            complement(71841..72956)
-                     /locus_tag="MPXV-UK_P2-075"
+                     /locus_tag="075-putative-virion-core-protein"
      CDS             complement(71841..72956)
-                     /locus_tag="MPXV-UK_P2-075"
+                     /locus_tag="075-putative-virion-core-protein"
                      /note="Virion phosphoprotein, early morphogenesis
                      (Cop-G7L); G8L; similar to Vaccinia virus strain
                      Copenhagen G7L; virion protein"
@@ -1172,9 +1173,9 @@ FEATURES             Location/Qualifiers
                      DKQIMECSRMLDTSEKYSKGYKTDGAVTSPLTGNNTITTFIPISASDMQKFTILEYLY
                      IMRVMANNVKKKNEGKNNGGVVMHINSPFKVINLPKC"
      gene            72987..73769
-                     /locus_tag="MPXV-UK_P2-076"
+                     /locus_tag="076-late-transcription-factor-VLTF-1"
      CDS             72987..73769
-                     /locus_tag="MPXV-UK_P2-076"
+                     /locus_tag="076-late-transcription-factor-VLTF-1"
                      /note="VLTF-1 (late transcription factor 1) (Cop-G8R);
                      G9R; similar to Vaccinia virus strain Copenhagen G8R; late
                      gene transcription factor, VLTF-1"
@@ -1187,9 +1188,9 @@ FEATURES             Location/Qualifiers
                      CISQHQHLAIMFKDDNIIMKTPGNTDAFSREYSMTECSQELQKFSFKIAISSLNKLRG
                      FKKRVNVFETRIVMDNDDNILGMLFSDRVQSFKINIFMAFLD"
      gene            73789..74811
-                     /locus_tag="MPXV-UK_P2-077"
+                     /locus_tag="077-poxvirus-myristoylprotein"
      CDS             73789..74811
-                     /locus_tag="MPXV-UK_P2-077"
+                     /locus_tag="077-poxvirus-myristoylprotein"
                      /note="Entry/fusion complex component, myristylprotein
                      (Cop-G9R); G10R; similar to Vaccinia virus strain
                      Copenhagen G9R; myristylated protein"
@@ -1204,9 +1205,9 @@ FEATURES             Location/Qualifiers
                      NNLQMDKTSSLRLSCGLSNSDRFSTVPVNRAKVVQHNIKHSFDLKLHLISLLSLLVIW
                      ILIVAI"
      gene            74812..75564
-                     /locus_tag="MPXV-UK_P2-078"
+                     /locus_tag="078-IMV-membrane-protein"
      CDS             74812..75564
-                     /locus_tag="MPXV-UK_P2-078"
+                     /locus_tag="078-IMV-membrane-protein"
                      /note="IMV membrane protein (Cop-L1R); M1R; similar to
                      Vaccinia virus strain Copenhagen L1R; myristylated IMV
                      surface membrane protein"
@@ -1219,9 +1220,9 @@ FEATURES             Location/Qualifiers
                      KALMQLTTKATTQIAPRQVAGTGVQFYMIVIGVIILAALFMYYAKRMLFTSTNDKIKL
                      ILANKENVHWTTYMDTFFRTSPMIIATTDIQN"
      gene            75596..75874
-                     /locus_tag="MPXV-UK_P2-079"
+                     /locus_tag="079-hypothetical-protein-MPXVgp081"
      CDS             75596..75874
-                     /locus_tag="MPXV-UK_P2-079"
+                     /locus_tag="079-hypothetical-protein-MPXVgp081"
                      /note="Viral membrane assembly proteins (VMAP) (Cop-L2R);
                      M2R; similar to Vaccinia virus strain Copenhagen L2R"
                      /codon_start=1
@@ -1230,9 +1231,9 @@ FEATURES             Location/Qualifiers
                      /translation="MEVIADRLDDIVKQNIADEKFVDFVIHGLEHQCPAILRPLIRLF
                      IDILLFVIVIYIFTVRLVSRNYQILLVLVALVITLTIFLLLYTIIVLD"
      gene            complement(75850..76884)
-                     /locus_tag="MPXV-UK_P2-080"
+                     /locus_tag="080-internal-virion-protein"
      CDS             complement(75850..76884)
-                     /locus_tag="MPXV-UK_P2-080"
+                     /locus_tag="080-internal-virion-protein"
                      /note="Internal virion protein (Cop-L3L); M3L; similar to
                      Vaccinia virus strain Copenhagen L3L"
                      /codon_start=1
@@ -1246,9 +1247,9 @@ FEATURES             Location/Qualifiers
                      LEPGTLVYVPKEDYYFIGISLTDVSISDNVRVLFSTDGIVLEIEDFNIKHLFMAGEMF
                      VRSQSSTIIV"
      gene            76909..77664
-                     /locus_tag="MPXV-UK_P2-081"
+                     /locus_tag="081-DNA-binding-virion-core-protein"
      CDS             76909..77664
-                     /locus_tag="MPXV-UK_P2-081"
+                     /locus_tag="081-DNA-binding-virion-core-protein"
                      /note="ss/dsDNA binding protein (VP8) (Cop-L4R); M4R;
                      similar to Vaccinia virus strain Copenhagen L4R; virion
                      core protein; ssDNA binding; stimulation of I8R helicase
@@ -1262,9 +1263,9 @@ FEATURES             Location/Qualifiers
                      TEYTPIGDNKALISKYAGINILNVYSPSTSMRLNAIYGFTNKNKLEKLSTNKELESYS
                      SSPLQEPIRLNDFLGLLECVKKNIPLTDIPTKD"
      gene            77674..78060
-                     /locus_tag="MPXV-UK_P2-082"
+                     /locus_tag="082-entry-and-fusion-imv-protein"
      CDS             77674..78060
-                     /locus_tag="MPXV-UK_P2-082"
+                     /locus_tag="082-entry-and-fusion-imv-protein"
                      /note="Entry and Fusion IMV protein (Cop-L5R); M5R;
                      similar to Vaccinia virus strain Copenhagen L5R"
                      /codon_start=1
@@ -1274,9 +1275,9 @@ FEATURES             Location/Qualifiers
                      VFFRSELNMFFMPKRKIPDPIDRLRRANLACEDDKLMIYGLPWITTQTSALSINSKPI
                      VYKDCAKLLRSINGSQPVSLNDVLRR"
      gene            78017..78475
-                     /locus_tag="MPXV-UK_P2-083"
+                     /locus_tag="083-virion-protein"
      CDS             78017..78475
-                     /locus_tag="MPXV-UK_P2-083"
+                     /locus_tag="083-virion-protein"
                      /note="Virion morph (Cop-J1R); L1R; similar to Vaccinia
                      virus strain Copenhagen J1R"
                      /codon_start=1
@@ -1286,9 +1287,9 @@ FEATURES             Location/Qualifiers
                      LLLLIQSKNKLEAVGHCYESLSEEYRQLTKFTDSQDFKKLFNKVPIVTDGRVKLNKGY
                      LFDFVISLMRFKKESALATTAIDPVRYIDPRRDIAFSNVMDILKSNKVEK"
      gene            78495..79028
-                     /locus_tag="MPXV-UK_P2-084"
+                     /locus_tag="084-thymidine-kinase"
      CDS             78495..79028
-                     /locus_tag="MPXV-UK_P2-084"
+                     /locus_tag="084-thymidine-kinase"
                      /note="Thymidine kinase (Cop-J2R); L2R; similar to
                      Vaccinia virus strain Copenhagen J2R; thymidine kinase"
                      /codon_start=1
@@ -1299,9 +1300,9 @@ FEATURES             Location/Qualifiers
                      IVIVAALDGTFQRRPFNNILNLIPLSEMVVKLTAVCMKCFKEASFSKRLGTETEIEII
                      GGNDMYQSVCRKCYIDS"
      gene            79094..80095
-                     /locus_tag="MPXV-UK_P2-085"
+                     /locus_tag="085-poly(A)-polymerase-small-subunit"
      CDS             79094..80095
-                     /locus_tag="MPXV-UK_P2-085"
+                     /locus_tag="085-poly(A)-polymerase-small-subunit"
                      /note="Poly (A) polymerase small subunit (VP39) (Cop-J
                      3R); L3R; similar to Vaccinia virus strain Copenhagen J3R;
                      poly-A polymerase, stimulatory subunit, simultaneously
@@ -1316,9 +1317,9 @@ FEATURES             Location/Qualifiers
                      MRLTRVTKSDAVNYEKKMYYLNKIVRNKVVINFDYPNQEYDYFHMYFMLRTVYCNKTF
                      PTTKAKILFLQQSIFRFLNIPTTSTEKVSHEPIQRKISSKDSMSKNRNSKRSVRGNK"
      gene            80010..80567
-                     /locus_tag="MPXV-UK_P2-086"
+                     /locus_tag="086-RNA-polymerase"
      CDS             80010..80567
-                     /locus_tag="MPXV-UK_P2-086"
+                     /locus_tag="086-RNA-polymerase"
                      /note="RNA polymerase subunit (RPO22) (Cop-J4R); L4R;
                      similar to Vaccinia virus strain Copenhagen J4R; RNA
                      polymerase, 22 kDa subunit"
@@ -1330,9 +1331,9 @@ FEATURES             Location/Qualifiers
                      DVVISDLFPSFVRLDTTETNIVNSVLQTGDGKKTLRLPKMLETEIVVKILYRPNIPLK
                      IVRFFRNNMVTGVEIADRSVISVAD"
      gene            complement(80627..81028)
-                     /locus_tag="MPXV-UK_P2-087"
+                     /locus_tag="087-putative-late-16kDa-membrane-protein"
      CDS             complement(80627..81028)
-                     /locus_tag="MPXV-UK_P2-087"
+                     /locus_tag="087-putative-late-16kDa-membrane-protein"
                      /note="IMV membrane protein (Cop-J5L); L5L; similar to
                      Vaccinia virus strain Copenhagen J5L; essential for virus
                      multiplication"
@@ -1343,9 +1344,9 @@ FEATURES             Location/Qualifiers
                      PCKRSDALLPASLKKNISRCNVSDCTISLGNVSITDSKLDVNNVCDSKRVATENIAVR
                      YLNQEIRYPIIDIKWLPIGLLALAILILAFF"
      gene            81135..84995
-                     /locus_tag="MPXV-UK_P2-088"
+                     /locus_tag="088-DNA-dependent-RNA-polymerase-subunit-rpo147"
      CDS             81135..84995
-                     /locus_tag="MPXV-UK_P2-088"
+                     /locus_tag="088-DNA-dependent-RNA-polymerase-subunit-rpo147"
                      /note="RNA polymerase subunit (RPO147) (Cop-J6R); L6R;
                      similar to Vaccinia virus strain Copenhagen J6R; RNA
                      polymerase, 147 kDa subunit"
@@ -1376,9 +1377,9 @@ FEATURES             Location/Qualifiers
                      AASTLKRATFGDNKALLNAALHKKSEPINDNSSCHFFSKVPNIGTGYYKYFIDLGLLM
                      RMERKLSDKISSQKIKEIEETEDF"
      gene            complement(84992..85507)
-                     /locus_tag="MPXV-UK_P2-089"
+                     /locus_tag="089-tyr/ser-protein-phosphatase"
      CDS             complement(84992..85507)
-                     /locus_tag="MPXV-UK_P2-089"
+                     /locus_tag="089-tyr/ser-protein-phosphatase"
                      /note="Tyr/Ser phosphatase, IFN-gamma inhibitor (Cop-H
                      1L); H1L; similar to Vaccinia virus strain Copenhagen H1L;
                      tyrosine"
@@ -1390,9 +1391,9 @@ FEATURES             Location/Qualifiers
                      NEPVLVHCVAGVNRSGAMILAYLMSKNKESSPMLYFLYVYHSMRDLRGAFVENPSFKR
                      QIIEKYVIDKN"
      gene            85521..86090
-                     /locus_tag="MPXV-UK_P2-090"
+                     /locus_tag="090-putative-viral-membrane-protein"
      CDS             85521..86090
-                     /locus_tag="MPXV-UK_P2-090"
+                     /locus_tag="090-putative-viral-membrane-protein"
                      /note="IMV membrane protein (Cop-H2R); H2R; similar to
                      Vaccinia virus strain Copenhagen H2R"
                      /codon_start=1
@@ -1403,9 +1404,9 @@ FEATURES             Location/Qualifiers
                      VDFGAYFIAMRLDKKTYLPQAIRRGTGDAWMVKKAAKVDPSAQQFCQYLIKHKSNNVI
                      TCGNEMLNELGYSGYFMSPHWCSDLSNME"
      gene            complement(86094..87068)
-                     /locus_tag="MPXV-UK_P2-091"
+                     /locus_tag="091-IMV-heparin-binding-surface-protein"
      CDS             complement(86094..87068)
-                     /locus_tag="MPXV-UK_P2-091"
+                     /locus_tag="091-IMV-heparin-binding-surface-protein"
                      /note="IMV heparin binding surface protein (Cop-H3L); H3L;
                      similar to Vaccinia virus strain Copenhagen H3L; IMV
                      surface membrane protein"
@@ -1419,9 +1420,9 @@ FEATURES             Location/Qualifiers
                      IENEMKINRQIMDNSAKYVEHDPRLVAEHRFETMKPNFWSRIGTVAAKRYPGVMYTFT
                      TPLISFFGLFDINVIGLIVILFIMFMLIFNVKSKLLWFLTGTFVTAFI"
      gene            complement(87069..89456)
-                     /locus_tag="MPXV-UK_P2-092"
+                     /locus_tag="092-RAP94"
      CDS             complement(87069..89456)
-                     /locus_tag="MPXV-UK_P2-092"
+                     /locus_tag="092-RAP94"
                      /note="RAP94 (RNA pol assoc protein) (Cop-H4L); H4L;
                      similar to Vaccinia virus strain Copenhagen H4L; virion
                      core RNA polymerase-associated protein, RAP94"
@@ -1443,9 +1444,9 @@ FEATURES             Location/Qualifiers
                      KLIIPLKSLYITNTLKYYYSNSYLYVFRFGDPMPFEEELIDHEHVQYKINCYNILRYY
                      LLPDSDVFVYFSNSLNREALEYAFYIFLSKYVNVKQWIDENITRIRELYMINFNN"
      gene            89641..90273
-                     /locus_tag="MPXV-UK_P2-093"
+                     /locus_tag="093-late-transcription-factor-VLTF-4"
      CDS             89641..90273
-                     /locus_tag="MPXV-UK_P2-093"
+                     /locus_tag="093-late-transcription-factor-VLTF-4"
                      /note="VLTF-4 (late transcription factor 4) (Cop-H5R);
                      H5R; similar to Vaccinia virus strain Copenhagen H5R;
                      virosome-associated late gene transcription factor,
@@ -1458,9 +1459,9 @@ FEATURES             Location/Qualifiers
                      DIVESVAAVELDDSDGDDEPMVQVEAGKVNHSARSDLSDLKVATDNIVKDLKKIITRI
                      SAVSTVLEDVQAAGISRQFTSMTKAITTLSDLVTEGKSKVVRKKVKTCKK"
      gene            90274..91218
-                     /locus_tag="MPXV-UK_P2-094"
+                     /locus_tag="094-DNA-topoisomerase-type-I"
      CDS             90274..91218
-                     /locus_tag="MPXV-UK_P2-094"
+                     /locus_tag="094-DNA-topoisomerase-type-I"
                      /note="DNA topoisomerase type I (Cop-H6R); H6R; similar to
                      Vaccinia virus strain Copenhagen H6R; DNA topoisomerase"
                      /codon_start=1
@@ -1473,9 +1474,9 @@ FEATURES             Location/Qualifiers
                      IKDLRTYGVNYTFLYNFWTNVKSVSPLPSPKKLIALTIKQTAEVVGHTPSISKRAYMA
                      TTILEMVKDKNFLDVVSKTTFDEFLSIVVDHVKSSTDG"
      gene            91256..91696
-                     /locus_tag="MPXV-UK_P2-095"
+                     /locus_tag="095-crescent-membrane-and-immature-virion-formation-protein"
      CDS             91256..91696
-                     /locus_tag="MPXV-UK_P2-095"
+                     /locus_tag="095-crescent-membrane-and-immature-virion-formation-protein"
                      /note="Viral membrane assembly proteins (VMAP) (Cop-H7R);
                      H7R; similar to Vaccinia virus strain Copenhagen H7R"
                      /codon_start=1
@@ -1485,9 +1486,9 @@ FEATURES             Location/Qualifiers
                      KDGQFMIDFEYDNYKASQYLDLTLTPISGNECKTHASSIAEQLACVDIIKEDISEYIK
                      TTPRLKRFIKKYRNRSYTRISRDTEKLKIALAKGIDYEYIKDAC"
      gene            91740..94277
-                     /locus_tag="MPXV-UK_P2-096"
+                     /locus_tag="096-mRNA-capping-enzyme-large-subunit"
      CDS             91740..94277
-                     /locus_tag="MPXV-UK_P2-096"
+                     /locus_tag="096-mRNA-capping-enzyme-large-subunit"
                      /note="mRNA capping enzyme large subunit (Cop-D1R); E1R;
                      similar to Vaccinia virus strain Copenhagen D1R; mRNA
                      capping enzyme, large subunit; RNA 5' triphosphatase and
@@ -1511,9 +1512,9 @@ FEATURES             Location/Qualifiers
                      SVEKIADDRIVVYNPSTMSTPMTEYIIKKNDIVRVFNEYGFVLVDNVDFATIIERSKK
                      FINGASTMEDRPSTRNFFELNRGAIKCEGLDVEDLLSYYVVYVFSKR"
      gene            complement(94236..94676)
-                     /locus_tag="MPXV-UK_P2-097"
+                     /locus_tag="097-virion-core-protein"
      CDS             complement(94236..94676)
-                     /locus_tag="MPXV-UK_P2-097"
+                     /locus_tag="097-virion-core-protein"
                      /note="Virion core (Cop-D2L); E2L; similar to Vaccinia
                      virus strain Copenhagen D2L; virion core protein"
                      /codon_start=1
@@ -1523,9 +1524,9 @@ FEATURES             Location/Qualifiers
                      VAHIYKTMARFDNKSIYRIAKFLFMNRPDVIKLLFLEDVEPLLPYKSINISINNTEYP
                      QLEGPIGTKIALLELFNAFRTGISEPIPYYYLPLRKDINNIVTK"
      gene            94669..95370
-                     /locus_tag="MPXV-UK_P2-098"
+                     /locus_tag="098-virion-core-protein"
      CDS             94669..95370
-                     /locus_tag="MPXV-UK_P2-098"
+                     /locus_tag="098-virion-core-protein"
                      /note="Virion core (Cop-D3R); E3R; similar to Vaccinia
                      virus strain Copenhagen D3R; virion core protein"
                      /codon_start=1
@@ -1537,9 +1538,9 @@ FEATURES             Location/Qualifiers
                      DSFLKYLLEHLIRSHYRVSKHITIVRYKDTEELNLTRICYNRDKFKAFVFAWFNGVSE
                      NEKVLDTYKKVSDLI"
      gene            95370..96026
-                     /locus_tag="MPXV-UK_P2-099"
+                     /locus_tag="099-uracil-DNA-glycosylase"
      CDS             95370..96026
-                     /locus_tag="MPXV-UK_P2-099"
+                     /locus_tag="099-uracil-DNA-glycosylase"
                      /note="Uracil-DNA glycosylase, DNA polymerase processi
                      vity factor (Cop-D4R); E4R; similar to Vaccinia virus
                      strain Copenhagen D4R; uracil DNA glycosylase"
@@ -1552,9 +1553,9 @@ FEATURES             Location/Qualifiers
                      TDFSNIRAKLESPVTTIVGYHPAARDHQFEKDRSFEIINVLLELDNKTPINWAQGFIY
                      "
      gene            96058..98415
-                     /locus_tag="MPXV-UK_P2-100"
+                     /locus_tag="100-NTPase"
      CDS             96058..98415
-                     /locus_tag="MPXV-UK_P2-100"
+                     /locus_tag="100-NTPase"
                      /note="NTPase, DNA primase (Cop-D5R); E5R; similar to
                      Vaccinia virus strain Copenhagen D5R; nucleic
                      acid-independent nucleoside triphosphatase"
@@ -1576,9 +1577,9 @@ FEATURES             Location/Qualifiers
                      IMKLYPTPEEIPDFAFYLKIGTLLVSSSVKHIPLMTDLSKKGYILYDNVVTLPLTTFQ
                      QKISKYFNSRLFGHDIESFINRHKKFANVSDEYLQYIFIEDISSP"
      gene            98455..100368
-                     /locus_tag="MPXV-UK_P2-101"
+                     /locus_tag="101-morph"
      CDS             98455..100368
-                     /locus_tag="MPXV-UK_P2-101"
+                     /locus_tag="101-morph"
                      /note="Morphogenesis, VETF-s (early transcription factor
                      small) (Cop-D6R); E6R; similar to Vaccinia virus strain
                      Copenhagen D6R; early transcription factor, VETF, small
@@ -1599,9 +1600,9 @@ FEATURES             Location/Qualifiers
                      MVTSVIKNKEDARNYIDDIVNGHFFVSNKVFDKSLLYKYENDIITVPFRLSYEPFVWG
                      VNFRKEYNVVSSP"
      gene            100395..100880
-                     /locus_tag="MPXV-UK_P2-102"
+                     /locus_tag="102-DNA-dependent-RNA-polymerase-subunit-rpo18"
      CDS             100395..100880
-                     /locus_tag="MPXV-UK_P2-102"
+                     /locus_tag="102-DNA-dependent-RNA-polymerase-subunit-rpo18"
                      /note="RNA polymerase subunit (RPO18) (Cop-D7R); E7R;
                      similar to Vaccinia virus strain Copenhagen D7R; RNA
                      polymerase, 18 kDa subunit"
@@ -1613,9 +1614,9 @@ FEATURES             Location/Qualifiers
                      DLICKLSRDSGTVSFSDSKYCFFRNGNAYDNGIEVSAVLMEAQQGTESSFVFLANIVD
                      S"
      gene            complement(100843..101757)
-                     /locus_tag="MPXV-UK_P2-103"
+                     /locus_tag="103-IMV-membrane-protein"
      CDS             complement(100843..101757)
-                     /locus_tag="MPXV-UK_P2-103"
+                     /locus_tag="103-IMV-membrane-protein"
                      /note="Carbonic anhydrase, GAG-binding IMV membrane
                      protein (Cop-D8L); E8L; similar to Vaccinia virus strain
                      Copenhagen D8L; IMV surface membrane 32 kDa protein;
@@ -1631,9 +1632,9 @@ FEATURES             Location/Qualifiers
                      YRNPYKLNDDTQVYYSGEIIRAATTSPVRENYFMKWLSDLREACFSYYQKYIEGNKTF
                      AIIAIVFVFILTAILFLMSQRYSREKQN"
      gene            101799..102440
-                     /locus_tag="MPXV-UK_P2-104"
+                     /locus_tag="104-mRNA-decapping-enzyme"
      CDS             101799..102440
-                     /locus_tag="MPXV-UK_P2-104"
+                     /locus_tag="104-mRNA-decapping-enzyme"
                      /note="mRNA decapping enzyme (Cop-D9R); E9R; similar to
                      Vaccinia virus strain Copenhagen D9R; Mut-like"
                      /codon_start=1
@@ -1644,9 +1645,9 @@ FEATURES             Location/Qualifiers
                      FEELILLGGKLDKKESIKDCLRRELKEESDEHITVKEFGNVILKLTTSDKLFNKVYIG
                      YCMACFINQSLEDLSHTSIYNVEIRKIKSLNDCINDDKYEYLSYIYNILINSK"
      gene            102437..103183
-                     /locus_tag="MPXV-UK_P2-105"
+                     /locus_tag="105-mRNA-decapping-enzyme"
      CDS             102437..103183
-                     /locus_tag="MPXV-UK_P2-105"
+                     /locus_tag="105-mRNA-decapping-enzyme"
                      /note="mRNA decapping enzyme (Cop-D10R); E10R; similar to
                      Vaccinia virus strain Copenhagen D10R; down regulation of
                      gene expression; Mut-like"
@@ -1659,9 +1660,9 @@ FEATURES             Location/Qualifiers
                      IHGIIEDTIINKFFEVIFFVGRISLTSDQIIDTFKSNHEIKDLIFLDPNSGNGLQYEI
                      AKYALDTAKLKCYGHRGCYYESLKKLTEDD"
      gene            complement(103184..105079)
-                     /locus_tag="MPXV-UK_P2-106"
+                     /locus_tag="106-ATPase"
      CDS             complement(103184..105079)
-                     /locus_tag="MPXV-UK_P2-106"
+                     /locus_tag="106-ATPase"
                      /note="ATPase, NPH1 (Cop-D11L); E11L; similar to Vaccinia
                      virus strain Copenhagen D11L; nucleoside triphosphate
                      phosphohydrolase I, NPH I; DNA-dependent ATPase; early
@@ -1682,9 +1683,9 @@ FEATURES             Location/Qualifiers
                      SKKNITNKLIEGTNIWYSNSNRLISINRGFKGVDGRVYDVDGNYLHDMPDNPVIKIHD
                      GKLIYIF"
      gene            complement(105114..105977)
-                     /locus_tag="MPXV-UK_P2-107"
+                     /locus_tag="107-mRNA-capping-enzyme-small-subunit"
      CDS             complement(105114..105977)
-                     /locus_tag="MPXV-UK_P2-107"
+                     /locus_tag="107-mRNA-capping-enzyme-small-subunit"
                      /note="mRNA capping enzyme small subunit (Cop-D12L); E12L;
                      similar to Vaccinia virus strain Copenhagen D12L; mRNA
                      capping enzyme, small subunit; mRNA
@@ -1700,9 +1701,9 @@ FEATURES             Location/Qualifiers
                      SSSWKDVNTVQFSILNDPVDTEFINKFLEFSNRVYEALYYVHSLLYSSMTSDSKSIEN
                      KHQRRLVKLLL"
      gene            complement(106008..107663)
-                     /locus_tag="MPXV-UK_P2-108"
+                     /locus_tag="108-trimeric-virion-coat-protein"
      CDS             complement(106008..107663)
-                     /locus_tag="MPXV-UK_P2-108"
+                     /locus_tag="108-trimeric-virion-coat-protein"
                      /note="Trimeric virion coat protein (rifampicin res)
                      (Cop-D13L); E13L; similar to Vaccinia virus strain
                      Copenhagen D13L; protein needed for the formation of
@@ -1721,9 +1722,9 @@ FEATURES             Location/Qualifiers
                      VLYSENGPISRIYNELLTKSNNGTRTLTFNFTPKIFFRPTTITANVSRGKDKLSVRVV
                      YSTMDINHPIYYVQKQLVVVCNDLYKVSYDQGVSITKIMGDNN"
      gene            complement(107687..108139)
-                     /locus_tag="MPXV-UK_P2-109"
+                     /locus_tag="109-late-transcription-factor-VLTF-2"
      CDS             complement(107687..108139)
-                     /locus_tag="MPXV-UK_P2-109"
+                     /locus_tag="109-late-transcription-factor-VLTF-2"
                      /note="VLTF-2 (late transcription factor 2) (Cop-A1L);
                      A1L; similar to Vaccinia virus strain Copenhagen A1L; late
                      gene transcription factor, VLTF-2"
@@ -1734,9 +1735,9 @@ FEATURES             Location/Qualifiers
                      TNSVIDKCWFCNQDLVFRPISIETFKGGEVGYFCSKICRDSLASMVKSHVALREEPKI
                      SLLPLVFYEDKEKVINTINLLRDKDGVYGSCYFKENSQIIDISLRSLL"
      gene            complement(108160..108834)
-                     /locus_tag="MPXV-UK_P2-110"
+                     /locus_tag="110-late-transcription-factor-VLTF-3"
      CDS             complement(108160..108834)
-                     /locus_tag="MPXV-UK_P2-110"
+                     /locus_tag="110-late-transcription-factor-VLTF-3"
                      /note="VLTF-3 (late transcription factor 3) (Cop-A2L);
                      A2L; similar to Vaccinia virus strain Copenhagen A2L; late
                      gene transcription factor, VLTF-3; zinc binding"
@@ -1749,9 +1750,9 @@ FEATURES             Location/Qualifiers
                      DITSVTKNLKPQTVKNYTKNNSNQLVWENFLAHMRSKKRVTMVEDYGHEYVFVDERFS
                      TCSLEV"
      gene            complement(108831..109064)
-                     /locus_tag="MPXV-UK_P2-111"
+                     /locus_tag="111-S-S-bond-formation-pathway-protein"
      CDS             complement(108831..109064)
-                     /locus_tag="MPXV-UK_P2-111"
+                     /locus_tag="111-S-S-bond-formation-pathway-protein"
                      /note="S-S bond formation pathway protein (Cop-A2.5L);
                      A3L"
                      /codon_start=1
@@ -1760,9 +1761,9 @@ FEATURES             Location/Qualifiers
                      /translation="MSWYEKYNIVLNPPKRCSSTCSDNLTTILSEDGTNIIRAILYSQ
                      PKKLKILQDFLTTSRNKMFLYKILDDEIRRVLT"
      gene            complement(109079..111013)
-                     /locus_tag="MPXV-UK_P2-112"
+                     /locus_tag="112-p4b-precursor-of-core-protein-4b"
      CDS             complement(109079..111013)
-                     /locus_tag="MPXV-UK_P2-112"
+                     /locus_tag="112-p4b-precursor-of-core-protein-4b"
                      /note="P4b precursor (Cop-A3L); A4L; similar to Vaccinia
                      virus strain Copenhagen A3L; major virion core protein
                      p4b"
@@ -1782,9 +1783,9 @@ FEATURES             Location/Qualifiers
                      YKKLSMDSDDGFYEWLNGDGSVFAASKQQMLMNHVANFDDDLLTMEEAMSMISRHCCI
                      LIYAQDYDQYISARHITELF"
      gene            complement(111066..111911)
-                     /locus_tag="MPXV-UK_P2-113"
+                     /locus_tag="113-39kDa-core-protein"
      CDS             complement(111066..111911)
-                     /locus_tag="MPXV-UK_P2-113"
+                     /locus_tag="113-39kDa-core-protein"
                      /note="39kDa virion core protein (Cop-A4L); A5L; similar
                      to Vaccinia virus strain Copenhagen A4L; 39 kDa
                      immunodominant virion core protein needed for the
@@ -1799,9 +1800,9 @@ FEATURES             Location/Qualifiers
                      AASQQNLDDMTLKDLMSSVEKDMRQLQAETNDLVTNVYDAREYTRRAIDQILQLVKGF
                      ERFQK"
      gene            111949..112434
-                     /locus_tag="MPXV-UK_P2-114"
+                     /locus_tag="114-DNA-dependent-RNA-polymerase-subunit-rpo19"
      CDS             111949..112434
-                     /locus_tag="MPXV-UK_P2-114"
+                     /locus_tag="114-DNA-dependent-RNA-polymerase-subunit-rpo19"
                      /note="RNA polymerase subunit (RPO19) (Cop-A5R); A6R;
                      similar to Vaccinia virus strain Copenhagen A5R; precursor
                      of RNA polymerase 22 kDa and 21 kDa"
@@ -1813,9 +1814,9 @@ FEATURES             Location/Qualifiers
                      DETMKQNMLHVIIQEIEEGSCPIVIEKNGELLSVNDFDKDGLKFHLDYIIKIWKLQKR
                      Y"
      gene            complement(112431..113549)
-                     /locus_tag="MPXV-UK_P2-115"
+                     /locus_tag="115-virion-morphogenesis-protein"
      CDS             complement(112431..113549)
-                     /locus_tag="MPXV-UK_P2-115"
+                     /locus_tag="115-virion-morphogenesis-protein"
                      /note="Viral membrane assembly proteins (VMAP), core
                      protein (Cop-A6L); A7L; similar to Vaccinia virus strain
                      Copenhagen A6L"
@@ -1830,9 +1831,9 @@ FEATURES             Location/Qualifiers
                      DVGCLLTDTIESTKTKISIEKIKQTGINNVQSLIKFISDNKKEYKTIISEEYLSKEDR
                      IITILQNIVNEHDIKYDNKLLNMRDLIVTFRERYSYKF"
      gene            complement(113573..115705)
-                     /locus_tag="MPXV-UK_P2-116"
+                     /locus_tag="116-82kDa-large-subunit-of-early-gene-transcription-factor-VETF"
      CDS             complement(113573..115705)
-                     /locus_tag="MPXV-UK_P2-116"
+                     /locus_tag="116-82kDa-large-subunit-of-early-gene-transcription-factor-VETF"
                      /note="VETF-L (early transcription factor large) (Cop-
                      A7L); A8L; similar to Vaccinia virus strain Copenhagen
                      A7L; early transcription factor, VETF, large subunit;
@@ -1854,9 +1855,9 @@ FEATURES             Location/Qualifiers
                      DGFYIDGKLFNEDLSSKYVTFTKNVIASDAVTKYFSPLFKYVISEAKDRFIKTWMINI
                      MIHMNVDPNNIIPTLEKYYPNSGRAQIN"
      gene            115759..116637
-                     /locus_tag="MPXV-UK_P2-117"
+                     /locus_tag="117-32kDa-small-subunit-of-transcription-factor-VITF-3"
      CDS             115759..116637
-                     /locus_tag="MPXV-UK_P2-117"
+                     /locus_tag="117-32kDa-small-subunit-of-transcription-factor-VITF-3"
                      /note="VITF-3 34kda subunit (Cop-A8R); A9R; similar to
                      Vaccinia virus strain Copenhagen A8R; intermediate
                      transcription factor, VITF-3, 34 kDa"
@@ -1870,9 +1871,9 @@ FEATURES             Location/Qualifiers
                      TVLITVYEKLQLAIENDSQFTCSLAVESELPIKLLKDRNELFTKFINELKKTSSFKIS
                      KRDKDTLLKHFTYDWS"
      gene            complement(116618..116920)
-                     /locus_tag="MPXV-UK_P2-118"
+                     /locus_tag="118-IMV-membrane-protein"
      CDS             complement(116618..116920)
-                     /locus_tag="MPXV-UK_P2-118"
+                     /locus_tag="118-IMV-membrane-protein"
                      /note="Viral membrane associated, early morphogenesis
                      protein (Cop-A9L); A10L; similar to Vaccinia virus strain
                      Copenhagen A9L"
@@ -1882,9 +1883,9 @@ FEATURES             Location/Qualifiers
                      /translation="MSCYTAILKSVGGLALFQVANGAIDLCRHFFMYFCEQKLRPNSF
                      WFVVVRAIASMIMYLVLGIALLYISEQDDKKNTNNDSNSNNDKRNVSSINSNSSHK"
      gene            complement(116921..119596)
-                     /locus_tag="MPXV-UK_P2-119"
+                     /locus_tag="119-P4a-precursor"
      CDS             complement(116921..119596)
-                     /locus_tag="MPXV-UK_P2-119"
+                     /locus_tag="119-P4a-precursor"
                      /note="P4a precursor (Cop-A10L); A11L; similar to Vaccinia
                      virus strain Copenhagen A10L; major virion core protein
                      p4a"
@@ -1908,9 +1909,9 @@ FEATURES             Location/Qualifiers
                      EKYKAFTDISMSLYKDLIAMENLKAMLYIIRRSGCRIDDAQITTDDLVKSYSLIRPKI
                      LSMINYYNEMSRGYFEHMKKNLNMTDGDSVSFDDE"
      gene            119611..120567
-                     /locus_tag="MPXV-UK_P2-120"
+                     /locus_tag="120-viral-membrane-formation-protein"
      CDS             119611..120567
-                     /locus_tag="MPXV-UK_P2-120"
+                     /locus_tag="120-viral-membrane-formation-protein"
                      /note="Viral membrane assembly proteins (VMAP) (Cop-A1
                      1R); A12R; similar to Vaccinia virus strain Copenhagen
                      A11R"
@@ -1924,9 +1925,9 @@ FEATURES             Location/Qualifiers
                      SEDEIDRIYKTIKQYHESRKRKIIVTNVIIIVINIIEQALLKLGFEEIKGLSTDITSE
                      IIDVEIGDDCDAVASKLGIGNSPVLNIVLFILKIFVKRIKII"
      gene            complement(120569..121141)
-                     /locus_tag="MPXV-UK_P2-121"
+                     /locus_tag="121-virion-core-and-cleavage-processing-protein"
      CDS             complement(120569..121141)
-                     /locus_tag="MPXV-UK_P2-121"
+                     /locus_tag="121-virion-core-and-cleavage-processing-protein"
                      /note="Virion core and cleavage processing protein
                      (Cop-A12L); A13L; similar to Vaccinia virus strain
                      Copenhagen A12L; virion core protein"
@@ -1938,9 +1939,9 @@ FEATURES             Location/Qualifiers
                      FNAMDGQIVQAVTNAGKIVYGTVRDGQLEVRGMVGEINHDLLGIESVNAGKKKPSKKM
                      PTNKKINMSSGMRRQEQINPDDCCLDMGMY"
      gene            complement(121165..121377)
-                     /locus_tag="MPXV-UK_P2-122"
+                     /locus_tag="122-A14L"
      CDS             complement(121165..121377)
-                     /locus_tag="MPXV-UK_P2-122"
+                     /locus_tag="122-A14L"
                      /note="IMV membrane protein, virion maturation (Cop-A1
                      3L); A14L; similar to Vaccinia virus strain Copenhagen
                      A13L; IMV inner and outer membrane protein"
@@ -1950,9 +1951,9 @@ FEATURES             Location/Qualifiers
                      /translation="MIGILLLIGICVAVTVTILYTLYNKIKNPQNPNPSPNLNSPPPE
                      TRNTKFVNNLEKDHISSLYNLVKSSA"
      gene            complement(121483..121755)
-                     /locus_tag="MPXV-UK_P2-123"
+                     /locus_tag="123-phosphorylated-IMV-membrane-protein"
      CDS             complement(121483..121755)
-                     /locus_tag="MPXV-UK_P2-123"
+                     /locus_tag="123-phosphorylated-IMV-membrane-protein"
                      /note="Essential IMV membrane protein (Cop-A14L); A15L;
                      similar to Vaccinia virus strain Copenhagen A14L; IMV
                      inner membrane protein"
@@ -1962,19 +1963,19 @@ FEATURES             Location/Qualifiers
                      /translation="MDMMLMIGNYFSGVLIAGIILLILSCIFAFIDFSKSTSPTRTWK
                      VLSIMAFILGIIITVGMLIYSMWGKHCAPHRVSGVIHTNHSDISMN"
      gene            complement(121772..121933)
-                     /locus_tag="MPXV-UK_P2-124"
+                     /locus_tag="124"
      CDS             complement(121772..121933)
-                     /locus_tag="MPXV-UK_P2-124"
-                     /note="Non-essential IMV membrane protein (Cop-A14.5L)"
+                     /locus_tag="124"
+                     /note="Non-essential IMV membrane protein (Cop-A14.5L);A15.5L"
                      /codon_start=1
                      /product="A15.5L"
                      /protein_id="QNP13721.1"
                      /translation="MISNYEPLLLLVITCCVLLFNFTISSKTKIDIIFAVQTIVFIWF
                      IFHFVYSAI"
      gene            complement(121923..122207)
-                     /locus_tag="MPXV-UK_P2-125"
+                     /locus_tag="125-core-protein"
      CDS             complement(121923..122207)
-                     /locus_tag="MPXV-UK_P2-125"
+                     /locus_tag="125-core-protein"
                      /note="Core protein (Cop-A15L); A16L; similar to Vaccinia
                      virus strain Copenhagen A15L"
                      /codon_start=1
@@ -1983,9 +1984,9 @@ FEATURES             Location/Qualifiers
                      /translation="MFVDDNSLIIYSTWPSTLSDSSGRVIIMPDNRSFTFKEGFKLDE
                      SIKSILLVNPSSIDLLKIRVYKHRIKWMGDIFVLFEQENIPPPFRLVNDK"
      gene            complement(122191..123324)
-                     /locus_tag="MPXV-UK_P2-126"
+                     /locus_tag="126-myristylated-protein"
      CDS             complement(122191..123324)
-                     /locus_tag="MPXV-UK_P2-126"
+                     /locus_tag="126-myristylated-protein"
                      /note="Myristylated protein, essential for entry/fusion
                      (Cop-A16L); A17L; similar to Vaccinia virus strain
                      Copenhagen A16L; soluble myristylated protein"
@@ -2000,9 +2001,9 @@ FEATURES             Location/Qualifiers
                      RKWLYYNQDVQRTRCKYVGCTINVNSLALKNSQAELTSNCTRTTSAVGDVHPGEPVVN
                      DKIKLPTWLGASITLVVISVIFYFISIYSRPKIKTNDINVRRR"
      gene            complement(123327..123941)
-                     /locus_tag="MPXV-UK_P2-127"
+                     /locus_tag="127-IMV-membrane-protein"
      CDS             complement(123327..123941)
-                     /locus_tag="MPXV-UK_P2-127"
+                     /locus_tag="127-IMV-membrane-protein"
                      /note="IMV membrane protein (Cop-A17L); A18L; similar to
                      Vaccinia virus strain Copenhagen A17L; IMV surface
                      membrane protein; early function in virion morphgenesis"
@@ -2014,9 +2015,9 @@ FEATURES             Location/Qualifiers
                      LVTQMYRGGNGNTVGMSIVCIVAAVIIMAINVFTNSQIFNIISYIILFILFFAFVMNI
                      ERQDYKRSINVPIPEQYTCNKPYTAGNKIDVDIPTFNSLNTDDY"
      gene            123956..125434
-                     /locus_tag="MPXV-UK_P2-128"
+                     /locus_tag="128-DNA-helicase"
      CDS             123956..125434
-                     /locus_tag="MPXV-UK_P2-128"
+                     /locus_tag="128-DNA-helicase"
                      /note="DNA helicase, transcript release factor (Cop-A1
                      8R); A19R; similar to Vaccinia virus strain Copenhagen A1
                      8R; virion core associated DNA helicase; post-replicative
@@ -2034,9 +2035,9 @@ FEATURES             Location/Qualifiers
                      DSLFICSAVINNMQIEQLLGRVCRETELLDRTVYVFPNTSIKKIKYMIGNFVQRIISL
                      SVDKLGFKQESYQKHQESEPASVPTSSREERVLNRIFNSQNR"
      gene            complement(125415..125648)
-                     /locus_tag="MPXV-UK_P2-129"
+                     /locus_tag="129-Zinc-finger-like-protein"
      CDS             complement(125415..125648)
-                     /locus_tag="MPXV-UK_P2-129"
+                     /locus_tag="129-Zinc-finger-like-protein"
                      /note="Zinc finger-like protein (Cop-A19L); A20L; similar
                      to Vaccinia virus strain Copenhagen A19L"
                      /codon_start=1
@@ -2045,9 +2046,9 @@ FEATURES             Location/Qualifiers
                      /translation="MDSTNMRSGMKSRKKKPKTTVIDDDDDCMTCSACQSKLVKISDI
                      TKVSLDYINTMRGNTLACSACGSSLKLLNDFAS"
      gene            complement(125649..125996)
-                     /locus_tag="MPXV-UK_P2-130"
+                     /locus_tag="130-IMV-membrane-protein"
      CDS             complement(125649..125996)
-                     /locus_tag="MPXV-UK_P2-130"
+                     /locus_tag="130-IMV-membrane-protein"
                      /note="IMV membrane protein, entry/fusion complex
                      component (Cop-A21L); A21L; similar to Vaccinia virus
                      strain Copenhagen A21L"
@@ -2058,9 +2059,9 @@ FEATURES             Location/Qualifiers
                      CVDDRLFSYNFTTSGIKAKVAVNKNVPIPCSKINEVNNKDVDTLYCDKDRDDIPGFAR
                      SCYRAYSDLFFTT"
      gene            125995..127275
-                     /locus_tag="MPXV-UK_P2-131"
+                     /locus_tag="131-viral-DNA-polymerase-processivity-factor"
      CDS             125995..127275
-                     /locus_tag="MPXV-UK_P2-131"
+                     /locus_tag="131-viral-DNA-polymerase-processivity-factor"
                      /note="DNA polymerase processivity factor (Cop-A20R);
                      A22R; similar to Vaccinia virus strain Copenhagen A20R;
                      processivity factor for the viral DNA polymerase, VPF"
@@ -2076,9 +2077,9 @@ FEATURES             Location/Qualifiers
                      VDEINKSGTVKRKIKNQSVFDLSRECLGYPEADFITLVNNMRFKIENCKVVNFNIENT
                      NCLNNPSIETIYGNFNQFVSIFNTVTDVKKRLFE"
      gene            127205..127768
-                     /locus_tag="MPXV-UK_P2-132"
+                     /locus_tag="132-holliday-junction-resolvase"
      CDS             127205..127768
-                     /locus_tag="MPXV-UK_P2-132"
+                     /locus_tag="132-holliday-junction-resolvase"
                      /note="Holliday junction resolvase (Cop-A22R); A23R;
                      similar to Vaccinia virus strain Copenhagen A22R"
                      /codon_start=1
@@ -2089,9 +2090,9 @@ FEATURES             Location/Qualifiers
                      TSAAKVICVSPVMSGNSYRDRKKRSVEAFLDWMDTFGLRDSVPDRRKLDDVADSFNLA
                      MRYVLDKWNTNYTPYNRCKYRNYIKKM"
      gene            127788..128936
-                     /locus_tag="MPXV-UK_P2-133"
+                     /locus_tag="133-45kDa-large-subunit-of-intermediate-gene-transcription-factor-VITF-3"
      CDS             127788..128936
-                     /locus_tag="MPXV-UK_P2-133"
+                     /locus_tag="133-45kDa-large-subunit-of-intermediate-gene-transcription-factor-VITF-3"
                      /note="VITF-3 45kda subunit (Cop-A23R); A24R; similar to
                      Vaccinia virus strain Copenhagen A23R; intermediate
                      transcription factor, VITF-3, 45 kDa"
@@ -2106,9 +2107,9 @@ FEATURES             Location/Qualifiers
                      KLFLIKKMAEHDVYGVSNFKIGMFNLTFIKSLDHTVFPSLLDEDSKIKFFKGKKLNIV
                      ALRSLEDCTNYVTKSENMIEMMKERSTILNSIDIETESVDRLKELLLK"
      gene            128933..132427
-                     /locus_tag="MPXV-UK_P2-134"
+                     /locus_tag="134-DNA-dependent-RNA-polymerase-subunit-rpo132"
      CDS             128933..132427
-                     /locus_tag="MPXV-UK_P2-134"
+                     /locus_tag="134-DNA-dependent-RNA-polymerase-subunit-rpo132"
                      /note="RNA polymerase subunit (RPO132) (Cop-A24R); A25R;
                      similar to Vaccinia virus strain Copenhagen A24R; RNA
                      polymerase, 132 kDa subunit"
@@ -2157,9 +2158,9 @@ FEATURES             Location/Qualifiers
                      /codon_start=1
                      /product="MPXVgp137"
      gene            complement(136149..137678)
-                     /locus_tag="MPXV-UK_P2-137"
+                     /locus_tag="137-cowpox-A-type-inclusion-protein"
      CDS             complement(136149..137678)
-                     /locus_tag="MPXV-UK_P2-137"
+                     /locus_tag="137-cowpox-A-type-inclusion-protein"
                      /note="P4c precursor (Cop-A26L); A28L; major component of
                      IMV surface tubules; p4c"
                      /codon_start=1
@@ -2176,9 +2177,9 @@ FEATURES             Location/Qualifiers
                      CDTVAVDRLEHHIETLGQYTVILARKINMQTLLFPWPLPTVHQHAIDGSIPPHGRSTI
                      L"
      gene            complement(137729..138061)
-                     /locus_tag="MPXV-UK_P2-138"
+                     /locus_tag="138-IMV-surface-protein"
      CDS             complement(137729..138061)
-                     /locus_tag="MPXV-UK_P2-138"
+                     /locus_tag="138-IMV-surface-protein"
                      /note="IMV surface protein, fusion protein (Cop-A27L);
                      A29L; similar to Vaccinia virus strain Copenhagen A27L;
                      IMV surface membrane 14 kDa fusion protein; binding to
@@ -2190,9 +2191,9 @@ FEATURES             Location/Qualifiers
                      ETLKQRLTNLEKKITNITTKFEQIEKCCKRNDEVLFRLENHAETLRAAMISLAKKIDV
                      QTGRHPYE"
      gene            complement(138062..138502)
-                     /locus_tag="MPXV-UK_P2-139"
+                     /locus_tag="139-IMV-membrane-protein"
      CDS             complement(138062..138502)
-                     /locus_tag="MPXV-UK_P2-139"
+                     /locus_tag="139-IMV-membrane-protein"
                      /note="IMV MP/Virus entry (Cop-A28L); A30L; similar to
                      Vaccinia virus strain Copenhagen A28L"
                      /codon_start=1
@@ -2202,9 +2203,9 @@ FEATURES             Location/Qualifiers
                      YSKSIGGTPALDRRVQDVNDTISDVKQKWRCVVYPGNGFVSASIFGFQAEVGPNNTRS
                      IRKFNTMRQCIDFTFSDVINIDIYNPCIAPNINNTECQFLKSVL"
      gene            complement(138503..139420)
-                     /locus_tag="MPXV-UK_P2-140"
+                     /locus_tag="140-DNA-dependent-RNA-polymerase-rpo35"
      CDS             complement(138503..139420)
-                     /locus_tag="MPXV-UK_P2-140"
+                     /locus_tag="140-DNA-dependent-RNA-polymerase-rpo35"
                      /note="RNA polymerase subunit (RPO35) (Cop-A29L); A31L;
                      similar to Vaccinia virus strain Copenhagen A29L; RNA
                      polymerase, 35 kDa subunit"
@@ -2218,9 +2219,9 @@ FEATURES             Location/Qualifiers
                      LEGTLIANIHNHMIKVGDCDETVSSYNPESGMLFVNDLMTMNIVNFFGCNSRLESYHR
                      FDMTKVDVELFIKALSDACKKILSASNRL"
      gene            complement(139383..139619)
-                     /locus_tag="MPXV-UK_P2-141"
+                     /locus_tag="141-IMV-protein"
      CDS             complement(139383..139619)
-                     /locus_tag="MPXV-UK_P2-141"
+                     /locus_tag="141-IMV-protein"
                      /note="IMV protein (Cop-A30L); A32L; similar to Vaccinia
                      virus strain Copenhagen A30L"
                      /codon_start=1
@@ -2229,19 +2230,19 @@ FEATURES             Location/Qualifiers
                      /translation="MEDLNEANFSHLLINLSNNKDIDMQYTSTLSVVHELLSAINFKI
                      FNINKKSKKNSKSIEQQHPVVHHAASTGREFNRR"
      gene            complement(139652..139780)
-                     /locus_tag="MPXV-UK_P2-142"
+                     /locus_tag="142"
      CDS             complement(139652..139780)
-                     /locus_tag="MPXV-UK_P2-142"
+                     /locus_tag="142"
                      /note="Viral membrane assembly proteins (VMAP) (Cop-A
-                     30.5L)"
+                     30.5L);A32.5L"
                      /codon_start=1
                      /product="A32.5L"
                      /protein_id="QNP13737.1"
                      /translation="MLKMSAADFLERLIKAGIYIYVLRTKYVITALLVKNYPIKDE"
      gene            139779..140216
-                     /locus_tag="MPXV-UK_P2-143"
+                     /locus_tag="143-A33R"
      CDS             139779..140216
-                     /locus_tag="MPXV-UK_P2-143"
+                     /locus_tag="143-A33R"
                      /note="Hypothetical protein (Cop-A31R); A33R; similar to
                      Vaccinia virus strain Copenhagen A31R"
                      /codon_start=1
@@ -2251,9 +2252,9 @@ FEATURES             Location/Qualifiers
                      STVVKYLSGGGIYHDDLVVLGKVTINDLKMMLFYMDLSYHGVTSSGAIYKLGSSIDRL
                      SLNRTIVTKVNNNYNNYNNYNNYNCYNNYNCYNYDDTFFDDDD"
      gene            complement(140183..141085)
-                     /locus_tag="MPXV-UK_P2-144"
+                     /locus_tag="144-ATPase"
      CDS             complement(140183..141085)
-                     /locus_tag="MPXV-UK_P2-144"
+                     /locus_tag="144-ATPase"
                      /note="ATPase/DNA packaging protein (Cop-A32L); A34L;
                      similar to Vaccinia virus strain Copenhagen A32L; DNA
                      packaging into virion; NTP-binding motif A"
@@ -2267,9 +2268,9 @@ FEATURES             Location/Qualifiers
                      MIQTARSNNRLAIIIEDSVFCEGELRICTDTADKDVIEQKLNIDILVSQYSHMKKNLN
                      TILESTKTKLCNSDQSSSSKNVSS"
      gene            141113..141658
-                     /locus_tag="MPXV-UK_P2-145"
+                     /locus_tag="145-EEV-membrane-phosphoglycoprotein"
      CDS             141113..141658
-                     /locus_tag="MPXV-UK_P2-145"
+                     /locus_tag="145-EEV-membrane-phosphoglycoprotein"
                      /note="EEV membrane phosphoglycoprotein, C-type
                      lectin-like domain (Cop-A33R); A35R; similar to Vaccinia
                      virus strain Copenhagen A33R; EEV envelope glycoprotein,
@@ -2283,9 +2284,9 @@ FEATURES             Location/Qualifiers
                      LYYQGSCYILHSDYKSFEDAKANCAAESSTLPNKSDVLTTWLIDYVEDTWGSDGNPIT
                      KTTSDYQDSDVSQEVRKYFCT"
      gene            141663..142169
-                     /locus_tag="MPXV-UK_P2-146"
+                     /locus_tag="146-IEV-and-EEV-membrane-glycoprotein"
      CDS             141663..142169
-                     /locus_tag="MPXV-UK_P2-146"
+                     /locus_tag="146-IEV-and-EEV-membrane-glycoprotein"
                      /note="C-type lectin-like IEV/EEV glycoprotein (Cop-A3
                      4R); A36R; similar to Vaccinia virus strain Copenhagen A3
                      4R; EEV envelope glycoprotein, lectin-like; required for
@@ -2299,9 +2300,9 @@ FEATURES             Location/Qualifiers
                      VSLKKTNDKWLDINNDKDIDISKLTNFKQLNSTTDSEACYIYKSGKLVKTVCKSTQSV
                      LCVKRFYK"
      gene            142213..142743
-                     /locus_tag="MPXV-UK_P2-147"
+                     /locus_tag="147-MHC-class-II-antigen-presentation-inhibitor"
      CDS             142213..142743
-                     /locus_tag="MPXV-UK_P2-147"
+                     /locus_tag="147-MHC-class-II-antigen-presentation-inhibitor"
                      /note="MHC class II antigen presentation inhibitor
                      (Cop-A35R); A37R; similar to Vaccinia virus strain
                      Copenhagen A35R"
@@ -2313,9 +2314,9 @@ FEATURES             Location/Qualifiers
                      IEGKHQPFYLFPSIDVFNATIIEAYNLYTAGDYHLIINPSDNLKMKLSFNSSFCISDG
                      NGWIIIDGKCNSNFLS"
      gene            142789..143475
-                     /locus_tag="MPXV-UK_P2-148"
+                     /locus_tag="148-IEV-transmembrane-phosphoprotein"
      CDS             142789..143475
-                     /locus_tag="MPXV-UK_P2-148"
+                     /locus_tag="148-IEV-transmembrane-phosphoprotein"
                      /note="IEV transmembrane phosphoprotein (Cop-A36R); A38R;
                      similar to Vaccinia virus strain Copenhagen A36R; IEV but
                      not CEV envelope protein; plays critical role for actin
@@ -2329,9 +2330,9 @@ FEATURES             Location/Qualifiers
                      KQIPSYSSNPFVNYNKTSICSKSNPFIAELNNKFSDNNPFRRAHSDDYLNKQQDHEYD
                      DIESSVVSLV"
      gene            143527..144333
-                     /locus_tag="MPXV-UK_P2-149"
+                     /locus_tag="149-hypothetical-protein-MPXVgp149"
      CDS             143527..144333
-                     /locus_tag="MPXV-UK_P2-149"
+                     /locus_tag="149-hypothetical-protein-MPXVgp149"
                      /note="Hypothetical protein (Cop-A37R); A39R; similar to
                      Vaccinia virus strain Copenhagen A37R"
                      /codon_start=1
@@ -2343,9 +2344,9 @@ FEATURES             Location/Qualifiers
                      SSVFIIRRVTDYLDRHICDQIFANNKWYSIITIDDKQYPIPSNCIGMSSAKYINSSIE
                      QDILIHVCNLEHPFDSVYKKMQSYNSLPIKEQILYGRIDNINMSISISVD"
      gene            complement(144585..145418)
-                     /locus_tag="MPXV-UK_P2-150"
+                     /locus_tag="150-CD47-like-putative-membrane-protein"
      CDS             complement(144585..145418)
-                     /locus_tag="MPXV-UK_P2-150"
+                     /locus_tag="150-CD47-like-putative-membrane-protein"
                      /note="CD47-like, integral membrane protein (Cop-A38L);
                      A40L; similar to Vaccinia virus strain Copenhagen A38L;
                      integral membrane glycoprotein; immunoglobulin-like;
@@ -2360,9 +2361,9 @@ FEATURES             Location/Qualifiers
                      LIIYYQLAGYILTVLGLGLSLKECVDGTLLLSGLGTIMVSEHFGLLFLVCFPSTQRDY
                      Y"
      gene            complement(146124..146789)
-                     /locus_tag="MPXV-UK_P2-151"
+                     /locus_tag="151-chemokine-binding-protein"
      CDS             complement(146124..146789)
-                     /locus_tag="MPXV-UK_P2-151"
+                     /locus_tag="151-chemokine-binding-protein"
                      /note="Chemokine binding protein (Cop-A41L); A41L; similar
                      to Vaccinia virus strain Copenhagen A41L; secreted protein
                      reducing infiltration of inflammatory cells into the
@@ -2376,9 +2377,9 @@ FEATURES             Location/Qualifiers
                      SNVGSMIELQSDYCVNDVTAYVKIYDECGNIKQHSIPTLRDYFTTKNGQPRKILKKKI
                      DNC"
      gene            146999..147400
-                     /locus_tag="MPXV-UK_P2-152"
+                     /locus_tag="152-profilin-like-protein"
      CDS             146999..147400
-                     /locus_tag="MPXV-UK_P2-152"
+                     /locus_tag="152-profilin-like-protein"
                      /note="Profilin-like protein, ATI-localized (Cop-A42R);
                      A42R; similar to Vaccinia virus strain Copenhagen A42R;
                      profilin-like"
@@ -2389,9 +2390,9 @@ FEATURES             Location/Qualifiers
                      PGEVIPLITNHNILKPLIGQKFCIVYTNSLMDENTYAMELLTGYAPVSPIVIARTHTA
                      LIFLMGKPTTSRRDVYRTCRDHATRVRATGN"
      gene            147438..148028
-                     /locus_tag="MPXV-UK_P2-153"
+                     /locus_tag="153-type-I-membrane-glycoprotein"
      CDS             147438..148028
-                     /locus_tag="MPXV-UK_P2-153"
+                     /locus_tag="153-type-I-membrane-glycoprotein"
                      /note="Type I membrane glycoprotein (Cop-A43R); A43R;
                      similar to Vaccinia virus strain Copenhagen A43R; membrane
                      glycoprotein"
@@ -2403,9 +2404,9 @@ FEATURES             Location/Qualifiers
                      SGNLKYNDIQCSVNVSCLIKNLATSTSTILTSKHKTYSLYRSMCIAIIGYDSIIWYKY
                      INDRYNDIYDFTAICMLIASTLIVIIYVFKKIKMNS"
      gene            148048..148272
-                     /locus_tag="MPXV-UK_P2-154"
+                     /locus_tag="154-hypothetical-protein-MPXVgp154"
      CDS             148048..148272
-                     /locus_tag="MPXV-UK_P2-154"
+                     /locus_tag="154-hypothetical-protein-MPXVgp154"
                      /note="Hypothetical protein (Cop-A43.5R); A44R"
                      /codon_start=1
                      /product="MPXVgp154"
@@ -2413,9 +2414,9 @@ FEATURES             Location/Qualifiers
                      /translation="MDKIKITIDSKIGNVVTISYNLEKITIDVTPKKKKEKDVLLAQS
                      VAVEEAKDVKVEEKNIIDIEDDDDMDIENT"
      gene            complement(148366..149406)
-                     /locus_tag="MPXV-UK_P2-155"
+                     /locus_tag="155-hydroxysteroid-dehydrogenase"
      CDS             complement(148366..149406)
-                     /locus_tag="MPXV-UK_P2-155"
+                     /locus_tag="155-hydroxysteroid-dehydrogenase"
                      /note="3 beta-hydroxysteroid dehydrogenase/delta 5->4
                      isomerase (Cop-A44L); A45L; similar to Vaccinia virus
                      strain Copenhagen A44L; 3-b-Hydroxy-delta5-steroid
@@ -2431,9 +2432,9 @@ FEATURES             Location/Qualifiers
                      RWMLKMYACKNDMKRILFRKPSILNNYTLKISNTTFEVRTNNAELDFNYSPIFDVDVA
                      FERTRKWLEESE"
      gene            149453..149830
-                     /locus_tag="MPXV-UK_P2-156"
+                     /locus_tag="156-inactive-cu-Zn-superoxide-dismutase-like-virion-protein"
      CDS             149453..149830
-                     /locus_tag="MPXV-UK_P2-156"
+                     /locus_tag="156-inactive-cu-Zn-superoxide-dismutase-like-virion-protein"
                      /note="Inactive Cu-Zn superoxide dismutase-like virion
                      protein (Cop-A45R); A46R; similar to Vaccinia virus strain
                      Copenhagen A45R; superoxide dismutase-like; virion core
@@ -2445,9 +2446,9 @@ FEATURES             Location/Qualifiers
                      YGDISRGCDSIGSPEIFIGNIFVNRYGVAYVYLDTDVNISTIIGKALSISKNDQRLAC
                      GVIGISYINEKIIHFLTINENGV"
      gene            149820..150542
-                     /locus_tag="MPXV-UK_P2-157"
+                     /locus_tag="157-Toll/IL1-receptor"
      CDS             149820..150542
-                     /locus_tag="MPXV-UK_P2-157"
+                     /locus_tag="157-Toll/IL1-receptor"
                      /note="IL-1/TLR signaling inhibitor (Cop-A46R); A47R;
                      similar to Vaccinia virus strain Copenhagen A46R"
                      /codon_start=1
@@ -2459,9 +2460,9 @@ FEATURES             Location/Qualifiers
                      VVALSSLVSKHWELTNKKYRCMALAEHIADSIPISELSRLRYNLCKYLRGHTDSIEDE
                      FDHFEDDDLSTCSAVTDRETDV"
      gene            151520..152134
-                     /locus_tag="MPXV-UK_P2-158"
+                     /locus_tag="158-thymidylate-kinase"
      CDS             151520..152134
-                     /locus_tag="MPXV-UK_P2-158"
+                     /locus_tag="158-thymidylate-kinase"
                      /note="Thymidylate kinase (Cop-A48R); A49R; similar to
                      Vaccinia virus strain Copenhagen A48R; thymidylate kinase"
                      /codon_start=1
@@ -2472,9 +2473,9 @@ FEATURES             Location/Qualifiers
                      TAKGASMTLSKSYESGLPKPDLVIFLESGSKEINRNIGEEIYEDVEFQQKVLQEYKKM
                      IEEGDIHWQIISSEFEEDVKKELIKNIVIEAIHTVTGPVGQLWM"
      gene            152703..154382
-                     /locus_tag="MPXV-UK_P2-159"
+                     /locus_tag="159-ATP-dependent-DNA-ligase"
      CDS             152703..154382
-                     /locus_tag="MPXV-UK_P2-159"
+                     /locus_tag="159-ATP-dependent-DNA-ligase"
                      /note="ATP-dependent DNA ligase (Cop-A50R); A50R; similar
                      to Vaccinia virus strain Copenhagen A50R; DNA ligase"
                      /codon_start=1
@@ -2491,9 +2492,9 @@ FEATURES             Location/Qualifiers
                      TKCSGHDDNTLRVLQDQLTMVKINKDPKKIPEWLVVNKIYIPDFVVDDPKQSQIWEIS
                      GAEFTSSKSHTANGISIRFPRFTRIREDKTWKESTHLNDLVNLTKSLNSYI"
      gene            154423..155427
-                     /locus_tag="MPXV-UK_P2-160"
+                     /locus_tag="160-A51R"
      CDS             154423..155427
-                     /locus_tag="MPXV-UK_P2-160"
+                     /locus_tag="160-A51R"
                      /note="Hypothetical protein (Cop-A51R); A51R; similar to
                      Vaccinia virus strain Copenhagen A51R"
                      /codon_start=1
@@ -2518,9 +2519,9 @@ FEATURES             Location/Qualifiers
                      /codon_start=1
                      /product="MPXVgp162"
      gene            158928..159869
-                     /locus_tag="MPXV-UK_P2-162"
+                     /locus_tag="162-hemagglutinin"
      CDS             158928..159869
-                     /locus_tag="MPXV-UK_P2-162"
+                     /locus_tag="162-hemagglutinin"
                      /note="Hemagglutinin (Cop-A56R); B2R; similar to Vaccinia
                      virus strain Copenhagen A56R; EEV envelope and cell
                      membrane glycoprotein hemagglutinin; inhibition of the
@@ -2536,9 +2537,9 @@ FEATURES             Location/Qualifiers
                      TDTVSYTTVSTSSGIVTTKSTTDDADLYDTYNDNDTVPPTTVGGSTTSISNYKTKDFV
                      EIFGITTLIILSAVAIFCITYYICNKHPRKYKTENKV"
      gene            160633..161544
-                     /locus_tag="MPXV-UK_P2-163"
+                     /locus_tag="163-ser/thr-kinase"
      CDS             160633..161544
-                     /locus_tag="MPXV-UK_P2-163"
+                     /locus_tag="163-ser/thr-kinase"
                      /note="Ser/Thr Kinase (Cop-B1R); B3R; similar to Vaccinia
                      virus strain Copenhagen B1R; serine"
                      /codon_start=1
@@ -2551,9 +2552,9 @@ FEATURES             Location/Qualifiers
                      YCMIRWLGGILPWTKISETKNSALVSAAKQKYVNNTATLLMTSLQYAPRELLQYITMV
                      NSLTYFEEPNYDEFRRVLMNGVMKNFC"
      gene            161607..163118
-                     /locus_tag="MPXV-UK_P2-164"
+                     /locus_tag="164-schlafen"
      CDS             161607..163118
-                     /locus_tag="MPXV-UK_P2-164"
+                     /locus_tag="164-schlafen"
                      /note="Schlafen (Cop-B2R); B4R; schlafen-like"
                      /codon_start=1
                      /product="MPXVgp165"
@@ -2568,9 +2569,9 @@ FEATURES             Location/Qualifiers
                      LFIGVDNNTHKVIGFTVGHDYLKLVESDIEKYIQKLPVVHFCKKKEDIKYACRFIKVY
                      KPGDETTSTYVCAIKVERCCCAVFADWPESWYMDTSGSMKKYSPDEWVSHIKF"
      gene            163344..165029
-                     /locus_tag="MPXV-UK_P2-165"
+                     /locus_tag="165-ankyrin-like-protein"
      CDS             163344..165029
-                     /locus_tag="MPXV-UK_P2-165"
+                     /locus_tag="165-ankyrin-like-protein"
                      /note="Ankyrin (Cop-B4R); B5R; similar to Vaccinia virus
                      strain Copenhagen B4R; ankyrin-like"
                      /codon_start=1
@@ -2587,9 +2588,9 @@ FEATURES             Location/Qualifiers
                      YILKCFDEIDIMKRCYIKNKTVFQLVFCIKDINTLMRYGRHPSFVKCNILDVYGSCVR
                      NIIASIRYRQRLISLLSKKLDAGDKWSCFPNEIKYKILENFNDNELTTYLKIL"
      gene            165133..166086
-                     /locus_tag="MPXV-UK_P2-166"
+                     /locus_tag="166-EEV-membrane-glycoprotein"
      CDS             165133..166086
-                     /locus_tag="MPXV-UK_P2-166"
+                     /locus_tag="166-EEV-membrane-glycoprotein"
                      /note="EEV type-1 membrane glycoprotein, protective
                      antigen (Cop-B5R); B6R; similar to Vaccinia virus strain
                      Copenhagen B5R; palmitated 42 kDa glycoprotein located
@@ -2605,9 +2606,9 @@ FEATURES             Location/Qualifiers
                      GSPSSTCIDGKWNPILPTCVRSNEEFDPVDDGPDDETDLSKLSKDVVQYEQEIESLEA
                      TYHIIIMALTIMGVIFLISIIVLVCSCDKNNDQYKFHKLLP"
      gene            166172..166678
-                     /locus_tag="MPXV-UK_P2-167"
+                     /locus_tag="167-ankyrin-like-protein"
      CDS             166172..166678
-                     /locus_tag="MPXV-UK_P2-167"
+                     /locus_tag="167-ankyrin-like-protein"
                      /note="Ankyrin-like protein (Cop-B6R); B7R; similar to
                      Vaccinia virus strain Copenhagen B6R"
                      /codon_start=1
@@ -2618,9 +2619,9 @@ FEATURES             Location/Qualifiers
                      PKNSINNQIMYDIINSVAIILANERYRSAFNDDRIYIRRTMMDKLYEYASLTTIGTIT
                      GGVCYFIC"
      gene            166742..167290
-                     /locus_tag="MPXV-UK_P2-168"
+                     /locus_tag="168-virulence-protein"
      CDS             166742..167290
-                     /locus_tag="MPXV-UK_P2-168"
+                     /locus_tag="168-virulence-protein"
                      /note="Virulence, ER resident (Cop-B7R); B8R; similar to
                      Vaccinia virus strain Copenhagen B7R"
                      /codon_start=1
@@ -2631,9 +2632,9 @@ FEATURES             Location/Qualifiers
                      CRISTKLSCHYDKYPYIHKYEGDERQYSITAEGKCYKGIKYEISMMNDDTLLRKHTLK
                      IGFTYIFDRHGHSNTYYSKYDF"
      gene            167345..168148
-                     /locus_tag="MPXV-UK_P2-169"
+                     /locus_tag="169-soluble-interferon-gamma-receptor-like-protein"
      CDS             167345..168148
-                     /locus_tag="MPXV-UK_P2-169"
+                     /locus_tag="169-soluble-interferon-gamma-receptor-like-protein"
                      /note="Soluble IFN-g receptor-like protein (Cop-B8R); B9R;
                      similar to Vaccinia virus strain Copenhagen B8R; secreted
                      IFN-g binding protein"
@@ -2646,9 +2647,9 @@ FEATURES             Location/Qualifiers
                      TYDIDDYDCTSTGCSIDFATTEKVCVTAQGATEGFLEKITPWSSEVCLTPKKNVYTCA
                      IRSKEDVPNFKDKIARVITRKFNKQSQSYLTKFLGSTSNDVTTFFSILD"
      gene            168241..168906
-                     /locus_tag="MPXV-UK_P2-170"
+                     /locus_tag="170-6kDa-intracellular-viral-protein"
      CDS             168241..168906
-                     /locus_tag="MPXV-UK_P2-170"
+                     /locus_tag="170-6kDa-intracellular-viral-protein"
                      /note="ER-localized apoptosis regulator (Cop-B9R); B10R;
                      shope fibroma virus T4 protein-like"
                      /codon_start=1
@@ -2660,18 +2661,19 @@ FEATURES             Location/Qualifiers
                      NQSFMNECIRRITTWDRESCVRIDTQTINKYLKSCTNTKFDRNVYKRYILKSKALHAK
                      TEL"
      gene            169681..169983
-                     /locus_tag="MPXV-UK_P2-171"
+                     /locus_tag="171"
      CDS             169681..169983
-                     /locus_tag="MPXV-UK_P2-171"
+                     /locus_tag="171"
+                     /note="unknown2;unknown2;"
                      /codon_start=1
                      /product="Hypothetical protein (Cop-B11R)"
                      /protein_id="QNP13765.1"
                      /translation="MYSGIYPIVLLLTTNMDSDTDTDTDTDTDTDTDTDVEDIMNEID
                      REKEEILKNVEIENNKNINKNHPSEYIREALVINTSSNSDSIDKEVIEYISHDVGI"
      gene            170049..170897
-                     /locus_tag="MPXV-UK_P2-172"
+                     /locus_tag="172-ser/thr-protein-kinase-like-protein"
      CDS             170049..170897
-                     /locus_tag="MPXV-UK_P2-172"
+                     /locus_tag="172-ser/thr-protein-kinase-like-protein"
                      /note="Ser/Thr Kinase (Cop-B12R); B11R; similar to
                      Vaccinia virus strain Copenhagen B12R; protein
                      kinase-like"
@@ -2685,10 +2687,10 @@ FEATURES             Location/Qualifiers
                      KNESSIKVIKQKKEYKQFIATFFEDCFPEGNEPLELVRYIELVYMLDYSQTPNYDRLR
                      RLFIQD"
      gene            170999..172033
-                     /locus_tag="MPXV-UK_P2-173"
+                     /locus_tag="173-serpin"
      CDS             170999..172033
-                     /locus_tag="MPXV-UK_P2-173"
-                     /note="Serpin 1,2,3 (Cop-K2L); SPI-2; B12R; serine
+                     /locus_tag="173-serpin"
+                     /note="Serpin 1,2,3 (Cop-K2L); B12R; serine
                      protease inhibitor-like, SPI-2; inhibition of the IL-1b
                      converting enzyme; apoptosis inhibition"
                      /codon_start=1
@@ -2702,9 +2704,9 @@ FEATURES             Location/Qualifiers
                      SVDAMIHKTYIDVNEEYTEAAAATSVLVADCASTVTNEFCADHPFIYVIRHVDGKILF
                      VGRYCSPTTN"
      gene            172161..172610
-                     /locus_tag="MPXV-UK_P2-174"
+                     /locus_tag="174-B13R"
      CDS             172161..172610
-                     /locus_tag="MPXV-UK_P2-174"
+                     /locus_tag="174-B13R"
                      /note="Hypothetical protein (Cop-C16L); B13R; similar to
                      Vaccinia virus strain Copenhagen B15R"
                      /codon_start=1
@@ -2714,9 +2716,9 @@ FEATURES             Location/Qualifiers
                      QCAGQLYDTLLSFKDDAESVFIDVRELVKNMPWDNVKDCTEIIRCYIPDEQKTIREIS
                      AIIGLCAYAATYWGGEDHPTSNSLNALFVMLEMLNYMDYTIIFWRMN"
      gene            172696..173238
-                     /locus_tag="MPXV-UK_P2-175"
+                     /locus_tag="175-IL-beta-binding-protein"
      CDS             172696..173238
-                     /locus_tag="MPXV-UK_P2-175"
+                     /locus_tag="175-IL-beta-binding-protein"
                      /note="IL-1 beta receptor (Cop-B16R); B14R; similar to
                      Vaccinia virus strain Copenhagen B16R; secreted IL-1b
                      binding protein; inhibition of virus infection induced
@@ -2739,9 +2741,9 @@ FEATURES             Location/Qualifiers
                      /codon_start=1
                      /product="MPXVgp176"
      gene            174619..175674
-                     /locus_tag="MPXV-UK_P2-177"
+                     /locus_tag="177-ifn-alpha/beta-receptor-glycoprotein"
      CDS             174619..175674
-                     /locus_tag="MPXV-UK_P2-177"
+                     /locus_tag="177-ifn-alpha/beta-receptor-glycoprotein"
                      /note="IFN-alpha/beta receptor glycoprotein (Cop-B19R);
                      B16R; similar to Vaccinia virus strain Copenhagen B19R;
                      cell surface antigen and secreted IFN-a"
@@ -2756,9 +2758,9 @@ FEATURES             Location/Qualifiers
                      TSLFVDDVLIEWENPSGWIIGLDFGVYSILTSRGGITEATLYFENVTEEYIGNTYTCR
                      GHNYYFDKTLTTTVVLE"
      gene            175743..178106
-                     /locus_tag="MPXV-UK_P2-178"
+                     /locus_tag="178-ankyrin-containing-protein"
      CDS             175743..178106
-                     /locus_tag="MPXV-UK_P2-178"
+                     /locus_tag="178-ankyrin-containing-protein"
                      /note="Ankyrin (Cop-B20R); B17R; ankyrin-like"
                      /codon_start=1
                      /product="MPXVgp178"
@@ -2788,10 +2790,10 @@ FEATURES             Location/Qualifiers
                      /codon_start=1
                      /product="MPXVgp179"
      gene            179281..180354
-                     /locus_tag="MPXV-UK_P2-180"
+                     /locus_tag="180-serpin"
      CDS             179281..180354
-                     /locus_tag="MPXV-UK_P2-180"
-                     /note="Serpin 1,2,3 (Cop-K2L); SPI-1; B19R; serine
+                     /locus_tag="180-serpin"
+                     /note="Serpin 1,2,3 (Cop-K2L); B19R; serine
                      protease inhibitor-like, SPI-1; apoptosis inhibition"
                      /codon_start=1
                      /product="MPXVgp180"
@@ -2804,9 +2806,9 @@ FEATURES             Location/Qualifiers
                      FGYYADFSKMCNETITVEKFLHTTFIDVNEEYTEVSAVTGVFMTNFSMVYRMKVYINH
                      PFIYMIKDNTGHTLFIGKYCYPQ"
      gene            180533..181105
-                     /locus_tag="MPXV-UK_P2-181"
+                     /locus_tag="181-uncharacterized-protein-MPXVgp181"
      CDS             180533..181105
-                     /locus_tag="MPXV-UK_P2-181"
+                     /locus_tag="181-uncharacterized-protein-MPXVgp181"
                      /note="Hypothetical protein (Cop-C14L); B20R"
                      /codon_start=1
                      /product="MPXVgp181"
@@ -2816,9 +2818,9 @@ FEATURES             Location/Qualifiers
                      SEDIFQKKMSILGVSIECKKPSTLLTFLTVRKMTRVFNRFPDMAYYRGDCLEAVYVTM
                      TYKNTKTGETDYTYLSNGGLPAYYRNGVDG"
      gene            181371..187013
-                     /locus_tag="MPXV-UK_P2-182"
+                     /locus_tag="182-surface-glycoprotein"
      CDS             181371..187013
-                     /locus_tag="MPXV-UK_P2-182"
+                     /locus_tag="182-surface-glycoprotein"
                      /note="Surface glycoprotein; B21R; putative
                      membrane-associated glycoprotein; cadherin-like domain"
                      /codon_start=1
@@ -2868,9 +2870,9 @@ FEATURES             Location/Qualifiers
                      /codon_start=1
                      /product="MPXVgp184"
      gene            189214..189675
-                     /locus_tag="MPXV-UK_P2-184"
+                     /locus_tag="184-hypothetical-protein-MPXVgp185"
      CDS             189214..189675
-                     /locus_tag="MPXV-UK_P2-184"
+                     /locus_tag="184-hypothetical-protein-MPXVgp185"
                      /note="Hypothetical protein (Cop-C16L); N1R; similar to
                      Vaccinia virus strain Copenhagen B22R; VAC B15R-like"
                      /codon_start=1
@@ -2880,10 +2882,10 @@ FEATURES             Location/Qualifiers
                      ESAGPLYRLLISFRIDAMELFGSELKEFSNSLPWDNIDNCVEIIKCFIRNDSMKTAKE
                      LCAIIGLCTQSAIVTGRVFNDKYIDILLMLRKILNENDYLTLLDHILTAKY"
      gene            190112..190333
-                     /locus_tag="MPXV-UK_P2-185"
+                     /locus_tag="185"
      CDS             190112..190333
-                     /locus_tag="MPXV-UK_P2-185"
-                     /note="MPV-Z-N2R"
+                     /locus_tag="185"
+                     /note="MPV-Z-N2R;unknown3"
                      /codon_start=1
                      /product="MPXVgp186"
                      /protein_id="QNP13776.1"
@@ -2900,9 +2902,9 @@ FEATURES             Location/Qualifiers
                      /codon_start=1
                      /product="MPXVgp187"
      gene            191069..192382
-                     /locus_tag="MPXV-UK_P2-187"
+                     /locus_tag="187-ankyrin-like-protein"
      CDS             191069..192382
-                     /locus_tag="MPXV-UK_P2-187"
+                     /locus_tag="187-ankyrin-like-protein"
                      /note="Ankyrin (CPXV-017); N4R; ankyrin-like"
                      /codon_start=1
                      /product="MPXVgp188"
@@ -2916,9 +2918,9 @@ FEATURES             Location/Qualifiers
                      CKQELEYIRQMKIHNTTMYELIYNRDKNKHASHILHRYSKHPVLTQCITKGFKIYTEV
                      TEQVTKALNRRALIDEIINNVSTDDNLLSKLPLEIRDLIVSQAVI"
      gene            192618..194384
-                     /locus_tag="MPXV-UK_P2-188"
+                     /locus_tag="188-ankyrin-like-protein"
      CDS             192618..194384
-                     /locus_tag="MPXV-UK_P2-188"
+                     /locus_tag="188-ankyrin-like-protein"
                      /note="Ankyrin (Cop-C19L); J1R; ankyrin-like"
                      /codon_start=1
                      /product="MPXVgp189"
@@ -2935,9 +2937,9 @@ FEATURES             Location/Qualifiers
                      HSDKRISFPMYDDLIEQCHLSMEHKSKLVDKALNKLESTIDSQSRLSYLPPEIMRNII
                      TKLSDYHLNSMLYGKNHYKYYP"
      gene            194474..195523
-                     /locus_tag="MPXV-UK_P2-189"
+                     /locus_tag="189-TNF-alpha-receptor-like-protein"
      CDS             194474..195523
-                     /locus_tag="MPXV-UK_P2-189"
+                     /locus_tag="189-TNF-alpha-receptor-like-protein"
                      /note="TNF receptor (CrmB) (Cop-C22L); J2R; secreted TNF
                      binding protein"
                      /codon_start=1
@@ -2951,9 +2953,9 @@ FEATURES             Location/Qualifiers
                      NDTIMPHSETVTLVGDCLSSVDIYILYSNTNTQDYENDTISYHMGNVLDVNSHMPASC
                      DIHKLITNSQNPTHL"
      gene            195650..196390
-                     /locus_tag="MPXV-UK_P2-190"
+                     /locus_tag="190-chemokine-binding-protein"
      CDS             195650..196390
-                     /locus_tag="MPXV-UK_P2-190"
+                     /locus_tag="190-chemokine-binding-protein"
                      /note="Chemokine binding protein (Cop-C23L); J3R; similar
                      to Vaccinia virus strain Copenhagen B29R; CC-chemokine
                      binding"
