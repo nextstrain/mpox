@@ -1,31 +1,31 @@
 protein	gene	prettyname	notes
-MPXV-UK_P2-001	J1L	001-Chemokine-binding-protein	Chemokine binding protein (Cop-C23L); J1L; similar to Vaccinia virus strain Copenhagen C23L; most abundant secreted protein; CC-chemokine binding 
+MPXV-UK_P2-001	J1L	001-chemokine-binding-protein	Chemokine binding protein (Cop-C23L); J1L; similar to Vaccinia virus strain Copenhagen C23L; most abundant secreted protein; CC-chemokine binding 
 MPXV-UK_P2-002	J2L	002-TNF-receptor	TNF receptor (CrmB) (Cop-C22L); J2L 
 MPXV-UK_P2-003	J3L	003-ankyrin-like-protein	Ankyrin (Cop-C19L); J3L 
-MPXV-UK_P2-004	D1L	004-Ankyrin-like-protein	Ankyrin (CPXV-017); D1L 
+MPXV-UK_P2-004	D1L	004-ankyrin-like-protein	Ankyrin (CPXV-017); D1L 
 MPXV-UK_P2-006	D3R	006-epidermal-growth-factor-like-protein-EGF-like-protein	Secreted EGF-like protein (Cop-C11R); D3R; similar to Vaccinia virus strain Copenhagen C11R; secreted growth factor 
 MPXV-UK_P2-008	D5R	008-zinc-finger-like-protein	Zinc finger-like protein; D5R; zinc binding; virosome localization; virulence factor; inhibition of apoptosis induced by UV irradiation 
 MPXV-UK_P2-009	D6L	009-IL-18-binding-protein	Soluble IL-18 binding protein (Bsh-D7L); D6L; secreted IL-18 binding protein 
 MPXV-UK_P2-010	D7L	010-ankyrin-like-protein	Ankyrin/Host Range (Bang-D8L); D7L; host range; ankyrin-like 
-MPXV-UK_P2-011	D8L	11	ANK-containing protein; D8L 
-MPXV-UK_P2-012	D9L	012-ankyrin	Ankyrin Type I IFN resistance (Cop-C9L); D9L; similar to Vaccinia virus strain Copenhagen C9L; ankyrin-like 
+MPXV-UK_P2-011	D8L	011	ANK-containing protein; D8L 
+MPXV-UK_P2-012	D9L	012-ankyrin-like-protein	Ankyrin Type I IFN resistance (Cop-C9L); D9L; similar to Vaccinia virus strain Copenhagen C9L; ankyrin-like 
 MPXV-UK_P2-013	D10L	013-host-range-protein	Type 1 IFN inhibitor (Cop-C7L); D10L; similar to Vaccinia virus strain Copenhagen C7L; host range 
-MPXV-UK_P2-014	D11L	014-bcl-2-like-protein	Bcl-2-like protein, IFN-beta inhibitor (Cop-C6L); D11L; similar to Vaccinia virus strain Copenhagen C6L 
-MPXV-UK_P2-015	D12L	015-Kelch-like-protein	Kelch-like protein (Cop-C5L); D12L; similar to Vaccinia virus strain Copenhagen C5L; BTB domain of kelch-like protein 
+MPXV-UK_P2-014	D11L	014-hypothetical-protein-MPXVgp014	Bcl-2-like protein, IFN-beta inhibitor (Cop-C6L); D11L; similar to Vaccinia virus strain Copenhagen C6L 
+MPXV-UK_P2-015	D12L	015-D12L	Kelch-like protein (Cop-C5L); D12L; similar to Vaccinia virus strain Copenhagen C5L; BTB domain of kelch-like protein 
 MPXV-UK_P2-016	D13L	016-hypothetical-protein-MPXVgp016	IL-1 receptor antagonist (Cop-C10L); D13L; similar to Vaccinia virus strain Copenhagen C4L 
-MPXV-UK_P2-017	D18L	017-kelch-like-protein	POZ/BTB Kelch domain protein (Cop-C2L) kelch-like fragment; D18L 
+MPXV-UK_P2-017	D18L	017	POZ/BTB Kelch domain protein (Cop-C2L) kelch-like fragment; D18L 
 MPXV-UK_P2-018	D19L	018-Hypothetical-protein-MPXVgp022	Putative TLR signalling inhibitor (Cop-C1L); D19L; similar to Vaccinia virus strain Copenhagen C1L 
 MPXV-UK_P2-019	P1L	019-putative-virulence-factor	Anti-apoptotic Bcl-2-like protein (Cop-N1L); P1L; similar to Vaccinia virus strain Copenhagen N1L; secreted virulence factor 
 MPXV-UK_P2-020	P2L	020-putative-alpha-aminitin-sensitive-protein	Alpha amanatin target protein (Cop-N2L); P2L; similar to Vaccinia virus strain Copenhagen N2L 
 MPXV-UK_P2-021	O1L	021-ankyin-like-protein	ANK-containing protein apoptosis inihibitor (Cop-M1L); O1L; similar to Vaccinia virus strain Copenhagen M1L; ankyrin-like 
-MPXV-UK_P2-022	O2L	022-NFkB-inhibitor	NFkB inhibitor (Cop-M2L); O2L; similar to Vaccinia virus strain Copenhagen M2L 
+MPXV-UK_P2-022	O2L	022-hypothetical-protein-MPXVgp026	NFkB inhibitor (Cop-M2L); O2L; similar to Vaccinia virus strain Copenhagen M2L 
 MPXV-UK_P2-023	C1L	023-ankyrin-like-protein	Ankyrin/NFkB inhibitor (Cop-K1L); C1L; similar to Vaccinia virus strain Copenhagen K1L; host range; ankyrin-like 
 MPXV-UK_P2-024	C2L	024-serine-protease-inhibitor-like-protein	Serpin 1,2,3 (Cop-K2L) SPI-3; C2L; similar to Vaccinia virus strain Copenhagen K2L; serine protease inhibitor-like, SPI-3; inhibition of the ability of infected cells to fuse 
-MPXV-UK_P2-025	C3L	25	IFN resistance, PKR/eIF-alpha inhibitor (Cop-K3 L); C3L 
-MPXV-UK_P2-026	C4L	026-nicking-joining-enzyme	Phospholipase-D-like protein (Cop-K4L); C4L; similar to Vaccinia virus strain Copenhagen K4L; phospholipase D-like 
-MPXV-UK_P2-027	C5L	027-putative-monoglyceride-lipase	Monoglyceride lipase (Cop-K5L); C5L; lysophospholipase-like 
+MPXV-UK_P2-025	C3L	025	IFN resistance, PKR/eIF-alpha inhibitor (Cop-K3 L); C3L 
+MPXV-UK_P2-026	C4L	026-phospholipase-D-like-protein	Phospholipase-D-like protein (Cop-K4L); C4L; similar to Vaccinia virus strain Copenhagen K4L; phospholipase D-like 
+MPXV-UK_P2-027	C5L	027-monoglyceride-lipase	Monoglyceride lipase (Cop-K5L); C5L; lysophospholipase-like 
 MPXV-UK_P2-028	C6R	028-unchracterized-protein	Host immune response repressor (Cop-K7R); C6R; similar to Vaccinia virus strain Copenhagen K7R; VAC B15R-like 
-MPXV-UK_P2-029	C7L	029-caspase-9-inhibitor	Caspase-9 (apoptosis) inhibitor (mitochondrial- associated) (Cop-F1L); C7L; similar to Vaccinia virus strain Copenhagen F1L 
+MPXV-UK_P2-029	C7L	029-Hypothetical-protein-MPXVgp033	Caspase-9 (apoptosis) inhibitor (mitochondrial- associated) (Cop-F1L); C7L; similar to Vaccinia virus strain Copenhagen F1L 
 MPXV-UK_P2-030	C8L	030-dUTPase	dUTPase (Cop-F2L); C8L; similar to Vaccinia virus strain Copenhagen F2L; deoxyuridine triphosphatase 
 MPXV-UK_P2-031	C9L	031-Kelch-like-protein	Kelch-like protein (Cop-F3L); C9L; similar to Vaccinia virus strain Copenhagen F3L; kelch-like 
 MPXV-UK_P2-032	C10L	032-ribonucleotide-reductase-small-subunit	Ribonucleotide reductase small subunit (Cop-F4L); C10L; similar to Vaccinia virus strain Copenhagen F4L; ribonucleotide reductase, small subunit, R2 
@@ -34,149 +34,149 @@ MPXV-UK_P2-034	C12L	034-hypothetical-protein-MPXVgp038	Hypothetical protein (Cop
 MPXV-UK_P2-035	C13L	035-hypothetical-protein-MPXVgp039	Hypothetical protein (Cop-F7L); C13L; similar to Vaccinia virus strain Copenhagen F7L 
 MPXV-UK_P2-036	C14L	036-Hypothetical-protein-MPXVgp040	Cytoplasmic protein (Cop-F8L); C14L; similar to Vaccinia virus strain Copenhagen F8L 
 MPXV-UK_P2-037	C15L	037-S-S-bond-formation-pathway-protein	S-S bond formation pathway protein substrate (Cop-F9L); C15L; similar to Vaccinia virus strain Copenhagen F9L 
-MPXV-UK_P2-038	C16L	038-essential-ser_thr-kinase-morph	Essential Ser/Thr kinase morph (Cop-F10L); C16L; similar to Vaccinia virus strain Copenhagen F10L; serine 
-MPXV-UK_P2-039	C17L	039-RhoA-signaling-inhibitor	RhoA signalling inhibitor, virus release protein (Cop-F11L); C17L; similar to Vaccinia virus strain Copenhagen F11L 
+MPXV-UK_P2-038	C16L	038-Ser_Thr-kinase	Essential Ser/Thr kinase morph (Cop-F10L); C16L; similar to Vaccinia virus strain Copenhagen F10L; serine 
+MPXV-UK_P2-039	C17L	039-Hypothetical-protein-MPXVgp043	RhoA signalling inhibitor, virus release protein (Cop-F11L); C17L; similar to Vaccinia virus strain Copenhagen F11L 
 MPXV-UK_P2-040	C18L	040-EEV-maturation-protein	EEV maturation protein (Cop-F12L); C18L; similar to Vaccinia virus strain Copenhagen F12L; actin tail formation 
-MPXV-UK_P2-041	C19L	041-major-iev-antigen	Palmitylated EEV membrane glycoprotein (Cop-F13 L); C19L; similar to Vaccinia virus strain Copenhagen F13L; major envelope antigen of EEV; wrapping of IMV to form IEV; phospholipase D-like 
+MPXV-UK_P2-041	C19L	041-palmytilated-EEV-membrane-glycoprotein	Palmitylated EEV membrane glycoprotein (Cop-F13 L); C19L; similar to Vaccinia virus strain Copenhagen F13L; major envelope antigen of EEV; wrapping of IMV to form IEV; phospholipase D-like 
 MPXV-UK_P2-042	C20L	042-hypothetical-protein-MPXVgp046	Unknown (Cop-F14L); C20L; similar to Vaccinia virus strain Copenhagen F14L 
-MPXV-UK_P2-043	C20.5L	43	IMV protein (Cop-F14.5L);C20.5L 
+MPXV-UK_P2-043	C20.5L	043	IMV protein (Cop-F14.5L);C20.5L 
 MPXV-UK_P2-044	C21L	044-hypothetical-protein-MPXVgp047	Unknown conserved protein (Cop-F15L); C21L; similar to Vaccinia virus strain Copenhagen F15L 
-MPXV-UK_P2-045	C22L	045-nonfunctional-serine-recombinase	Non-functional Serine Recombinase (Cop-F16L); C22L; similar to Vaccinia virus strain Copenhagen F16L 
+MPXV-UK_P2-045	C22L	045-hypothetical-protein-MPXVgp048	Non-functional Serine Recombinase (Cop-F16L); C22L; similar to Vaccinia virus strain Copenhagen F16L 
 MPXV-UK_P2-046	C23R	046-DNA-binding-virion-core-protein	DNA-binding phosphoprotein (VP11) mTOR antagonist (Cop-F17R); C23R; similar to Vaccinia virus strain Copenhagen F17R; virion core DNA-binding phosphoprotein 
-MPXV-UK_P2-047	F1L	047-poly-polymerase-catalytic-subunit	Poly (A) polymerase catalytic subunit (VP55) (Cop-E1L); F1L; similar to Vaccinia virus strain Copenhagen E1L; poly-A polymerase, catalytic subunit 
+MPXV-UK_P2-047	F1L	047-polyA-polymerase-large-subunit	Poly (A) polymerase catalytic subunit (VP55) (Cop-E1L); F1L; similar to Vaccinia virus strain Copenhagen E1L; poly-A polymerase, catalytic subunit 
 MPXV-UK_P2-048	F2L	048-iev-morphogenesis-protein	IEV morphogenesis (Cop-E2L); F2L; similar to Vaccinia virus strain Copenhagen E2L 
 MPXV-UK_P2-049	F3L	049-double-strand-RNA-binding-protein	dsRNA-binding protein, IFN resistance/PKR inhibitor (Z-DNA binding) (Cop-E3L); F3L; similar to Vaccinia virus strain Copenhagen E3L; interferon resistance factor; two forms (25 kDa and 19 kDa) of the dsRNA-binding protein; inhibition of dsRNA-dependent protein kinase and 2-5A-synthet 
 MPXV-UK_P2-050	F4L	050-RNA-polymerase-subunit	RNA polymerase subunit (RPO30) (Cop-E4L); F4L; similar to Vaccinia virus strain Copenhagen E4L; RNA polymerase 30 kDa subunit; simultaneously intermediate stage promoter-specific transcription factor, VITF-1 
-MPXV-UK_P2-051	unknown	051-abundant-component-of-virosome	unknown;unknown 
+MPXV-UK_P2-051	unknown	051	unknown;unknown 
 MPXV-UK_P2-052	F5R	052-Virion-protein	Virion protein (Cop-E6R); F5R; similar to Vaccinia virus strain Copenhagen E6R 
 MPXV-UK_P2-053	F6R	053-putative-myristoylated-protein	Myristylated protein (Cop-E7R); F6R; similar to Vaccinia virus strain Copenhagen E7R; soluble myristylated protein 
-MPXV-UK_P2-054	F7R	054-hypothetical-protein-MPXVgp056	ER-localized membrane protein, virion core protein (Cop-E8R); F7R; similar to Vaccinia virus strain Copenhagen E8R 
+MPXV-UK_P2-054	F7R	054-ER-localized-membrane-protein	ER-localized membrane protein, virion core protein (Cop-E8R); F7R; similar to Vaccinia virus strain Copenhagen E8R 
 MPXV-UK_P2-055	F8L	055-DNA-polymerase	DNA polymerase (Cop-E9L); F8L; similar to Vaccinia virus strain Copenhagen E9L; DNA polymerase, catalytic subunit 
 MPXV-UK_P2-056	F9R	056-sulfhydryl-oxidase	Sulfhydryl oxidase (FAD-linked) (Cop-E10R); F9R; similar to Vaccinia virus strain Copenhagen E10R; protein disulfide bond-forming enzyme 
 MPXV-UK_P2-057	F10L	057-putative-virion-core-protein	Virion core protein (Cop-E11L); F10L; similar to Vaccinia virus strain Copenhagen E11L; virion core protein 
 MPXV-UK_P2-058	Q1L	058-Hypothetical-protein-MPXVgp060	Membrane protein (Cop-O1L); Q1L; similar to Vaccinia virus strain Copenhagen O1L 
-MPXV-UK_P2-059	Q2L	059-glutaredoxin-1	Glutaredoxin 1 (Cop-O2L); Q2L; similar to Vaccinia virus strain Copenhagen O2L; virion-associated glutaredoxin 
+MPXV-UK_P2-059	Q2L	059-glutaredoxin	Glutaredoxin 1 (Cop-O2L); Q2L; similar to Vaccinia virus strain Copenhagen O2L; virion-associated glutaredoxin 
 MPXV-UK_P2-060	I1L	060-putative-DNA-binding-virion-core-protein	DNA-binding core protein (Cop-I1L); I1L; similar to Vaccinia virus strain Copenhagen I1L; virosomal protein essential for virus multiplication 
 MPXV-UK_P2-061	I2L	061-IMV-membrane-protein	IMV membrane protein (Cop-I2L); I2L; similar to Vaccinia virus strain Copenhagen I2L 
-MPXV-UK_P2-062	I3L	062-ssDNA-binding-phosphoprotein	ssDNA-binding phosphoprotein (Cop-I3L); I3L; similar to Vaccinia virus strain Copenhagen I3L; virosomal ssDNA-binding phosphoprotein; interacts with R2 subunit of ribonucleotide reductase 
+MPXV-UK_P2-062	I3L	062-DNA-binding-phosphoprotein	ssDNA-binding phosphoprotein (Cop-I3L); I3L; similar to Vaccinia virus strain Copenhagen I3L; virosomal ssDNA-binding phosphoprotein; interacts with R2 subunit of ribonucleotide reductase 
 MPXV-UK_P2-063	I4L	063-ribonucleotide-reductase-large-subunit	Ribonucleotide reductase large subunit (Cop-I4L); I4L; similar to Vaccinia virus strain Copenhagen I4L; ribonucleotide reductase, large subunit, R1 
 MPXV-UK_P2-064	I5L	064-IMV-protein-VP13	IMV protein VP13 (Cop-I5L); I5L; similar to Vaccinia virus strain Copenhagen I5L; IMV surface membrane protein 
-MPXV-UK_P2-065	I6L	065-Telomere-Binding-protein	Telomere-binding protein (Cop-I6L); I6L; similar to Vaccinia virus strain Copenhagen I6L 
-MPXV-UK_P2-066	I7L	066-virion-core-cysteine-protease	Virion core cysteine protease (Cop-I7L); I7L; similar to Vaccinia virus strain Copenhagen I7L; virion core protein; similar to DNA topoisomerase II 
+MPXV-UK_P2-065	I6L	065-Telomere-binding-protein	Telomere-binding protein (Cop-I6L); I6L; similar to Vaccinia virus strain Copenhagen I6L 
+MPXV-UK_P2-066	I7L	066-viral-core-cysteine-proteinase	Virion core cysteine protease (Cop-I7L); I7L; similar to Vaccinia virus strain Copenhagen I7L; virion core protein; similar to DNA topoisomerase II 
 MPXV-UK_P2-067	I8R	067-RNA-helicase-NPH-II	RNA helicase, DExH-NPH-II domain (Cop-I8R); I8R; similar to Vaccinia virus strain Copenhagen I8R; nucleoside triphosphate phosphohydrolase II, NPH-II; DNA and RNA helicase 
 MPXV-UK_P2-068	G1L	068-putative-metalloprotease	Metalloprotease (Cop-G1L); G1L; similar to Vaccinia virus strain Copenhagen G1L; proteinase 
-MPXV-UK_P2-069	G2L	069-Entry_fusion-complex-component	Entry/fusion complex component (Cop-G3L); G2L; similar to Vaccinia virus strain Copenhagen G3L 
+MPXV-UK_P2-069	G2L	069-entry_fusion-complex-component	Entry/fusion complex component (Cop-G3L); G2L; similar to Vaccinia virus strain Copenhagen G3L 
 MPXV-UK_P2-070	G3R	070-transcriptional-elongation-factor	VLTF (late transcription elongation factor) (Cop-G2R); G3R; similar to Vaccinia virus strain Copenhagen G2R 
 MPXV-UK_P2-071	G4L	071-glutaredoxin-like-protein	Glutaredoxin-like protein (Cop-G4L); G4L; similar to Vaccinia virus strain Copenhagen G4L; virion-associated glutaredoxin 
 MPXV-UK_P2-072	G5R	072-Hypothetical-protein-MPXVgp074	FEN1-like nuclease (Cop-G5R); G5R; similar to Vaccinia virus strain Copenhagen G5R 
-MPXV-UK_P2-073	G6R	073-DNA-dependent-RNA-polymerase-subunit-rpo7	RNA polymerase subunit (RPO7) (Cop-G5.5R); G6R; RNA polymerase, 7 kDa subunit 
-MPXV-UK_P2-074	G7R	074-NLPc_P60-superfamily-protein	NLPc/P60 superfamily protein (Cop-G6R); G7R; similar to Vaccinia virus strain Copenhagen G6R 
+MPXV-UK_P2-073	G6R	073-RNA-polymerase	RNA polymerase subunit (RPO7) (Cop-G5.5R); G6R; RNA polymerase, 7 kDa subunit 
+MPXV-UK_P2-074	G7R	074-G7R	NLPc/P60 superfamily protein (Cop-G6R); G7R; similar to Vaccinia virus strain Copenhagen G6R 
 MPXV-UK_P2-075	G8L	075-putative-virion-core-protein	Virion phosphoprotein, early morphogenesis (Cop-G7L); G8L; similar to Vaccinia virus strain Copenhagen G7L; virion protein 
-MPXV-UK_P2-076	G9R	076-VLTF-1	VLTF-1 (late transcription factor 1) (Cop-G8R); G9R; similar to Vaccinia virus strain Copenhagen G8R; late gene transcription factor, VLTF-1 
+MPXV-UK_P2-076	G9R	076-late-transcription-factor-VLTF-1	VLTF-1 (late transcription factor 1) (Cop-G8R); G9R; similar to Vaccinia virus strain Copenhagen G8R; late gene transcription factor, VLTF-1 
 MPXV-UK_P2-077	G10R	077-poxvirus-myristoylprotein	Entry/fusion complex component, myristylprotein (Cop-G9R); G10R; similar to Vaccinia virus strain Copenhagen G9R; myristylated protein 
-MPXV-UK_P2-078	M1R	078-M1R	IMV membrane protein (Cop-L1R); M1R; similar to Vaccinia virus strain Copenhagen L1R; myristylated IMV surface membrane protein 
+MPXV-UK_P2-078	M1R	078-IMV-membrane-protein	IMV membrane protein (Cop-L1R); M1R; similar to Vaccinia virus strain Copenhagen L1R; myristylated IMV surface membrane protein 
 MPXV-UK_P2-079	M2R	079-hypothetical-protein-MPXVgp081	Viral membrane assembly proteins (VMAP) (Cop-L2R); M2R; similar to Vaccinia virus strain Copenhagen L2R 
-MPXV-UK_P2-080	M3L	080-Internal-Virion-Protein	Internal virion protein (Cop-L3L); M3L; similar to Vaccinia virus strain Copenhagen L3L 
-MPXV-UK_P2-081	M4R	081-ss_dsdna-binding-protein	ss/dsDNA binding protein (VP8) (Cop-L4R); M4R; similar to Vaccinia virus strain Copenhagen L4R; virion core protein; ssDNA binding; stimulation of I8R helicase activity 
+MPXV-UK_P2-080	M3L	080-M3L	Internal virion protein (Cop-L3L); M3L; similar to Vaccinia virus strain Copenhagen L3L 
+MPXV-UK_P2-081	M4R	081-DNA-binding-virion-core-protein	ss/dsDNA binding protein (VP8) (Cop-L4R); M4R; similar to Vaccinia virus strain Copenhagen L4R; virion core protein; ssDNA binding; stimulation of I8R helicase activity 
 MPXV-UK_P2-082	M5R	082-Entry-and-Fusion-IMV-protein	Entry and Fusion IMV protein (Cop-L5R); M5R; similar to Vaccinia virus strain Copenhagen L5R 
-MPXV-UK_P2-083	L1R	083-virion-morph	Virion morph (Cop-J1R); L1R; similar to Vaccinia virus strain Copenhagen J1R 
-MPXV-UK_P2-084	L2R	084-Thymidine-kinase	Thymidine kinase (Cop-J2R); L2R; similar to Vaccinia virus strain Copenhagen J2R; thymidine kinase 
-MPXV-UK_P2-085	L3R	085-poly-polymerase-small-subunit	Poly (A) polymerase small subunit (VP39) (Cop-J 3R); L3R; similar to Vaccinia virus strain Copenhagen J3R; poly-A polymerase, stimulatory subunit, simultaneously cap-specific mRNA (nucleoside-O2'-)-methyltransferase 
-MPXV-UK_P2-086	L4R	086-DNA-dependent-RNA-polymerase-subunit-rpo22	RNA polymerase subunit (RPO22) (Cop-J4R); L4R; similar to Vaccinia virus strain Copenhagen J4R; RNA polymerase, 22 kDa subunit 
+MPXV-UK_P2-083	L1R	083-virion-protein	Virion morph (Cop-J1R); L1R; similar to Vaccinia virus strain Copenhagen J1R 
+MPXV-UK_P2-084	L2R	084-thymidine-kinase	Thymidine kinase (Cop-J2R); L2R; similar to Vaccinia virus strain Copenhagen J2R; thymidine kinase 
+MPXV-UK_P2-085	L3R	085-polyA-polymerase-small-subunit	Poly (A) polymerase small subunit (VP39) (Cop-J 3R); L3R; similar to Vaccinia virus strain Copenhagen J3R; poly-A polymerase, stimulatory subunit, simultaneously cap-specific mRNA (nucleoside-O2'-)-methyltransferase 
+MPXV-UK_P2-086	L4R	086-RNA-polymerase	RNA polymerase subunit (RPO22) (Cop-J4R); L4R; similar to Vaccinia virus strain Copenhagen J4R; RNA polymerase, 22 kDa subunit 
 MPXV-UK_P2-087	L5L	087-hypothetical-protein-VARVgp082	IMV membrane protein (Cop-J5L); L5L; similar to Vaccinia virus strain Copenhagen J5L; essential for virus multiplication 
 MPXV-UK_P2-088	L6R	088-DNA-dependent-RNA-polymerase-subunit-rpo147	RNA polymerase subunit (RPO147) (Cop-J6R); L6R; similar to Vaccinia virus strain Copenhagen J6R; RNA polymerase, 147 kDa subunit 
 MPXV-UK_P2-089	H1L	089-tyr_ser-protein-phosphatase	Tyr/Ser phosphatase, IFN-gamma inhibitor (Cop-H 1L); H1L; similar to Vaccinia virus strain Copenhagen H1L; tyrosine 
 MPXV-UK_P2-090	H2R	090-putative-viral-membrane-protein	IMV membrane protein (Cop-H2R); H2R; similar to Vaccinia virus strain Copenhagen H2R 
-MPXV-UK_P2-091	H3L	091-H3L	IMV heparin binding surface protein (Cop-H3L); H3L; similar to Vaccinia virus strain Copenhagen H3L; IMV surface membrane protein 
+MPXV-UK_P2-091	H3L	091-IMV-heparin-binding-surface-protein	IMV heparin binding surface protein (Cop-H3L); H3L; similar to Vaccinia virus strain Copenhagen H3L; IMV surface membrane protein 
 MPXV-UK_P2-092	H4L	092-RAP94	RAP94 (RNA pol assoc protein) (Cop-H4L); H4L; similar to Vaccinia virus strain Copenhagen H4L; virion core RNA polymerase-associated protein, RAP94 
-MPXV-UK_P2-093	H5R	093-VLTF-4	VLTF-4 (late transcription factor 4) (Cop-H5R); H5R; similar to Vaccinia virus strain Copenhagen H5R; virosome-associated late gene transcription factor, VLTF-4; Ca2+-binding motif 
-MPXV-UK_P2-094	H6R	094-DNA-Topoisomerase-type-I	DNA topoisomerase type I (Cop-H6R); H6R; similar to Vaccinia virus strain Copenhagen H6R; DNA topoisomerase 
-MPXV-UK_P2-095	H7R	095-crescent-membrane-and-immature-virion-formation-protein	Viral membrane assembly proteins (VMAP) (Cop-H7R); H7R; similar to Vaccinia virus strain Copenhagen H7R 
-MPXV-UK_P2-096	E1R	096-E1R	mRNA capping enzyme large subunit (Cop-D1R); E1R; similar to Vaccinia virus strain Copenhagen D1R; mRNA capping enzyme, large subunit; RNA 5' triphosphatase and RNA guanylyl transferase activities 
-MPXV-UK_P2-097	E2L	097-Virion-core-protein	Virion core (Cop-D2L); E2L; similar to Vaccinia virus strain Copenhagen D2L; virion core protein 
-MPXV-UK_P2-098	E3R	098-Virion-core-protein	Virion core (Cop-D3R); E3R; similar to Vaccinia virus strain Copenhagen D3R; virion core protein 
-MPXV-UK_P2-099	E4R	099-E4R	Uracil-DNA glycosylase, DNA polymerase processi vity factor (Cop-D4R); E4R; similar to Vaccinia virus strain Copenhagen D4R; uracil DNA glycosylase 
-MPXV-UK_P2-100	E5R	100-E5R	NTPase, DNA primase (Cop-D5R); E5R; similar to Vaccinia virus strain Copenhagen D5R; nucleic acid-independent nucleoside triphosphatase 
+MPXV-UK_P2-093	H5R	093-late-transcription-factor-VLTF-4	VLTF-4 (late transcription factor 4) (Cop-H5R); H5R; similar to Vaccinia virus strain Copenhagen H5R; virosome-associated late gene transcription factor, VLTF-4; Ca2+-binding motif 
+MPXV-UK_P2-094	H6R	094-DNA-topoisomerase-type-I	DNA topoisomerase type I (Cop-H6R); H6R; similar to Vaccinia virus strain Copenhagen H6R; DNA topoisomerase 
+MPXV-UK_P2-095	H7R	095-H7R	Viral membrane assembly proteins (VMAP) (Cop-H7R); H7R; similar to Vaccinia virus strain Copenhagen H7R 
+MPXV-UK_P2-096	E1R	096-mRNA-capping-enzyme-large-subunit	mRNA capping enzyme large subunit (Cop-D1R); E1R; similar to Vaccinia virus strain Copenhagen D1R; mRNA capping enzyme, large subunit; RNA 5' triphosphatase and RNA guanylyl transferase activities 
+MPXV-UK_P2-097	E2L	097-virion-core-protein	Virion core (Cop-D2L); E2L; similar to Vaccinia virus strain Copenhagen D2L; virion core protein 
+MPXV-UK_P2-098	E3R	098-virion-core-protein	Virion core (Cop-D3R); E3R; similar to Vaccinia virus strain Copenhagen D3R; virion core protein 
+MPXV-UK_P2-099	E4R	099-uracil-DNA-glycosylase	Uracil-DNA glycosylase, DNA polymerase processi vity factor (Cop-D4R); E4R; similar to Vaccinia virus strain Copenhagen D4R; uracil DNA glycosylase 
+MPXV-UK_P2-100	E5R	100-NTPase	NTPase, DNA primase (Cop-D5R); E5R; similar to Vaccinia virus strain Copenhagen D5R; nucleic acid-independent nucleoside triphosphatase 
 MPXV-UK_P2-101	E6R	101-morph	Morphogenesis, VETF-s (early transcription factor small) (Cop-D6R); E6R; similar to Vaccinia virus strain Copenhagen D6R; early transcription factor, VETF, small subunit 
-MPXV-UK_P2-102	E7R	102-E7R	RNA polymerase subunit (RPO18) (Cop-D7R); E7R; similar to Vaccinia virus strain Copenhagen D7R; RNA polymerase, 18 kDa subunit 
-MPXV-UK_P2-103	E8L	103-carbonic-anhydrase	Carbonic anhydrase, GAG-binding IMV membrane protein (Cop-D8L); E8L; similar to Vaccinia virus strain Copenhagen D8L; IMV surface membrane 32 kDa protein; binding to cell surface chondroitin sulfate; IMV adsorption to cell surface 
+MPXV-UK_P2-102	E7R	102-DNA-dependent-RNA-polymerase-subunit-rpo18	RNA polymerase subunit (RPO18) (Cop-D7R); E7R; similar to Vaccinia virus strain Copenhagen D7R; RNA polymerase, 18 kDa subunit 
+MPXV-UK_P2-103	E8L	103-IMV-membrane-protein	Carbonic anhydrase, GAG-binding IMV membrane protein (Cop-D8L); E8L; similar to Vaccinia virus strain Copenhagen D8L; IMV surface membrane 32 kDa protein; binding to cell surface chondroitin sulfate; IMV adsorption to cell surface 
 MPXV-UK_P2-104	E9R	104-E9R	mRNA decapping enzyme (Cop-D9R); E9R; similar to Vaccinia virus strain Copenhagen D9R; Mut-like 
-MPXV-UK_P2-105	E10R	105-E10R	mRNA decapping enzyme (Cop-D10R); E10R; similar to Vaccinia virus strain Copenhagen D10R; down regulation of gene expression; Mut-like 
-MPXV-UK_P2-106	E11L	106-CPXV128-protein	ATPase, NPH1 (Cop-D11L); E11L; similar to Vaccinia virus strain Copenhagen D11L; nucleoside triphosphate phosphohydrolase I, NPH I; DNA-dependent ATPase; early gene transcription termination factor 
-MPXV-UK_P2-107	E12L	107-E12L	mRNA capping enzyme small subunit (Cop-D12L); E12L; similar to Vaccinia virus strain Copenhagen D12L; mRNA capping enzyme, small subunit; mRNA (guanine-N7-)-methyl-transferase; transcription initiation factor 
+MPXV-UK_P2-105	E10R	105-mRNA-decapping-enzyme	mRNA decapping enzyme (Cop-D10R); E10R; similar to Vaccinia virus strain Copenhagen D10R; down regulation of gene expression; Mut-like 
+MPXV-UK_P2-106	E11L	106-ATPase	ATPase, NPH1 (Cop-D11L); E11L; similar to Vaccinia virus strain Copenhagen D11L; nucleoside triphosphate phosphohydrolase I, NPH I; DNA-dependent ATPase; early gene transcription termination factor 
+MPXV-UK_P2-107	E12L	107-mRNA-capping-enzyme-small-subunit	mRNA capping enzyme small subunit (Cop-D12L); E12L; similar to Vaccinia virus strain Copenhagen D12L; mRNA capping enzyme, small subunit; mRNA (guanine-N7-)-methyl-transferase; transcription initiation factor 
 MPXV-UK_P2-108	E13L	108-trimeric-virion-coat-protein	Trimeric virion coat protein (rifampicin res) (Cop-D13L); E13L; similar to Vaccinia virus strain Copenhagen D13L; protein needed for the formation of immature IMV surface membrane 
-MPXV-UK_P2-109	A1L	109-VLTF-2	VLTF-2 (late transcription factor 2) (Cop-A1L); A1L; similar to Vaccinia virus strain Copenhagen A1L; late gene transcription factor, VLTF-2 
+MPXV-UK_P2-109	A1L	109-late-transcription-factor-VLTF-2	VLTF-2 (late transcription factor 2) (Cop-A1L); A1L; similar to Vaccinia virus strain Copenhagen A1L; late gene transcription factor, VLTF-2 
 MPXV-UK_P2-110	A2L	110-late-transcription-factor-VLTF-3	VLTF-3 (late transcription factor 3) (Cop-A2L); A2L; similar to Vaccinia virus strain Copenhagen A2L; late gene transcription factor, VLTF-3; zinc binding 
 MPXV-UK_P2-111	A3L	111-A3L	S-S bond formation pathway protein (Cop-A2.5L); A3L 
-MPXV-UK_P2-112	A4L	112-p4b-precursor-of-core-protein-4b	P4b precursor (Cop-A3L); A4L; similar to Vaccinia virus strain Copenhagen A3L; major virion core protein p4b 
-MPXV-UK_P2-113	A5L	113-A5L	39kDa virion core protein (Cop-A4L); A5L; similar to Vaccinia virus strain Copenhagen A4L; 39 kDa immunodominant virion core protein needed for the progression of IV to infectious IMV 
-MPXV-UK_P2-114	A6R	114-A6R	RNA polymerase subunit (RPO19) (Cop-A5R); A6R; similar to Vaccinia virus strain Copenhagen A5R; precursor of RNA polymerase 22 kDa and 21 kDa 
+MPXV-UK_P2-112	A4L	112-P4b-precursor	P4b precursor (Cop-A3L); A4L; similar to Vaccinia virus strain Copenhagen A3L; major virion core protein p4b 
+MPXV-UK_P2-113	A5L	113-39kDa-core-protein	39kDa virion core protein (Cop-A4L); A5L; similar to Vaccinia virus strain Copenhagen A4L; 39 kDa immunodominant virion core protein needed for the progression of IV to infectious IMV 
+MPXV-UK_P2-114	A6R	114-DNA-dependent-RNA-polymerase-subunit-rpo19	RNA polymerase subunit (RPO19) (Cop-A5R); A6R; similar to Vaccinia virus strain Copenhagen A5R; precursor of RNA polymerase 22 kDa and 21 kDa 
 MPXV-UK_P2-115	A7L	115-virion-morphogenesis-protein	Viral membrane assembly proteins (VMAP), core protein (Cop-A6L); A7L; similar to Vaccinia virus strain Copenhagen A6L 
-MPXV-UK_P2-116	A8L	116-VETF-L	VETF-L (early transcription factor large) (Cop- A7L); A8L; similar to Vaccinia virus strain Copenhagen A7L; early transcription factor, VETF, large subunit; needed for morphogenesis of the virion core 
-MPXV-UK_P2-117	A9R	117-A9R	VITF-3 34kda subunit (Cop-A8R); A9R; similar to Vaccinia virus strain Copenhagen A8R; intermediate transcription factor, VITF-3, 34 kDa 
-MPXV-UK_P2-118	A10L	118-viral-membrane-associated-protein	Viral membrane associated, early morphogenesis protein (Cop-A9L); A10L; similar to Vaccinia virus strain Copenhagen A9L 
-MPXV-UK_P2-119	A11L	119-P4a-precursor	P4a precursor (Cop-A10L); A11L; similar to Vaccinia virus strain Copenhagen A10L; major virion core protein p4a 
+MPXV-UK_P2-116	A8L	116-vetf-l	VETF-L (early transcription factor large) (Cop- A7L); A8L; similar to Vaccinia virus strain Copenhagen A7L; early transcription factor, VETF, large subunit; needed for morphogenesis of the virion core 
+MPXV-UK_P2-117	A9R	117-32kDa-small-subunit-of-transcription-factor-VITF-3	VITF-3 34kda subunit (Cop-A8R); A9R; similar to Vaccinia virus strain Copenhagen A8R; intermediate transcription factor, VITF-3, 34 kDa 
+MPXV-UK_P2-118	A10L	118-A10L	Viral membrane associated, early morphogenesis protein (Cop-A9L); A10L; similar to Vaccinia virus strain Copenhagen A9L 
+MPXV-UK_P2-119	A11L	119-A11L	P4a precursor (Cop-A10L); A11L; similar to Vaccinia virus strain Copenhagen A10L; major virion core protein p4a 
 MPXV-UK_P2-120	A12R	120-viral-membrane-formation-protein	Viral membrane assembly proteins (VMAP) (Cop-A1 1R); A12R; similar to Vaccinia virus strain Copenhagen A11R 
 MPXV-UK_P2-121	A13L	121-core-protein	Virion core and cleavage processing protein (Cop-A12L); A13L; similar to Vaccinia virus strain Copenhagen A12L; virion core protein 
 MPXV-UK_P2-122	A14L	122-A14L	IMV membrane protein, virion maturation (Cop-A1 3L); A14L; similar to Vaccinia virus strain Copenhagen A13L; IMV inner and outer membrane protein 
-MPXV-UK_P2-123	A15L	123-essential-imv-membrane-protein	Essential IMV membrane protein (Cop-A14L); A15L; similar to Vaccinia virus strain Copenhagen A14L; IMV inner membrane protein 
+MPXV-UK_P2-123	A15L	123-phosphorylated-IMV-membrane-protein	Essential IMV membrane protein (Cop-A14L); A15L; similar to Vaccinia virus strain Copenhagen A14L; IMV inner membrane protein 
 MPXV-UK_P2-124	A15.5L	124	Non-essential IMV membrane protein (Cop-A14.5L);A15.5L 
 MPXV-UK_P2-125	A16L	125-core-protein	Core protein (Cop-A15L); A16L; similar to Vaccinia virus strain Copenhagen A15L 
 MPXV-UK_P2-126	A17L	126-A17L	Myristylated protein, essential for entry/fusion (Cop-A16L); A17L; similar to Vaccinia virus strain Copenhagen A16L; soluble myristylated protein 
-MPXV-UK_P2-127	A18L	127-A18L	IMV membrane protein (Cop-A17L); A18L; similar to Vaccinia virus strain Copenhagen A17L; IMV surface membrane protein; early function in virion morphgenesis 
-MPXV-UK_P2-128	A19R	128-A19R	DNA helicase, transcript release factor (Cop-A1 8R); A19R; similar to Vaccinia virus strain Copenhagen A1 8R; virion core associated DNA helicase; post-replicative negative transcription elongation factor 
+MPXV-UK_P2-127	A18L	127-IMV-membrane-protein	IMV membrane protein (Cop-A17L); A18L; similar to Vaccinia virus strain Copenhagen A17L; IMV surface membrane protein; early function in virion morphgenesis 
+MPXV-UK_P2-128	A19R	128-DNA-helicase	DNA helicase, transcript release factor (Cop-A1 8R); A19R; similar to Vaccinia virus strain Copenhagen A1 8R; virion core associated DNA helicase; post-replicative negative transcription elongation factor 
 MPXV-UK_P2-129	A20L	129-Zinc-finger-like-protein	Zinc finger-like protein (Cop-A19L); A20L; similar to Vaccinia virus strain Copenhagen A19L 
 MPXV-UK_P2-130	A21L	130-IMV-membrane-protein	IMV membrane protein, entry/fusion complex component (Cop-A21L); A21L; similar to Vaccinia virus strain Copenhagen A21L 
-MPXV-UK_P2-131	A22R	131-A22R	DNA polymerase processivity factor (Cop-A20R); A22R; similar to Vaccinia virus strain Copenhagen A20R; processivity factor for the viral DNA polymerase, VPF 
-MPXV-UK_P2-132	A23R	132-holliday-junction-resolvase	Holliday junction resolvase (Cop-A22R); A23R; similar to Vaccinia virus strain Copenhagen A22R 
-MPXV-UK_P2-133	A24R	133-A24R	VITF-3 45kda subunit (Cop-A23R); A24R; similar to Vaccinia virus strain Copenhagen A23R; intermediate transcription factor, VITF-3, 45 kDa 
-MPXV-UK_P2-134	A25R	134-A25R	RNA polymerase subunit (RPO132) (Cop-A24R); A25R; similar to Vaccinia virus strain Copenhagen A24R; RNA polymerase, 132 kDa subunit 
-MPXV-UK_P2-137	A28L	137-p4c-precursor	P4c precursor (Cop-A26L); A28L; major component of IMV surface tubules; p4c 
+MPXV-UK_P2-131	A22R	131-viral-DNA-polymerase-processivity-factor	DNA polymerase processivity factor (Cop-A20R); A22R; similar to Vaccinia virus strain Copenhagen A20R; processivity factor for the viral DNA polymerase, VPF 
+MPXV-UK_P2-132	A23R	132-holliday-junction-endonuclease	Holliday junction resolvase (Cop-A22R); A23R; similar to Vaccinia virus strain Copenhagen A22R 
+MPXV-UK_P2-133	A24R	133-45kDa-large-subunit-of-intermediate-gene-transcription-factor-VITF-3	VITF-3 45kda subunit (Cop-A23R); A24R; similar to Vaccinia virus strain Copenhagen A23R; intermediate transcription factor, VITF-3, 45 kDa 
+MPXV-UK_P2-134	A25R	134-DNA-dependent-RNA-polymerase-subunit-rpo132	RNA polymerase subunit (RPO132) (Cop-A24R); A25R; similar to Vaccinia virus strain Copenhagen A24R; RNA polymerase, 132 kDa subunit 
+MPXV-UK_P2-137	A28L	137-cowpox-A-type-inclusion-protein	P4c precursor (Cop-A26L); A28L; major component of IMV surface tubules; p4c 
 MPXV-UK_P2-138	A29L	138-IMV-surface-protein	IMV surface protein, fusion protein (Cop-A27L); A29L; similar to Vaccinia virus strain Copenhagen A27L; IMV surface membrane 14 kDa fusion protein; binding to cell surface heparan 
-MPXV-UK_P2-139	A30L	139-imv-mp_virus-entry-protein	IMV MP/Virus entry (Cop-A28L); A30L; similar to Vaccinia virus strain Copenhagen A28L 
-MPXV-UK_P2-140	A31L	140-A31L	RNA polymerase subunit (RPO35) (Cop-A29L); A31L; similar to Vaccinia virus strain Copenhagen A29L; RNA polymerase, 35 kDa subunit 
-MPXV-UK_P2-141	A32L	141-A32L	IMV protein (Cop-A30L); A32L; similar to Vaccinia virus strain Copenhagen A30L 
+MPXV-UK_P2-139	A30L	139-IMV-membrane-protein	IMV MP/Virus entry (Cop-A28L); A30L; similar to Vaccinia virus strain Copenhagen A28L 
+MPXV-UK_P2-140	A31L	140-DNA-dependent-RNA-polymerase-rpo35	RNA polymerase subunit (RPO35) (Cop-A29L); A31L; similar to Vaccinia virus strain Copenhagen A29L; RNA polymerase, 35 kDa subunit 
+MPXV-UK_P2-141	A32L	141-IMV-protein	IMV protein (Cop-A30L); A32L; similar to Vaccinia virus strain Copenhagen A30L 
 MPXV-UK_P2-142	A32.5L	142	Viral membrane assembly proteins (VMAP) (Cop-A 30.5L);A32.5L 
 MPXV-UK_P2-143	A33R	143-A33R	Hypothetical protein (Cop-A31R); A33R; similar to Vaccinia virus strain Copenhagen A31R 
-MPXV-UK_P2-144	A34L	144-A34L	ATPase/DNA packaging protein (Cop-A32L); A34L; similar to Vaccinia virus strain Copenhagen A32L; DNA packaging into virion; NTP-binding motif A 
-MPXV-UK_P2-145	A35R	145-A35R	EEV membrane phosphoglycoprotein, C-type lectin-like domain (Cop-A33R); A35R; similar to Vaccinia virus strain Copenhagen A33R; EEV envelope glycoprotein, needed for formation of actin-containing microvilli and cell-to-cell spread of virion; interacts with VAC A36R 
+MPXV-UK_P2-144	A34L	144-ATPase	ATPase/DNA packaging protein (Cop-A32L); A34L; similar to Vaccinia virus strain Copenhagen A32L; DNA packaging into virion; NTP-binding motif A 
+MPXV-UK_P2-145	A35R	145-EEV-membrane-phosphoglycoprotein	EEV membrane phosphoglycoprotein, C-type lectin-like domain (Cop-A33R); A35R; similar to Vaccinia virus strain Copenhagen A33R; EEV envelope glycoprotein, needed for formation of actin-containing microvilli and cell-to-cell spread of virion; interacts with VAC A36R 
 MPXV-UK_P2-146	A36R	146-IEV-and-EEV-membrane-glycoprotein	C-type lectin-like IEV/EEV glycoprotein (Cop-A3 4R); A36R; similar to Vaccinia virus strain Copenhagen A3 4R; EEV envelope glycoprotein, lectin-like; required for infectivity of EEV, formation of actin-containing microvilli, and cell-to-cell spread of virion 
 MPXV-UK_P2-147	A37R	147-hypothetical-protein-MPXVgp147	MHC class II antigen presentation inhibitor (Cop-A35R); A37R; similar to Vaccinia virus strain Copenhagen A35R 
-MPXV-UK_P2-148	A38R	148-A38R	IEV transmembrane phosphoprotein (Cop-A36R); A38R; similar to Vaccinia virus strain Copenhagen A36R; IEV but not CEV envelope protein; plays critical role for actin tail formation; interacts with VAC A33R and A34R 
+MPXV-UK_P2-148	A38R	148-IEV-transmembrane-phosphoprotein	IEV transmembrane phosphoprotein (Cop-A36R); A38R; similar to Vaccinia virus strain Copenhagen A36R; IEV but not CEV envelope protein; plays critical role for actin tail formation; interacts with VAC A33R and A34R 
 MPXV-UK_P2-149	A39R	149-hypothetical-protein-MPXVgp149	Hypothetical protein (Cop-A37R); A39R; similar to Vaccinia virus strain Copenhagen A37R 
-MPXV-UK_P2-150	A40L	150-cd47-like	CD47-like, integral membrane protein (Cop-A38L); A40L; similar to Vaccinia virus strain Copenhagen A38L; integral membrane glycoprotein; immunoglobulin-like; regulation of the influx of extracellular Ca2+ 
-MPXV-UK_P2-151	A41L	151-chemokine-binding-protein	Chemokine binding protein (Cop-A41L); A41L; similar to Vaccinia virus strain Copenhagen A41L; secreted protein reducing infiltration of inflammatory cells into the infected area 
-MPXV-UK_P2-152	A42R	152-Profilin-like-protein	Profilin-like protein, ATI-localized (Cop-A42R); A42R; similar to Vaccinia virus strain Copenhagen A42R; profilin-like 
+MPXV-UK_P2-150	A40L	150-A40L	CD47-like, integral membrane protein (Cop-A38L); A40L; similar to Vaccinia virus strain Copenhagen A38L; integral membrane glycoprotein; immunoglobulin-like; regulation of the influx of extracellular Ca2+ 
+MPXV-UK_P2-151	A41L	151-A41L	Chemokine binding protein (Cop-A41L); A41L; similar to Vaccinia virus strain Copenhagen A41L; secreted protein reducing infiltration of inflammatory cells into the infected area 
+MPXV-UK_P2-152	A42R	152-profilin-like-protein	Profilin-like protein, ATI-localized (Cop-A42R); A42R; similar to Vaccinia virus strain Copenhagen A42R; profilin-like 
 MPXV-UK_P2-153	A43R	153-A43R	Type I membrane glycoprotein (Cop-A43R); A43R; similar to Vaccinia virus strain Copenhagen A43R; membrane glycoprotein 
 MPXV-UK_P2-154	A44R	154-hypothetical-protein-MPXVgp154	Hypothetical protein (Cop-A43.5R); A44R 
 MPXV-UK_P2-155	A45L	155-hydroxysteroid-dehydrogenase	3 beta-hydroxysteroid dehydrogenase/delta 5->4 isomerase (Cop-A44L); A45L; similar to Vaccinia virus strain Copenhagen A44L; 3-b-Hydroxy-delta5-steroid dehydrogenase 
 MPXV-UK_P2-156	A46R	156-A46R	Inactive Cu-Zn superoxide dismutase-like virion protein (Cop-A45R); A46R; similar to Vaccinia virus strain Copenhagen A45R; superoxide dismutase-like; virion core protein 
-MPXV-UK_P2-157	A47R	157-il-1_tlr-signaling-inhibitor	IL-1/TLR signaling inhibitor (Cop-A46R); A47R; similar to Vaccinia virus strain Copenhagen A46R 
-MPXV-UK_P2-158	A49R	158-Thymidylate-kinase	Thymidylate kinase (Cop-A48R); A49R; similar to Vaccinia virus strain Copenhagen A48R; thymidylate kinase 
-MPXV-UK_P2-159	A50R	159-A50R	ATP-dependent DNA ligase (Cop-A50R); A50R; similar to Vaccinia virus strain Copenhagen A50R; DNA ligase 
+MPXV-UK_P2-157	A47R	157-A47R	IL-1/TLR signaling inhibitor (Cop-A46R); A47R; similar to Vaccinia virus strain Copenhagen A46R 
+MPXV-UK_P2-158	A49R	158-thymidylate-kinase	Thymidylate kinase (Cop-A48R); A49R; similar to Vaccinia virus strain Copenhagen A48R; thymidylate kinase 
+MPXV-UK_P2-159	A50R	159-DNA-ligase	ATP-dependent DNA ligase (Cop-A50R); A50R; similar to Vaccinia virus strain Copenhagen A50R; DNA ligase 
 MPXV-UK_P2-160	A51R	160-A51R	Hypothetical protein (Cop-A51R); A51R; similar to Vaccinia virus strain Copenhagen A51R 
-MPXV-UK_P2-162	B2R	162-hemagglutinin	Hemagglutinin (Cop-A56R); B2R; similar to Vaccinia virus strain Copenhagen A56R; EEV envelope and cell membrane glycoprotein hemagglutinin; inhibition of the ability of infected cells to fuse; interacts with VAC F13L 
-MPXV-UK_P2-163	B3R	163-Ser_Thr-kinase	Ser/Thr Kinase (Cop-B1R); B3R; similar to Vaccinia virus strain Copenhagen B1R; serine 
-MPXV-UK_P2-164	B4R	164-schlafen	Schlafen (Cop-B2R); B4R; schlafen-like 
+MPXV-UK_P2-162	B2R	162-B2R	Hemagglutinin (Cop-A56R); B2R; similar to Vaccinia virus strain Copenhagen A56R; EEV envelope and cell membrane glycoprotein hemagglutinin; inhibition of the ability of infected cells to fuse; interacts with VAC F13L 
+MPXV-UK_P2-163	B3R	163-ser_thr-kinase	Ser/Thr Kinase (Cop-B1R); B3R; similar to Vaccinia virus strain Copenhagen B1R; serine 
+MPXV-UK_P2-164	B4R	164-hypothetical-protein-MPXVgp165	Schlafen (Cop-B2R); B4R; schlafen-like 
 MPXV-UK_P2-165	B5R	165-ankyrin-like-protein	Ankyrin (Cop-B4R); B5R; similar to Vaccinia virus strain Copenhagen B4R; ankyrin-like 
-MPXV-UK_P2-166	B6R	166-eev-type-1-membrane-glycoprotein	EEV type-1 membrane glycoprotein, protective antigen (Cop-B5R); B6R; similar to Vaccinia virus strain Copenhagen B5R; palmitated 42 kDa glycoprotein located both on the membranes of infected cells and on EEV envelope; complement control protein-like 
-MPXV-UK_P2-167	B7R	167-ankyrin-like-protein	Ankyrin-like protein (Cop-B6R); B7R; similar to Vaccinia virus strain Copenhagen B6R 
-MPXV-UK_P2-168	B8R	168-virulence-protein	Virulence, ER resident (Cop-B7R); B8R; similar to Vaccinia virus strain Copenhagen B7R 
-MPXV-UK_P2-169	B9R	169-soluble-interferon-gamma-receptor-like-protein	Soluble IFN-g receptor-like protein (Cop-B8R); B9R; similar to Vaccinia virus strain Copenhagen B8R; secreted IFN-g binding protein 
-MPXV-UK_P2-170	B10R	170-virulence-factor	ER-localized apoptosis regulator (Cop-B9R); B10R; shope fibroma virus T4 protein-like 
+MPXV-UK_P2-166	B6R	166-EEV-membrane-glycoprotein	EEV type-1 membrane glycoprotein, protective antigen (Cop-B5R); B6R; similar to Vaccinia virus strain Copenhagen B5R; palmitated 42 kDa glycoprotein located both on the membranes of infected cells and on EEV envelope; complement control protein-like 
+MPXV-UK_P2-167	B7R	167-B7R	Ankyrin-like protein (Cop-B6R); B7R; similar to Vaccinia virus strain Copenhagen B6R 
+MPXV-UK_P2-168	B8R	168-hypothetical-protein-MPXVgp169	Virulence, ER resident (Cop-B7R); B8R; similar to Vaccinia virus strain Copenhagen B7R 
+MPXV-UK_P2-169	B9R	169-B9R	Soluble IFN-g receptor-like protein (Cop-B8R); B9R; similar to Vaccinia virus strain Copenhagen B8R; secreted IFN-g binding protein 
+MPXV-UK_P2-170	B10R	170-B10R	ER-localized apoptosis regulator (Cop-B9R); B10R; shope fibroma virus T4 protein-like 
 MPXV-UK_P2-171	unknown2	171	unknown2;unknown2; 
-MPXV-UK_P2-172	B11R	172-ser_thr-protein-kinase-like-protein	Ser/Thr Kinase (Cop-B12R); B11R; similar to Vaccinia virus strain Copenhagen B12R; protein kinase-like 
-MPXV-UK_P2-173	B12R	173-Serpin	Serpin 1,2,3 (Cop-K2L); B12R; serine protease inhibitor-like, SPI-2; inhibition of the IL-1b converting enzyme; apoptosis inhibition 
+MPXV-UK_P2-172	B11R	172-B11R	Ser/Thr Kinase (Cop-B12R); B11R; similar to Vaccinia virus strain Copenhagen B12R; protein kinase-like 
+MPXV-UK_P2-173	B12R	173-B12R	Serpin 1,2,3 (Cop-K2L); B12R; serine protease inhibitor-like, SPI-2; inhibition of the IL-1b converting enzyme; apoptosis inhibition 
 MPXV-UK_P2-174	B13R	174-B13R	Hypothetical protein (Cop-C16L); B13R; similar to Vaccinia virus strain Copenhagen B15R 
 MPXV-UK_P2-175	B14R	175-IL-beta-binding-protein	IL-1 beta receptor (Cop-B16R); B14R; similar to Vaccinia virus strain Copenhagen B16R; secreted IL-1b binding protein; inhibition of virus infection induced fever 
-MPXV-UK_P2-177	B16R	177-IFN-alpha_beta-receptor-glycoprotein	IFN-alpha/beta receptor glycoprotein (Cop-B19R); B16R; similar to Vaccinia virus strain Copenhagen B19R; cell surface antigen and secreted IFN-a 
-MPXV-UK_P2-178	B17R	178-ankyrin-containing-protein	Ankyrin (Cop-B20R); B17R; ankyrin-like 
-MPXV-UK_P2-180	B19R	180-Serpin	Serpin 1,2,3 (Cop-K2L); B19R; serine protease inhibitor-like, SPI-1; apoptosis inhibition 
+MPXV-UK_P2-177	B16R	177-B16R	IFN-alpha/beta receptor glycoprotein (Cop-B19R); B16R; similar to Vaccinia virus strain Copenhagen B19R; cell surface antigen and secreted IFN-a 
+MPXV-UK_P2-178	B17R	178-B17R	Ankyrin (Cop-B20R); B17R; ankyrin-like 
+MPXV-UK_P2-180	B19R	180-B19R	Serpin 1,2,3 (Cop-K2L); B19R; serine protease inhibitor-like, SPI-1; apoptosis inhibition 
 MPXV-UK_P2-181	B20R	181-uncharacterized-protein-MPXVgp181	Hypothetical protein (Cop-C14L); B20R 
-MPXV-UK_P2-182	B21R	182-Surface-glycoprotein	Surface glycoprotein; B21R; putative membrane-associated glycoprotein; cadherin-like domain 
+MPXV-UK_P2-182	B21R	182-B21R	Surface glycoprotein; B21R; putative membrane-associated glycoprotein; cadherin-like domain 
 MPXV-UK_P2-184	N1R	184-hypothetical-protein-MPXVgp185	Hypothetical protein (Cop-C16L); N1R; similar to Vaccinia virus strain Copenhagen B22R; VAC B15R-like 
 MPXV-UK_P2-185	unknown3	185	MPV-Z-N2R;unknown3 
-MPXV-UK_P2-187	N4R	187-Ankyrin-like-protein	Ankyrin (CPXV-017); N4R; ankyrin-like 
+MPXV-UK_P2-187	N4R	187-ankyrin-like-protein	Ankyrin (CPXV-017); N4R; ankyrin-like 
 MPXV-UK_P2-188	J1R	188-ankyrin-like-protein	Ankyrin (Cop-C19L); J1R; ankyrin-like 
 MPXV-UK_P2-189	J2R	189-TNF-receptor	TNF receptor (CrmB) (Cop-C22L); J2R; secreted TNF binding protein 
-MPXV-UK_P2-190	J3R	190-Chemokine-binding-protein	Chemokine binding protein (Cop-C23L); J3R; similar to Vaccinia virus strain Copenhagen B29R; CC-chemokine binding 
+MPXV-UK_P2-190	J3R	190-chemokine-binding-protein	Chemokine binding protein (Cop-C23L); J3R; similar to Vaccinia virus strain Copenhagen B29R; CC-chemokine binding 
