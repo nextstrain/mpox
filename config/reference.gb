@@ -104,7 +104,7 @@ FEATURES             Location/Qualifiers
                      CKQELEYIRQMKIHNTTMYELIYNRDKNKHASHILHRYSKHPVLTQCITKGFKIYTEV
                      TEQVTKALNRRALIDEIINNVSTDDNLLSKLPLEIRDLIVSQAVI"
      gene            complement(6934..7152)
-                     /locus_tag="MPXV-UK_P2-005"
+                     /locus_tag="005"
                      /pseudogene="unknown"
      CDS             complement(6934..7152)
                      /locus_tag="005"
@@ -127,10 +127,10 @@ FEATURES             Location/Qualifiers
                      CGPEGDGYCLHGDCIHARDIDGMYCRCSHGYTGIRCQHVVLVDYQRSGKPDTTTSYIP
                      SLGIVLVLVGIIITCCLLSVYMFTRRTKLPIQDMVVLYFL"
      gene            complement(8998..9111)
-                     /locus_tag="MPXV-UK_P2-007"
+                     /locus_tag="007"
                      /pseudogene="unknown"
      CDS             complement(8998..9111)
-                     /locus_tag="MPXV-UK_P2-007"
+                     /locus_tag="007"
                      /function="IL-1 receptor antagonist (Cop-C10L)"
                      /note="D4L"
                      /pseudogene="unknown"
@@ -2138,20 +2138,20 @@ FEATURES             Location/Qualifiers
                      NCGDIAAQIKSINTCLRCSKLNLSPLLTKIDTTHVSKVFLTQMNARGVKVKLDFERRP
                      PSFYKPLDKVDLKPSFLV"
      gene            complement(133218..133445)
-                     /locus_tag="MPXV-UK_P2-135"
+                     /locus_tag="135"
                      /pseudogene="unknown"
      CDS             complement(133218..133445)
-                     /locus_tag="MPXV-UK_P2-135"
+                     /locus_tag="135"
                      /function="A-type inclusion protein (Cop-A25L)"
                      /note="A26L"
                      /pseudogene="unknown"
                      /codon_start=1
                      /product="MPXVgp136"
      gene            complement(134013..136103)
-                     /locus_tag="MPXV-UK_P2-136"
+                     /locus_tag="136"
                      /pseudogene="unknown"
      CDS             complement(134013..136103)
-                     /locus_tag="MPXV-UK_P2-136"
+                     /locus_tag="136"
                      /function="A-type inclusion protein (Cop-A25L)"
                      /note="A27L"
                      /pseudogene="unknown"
@@ -2508,10 +2508,10 @@ FEATURES             Location/Qualifiers
                      CIMMNLPDVGEFGSSMLGKYEPDMIKIALSVAGNLIRNRDYIPGRRGYSYYVYGIASR
                      "
      gene            158483..158878
-                     /locus_tag="MPXV-UK_P2-161"
+                     /locus_tag="161"
                      /pseudogene="unknown"
      CDS             158483..158878
-                     /locus_tag="MPXV-UK_P2-161"
+                     /locus_tag="161"
                      /function="BTB Kelch-domain containing protein; CRL comple
                      x (Cop-A55R)"
                      /note="B1R; kelch-like"
@@ -2731,10 +2731,10 @@ FEATURES             Location/Qualifiers
                      NETYCDMMSLNLTIVSVSESNIDLISYPQIVNERSTGKMVCPNINAFISSNVNTELYG
                      ADIDALEIRDLNNGHLELLP"
      gene            complement(173831..173911)
-                     /locus_tag="MPXV-UK_P2-176"
+                     /locus_tag="176"
                      /pseudogene="unknown"
      CDS             complement(173831..173911)
-                     /locus_tag="MPXV-UK_P2-176"
+                     /locus_tag="176"
                      /function="IL-1 beta inhibitor (Cop-B17L)"
                      /note="B15L"
                      /pseudogene="unknown"
@@ -2780,10 +2780,10 @@ FEATURES             Location/Qualifiers
                      SEFPIRRVNDKQLINLIKSNTYHNLIEKVIKNTLEKYTLTNIVLEYMISSRSQSSYLS
                      RIPNEILLEILYKLDMYDLRNLYTRYMRENDITEYHIENTRSVSTQT"
      gene            178248..178502
-                     /locus_tag="MPXV-UK_P2-179"
+                     /locus_tag="179"
                      /pseudogene="unknown"
      CDS             178248..178502
-                     /locus_tag="MPXV-UK_P2-179"
+                     /locus_tag="179"
                      /function="kelch-like protein (EV-M-167)"
                      /note="B18R; kelch-like fragment"
                      /pseudogene="unknown"
@@ -2860,10 +2860,10 @@ FEATURES             Location/Qualifiers
                      ALNDMFKEFDKNVSAIIIKEEDNYLNSSPDIYHIIYIIGGTILLLLVIILILAIYIAR
                      NKYRTRKYEIMKYDNMSIKSEHHDSLETVSMEIIDNRY"
      gene            188693..189010
-                     /locus_tag="MPXV-UK_P2-183"
+                     /locus_tag="183"
                      /pseudogene="unknown"
      CDS             188693..189010
-                     /locus_tag="MPXV-UK_P2-183"
+                     /locus_tag="183"
                      /function="NMDA receptor-like protein"
                      /note="R1R"
                      /pseudogene="unknown"
@@ -2892,10 +2892,10 @@ FEATURES             Location/Qualifiers
                      /translation="MYISHKYPLCNIINGYIDNAIGTNSIVKDIIDYLRTYPDIYIPT
                      SLLRSCIIDMHDLSGFRDELLSKLQSHNK"
      gene            190425..190955
-                     /locus_tag="MPXV-UK_P2-186"
+                     /locus_tag="186"
                      /pseudogene="unknown"
      CDS             190425..190955
-                     /locus_tag="MPXV-UK_P2-186"
+                     /locus_tag="186"
                      /function="MPV-Z-N3R"
                      /note="N3R"
                      /pseudogene="unknown"
