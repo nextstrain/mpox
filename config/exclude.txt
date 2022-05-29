@@ -52,3 +52,4 @@ W_Nigeria
 # potentially problematic
 MPXV_1_IT_Milan_2022  # many extra mutations
 MPXV_FR_HCL0001_2022  # any reversions in terminal regions
+MPXV_DRC_2012_Malacomys_longipes_EPU30

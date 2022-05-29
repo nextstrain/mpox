@@ -109,80 +109,84 @@ rule tree:
             --nthreads {threads}
         """
 
-# rule refine:
-#     message:
-#         """
-#         Refining tree
-#           - estimate timetree
-#           - use {params.coalescent} coalescent timescale
-#           - estimate {params.date_inference} node dates
-#           - filter tips more than {params.clock_filter_iqd} IQDs from clock expectation
-#         """
-#     input:
-#         tree = rules.tree.output.tree,
-#         alignment = build_dir + "/{build_name}/masked.fasta",
-#         metadata = "data/metadata.tsv"
-#     output:
-#         tree = build_dir + "/{build_name}/tree.nwk",
-#         node_data = build_dir + "/{build_name}/branch_lengths.json"
-#     params:
-#         coalescent = "opt",
-#         date_inference = "marginal",
-#         clock_filter_iqd = 10,
-#         root = config["root"],
-#         clock_rate = lambda w: f"--clock-rate {config['clock_rate']}" if "clock_rate" in config else "",
-#         clock_std_dev = lambda w: f"--clock-std-dev {config['clock_std_dev']}" if "clock_std_dev" in config else ""
-#     shell:
-#         """
-#         augur refine \
-#             --tree {input.tree} \
-#             --alignment {input.alignment} \
-#             --metadata {input.metadata} \
-#             --output-tree {output.tree} \
-#             --timetree \
-#             --root {params.root} \
-#             --keep-polytomies \
-#             {params.clock_rate} \
-#             {params.clock_std_dev} \
-#             --output-node-data {output.node_data} \
-#             --coalescent {params.coalescent} \
-#             --date-inference {params.date_inference} \
-#             --clock-filter-iqd {params.clock_filter_iqd}
-#         """
+if "two_rate_model" in config:
+    rule refine_relax:
+        message:
+            """
+            Refining tree
+            - estimate timetree
+            - use {params.coalescent} coalescent timescale
+            - estimate {params.date_inference} node dates
+            - filter tips more than {params.clock_filter_iqd} IQDs from clock expectation
+            """
+        input:
+            tree = rules.tree.output.tree,
+            alignment = build_dir + "/{build_name}/masked.fasta",
+            metadata = "data/metadata.tsv"
+        output:
+            tree = build_dir + "/{build_name}/tree.nwk",
+            node_data = build_dir + "/{build_name}/branch_lengths.json"
+        params:
+            coalescent = "opt",
+            date_inference = "marginal",
+            clock_filter_iqd = 10,
+            speed_up = config["speed_up"],
+            root = config["root"],
+            clock_rate = lambda w: f"--base-rate {config['clock_rate']}" if "clock_rate" in config else ""
+        shell:
+            """
+            python3 scripts/two_rate_model.py --tree {input.tree}\
+                --alignment {input.alignment} \
+                --metadata {input.metadata} \
+                --output-tree {output.tree} \
+                {params.clock_rate} \
+                --outbreak-speed-up {params.speed_up} \
+                --output-node-data {output.node_data} \
+                --root {params.root} \
+                --coalescent {params.coalescent}
+            """
+else:
+    rule refine:
+        message:
+            """
+            Refining tree
+            - estimate timetree
+            - use {params.coalescent} coalescent timescale
+            - estimate {params.date_inference} node dates
+            - filter tips more than {params.clock_filter_iqd} IQDs from clock expectation
+            """
+        input:
+            tree = rules.tree.output.tree,
+            alignment = build_dir + "/{build_name}/masked.fasta",
+            metadata = "data/metadata.tsv"
+        output:
+            tree = build_dir + "/{build_name}/tree.nwk",
+            node_data = build_dir + "/{build_name}/branch_lengths.json"
+        params:
+            coalescent = "opt",
+            date_inference = "marginal",
+            clock_filter_iqd = 10,
+            root = config["root"],
+            clock_rate = lambda w: f"--clock-rate {config['clock_rate']}" if "clock_rate" in config else "",
+            clock_std_dev = lambda w: f"--clock-std-dev {config['clock_std_dev']}" if "clock_std_dev" in config else ""
+        shell:
+            """
+            augur refine \
+                --tree {input.tree} \
+                --alignment {input.alignment} \
+                --metadata {input.metadata} \
+                --output-tree {output.tree} \
+                --timetree \
+                --root {params.root} \
+                --keep-polytomies \
+                {params.clock_rate} \
+                {params.clock_std_dev} \
+                --output-node-data {output.node_data} \
+                --coalescent {params.coalescent} \
+                --date-inference {params.date_inference} \
+                --clock-filter-iqd {params.clock_filter_iqd}
+            """
 
-rule refine_relax:
-    message:
-        """
-        Refining tree
-          - estimate timetree
-          - use {params.coalescent} coalescent timescale
-          - estimate {params.date_inference} node dates
-          - filter tips more than {params.clock_filter_iqd} IQDs from clock expectation
-        """
-    input:
-        tree = rules.tree.output.tree,
-        alignment = build_dir + "/{build_name}/masked.fasta",
-        metadata = "data/metadata.tsv"
-    output:
-        tree = build_dir + "/{build_name}/tree.nwk",
-        node_data = build_dir + "/{build_name}/branch_lengths.json"
-    params:
-        coalescent = "opt",
-        date_inference = "marginal",
-        clock_filter_iqd = 10,
-        root = config["root"],
-        clock_rate = lambda w: f"--clock-rate {config['clock_rate']}" if "clock_rate" in config else "",
-        clock_std_dev = lambda w: f"--clock-std-dev {config['clock_std_dev']}" if "clock_std_dev" in config else ""
-    shell:
-        """
-        python3 scripts/explore_relax.py --tree {input.tree}\
-            --alignment {input.alignment} \
-            --metadata {input.metadata} \
-            --output-tree {output.tree} \
-            --output-node-data {output.node_data} \
-            --root {params.root} \
-            --coalescent {params.coalescent}
-        """
 
 rule ancestral:
     message: "Reconstructing ancestral sequences and mutations"

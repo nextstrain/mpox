@@ -21,9 +21,11 @@ max_indel: 10000
 seed_spacing: 1000
 
 ## refine
+two_rate_model: true
 root: "min_dev"
-clock_rate: 5e-6
-clock_std_dev: 3e-6
+clock_rate: 3e-6
+speed_up: 15
+clock_std_dev: 1.5e-6
 
 mask:
   from_beginning: 1500
