@@ -25,6 +25,7 @@ if __name__=="__main__":
     clipped_seq = ""
     insertion_positions = {}
     for ri, repeat in repeats.iterrows():
+        print(f"Repeat sequence: {repeat.start}--{repeat.end}")
         clipped_seq += ref[start:repeat.start]
         start = repeat.end
         insertion_positions[len(clipped_seq)] = repeat.start

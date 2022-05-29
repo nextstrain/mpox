@@ -50,6 +50,11 @@
       "type": "continuous"
     },
     {
+      "key": "repeat-593",
+      "title": "repeat length following 593",
+      "type": "categorical"
+    },
+    {
       "key": "repeat-4680",
       "title": "repeat length following 4680",
       "type": "categorical"
@@ -62,6 +67,11 @@
     {
       "key": "repeat-192400",
       "title": "repeat length following 192400",
+      "type": "categorical"
+    },
+    {
+      "key": "repeat-196609",
+      "title": "repeat length following 196609",
       "type": "categorical"
     }
   ],
