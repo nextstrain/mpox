@@ -35,7 +35,10 @@ rule filter:
         exclude = config["exclude"],
         include = config["include"]
     output:
-        sequences = build_dir + "/{build_name}/filtered.fasta"
+        sequences = build_dir + "/{build_name}/filtered.fasta",
+        strains = build_dir + "/{build_name}/filtered.txt",
+        log = build_dir + "/{build_name}/filter.log",
+        metadata = build_dir + "/{build_name}/filtered.tsv"
     params:
         group_by = "country year",
         sequences_per_group = 1000,
@@ -50,9 +53,13 @@ rule filter:
             --include {input.include} \
             --output {output.sequences} \
             --group-by {params.group_by} \
+            --exclude-where "clade!='WA'" \
             --sequences-per-group {params.sequences_per_group} \
             --min-date {params.min_date} \
-            --min-length {params.min_length}
+            --min-length {params.min_length} \
+            --output-strains {output.strains} \
+            --output-metadata {output.metadata} \
+            --output-log {output.log}
         """
 
 rule align:
