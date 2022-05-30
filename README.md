@@ -4,7 +4,7 @@ This is the [Nextstrain](https://nextstrain.org) build for monkeypox virus. Outp
 
 ## Usage
 
-### Provisioning input data
+### Provision input data
 
 Retrieve input sequences using LAPIS and write to `data/` with:
 ```
@@ -16,12 +16,16 @@ Copy metadata with:
 cp example_data/metadata.tsv data/
 ```
 
+### Run analysis pipeline
+
 Run pipeline with:
 ```
 nextstrain build --docker --image=nextstrain/base:branch-nextalign-v2 --cpus 1 .
 ```
 
 Adjust the number of CPUs to what your machine has available you want to perform alignment and tree building a bit faster.
+
+### Visualize results
 
 View results with:
 ```
