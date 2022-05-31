@@ -43,6 +43,7 @@ params = {
             ('isolation_source',        'Isolation_csv'),
             ('bioproject_accession',    'BioProject_s'),
             ('biosample_accession',     'BioSample_s'),
+            ('sra_accession',           'SRALink_csv'),
             ('title',                   'Definition_s'),
             ('authors',                 'Authors_csv'),
             ('publications',            'PubMed_csv'),

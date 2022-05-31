@@ -41,5 +41,6 @@ transform:
     'division',
     'location',
     'host',
-    'date_submitted'
+    'date_submitted',
+    'sra_accession'
   ]
