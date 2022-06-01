@@ -4,12 +4,19 @@ This is the [Nextstrain](https://nextstrain.org) build for monkeypox virus. Outp
 
 ## Usage
 
-Copy input data with:
+### Provision input data
+
+Retrieve input sequences using LAPIS and write to `data/` with:
 ```
-mkdir -p data/
-cp -v example_data/* data/
+nextstrain build --docker --image=nextstrain/base:branch-nextalign-v2 . data/sequences.fasta
 ```
-Add any additional sequences and metadata in separate fasta or metadata-tsv files to `data`, respectively.
+
+Copy metadata with:
+```
+cp example_data/metadata.tsv data/
+```
+
+### Run analysis pipeline
 
 Run pipeline with:
 ```
@@ -17,6 +24,8 @@ nextstrain build --docker --image=nextstrain/base:branch-nextalign-v2 --cpus 1 .
 ```
 
 Adjust the number of CPUs to what your machine has available you want to perform alignment and tree building a bit faster.
+
+### Visualize results
 
 View results with:
 ```
@@ -29,64 +38,6 @@ Configuration takes place in `config/config.yml` by default.
 The analysis pipeline is contained in `workflow/snakemake_rule/core.smk`.
 This can be read top-to-bottom, each rule specifies its file inputs and output and pulls its parameters from `config`.
 There is little redirection and each rule should be able to be reasoned with on its own.
-
-## Input data
-
-### GenBank data
-
-Input data is downloaded from [ViPR Poxviridae resource](https://www.viprbrc.org/brc/home.spg?decorator=pox).
-- Subfamily: Chordopoxvirinae
-- Genus: Orthopoxvirus
-- Species: Monkeypox virus
-
-Download Genome FASTA, select custom format, and choose the following fields in this order:
-1. Strain name
-2. GenBank accession
-3. Country
-4. Date
-5. Host
-
-This downloads the file `GenomicFastaResults.fasta`. Parse this file into sequences and metadata using:
-```
-augur parse \
- --sequences example_data/GenomicFastaResults.fasta \
- --fields strain accession date country host \
- --output-sequences example_data/sequences.fasta \
- --output-metadata example_data/metadata.tsv
-```
-
-ViPR dates are weird with a format of `2006_12_14`. This needs to be manually corrected to `2006-12-14` via regex.
-
-This data is versioned as `example_data/sequences.fasta`.
-
-### Outbreak data
-
-- [Monkeypox/PT0001/2022](https://virological.org/t/first-draft-genome-sequence-of-monkeypox-virus-associated-with-the-suspected-multi-country-outbreak-may-2022-confirmed-case-in-portugal/799)
-- [ITM_MPX_1_Belgium](https://virological.org/t/belgian-case-of-monkeypox-virus-linked-to-outbreak-in-portugal/801)
-- [MPXV_USA_2022_MA001](https://www.ncbi.nlm.nih.gov/nuccore/ON563414)
-
-has been saved to `example_data/outbreak.fasta`.
-
-### Data preparation
-
-**Option 1:**
-
-Collect data as described above and store in one or more `data/*.fasta` and `data/*.tsv` file(s).
-
-**Option 2:**
-
-Move the provided metadata and sequences to `data/`:
-```
-cp example_data/metadata.tsv data/metadata.tsv
-cat example_data/sequences.fasta example_data/outbreak.fasta > data/sequences.fasta
-```
-
-**Option 3:**
-
-Download data using [LAPIS](https://mpox-lapis.gen-spectrum.org/docs)
-```
-snakemake --cores 1 -f download_via_lapis
-```
 
 ### Data use
 
@@ -101,3 +52,10 @@ uncertain.
 
 Follow the [standard installation instructions](https://docs.nextstrain.org/en/latest/install.html) for Nextstrain's suite of software tools.
 Please choose the installation method for your operating system which uses Docker, as currently a pre-release version of Nextalign is required which we've baked into the `--image` argument to `nextstrain build` above.
+
+### Nextstrain build vs Snakemake
+
+The above commands use the Nextstrain CLI and `nextstrain build` along with Docker to run using Nextalign v2. Alternatively, if you install Nextalign v2 locally. You can run pipeline with:
+```
+snakemake -j 1 -p --configfile config/config.yaml
+```
