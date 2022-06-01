@@ -21,6 +21,7 @@ max_indel: 10000
 seed_spacing: 1000
 
 ## refine
+timetree: false
 root: "min_dev"
 clock_rate: 5e-6
 clock_std_dev: 3e-6
