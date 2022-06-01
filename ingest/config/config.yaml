@@ -27,6 +27,10 @@ transform:
     ]
     # List of string fields to titlecase
     fields: ['region', 'country', 'division', 'location']
+  # Authors column name
+  authors_column: 'authors'
+  # Authors default value if authors value is empty
+  authors_default_value: '?'
   # Field to use as the sequence ID in the FASTA file
   id_field: 'strain'
   # Field to use as the sequence in the FASTA file
@@ -42,5 +46,6 @@ transform:
     'location',
     'host',
     'date_submitted',
-    'sra_accession'
+    'sra_accession',
+    'authors'
   ]

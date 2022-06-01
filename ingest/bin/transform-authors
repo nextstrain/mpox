@@ -1,0 +1,44 @@
+#!/usr/bin/env python3
+"""
+Abbreviates a full list of authors to be '<first author> et al.' of the NDJSON
+record from stdin and outputs modified records to stdout.
+
+Note: This is a "best effort" approach and can potentially mangle the author name.
+"""
+import argparse
+import json
+import re
+from sys import stdin, stdout
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(
+        description=__doc__,
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter
+    )
+    parser.add_argument("--authors-column", default="authors",
+        help="Column containing list of authors.")
+    parser.add_argument("--default-value", default="?",
+        help="Default value to use if authors list is empty.")
+
+    args = parser.parse_args()
+
+    for record in stdin:
+        record = json.loads(record)
+
+        # Strip and normalize whitespace
+        record[args.authors_column] = re.sub(r'\s+', ' ', record[args.authors_column])
+
+        if record[args.authors_column] == "":
+            record[args.authors_column] = args.default_value
+        else:
+            # Split authors list on comma/semicolon
+            # OR "and"/"&" with at least one space before and after
+            record[args.authors_column] = re.split(r'(?:\s*[,，;；]\s*|\s+(?:and|&)\s+)', record[args.authors_column])[0]
+
+            # if it does not already end with " et al.", add it
+            if not record[args.authors_column].strip('. ').endswith(" et al"):
+                record[args.authors_column] += ' et al'
+
+        json.dump(record, stdout, allow_nan=False, indent=None, separators=',:')
+        print()
