@@ -25,6 +25,8 @@ if __name__=="__main__":
             "mutation_length": node["mutation_length"],
             "branch_length": node["branch_length"]
         }
+        if "raw_date" in node:
+            new_node_data[name]["date"] = node["raw_date"]
 
     data["nodes"] = new_node_data
     with open(args.output_node_data, 'w') as fh:
