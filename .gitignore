@@ -9,6 +9,7 @@ logs/
 
 # Sensitive environment variables
 environment*
+env.d/
 
 # Snakemake state dir
 .snakemake
