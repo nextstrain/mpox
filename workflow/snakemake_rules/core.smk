@@ -26,7 +26,8 @@ rule filter:
         metadata =  "data/metadata.tsv",
         exclude = config["exclude"]
     output:
-        sequences = build_dir + "/{build_name}/filtered.fasta"
+        sequences = build_dir + "/{build_name}/filtered.fasta",
+        log = build_dir + "/{build_name}/filtered.log"
     params:
         group_by = "country year",
         sequences_per_group = 1000,
@@ -42,7 +43,8 @@ rule filter:
             --group-by {params.group_by} \
             --sequences-per-group {params.sequences_per_group} \
             --min-date {params.min_date} \
-            --min-length {params.min_length}
+            --min-length {params.min_length} \
+            --output-log {output.log}
         """
 
 rule align:
