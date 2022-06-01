@@ -241,7 +241,7 @@ rule export:
     input:
         tree = rules.refine.output.tree,
         metadata = "data/metadata.tsv",
-        branch_lengths = lambda w: "results/{build_name}/branch_lengths.json" if "timetree" in config and config['timetree'] else "results/{build_name}/branch_lengths_no_time.json",
+        branch_lengths = lambda w: "results/{build_name}/branch_lengths.json" if config.get('timetree', False) else "results/{build_name}/branch_lengths_no_time.json",
         traits = rules.traits.output.node_data,
         nt_muts = rules.ancestral.output.node_data,
         aa_muts = rules.translate.output.node_data,
