@@ -1,8 +1,8 @@
 from collections import defaultdict
 import json, argparse
-from timeit import repeat
 from Bio import Phylo
 import numpy as np
+from itertools import product
 
 
 
@@ -139,9 +139,5 @@ if __name__=="__main__":
     sol_int = minimize(cost, [10, 45, 45], args=(outbreak_internal, M_base, CT, AG))
     print(sol_int['x'][0]*M_base + sol_int['x'][1]*CT + sol_int['x'][2]*AG)
 
-    for i, tri in product(alphabet, repeat=3):
-        print("".join(tri), tri_all_nodes[i])
-
-    from itertools import product
     for i, tri in enumerate(product(alphabet, repeat=3)):
         print("".join(tri), ":\t", "\t".join(map(lambda x:f"{int(x)}", tri_all_nodes[i]-tri_outbreak[i])),"\t---\t", "\t".join(map(lambda x:f"{int(x)}", tri_outbreak[i])))
