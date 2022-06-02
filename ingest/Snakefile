@@ -1,6 +1,8 @@
 if not config:
     configfile: "config/config.yaml"
 
+send_slack_notifications = config.get("send_slack_notifications", False)
+
 def _get_all_targets(wildcards):
     # Default targets are the metadata TSV and sequences FASTA files
     all_targets = [
@@ -34,6 +36,13 @@ def _get_all_targets(wildcards):
                 )
             )
 
+    # Add additional targets for Nextstrain's internal Slack notifications
+    if send_slack_notifications:
+        all_targets.extend([
+            "data/notify/genbank-record-change.done",
+        ])
+
+
     return all_targets
 
 
@@ -46,3 +55,6 @@ include: "workflow/snakemake_rules/transform.smk"
 
 if config.get("upload"):
     include: "workflow/snakemake_rules/upload.smk"
+
+if send_slack_notifications:
+    include: "workflow/snakemake_rules/slack_notifications.smk"

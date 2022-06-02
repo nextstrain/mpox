@@ -19,3 +19,6 @@ upload:
       'metadata.tsv.gz',
       'sequences.fasta.xz'
     ]
+
+# Toggle for Slack notifications
+send_slack_notifications: True
