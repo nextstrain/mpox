@@ -18,6 +18,11 @@ This will produce two files:
     - data/metadata.tsv
     - data/sequences.fasta
 
+Run the complete ingest pipeline and upload results to AWS S3 with
+```
+nextstrain build . --configfiles config/config.yaml config/optional.yaml
+```
+
 ## Configuration
 
 Configuration takes place in `config/config.yaml` by default.
