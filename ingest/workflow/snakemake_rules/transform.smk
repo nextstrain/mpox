@@ -18,6 +18,8 @@ rule transform:
     output:
         metadata = "data/metadata.tsv",
         sequences = "data/sequences.fasta"
+    log:
+        "logs/transform.txt"
     params:
         field_map = config['transform']['field_map'],
         strain_regex = config['transform']['strain_regex'],
@@ -36,7 +38,7 @@ rule transform:
         sequence_field = config['transform']['sequence_field']
     shell:
         """
-        cat {input.sequences_ndjson} \
+        (cat {input.sequences_ndjson} \
             | ./bin/transform-field-names \
                 --field-map {params.field_map} \
             | ./bin/transform-string-fields --normalize \
@@ -60,5 +62,5 @@ rule transform:
             | ./bin/ndjson-to-tsv-and-fasta \
                 --metadata-columns {params.metadata_columns} \
                 --id-field {params.id_field} \
-                --sequence-field {params.sequence_field}
+                --sequence-field {params.sequence_field} ) 2>> {log}
         """
