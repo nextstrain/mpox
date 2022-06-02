@@ -22,6 +22,7 @@ seed_spacing: 1000
 
 ## refine
 two_rate_model: true
+timetree: true
 root: "min_dev"
 clock_rate: 3e-6
 speed_up: 15

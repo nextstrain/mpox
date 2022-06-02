@@ -264,13 +264,22 @@ rule mutation_context:
             --output {output.node_data}
         """
 
+rule remove_time:
+    input:
+        "results/{build_name}/branch_lengths.json"
+    output:
+        "results/{build_name}/branch_lengths_no_time.json"
+    shell:
+        """
+        python3 scripts/remove_timeinfo.py --input-node-data {input} --output-node-data {output}
+        """
 
 rule export:
     message: "Exporting data files for for auspice"
     input:
         tree = build_dir + "/{build_name}/tree.nwk",
         metadata = "data/metadata.tsv",
-        branch_lengths = build_dir + "/{build_name}/branch_lengths.json",
+        branch_lengths = lambda w: "results/{build_name}/branch_lengths.json" if config.get('timetree', False) else "results/{build_name}/branch_lengths_no_time.json",
         traits = rules.traits.output.node_data,
         nt_muts = rules.ancestral.output.node_data,
         aa_muts = rules.translate.output.node_data,
