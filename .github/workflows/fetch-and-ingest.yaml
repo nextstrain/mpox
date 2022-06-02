@@ -1,0 +1,56 @@
+name: Fetch and ingest
+
+on:
+  schedule:
+    # Note times are in UTC, which is 1 or 2 hours behind CET depending on daylight savings.
+    #
+    # Note the actual runs might be late.
+    # Numerous people were confused, about that, including me:
+    #  - https://github.community/t/scheduled-action-running-consistently-late/138025/11
+    #  - https://github.com/github/docs/issues/3059
+    #
+    # Note, '*' is a special character in YAML, so you have to quote this string.
+    #
+    # Docs:
+    #  - https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows#schedule
+    #
+    # Tool that deciphers this particular format of crontab string:
+    #  - https://crontab.guru/
+    - cron:  '0 16 * * *'
+
+  repository_dispatch:
+    types:
+      - fetch-and-ingest
+
+  # Manually triggered using GitHub's UI
+  workflow_dispatch:
+
+jobs:
+  fetch-and-ingest:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: nextstrain/.github/actions/setup-nextstrain-cli@master
+
+    - name: run_pipeline
+      run: |
+        ./bin/write-envdir ingest/env.d \
+          AWS_DEFAULT_REGION \
+          SLACK_TOKEN \
+          SLACK_CHANNELS
+
+        nextstrain build \
+          --aws-batch \
+          --detach \
+          --no-download \
+          --exec env \
+          ingest \
+            envdir env.d snakemake \
+              --configfiles config/config.yaml config/optional.yaml \
+              --printshellcmds
+      env:
+        AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        SLACK_CHANNELS: monkeypox-updates
+        SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
