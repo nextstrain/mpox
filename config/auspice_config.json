@@ -25,6 +25,11 @@
       "type": "categorical"
     },
     {
+      "key": "date",
+      "title": "Date",
+      "type": "categorical"
+    },
+    {
       "key": "region",
       "title": "Region",
       "type": "categorical"
