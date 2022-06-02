@@ -29,6 +29,8 @@ rule transform:
         titlecase_fields = config['transform']['titlecase']['fields'],
         authors_column = config['transform']['authors_column'],
         authors_default_value = config['transform']['authors_default_value'],
+        annotations = config['transform']['annotations'],
+        annotations_id = config['transform']['annotations_id'],
         metadata_columns = config['transform']['metadata_columns'],
         id_field = config['transform']['id_field'],
         sequence_field = config['transform']['sequence_field']
@@ -52,6 +54,9 @@ rule transform:
             | ./bin/transform-authors \
                 --authors-column {params.authors_column} \
                 --default-value {params.authors_default_value} \
+            | ./bin/merge-user-metadata \
+                --annotations {params.annotations} \
+                --id-field {params.annotations_id} \
             | ./bin/ndjson-to-tsv-and-fasta \
                 --metadata-columns {params.metadata_columns} \
                 --id-field {params.id_field} \

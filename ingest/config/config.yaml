@@ -31,6 +31,10 @@ transform:
   authors_column: 'authors'
   # Authors default value if authors value is empty
   authors_default_value: '?'
+  # User annotations file
+  annotations: './source-data/annotations.tsv'
+  # ID field used to merge annotations
+  annotations_id: 'accession'
   # Field to use as the sequence ID in the FASTA file
   id_field: 'strain'
   # Field to use as the sequence in the FASTA file
@@ -47,5 +51,7 @@ transform:
     'host',
     'date_submitted',
     'sra_accession',
-    'authors'
+    'authors',
+    'outbreak_associated',
+    'clade'
   ]
