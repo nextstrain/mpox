@@ -51,3 +51,4 @@ W_Nigeria
 
 # potentially problematic
 MPXV_1_IT_Milan_2022  # many extra mutations
+MPXV_GSTT_Patient1 # reversions in 3' terminal region
