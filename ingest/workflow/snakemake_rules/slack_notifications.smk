@@ -32,3 +32,9 @@ rule notify_on_genbank_record_change:
         ./bin/notify-on-record-change {input.genbank_ndjson} {params.s3_src:q}/genbank.ndjson.xz Genbank
         """
 
+
+onstart:
+    shell("./bin/notify-on-job-start")
+
+onerror:
+    shell("./bin/notify-on-job-fail")
