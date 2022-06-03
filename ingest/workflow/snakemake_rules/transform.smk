@@ -29,8 +29,9 @@ rule transform:
         articles = config['transform']['titlecase']['articles'],
         abbreviations = config['transform']['titlecase']['abbreviations'],
         titlecase_fields = config['transform']['titlecase']['fields'],
-        authors_column = config['transform']['authors_column'],
+        authors_field = config['transform']['authors_field'],
         authors_default_value = config['transform']['authors_default_value'],
+        abbr_authors_field = config['transform']['abbr_authors_field'],
         annotations = config['transform']['annotations'],
         annotations_id = config['transform']['annotations_id'],
         metadata_columns = config['transform']['metadata_columns'],
@@ -54,8 +55,9 @@ rule transform:
                 --articles {params.articles} \
                 --abbreviations {params.abbreviations} \
             | ./bin/transform-authors \
-                --authors-column {params.authors_column} \
+                --authors-field {params.authors_field} \
                 --default-value {params.authors_default_value} \
+                --abbr-authors-field {params.abbr_authors_field} \
             | ./bin/merge-user-metadata \
                 --annotations {params.annotations} \
                 --id-field {params.annotations_id} \

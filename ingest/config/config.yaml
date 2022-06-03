@@ -27,10 +27,12 @@ transform:
     ]
     # List of string fields to titlecase
     fields: ['region', 'country', 'division', 'location']
-  # Authors column name
-  authors_column: 'authors'
+  # Authors field name
+  authors_field: 'authors'
   # Authors default value if authors value is empty
   authors_default_value: '?'
+  # Field name for the generated abbreviated authors
+  abbr_authors_field: 'abbr_authors'
   # User annotations file
   annotations: './source-data/annotations.tsv'
   # ID field used to merge annotations
@@ -52,6 +54,7 @@ transform:
     'date_submitted',
     'sra_accession',
     'authors',
+    'abbr_authors',
     'outbreak_associated',
     'clade'
   ]
