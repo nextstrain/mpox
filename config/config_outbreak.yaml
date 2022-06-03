@@ -19,6 +19,7 @@ max_indel: 10000
 seed_spacing: 1000
 
 ## refine
+timetree: true
 root: "best"
 
 mask:
