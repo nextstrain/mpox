@@ -86,3 +86,4 @@ MPXV_WRAIR7_61__Walter_Reed_267
 # potentially problematic
 MPXV_1_IT_Milan_2022  # many extra mutations
 MPXV_FR_HCL0001_2022  # any reversions in terminal regions
+MPXV_GSTT_Patient1 # reversions in 3' terminal region
