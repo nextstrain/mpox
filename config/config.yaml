@@ -1,4 +1,4 @@
-exclude: "config/exclude.txt"
+exclude: "config/exclude_accessions.txt"
 reference: "config/reference.fasta"
 genemap: "config/genemap.gff"
 genbank_reference: "config/reference.gb"
@@ -8,6 +8,8 @@ auspice_config: "config/auspice_config.json"
 description: "config/description.md"
 
 data_source: "lapis"
+strain_id_field: "accession"
+display_strain_field: "strain_original"
 
 build_name: "cladeX"
 auspice_name: "monkeypox"

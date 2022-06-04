@@ -12,6 +12,20 @@ Parameter are expected to sit in the `config` data structure.
 In addition, `build_dir` and `auspice_dir` need to be defined upstream.
 '''
 
+rule wrangle_metadata:
+    input:
+        metadata =  "data/metadata.tsv"
+    output:
+        metadata = build_dir + "/{build_name}/metadata.tsv"
+    params:
+        strain_id = lambda w: config.get('strain_id_field', 'strain')
+    shell:
+        """
+        python3 scripts/wrangle_metadata.py --metadata {input.metadata} \
+                    --strain-id {params.strain_id} \
+                    --output {output.metadata}
+        """
+
 rule filter:
     message:
         """
@@ -23,7 +37,7 @@ rule filter:
         """
     input:
         sequences = "data/sequences.fasta",
-        metadata =  "data/metadata.tsv",
+        metadata =  build_dir + "/{build_name}/metadata.tsv",
         exclude = config["exclude"]
     output:
         sequences = build_dir + "/{build_name}/filtered.fasta",
@@ -123,7 +137,7 @@ rule refine:
     input:
         tree = rules.tree.output.tree,
         alignment = build_dir + "/{build_name}/masked.fasta",
-        metadata = "data/metadata.tsv"
+        metadata = build_dir + "/{build_name}/metadata.tsv"
     output:
         tree = build_dir + "/{build_name}/tree.nwk",
         node_data = build_dir + "/{build_name}/branch_lengths.json"
@@ -195,7 +209,7 @@ rule traits:
         """
     input:
         tree = rules.refine.output.tree,
-        metadata = "data/metadata.tsv"
+        metadata = build_dir + "/{build_name}/metadata.tsv"
     output:
         node_data = build_dir + "/{build_name}/traits.json",
     params:
@@ -240,7 +254,7 @@ rule export:
     message: "Exporting data files for for auspice"
     input:
         tree = rules.refine.output.tree,
-        metadata = "data/metadata.tsv",
+        metadata = build_dir + "/{build_name}/metadata.tsv",
         branch_lengths = lambda w: "results/{build_name}/branch_lengths.json" if config.get('timetree', False) else "results/{build_name}/branch_lengths_no_time.json",
         traits = rules.traits.output.node_data,
         nt_muts = rules.ancestral.output.node_data,
@@ -251,8 +265,8 @@ rule export:
         description = config["description"],
         auspice_config = config["auspice_config"]
     output:
-        auspice_json =  build_dir + "/{build_name}/tree.json",
-        root_sequence = build_dir + "/{build_name}/tree_root-sequence.json"
+        auspice_json =  build_dir + "/{build_name}/raw_tree.json",
+        root_sequence = build_dir + "/{build_name}/raw_tree_root-sequence.json"
     shell:
         """
         augur export v2 \
@@ -265,4 +279,24 @@ rule export:
             --auspice-config {input.auspice_config} \
             --include-root-sequence \
             --output {output.auspice_json}
+        """
+
+
+rule final_strain_name:
+    input:
+        auspice_json =  build_dir + "/{build_name}/raw_tree.json",
+        metadata = build_dir + "/{build_name}/metadata.tsv",
+        root_sequence = build_dir + "/{build_name}/raw_tree_root-sequence.json"
+    output:
+        auspice_json =  build_dir + "/{build_name}/tree.json",
+        root_sequence =  build_dir + "/{build_name}/tree_root-sequence.json"
+    params:
+        display_strain_field = lambda w: config.get('display_strain_field', 'strain')
+    shell:
+        """
+        python3 scripts/set_final_strain_name.py --metadata {input.metadata} \
+                --input-auspice-json {input.auspice_json} \
+                --display-strain-name {params.display_strain_field} \
+                --output {output.auspice_json}
+        cp {input.root_sequence} {output.root_sequence}
         """
