@@ -1,0 +1,16 @@
+clade	gene	site	alt
+MPXV Clade 1	nuc	86511	T
+MPXV Clade 1	nuc	35361	A
+
+MPXV Clade 2	nuc	86511	G
+MPXV Clade 2	nuc	150979	A
+MPXV Clade 2	nuc	35361	C
+MPXV Clade 2	nuc	54022	G
+
+MPXV Clade 3	nuc	86511	G
+MPXV Clade 3	nuc	150979	A
+MPXV Clade 3	nuc	35361	C
+MPXV Clade 3	nuc	48157	C
+
+HPXV-1	clade	MPXV Clade 3
+HPXV-1	nuc	48536	A

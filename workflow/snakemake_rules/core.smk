@@ -212,6 +212,26 @@ rule traits:
             --sampling-bias-correction {params.sampling_bias_correction}
         """
 
+rule clades:
+    message: "Adding internal clade labels"
+    input:
+        tree = rules.refine.output.tree,
+        aa_muts = rules.translate.output.node_data,
+        nuc_muts = rules.ancestral.output.node_data,
+        clades = config["clades"]
+    output:
+        node_data = build_dir + "/{build_name}/clades.json"
+    log:
+        "logs/clades_{build_name}.txt"
+    shell:
+        """
+        augur clades --tree {input.tree} \
+            --mutations {input.nuc_muts} {input.aa_muts} \
+            --clades {input.clades} \
+            --output-node-data {output.node_data} 2>&1 | tee {log}
+        """
+
+
 rule mutation_context:
     input:
         tree = rules.refine.output.tree,
@@ -245,6 +265,7 @@ rule export:
         traits = rules.traits.output.node_data,
         nt_muts = rules.ancestral.output.node_data,
         aa_muts = rules.translate.output.node_data,
+        clades = rules.clades.output.node_data,
         mutation_context = rules.mutation_context.output.node_data,
         colors = config["colors"],
         lat_longs = config["lat_longs"],
@@ -258,7 +279,7 @@ rule export:
         augur export v2 \
             --tree {input.tree} \
             --metadata {input.metadata} \
-            --node-data {input.branch_lengths} {input.nt_muts} {input.aa_muts} {input.mutation_context} \
+            --node-data {input.branch_lengths} {input.nt_muts} {input.aa_muts} {input.mutation_context} {input.clades} \
             --colors {input.colors} \
             --lat-longs {input.lat_longs} \
             --description {input.description} \
