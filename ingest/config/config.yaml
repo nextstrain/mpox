@@ -45,6 +45,7 @@ transform:
   metadata_columns: [
     'strain',
     'accession',
+    'genbank_accession_rev',
     'date',
     'region',
     'country',
