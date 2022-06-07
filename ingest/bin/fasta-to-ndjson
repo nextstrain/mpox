@@ -37,7 +37,11 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     fasta_fields = [field.lower() for field in args.fields]
-    exclude_fields = [field.lower() for field in args.exclude]
+
+    exclude_fields = []
+    if args.exclude:
+        exclude_fields = [field.lower() for field in args.exclude]
+
     passed_checks = True
 
     if 'strain' not in fasta_fields:

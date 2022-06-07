@@ -50,6 +50,8 @@ Gabon_1988	KJ642619	1988-XX-XX	Africa	Gabon	Unknown	no	CA
 Boende_DRC_2008	KP849469	2008-XX-XX	Africa	Democratic Republic of the Congo	Unknown	no	CA
 Cote_dIvoire_1971	KP849470	1971-XX-XX	Africa	Cote d'Ivoire	Unknown	no	WA
 Yambuku_DRC_1985	KP849471	1985-XX-XX	Africa	Democratic Republic of the Congo	Unknown	no	CA
+MPX-37/Finland/2022	LPS0001	2022-05-24	Europe	Finland	human	yes	WA
+MPX-42/Finland/2022	LPS0002	2022-05-31	Europe	Finland	human	yes	WA
 3019	MK783028	2017-11-09	Africa	Nigeria	human	no	WA
 3029	MK783029	2017-12-06	Africa	Nigeria	human	no	WA
 3025	MK783030	2017-11-30	Africa	Nigeria	human	no	WA
@@ -176,6 +178,5 @@ MPXV/Germany/2022/RKI016	ON694339	2022-05-XX	Europe	Germany	human	yes	WA
 MPXV/Germany/2022/RKI014	ON694340	2022-05-XX	Europe	Germany	human	yes	WA
 MPXV/Germany/2022/RKI012	ON694341	2022-05-XX	Europe	Germany	human	yes	WA
 MPXV/Germany/2022/RKI011	ON694342	2022-05-XX	Europe	Germany	human	yes	WA
-ITM_MPX_1_Belgium	tmpid_0001	2022-05-13	Europe	Belgium	human	yes	WA
-mpx-37-Finland_consensus	tmpid_0002	2022-05-24	Europe	Finland	human	yes	WA
+ITM_MPX_1_Belgium	XXXXXXXX	2022-05-13	Europe	Belgium	human	yes	WA
 
