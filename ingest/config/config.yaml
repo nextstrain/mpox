@@ -38,7 +38,7 @@ transform:
   # ID field used to merge annotations
   annotations_id: 'accession'
   # Field to use as the sequence ID in the FASTA file
-  id_field: 'strain'
+  id_field: 'accession'
   # Field to use as the sequence in the FASTA file
   sequence_field: 'sequence'
   # Final output columns for the metadata TSV
