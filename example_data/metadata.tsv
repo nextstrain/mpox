@@ -121,7 +121,7 @@ MPXV-CH-38156923/2022	ON622720	2022-05-24	Europe	Switzerland	human	yes	WA
 MPXV_1_IT_Milan_2022	ON622721	2022-05-25	Europe	Italy	human	yes	WA
 MPXV_FR_HCL0001_2022	ON622722	2022-05-22	Europe	France	human	yes	WA
 MPX/human/USA/UT-UPHL-82200022/2022	ON627808	2022-05-20	North America	USA	human	yes	WA
-2022/2 SLO	ON631241	2022-05-24	Europe	Slovenia	human	yes	WA
+2022/2/SLO	ON631241	2022-05-24	Europe	Slovenia	human	yes	WA
 MPxV/VIDRL01/2022	ON631963	2022-05-XX	Oceania	Australia	human	yes	WA
 MPXV/Germany/2022/RKI01	ON637938	2022-05-XX	Europe	Germany	human	yes	WA
 MPXV/Germany/2022/RKI02	ON637939	2022-05-XX	Europe	Germany	human	yes	WA
@@ -145,5 +145,22 @@ Monkeypox/PT0022/2022	ON649722	2022-05-19	Europe	Portugal	human	yes	WA
 Monkeypox/PT0013/2022	ON649723	2022-05-20	Europe	Portugal	human	yes	WA
 Monkeypox/PT0014/2022	ON649724	2022-05-23	Europe	Portugal	human	yes	WA
 Monkeypox/PT0011/2022	ON649725	2022-05-23	Europe	Portugal	human	yes	WA
+MPXV_ISR001_2022	ON649879	2022-05-20	West Asia	Israel	human	yes	WA
+MPXV_USA_2022_FL001	ON674051	2022-05-XX	North America	USA	human	no	WA
+MPXV_USA_2022_VA001	ON675438	2022-05-XX	North America	USA	human	no	WA
+MPXV_USA_2022_CA001	ON676703	2022-05-XX	North America	USA	human	yes	WA
+MPXV_USA_2022_FL002	ON676704	2022-05-XX	North America	USA	human	yes	WA
+MPXV_USA_2022_UT001	ON676705	2022-05-XX	North America	USA	human	yes	WA
+MPXV_USA_2022_UT002	ON676706	2022-05-XX	North America	USA	human	yes	WA
+MPXV_USA_2021_TX	ON676707	2021-07-XX	North America	USA	human	no	WA
+MPXV_USA_2021_MD	ON676708	2021-11-XX	North America	USA	human	no	WA
+MPXV/Germany/2022/RKI03	ON682263	2022-05-XX	Europe	Germany	human	yes	WA
+MPXV/Germany/2022/RKI05	ON682264	2022-05-XX	Europe	Germany	human	yes	WA
+MPXV/Germany/2022/RKI04	ON682265	2022-05-XX	Europe	Germany	human	yes	WA
+MPXV/Germany/2022/RKI09	ON682266	2022-05-XX	Europe	Germany	human	yes	WA
+MPXV/Germany/2022/RKI010	ON682267	2022-05-XX	Europe	Germany	human	yes	WA
+MPXV/Germany/2022/RKI08	ON682268	2022-05-XX	Europe	Germany	human	yes	WA
+MPXV/Germany/2022/RKI07	ON682269	2022-05-XX	Europe	Germany	human	yes	WA
+MPXV/Germany/2022/RKI06	ON682270	2022-05-XX	Europe	Germany	human	yes	WA
 ITM_MPX_1_Belgium	XXXXXXXX	2022-05-13	Europe	Belgium	human	yes	WA
 mpx-37-Finland_consensus	XXXXXXXX	2022-05-24	Europe	Finland	human	yes	WA
