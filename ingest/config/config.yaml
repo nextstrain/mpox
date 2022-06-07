@@ -54,8 +54,8 @@ transform:
     'host',
     'date_submitted',
     'sra_accession',
-    'authors',
-    'abbr_authors',
     'outbreak_associated',
-    'clade'
+    'clade',
+    'abbr_authors',
+    'authors',
   ]
