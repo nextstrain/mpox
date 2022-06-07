@@ -30,5 +30,5 @@ clock_std_dev: 3e-6
 
 mask:
   from_beginning: 1500
-  from_end: 1000
+  from_end: 7000
   maskfile: "config/mask.bed"
