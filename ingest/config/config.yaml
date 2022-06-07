@@ -43,9 +43,9 @@ transform:
   sequence_field: 'sequence'
   # Final output columns for the metadata TSV
   metadata_columns: [
-    'strain',
     'accession',
     'genbank_accession_rev',
+    'strain',
     'date',
     'region',
     'country',
