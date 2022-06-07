@@ -16,8 +16,7 @@ on:
     #
     # Tool that deciphers this particular format of crontab string:
     #  - https://crontab.guru/
-    # Runs at 8am, 2pm, 12am CET as of 7 June 2022 since the Basel team has been mostly sherpherding the monkeypox builds    
-    - cron:  '0 6,14,22 * * *'
+    - cron:  '0 * * * *'
 
   repository_dispatch:
     types:
