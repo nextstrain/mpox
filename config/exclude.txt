@@ -52,3 +52,34 @@ W_Nigeria
 # potentially problematic
 MPXV_1_IT_Milan_2022  # many extra mutations
 MPXV_FR_HCL0001_2022  # any reversions in terminal regions
+
+# Nextclade
+UNKNOWN_FV537349
+UNKNOWN_FV537350
+UNKNOWN_FV537351
+UNKNOWN_FV537352
+
+# Not HPXV1
+MPXV-USA2003_099_Gambian_Rat
+MPXV-USA2003_099_Rope_Squirrel
+USA_2003_039
+USA_2003_044
+MPXV-USA2003_099_Dormouse
+PCH
+MPXV_WRAIR7_61__Walter_Reed_267
+COP_58
+MPXV_DRC_2012_Malacomys_longipes_EPU30
+Sierra_Leone
+Cote_dIvoire_1971
+Liberia_1970_184
+Ivory_Coast_2012
+MPXV_TNP_2018_East_Paddy
+MPXV_TNP_2017_North_Surprise_1
+MPXV_TNP_2017_North_Saro
+MPXV_TNP_2017_North_Sidonie
+MPXV_TNP_2017_North_Bic
+MPXV_TNP_2017_North_Mama
+MPXV_TNP_2017_South_Ravel_1
+MPXV_TNP_2017_South_Ravel_2
+MPXV_TNP_2017_South_Pushkin
+

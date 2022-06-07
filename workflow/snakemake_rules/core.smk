@@ -38,11 +38,10 @@ rule filter:
         augur filter \
             --sequences {input.sequences} \
             --metadata {input.metadata} \
+            --metadata-id-columns strain \
+            --exclude-where 'clade!=WA' \
             --exclude {input.exclude} \
             --output {output.sequences} \
-            --group-by {params.group_by} \
-            --sequences-per-group {params.sequences_per_group} \
-            --min-date {params.min_date} \
             --min-length {params.min_length} \
             --output-log {output.log}
         """
@@ -108,17 +107,14 @@ rule tree:
         augur tree \
             --alignment {input.alignment} \
             --output {output.tree} \
-            --nthreads {threads}
+            --nthreads {threads} \
+            --tree-builder-args '-ninit 10 -n 4 -czb'
         """
 
 rule refine:
     message:
         """
         Refining tree
-          - estimate timetree
-          - use {params.coalescent} coalescent timescale
-          - estimate {params.date_inference} node dates
-          - filter tips more than {params.clock_filter_iqd} IQDs from clock expectation
         """
     input:
         tree = rules.tree.output.tree,
@@ -128,12 +124,7 @@ rule refine:
         tree = build_dir + "/{build_name}/tree.nwk",
         node_data = build_dir + "/{build_name}/branch_lengths.json"
     params:
-        coalescent = "opt",
-        date_inference = "marginal",
-        clock_filter_iqd = 10,
         root = config["root"],
-        clock_rate = lambda w: f"--clock-rate {config['clock_rate']}" if "clock_rate" in config else "",
-        clock_std_dev = lambda w: f"--clock-std-dev {config['clock_std_dev']}" if "clock_std_dev" in config else ""
     shell:
         """
         augur refine \
@@ -141,15 +132,10 @@ rule refine:
             --alignment {input.alignment} \
             --metadata {input.metadata} \
             --output-tree {output.tree} \
-            --timetree \
             --root {params.root} \
+            --divergence-unit mutations \
             --keep-polytomies \
-            {params.clock_rate} \
-            {params.clock_std_dev} \
-            --output-node-data {output.node_data} \
-            --coalescent {params.coalescent} \
-            --date-inference {params.date_inference} \
-            --clock-filter-iqd {params.clock_filter_iqd}
+            --output-node-data {output.node_data}
         """
 
 rule ancestral:
@@ -187,67 +173,34 @@ rule translate:
             --output {output.node_data}
         """
 
-rule traits:
-    message:
-        """
-        Inferring ancestral traits for {params.columns!s}
-          - increase uncertainty of reconstruction by {params.sampling_bias_correction} to partially account for sampling bias
-        """
+rule clades:
+    message: "Adding internal clade labels"
     input:
         tree = rules.refine.output.tree,
-        metadata = "data/metadata.tsv"
+        aa_muts = rules.translate.output.node_data,
+        nuc_muts = rules.ancestral.output.node_data,
+        clades = config["clades"]
     output:
-        node_data = build_dir + "/{build_name}/traits.json",
-    params:
-        columns = "country",
-        sampling_bias_correction = 3
+        node_data = build_dir + "/{build_name}/clades.json"
     shell:
         """
-        augur traits \
+        augur clades \
             --tree {input.tree} \
-            --metadata {input.metadata} \
-            --output {output.node_data} \
-            --columns {params.columns} \
-            --confidence \
-            --sampling-bias-correction {params.sampling_bias_correction}
+            --mutations {input.nuc_muts} {input.aa_muts} \
+            --clades {input.clades} \
+            --output-node-data {output.node_data} 2>&1 | tee {log}
         """
 
-rule mutation_context:
-    input:
-        tree = rules.refine.output.tree,
-        node_data = build_dir + "/{build_name}/nt_muts.json"
-    output:
-        node_data = build_dir + "/{build_name}/mutation_context.json",
-    shell:
-        """
-        python3 scripts/mutation_context.py \
-            --tree {input.tree} \
-            --mutations {input.node_data} \
-            --output {output.node_data}
-        """
-
-rule remove_time:
-    input:
-        "results/{build_name}/branch_lengths.json"
-    output:
-        "results/{build_name}/branch_lengths_no_time.json"
-    shell:
-        """
-        python3 scripts/remove_timeinfo.py --input-node-data {input} --output-node-data {output}
-        """
 
 rule export:
     message: "Exporting data files for for auspice"
     input:
         tree = rules.refine.output.tree,
         metadata = "data/metadata.tsv",
-        branch_lengths = lambda w: "results/{build_name}/branch_lengths.json" if config.get('timetree', False) else "results/{build_name}/branch_lengths_no_time.json",
-        traits = rules.traits.output.node_data,
+        branch_lengths = "results/{build_name}/branch_lengths.json",
+        clades = rules.clades.output.node_data,
         nt_muts = rules.ancestral.output.node_data,
         aa_muts = rules.translate.output.node_data,
-        mutation_context = rules.mutation_context.output.node_data,
-        colors = config["colors"],
-        lat_longs = config["lat_longs"],
         description = config["description"],
         auspice_config = config["auspice_config"]
     output:
@@ -258,9 +211,7 @@ rule export:
         augur export v2 \
             --tree {input.tree} \
             --metadata {input.metadata} \
-            --node-data {input.branch_lengths} {input.nt_muts} {input.aa_muts} {input.mutation_context} \
-            --colors {input.colors} \
-            --lat-longs {input.lat_longs} \
+            --node-data {input.branch_lengths} {input.nt_muts} {input.aa_muts} {input.clades} \
             --description {input.description} \
             --auspice-config {input.auspice_config} \
             --include-root-sequence \
