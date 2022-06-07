@@ -1,0 +1,66 @@
+#!/usr/bin/env python3
+"""
+Parses NDJSON records from stdin to two different files: a metadata TSV and a
+sequences FASTA.
+
+Records that do not have an ID or sequence will be excluded from the output files.
+"""
+import argparse
+import csv
+import json
+from sys import stderr, stdin
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(
+        description=__doc__,
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter
+    )
+    parser.add_argument("--metadata", metavar="TSV", default="data/metadata.tsv",
+        help="The output metadata TSV file")
+    parser.add_argument("--fasta", metavar="FASTA", default="data/sequences.fasta",
+        help="The output sequences FASTA file")
+    parser.add_argument("--metadata-columns", nargs="+",
+        help="List of fields from the NDJSON records to include as columns in the metadata TSV. " +
+             "Metadata TSV columns will be in the order of the columns provided.")
+    parser.add_argument("--id-field", default='strain',
+        help="Field from the records to use as the sequence ID in the FASTA file.")
+    parser.add_argument("--sequence-field", default='sequence',
+        help="Field from the record that holds the genomic sequence for the FASTA file.")
+
+    args = parser.parse_args()
+
+    with open(args.metadata, 'wt') as metadata_output:
+        with open(args.fasta, 'wt') as fasta_output:
+            metadata_csv = csv.DictWriter(
+                metadata_output,
+                args.metadata_columns,
+                restval="",
+                extrasaction='ignore',
+                delimiter='\t'
+            )
+            metadata_csv.writeheader()
+
+            for index, record in enumerate(stdin):
+                record = json.loads(record)
+
+                sequence_id = str(record.get(args.id_field, ''))
+                sequence = str(record.get(args.sequence_field, ''))
+
+                if not sequence_id:
+                    print(
+                        f"WARNING: Record number {index} does not have a sequence ID.",
+                        "This record will be excluded from the output files.",
+                        file=stderr
+                    )
+                elif not sequence:
+                    print(
+                        f"WARNING: Record number {index} does not have a sequence.",
+                        "This record will be excluded from the output files.",
+                        file=stderr
+                    )
+                else:
+                    metadata_csv.writerow(record)
+
+                    print(f">{sequence_id}", file=fasta_output)
+                    print(f"{sequence}" , file= fasta_output)
