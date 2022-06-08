@@ -12,6 +12,8 @@ MPXV Clade 3	nuc	150979	A
 MPXV Clade 3	nuc	35361	C
 MPXV Clade 3	nuc	48157	C
 
+MPXV (Outgroup)	nuc	48536	C
+
 HPXV-1	clade	MPXV Clade 3
 HPXV-1	nuc	48536	A
 
@@ -25,3 +27,4 @@ HPXV-1	nuc	48536	A
 
 22A	clade	18A
 22A	nuc	77392	A
+

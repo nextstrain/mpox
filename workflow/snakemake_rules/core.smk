@@ -38,7 +38,8 @@ rule filter:
     input:
         sequences = "data/sequences.fasta",
         metadata =  build_dir + "/{build_name}/metadata.tsv",
-        exclude = config["exclude"]
+        exclude = config["exclude"],
+        include = config["include"],
     output:
         sequences = build_dir + "/{build_name}/filtered.fasta",
         log = build_dir + "/{build_name}/filtered.log"
@@ -55,6 +56,7 @@ rule filter:
             --metadata-id-columns strain \
             --exclude-where 'clade!=WA' \
             --exclude {input.exclude} \
+			--include {input.include} \
             --output {output.sequences} \
             --min-length {params.min_length} \
             --output-log {output.log}
@@ -78,7 +80,7 @@ rule align:
     threads: workflow.cores
     shell:
         """
-        nextalign run \
+        ./bin/nextalign run \
             -v \
             --jobs {threads} \
             --sequences {input.sequences} \
