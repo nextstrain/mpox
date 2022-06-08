@@ -19,10 +19,10 @@ def format_date(date_string: str, expected_formats: set) -> str:
     >>> expected_formats = {'%Y-%m-%d', '%Y-%m-%dT%H:%M:%SZ'}
 
     >>> format_date("2020", expected_formats)
-    '2020'
+    '2020-XX-XX'
 
     >>> format_date("2020-01", expected_formats)
-    '2020-01'
+    '2020-01-XX'
 
     >>> format_date("2020-1-15", expected_formats)
     '2020-01-15'
@@ -38,9 +38,13 @@ def format_date(date_string: str, expected_formats: set) -> str:
     """
     for date_format in expected_formats:
         try:
-            return datetime.strptime(date_string, date_format).strftime('%Y-%m-%d')
+            parsed_date = datetime.strptime(date_string, date_format)
         except ValueError:
             continue
+        year_string = str(parsed_date.year)
+        month_string = str(parsed_date.month).zfill(2) if date_string.count('-') >= 1 else 'XX'
+        day_string = str(parsed_date.day).zfill(2) if date_string.count('-') == 2 else 'XX'
+        return f"{year_string}-{month_string}-{day_string}"
 
     if date_string:
         print(
