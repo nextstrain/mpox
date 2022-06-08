@@ -28,6 +28,26 @@
       "key": "host",
       "title": "Host",
       "type": "categorical"
+    },
+    {
+      "key": "strain",
+      "title": "Accession",
+      "type": "categorical"
+    },
+    {
+      "key": "strain_original",
+      "title": "Strain name",
+      "type": "categorical"
+    },
+    {
+      "key": "region",
+      "title": "Region",
+      "type": "categorical"
+    },
+    {
+      "key": "region",
+      "title": "Region",
+      "type": "categorical"
     }
   ],
   "display_defaults": {

@@ -14,14 +14,14 @@ strain_id_field: "accession"
 display_strain_field: "strain_original"
 
 build_name: "HPXV1"
-auspice_name: "nextclade_mpx_hpxv1_NC-063383"
+auspice_name: "nextclade_mpx_hpxv1_NC063383"
 
 ## filter
 min_date: 1950
-min_length: 10000
+min_length: 100000
 
 ## align
-max_indel: 10000
+max_indel: 20000
 seed_spacing: 1000
 
 ## refine
