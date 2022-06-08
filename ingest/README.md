@@ -11,13 +11,13 @@ This is the ingest pipeline for Monkeypox virus sequences.
 Fetch sequences with
 
 ```sh
-nextstrain build . data/sequences.ndjson
+nextstrain build --cpus 1 . data/sequences.ndjson
 ```
 
 Run the complete ingest pipeline with
 
 ```sh
-nextstrain build .
+nextstrain build --cpus 1 .
 ```
 This will produce two files (within the `ingest` directory):
 
