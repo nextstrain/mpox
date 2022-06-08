@@ -1,4 +1,4 @@
-exclude: "config/exclude.txt"
+exclude: "config/exclude_accessions.txt"
 reference: "config/reference.fasta"
 genemap: "config/genemap.gff"
 genbank_reference: "config/reference.gb"
@@ -9,6 +9,8 @@ description: "config/description.md"
 clades: "config/clades.tsv"
 
 data_source: "lapis"
+strain_id_field: "accession"
+display_strain_field: "strain_original"
 
 build_name: "HPXV1"
 auspice_name: "nextclade_mpx_hpxv1"
@@ -29,5 +31,5 @@ clock_std_dev: 3e-6
 
 mask:
   from_beginning: 1500
-  from_end: 1000
+  from_end: 7000
   maskfile: "config/mask.bed"

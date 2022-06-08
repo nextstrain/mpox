@@ -1,0 +1,43 @@
+name: Fetch and ingest (on branch)
+
+on:
+  # Manually triggered using GitHub's UI
+  workflow_dispatch:
+
+jobs:
+  fetch-and-ingest:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: nextstrain/.github/actions/setup-nextstrain-cli@master
+
+    - name: install-pyyaml
+      run: python3 -m pip install pyyaml
+
+    - name: run_pipeline
+      run: |
+        ./bin/write-envdir ingest/env.d \
+          AWS_DEFAULT_REGION \
+          GITHUB_RUN_ID
+
+        GITHUB_BRANCH=${GITHUB_REF#refs/heads/}
+        ./bin/set-branch-ingest-config \
+          --config-yaml ingest/config/optional.yaml \
+          --s3-dst s3://nextstrain-data/files/workflows/monkeypox/branch/"${GITHUB_BRANCH}" \
+          > ingest/config/optional-branch.yaml
+
+        nextstrain build \
+          --aws-batch \
+          --detach \
+          --no-download \
+          --exec env \
+          ingest \
+            envdir env.d snakemake \
+              --configfiles config/config.yaml config/optional-branch.yaml \
+              --printshellcmds
+      env:
+        AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        GITHUB_RUN_ID: ${{ github.run_id }}
+

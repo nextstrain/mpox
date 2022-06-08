@@ -1,0 +1,61 @@
+# Sources of sequences to include in the ingest run
+sources: ['genbank', 'Finland-MPX-37+42']
+
+# Params for the transform rule
+transform:
+  # Fields to rename.
+  # This is the first step in the pipeline, so any references to field names
+  # in the configs below should use the new field names
+  field_map: ['collected=date', 'submitted=date_submitted', 'genbank_accession=accession']
+  # Standardized strain name regex
+  # Currently accepts any characters because we do not have a clear standard for strain names
+  strain_regex: '^.+$'
+  # Back up strain name field if 'strain' doesn't match regex above
+  strain_backup_fields: ['accession']
+  # List of date fields to standardize
+  date_fields: ['date', 'date_submitted']
+  # Expected date formats present in date fields
+  expected_date_formats: ['%Y', '%Y-%m', '%Y-%m-%d', '%Y-%m-%dT%H:%M:%SZ']
+  # Titlecase rules
+  titlecase:
+    # Abbreviations not cast to titlecase, keeps uppercase
+    abbreviations: ['USA']
+    # Articles that should not be cast to titlecase
+    articles: [
+      'and', 'd', 'de', 'del', 'des', 'di', 'do', 'en', 'l', 'la', 'las', 'le',
+      'los', 'nad', 'of', 'op', 'sur', 'the', 'y'
+    ]
+    # List of string fields to titlecase
+    fields: ['region', 'country', 'division', 'location']
+  # Authors field name
+  authors_field: 'authors'
+  # Authors default value if authors value is empty
+  authors_default_value: '?'
+  # Field name for the generated abbreviated authors
+  abbr_authors_field: 'abbr_authors'
+  # User annotations file
+  annotations: './source-data/annotations.tsv'
+  # ID field used to merge annotations
+  annotations_id: 'accession'
+  # Field to use as the sequence ID in the FASTA file
+  id_field: 'accession'
+  # Field to use as the sequence in the FASTA file
+  sequence_field: 'sequence'
+  # Final output columns for the metadata TSV
+  metadata_columns: [
+    'accession',
+    'genbank_accession_rev',
+    'strain',
+    'date',
+    'region',
+    'country',
+    'division',
+    'location',
+    'host',
+    'date_submitted',
+    'sra_accession',
+    'outbreak_associated',
+    'clade',
+    'abbr_authors',
+    'authors',
+  ]

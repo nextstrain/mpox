@@ -1,0 +1,86 @@
+#!/usr/bin/env python3
+"""
+Parse delimited fields from FASTA header into NDJSON format to stdout.
+The output NDJSON records are guaranteed to have at least two fields:
+    1. strain
+    2. sequence
+
+Uses the `augur.io.read_sequences` function to read the FASTA file,
+so `augur` must be installed in the environment running the script.
+"""
+
+import argparse
+import json
+import sys
+
+from augur.io import read_sequences
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(
+        description=__doc__,
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter
+    )
+    parser.add_argument("--fasta", required=True,
+        help="FASTA file to be transformed into NDJSON format")
+    parser.add_argument("--fields", nargs="+",
+        help="Fields in the FASTA header, listed in the same order as the header. " +
+             "These will be used as the keys in the final NDJSON output. " +
+             "One of the fields must be 'strain'. " +
+             "These cannot include the field 'sequence' as this field is reserved for the genomic sequence.")
+    parser.add_argument("--separator", default='|',
+        help="Field separator in the FASTA header")
+    parser.add_argument("--exclude", nargs="*",
+        help="List of fields to exclude from final NDJSON record. "
+             "These cannot include 'strain' or 'sequence'.")
+
+    args = parser.parse_args()
+
+    fasta_fields = [field.lower() for field in args.fields]
+
+    exclude_fields = []
+    if args.exclude:
+        exclude_fields = [field.lower() for field in args.exclude]
+
+    passed_checks = True
+
+    if 'strain' not in fasta_fields:
+        print("ERROR: FASTA fields must include a 'strain' field.", file=sys.stderr)
+        passed_checks = False
+
+    if 'sequence' in fasta_fields:
+        print("ERROR: FASTA fields cannot include a 'sequence' field.", file=sys.stderr)
+        passed_checks = False
+
+    if 'strain' in exclude_fields:
+        print("ERROR: The field 'strain' cannot be excluded from the output.", file=sys.stderr)
+        passed_checks = False
+
+    if 'sequence' in exclude_fields:
+        print("ERROR: The field 'sequence' cannot be excluded from the output.", file=sys.stderr)
+        passed_checks = False
+
+    missing_fields = [field for field in exclude_fields if field not in fasta_fields]
+    if missing_fields:
+        print(f"ERROR: The following exclude fields do not match any FASTA fields: {missing_fields}", file=sys.stderr)
+        passed_checks = False
+
+    if not passed_checks:
+        print("ERROR: Failed to parse FASTA file into NDJSON records.","See detailed errors above.", file=sys.stderr)
+        sys.exit(1)
+
+    sequences = read_sequences(args.fasta)
+
+    for sequence in sequences:
+        field_values = [
+            value.strip()
+            for value in sequence.description.split(args.separator)
+        ]
+        record = dict(zip(fasta_fields, field_values))
+        record['sequence'] = str(sequence.seq).upper()
+
+        for field in exclude_fields:
+            del record[field]
+
+        json.dump(record, sys.stdout, allow_nan=False, indent=None, separators=',:')
+        print()

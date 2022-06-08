@@ -1,4 +1,4 @@
-exclude: "config/exclude_outbreak.txt"
+exclude: "config/exclude_accessions.txt"
 reference: "config/reference.fasta"
 genemap: "config/genemap.gff"
 genbank_reference: "config/reference.gb"
@@ -9,6 +9,10 @@ description: "config/description.md"
 
 build_name: "outbreakClade"
 auspice_name: "monkeypox_outbreak"
+
+strain_id_field: "accession"
+display_strain_field: "strain_original"
+
 
 ## filter
 min_date: 2017

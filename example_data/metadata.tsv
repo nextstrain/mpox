@@ -50,6 +50,8 @@ Gabon_1988	KJ642619	1988-XX-XX	Africa	Gabon	Unknown	no	CA
 Boende_DRC_2008	KP849469	2008-XX-XX	Africa	Democratic Republic of the Congo	Unknown	no	CA
 Cote_dIvoire_1971	KP849470	1971-XX-XX	Africa	Cote d'Ivoire	Unknown	no	WA
 Yambuku_DRC_1985	KP849471	1985-XX-XX	Africa	Democratic Republic of the Congo	Unknown	no	CA
+MPX-37/Finland/2022	LPS0001	2022-05-24	Europe	Finland	human	yes	WA
+MPX-42/Finland/2022	LPS0002	2022-05-31	Europe	Finland	human	yes	WA
 3019	MK783028	2017-11-09	Africa	Nigeria	human	no	WA
 3029	MK783029	2017-12-06	Africa	Nigeria	human	no	WA
 3025	MK783030	2017-11-30	Africa	Nigeria	human	no	WA
@@ -86,9 +88,9 @@ MPXV-M3021_Delta	MT903339	2018-XX-XX	Africa	Nigeria	human	no	WA
 MPXV-M5312_HM12_Rivers	MT903340	2018-XX-XX	Africa	Nigeria	human	no	WA
 MPXV-M5320_M15_Bayelsa	MT903341	2018-08-14	Africa	Nigeria	human	no	WA
 MPXV-Singapore	MT903342	2019-04-30	Asia	Singapore	human	no	WA
-MPXV-UK_P1	MT903343.1	2018-XX-XX	Europe	United Kingdom	human	no	WA
-MPXV-UK_P2	MT903344.1	2018-XX-XX	Europe	United Kingdom	human	no	WA
-MPXV-UK_P3	MT903345.1	2018-XX-XX	Europe	United Kingdom	human	no	WA
+MPXV-UK_P1	MT903343	2018-09-XX	Europe	United Kingdom	human	no	WA
+MPXV-UK_P2	MT903344	2018-09-XX	Europe	United Kingdom	human	no	WA
+MPXV-UK_P3	MT903345	2018-09-XX	Europe	United Kingdom	human	no	WA
 MPXV-USA2003_099_Gambian_Rat	MT903346	2003-XX-XX	North America	USA	gambian rat	no	WA
 MPXV-USA2003_099_Dormouse	MT903347	2003-XX-XX	North America	USA	dormouse	no	WA
 MPXV-USA2003_099_Rope_Squirrel	MT903348	2003-XX-XX	North America	USA	squirrel	no	WA
@@ -162,5 +164,19 @@ MPXV/Germany/2022/RKI010	ON682267	2022-05-XX	Europe	Germany	human	yes	WA
 MPXV/Germany/2022/RKI08	ON682268	2022-05-XX	Europe	Germany	human	yes	WA
 MPXV/Germany/2022/RKI07	ON682269	2022-05-XX	Europe	Germany	human	yes	WA
 MPXV/Germany/2022/RKI06	ON682270	2022-05-XX	Europe	Germany	human	yes	WA
+MPXV/Germany/2022/RKI025	ON694329	2022-05-XX	Europe	Germany	human	yes	WA
+MPXV/Germany/2022/RKI019	ON694330	2022-05-XX	Europe	Germany	human	yes	WA
+MPXV/Germany/2022/RKI015	ON694331	2022-05-XX	Europe	Germany	human	yes	WA
+MPXV/Germany/2022/RKI023	ON694332	2022-05-XX	Europe	Germany	human	yes	WA
+MPXV/Germany/2022/RKI022	ON694333	2022-05-XX	Europe	Germany	human	yes	WA
+MPXV/Germany/2022/RKI021	ON694334	2022-05-XX	Europe	Germany	human	yes	WA
+MPXV/Germany/2022/RKI018	ON694335	2022-05-XX	Europe	Germany	human	yes	WA
+MPXV/Germany/2022/RKI024	ON694336	2022-05-XX	Europe	Germany	human	yes	WA
+MPXV/Germany/2022/RKI020	ON694337	2022-05-XX	Europe	Germany	human	yes	WA
+MPXV/Germany/2022/RKI017	ON694338	2022-05-XX	Europe	Germany	human	yes	WA
+MPXV/Germany/2022/RKI016	ON694339	2022-05-XX	Europe	Germany	human	yes	WA
+MPXV/Germany/2022/RKI014	ON694340	2022-05-XX	Europe	Germany	human	yes	WA
+MPXV/Germany/2022/RKI012	ON694341	2022-05-XX	Europe	Germany	human	yes	WA
+MPXV/Germany/2022/RKI011	ON694342	2022-05-XX	Europe	Germany	human	yes	WA
 ITM_MPX_1_Belgium	XXXXXXXX	2022-05-13	Europe	Belgium	human	yes	WA
-mpx-37-Finland_consensus	XXXXXXXX	2022-05-24	Europe	Finland	human	yes	WA
+

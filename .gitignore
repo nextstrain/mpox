@@ -5,12 +5,20 @@ results/
 auspice/
 build/
 outbreak_data/
+logs/
+
+# Keep ingest/data directory, but ignore all files within it
+!ingest/data/
+ingest/data/*
+# Explicitly include sequences that we want to add to the automated ingest
+!ingest/data/Finland-MPX-37+42.ndjson
 
 # Sensitive environment variables
 environment*
+env.d/
 
 # Snakemake state dir
-/.snakemake
+.snakemake
 
 # Local config overrides
 /config_local.yaml
