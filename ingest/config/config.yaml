@@ -15,7 +15,7 @@ transform:
   # List of date fields to standardize
   date_fields: ['date', 'date_submitted']
   # Expected date formats present in date fields
-  expected_date_formats: ['%Y-%m-%d', '%Y_%m_%d', '%Y-%m-%dT%H:%M:%SZ']
+  expected_date_formats: ['%Y', '%Y-%m', '%Y-%m-%d', '%Y-%m-%dT%H:%M:%SZ']
   # Titlecase rules
   titlecase:
     # Abbreviations not cast to titlecase, keeps uppercase
