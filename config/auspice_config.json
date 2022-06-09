@@ -1,5 +1,5 @@
 {
-  "title": "Genomic epidemiology of monkeypox virus",
+  "title": "Nextclade reference tree for HPXV-1 (reference seq: NC_063383.1)",
   "maintainers": [
     { "name": "Nextstrain team", "url": "http://nextstrain.org" }
   ],
@@ -45,17 +45,17 @@
       "type": "categorical"
     },
     {
-      "key": "region",
-      "title": "Region",
+      "key": "country",
+      "title": "Country",
       "type": "categorical"
     }
   ],
   "display_defaults": {
-    "color_by": "clade",
+    "color_by": "clade_membership",
     "map_triplicate": false,
     "distance_measure": "div",
     "transmission_lines": false
   },
-  "filters": ["clade"],
+  "filters": ["clade_membership"],
   "panels": ["tree", "entropy"]
 }
