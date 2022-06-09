@@ -359,4 +359,3 @@ NC_063383.1	RefSeq	gene	194459	195508	.	+	.	ID=gene-NBT03_gp177;Dbxref=GeneID:72
 NC_063383.1	RefSeq	CDS	194459	195508	.	+	0	ID=cds-YP_010377181.1;Parent=gene-NBT03_gp177;Dbxref=Genbank:YP_010377181.1,GeneID:72551593;Name=YP_010377181.1;Note=J2R%3B secreted TNF binding protein;gbkey=CDS;gene=OPG002;locus_tag=NBT03_gp177;product=MPXVgp190;protein_id=YP_010377181.1
 NC_063383.1	RefSeq	gene	195635	196375	.	+	.	ID=gene-NBT03_gp178;Dbxref=GeneID:72551594;Name=OPG001;gbkey=Gene;gene=OPG001;gene_biotype=protein_coding;locus_tag=NBT03_gp178;old_locus_tag=MPXV-M5312_HM12_Rivers-190
 NC_063383.1	RefSeq	CDS	195635	196375	.	+	0	ID=cds-YP_010377182.1;Parent=gene-NBT03_gp178;Dbxref=Genbank:YP_010377182.1,GeneID:72551594;Name=YP_010377182.1;Note=J3R%3B similar to Vaccinia virus strain Copenhagen B29R%3B CC-chemokine binding;gbkey=CDS;gene=OPG001;locus_tag=NBT03_gp178;product=MPXVgp191;protein_id=YP_010377182.1
-
