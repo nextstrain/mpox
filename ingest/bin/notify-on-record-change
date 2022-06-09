@@ -37,4 +37,6 @@ else
     slack_message="⛔ No new monkeypox records found on $source_name."
 fi
 
+slack_message+=" (Total record count: $src_record_count)"
+
 "$bin"/notify-slack "$slack_message"
