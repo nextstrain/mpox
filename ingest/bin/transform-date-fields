@@ -9,7 +9,7 @@ from datetime import datetime
 from sys import stderr, stdin, stdout
 
 
-def format_date(date_string: str, expected_formats: set) -> str:
+def format_date(date_string: str, expected_formats: list) -> str:
     """
     Originally from nextstrain/ncov-ingest
 
@@ -19,7 +19,7 @@ def format_date(date_string: str, expected_formats: set) -> str:
     If *date_string* is an incomplete date (i.e. missing month or day), then
     missing values are masked with 'XX'.
 
-    >>> expected_formats = {'%Y-%m-%d', '%Y-%m-%dT%H:%M:%SZ', '%m-%d'}
+    >>> expected_formats = ['%Y-%m-%d', '%Y-%m-%dT%H:%M:%SZ', '%m-%d']
 
     >>> format_date("01-01", expected_formats)
     'XXXX-XX-XX'
@@ -135,11 +135,12 @@ if __name__ == '__main__':
     parser.add_argument("--date-fields", nargs="+",
         help="List of date field names in the NDJSON record that need to be standardized.")
     parser.add_argument("--expected-date-formats", nargs="+",
-        help="Expected date formats that are currently in the provided date fields")
+        help="Expected date formats that are currently in the provided date fields." +
+             "If a date string matches multiple formats, it will be parsed as the first format in the list.")
 
     args = parser.parse_args()
 
-    expected_formats = set(args.expected_date_formats)
+    expected_formats = args.expected_date_formats
 
     for record in stdin:
         record = json.loads(record)
