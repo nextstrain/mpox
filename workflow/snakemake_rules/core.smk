@@ -79,7 +79,7 @@ rule align:
     threads: workflow.cores
     shell:
         """
-        ./bin/nextalign run \
+        nextalign run \
             -v \
             --jobs {threads} \
             --sequences {input.sequences} \
