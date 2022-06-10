@@ -80,7 +80,6 @@ rule align:
     shell:
         """
         nextalign run \
-            -v \
             --jobs {threads} \
             --sequences {input.sequences} \
             --reference {input.reference} \
@@ -144,7 +143,7 @@ rule refine:
     params:
         coalescent = "opt",
         date_inference = "marginal",
-        clock_filter_iqd = 10,
+        clock_filter_iqd = 0,
         root = config["root"],
         clock_rate = lambda w: f"--clock-rate {config['clock_rate']}" if "clock_rate" in config else "",
         clock_std_dev = lambda w: f"--clock-std-dev {config['clock_std_dev']}" if "clock_std_dev" in config else ""

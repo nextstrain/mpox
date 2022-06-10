@@ -51,7 +51,7 @@
     "country"
   ],
   "display_defaults": {
-    "color_by": "outbreak_associated",
+    "color_by": "clade_membership",
     "map_triplicate": true,
     "distance_measure": "num_date",
     "transmission_lines": false

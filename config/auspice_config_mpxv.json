@@ -20,7 +20,7 @@
       "key": "date",
       "title": "Date",
       "type": "categorical"
-    },    
+    },
     {
       "key": "region",
       "title": "Region",
@@ -56,7 +56,7 @@
     "country"
   ],
   "display_defaults": {
-    "color_by": "outbreak_associated",
+    "color_by": "clade_membership",
     "map_triplicate": true,
     "distance_measure": "div",
     "transmission_lines": false
