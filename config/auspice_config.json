@@ -7,14 +7,6 @@
     {
       "name": "GenBank",
       "url": "https://www.ncbi.nlm.nih.gov/genbank/"
-    },
-    {
-      "name": "INSA",
-      "url": "https://virological.org/t/first-draft-genome-sequence-of-monkeypox-virus-associated-with-the-suspected-multi-country-outbreak-may-2022-confirmed-case-in-portugal/799"
-    },
-    {
-      "name": "CDC",
-      "url": "https://www.ncbi.nlm.nih.gov/nuccore/ON563414"
     }
   ],
   "build_url": "https://github.com/nextstrain/monkeypox",
@@ -56,6 +48,11 @@
     "distance_measure": "div",
     "transmission_lines": false
   },
-  "filters": ["clade_membership"],
   "panels": ["tree", "entropy"]
+  "filters": [
+    "clade_membership",
+    "country",
+    "host",
+    "institution"
+  ]
 }

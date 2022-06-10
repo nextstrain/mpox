@@ -6,14 +6,9 @@ This is the [Nextstrain](https://nextstrain.org) build for monkeypox virus. Outp
 
 ### Provision input data
 
-Retrieve input sequences using LAPIS and write to `data/` with:
+Retrieve input sequences and metadata from data.nextstrain.org and write to `data/` with:
 ```
-nextstrain build --docker --image=nextstrain/base:branch-nextalign-v2 . data/sequences.fasta
-```
-
-Copy metadata with:
-```
-cp example_data/metadata.tsv data/
+nextstrain build --docker --image=nextstrain/base:branch-nextalign-v2 . data/sequences.fasta data/metadata.tsv
 ```
 
 ### Run analysis pipeline

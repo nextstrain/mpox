@@ -33,7 +33,7 @@ if __name__ == '__main__':
     with open(args.annotations, 'r') as annotations_fh:
         csv_reader = csv.reader(annotations_fh, delimiter='\t')
         for row in csv_reader:
-            if row[0].lstrip()[0] == '#':
+            if not row or row[0].lstrip()[0] == '#':
                     continue
             elif len(row) != 3:
                 print("WARNING: Could not decode annotation line " + "\t".join(row), file=stderr)
