@@ -1,4 +1,4 @@
-exclude: "config/exclude_overview.txt"
+exclude: "config/exclude_accessions_mpxv.txt"
 reference: "config/reference.fasta"
 genemap: "config/genemap.gff"
 genbank_reference: "config/reference.gb"
@@ -8,8 +8,11 @@ auspice_config: "config/auspice_config.json"
 description: "config/description.md"
 clades: "config/clades.tsv"
 
-build_name: "outbreakAll"
-auspice_name: "monkeypox_overview"
+strain_id_field: "accession"
+display_strain_field: "strain_original"
+
+build_name: "mpxv"
+auspice_name: "monkeypox_mpxv"
 
 ## filter
 min_date: 1950
@@ -20,11 +23,12 @@ max_indel: 10000
 seed_spacing: 1000
 
 ## refine
+timetree: false
 root: "min_dev"
 clock_rate: 3e-6
 clock_std_dev: 6e-6
 
 mask:
-  from_beginning: 7500
-  from_end: 7500
-  maskfile: "config/mask_overview.bed"
+  from_beginning: 1500
+  from_end: 7000
+  maskfile: "config/mask.bed"
