@@ -7,33 +7,20 @@
     {
       "name": "GenBank",
       "url": "https://www.ncbi.nlm.nih.gov/genbank/"
-    },
-    {
-      "name": "INSA",
-      "url": "https://virological.org/t/first-draft-genome-sequence-of-monkeypox-virus-associated-with-the-suspected-multi-country-outbreak-may-2022-confirmed-case-in-portugal/799"
-    },
-    {
-      "name": "CDC",
-      "url": "https://www.ncbi.nlm.nih.gov/nuccore/ON563414"
     }
   ],
   "build_url": "https://github.com/nextstrain/monkeypox",
   "colorings": [
     {
-        "key": "clade",
-        "title": "Clade",
-        "type": "categorical"
-      },
-      {
-        "key": "clade2",
-        "title": "Clade Alt",
-        "type": "categorical"
-      },
-      {
       "key": "outbreak_associated",
       "title": "Outbreak Associated",
       "type": "categorical"
     },
+    {
+      "key": "date",
+      "title": "Date",
+      "type": "categorical"
+    },    
     {
       "key": "region",
       "title": "Region",
@@ -47,6 +34,21 @@
     {
       "key": "host",
       "title": "Host",
+      "type": "categorical"
+    },
+    {
+      "key": "GA_CT_fraction",
+      "title": "G→A or C→T fraction",
+      "type": "continuous"
+    },
+    {
+      "key": "dinuc_context_fraction",
+      "title": "NGA/TCN context of G→A/C→T mutations",
+      "type": "continuous"
+    },
+    {
+      "key": "genbank_accession_rev",
+      "title": "Accession",
       "type": "categorical"
     }
   ],
