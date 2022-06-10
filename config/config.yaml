@@ -12,8 +12,8 @@ clades: "config/clades.tsv"
 strain_id_field: "accession"
 display_strain_field: "strain_original"
 
-build_name: "HPXV1"
-auspice_name: "nextclade_mpx_hpxv1_NC063383"
+build_name: "B.1"
+auspice_name: "nextclade_mpx_b1_MA001"
 
 ## filter
 min_date: 1950
@@ -25,7 +25,7 @@ seed_spacing: 1000
 
 ## refine
 timetree: false
-root: "NC_063383"
+root: "ON563414"
 clock_rate: 5e-6
 clock_std_dev: 3e-6
 
