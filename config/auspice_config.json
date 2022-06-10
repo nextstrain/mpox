@@ -48,7 +48,7 @@
     "distance_measure": "div",
     "transmission_lines": false
   },
-  "panels": ["tree", "entropy"]
+  "panels": ["tree", "entropy"],
   "filters": [
     "clade_membership",
     "country",
