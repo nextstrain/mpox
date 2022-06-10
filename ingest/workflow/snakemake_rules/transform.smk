@@ -12,9 +12,31 @@ This will produce output files as
 Parameters are expected to be defined in `config.transform`.
 """
 
+rule fetch_general_geolocation_rules:
+    output:
+        general_geolocation_rules = "data/general-geolocation-rules.tsv"
+    params:
+        geolocation_rules_url = config['transform']['geolocation_rules_url']
+    shell:
+        """
+        curl {params.geolocation_rules_url} > {output.general_geolocation_rules}
+        """
+
+rule concat_geolocation_rules:
+    input:
+        general_geolocation_rules = "data/general-geolocation-rules.tsv",
+        local_geolocation_rules = config['transform']['local_geolocation_rules']
+    output:
+        all_geolocation_rules = "data/all-geolocation-rules.tsv"
+    shell:
+        """
+        cat {input.general_geolocation_rules} {input.local_geolocation_rules} >> {output.all_geolocation_rules}
+        """
+
 rule transform:
     input:
-        sequences_ndjson = "data/sequences.ndjson"
+        sequences_ndjson = "data/sequences.ndjson",
+        all_geolocation_rules = "data/all-geolocation-rules.tsv"
     output:
         metadata = "data/metadata.tsv",
         sequences = "data/sequences.fasta"
@@ -58,6 +80,8 @@ rule transform:
                 --authors-field {params.authors_field} \
                 --default-value {params.authors_default_value} \
                 --abbr-authors-field {params.abbr_authors_field} \
+            | ./bin/apply-geolocation-rules \
+                --geolocation-rules {input.all_geolocation_rules} \
             | ./bin/merge-user-metadata \
                 --annotations {params.annotations} \
                 --id-field {params.annotations_id} \

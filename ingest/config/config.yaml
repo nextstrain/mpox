@@ -15,6 +15,8 @@ transform:
   # List of date fields to standardize
   date_fields: ['date', 'date_submitted']
   # Expected date formats present in date fields
+  # These date formats should use directives expected by datetime
+  # See https://docs.python.org/3.9/library/datetime.html#strftime-and-strptime-format-codes
   expected_date_formats: ['%Y', '%Y-%m', '%Y-%m-%d', '%Y-%m-%dT%H:%M:%SZ']
   # Titlecase rules
   titlecase:
@@ -33,6 +35,11 @@ transform:
   authors_default_value: '?'
   # Field name for the generated abbreviated authors
   abbr_authors_field: 'abbr_authors'
+  # General geolocation rules to apply to geolocation fields
+  geolocation_rules_url: 'https://raw.githubusercontent.com/nextstrain/ncov-ingest/master/source-data/gisaid_geoLocationRules.tsv'
+  # Local geolocation rules that are only applicable to monkeypox data
+  # Local rules can overwrite the general geolocation rules provided above
+  local_geolocation_rules: './source-data/geolocation-rules.tsv'
   # User annotations file
   annotations: './source-data/annotations.tsv'
   # ID field used to merge annotations
@@ -58,4 +65,5 @@ transform:
     'clade',
     'abbr_authors',
     'authors',
+    'institution'
   ]
