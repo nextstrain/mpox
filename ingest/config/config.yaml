@@ -15,6 +15,8 @@ transform:
   # List of date fields to standardize
   date_fields: ['date', 'date_submitted']
   # Expected date formats present in date fields
+  # These date formats should use directives expected by datetime
+  # See https://docs.python.org/3.9/library/datetime.html#strftime-and-strptime-format-codes
   expected_date_formats: ['%Y', '%Y-%m', '%Y-%m-%d', '%Y-%m-%dT%H:%M:%SZ']
   # Titlecase rules
   titlecase:
