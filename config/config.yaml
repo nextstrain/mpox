@@ -9,7 +9,6 @@ auspice_config: "config/auspice_config.json"
 description: "config/description.md"
 clades: "config/clades.tsv"
 
-data_source: "lapis"
 strain_id_field: "accession"
 display_strain_field: "strain_original"
 
