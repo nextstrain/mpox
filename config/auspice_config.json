@@ -58,6 +58,7 @@
   },
   "filters": [
     "country",
-    "host"
+    "host",
+    "institution"
   ]
 }
