@@ -13,9 +13,14 @@ clade	gene	site	alt
 #MPXV Clade 3	nuc	35352	C
 #MPXV Clade 3	nuc	48148	C
 
-HPXV-1	nuc	48527	A
+MPXV (Outgroup)	nuc	48527	C
+MPXV (Outgroup)	nuc	19367	C
 
-A	clade	HPXV-1
+hMPXV-1	clade	MPXV (Outgroup)
+hMPXV-1	nuc	48527	A
+hMPXV-1	nuc	19367	T
+
+A	clade	hMPXV-1
 
 A.2	clade	A
 A.2	nuc	34472	T

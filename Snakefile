@@ -38,3 +38,12 @@ rule clean:
         auspice_dir
     shell:
         "rm -rfv {params}"
+
+rule cleanall:
+    message: "Removing directories: {params}"
+    params:
+        build_dir,
+        auspice_dir,
+        "data"
+    shell:
+        "rm -rfv {params}"

@@ -80,7 +80,6 @@ rule align:
     shell:
         """
         nextalign run \
-            -v \
             --jobs {threads} \
             --sequences {input.sequences} \
             --reference {input.reference} \

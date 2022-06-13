@@ -251,6 +251,7 @@ NC_003310
 # outliers
 ON622721
 MG693725
+ON602722
 
 # Don't align
 FV537351
