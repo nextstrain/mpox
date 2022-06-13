@@ -13,9 +13,14 @@ nextstrain build --docker --image=nextstrain/base:branch-nextalign-v2 . data/seq
 
 ### Run analysis pipeline
 
-Run pipeline with:
+Run pipeline to produce "overview" tree for `/monkeypox/mpxv` with:
 ```
-nextstrain build --docker --image=nextstrain/base:branch-nextalign-v2 --cpus 1 .
+nextstrain build --docker --image=nextstrain/base:branch-nextalign-v2 --cpus 1 . --configfile config/config_mpxv.yaml
+```
+
+Run pipeline to produce "outbreak" tree for `/monkeypox/hmpxv1` with:
+```
+nextstrain build --docker --image=nextstrain/base:branch-nextalign-v2 --cpus 1 . --configfile config/config_hmpxv1.yaml
 ```
 
 Adjust the number of CPUs to what your machine has available you want to perform alignment and tree building a bit faster.

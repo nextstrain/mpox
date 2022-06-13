@@ -1,5 +1,5 @@
 if not config:
-    configfile: "config/config.yaml"
+    configfile: "config/config_hmpxv1.yaml"
 
 build_dir = "results"
 auspice_dir = "auspice"
@@ -36,5 +36,14 @@ rule clean:
     params:
         build_dir,
         auspice_dir
+    shell:
+        "rm -rfv {params}"
+
+rule cleanall:
+    message: "Removing directories: {params}"
+    params:
+        build_dir,
+        auspice_dir,
+        "data"
     shell:
         "rm -rfv {params}"
