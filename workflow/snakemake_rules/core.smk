@@ -55,10 +55,11 @@ rule filter:
             --metadata {input.metadata} \
             --metadata-id-columns strain \
             --exclude {input.exclude} \
-			--include {input.include} \
+            --include {input.include} \
             --output {output.sequences} \
             --min-length {params.min_length} \
             --output-log {output.log}
+        cat config/reference.fasta >> {output.sequences}
         """
 
 rule align:
@@ -106,7 +107,8 @@ rule mask:
         from_end = config["mask"]["from_end"]
     shell:
         """
-        augur mask --sequences {input.sequences} --mask {input.mask} --mask-from-beginning {params.from_start} --mask-from-end {params.from_end} --output {output}
+        # augur mask --sequences {input.sequences} --mask {input.mask} --mask-from-beginning {params.from_start} --mask-from-end {params.from_end} --output {output}
+		cp {input.sequences} {output}
         """
 
 rule tree:
