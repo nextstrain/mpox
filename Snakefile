@@ -1,5 +1,5 @@
 if not config:
-    configfile: "config/config_hmpxv1.yaml"
+    configfile: "config/config.yaml"
 
 build_dir = "results"
 auspice_dir = "auspice"
