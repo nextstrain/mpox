@@ -158,7 +158,7 @@ rule ancestral:
     message: "Reconstructing ancestral sequences and mutations"
     input:
         tree = rules.refine.output.tree,
-        alignment = build_dir + "/{build_name}/masked.fasta",
+        alignment = build_dir + "/{build_name}/aligned.fasta",
     output:
         node_data = build_dir + "/{build_name}/nt_muts.json"
     params:
