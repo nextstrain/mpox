@@ -19,6 +19,7 @@ main() {
 
     local src="${1:?A source file is required as the first argument.}"
     local dst="${2:?A destination s3:// URL is required as the second argument.}"
+    local cloudfront_domain="${3:-}"
 
     local s3path="${dst#s3://}"
     local bucket="${s3path%%/*}"
@@ -37,6 +38,13 @@ main() {
         else
             cat "$src"
         fi | aws s3 cp --no-progress - "$dst" --metadata sha256sum="$src_hash" "$(content-type "$dst")"
+
+        if [[ -n $cloudfront_domain ]]; then
+            echo "Creating CloudFront invalidation for $cloudfront_domain/$key"
+            if ! "$bin"/cloudfront-invalidate "$cloudfront_domain" "/$key"; then
+                echo "CloudFront invalidation failed, but exiting with success anyway."
+            fi
+        fi
 
         if [[ $quiet == 1 ]]; then
             echo "Quiet mode. No Slack notification sent."
