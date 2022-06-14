@@ -13,9 +13,9 @@ MPXV Clade 3	nuc	150970	A
 MPXV Clade 3	nuc	35352	C
 MPXV Clade 3	nuc	48148	C
 
-hMPXV-1	clade	MPXV Clade 3
-hMPXV-1	nuc	48527	A
-hMPXV-1	nuc	19367	T
+hMPXV-1 A	clade	MPXV Clade 3
+hMPXV-1 A	nuc	48527	A
+hMPXV-1 A	nuc	19367	T
 
 hMPXV-1 A.2	clade	hMPXV-1 A
 hMPXV-1 A.2	nuc	34472	T
