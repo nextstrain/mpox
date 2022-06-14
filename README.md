@@ -6,7 +6,15 @@ This is the [Nextstrain](https://nextstrain.org) build for monkeypox virus. Outp
 
 ### Provision input data
 
-Retrieve input sequences and metadata from data.nextstrain.org and write to `data/` with:
+Input sequences and metadata can be retrieved from data.nextstrain.org
+
+ * [sequences.fasta.xz](https://data.nextstrain.org/files/workflows/monkeypox/sequences.fasta.xz)
+ * [metadata.tsv.gz](https://data.nextstrain.org/files/workflows/monkeypox/metadata.tsv.gz)
+
+Note that these data are generously shared by many labs around the world.
+If you analyze and plan to publish using these data, please contact these labs first.
+
+Within the analysis pipeline, these data are fetched from data.nextstrain.org and written to `data/` with:
 ```
 nextstrain build --docker --image=nextstrain/base:branch-nextalign-v2 . data/sequences.fasta data/metadata.tsv
 ```
