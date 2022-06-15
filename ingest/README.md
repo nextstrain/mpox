@@ -56,6 +56,25 @@ Do the following to include sequences from static FASTA files.
 Configuration takes place in `config/config.yaml` by default.
 Optional configs for uploading files and Slack notifications are in `config/optional.yaml`.
 
+### Environment Variables
+
+The complete ingest pipeline with AWS S3 uploads and Slack notifications uses the following environment variables:
+
+#### Required
+
+- `AWS_DEFAULT_REGION`
+- `AWS_ACCESS_KEY_ID`
+- `AWS_SECRET_ACCESS_KEY`
+- `SLACK_TOKEN`
+- `SLACK_CHANNELS`
+
+#### Optional
+
+These are optional environment variables used in our automated pipeline for providing detailed Slack notifications.
+
+- `GITHUB_RUN_ID` - provided via [`github.run_id` in a GitHub Action workflow](https://docs.github.com/en/actions/learn-github-actions/contexts#github-context)
+- `AWS_BATCH_JOB_ID` - provided via [AWS Batch Job environment variables](https://docs.aws.amazon.com/batch/latest/userguide/job_env_vars.html)
+
 ## Input data
 
 ### GenBank data

@@ -63,7 +63,9 @@ Please choose the installation method for your operating system which uses Docke
 
 ### Nextstrain build vs Snakemake
 
-The above commands use the Nextstrain CLI and `nextstrain build` along with Docker to run using Nextalign v2. Alternatively, if you install Nextalign v2 locally. You can run pipeline with:
+The above commands use the Nextstrain CLI and `nextstrain build` along with Docker to run using Nextalign v2.
+Alternatively, if you [install Nextalign v2 locally](github.com/nextstrain/nextclade/releases) you can run pipeline with:
 ```
-snakemake -j 1 -p --configfile config/config.yaml
+snakemake -j 1 -p --configfile config/config_mpxv.yaml
+snakemake -j 1 -p --configfile config/config_hmpxv1.yaml
 ```
