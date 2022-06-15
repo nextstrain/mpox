@@ -1,3 +1,4 @@
+import pytest
 from ..apply_geolocation_rules import load_geolocation_rules, get_annotated_geolocation
 
 
@@ -81,3 +82,45 @@ class TestGetAnnotatedGeolocation:
         )
         geolocation_rules = get_geolocation_rules(tmpdir, lines)
         assert get_annotated_geolocation(geolocation_rules, ("a", "a", "a", "a")) is None
+
+    @pytest.mark.parametrize(
+        "raw_location, matching_annotation",
+        [
+            (("a", "b", "c", "d"), ("*", "2", "3", "4")),
+            (("e", "f", "g", "h"), ("5", "*", "7", "8")),
+            (("i", "j", "k", "l"), ("9", "10", "*", "12")),
+            (("m", "n", "o", "p"), ("13", "14", "15", "*")),
+            (("q", "r", "s", "t"), ("17", "*", "*", "20")),
+            (("u", "v", "w", "x"), ("*", "*", "*", "24")),
+        ]
+    )
+    def test_wildcards_work_in_all_fields(self, tmpdir, raw_location, matching_annotation):
+        """Test that wildcards work in any field."""
+        lines = (
+            "*/b/c/d\t*/2/3/4",
+            "e/*/g/h\t5/*/7/8",
+            "i/j/*/l\t9/10/*/12",
+            "m/n/o/*\t13/14/15/*",
+            "q/*/*/t\t17/*/*/20",
+            "*/*/*/x\t*/*/*/24",
+        )
+        geolocation_rules = get_geolocation_rules(tmpdir, lines)
+        assert get_annotated_geolocation(geolocation_rules, raw_location) == matching_annotation
+
+    def test_matching_rule_over_wildcards(self, tmpdir):
+        """Test that matching rules are used over wildcards."""
+        lines = (
+            "a/b/c/d\t1/2/3/4",
+            "a/*/*/*\t1/*/*/*",
+        )
+        geolocation_rules = get_geolocation_rules(tmpdir, lines)
+        assert get_annotated_geolocation(geolocation_rules, ("a", "b", "c", "d")) == ("1", "2", "3", "4")
+
+    def test_wildcards_work_if_partial_match_exists(self, tmpdir):
+        """Test wildcards still work even when partial matches exist."""
+        lines = (
+            "a/b/c/d\t1/2/3/4",
+            "a/*/*/z\t1/*/*/26",
+        )
+        geolocation_rules = get_geolocation_rules(tmpdir, lines)
+        assert get_annotated_geolocation(geolocation_rules, ("a", "b", "c", "z")) == ("1", "*", "*", "26")
