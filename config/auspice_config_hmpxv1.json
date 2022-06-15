@@ -58,6 +58,7 @@
   },
   "filters": [
     "country",
+    "region",
     "host"
   ]
 }
