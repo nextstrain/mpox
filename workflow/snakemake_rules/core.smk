@@ -76,7 +76,10 @@ rule align:
         insertions = build_dir + "/{build_name}/insertions.fasta"
     params:
         max_indel = config["max_indel"],
-        seed_spacing = config["seed_spacing"]
+        # seed_spacing = config["seed_spacing"]
+        seed_spacing = 500,
+        terminal_bandwidth = 500,
+        excess_bandwidth = 20,
     threads: workflow.cores
     shell:
         """
@@ -86,6 +89,10 @@ rule align:
             --reference {input.reference} \
             --max-indel {params.max_indel} \
             --seed-spacing {params.seed_spacing} \
+            --terminal-bandwidth {params.terminal_bandwidth} \
+            --excess-bandwidth {params.excess_bandwidth} \
+            --gap-alignment-side left \
+            --genemap config/genemap.gff \
             --output-fasta {output.alignment} \
             --output-insertions {output.insertions}
         """
