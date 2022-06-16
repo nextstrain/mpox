@@ -9,6 +9,17 @@
       "url": "https://www.ncbi.nlm.nih.gov/genbank/"
     }
   ],
+  "extensions": {
+    "nextclade": {
+      "clade_node_attrs": [
+        {
+          "name": "lineage",
+          "displayName": "Lineage",
+          "description": ""
+        }
+      ]
+    }
+  },
   "build_url": "https://github.com/nextstrain/monkeypox",
   "colorings": [
     {
@@ -51,8 +62,10 @@
   "panels": ["tree", "entropy"],
   "filters": [
     "clade_membership",
+    "lineage",
     "country",
     "host",
-    "institution"
+    "institution",
+    "region"
   ]
 }
