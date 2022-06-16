@@ -62,8 +62,10 @@
   "panels": ["tree", "entropy"],
   "filters": [
     "clade_membership",
+    "lineage",
     "country",
     "host",
-    "institution"
+    "institution",
+    "region"
   ]
 }
