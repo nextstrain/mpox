@@ -13,10 +13,10 @@ MPXV Clade 3	nuc	150970	A
 MPXV Clade 3	nuc	35352	C
 MPXV Clade 3	nuc	48148	C
 
-MPXV (Outgroup)	nuc	48527	C
-MPXV (Outgroup)	nuc	19367	C
+Outgroup	nuc	48527	C
+Outgroup	nuc	19367	C
 
-hMPXV-1 A	clade	MPXV (Outgroup)
+hMPXV-1 A	clade	Outgroup
 hMPXV-1 A	nuc	48527	A
 hMPXV-1 A	nuc	19367	T
 
