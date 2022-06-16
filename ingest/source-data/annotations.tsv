@@ -151,24 +151,24 @@ AY741551	country	Sierra Leone
 DQ011154	country	Democratic Republic of the Congo
 DQ011156	country	Liberia
 NC_003310	country	Democratic Republic of the Congo
-AY603973	date	1961
-AY741551	date	1970
-AY753185	date	1958
-DQ011153	date	2003
-DQ011156	date	1970
-DQ011157	date	2003
-MT903337	date	2018
-MT903338	date	2018
-MT903339	date	2018
-MT903340	date	2018
+AY603973	date	1961-XX-XX
+AY741551	date	1970-XX-XX
+AY753185	date	1958-XX-XX
+DQ011153	date	2003-XX-XX
+DQ011156	date	1970-XX-XX
+DQ011157	date	2003-XX-XX
+MT903337	date	2018-XX-XX
+MG693723	date	2018-XX-XX
+MT903339	date	2018-XX-XX
+MT903340	date	2018-XX-XX
 MT903341	date	2018-08-14
 MT903342	date	2019-04-30
-MT903343	date	2018-09
-MT903344	date	2018-09
-MT903345	date	2018-09
-MT903346	date	2003
-MT903347	date	2003
-MT903348	date	2003
+MT903343	date	2018-09-XX
+MT903344	date	2018-09-XX
+MT903345	date	2018-09-XX
+MT903346	date	2003-XX-XX
+MT903347	date	2003-XX-XX
+MT903348	date	2003-XX-XX
 AY603973	outbreak_associated	no
 AY741551	outbreak_associated	no
 AY753185	outbreak_associated	no
@@ -549,4 +549,4 @@ MT903343	institution	National Center for Emerging and Zoonotic Infectious Diseas
 MT903345	institution	National Center for Emerging and Zoonotic Infectious Diseases, Division of High Consequence Pathogens & Pathology, Centers for Disease Control & Prevention (US CDC), USA
 ON720848	institution	Microbial Genomics, Hospital General Universitario Gregorio Marañón, Madrid, Spain
 ON720849	institution	Microbial Genomics, Hospital General Universitario Gregorio Marañón, Madrid, Spain
-MT903342	date	2019-05
+MT903342	date	2019-05-XX
