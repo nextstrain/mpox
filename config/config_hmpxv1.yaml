@@ -26,6 +26,9 @@ seed_spacing: 1000
 timetree: true
 root: "MK783032 MK783030"
 
+## recency
+recency: true
+
 mask:
   from_beginning: 1500
   from_end: 7000

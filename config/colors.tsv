@@ -4,3 +4,10 @@ region	Europe	#BEBB48
 region	North America	#E2562B
 region	Oceania	#5EA9A1
 region	South America	#E29E39
+
+recency	Older	#447CCD
+recency	One month ago	#5EA9A1
+recency	One week ago	#8ABB6A
+recency	3-7 days ago	#BEBB48
+recency	1-2 days ago	#E29E39
+recency	New	#E2562B

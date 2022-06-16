@@ -28,6 +28,9 @@ root: "min_dev"
 clock_rate: 3e-6
 clock_std_dev: 6e-6
 
+## recency
+recency: true
+
 mask:
   from_beginning: 1500
   from_end: 7000

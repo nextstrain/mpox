@@ -269,6 +269,19 @@ rule remove_time:
         python3 scripts/remove_timeinfo.py --input-node-data {input} --output-node-data {output}
         """
 
+rule recency:
+    message: "Use metadata on submission date to construct submission recency field"
+    input:
+        metadata = build_dir + "/{build_name}/metadata.tsv"
+    output:
+        node_data = build_dir + "/{build_name}/recency.json"
+    shell:
+        """
+        python3 scripts/construct-recency-from-submission-date.py \
+            --metadata {input.metadata} \
+            --output {output} 2>&1 | tee {log}
+        """
+
 rule export:
     message: "Exporting data files for for auspice"
     input:
@@ -280,6 +293,7 @@ rule export:
         aa_muts = rules.translate.output.node_data,
         clades = rules.clades.output.node_data,
         mutation_context = rules.mutation_context.output.node_data,
+        recency = lambda w: rules.recency.output.node_data if config.get('recency', False) else [],
         colors = config["colors"],
         lat_longs = config["lat_longs"],
         description = config["description"],
@@ -292,7 +306,7 @@ rule export:
         augur export v2 \
             --tree {input.tree} \
             --metadata {input.metadata} \
-            --node-data {input.branch_lengths} {input.nt_muts} {input.aa_muts} {input.mutation_context} {input.clades} \
+            --node-data {input.branch_lengths} {input.nt_muts} {input.aa_muts} {input.mutation_context} {input.clades} {input.recency}\
             --colors {input.colors} \
             --lat-longs {input.lat_longs} \
             --description {input.description} \

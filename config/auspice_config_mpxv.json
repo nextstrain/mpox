@@ -47,6 +47,16 @@
       "type": "continuous"
     },
     {
+      "key": "recency",
+      "title": "Submission Recency",
+      "type": "categorical"
+    },
+    {
+      "key": "date_submitted",
+      "title": "Submission Date",
+      "type": "categorical"
+    },
+    {
       "key": "genbank_accession_rev",
       "title": "Accession",
       "type": "categorical"
