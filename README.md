@@ -69,3 +69,9 @@ Alternatively, if you [install Nextalign v2 locally](github.com/nextstrain/nextc
 snakemake -j 1 -p --configfile config/config_mpxv.yaml
 snakemake -j 1 -p --configfile config/config_hmpxv1.yaml
 ```
+### Update colors to include new countries
+
+```
+python3 scripts/update_colours.py --colors config/colors.tsv \
+    --metadata data/metadata.tsv --output config/colors.tsv
+```
