@@ -69,7 +69,8 @@ rule align:
         """
     input:
         sequences = rules.filter.output.sequences,
-        reference = config["reference"]
+        reference = config["reference"],
+        genemap = config["genemap"]
     output:
         alignment = build_dir + "/{build_name}/aligned.fasta",
         insertions = build_dir + "/{build_name}/insertions.fasta"
@@ -82,6 +83,7 @@ rule align:
         nextalign run \
             --jobs {threads} \
             --reference {input.reference} \
+            --genemap {input.genemap} \
             --max-indel {params.max_indel} \
             --seed-spacing {params.seed_spacing} \
             --output-fasta {output.alignment} \
