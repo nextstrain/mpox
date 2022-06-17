@@ -125,8 +125,8 @@ class TestGetAnnotatedGeolocation:
         geolocation_rules = get_geolocation_rules(tmpdir, lines)
         assert get_annotated_geolocation(geolocation_rules, raw_location) == matching_annotation
 
-    def test_matching_rule_over_wildcards(self, tmpdir):
-        """Test that matching rules are used over wildcards."""
+    def test_exact_match_over_wildcard(self, tmpdir):
+        """Test that an exact match rules is used over a wildcard match."""
         lines = (
             "a/b/c/d\t1/2/3/4",
             "a/*/*/*\t1/*/*/*",
