@@ -190,7 +190,7 @@ rule translate:
     input:
         tree = rules.refine.output.tree,
         node_data = rules.ancestral.output.node_data,
-        genbank_reference = config["genbank_reference"]
+        genemap = config["genemap"]
     output:
         node_data = build_dir + "/{build_name}/aa_muts.json"
     shell:
@@ -198,7 +198,7 @@ rule translate:
         augur translate \
             --tree {input.tree} \
             --ancestral-sequences {input.node_data} \
-            --reference-sequence {input.genbank_reference} \
+            --reference-sequence {input.genemap} \
             --output {output.node_data}
         """
 
