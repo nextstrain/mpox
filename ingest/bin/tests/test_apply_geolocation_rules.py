@@ -107,6 +107,24 @@ class TestGetAnnotatedGeolocation:
         geolocation_rules = get_geolocation_rules(tmpdir, lines)
         assert get_annotated_geolocation(geolocation_rules, raw_location) == matching_annotation
 
+    @pytest.mark.parametrize(
+        "raw_location, matching_annotation",
+        [
+            (("a", "b", "c", "x"), ("1", "2", "3", "*")),
+            (("a", "b", "x", "x"), ("1", "2", "*", "*")),
+            (("a", "x", "x", "x"), ("1", "*", "*", "*")),
+        ]
+    )
+    def test_wildcards_precedence(self, tmpdir, raw_location, matching_annotation):
+        """Test that closer wildcard matches (with respect to hierarchy) are applied before more generic wildcard matches."""
+        lines = (
+            "a/b/c/*\t1/2/3/*",
+            "a/b/*/*\t1/2/*/*",
+            "a/*/*/*\t1/*/*/*",
+        )
+        geolocation_rules = get_geolocation_rules(tmpdir, lines)
+        assert get_annotated_geolocation(geolocation_rules, raw_location) == matching_annotation
+
     def test_matching_rule_over_wildcards(self, tmpdir):
         """Test that matching rules are used over wildcards."""
         lines = (
