@@ -81,12 +81,12 @@ rule align:
         """
         nextalign run \
             --jobs {threads} \
-            --sequences {input.sequences} \
             --reference {input.reference} \
             --max-indel {params.max_indel} \
             --seed-spacing {params.seed_spacing} \
             --output-fasta {output.alignment} \
-            --output-insertions {output.insertions}
+            --output-insertions {output.insertions} \
+            {input.sequences}
         """
 
 rule mask:
