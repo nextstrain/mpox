@@ -1,0 +1,40 @@
+region	Africa	#8ABB6A
+region	Asia	#447CCD
+region	Europe	#BEBB48
+region	North America	#E2562B
+region	Oceania	#5EA9A1
+region	South America	#E29E39
+
+recency	Older	#447CCD
+recency	One month ago	#5EA9A1
+recency	One week ago	#8ABB6A
+recency	3-7 days ago	#BEBB48
+recency	1-2 days ago	#E29E39
+recency	New	#E2562B
+
+country	Sierra Leone	#5E1D9D
+country	Liberia	#4C25B0
+country	Côte d'Ivoire	#4236C0
+country	Nigeria	#3F4ACA
+country	Gabon	#3F5ED0
+country	Cameroon	#4272CE
+country	Republic of the Congo	#4783C8
+country	Central African Republic	#4D93BE
+country	Democratic Republic of the Congo	#559EB1
+country	Israel	#5EA9A2
+country	Singapore	#69B091
+country	Australia	#75B581
+country	Portugal	#82BA72
+country	Spain	#90BC65
+country	United Kingdom	#9FBE59
+country	France	#AEBD50
+country	Belgium	#BCBB49
+country	Netherlands	#CAB843
+country	Switzerland	#D5B03F
+country	Germany	#DEA73B
+country	Italy	#E49938
+country	Slovenia	#E68735
+country	Finland	#E67331
+country	Brazil	#E25A2C
+country	USA	#DF4127
+country	Canada	#DB2823

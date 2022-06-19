@@ -16,7 +16,7 @@ rule wrangle_metadata:
     input:
         metadata =  "data/metadata.tsv"
     output:
-        metadata = build_dir + "/{build_name}/metadata.tsv"
+        metadata = "results/metadata.tsv"
     params:
         strain_id = lambda w: config.get('strain_id_field', 'strain')
     shell:
@@ -37,10 +37,11 @@ rule filter:
         """
     input:
         sequences = "data/sequences.fasta",
-        metadata =  build_dir + "/{build_name}/metadata.tsv",
+        metadata =  "results/metadata.tsv",
         exclude = config["exclude"]
     output:
         sequences = build_dir + "/{build_name}/filtered.fasta",
+        metadata = build_dir + "/{build_name}/metadata.tsv",
         log = build_dir + "/{build_name}/filtered.log"
     params:
         group_by = "country year",
@@ -53,7 +54,8 @@ rule filter:
             --sequences {input.sequences} \
             --metadata {input.metadata} \
             --exclude {input.exclude} \
-            --output {output.sequences} \
+            --output-sequences {output.sequences} \
+            --output-metadata {output.metadata} \
             --group-by {params.group_by} \
             --sequences-per-group {params.sequences_per_group} \
             --min-date {params.min_date} \
