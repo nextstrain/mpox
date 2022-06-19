@@ -55,11 +55,6 @@
       "key": "date_submitted",
       "title": "Submission Date",
       "type": "categorical"
-    },
-    {
-      "key": "genbank_accession_rev",
-      "title": "Accession",
-      "type": "categorical"
     }
   ],
   "geo_resolutions": [
