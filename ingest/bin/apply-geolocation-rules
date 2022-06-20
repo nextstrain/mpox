@@ -77,7 +77,7 @@ def get_annotated_geolocation(geolocation_rules, raw_geolocation, rule_traversal
     Gets the annotated geolocation for the *raw_geolocation* in the provided
     *geolocation_rules*.
 
-    Recursivley traverses the *geolocation_rules* until we get the annotated
+    Recursively traverses the *geolocation_rules* until we get the annotated
     geolocation, which must be a Tuple. Returns `None` if there are no
     applicable rules for the provided *raw_geolocation*.
 
@@ -105,8 +105,8 @@ def get_annotated_geolocation(geolocation_rules, raw_geolocation, rule_traversal
     # We've reach the next level of geolocation rules,
     # so try to traverse the rules with the next target in raw_geolocation
     if isinstance(current_rules, dict):
-        next_traveral_target = raw_geolocation[len(rule_traversal)]
-        rule_traversal.append(next_traveral_target)
+        next_traversal_target = raw_geolocation[len(rule_traversal)]
+        rule_traversal.append(next_traversal_target)
         return get_annotated_geolocation(geolocation_rules, raw_geolocation, rule_traversal)
 
     # We did not find any matching rule for the last traversal target
@@ -199,7 +199,7 @@ if __name__ == '__main__':
     parser.add_argument("--geolocation-rules", metavar="TSV", required=True,
         help="TSV file of geolocation rules with the format: " +
              "'<raw_geolocation><tab><annotated_geolocation>' where the raw and annotated geolocations " +
-             "are formated as '<region>/<country>/<division>/<location>'. " +
+             "are formatted as '<region>/<country>/<division>/<location>'. " +
              "If creating a general rule, then the raw field value can be substituted with '*'." +
              "Lines starting with '#' will be ignored as comments." +
              "Trailing '#' will be ignored as comments.")
