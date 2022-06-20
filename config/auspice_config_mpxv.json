@@ -17,9 +17,9 @@
       "type": "categorical"
     },
     {
-      "key": "date",
-      "title": "Date",
-      "type": "categorical"
+      "key": "sample_date",
+      "title": "Sample Date",
+      "type": "temporal"
     },
     {
       "key": "region",
@@ -47,8 +47,13 @@
       "type": "continuous"
     },
     {
-      "key": "genbank_accession_rev",
-      "title": "Accession",
+      "key": "recency",
+      "title": "Submission Recency",
+      "type": "categorical"
+    },
+    {
+      "key": "date_submitted",
+      "title": "Submission Date",
       "type": "categorical"
     }
   ],
@@ -63,6 +68,7 @@
   },
   "filters": [
     "country",
+    "region",
     "host"
   ]
 }
