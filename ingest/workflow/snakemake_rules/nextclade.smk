@@ -1,10 +1,10 @@
 
 rule nextclade_dataset:
     output:
-        "mpxv.zip"
+        temp("mpxv.zip")
     shell:
         """
-        nextclade dataset get --name MPXV --output-zip {output}
+        nextclade2 dataset get --name MPXV --output-zip {output}
         """
 
 rule nextclade:
@@ -16,7 +16,7 @@ rule nextclade:
     threads: 4
     shell:
         """
-        nextclade run -D {input.dataset} -j {threads} --output-tsv {output} {input.sequences}
+        nextclade2 run -D {input.dataset} -j {threads} --output-tsv {output} {input.sequences}
         """
 
 rule join_metadata_clades:
