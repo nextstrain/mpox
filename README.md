@@ -63,7 +63,21 @@ Please choose the installation method for your operating system which uses Docke
 
 ### Nextstrain build vs Snakemake
 
-The above commands use the Nextstrain CLI and `nextstrain build` along with Docker to run using Nextalign v2. Alternatively, if you install Nextalign v2 locally. You can run pipeline with:
+The above commands use the Nextstrain CLI and `nextstrain build` along with Docker to run using Nextalign v2.
+Alternatively, if you [install Nextalign v2 locally](github.com/nextstrain/nextclade/releases) you can run pipeline with:
 ```
-snakemake -j 1 -p --configfile config/config.yaml
+snakemake -j 1 -p --configfile config/config_mpxv.yaml
+snakemake -j 1 -p --configfile config/config_hmpxv1.yaml
+```
+### Update colors to include new countries
+
+Update `colors_hmpxv1.tsv` to group countries by region based on countries present in its `metadata.tsv`:
+```
+python3 scripts/update_colours.py --colors config/colors_hmpxv1.tsv \
+    --metadata results/hmpxv1/metadata.tsv --output config/colors_hmpxv1.tsv
+```
+and similarly update `colors_mpxv.tsv`:
+```
+python3 scripts/update_colours.py --colors config/colors_mpxv.tsv \
+    --metadata results/mpxv/metadata.tsv --output config/colors_mpxv.tsv
 ```
