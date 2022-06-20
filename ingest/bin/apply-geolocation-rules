@@ -119,9 +119,9 @@ def get_annotated_geolocation(geolocation_rules, raw_geolocation, rule_traversal
         # If we failed to find matching rule with a general rule as the last
         # traversal target, then delete all trailing '*'s to reset rule_traversal
         # to end with the last index that is currently NOT a '*'
-        # [A, * , B, *] => [A, *, B]
-        # [A, B,  *, *] => [A, B]
-        # [A, *,  *, *] => [A]
+        # [A, *, B, *] => [A, *, B]
+        # [A, B, *, *] => [A, B]
+        # [A, *, *, *] => [A]
         if rule_traversal[-1] == '*':
             # Find the index of the first of the consecutive '*' from the
             # end of the rule_traversal
