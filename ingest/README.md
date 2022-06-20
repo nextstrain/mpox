@@ -7,7 +7,6 @@ This is the ingest pipeline for Monkeypox virus sequences.
 > NOTE: All command examples assume you are within the `ingest` directory.
 > If running commands from the outer `monkeypox` directory, please replace the `.` with `ingest`
 
-
 Fetch sequences with
 
 ```sh
@@ -19,6 +18,7 @@ Run the complete ingest pipeline with
 ```sh
 nextstrain build --cpus 1 .
 ```
+
 This will produce two files (within the `ingest` directory):
 
 - data/metadata.tsv
@@ -37,6 +37,7 @@ nextstrain build . --configfiles config/config.yaml config/optional.yaml
 Do the following to include sequences from static FASTA files.
 
 1. Convert the FASTA files to NDJSON files with:
+
     ```sh
     ./ingest/bin/fasta-to-ndjson \
         --fasta {path-to-fasta-file} \
@@ -45,10 +46,13 @@ Do the following to include sequences from static FASTA files.
         --exclude {fields-to-exclude-in-output} \
         > ingest/data/{file-name}.ndjson
     ```
+
 2. Add the following to the `.gitignore` to allow the file to be included in the repo:
-    ```
+
+    ```gitignore
     !ingest/data/{file-name}.ndjson
     ```
+
 3. Add the `file-name` (without the `.ndjson` extension) as a source to `ingest/config/config.yaml`. This will tell the ingest pipeline to concatenate the records to the GenBank sequences and run them through the same transform pipeline.
 
 ## Configuration
