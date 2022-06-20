@@ -17,9 +17,9 @@
       "type": "categorical"
     },
     {
-      "key": "date",
-      "title": "Date",
-      "type": "categorical"
+      "key": "sample_date",
+      "title": "Sample Date",
+      "type": "temporal"
     },
     {
       "key": "region",
