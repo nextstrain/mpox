@@ -16,7 +16,7 @@ rule wrangle_metadata:
     input:
         metadata =  "data/metadata.tsv"
     output:
-        metadata = build_dir + "/{build_name}/metadata.tsv"
+        metadata = "results/metadata.tsv"
     params:
         strain_id = lambda w: config.get('strain_id_field', 'strain')
     shell:
@@ -37,10 +37,11 @@ rule filter:
         """
     input:
         sequences = "data/sequences.fasta",
-        metadata =  build_dir + "/{build_name}/metadata.tsv",
+        metadata =  "results/metadata.tsv",
         exclude = config["exclude"]
     output:
         sequences = build_dir + "/{build_name}/filtered.fasta",
+        metadata = build_dir + "/{build_name}/metadata.tsv",
         log = build_dir + "/{build_name}/filtered.log"
     params:
         group_by = "country year",
@@ -53,7 +54,8 @@ rule filter:
             --sequences {input.sequences} \
             --metadata {input.metadata} \
             --exclude {input.exclude} \
-            --output {output.sequences} \
+            --output-sequences {output.sequences} \
+            --output-metadata {output.metadata} \
             --group-by {params.group_by} \
             --sequences-per-group {params.sequences_per_group} \
             --min-date {params.min_date} \
@@ -81,12 +83,12 @@ rule align:
         """
         nextalign run \
             --jobs {threads} \
-            --sequences {input.sequences} \
             --reference {input.reference} \
             --max-indel {params.max_indel} \
             --seed-spacing {params.seed_spacing} \
             --output-fasta {output.alignment} \
-            --output-insertions {output.insertions}
+            --output-insertions {output.insertions} \
+            {input.sequences}
         """
 
 rule mask:
@@ -269,6 +271,19 @@ rule remove_time:
         python3 scripts/remove_timeinfo.py --input-node-data {input} --output-node-data {output}
         """
 
+rule recency:
+    message: "Use metadata on submission date to construct submission recency field"
+    input:
+        metadata = build_dir + "/{build_name}/metadata.tsv"
+    output:
+        node_data = build_dir + "/{build_name}/recency.json"
+    shell:
+        """
+        python3 scripts/construct-recency-from-submission-date.py \
+            --metadata {input.metadata} \
+            --output {output} 2>&1 | tee {log}
+        """
+
 rule export:
     message: "Exporting data files for for auspice"
     input:
@@ -280,6 +295,7 @@ rule export:
         aa_muts = rules.translate.output.node_data,
         clades = rules.clades.output.node_data,
         mutation_context = rules.mutation_context.output.node_data,
+        recency = lambda w: rules.recency.output.node_data if config.get('recency', False) else [],
         colors = config["colors"],
         lat_longs = config["lat_longs"],
         description = config["description"],
@@ -292,7 +308,7 @@ rule export:
         augur export v2 \
             --tree {input.tree} \
             --metadata {input.metadata} \
-            --node-data {input.branch_lengths} {input.nt_muts} {input.aa_muts} {input.mutation_context} {input.clades} \
+            --node-data {input.branch_lengths} {input.nt_muts} {input.aa_muts} {input.mutation_context} {input.clades} {input.recency}\
             --colors {input.colors} \
             --lat-longs {input.lat_longs} \
             --description {input.description} \

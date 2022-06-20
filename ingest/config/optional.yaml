@@ -19,6 +19,7 @@ upload:
       'metadata.tsv.gz',
       'sequences.fasta.xz'
     ]
+    cloudfront_domain: 'data.nextstrain.org'
 
 # Toggle for Slack notifications
 send_slack_notifications: True

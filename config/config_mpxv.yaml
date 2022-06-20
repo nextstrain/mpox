@@ -2,7 +2,7 @@ exclude: "config/exclude_accessions_mpxv.txt"
 reference: "config/reference.fasta"
 genemap: "config/genemap.gff"
 genbank_reference: "config/reference.gb"
-colors: "config/colors.tsv"
+colors: "config/colors_mpxv.tsv"
 lat_longs: "config/lat_longs.tsv"
 auspice_config: "config/auspice_config_mpxv.json"
 description: "config/description.md"
@@ -27,6 +27,9 @@ timetree: false
 root: "min_dev"
 clock_rate: 3e-6
 clock_std_dev: 6e-6
+
+## recency
+recency: true
 
 mask:
   from_beginning: 1500
