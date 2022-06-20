@@ -3,13 +3,9 @@ import argparse
 import sys
 from datetime import datetime
 import pandas as pd
-import numpy as np
 
 NEXTCLADE_JOIN_COLUMN_NAME = 'seqName'
 VALUE_MISSING_DATA = '?'
-
-rate_per_day = 0.0007 * 29903 / 365
-reference_day = datetime(2020,1,1).toordinal()
 
 column_map = {
     "clade": "clade",
@@ -51,15 +47,23 @@ def main():
                          sep='\t', low_memory=False, na_filter = False) \
             .rename(columns=column_map)
 
+    # Select columns in column map
     clades = clades[list(column_map.values())]
+
+    # Separate long from short columns
+    short_metadata = metadata.iloc[:,:-2].copy()
+    long_metadata = metadata.iloc[:,-2:].copy()
 
     # Concatenate on columns
     result = pd.merge(
-        metadata, clades,
+        short_metadata, clades,
         left_index=True,
         right_index=True,
         how='left'
     )
+
+    # Add long columns to back
+    result = pd.concat([result, long_metadata], axis=1)
 
     result.to_csv(args.o, index_label=args.id_field, sep='\t')
 
