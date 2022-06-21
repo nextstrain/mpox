@@ -38,7 +38,7 @@ rule transform:
         sequences_ndjson = "data/sequences.ndjson",
         all_geolocation_rules = "data/all-geolocation-rules.tsv"
     output:
-        metadata = "data/metadata.tsv",
+        metadata = "data/metadata_raw.tsv",
         sequences = "data/sequences.fasta"
     log:
         "logs/transform.txt"
@@ -87,6 +87,7 @@ rule transform:
                 --id-field {params.annotations_id} \
             | ./bin/ndjson-to-tsv-and-fasta \
                 --metadata-columns {params.metadata_columns} \
+                --metadata {output.metadata} \
                 --id-field {params.id_field} \
                 --sequence-field {params.sequence_field} ) 2>> {log}
         """
