@@ -164,6 +164,7 @@ rule refine:
             --output-node-data {output.node_data} \
             --coalescent {params.coalescent} \
             --date-inference {params.date_inference} \
+            --date-confidence \
             --clock-filter-iqd {params.clock_filter_iqd}
         """
 
