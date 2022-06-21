@@ -158,6 +158,7 @@ rule refine:
             --output-tree {output.tree} \
             --timetree \
             --root {params.root} \
+            --precision 3 \
             --keep-polytomies \
             {params.clock_rate} \
             {params.clock_std_dev} \
