@@ -64,6 +64,8 @@
   "filters": [
     "country",
     "region",
+    "recency",
+    "outbreak_associated",
     "host"
   ]
 }
