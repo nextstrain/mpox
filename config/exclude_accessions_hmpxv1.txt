@@ -63,6 +63,6 @@ MN702453  #A1_contig_SPADES
 MT724770  #MPXV_DRC_2014_Crocidura__littoralis_COB771
 MT724771  #MPXV_DRC_2014_Funisciurus_bayonii_Y081
 MT724772  #Funisciurus_anerythrus_2014_DRC
+ON602722  #MPXV_FRA_2022_TLS67
 ON622721  #MPXV_1_IT_Milan_2022
-ON602722  # MPXV_FRA_2022_TLS67
-ON754989  # mpx_2022_Canada_AB2 cluster of mutations
+ON754989  #mpx_2022_Canada_AB2 cluster of mutations

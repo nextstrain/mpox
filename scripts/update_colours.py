@@ -135,7 +135,15 @@ def color_ramp(n):
 
 def order(countries):
     # use the nCoV hand-curated ordering from https://github.com/nextstrain/ncov/blob/master/defaults/color_ordering.tsv
-    all_ordered = ["Israel", "Palestine", "Lebanon", "Jordan", "Syria", "Georgia", "Iraq", "Armenia", "Saudi Arabia", "Kuwait", "Yemen", "Bahrain", "Qatar", "Iran", "United Arab Emirates", "Oman", "Uzbekistan", "Afghanistan", "Kazakhstan", "Pakistan", "Tajikistan", "Maldives", "Kyrgyzstan", "India", "Sri Lanka", "Nepal", "Asia", "Bangladesh", "Myanmar", "Thailand", "Malaysia", "Mongolia", "Laos", "Singapore", "China", "Cambodia", "Vietnam", "Hong Kong", "Indonesia", "Brunei", "Taiwan", "Philippines", "Timor-Leste", "South Korea", "Japan", "French Polynesia", "Palau", "Australia", "Papua New Guinea", "Oceania", "Solomon Islands", "Vanuatu", "Marshall Islands", "New Zealand", "Fiji", "Cabo Verde", "Gambia", "Guinea-Bissau", "Senegal", "Sierra Leone", "Guinea", "Liberia", "Mauritania", "Côte d'Ivoire", "Morocco", "Mali", "Burkina Faso", "Ghana", "Togo", "Benin", "Algeria", "Sao Tome and Principe", "Nigeria", "Tunisia", "Niger", "Equatorial Guinea", "Gabon", "Cameroon", "Republic of the Congo", "Libya", "Namibia", "Angola", "Chad", "Central African Republic", "Democratic Republic of the Congo", "Africa", "Botswana", "South Africa", "Zambia", "Lesotho", "Sudan", "South Sudan", "Zimbabwe", "Burundi", "Rwanda", "Egypt", "Eswatini", "Uganda", "Malawi", "Mozambique", "Tanzania", "Kenya", "Ethiopia", "Djibouti", "Union of the Comoros", "Madagascar", "Somalia", "Seychelles", "Mauritius", "Iceland", "Portugal", "Ireland", "Spain", "United Kingdom", "Andorra", "France", "Belgium", "Netherlands", "Luxembourg", "Monaco", "Switzerland", "Norway", "Denmark", "Liechtenstein", "Germany", "Europe", "Italy", "Malta", "Slovenia", "Sweden", "Austria", "Croatia", "Czech Republic", "Bosnia and Herzegovina", "Poland", "Slovakia", "Montenegro", "Albania", "Hungary", "Serbia", "Kosovo", "North Macedonia", "Greece", "Lithuania", "Romania", "Bulgaria", "Latvia", "Estonia", "Finland", "Belarus", "Moldova", "Ukraine", "Cyprus", "Turkey", "Azerbaijan", "Russia", "Argentina", "Uruguay", "Chile", "Paraguay", "Bolivia", "South America", "Brazil", "Peru", "Ecuador", "Colombia", "Suriname", "Guyana", "Venezuela", "Trinidad and Tobago", "Bonaire", "Curacao", "Aruba", "Panama", "Costa Rica", "Grenada", "Nicaragua", "Saint Vincent and the Grenadines", "Barbados", "El Salvador", "Saint Lucia", "Honduras", "Dominica", "Guatemala", "Guadeloupe", "Belize", "Antigua and Barbuda", "Saint Kitts and Nevis", "Saint Barthélemy", "Sint Maarten", "Saint Martin", "Jamaica", "Dominican Republic", "Haiti", "Mexico", "Cuba", "Bahamas", "North America", "Bermuda", "USA", "Canada"]
+    # however reorder so that the more ancestral geographic region of Africa starts the color ramp
+    all_ordered = [
+        "Cabo Verde", "Gambia", "Guinea-Bissau", "Senegal", "Sierra Leone", "Guinea", "Liberia", "Mauritania", "Côte d'Ivoire", "Morocco", "Mali", "Burkina Faso", "Ghana", "Togo", "Benin", "Algeria", "Sao Tome and Principe", "Nigeria", "Tunisia", "Niger", "Equatorial Guinea", "Gabon", "Cameroon", "Republic of the Congo", "Libya", "Namibia", "Angola", "Chad", "Central African Republic", "Democratic Republic of the Congo", "Africa", "Botswana", "South Africa", "Zambia", "Lesotho", "Sudan", "South Sudan", "Zimbabwe", "Burundi", "Rwanda", "Egypt", "Eswatini", "Uganda", "Malawi", "Mozambique", "Tanzania", "Kenya", "Ethiopia", "Djibouti", "Union of the Comoros", "Madagascar", "Somalia", "Seychelles", "Mauritius", \
+        "Israel", "Palestine", "Lebanon", "Jordan", "Syria", "Georgia", "Iraq", "Armenia", "Saudi Arabia", "Kuwait", "Yemen", "Bahrain", "Qatar", "Iran", "United Arab Emirates", "Oman", "Uzbekistan", "Afghanistan", "Kazakhstan", "Pakistan", "Tajikistan", "Maldives", "Kyrgyzstan", "India", "Sri Lanka", "Nepal", "Asia", "Bangladesh", "Myanmar", "Thailand", "Malaysia", "Mongolia", "Laos", "Singapore", "China", "Cambodia", "Vietnam", "Hong Kong", "Indonesia", "Brunei", "Taiwan", "Philippines", "Timor-Leste", "South Korea", "Japan", \
+        "French Polynesia", "Palau", "Australia", "Papua New Guinea", "Oceania", "Solomon Islands", "Vanuatu", "Marshall Islands", "New Zealand", "Fiji", \
+        "Iceland", "Portugal", "Ireland", "Spain", "United Kingdom", "Andorra", "France", "Belgium", "Netherlands", "Luxembourg", "Monaco", "Switzerland", "Norway", "Denmark", "Liechtenstein", "Germany", "Europe", "Italy", "Malta", "Slovenia", "Sweden", "Austria", "Croatia", "Czech Republic", "Bosnia and Herzegovina", "Poland", "Slovakia", "Montenegro", "Albania", "Hungary", "Serbia", "Kosovo", "North Macedonia", "Greece", "Lithuania", "Romania", "Bulgaria", "Latvia", "Estonia", "Finland", "Belarus", "Moldova", "Ukraine", "Cyprus", "Turkey", "Azerbaijan", "Russia", \
+        "Argentina", "Uruguay", "Chile", "Paraguay", "Bolivia", "South America", "Brazil", "Peru", "Ecuador", "Colombia", "Suriname", "Guyana", "Venezuela", \
+        "Trinidad and Tobago", "Bonaire", "Curacao", "Aruba", "Panama", "Costa Rica", "Grenada", "Nicaragua", "Saint Vincent and the Grenadines", "Barbados", "El Salvador", "Saint Lucia", "Honduras", "Dominica", "Guatemala", "Guadeloupe", "Belize", "Antigua and Barbuda", "Saint Kitts and Nevis", "Saint Barthélemy", "Sint Maarten", "Saint Martin", "Jamaica", "Dominican Republic", "Haiti", "Mexico", "Cuba", "Bahamas", "North America", "Bermuda", "USA", "Canada"
+    ]
     ordered = [c for c in all_ordered if c in countries]
     extras = [c for c in countries if c not in ordered]
     if len(extras):
@@ -165,9 +173,9 @@ if __name__ == '__main__':
     countries = order([c for c in metadata["country"].unique() if c])
     hexes = color_ramp(len(countries))
     lines = lines[0:first_country_idx] + \
-        ["\n\n"] + [f"country\t{c}\t{hexes[idx]}\n" for idx,c in enumerate(countries)] + \
+        [f"country\t{c}\t{hexes[idx]}\n" for idx,c in enumerate(countries)] + \
         lines[first_country_idx:len(lines)]
-    
+
     fh = open(args.output, 'w') if args.output else sys.stdout
     for line in lines:
         print(line, end='', file=fh)
@@ -177,9 +185,3 @@ if __name__ == '__main__':
     if set(existing_countries)!=set(countries):
         print(f"Removed: {', '.join([c for c in existing_countries if c not in countries])}", file=sys.stderr)
         print(f"Added: {', '.join([c for c in countries if c not in existing_countries])}", file=sys.stderr)
-
-
-
-
-
-    

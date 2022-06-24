@@ -9,4 +9,4 @@ jobs:
     uses: nextstrain/.github/.github/workflows/pathogen-repo-ci.yaml@master
     with:
       env: |
-        NEXTSTRAIN_DOCKER_IMAGE: nextstrain/base:branch-nextalign-v2
+        NEXTSTRAIN_DOCKER_IMAGE: nextstrain/base
