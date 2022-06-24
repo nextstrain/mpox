@@ -83,7 +83,8 @@ rule align:
         """
     input:
         sequences = rules.separate_reverse_complement.output,
-        reference = config["reference"]
+        reference = config["reference"],
+        genemap = config["genemap"]
     output:
         alignment = build_dir + "/{build_name}/aligned.fasta",
         insertions = build_dir + "/{build_name}/insertions.fasta"
@@ -96,6 +97,7 @@ rule align:
         nextalign2 run \
             --jobs {threads} \
             --reference {input.reference} \
+            --genemap {input.genemap} \
             --max-indel {params.max_indel} \
             --seed-spacing {params.seed_spacing} \
             --output-fasta {output.alignment} \
@@ -204,7 +206,7 @@ rule translate:
     input:
         tree = rules.refine.output.tree,
         node_data = rules.ancestral.output.node_data,
-        genbank_reference = config["genbank_reference"]
+        genemap = config["genemap"]
     output:
         node_data = build_dir + "/{build_name}/aa_muts.json"
     shell:
@@ -212,7 +214,7 @@ rule translate:
         augur translate \
             --tree {input.tree} \
             --ancestral-sequences {input.node_data} \
-            --reference-sequence {input.genbank_reference} \
+            --reference-sequence {input.genemap} \
             --output {output.node_data}
         """
 
