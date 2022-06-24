@@ -63,6 +63,18 @@ rule filter:
             --output-log {output.log}
         """
 
+rule separate_reverse_complement:
+    input:
+        metadata = build_dir + "/{build_name}/metadata.tsv",
+        sequences =  build_dir + "/{build_name}/filtered.fasta",
+    output: build_dir + "/{build_name}/reversed.fasta",
+    shell: """
+        python3 scripts/reverse_reversed_sequences.py \
+            --metadata {input.metadata} \
+            --sequences {input.sequences} \
+            --output {output}
+        """
+
 rule align:
     message:
         """
@@ -70,7 +82,7 @@ rule align:
           - filling gaps with N
         """
     input:
-        sequences = rules.filter.output.sequences,
+        sequences = rules.separate_reverse_complement.output,
         reference = config["reference"]
     output:
         alignment = build_dir + "/{build_name}/aligned.fasta",
