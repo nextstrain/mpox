@@ -16,7 +16,7 @@ rule wrangle_metadata:
     input:
         metadata =  "data/metadata.tsv"
     output:
-        metadata = build_dir + "/{build_name}/metadata.tsv"
+        metadata = "results/metadata.tsv"
     params:
         strain_id = lambda w: config.get('strain_id_field', 'strain')
     shell:
@@ -37,10 +37,11 @@ rule filter:
         """
     input:
         sequences = "data/sequences.fasta",
-        metadata =  build_dir + "/{build_name}/metadata.tsv",
+        metadata =  "results/metadata.tsv",
         exclude = config["exclude"]
     output:
         sequences = build_dir + "/{build_name}/filtered.fasta",
+        metadata = build_dir + "/{build_name}/metadata.tsv",
         log = build_dir + "/{build_name}/filtered.log"
     params:
         group_by = "country year",
@@ -53,12 +54,25 @@ rule filter:
             --sequences {input.sequences} \
             --metadata {input.metadata} \
             --exclude {input.exclude} \
-            --output {output.sequences} \
+            --output-sequences {output.sequences} \
+            --output-metadata {output.metadata} \
             --group-by {params.group_by} \
             --sequences-per-group {params.sequences_per_group} \
             --min-date {params.min_date} \
             --min-length {params.min_length} \
             --output-log {output.log}
+        """
+
+rule separate_reverse_complement:
+    input:
+        metadata = build_dir + "/{build_name}/metadata.tsv",
+        sequences =  build_dir + "/{build_name}/filtered.fasta",
+    output: build_dir + "/{build_name}/reversed.fasta",
+    shell: """
+        python3 scripts/reverse_reversed_sequences.py \
+            --metadata {input.metadata} \
+            --sequences {input.sequences} \
+            --output {output}
         """
 
 rule align:
@@ -68,7 +82,7 @@ rule align:
           - filling gaps with N
         """
     input:
-        sequences = rules.filter.output.sequences,
+        sequences = rules.separate_reverse_complement.output,
         reference = config["reference"],
         genemap = config["genemap"]
     output:
@@ -80,7 +94,7 @@ rule align:
     threads: workflow.cores
     shell:
         """
-        nextalign run \
+        nextalign2 run \
             --jobs {threads} \
             --reference {input.reference} \
             --genemap {input.genemap} \
@@ -158,12 +172,14 @@ rule refine:
             --output-tree {output.tree} \
             --timetree \
             --root {params.root} \
+            --precision 3 \
             --keep-polytomies \
             {params.clock_rate} \
             {params.clock_std_dev} \
             --output-node-data {output.node_data} \
             --coalescent {params.coalescent} \
             --date-inference {params.date_inference} \
+            --date-confidence \
             --clock-filter-iqd {params.clock_filter_iqd}
         """
 
@@ -190,7 +206,7 @@ rule translate:
     input:
         tree = rules.refine.output.tree,
         node_data = rules.ancestral.output.node_data,
-        genbank_reference = config["genbank_reference"]
+        genemap = config["genemap"]
     output:
         node_data = build_dir + "/{build_name}/aa_muts.json"
     shell:
@@ -198,7 +214,7 @@ rule translate:
         augur translate \
             --tree {input.tree} \
             --ancestral-sequences {input.node_data} \
-            --reference-sequence {input.genbank_reference} \
+            --reference-sequence {input.genemap} \
             --output {output.node_data}
         """
 

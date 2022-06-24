@@ -17,9 +17,9 @@
       "type": "categorical"
     },
     {
-      "key": "date",
-      "title": "Date",
-      "type": "categorical"
+      "key": "sample_date",
+      "title": "Sample Date",
+      "type": "temporal"
     },
     {
       "key": "region",
@@ -54,11 +54,6 @@
     {
       "key": "date_submitted",
       "title": "Submission Date",
-      "type": "categorical"
-    },
-    {
-      "key": "genbank_accession_rev",
-      "title": "Accession",
       "type": "categorical"
     }
   ],

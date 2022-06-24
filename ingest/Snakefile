@@ -53,6 +53,8 @@ include: "workflow/snakemake_rules/fetch_sequences.smk"
 
 include: "workflow/snakemake_rules/transform.smk"
 
+include: "workflow/snakemake_rules/nextclade.smk"
+
 if config.get("upload"):
     include: "workflow/snakemake_rules/upload.smk"
 
