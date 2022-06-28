@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import argparse
+import re
 import sys
 from datetime import datetime
 import pandas as pd
@@ -19,6 +20,7 @@ column_map = {
     "qc.frameShifts.status": "QC_frame_shifts",
     "qc.stopCodons.status": "QC_stop_codons",
     "frameShifts": "frame_shifts",
+    "isReverseComplement": "is_reverse_complement",
 #    "deletions": "deletions",
 #    "insertions": "insertions"
 #    "substitutions": "substitutions",
@@ -46,6 +48,8 @@ def main():
     clades = pd.read_csv(args.nextclade, index_col=NEXTCLADE_JOIN_COLUMN_NAME,
                          sep='\t', low_memory=False, na_filter = False) \
             .rename(columns=column_map)
+    
+    clades.index = clades.index.map(lambda x: re.sub(" \|.*", "", x))
 
     # Select columns in column map
     clades = clades[list(column_map.values())]
