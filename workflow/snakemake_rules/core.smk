@@ -102,9 +102,11 @@ rule align:
             --genemap {input.genemap} \
             --max-indel {params.max_indel} \
             --seed-spacing {params.seed_spacing} \
-            --output-fasta {output.alignment} \
+            --output-fasta /tmp/aligned.fasta \
+            --retry-reverse-complement \
             --output-insertions {output.insertions} \
             {input.sequences}
+        seqkit seq -i /tmp/aligned.fasta > {output.alignment}
         """
 
 rule mask:
@@ -124,7 +126,11 @@ rule mask:
         from_end = config["mask"]["from_end"]
     shell:
         """
-        augur mask --sequences {input.sequences} --mask {input.mask} --mask-from-beginning {params.from_start} --mask-from-end {params.from_end} --output {output}
+        augur mask \
+            --sequences {input.sequences} \
+            --mask {input.mask} \
+            --mask-from-beginning {params.from_start} \
+            --mask-from-end {params.from_end} --output {output}
         """
 
 rule tree:
