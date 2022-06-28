@@ -47,7 +47,8 @@ rule filter:
         group_by = "country year",
         sequences_per_group = 1000,
         min_date = config['min_date'],
-        min_length = config['min_length']
+        min_length = config['min_length'],
+        other_filters = config.get("filters", "")
     shell:
         """
         augur filter \
@@ -60,6 +61,7 @@ rule filter:
             --sequences-per-group {params.sequences_per_group} \
             --min-date {params.min_date} \
             --min-length {params.min_length} \
+            {params.other_filters} \
             --output-log {output.log}
         """
 
