@@ -38,6 +38,8 @@ if config.get("data_source", None)=="lapis":
 else:
     include: "workflow/snakemake_rules/prepare.smk"
 
+include: "workflow/snakemake_rules/chores.smk"
+
 include: "workflow/snakemake_rules/core.smk"
 
 

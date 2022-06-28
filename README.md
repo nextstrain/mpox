@@ -92,3 +92,13 @@ and similarly update `colors_mpxv.tsv`:
 python3 scripts/update_colours.py --colors config/colors_mpxv.tsv \
     --metadata results/mpxv/metadata.tsv --output config/colors_mpxv.tsv
 ```
+
+### Update example data
+
+[Example data](./example_data/) is used by [CI](https://github.com/nextstrain/monkeypox/actions/workflows/ci.yaml). It can also be used as a small subset of real-world data.
+
+Example data should be updated every time metadata schema is changed or a new clade/lineage emerges. To update, run:
+
+```sh
+nextstrain build --docker . example_data/sequences.fasta example_data/metadata.tsv --forceall
+```
