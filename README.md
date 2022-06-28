@@ -100,5 +100,5 @@ python3 scripts/update_colours.py --colors config/colors_mpxv.tsv \
 Example data should be updated every time metadata schema is changed or a new clade/lineage emerges. To update, run:
 
 ```sh
-nextstrain build --docker . example_data/sequences.fasta example_data/metadata.tsv --forceall
+nextstrain build --docker . update_example_data -F
 ```
