@@ -1,4 +1,4 @@
-'''
+"""
 This part of the workflow expects input files
 
         sequences = "data/sequences.fasta",
@@ -10,21 +10,23 @@ and will produce output files as
 
 Parameter are expected to sit in the `config` data structure.
 In addition, `build_dir` and `auspice_dir` need to be defined upstream.
-'''
+"""
+
 
 rule wrangle_metadata:
     input:
-        metadata =  "data/metadata.tsv"
+        metadata="data/metadata.tsv",
     output:
-        metadata = build_dir + "/{build_name}/metadata.tsv"
+        metadata=build_dir + "/{build_name}/metadata.tsv",
     params:
-        strain_id = lambda w: config.get('strain_id_field', 'strain')
+        strain_id=lambda w: config.get("strain_id_field", "strain"),
     shell:
         """
         python3 scripts/wrangle_metadata.py --metadata {input.metadata} \
                     --strain-id {params.strain_id} \
                     --output {output.metadata}
         """
+
 
 rule filter:
     message:
@@ -36,18 +38,18 @@ rule filter:
           - minimum genome length of {params.min_length}
         """
     input:
-        sequences = "data/sequences.fasta",
-        metadata =  build_dir + "/{build_name}/metadata.tsv",
-        exclude = config["exclude"],
-        include = config["include"],
+        sequences="data/sequences.fasta",
+        metadata=build_dir + "/{build_name}/metadata.tsv",
+        exclude=config["exclude"],
+        include=config["include"],
     output:
-        sequences = build_dir + "/{build_name}/filtered.fasta",
-        log = build_dir + "/{build_name}/filtered.log"
+        sequences=build_dir + "/{build_name}/filtered.fasta",
+        log=build_dir + "/{build_name}/filtered.log",
     params:
-        group_by = "country year",
-        sequences_per_group = 1000,
-        min_date = config['min_date'],
-        min_length = config['min_length']
+        group_by="country year",
+        sequences_per_group=1000,
+        min_date=config["min_date"],
+        min_length=config["min_length"],
     shell:
         """
         augur filter \
@@ -55,11 +57,12 @@ rule filter:
             --metadata {input.metadata} \
             --metadata-id-columns strain \
             --exclude {input.exclude} \
-			--include {input.include} \
+            --include {input.include} \
             --output {output.sequences} \
             --min-length {params.min_length} \
             --output-log {output.log}
         """
+
 
 rule align:
     message:
@@ -68,23 +71,22 @@ rule align:
         - filling gaps with N
         """
     input:
-        sequences = rules.filter.output.sequences,
-        reference = config["reference"]
+        sequences=rules.filter.output.sequences,
+        reference=config["reference"],
     output:
-        alignment = build_dir + "/{build_name}/aligned.fasta",
-        insertions = build_dir + "/{build_name}/insertions.fasta"
+        alignment=build_dir + "/{build_name}/aligned.fasta",
+        insertions=build_dir + "/{build_name}/insertions.fasta",
     params:
-        max_indel = config["max_indel"],
+        max_indel=config["max_indel"],
         # seed_spacing = config["seed_spacing"]
-        seed_spacing = 500,
-        terminal_bandwidth = 500,
-        excess_bandwidth = 20,
+        seed_spacing=500,
+        terminal_bandwidth=500,
+        excess_bandwidth=20,
     threads: workflow.cores
     shell:
         """
-        nextalign run \
+        nextalign2 run \
             --jobs {threads} \
-            --sequences {input.sequences} \
             --reference {input.reference} \
             --max-indel {params.max_indel} \
             --seed-spacing {params.seed_spacing} \
@@ -93,8 +95,11 @@ rule align:
             --gap-alignment-side left \
             --genemap config/genemap.gff \
             --output-fasta {output.alignment} \
-            --output-insertions {output.insertions}
+            --output-insertions {output.insertions} \
+            --retry-reverse-complement \
+            -- {input.sequences} \
         """
+
 
 rule mask:
     message:
@@ -104,24 +109,26 @@ rule mask:
           - from end: {params.from_end}
         """
     input:
-        sequences = build_dir + "/{build_name}/aligned.fasta",
-        mask = config["mask"]["maskfile"]
+        sequences=build_dir + "/{build_name}/aligned.fasta",
+        mask=config["mask"]["maskfile"],
     output:
-        build_dir + "/{build_name}/masked.fasta"
+        build_dir + "/{build_name}/masked.fasta",
     params:
-        from_start = config["mask"]["from_beginning"],
-        from_end = config["mask"]["from_end"]
+        from_start=config["mask"]["from_beginning"],
+        from_end=config["mask"]["from_end"],
     shell:
         """
         augur mask --sequences {input.sequences} --mask {input.mask} --mask-from-beginning {params.from_start} --mask-from-end {params.from_end} --output {output}
         """
 
+
 rule tree:
-    message: "Building tree"
+    message:
+        "Building tree"
     input:
-        alignment = build_dir + "/{build_name}/masked.fasta"
+        alignment=build_dir + "/{build_name}/masked.fasta",
     output:
-        tree = build_dir + "/{build_name}/tree_raw.nwk"
+        tree=build_dir + "/{build_name}/tree_raw.nwk",
     threads: 8
     shell:
         """
@@ -132,20 +139,21 @@ rule tree:
             --tree-builder-args '-ninit 10 -n 4 -czb'
         """
 
+
 rule refine:
     message:
         """
         Refining tree
         """
     input:
-        tree = rules.tree.output.tree,
-        alignment = build_dir + "/{build_name}/masked.fasta",
-        metadata = build_dir + "/{build_name}/metadata.tsv"
+        tree=rules.tree.output.tree,
+        alignment=build_dir + "/{build_name}/masked.fasta",
+        metadata=build_dir + "/{build_name}/metadata.tsv",
     output:
-        tree = build_dir + "/{build_name}/tree.nwk",
-        node_data = build_dir + "/{build_name}/branch_lengths.json"
+        tree=build_dir + "/{build_name}/tree.nwk",
+        node_data=build_dir + "/{build_name}/branch_lengths.json",
     params:
-        root = config["root"],
+        root=config["root"],
     shell:
         """
         augur refine \
@@ -159,15 +167,17 @@ rule refine:
             --output-node-data {output.node_data}
         """
 
+
 rule ancestral:
-    message: "Reconstructing ancestral sequences and mutations"
+    message:
+        "Reconstructing ancestral sequences and mutations"
     input:
-        tree = rules.refine.output.tree,
-        alignment = build_dir + "/{build_name}/aligned.fasta",
+        tree=rules.refine.output.tree,
+        alignment=build_dir + "/{build_name}/aligned.fasta",
     output:
-        node_data = build_dir + "/{build_name}/nt_muts.json"
+        node_data=build_dir + "/{build_name}/nt_muts.json",
     params:
-        inference = "joint"
+        inference="joint",
     shell:
         """
         augur ancestral \
@@ -177,14 +187,16 @@ rule ancestral:
             --inference {params.inference}
         """
 
+
 rule translate:
-    message: "Translating amino acid sequences"
+    message:
+        "Translating amino acid sequences"
     input:
-        tree = rules.refine.output.tree,
-        node_data = rules.ancestral.output.node_data,
-        genemap = config["genemap"]
+        tree=rules.refine.output.tree,
+        node_data=rules.ancestral.output.node_data,
+        genemap=config["genemap"],
     output:
-        node_data = build_dir + "/{build_name}/aa_muts.json"
+        node_data=build_dir + "/{build_name}/aa_muts.json",
     shell:
         """
         augur translate \
@@ -194,15 +206,17 @@ rule translate:
             --output {output.node_data}
         """
 
+
 rule clades:
-    message: "Adding internal clade labels"
+    message:
+        "Adding internal clade labels"
     input:
-        tree = rules.refine.output.tree,
-        aa_muts = rules.translate.output.node_data,
-        nuc_muts = rules.ancestral.output.node_data,
-        clades = config["clades"]
+        tree=rules.refine.output.tree,
+        aa_muts=rules.translate.output.node_data,
+        nuc_muts=rules.ancestral.output.node_data,
+        clades=config["clades"],
     output:
-        node_data = build_dir + "/{build_name}/clades_raw.json"
+        node_data=build_dir + "/{build_name}/clades_raw.json",
     shell:
         """
         augur clades \
@@ -212,29 +226,35 @@ rule clades:
             --output-node-data {output.node_data} 2>&1 | tee {log}
         """
 
+
 rule rename_clades:
-    input: rules.clades.output.node_data
-    output: node_data = build_dir + "/{build_name}/clades.json"
-    shell: """
+    input:
+        rules.clades.output.node_data,
+    output:
+        node_data=build_dir + "/{build_name}/clades.json",
+    shell:
+        """
         python scripts/clades_renaming.py \
         --input-node-data {input} \
         --output-node-data {output.node_data}
         """
 
+
 rule export:
-    message: "Exporting data files for for auspice"
+    message:
+        "Exporting data files for for auspice"
     input:
-        tree = rules.refine.output.tree,
-        metadata = build_dir + "/{build_name}/metadata.tsv",
-        branch_lengths = "results/{build_name}/branch_lengths.json",
-        clades = rules.rename_clades.output.node_data,
-        nt_muts = rules.ancestral.output.node_data,
-        aa_muts = rules.translate.output.node_data,
-        description = config["description"],
-        auspice_config = config["auspice_config"]
+        tree=rules.refine.output.tree,
+        metadata=build_dir + "/{build_name}/metadata.tsv",
+        branch_lengths="results/{build_name}/branch_lengths.json",
+        clades=rules.rename_clades.output.node_data,
+        nt_muts=rules.ancestral.output.node_data,
+        aa_muts=rules.translate.output.node_data,
+        description=config["description"],
+        auspice_config=config["auspice_config"],
     output:
-        auspice_json =  build_dir + "/{build_name}/raw_tree.json",
-        root_sequence = build_dir + "/{build_name}/raw_tree_root-sequence.json"
+        auspice_json=build_dir + "/{build_name}/raw_tree.json",
+        root_sequence=build_dir + "/{build_name}/raw_tree_root-sequence.json",
     shell:
         """
         augur export v2 \
@@ -250,14 +270,14 @@ rule export:
 
 rule final_strain_name:
     input:
-        auspice_json =  build_dir + "/{build_name}/raw_tree.json",
-        metadata = build_dir + "/{build_name}/metadata.tsv",
-        root_sequence = build_dir + "/{build_name}/raw_tree_root-sequence.json"
+        auspice_json=build_dir + "/{build_name}/raw_tree.json",
+        metadata=build_dir + "/{build_name}/metadata.tsv",
+        root_sequence=build_dir + "/{build_name}/raw_tree_root-sequence.json",
     output:
-        auspice_json =  build_dir + "/{build_name}/tree.json",
-        root_sequence =  build_dir + "/{build_name}/tree_root-sequence.json"
+        auspice_json=build_dir + "/{build_name}/tree.json",
+        root_sequence=build_dir + "/{build_name}/tree_root-sequence.json",
     params:
-        display_strain_field = lambda w: config.get('display_strain_field', 'strain')
+        display_strain_field=lambda w: config.get("display_strain_field", "strain"),
     shell:
         """
         python3 scripts/set_final_strain_name.py --metadata {input.metadata} \
