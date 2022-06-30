@@ -75,7 +75,6 @@ snakemake -j 1 -p --configfile config/config_mpxv.yaml
 snakemake -j 1 -p --configfile config/config_hmpxv1.yaml
 ```
 
-But you need to call the executable `nextalign` and `nextclade` respectively - since that's what they are called in the docker image.
 
 ### Update colors to include new countries
 
