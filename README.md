@@ -67,7 +67,7 @@ Follow the [standard installation instructions](https://docs.nextstrain.org/en/l
 ### Nextstrain build vs Snakemake
 
 The above commands use the Nextstrain CLI and `nextstrain build` along with Docker to run using Nextalign v2.
-Alternatively, if you [install Nextalign/Nextclade v2 locally](github.com/nextstrain/nextclade/releases) you can run the pipeline with:
+Alternatively, if you [install Nextalign/Nextclade v2 locally](https://github.com/nextstrain/nextclade/releases) you can run the pipeline with:
 
 ```bash
 snakemake -j 1 -p --configfile config/config_mpxv.yaml
