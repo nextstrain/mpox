@@ -96,7 +96,7 @@ rule align:
     threads: workflow.cores
     shell:
         """
-        nextalign2 run \
+        nextalign run \
             --jobs {threads} \
             --reference {input.reference} \
             --genemap {input.genemap} \

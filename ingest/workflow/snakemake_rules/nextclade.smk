@@ -4,7 +4,7 @@ rule nextclade_dataset:
         temp("mpxv.zip")
     shell:
         """
-        nextclade2 dataset get --name MPXV --output-zip {output}
+        nextclade dataset get --name MPXV --output-zip {output}
         """
 
 rule reverse_reversed_sequences:
@@ -28,7 +28,7 @@ rule nextclade:
     threads: 4
     shell:
         """
-        nextclade2 run -D {input.dataset} -j {threads} --output-tsv {output} {input.sequences} --retry-reverse-complement
+        nextclade run -D {input.dataset} -j {threads} --output-tsv {output} {input.sequences} --retry-reverse-complement
         """
 
 rule join_metadata_clades:

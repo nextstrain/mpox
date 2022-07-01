@@ -63,19 +63,17 @@ uncertain.
 ## Installation
 
 Follow the [standard installation instructions](https://docs.nextstrain.org/en/latest/install.html) for Nextstrain's suite of software tools.
-Please choose the installation method for your operating system which uses Docker, as currently the pre-release version 2 of Nextalign and Nextclade is required which we've baked into `nexstrain/base` docker image.
 
 ### Nextstrain build vs Snakemake
 
 The above commands use the Nextstrain CLI and `nextstrain build` along with Docker to run using Nextalign v2.
-Alternatively, if you [install Nextalign/Nextclade v2 locally](github.com/nextstrain/nextclade/releases) you can run the pipeline with:
+Alternatively, if you [install Nextalign/Nextclade v2 locally](https://github.com/nextstrain/nextclade/releases) you can run the pipeline with:
 
 ```bash
 snakemake -j 1 -p --configfile config/config_mpxv.yaml
 snakemake -j 1 -p --configfile config/config_hmpxv1.yaml
 ```
 
-But you need to call the executable `nextalign2` and `nextclade2` respectively - since that's what they are called in the docker image.
 
 ### Update colors to include new countries
 
