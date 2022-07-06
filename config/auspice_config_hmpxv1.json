@@ -12,11 +12,6 @@
   "build_url": "https://github.com/nextstrain/monkeypox",
   "colorings": [
     {
-      "key": "outbreak_associated",
-      "title": "Outbreak Associated",
-      "type": "categorical"
-    },
-    {
       "key": "region",
       "title": "Region",
       "type": "categorical"
@@ -40,7 +35,7 @@
       "key": "dinuc_context_fraction",
       "title": "NGA/TCN context of G→A/C→T mutations",
       "type": "continuous"
-    },    
+    },
     {
       "key": "recency",
       "title": "Submission Recency",
@@ -62,10 +57,10 @@
     "transmission_lines": false
   },
   "filters": [
+    "clade_membership",
     "country",
     "region",
     "recency",
-    "outbreak_associated",
     "host"
   ]
 }
