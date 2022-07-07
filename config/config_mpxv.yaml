@@ -17,6 +17,7 @@ auspice_name: "monkeypox_mpxv"
 ## filter
 min_date: 1950
 min_length: 10000
+sequences_per_group: 100
 
 ## align
 max_indel: 10000
