@@ -12,11 +12,6 @@
   "build_url": "https://github.com/nextstrain/monkeypox",
   "colorings": [
     {
-      "key": "outbreak_associated",
-      "title": "Outbreak Associated",
-      "type": "categorical"
-    },
-    {
       "key": "sample_date",
       "title": "Sample Date",
       "type": "temporal"
@@ -67,8 +62,10 @@
     "transmission_lines": false
   },
   "filters": [
+    "clade_membership",
     "country",
     "region",
+    "recency",
     "host"
   ]
 }
