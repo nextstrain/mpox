@@ -102,11 +102,10 @@ rule align:
             --genemap {input.genemap} \
             --max-indel {params.max_indel} \
             --seed-spacing {params.seed_spacing} \
-            --output-fasta /tmp/aligned.fasta \
             --retry-reverse-complement \
+            --output-fasta - \
             --output-insertions {output.insertions} \
-            {input.sequences}
-        seqkit seq -i /tmp/aligned.fasta > {output.alignment}
+            {input.sequences} | seqkit seq -i > {output.alignment}
         """
 
 rule mask:
