@@ -7,28 +7,16 @@ rule nextclade_dataset:
         nextclade dataset get --name MPXV --output-zip {output}
         """
 
-rule reverse_reversed_sequences:
-    input:
-        metadata = "data/metadata_raw.tsv",
-        sequences = "data/sequences.fasta",
-    output: "data/sequences_reversed.fasta"
-    shell: """
-        python3 bin/reverse_reversed_sequences.py \
-            --metadata {input.metadata} \
-            --sequences {input.sequences} \
-            --output {output}
-        """
-
 rule nextclade:
     input:
-        sequences = "data/sequences_reversed.fasta",
+        sequences = "data/sequences.fasta",
         dataset = "mpxv.zip"
     output:
         "data/nextclade.tsv"
     threads: 4
     shell:
         """
-        nextclade run -D {input.dataset} -j {threads} --output-tsv {output} {input.sequences} --retry-reverse-complement
+        nextclade run -D {input.dataset} -j {threads} --output-tsv {output} --retry-reverse-complement  {input.sequences}
         """
 
 rule join_metadata_clades:
