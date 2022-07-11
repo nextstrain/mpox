@@ -16,7 +16,7 @@ rule nextclade:
     threads: 4
     shell:
         """
-        nextclade run -D {input.dataset} -j {threads} --output-tsv {output} --retry-reverse-complement  {input.sequences}
+        nextclade run -D {input.dataset} -j {threads} --output-tsv {output}  {input.sequences}  --retry-reverse-complement
         """
 
 rule join_metadata_clades:
