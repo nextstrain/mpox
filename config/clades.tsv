@@ -28,3 +28,52 @@ A.1.1	nuc	34459	A
 
 B.1	clade	A.1.1
 B.1	nuc	77383	A
+
+B.1.1	clade	B.1
+B.1.1	nuc	74360	A
+
+B.1.2	clade	B.1
+B.1.2	nuc	186165	A
+
+B.1.3	clade	B.1
+B.1.3	nuc	34308	A
+
+B.1.4	clade	B.1
+B.1.4	nuc	190660	A
+
+B.1.5	clade	B.1
+B.1.5	nuc	70780	T
+
+B.1.6	clade	B.1
+B.1.6	nuc	14611	A
+
+B.1.7	clade	B.1
+# Homoplasic, problematic, but kept in place of 63147
+B.1.7	nuc	25644	T
+
+B.1.8	clade	B.1
+B.1.8	nuc	156429	T
+
+B.1.9	clade	B.1
+B.1.9	nuc	5595	A
+
+B.1.10	clade	B.1
+B.1.10	nuc	36617	A
+B.1.10	nuc	159779	T
+
+B.1.11	clade	B.1
+B.1.11	nuc	181367	A
+
+B.1.12	clade	B.1
+B.1.12	nuc	169928	A
+
+B.1.13	clade	B.1
+B.1.13	nuc	111084	A
+B.1.13	nuc	182950	T
+
+B.1.14	clade	B.1
+B.1.14	nuc	89906	T
+
+# Homoplasic, removed for now
+#B.1.15	clade	B.1
+#B.1.15	nuc	63147	A
