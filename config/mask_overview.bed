@@ -1,5 +1,7 @@
 Chrom	ChromStart	ChromEnd	locus tag	Comment
 chr	6400	7500		very diverse region
 chr	133050	133250		indel variation and long homopolymers
+chr	146830	146930		indel variation
 chr	156000	159000		indel variation and long homopolymers
+chr	169700	169800		indel variation and long homopolymers
 chr	173200	173440		indel variation and long homopolymers
