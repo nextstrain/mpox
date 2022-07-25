@@ -48,32 +48,4 @@ B.1.6	clade	B.1
 B.1.6	nuc	14611	A
 
 B.1.7	clade	B.1
-# Homoplasic, problematic, but kept in place of 63147
 B.1.7	nuc	25644	T
-
-B.1.8	clade	B.1
-B.1.8	nuc	156429	T
-
-B.1.9	clade	B.1
-B.1.9	nuc	5595	A
-
-B.1.10	clade	B.1
-B.1.10	nuc	36617	A
-B.1.10	nuc	159779	T
-
-B.1.11	clade	B.1
-B.1.11	nuc	181367	A
-
-B.1.12	clade	B.1
-B.1.12	nuc	169928	A
-
-B.1.13	clade	B.1
-B.1.13	nuc	111084	A
-B.1.13	nuc	182950	T
-
-B.1.14	clade	B.1
-B.1.14	nuc	89906	T
-
-# Homoplasic, removed for now
-#B.1.15	clade	B.1
-#B.1.15	nuc	63147	A
