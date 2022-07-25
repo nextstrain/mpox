@@ -30,6 +30,9 @@ main() {
     dst_hash="$(aws s3api head-object --bucket "$bucket" --key "$key" --query Metadata.sha256sum --output text 2>/dev/null || echo "$no_hash")"
 
     if [[ $src_hash != "$dst_hash" ]]; then
+        # The record count may have changed
+        src_record_count="$(wc -l < "$src")"
+
         echo "Uploading $src → $dst"
         if [[ "$dst" == *.gz ]]; then
             gzip -c "$src"
@@ -37,7 +40,7 @@ main() {
             xz -2 -T0 -c "$src"
         else
             cat "$src"
-        fi | aws s3 cp --no-progress - "$dst" --metadata sha256sum="$src_hash" "$(content-type "$dst")"
+        fi | aws s3 cp --no-progress - "$dst" --metadata sha256sum="$src_hash",recordcount="$src_record_count" "$(content-type "$dst")"
 
         if [[ -n $cloudfront_domain ]]; then
             echo "Creating CloudFront invalidation for $cloudfront_domain/$key"
