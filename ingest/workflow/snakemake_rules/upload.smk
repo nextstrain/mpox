@@ -14,9 +14,31 @@ import os
 slack_envvars_defined = "SLACK_CHANNELS" in os.environ and "SLACK_TOKEN" in os.environ
 send_notifications =  config.get("send_slack_notifications", False) and slack_envvars_defined
 
+def _get_upload_inputs(wildcards):
+    """
+    If the file_to_upload has Slack notifications that depend on diffs with S3 files,
+    then we want the upload rule to run after the notification rule.
+
+    This function is mostly to keep track of which flag files to expect for
+    the rules in `slack_notifications.smk`, so it only includes flag files if
+    `send_notifications` is True.
+    """
+    file_to_upload = wildcards.file_to_upload
+
+    inputs = {
+        "file_to_upload": f"data/{file_to_upload}",
+    }
+
+    if send_notifications:
+        if file_to_upload == "genbank.ndjson":
+            inputs["notify_flag_file"] = "data/notify/genbank-record-change.done"
+
+    return inputs
+
+
 rule upload_to_s3:
     input:
-        file_to_upload = "data/{file_to_upload}"
+        unpack(_get_upload_inputs)
     output:
         touch("data/upload/s3/{file_to_upload}-to-{remote_file_name}.done")
     params:
@@ -25,5 +47,5 @@ rule upload_to_s3:
         cloudfront_domain = config["upload"].get("s3", {}).get("cloudfront_domain", "")
     shell:
         """
-        ./bin/upload-to-s3 {params.quiet} {input:q} {params.s3_dst:q}/{wildcards.remote_file_name:q} {params.cloudfront_domain}
+        ./bin/upload-to-s3 {params.quiet} {input.file_to_upload:q} {params.s3_dst:q}/{wildcards.remote_file_name:q} {params.cloudfront_domain}
         """
