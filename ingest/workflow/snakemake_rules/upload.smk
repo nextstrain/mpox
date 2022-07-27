@@ -30,8 +30,14 @@ def _get_upload_inputs(wildcards):
     }
 
     if send_notifications:
+        flag_file = []
+
         if file_to_upload == "genbank.ndjson":
-            inputs["notify_flag_file"] = "data/notify/genbank-record-change.done"
+            flag_file = "data/notify/genbank-record-change.done"
+        elif file_to_upload == "metadata.tsv":
+            flag_file = "data/notify/metadata-diff.done"
+
+        inputs["notify_flag_file"] = flag_file
 
     return inputs
 
