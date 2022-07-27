@@ -51,9 +51,9 @@ params = {
         ]
     ),
 
-    # Stable sort with newest last so diffs work nicely.  Columns are source
-    # data fields, not our output columns.
-    'sort': 'SourceDB_s desc, CollectionDate_s asc, id asc',
+    # Stable sort with GenBank accessions.
+    # Columns are source data fields, not our output columns.
+    'sort': 'id asc',
 
     # This isn't Entrez, but include the same email parameter it requires just
     # to be nice.

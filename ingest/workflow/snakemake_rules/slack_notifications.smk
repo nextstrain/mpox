@@ -33,6 +33,18 @@ rule notify_on_genbank_record_change:
         """
 
 
+rule notify_on_metadata_diff:
+    input:
+        metadata = "data/metadata.tsv"
+    output:
+        touch("data/notify/metadata-diff.done")
+    params:
+        s3_src = S3_SRC
+    shell:
+        """
+        ./bin/notify-on-diff {input.metadata} {params.s3_src:q}/metadata.tsv.gz
+        """
+
 onstart:
     shell("./bin/notify-on-job-start")
 
