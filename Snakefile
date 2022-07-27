@@ -42,6 +42,9 @@ include: "workflow/snakemake_rules/chores.smk"
 
 include: "workflow/snakemake_rules/core.smk"
 
+if config.get("deploy_url"):
+    include: "workflow/snakemake_rules/nextstrain_automation.smk"
+
 
 rule clean:
     message: "Removing directories: {params}"
