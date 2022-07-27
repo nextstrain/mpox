@@ -1,0 +1,5 @@
+# Optional configs to include for automated Nextstrain builds
+# Intended to be used internally by the Nextstrain team
+
+# deploy
+deploy_url: "s3://nextstrain-staging"
