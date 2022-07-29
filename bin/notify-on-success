@@ -1,0 +1,14 @@
+#!/bin/bash
+set -euo pipefail
+
+: "${SLACK_TOKEN:?The SLACK_TOKEN environment variable is required.}"
+: "${SLACK_CHANNELS:?The SLACK_CHANNELS environment variable is required.}"
+
+base="$(realpath "$(dirname "$0")/..")"
+ingest_bin="$base/ingest/bin"
+
+slack_ts_file="${1:?A Slack thread timestamp file is required as the first argument.}"
+
+echo "Notifying Slack about successful build."
+"$ingest_bin"/notify-slack "✅ This pipeline has successfully finished 🎉" \
+  --thread-ts="$(cat "$slack_ts_file")"
