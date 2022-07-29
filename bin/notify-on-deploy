@@ -1,0 +1,15 @@
+#!/bin/bash
+set -euo pipefail
+
+: "${SLACK_TOKEN:?The SLACK_TOKEN environment variable is required.}"
+: "${SLACK_CHANNELS:?The SLACK_CHANNELS environment variable is required.}"
+
+base="$(realpath "$(dirname "$0")/..")"
+ingest_bin="$base/ingest/bin"
+
+deployment_url="${1:?A deployment url is required as the first argument.}"
+slack_ts_file="${2:?A Slack thread timestamp file is required as the second argument.}"
+
+echo "Notifying Slack about deployed builds."
+"$ingest_bin"/notify-slack "Deployed this build to $deployment_url" \
+    --thread-ts="$(cat "$slack_ts_file")"
