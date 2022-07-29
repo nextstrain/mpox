@@ -1,0 +1,41 @@
+#!/bin/bash
+set -euo pipefail
+
+: "${SLACK_TOKEN:?The SLACK_TOKEN environment variable is required.}"
+: "${SLACK_CHANNELS:?The SLACK_CHANNELS environment variable is required.}"
+
+: "${AWS_BATCH_JOB_ID:=}"
+: "${GITHUB_RUN_ID:=}"
+
+base="$(realpath "$(dirname "$0")/..")"
+ingest_bin="$base/ingest/bin"
+
+build_name="${1:?A build name is required as the first argument.}"
+slack_ts_output="${2:?A Slack thread timestamp file is required as the second argument}"
+
+slack_response="$(mktemp -t slack-response-XXXXXX)"
+
+trap "rm -f '$slack_response'" EXIT
+
+echo "Notifying Slack about starting build."
+message="Pipeline starting for the \`$build_name\` build, which will run the phylogenetics and deploy the build."
+
+if [[ -n "${GITHUB_RUN_ID}" ]]; then
+  message+=" The job was submitted by GitHub Action <https://github.com/nextstrain/monkeypox/actions/runs/${GITHUB_RUN_ID}?check_suite_focus=true|${GITHUB_RUN_ID}>."
+fi
+
+if [[ -n "${AWS_BATCH_JOB_ID}" ]]; then
+  message+=" The job was launched as AWS Batch job \`${AWS_BATCH_JOB_ID}\` (<https://console.aws.amazon.com/batch/v2/home?region=us-east-1#jobs/detail/${AWS_BATCH_JOB_ID}|link>)."
+  message+=" Follow along in your local \`monkeypox\` repo with: "'```'"nextstrain build --aws-batch --no-download --attach ${AWS_BATCH_JOB_ID} . "'```'
+fi
+
+"$ingest_bin"/notify-slack "$message" --output="$slack_response"
+
+echo "Saving Slack thread timestamp to '$slack_ts_output'."
+
+# Create the Slack ts file if it doesn't exist
+if [[ ! -f "$slack_ts_output" ]]; then
+  mkdir -p "${slack_ts_output%/*}" && touch "$slack_ts_output"
+fi
+
+jq '.ts' < "$slack_response" > "$slack_ts_output"
