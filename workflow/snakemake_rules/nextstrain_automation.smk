@@ -24,6 +24,19 @@ rule deploy:
         nextstrain remote upload {params.deploy_url} {input}
         """
 
+rule notify_on_deploy:
+    input:
+        deploy_flag = build_dir + f"/{BUILD_NAME}/deploy.done"
+    output:
+        touch(build_dir + f"/{BUILD_NAME}/notify_on_deploy.done")
+    params:
+        deploy_url = DEPLOY_URL,
+        slack_ts = SLACK_TS_FILE
+    shell:
+        """
+        ./bin/notify-on-deploy {params.deploy_url} {params.slack_ts}
+        """
+
 onstart:
     # Saves onstart Slack message thread timestamp to file SLACK_TS_FILE
     shell(f"./bin/notify-on-start {config.get('build_name', 'unknown')} {SLACK_TS_FILE}")
