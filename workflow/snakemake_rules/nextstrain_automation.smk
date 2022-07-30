@@ -30,3 +30,6 @@ onstart:
 
 onsuccess:
     shell(f"./bin/notify-on-success {SLACK_TS_FILE}")
+
+onerror:
+    shell(f"./bin/notify-on-error {SLACK_TS_FILE}")
