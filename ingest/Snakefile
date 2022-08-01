@@ -43,6 +43,8 @@ def _get_all_targets(wildcards):
             "data/notify/metadata-diff.done",
         ])
 
+    if config.get("trigger_rebuild"):
+        all_targets.append("data/trigger/rebuild.done")
 
     return all_targets
 
@@ -61,3 +63,6 @@ if config.get("upload"):
 
 if send_slack_notifications:
     include: "workflow/snakemake_rules/slack_notifications.smk"
+
+if config.get("trigger_rebuild"):
+    include: "workflow/snakemake_rules/trigger_rebuild.smk"
