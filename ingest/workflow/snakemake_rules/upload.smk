@@ -46,12 +46,16 @@ rule upload_to_s3:
     input:
         unpack(_get_upload_inputs)
     output:
-        touch("data/upload/s3/{file_to_upload}-to-{remote_file_name}.done")
+        "data/upload/s3/{file_to_upload}-to-{remote_file_name}.done"
     params:
         quiet = "" if send_notifications else "--quiet",
         s3_dst = config["upload"].get("s3", {}).get("dst", ""),
         cloudfront_domain = config["upload"].get("s3", {}).get("cloudfront_domain", "")
     shell:
         """
-        ./bin/upload-to-s3 {params.quiet} {input.file_to_upload:q} {params.s3_dst:q}/{wildcards.remote_file_name:q} {params.cloudfront_domain}
+        ./bin/upload-to-s3 \
+            {params.quiet} \
+            {input.file_to_upload:q} \
+            {params.s3_dst:q}/{wildcards.remote_file_name:q} \
+            {params.cloudfront_domain} 2>&1 | tee {output}
         """
