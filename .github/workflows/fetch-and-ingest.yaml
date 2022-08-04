@@ -44,7 +44,8 @@ jobs:
           AWS_DEFAULT_REGION \
           GITHUB_RUN_ID \
           SLACK_TOKEN \
-          SLACK_CHANNELS
+          SLACK_CHANNELS \
+          PAT_GITHUB_DISPATCH
 
         nextstrain build \
           --aws-batch \
