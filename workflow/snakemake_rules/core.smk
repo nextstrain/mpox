@@ -66,7 +66,7 @@ rule align:
     message:
         """
         Aligning sequences to {input.reference}
-          - filling gaps with N
+        - filling gaps with N
         """
     input:
         sequences = rules.filter.output.sequences,
@@ -85,7 +85,8 @@ rule align:
         """
         nextalign run \
             --jobs {threads} \
-            --sequences {input.sequences} \
+            {input.sequences} \
+            --retry-reverse-complement \
             --reference {input.reference} \
             --max-indel {params.max_indel} \
             --seed-spacing {params.seed_spacing} \

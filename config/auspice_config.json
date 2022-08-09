@@ -51,6 +51,11 @@
       "key": "country",
       "title": "Country",
       "type": "categorical"
+    },
+    {
+      "key": "lineage",
+      "title": "Lineage",
+      "type": "categorical"
     }
   ],
   "display_defaults": {

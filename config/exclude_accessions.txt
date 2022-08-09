@@ -11,3 +11,13 @@ ON602722  # MPXV_FRA_2022_TLS67
 
 AF380138  #Duplicate of NC_003310 (reference)
 MT903340  #Duplicate of Rivers (reference)
+
+# Recent addition
+KJ642615  #Potential recombinant between clade 2 and 3
+
+# Overdiverged B.1
+OP012849
+
+# Overdiverged clade 1
+HM172544
+NC_003310
