@@ -51,10 +51,15 @@
       "key": "country",
       "title": "Country",
       "type": "categorical"
+    },
+    {
+      "key": "lineage",
+      "title": "Lineage",
+      "type": "categorical"
     }
   ],
   "display_defaults": {
-    "color_by": "clade_membership",
+    "color_by": "lineage",
     "map_triplicate": false,
     "distance_measure": "div",
     "transmission_lines": false
