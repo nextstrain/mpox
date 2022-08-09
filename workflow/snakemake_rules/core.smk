@@ -84,7 +84,8 @@ rule align:
         """
         nextalign run \
             --jobs {threads} \
-            --sequences {input.sequences} \
+            {input.sequences} \
+            --retry-reverse-complement \
             --reference {input.reference} \
             --max-indel {params.max_indel} \
             --seed-spacing {params.seed_spacing} \
