@@ -85,7 +85,7 @@ rule align:
     threads: workflow.cores
     shell:
         """
-        nextalign2 run \
+        nextalign run \
             --jobs {threads} \
             --reference {input.reference} \
             --max-indel {params.max_indel} \
