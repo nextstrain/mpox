@@ -10,6 +10,7 @@ VALUE_MISSING_DATA = '?'
 
 column_map = {
     "clade": "clade",
+    "outbreak": "outbreak",
     "lineage": "lineage",
     "totalMissing": "missing_data",
     "totalSubstitutions": "divergence",
