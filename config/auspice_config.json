@@ -13,6 +13,11 @@
     "nextclade": {
       "clade_node_attrs": [
         {
+          "name": "outbreak",
+          "displayName": "Outbreak",
+          "description": ""
+        },
+        {
           "name": "lineage",
           "displayName": "Lineage",
           "description": ""
@@ -23,8 +28,18 @@
   "build_url": "https://github.com/nextstrain/monkeypox",
   "colorings": [
     {
+      "key": "outbreak",
+      "title": "Outbreak",
+      "type": "categorical"
+    },
+    {
+      "key": "lineage",
+      "title": "Lineage",
+      "type": "categorical"
+    },
+    {
       "key": "date",
-      "title": "Date",
+      "title": "Collection Date",
       "type": "categorical"
     },
     {
@@ -50,11 +65,6 @@
     {
       "key": "country",
       "title": "Country",
-      "type": "categorical"
-    },
-    {
-      "key": "lineage",
-      "title": "Lineage",
       "type": "categorical"
     }
   ],
