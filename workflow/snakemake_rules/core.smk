@@ -223,17 +223,35 @@ rule rename_clades:
         --output-node-data {output.node_data}
         """
 
+rule colors:
+    input:
+        ordering = "config/color_ordering.tsv",
+        color_schemes = "config/color_schemes.tsv",
+        metadata = build_dir + "/{build_name}/metadata.tsv",
+    output:
+        colors = build_dir + "/{build_name}/colors.tsv"
+    shell:
+        """
+        python3 scripts/assign-colors.py \
+            --ordering {input.ordering} \
+            --color-schemes {input.color_schemes} \
+            --output {output.colors} \
+            --metadata {input.metadata} 2>&1
+        """
+
+
 rule export:
     message: "Exporting data files for for auspice"
     input:
-        tree = rules.refine.output.tree,
-        metadata = build_dir + "/{build_name}/metadata.tsv",
-        branch_lengths = "results/{build_name}/branch_lengths.json",
-        clades = rules.rename_clades.output.node_data,
-        nt_muts = rules.ancestral.output.node_data,
-        aa_muts = rules.translate.output.node_data,
-        description = config["description"],
-        auspice_config = config["auspice_config"]
+        colors = rules.colors.output.colors,
+        tree=rules.refine.output.tree,
+        metadata=build_dir + "/{build_name}/metadata.tsv",
+        branch_lengths="results/{build_name}/branch_lengths.json",
+        clades=rules.rename_clades.output.node_data,
+        nt_muts=rules.ancestral.output.node_data,
+        aa_muts=rules.translate.output.node_data,
+        description=config["description"],
+        auspice_config=config["auspice_config"],
     output:
         auspice_json =  build_dir + "/{build_name}/raw_tree.json",
         root_sequence = build_dir + "/{build_name}/raw_tree_root-sequence.json"
@@ -243,6 +261,7 @@ rule export:
             --tree {input.tree} \
             --metadata {input.metadata} \
             --node-data {input.branch_lengths} {input.nt_muts} {input.aa_muts} {input.clades} \
+            --colors {input.colors} \
             --description {input.description} \
             --auspice-config {input.auspice_config} \
             --include-root-sequence \
