@@ -313,7 +313,23 @@ rule recency:
         """
         python3 scripts/construct-recency-from-submission-date.py \
             --metadata {input.metadata} \
-            --output {output} 2>&1 | tee {log}
+            --output {output} 2>&1
+        """
+
+rule colors:
+    input:
+        ordering = "config/color_ordering.tsv",
+        color_schemes = "config/color_schemes.tsv",
+        metadata = build_dir + "/{build_name}/metadata.tsv",
+    output:
+        colors = build_dir + "/{build_name}/colors.tsv"
+    shell:
+        """
+        python3 scripts/assign-colors.py \
+            --ordering {input.ordering} \
+            --color-schemes {input.color_schemes} \
+            --output {output.colors} \
+            --metadata {input.metadata} 2>&1
         """
 
 rule export:
@@ -328,7 +344,7 @@ rule export:
         clades = build_dir + "/{build_name}/clades.json",
         mutation_context = rules.mutation_context.output.node_data,
         recency = lambda w: rules.recency.output.node_data if config.get('recency', False) else [],
-        colors = config["colors"],
+        colors = rules.colors.output.colors,
         lat_longs = config["lat_longs"],
         description = config["description"],
         auspice_config = config["auspice_config"]
