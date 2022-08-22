@@ -58,7 +58,7 @@
     },
     {
       "key": "date_submitted",
-      "title": "Submission Date",
+      "title": "Release Date",
       "type": "categorical"
     }
   ],
