@@ -12,6 +12,16 @@
   "build_url": "https://github.com/nextstrain/monkeypox",
   "colorings": [
     {
+      "key": "outbreak",
+      "title": "Outbreak",
+      "type": "categorical"
+    },
+    {
+      "key": "lineage",
+      "title": "Lineage",
+      "type": "categorical"
+    },
+    {
       "key": "sample_date",
       "title": "Sample Date",
       "type": "temporal"
@@ -48,7 +58,7 @@
     },
     {
       "key": "date_submitted",
-      "title": "Submission Date",
+      "title": "Release Date",
       "type": "categorical"
     }
   ],

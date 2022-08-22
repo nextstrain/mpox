@@ -12,6 +12,16 @@
   "build_url": "https://github.com/nextstrain/monkeypox",
   "colorings": [
     {
+      "key": "outbreak",
+      "title": "Outbreak",
+      "type": "categorical"
+    },
+    {
+      "key": "lineage",
+      "title": "Lineage",
+      "type": "categorical"
+    },
+    {
       "key": "region",
       "title": "Region",
       "type": "categorical"
@@ -43,7 +53,7 @@
     },
     {
       "key": "date_submitted",
-      "title": "Submission Date",
+      "title": "Release Date",
       "type": "categorical"
     }
   ],
@@ -51,7 +61,7 @@
     "country"
   ],
   "display_defaults": {
-    "color_by": "clade_membership",
+    "color_by": "lineage",
     "map_triplicate": true,
     "distance_measure": "num_date",
     "transmission_lines": false
