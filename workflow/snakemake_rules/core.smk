@@ -258,17 +258,26 @@ rule clades:
         nuc_muts = rules.ancestral.output.node_data,
         clades = config["clades"]
     output:
-        node_data = build_dir + "/{build_name}/clades.json"
+        node_data = build_dir + "/{build_name}/clades_raw.json"
     log:
         "logs/clades_{build_name}.txt"
     shell:
         """
-        augur clades --tree {input.tree} \
+        augur clades \
+            --tree {input.tree} \
             --mutations {input.nuc_muts} {input.aa_muts} \
             --clades {input.clades} \
             --output-node-data {output.node_data} 2>&1 | tee {log}
         """
 
+rule rename_clades:
+    input: rules.clades.output.node_data
+    output: node_data = build_dir + "/{build_name}/clades.json"
+    shell: """
+        python scripts/clades_renaming.py \
+        --input-node-data {input} \
+        --output-node-data {output.node_data}
+        """
 
 rule mutation_context:
     input:
@@ -316,7 +325,7 @@ rule export:
         traits = rules.traits.output.node_data,
         nt_muts = rules.ancestral.output.node_data,
         aa_muts = rules.translate.output.node_data,
-        clades = rules.clades.output.node_data,
+        clades = build_dir + "/{build_name}/clades.json",
         mutation_context = rules.mutation_context.output.node_data,
         recency = lambda w: rules.recency.output.node_data if config.get('recency', False) else [],
         colors = config["colors"],
