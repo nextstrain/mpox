@@ -33,6 +33,6 @@ clock_std_dev: 6e-6
 recency: true
 
 mask:
-  from_beginning: 1500
+  from_beginning: 1350
   from_end: 6422
   maskfile: "config/mask_overview.bed"
