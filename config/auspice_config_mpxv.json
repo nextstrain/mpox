@@ -73,6 +73,7 @@
   },
   "filters": [
     "clade_membership",
+    "lineage",
     "country",
     "region",
     "recency",
