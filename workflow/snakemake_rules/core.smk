@@ -44,7 +44,7 @@ rule filter:
         metadata = build_dir + "/{build_name}/metadata.tsv",
         log = build_dir + "/{build_name}/filtered.log"
     params:
-        group_by = config.get("groupby", "clade lineage"),
+        group_by = config.get("group_by", "clade lineage"),
         sequences_per_group = config['sequences_per_group'],
         min_date = config['min_date'],
         min_length = config['min_length'],
