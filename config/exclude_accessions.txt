@@ -21,3 +21,7 @@ OP012849
 # Overdiverged clade 1
 HM172544
 NC_003310
+
+# Reverted B.1
+OP295383  #Colombia
+OP295382  #Colombia
