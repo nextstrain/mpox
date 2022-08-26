@@ -267,6 +267,7 @@ FV537351  #UNKNOWN_FV537351
 # Overdiverged B.1
 OP012849
 
-# Reverted B.1
-OP295383  #Colombia
-OP295382  #Colombia
+# Colombian B.1 reverted to reference
+OP295382
+OP295383
+OP295383

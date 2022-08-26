@@ -1,4 +1,5 @@
 import argparse
+import pdb
 import pandas as pd
 
 # Forced colours MUST NOT appear in the ordering TSV
@@ -35,7 +36,8 @@ if __name__ == '__main__':
     if args.metadata:
         metadata = pd.read_csv(args.metadata, delimiter='\t')
         for name, trait in assignment.items():
-            if name in metadata:
+            # Items not to exclude if not (yet) present in metadata to solve bootstrapping issue
+            if name in metadata and name not in ['clade_membership', 'outbreak', 'lineage']:
                 subset_present = [x for x in assignment[name] if x in metadata[name].unique()]
                 assignment[name] = subset_present
             if name in metadata and 'focal' in metadata:
