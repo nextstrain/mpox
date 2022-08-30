@@ -22,7 +22,7 @@ upload:
       'metadata.tsv.gz',
       'sequences.fasta.xz',
       'alignment.fasta.xz',
-      'insertions.csv',
+      'insertions.csv.gz',
       'translations.zip'
     ]
     cloudfront_domain: 'data.nextstrain.org'

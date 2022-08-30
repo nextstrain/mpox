@@ -18,6 +18,6 @@ We curate sequence data and metadata from [NCBI Virus](https://www.ncbi.nlm.nih.
 - [data.nextstrain.org/files/workflows/monkeypox/metadata.tsv.gz](https://data.nextstrain.org/files/workflows/monkeypox/metadata.tsv.gz)
 Pairwise alignments with [Nextclade](https://clades.nextstrain.org/) against the [reference sequence MPXV-M5312_HM12_Rivers](https://www.ncbi.nlm.nih.gov/nuccore/NC_063383), insertions relative to the reference, and translated ORFs are available at
 - [data.nextstrain.org/files/workflows/monkeypox/alignment.fasta.xz](https://data.nextstrain.org/files/workflows/monkeypox/alignment.fasta.xz)
-- [data.nextstrain.org/files/workflows/monkeypox/insertions.csv](https://data.nextstrain.org/files/workflows/monkeypox/insertions.csv)
+- [data.nextstrain.org/files/workflows/monkeypox/insertions.csv.gz](https://data.nextstrain.org/files/workflows/monkeypox/insertions.csv.gz)
 - [data.nextstrain.org/files/workflows/monkeypox/translations.zip](https://data.nextstrain.org/files/workflows/monkeypox/translations.zip)
 
