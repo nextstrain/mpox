@@ -18,7 +18,7 @@ rule nextclade_dataset_hMPXV:
 rule align:
     input:
         sequences = "data/sequences.fasta",
-        dataset = "mpxv.zip"
+        dataset = "hmpxv.zip"
     output:
         alignment = "data/alignment.fasta.xz",
         insertions = "data/insertions.csv",
