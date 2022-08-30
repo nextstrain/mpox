@@ -31,7 +31,7 @@ rule align:
         nextclade run -D {input.dataset} -j {threads}   --retry-reverse-complement \
                   --output-fasta {output.alignment}  --output-translations {params.translations} \
                   --output-insertions {output.insertions} {input.sequences}
-        zip -r {output.translations} data/translations
+        zip -rj {output.translations} data/translations
         """
 
 rule nextclade:

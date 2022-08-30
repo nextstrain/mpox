@@ -16,3 +16,8 @@ Our bioinformatic processing workflow can be found at [github.com/nextstrain/mon
 We curate sequence data and metadata from [NCBI Virus](https://www.ncbi.nlm.nih.gov/labs/virus/vssi/#/virus?SeqType_s=Nucleotide&VirusLineage_ss=Monkeypox%20virus,%20taxid:10244) as starting point for these analyses. Curated sequences and metadata are available as flat files at:
 - [data.nextstrain.org/files/workflows/monkeypox/sequences.fasta.xz](https://data.nextstrain.org/files/workflows/monkeypox/sequences.fasta.xz)
 - [data.nextstrain.org/files/workflows/monkeypox/metadata.tsv.gz](https://data.nextstrain.org/files/workflows/monkeypox/metadata.tsv.gz)
+Pairwise alignments with [Nextclade](https://clades.nextstrain.org/) against the [reference sequence MPXV-M5312_HM12_Rivers](https://www.ncbi.nlm.nih.gov/nuccore/NC_063383), insertions relative to the reference, and translated ORFs are available at
+- [data.nextstrain.org/files/workflows/monkeypox/alignment.fasta.xz](https://data.nextstrain.org/files/workflows/monkeypox/alignment.fasta.xz)
+- [data.nextstrain.org/files/workflows/monkeypox/insertions.csv.gz](https://data.nextstrain.org/files/workflows/monkeypox/insertions.csv.gz)
+- [data.nextstrain.org/files/workflows/monkeypox/translations.zip](https://data.nextstrain.org/files/workflows/monkeypox/translations.zip)
+
