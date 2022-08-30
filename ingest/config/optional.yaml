@@ -11,7 +11,7 @@ upload:
       'sequences.ndjson',
       'metadata.tsv',
       'sequences.fasta',
-      'alignment.fasta.xz',
+      'alignment.fasta',
       'insertions.csv',
       'translations.zip'
     ]

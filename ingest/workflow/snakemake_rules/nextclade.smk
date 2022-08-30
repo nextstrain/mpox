@@ -20,7 +20,7 @@ rule align:
         sequences = "data/sequences.fasta",
         dataset = "hmpxv.zip"
     output:
-        alignment = "data/alignment.fasta.xz",
+        alignment = "data/alignment.fasta",
         insertions = "data/insertions.csv",
         translations = "data/translations.zip"
     params:
