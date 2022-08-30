@@ -7,6 +7,33 @@ rule nextclade_dataset:
         nextclade dataset get --name MPXV --output-zip {output}
         """
 
+rule nextclade_dataset_hMPXV:
+    output:
+        temp("hmpxv.zip")
+    shell:
+        """
+        nextclade dataset get --name hMPXV --output-zip {output}
+        """
+
+rule align:
+    input:
+        sequences = "data/sequences.fasta",
+        dataset = "hmpxv.zip"
+    output:
+        alignment = "data/alignment.fasta",
+        insertions = "data/insertions.csv",
+        translations = "data/translations.zip"
+    params:
+        translations = lambda w:"data/translations/{gene}.fasta"
+    threads: 4
+    shell:
+        """
+        nextclade run -D {input.dataset} -j {threads}   --retry-reverse-complement \
+                  --output-fasta {output.alignment}  --output-translations {params.translations} \
+                  --output-insertions {output.insertions} {input.sequences}
+        zip -r {output.translations} data/translations
+        """
+
 rule nextclade:
     input:
         sequences = "data/sequences.fasta",
