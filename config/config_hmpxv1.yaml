@@ -17,8 +17,8 @@ auspice_name: "monkeypox_hmpxv1"
 ## filter
 min_date: 2017
 min_length: 10000
-sequences_per_group: 20
-groupby: "clade lineage year month country"
+sequences_per_group: 50
+group_by: "year month country"
 filters: "--exclude-where outbreak!=hMPXV-1"
 
 ## align
@@ -28,11 +28,13 @@ seed_spacing: 1000
 ## refine
 timetree: true
 root: "MK783032 MK783030"
+clock_rate: 5.7e-5
+clock_std_dev: 2e-5
 
 ## recency
 recency: true
 
 mask:
-  from_beginning: 1500
+  from_beginning: 800
   from_end: 6422
   maskfile: "config/mask.bed"

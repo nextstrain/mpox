@@ -1,7 +1,7 @@
 # nextstrain.org/monkeypox
 
 This is the [Nextstrain](https://nextstrain.org) build for monkeypox virus. Output from this build is visible at [nextstrain.org/monkeypox](https://nextstrain.org/monkeypox).
-The lineages within the recent monkeypox outbreaks in humans are deiined in a separate [lineage-designation repository](https://github.com/mpxv-lineages/lineage-designation).
+The lineages within the recent monkeypox outbreaks in humans are defined in a separate [lineage-designation repository](https://github.com/mpxv-lineages/lineage-designation).
 
 ## Usage
 
@@ -35,7 +35,7 @@ Run pipeline to produce "outbreak" tree for `/monkeypox/hmpxv1` with:
 nextstrain build --docker --cpus 1 . --configfile config/config_hmpxv1.yaml
 ```
 
-Adjust the number of CPUs to what your machine has available you want to perform alignment and tree building a bit faster.
+Adjust the number of CPUs to what your machine has available if you want to perform alignment and tree building a bit faster.
 
 ### Visualize results
 

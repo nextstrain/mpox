@@ -44,7 +44,7 @@ rule filter:
         metadata = build_dir + "/{build_name}/metadata.tsv",
         log = build_dir + "/{build_name}/filtered.log"
     params:
-        group_by = config.get("groupby", "clade lineage"),
+        group_by = config.get("group_by", "clade lineage"),
         sequences_per_group = config['sequences_per_group'],
         min_date = config['min_date'],
         min_length = config['min_length'],
@@ -258,17 +258,26 @@ rule clades:
         nuc_muts = rules.ancestral.output.node_data,
         clades = config["clades"]
     output:
-        node_data = build_dir + "/{build_name}/clades.json"
+        node_data = build_dir + "/{build_name}/clades_raw.json"
     log:
         "logs/clades_{build_name}.txt"
     shell:
         """
-        augur clades --tree {input.tree} \
+        augur clades \
+            --tree {input.tree} \
             --mutations {input.nuc_muts} {input.aa_muts} \
             --clades {input.clades} \
             --output-node-data {output.node_data} 2>&1 | tee {log}
         """
 
+rule rename_clades:
+    input: rules.clades.output.node_data
+    output: node_data = build_dir + "/{build_name}/clades.json"
+    shell: """
+        python scripts/clades_renaming.py \
+        --input-node-data {input} \
+        --output-node-data {output.node_data}
+        """
 
 rule mutation_context:
     input:
@@ -304,7 +313,23 @@ rule recency:
         """
         python3 scripts/construct-recency-from-submission-date.py \
             --metadata {input.metadata} \
-            --output {output} 2>&1 | tee {log}
+            --output {output} 2>&1
+        """
+
+rule colors:
+    input:
+        ordering = "config/color_ordering.tsv",
+        color_schemes = "config/color_schemes.tsv",
+        metadata = build_dir + "/{build_name}/metadata.tsv",
+    output:
+        colors = build_dir + "/{build_name}/colors.tsv"
+    shell:
+        """
+        python3 scripts/assign-colors.py \
+            --ordering {input.ordering} \
+            --color-schemes {input.color_schemes} \
+            --output {output.colors} \
+            --metadata {input.metadata} 2>&1
         """
 
 rule export:
@@ -316,10 +341,10 @@ rule export:
         traits = rules.traits.output.node_data,
         nt_muts = rules.ancestral.output.node_data,
         aa_muts = rules.translate.output.node_data,
-        clades = rules.clades.output.node_data,
+        clades = build_dir + "/{build_name}/clades.json",
         mutation_context = rules.mutation_context.output.node_data,
         recency = lambda w: rules.recency.output.node_data if config.get('recency', False) else [],
-        colors = config["colors"],
+        colors = rules.colors.output.colors,
         lat_longs = config["lat_longs"],
         description = config["description"],
         auspice_config = config["auspice_config"]

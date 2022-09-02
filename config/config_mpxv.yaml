@@ -17,8 +17,8 @@ auspice_name: "monkeypox_mpxv"
 ## filter
 min_date: 1950
 min_length: 10000
-groupby: "clade year month country"
-sequences_per_group: 20
+group_by: "clade year country"
+sequences_per_group: 50
 
 ## align
 max_indel: 10000
@@ -34,6 +34,6 @@ clock_std_dev: 6e-6
 recency: true
 
 mask:
-  from_beginning: 1500
+  from_beginning: 1350
   from_end: 6422
   maskfile: "config/mask_overview.bed"

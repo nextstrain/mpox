@@ -10,14 +10,20 @@ upload:
       'genbank.ndjson',
       'sequences.ndjson',
       'metadata.tsv',
-      'sequences.fasta'
+      'sequences.fasta',
+      'alignment.fasta',
+      'insertions.csv',
+      'translations.zip'
     ]
     # Remote file names for the files to upload, must be in the same order as local files above
     remote_file_names: [
       'genbank.ndjson.xz',
       'all_sequences.ndjson.xz',
       'metadata.tsv.gz',
-      'sequences.fasta.xz'
+      'sequences.fasta.xz',
+      'alignment.fasta.xz',
+      'insertions.csv.gz',
+      'translations.zip'
     ]
     cloudfront_domain: 'data.nextstrain.org'
 
