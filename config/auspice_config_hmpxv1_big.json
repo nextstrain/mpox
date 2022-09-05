@@ -1,0 +1,77 @@
+{
+  "title": "Genomic epidemiology of hMPXV-1 (clade IIb) monkeypox virus using as many sequences as possible",
+  "maintainers": [
+    {"name": "Nextstrain team", "url": "http://nextstrain.org"}
+  ],
+  "data_provenance": [
+    {
+      "name": "GenBank",
+      "url": "https://www.ncbi.nlm.nih.gov/genbank/"
+    }
+  ],
+  "build_url": "https://github.com/nextstrain/monkeypox",
+  "colorings": [
+    {
+      "key": "outbreak",
+      "title": "Outbreak",
+      "type": "categorical"
+    },
+    {
+      "key": "lineage",
+      "title": "Lineage",
+      "type": "categorical"
+    },
+    {
+      "key": "region",
+      "title": "Region",
+      "type": "categorical"
+    },
+    {
+      "key": "country",
+      "title": "Country",
+      "type": "categorical"
+    },
+    {
+      "key": "host",
+      "title": "Host",
+      "type": "categorical"
+    },
+    {
+      "key": "GA_CT_fraction",
+      "title": "G→A or C→T fraction",
+      "type": "continuous"
+    },
+    {
+      "key": "dinuc_context_fraction",
+      "title": "NGA/TCN context of G→A/C→T mutations",
+      "type": "continuous"
+    },
+    {
+      "key": "recency",
+      "title": "Submission Recency",
+      "type": "categorical"
+    },
+    {
+      "key": "date_submitted",
+      "title": "Release Date",
+      "type": "categorical"
+    }
+  ],
+  "geo_resolutions": [
+    "country"
+  ],
+  "display_defaults": {
+    "color_by": "lineage",
+    "map_triplicate": true,
+    "distance_measure": "num_date",
+    "transmission_lines": false
+  },
+  "filters": [
+    "clade_membership",
+    "lineage",
+    "country",
+    "region",
+    "recency",
+    "host"
+  ]
+}
