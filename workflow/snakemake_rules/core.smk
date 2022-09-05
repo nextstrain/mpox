@@ -147,6 +147,22 @@ rule tree:
             --nthreads {threads}
         """
 
+rule fix_tree:
+    message: "Building tree"
+    input:
+        tree = rules.tree.output.tree,
+        alignment = build_dir + "/{build_name}/masked.fasta"
+    output:
+        tree = build_dir + "/{build_name}/tree_fixed.nwk"
+    threads: 8
+    shell:
+        """
+        python3 scripts/fix_tree.py \
+            --alignment {input.alignment} \
+            --input-tree {input.tree} \
+            --output {output.tree}
+        """
+
 rule refine:
     message:
         """
@@ -157,7 +173,7 @@ rule refine:
           - filter tips more than {params.clock_filter_iqd} IQDs from clock expectation
         """
     input:
-        tree = rules.tree.output.tree,
+        tree = rules.fix_tree.output.tree,
         alignment = build_dir + "/{build_name}/masked.fasta",
         metadata = build_dir + "/{build_name}/metadata.tsv"
     output:
