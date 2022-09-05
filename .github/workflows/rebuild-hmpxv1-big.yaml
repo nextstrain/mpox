@@ -1,4 +1,4 @@
-name: Rebuild hmpxv1
+name: Rebuild hmpxv1-big
 
 on:
   repository_dispatch:
