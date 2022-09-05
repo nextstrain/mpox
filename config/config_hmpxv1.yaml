@@ -25,6 +25,9 @@ filters: "--exclude-where outbreak!=hMPXV-1"
 max_indel: 10000
 seed_spacing: 1000
 
+## treefix
+fix_tree: false
+
 ## refine
 timetree: true
 root: "MK783032 MK783030"

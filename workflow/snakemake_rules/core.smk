@@ -173,7 +173,7 @@ rule refine:
           - filter tips more than {params.clock_filter_iqd} IQDs from clock expectation
         """
     input:
-        tree = rules.fix_tree.output.tree,
+        tree = lambda w: rules.fix_tree.output.tree if config["fix_tree"] else rules.tree.output.tree,
         alignment = build_dir + "/{build_name}/masked.fasta",
         metadata = build_dir + "/{build_name}/metadata.tsv"
     output:
@@ -184,7 +184,7 @@ rule refine:
         date_inference = "marginal",
         clock_filter_iqd = 0,
         root = config["root"],
-        clock_rate = lambda w: f"--clock-rate {config['clock_rate']}" if "clock_rate" in config else "",
+        clock_rate = lambda w: "--clock-rate {config['clock_rate']}" if "clock_rate" in config else "",
         clock_std_dev = lambda w: f"--clock-std-dev {config['clock_std_dev']}" if "clock_std_dev" in config else ""
     shell:
         """

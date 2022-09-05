@@ -24,6 +24,9 @@ sequences_per_group: 50
 max_indel: 10000
 seed_spacing: 1000
 
+## treefix
+fix_tree: false
+
 ## refine
 timetree: false
 root: "min_dev"
