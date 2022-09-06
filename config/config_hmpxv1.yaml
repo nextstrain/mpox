@@ -21,6 +21,9 @@ sequences_per_group: 50
 group_by: "year month country"
 filters: "--exclude-where outbreak!=hMPXV-1"
 
+# dynamic include
+dynamic_include: "--str-in-fld lineage:'A'"
+
 ## align
 max_indel: 10000
 seed_spacing: 1000

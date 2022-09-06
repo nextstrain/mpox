@@ -68,6 +68,95 @@ rule filter:
         """
 
 
+if "dynamic_include" in config:
+
+    rule generate_include_strains:
+        input:
+            metadata="results/metadata.tsv",
+        output:
+            include_strains=build_dir + "/{build_name}/include_strains.txt",
+        params:
+            include_query=config["dynamic_include"],
+        shell:
+            """
+            tsv-filter -H {params.include_query} {input.metadata} \
+                | tsv-select -f 1 \
+                > {output.include_strains}
+            """
+
+
+else:
+
+    rule generate_include_strains:
+        output:
+            include_strains=build_dir + "/{build_name}/include_strains.txt",
+        shell:
+            """
+            touch {output.include_strains}
+            """
+
+
+rule dynamic_include:
+    input:
+        sequences="data/sequences.fasta",
+        metadata="results/metadata.tsv",
+        exclude=config["exclude"],
+        include_strains=build_dir + "/{build_name}/include_strains.txt",
+    output:
+        sequences=build_dir + "/{build_name}/include.fasta",
+        metadata=build_dir + "/{build_name}/include_metadata.tsv",
+        log1=build_dir + "/{build_name}/dynamic_include1.log",
+        log2=build_dir + "/{build_name}/dynamic_include2.log",
+        tmp_metadata=temp(build_dir + "/{build_name}/temp_metadata.tsv"),
+    params:
+        min_date=config["min_date"],
+        min_length=config["min_length"],
+    shell:
+        """
+        augur filter \
+            --sequences {input.sequences} \
+            --metadata {input.metadata} \
+            --exclude {input.exclude} \
+            --min-date {params.min_date} \
+            --min-length {params.min_length} \
+            --output-metadata {output.tmp_metadata} \
+            --output-log {output.log1}
+
+        augur filter \
+            --sequences {input.sequences} \
+            --metadata {output.tmp_metadata} \
+            --exclude-all \
+            --include {input.include_strains} \
+            --output-sequences {output.sequences}\
+            --output-metadata {output.metadata} \
+            --output-log {output.log2}
+        """
+
+
+rule join_and_deduplicate_metadata:
+    input:
+        metadata=rules.filter.output.metadata,
+        include_metadata=rules.dynamic_include.output.metadata,
+    output:
+        metadata=build_dir + "/{build_name}/metadata.tsv",
+    shell:
+        """
+        tsv-uniq -f1 {input.metadata} {input.include_metadata} > {output.metadata}
+        """
+
+
+rule join_and_deduplicate_sequences:
+    input:
+        sequences=rules.filter.output.sequences,
+        include_sequences=rules.dynamic_include.output.sequences,
+    output:
+        sequences=build_dir + "/{build_name}/sequences.fasta",
+    shell:
+        """
+        seqkit rmdup {input.sequences} {input.include_sequences} > {output.sequences}
+        """
+
+
 rule separate_reverse_complement:
     input:
         metadata=build_dir + "/{build_name}/metadata.tsv",
