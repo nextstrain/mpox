@@ -24,7 +24,7 @@ if __name__=="__main__":
     for build in args.builds:
         for f in ['', '_root-sequence']:
             os.system(f"aws s3 cp s3://nextstrain-staging/monkeypox_{build}{f}.json staging/")
-            os.system(f"aws s3 cp s3://nextstrain-staging/monkeypox_{build}{f}.json s3://nextstrain-data/monkeypox_{build}_{today}{f}.json")
+            os.system(f"aws s3 cp s3://nextstrain-staging/monkeypox_{build}{f}.json s3://nextstrain-data/monkeypox_{build}{f}.json")
 
         with gzip.open(f"staging/monkeypox_{build}.json") as fh:
             d = json.load(fh)
