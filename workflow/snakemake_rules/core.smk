@@ -28,11 +28,10 @@ rule wrangle_metadata:
         """
 
 
-rule filter:
+rule exclude_bad:
     message:
         """
-        Filtering to
-          - {params.sequences_per_group} sequence(s) per {params.group_by!s}
+        Removing strains that violate one of
           - from {params.min_date} onwards
           - excluding strains in {input.exclude}
           - minimum genome length of {params.min_length}
@@ -42,15 +41,12 @@ rule filter:
         metadata="results/metadata.tsv",
         exclude=config["exclude"],
     output:
-        sequences=build_dir + "/{build_name}/filtered.fasta",
-        metadata=build_dir + "/{build_name}/filtered_metadata.tsv",
-        log=build_dir + "/{build_name}/filtered.log",
+        sequences=build_dir + "/{build_name}/good_sequences.fasta",
+        metadata=build_dir + "/{build_name}/good_metadata.tsv",
+        log=build_dir + "/{build_name}/good_filter.log",
     params:
-        group_by=config.get("group_by", "clade lineage"),
-        sequences_per_group=config["sequences_per_group"],
         min_date=config["min_date"],
         min_length=config["min_length"],
-        other_filters=config.get("filters", ""),
     shell:
         """
         augur filter \
@@ -59,18 +55,15 @@ rule filter:
             --exclude {input.exclude} \
             --output-sequences {output.sequences} \
             --output-metadata {output.metadata} \
-            --group-by {params.group_by} \
-            --sequences-per-group {params.sequences_per_group} \
             --min-date {params.min_date} \
             --min-length {params.min_length} \
-            {params.other_filters} \
             --output-log {output.log}
         """
 
 
 rule include_A_strains:
     input:
-        metadata="results/metadata.tsv",
+        metadata=rules.exclude_bad.output.metadata,
     output:
         include_strains=build_dir + "/{build_name}/include_strains.txt",
     shell:
@@ -83,58 +76,36 @@ rule include_A_strains:
         """
 
 
-rule dynamic_include:
+rule filter:
+    message:
+        """
+        Filtering to
+          - {params.sequences_per_group} sequence(s) per {params.group_by!s}
+        """
     input:
-        sequences="data/sequences.fasta",
-        metadata="results/metadata.tsv",
-        exclude=config["exclude"],
-        include_strains=build_dir + "/{build_name}/include_strains.txt",
+        sequences=rules.exclude_bad.output.sequences,
+        metadata=rules.exclude_bad.output.metadata,
+        include=rules.include_A_strains.output.include_strains,
     output:
-        sequences=build_dir + "/{build_name}/include.fasta",
-        metadata=build_dir + "/{build_name}/include_metadata.tsv",
-        log1=build_dir + "/{build_name}/dynamic_include1.log",
-        log2=build_dir + "/{build_name}/dynamic_include2.log",
-        tmp_metadata=temp(build_dir + "/{build_name}/temp_metadata.tsv"),
+        sequences=build_dir + "/{build_name}/filtered.fasta",
+        metadata=build_dir + "/{build_name}/metadata.tsv",
+        log=build_dir + "/{build_name}/filter.log",
     params:
-        min_date=config["min_date"],
-        min_length=config["min_length"],
+        group_by=config.get("group_by", "clade lineage"),
+        sequences_per_group=config["sequences_per_group"],
+        other_filters=config.get("filters", ""),
     shell:
         """
-        # Remove excluded strains
         augur filter \
             --sequences {input.sequences} \
             --metadata {input.metadata} \
-            --exclude {input.exclude} \
-            --min-date {params.min_date} \
-            --min-length {params.min_length} \
-            --output-metadata {output.tmp_metadata} \
-            --output-log {output.log1}
-
-        # Add strains from include_strains.txt
-        augur filter \
-            --sequences {input.sequences} \
-            --metadata {output.tmp_metadata} \
-            --exclude-all \
-            --include {input.include_strains} \
-            --output-sequences {output.sequences}\
+            --include {input.include} \
+            --output-sequences {output.sequences} \
             --output-metadata {output.metadata} \
-            --output-log {output.log2}
-        """
-
-
-rule join_and_deduplicate:
-    input:
-        metadata=rules.filter.output.metadata,
-        include_metadata=rules.dynamic_include.output.metadata,
-        sequences=rules.filter.output.sequences,
-        include_sequences=rules.dynamic_include.output.sequences,
-    output:
-        metadata=build_dir + "/{build_name}/metadata.tsv",
-        sequences=build_dir + "/{build_name}/sequences.fasta",
-    shell:
-        """
-        tsv-uniq -f1 {input.metadata} {input.include_metadata} > {output.metadata}
-        seqkit rmdup {input.sequences} {input.include_sequences} > {output.sequences}
+            --group-by {params.group_by} \
+            --sequences-per-group {params.sequences_per_group} \
+            {params.other_filters} \
+            --output-log {output.log}
         """
 
 
