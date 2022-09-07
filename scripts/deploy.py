@@ -50,20 +50,31 @@ if __name__=="__main__":
             os.system(f"aws s3 cp s3://nextstrain-staging/monkeypox_{build_name}{auspice_file}.json s3://nextstrain-data/monkeypox_{build_name}{auspice_file}.json")
         print(f">> Uploaded {build_name} to staging: https://nextstrain.org/staging/monkeypox/{build_name.replace('_', '/')}/")
 
-        # Load auspice json
-        with gzip.open(f"staging/monkeypox_{build_name}.json") as fh:
-            auspice_json = json.load(fh)
-
-        add_branch_id_recursive(auspice_json['tree'])
 
         today = datetime.date.today().strftime("%Y-%m-%d")
 
-        with open(f"staging/monkeypox_{build_name}_{today}.json", 'wt') as fh:
-            json.dump(auspice_json, fh)
+        # Check how many today dated builds exist
+        os.system(f"aws s3 ls nextstrain-data/monkeypox_{build_name}_{today}.json > dated_builds.txt")
 
-        os.system(f"aws s3 cp staging/monkeypox_{build_name}_{today}.json s3://nextstrain-data")
-        os.system(f"aws s3 cp s3://nextstrain-staging/monkeypox_{build_name}_root-sequence.json s3://nextstrain-data/monkeypox_{build_name}_{today}_root-sequence.json")
-        print(f">> Uploaded dated {build_name} to production: https://nextstrain.org/monkeypox/{build_name.replace('_', '/')}/{today}/")
+        with open('dated_builds.txt') as fh:
+            today_dated_builds_count = len(fh.readlines())
+        os.remove('dated_builds.txt')
+        
+        if today_dated_builds_count == 0:
+            # Load auspice json
+            with gzip.open(f"staging/monkeypox_{build_name}.json") as fh:
+                auspice_json = json.load(fh)
+
+            add_branch_id_recursive(auspice_json['tree'])
+            
+            with open(f"staging/monkeypox_{build_name}_{today}.json", 'wt') as fh:
+                json.dump(auspice_json, fh)
+
+            os.system(f"aws s3 cp staging/monkeypox_{build_name}_{today}.json s3://nextstrain-data")
+            os.system(f"aws s3 cp s3://nextstrain-staging/monkeypox_{build_name}_root-sequence.json s3://nextstrain-data/monkeypox_{build_name}_{today}_root-sequence.json")
+            print(f">> Uploaded dated {build_name} to production: https://nextstrain.org/monkeypox/{build_name.replace('_', '/')}/{today}/")
+        
+        else:
+            print(f">> Warning: Dated {build_name} with date today already exists, skipping upload: https://nextstrain.org/monkeypox/{build_name.replace('_', '/')}/{today}/")
+
         print("----------------------------------------")
-
-
