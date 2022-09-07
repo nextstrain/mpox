@@ -34,6 +34,7 @@ if __name__=="__main__":
 
 
     parser.add_argument('--build-names', nargs='+', type=str, required=True, help="build names to upload")
+    parser.add_argument('-f','--force', action='store_true', help="force overwrite of existing dated builds")
     args = parser.parse_args()
 
     print(f"> Deploying builds {args.build_names} from staging to production, dated and undated")
@@ -60,7 +61,10 @@ if __name__=="__main__":
             today_dated_builds_count = len(fh.readlines())
         os.remove('dated_builds.txt')
         
-        if today_dated_builds_count == 0:
+        if today_dated_builds_count == 0 or args.force:
+            if today_dated_builds_count > 0:
+                print(f">> Overwriting existing dated build due to --force flag being present")
+            
             # Load auspice json
             with gzip.open(f"staging/monkeypox_{build_name}.json") as fh:
                 auspice_json = json.load(fh)
