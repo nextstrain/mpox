@@ -1,5 +1,5 @@
 import pandas as pd
-import json, argparse,uuid
+import json, argparse
 
 def replace_name_recursive(node, lookup):
     if node["name"] in lookup:
@@ -8,14 +8,6 @@ def replace_name_recursive(node, lookup):
     if "children" in node:
         for child in node["children"]:
             replace_name_recursive(child, lookup)
-
-def add_branch_id_recursive(node):
-    if "labels" not in node["branch_attrs"]:
-        node["branch_attrs"]["labels"] = {}
-    node["branch_attrs"]["labels"]["id"] = str(uuid.uuid4())[:8]
-    if "children" in node:
-        for child in node["children"]:
-            add_branch_id_recursive(child)
 
 if __name__=="__main__":
     parser = argparse.ArgumentParser(
@@ -39,7 +31,6 @@ if __name__=="__main__":
         data = json.load(fh)
 
     replace_name_recursive(data['tree'], name_lookup)
-    add_branch_id_recursive(data['tree'])
 
     with open(args.output, 'w') as fh:
         json.dump(data, fh)
