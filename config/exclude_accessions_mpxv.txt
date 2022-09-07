@@ -10,6 +10,4 @@ ON602722  # MPXV_FRA_2022_TLS67
 ON622721  #MPXV_1_IT_Milan_2022
 ON754989  #mpx_2022_Canada_AB2
 OP012849  #MPXV/human/Taiwan/110-364682/2022
-KJ642615  #Potential recombinant between clade 2 and 3
-OP295382  #Colombian B.1 with rev to ref
-OP295383  #Colombian B.1 with rev to ref
+KJ642615  #Potential recombinant between clade IIa and IIb

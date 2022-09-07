@@ -215,6 +215,7 @@ rule tree:
         "Building tree"
     input:
         alignment=build_dir + "/{build_name}/masked.fasta",
+        tree_mask=config["tree_mask"],
     output:
         tree=build_dir + "/{build_name}/tree_raw.nwk",
     threads: 8
@@ -222,6 +223,7 @@ rule tree:
         """
         augur tree \
             --alignment {input.alignment} \
+            --exclude-sites {input.tree_mask} \
             --output {output.tree} \
             --nthreads {threads}
         """
