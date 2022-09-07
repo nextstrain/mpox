@@ -43,7 +43,7 @@ rule filter:
         exclude=config["exclude"],
     output:
         sequences=build_dir + "/{build_name}/filtered.fasta",
-        metadata=build_dir + "/{build_name}/metadata.tsv",
+        metadata=build_dir + "/{build_name}/filtered_metadata.tsv",
         log=build_dir + "/{build_name}/filtered.log",
     params:
         group_by=config.get("group_by", "clade lineage"),
@@ -68,32 +68,19 @@ rule filter:
         """
 
 
-if "dynamic_include" in config:
-
-    rule generate_include_strains:
-        input:
-            metadata="results/metadata.tsv",
-        output:
-            include_strains=build_dir + "/{build_name}/include_strains.txt",
-        params:
-            include_query=config["dynamic_include"],
-        shell:
-            """
-            tsv-filter -H {params.include_query} {input.metadata} \
-                | tsv-select -f 1 \
-                > {output.include_strains}
-            """
-
-
-else:
-
-    rule generate_include_strains:
-        output:
-            include_strains=build_dir + "/{build_name}/include_strains.txt",
-        shell:
-            """
-            touch {output.include_strains}
-            """
+rule include_A_strains:
+    input:
+        metadata="results/metadata.tsv",
+    output:
+        include_strains=build_dir + "/{build_name}/include_strains.txt",
+    shell:
+        """
+        tsv-filter -H \
+            --str-in-fld lineage:'A'\
+            {input.metadata} \
+        | tsv-select -f 1 \
+        > {output.include_strains}
+        """
 
 
 rule dynamic_include:
@@ -113,6 +100,7 @@ rule dynamic_include:
         min_length=config["min_length"],
     shell:
         """
+        # Remove excluded strains
         augur filter \
             --sequences {input.sequences} \
             --metadata {input.metadata} \
@@ -122,6 +110,7 @@ rule dynamic_include:
             --output-metadata {output.tmp_metadata} \
             --output-log {output.log1}
 
+        # Add strains from include_strains.txt
         augur filter \
             --sequences {input.sequences} \
             --metadata {output.tmp_metadata} \
@@ -133,26 +122,18 @@ rule dynamic_include:
         """
 
 
-rule join_and_deduplicate_metadata:
+rule join_and_deduplicate:
     input:
         metadata=rules.filter.output.metadata,
         include_metadata=rules.dynamic_include.output.metadata,
-    output:
-        metadata=build_dir + "/{build_name}/metadata.tsv",
-    shell:
-        """
-        tsv-uniq -f1 {input.metadata} {input.include_metadata} > {output.metadata}
-        """
-
-
-rule join_and_deduplicate_sequences:
-    input:
         sequences=rules.filter.output.sequences,
         include_sequences=rules.dynamic_include.output.sequences,
     output:
+        metadata=build_dir + "/{build_name}/metadata.tsv",
         sequences=build_dir + "/{build_name}/sequences.fasta",
     shell:
         """
+        tsv-uniq -f1 {input.metadata} {input.include_metadata} > {output.metadata}
         seqkit rmdup {input.sequences} {input.include_sequences} > {output.sequences}
         """
 
