@@ -1,0 +1,46 @@
+name: Rebuild hmpxv1-big
+
+on:
+  repository_dispatch:
+    types:
+      - rebuild
+      - rebuild_hmpxv1-big
+
+  workflow_dispatch:
+
+jobs:
+  rebuild_hmpxv1_big:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_RUN_ID: ${{ github.run_id }}
+      SLACK_CHANNELS: monkeypox-updates
+      SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: nextstrain/.github/actions/setup-nextstrain-cli@master
+
+      - name: launch_build
+        run: |
+          ./bin/write-envdir env.d \
+            AWS_DEFAULT_REGION \
+            GITHUB_RUN_ID \
+            SLACK_TOKEN \
+            SLACK_CHANNELS
+
+          nextstrain build \
+            --aws-batch \
+            --detach \
+            --no-download \
+            --exec env \
+            . \
+              envdir env.d snakemake notify_on_deploy \
+                --configfiles config/config_hmpxv1_big.yaml config/nextstrain_automation.yaml \
+                --printshellcmds
+        env:
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+      - name: notify_pipeline_failed
+        if: ${{ failure() }}
+        run: ./bin/notify-on-error
