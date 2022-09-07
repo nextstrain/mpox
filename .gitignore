@@ -6,6 +6,7 @@ auspice/
 build/
 outbreak_data/
 logs/
+staging/
 
 # Keep ingest/data directory, but ignore all files within it
 !ingest/data/
