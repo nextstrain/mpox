@@ -28,11 +28,10 @@ rule wrangle_metadata:
         """
 
 
-rule filter:
+rule exclude_bad:
     message:
         """
-        Filtering to
-          - {params.sequences_per_group} sequence(s) per {params.group_by!s}
+        Removing strains that violate one of
           - from {params.min_date} onwards
           - excluding strains in {input.exclude}
           - minimum genome length of {params.min_length}
@@ -42,15 +41,12 @@ rule filter:
         metadata="results/metadata.tsv",
         exclude=config["exclude"],
     output:
-        sequences=build_dir + "/{build_name}/filtered.fasta",
-        metadata=build_dir + "/{build_name}/metadata.tsv",
-        log=build_dir + "/{build_name}/filtered.log",
+        sequences=build_dir + "/{build_name}/good_sequences.fasta",
+        metadata=build_dir + "/{build_name}/good_metadata.tsv",
+        log=build_dir + "/{build_name}/good_filter.log",
     params:
-        group_by=config.get("group_by", "clade lineage"),
-        sequences_per_group=config["sequences_per_group"],
         min_date=config["min_date"],
         min_length=config["min_length"],
-        other_filters=config.get("filters", ""),
     shell:
         """
         augur filter \
@@ -59,10 +55,55 @@ rule filter:
             --exclude {input.exclude} \
             --output-sequences {output.sequences} \
             --output-metadata {output.metadata} \
-            --group-by {params.group_by} \
-            --sequences-per-group {params.sequences_per_group} \
             --min-date {params.min_date} \
             --min-length {params.min_length} \
+            --output-log {output.log}
+        """
+
+
+rule include_A_strains:
+    input:
+        metadata=rules.exclude_bad.output.metadata,
+    output:
+        include_strains=build_dir + "/{build_name}/include_strains.txt",
+    shell:
+        """
+        tsv-filter -H \
+            --str-in-fld lineage:'A'\
+            {input.metadata} \
+        | tsv-select -f 1 \
+        > {output.include_strains}
+        """
+
+
+rule filter:
+    message:
+        """
+        Filtering to
+          - {params.sequences_per_group} sequence(s) per {params.group_by!s}
+        """
+    input:
+        sequences=rules.exclude_bad.output.sequences,
+        metadata=rules.exclude_bad.output.metadata,
+        include=rules.include_A_strains.output.include_strains,
+    output:
+        sequences=build_dir + "/{build_name}/filtered.fasta",
+        metadata=build_dir + "/{build_name}/metadata.tsv",
+        log=build_dir + "/{build_name}/filter.log",
+    params:
+        group_by=config.get("group_by", "clade lineage"),
+        sequences_per_group=config["sequences_per_group"],
+        other_filters=config.get("filters", ""),
+    shell:
+        """
+        augur filter \
+            --sequences {input.sequences} \
+            --metadata {input.metadata} \
+            --include {input.include} \
+            --output-sequences {output.sequences} \
+            --output-metadata {output.metadata} \
+            --group-by {params.group_by} \
+            --sequences-per-group {params.sequences_per_group} \
             {params.other_filters} \
             --output-log {output.log}
         """
