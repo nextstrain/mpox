@@ -11,10 +11,29 @@ ON622721  #MPXV_1_IT_Milan_2022
 ON754989  #mpx_2022_Canada_AB2
 OP012849  #MPXV/human/Taiwan/110-364682/2022
 KJ642615  #Potential recombinant between clade IIa and IIb
-OP381208	# Very underdiverged on the clock, identical to UK_P2
-OP381206	# Very underdiverged on the clock, identical to UK_P2
+OP381201	# Very underdiverged on the clock, identical to UK_P2
 OP381202	# Very underdiverged on the clock, identical to UK_P2
-OP381204	# Very underdiverged on the clock, identical to UK_P2
 OP381203	# Very underdiverged on the clock, identical to UK_P2
-OP381207	# Very underdiverged on the clock, identical to UK_P2
+OP381204	# Very underdiverged on the clock, identical to UK_P2
 OP381205	# Very underdiverged on the clock, identical to UK_P2
+OP381206	# Very underdiverged on the clock, identical to UK_P2
+OP381207	# Very underdiverged on the clock, identical to UK_P2
+OP381208	# Very underdiverged on the clock, identical to UK_P2
+OP390207	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-004b/2022
+OP390208	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-005b/2022
+OP390209	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-010b/2022
+OP390210	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-022b/2022
+OP390211	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-023b/2022
+OP390212	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-024b/2022
+OP390213	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-026b/2022
+OP390214	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-029b/2022
+OP390215	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-031b/2022
+OP390216	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-032b/2022
+OP390217	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-033b/2022
+OP390218	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-034b/2022
+OP390219	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-036b/2022
+OP390220	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-038b/2022
+OP390221	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-040b/2022
+OP390222	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-043b/2022
+OP390223	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-046b/2022
+OP390224	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-047b/2022

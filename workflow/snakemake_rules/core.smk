@@ -195,6 +195,7 @@ rule tree:
         augur tree \
             --alignment {input.alignment} \
             --exclude-sites {input.tree_mask} \
+            --tree-builder-args="-redo" \
             --output {output.tree} \
             --nthreads {threads}
         """
