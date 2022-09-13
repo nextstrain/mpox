@@ -37,3 +37,4 @@ OP390221	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-040b/2022
 OP390222	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-043b/2022
 OP390223	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-046b/2022
 OP390224	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-047b/2022
+MT903340	# Duplicate of Rivers ref seq NC_063383
