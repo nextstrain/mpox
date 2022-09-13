@@ -18,7 +18,7 @@ auspice_name: "monkeypox_hmpxv1"
 ## filter
 min_date: 2017
 min_length: 10000
-sequences_per_group: 50
+sequences_per_group: 40
 group_by: "year month country"
 filters: "--exclude-where outbreak!=hMPXV-1"
 
