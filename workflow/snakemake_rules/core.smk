@@ -209,7 +209,6 @@ rule fix_tree:
         alignment=build_dir + "/{build_name}/masked.fasta",
     output:
         tree=build_dir + "/{build_name}/tree_fixed.nwk",
-    threads: 8
     shell:
         """
         python3 scripts/fix_tree.py \
