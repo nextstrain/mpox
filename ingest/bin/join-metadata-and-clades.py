@@ -2,7 +2,6 @@
 import argparse
 import re
 import sys
-from datetime import datetime
 import pandas as pd
 
 NEXTCLADE_JOIN_COLUMN_NAME = 'seqName'
@@ -12,6 +11,7 @@ column_map = {
     "clade": "clade",
     "outbreak": "outbreak",
     "lineage": "lineage",
+    "coverage": "coverage",
     "totalMissing": "missing_data",
     "totalSubstitutions": "divergence",
     "totalNonACGTNs": "nonACGTN",
