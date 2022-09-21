@@ -260,6 +260,7 @@ rule refine:
             --keep-polytomies \
             {params.clock_rate} \
             {params.clock_std_dev} \
+            --use-fft \
             --output-node-data {output.node_data} \
             --coalescent {params.coalescent} \
             --date-inference {params.date_inference} \
