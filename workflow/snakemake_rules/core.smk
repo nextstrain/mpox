@@ -189,7 +189,6 @@ rule tree:
         tree_mask=config["tree_mask"],
     output:
         tree=build_dir + "/{build_name}/tree_raw.nwk",
-    threads: 8
     shell:
         """
         augur tree \
@@ -197,7 +196,7 @@ rule tree:
             --exclude-sites {input.tree_mask} \
             --tree-builder-args="-redo" \
             --output {output.tree} \
-            --nthreads {threads}
+            --nthreads auto
         """
 
 
@@ -255,6 +254,7 @@ rule refine:
             --metadata {input.metadata} \
             --output-tree {output.tree} \
             --timetree \
+            --use-fft \
             --root {params.root} \
             --precision 3 \
             --keep-polytomies \
