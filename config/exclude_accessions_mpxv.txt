@@ -34,3 +34,4 @@ OP526860	# Does not align well, very divergent MPXV_USA_2022_RI0001
 OP526858	# Does not align well, very divergent MPXV_USA_2022_MN0001
 OP526856 	# Does not align well, very divergent MPXV_USA_2022_FL0065
 OP526859	# Does not align well, very divergent MPXV_USA_2022_MD0005
+OP526862	# Does not align well, very divergent MPXV_USA_2022_DC0013
