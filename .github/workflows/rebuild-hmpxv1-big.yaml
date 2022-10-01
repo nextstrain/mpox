@@ -32,6 +32,7 @@ jobs:
             --detach \
             --no-download \
             --exec env \
+            --cpus 8 \
             . \
               envdir env.d snakemake notify_on_deploy \
                 --configfiles config/config_hmpxv1_big.yaml config/nextstrain_automation.yaml \
