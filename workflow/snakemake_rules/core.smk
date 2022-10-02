@@ -91,7 +91,7 @@ rule filter:
         metadata=build_dir + "/{build_name}/metadata.tsv",
         log=build_dir + "/{build_name}/filter.log",
     params:
-        group_by=config.get("group_by", "clade lineage"),
+        group_by=config.get("group_by", "--group-by clade lineage"),
         sequences_per_group=config["sequences_per_group"],
         other_filters=config.get("filters", ""),
     shell:
@@ -102,8 +102,8 @@ rule filter:
             --include {input.include} \
             --output-sequences {output.sequences} \
             --output-metadata {output.metadata} \
-            --group-by {params.group_by} \
-            --sequences-per-group {params.sequences_per_group} \
+            {params.group_by} \
+            {params.sequences_per_group} \
             {params.other_filters} \
             --output-log {output.log}
         """
