@@ -1,7 +1,20 @@
+AF380138	country	Democratic Republic of the Congo
 AY741551	country	Sierra Leone
-DQ011154	country	Democratic Republic of the Congo
+DQ011153	country	USA
+DQ011154	country	Republic of the Congo
+DQ011155	country	Democratic Republic of the Congo
 DQ011156	country	Liberia
+DQ011157	country	USA
 NC_003310	country	Democratic Republic of the Congo
+AF380138	region	Africa
+AY741551	region	Africa
+AY753185	region	Africa
+DQ011153	region	North America
+DQ011154	region	Africa
+DQ011155	region	Africa
+DQ011156	region	Africa
+DQ011157	region	North America
+NC_003310	region	Africa
 AY603973	date	1961-XX-XX
 AY741551	date	1970-XX-XX
 AY753185	date	1958-XX-XX
@@ -10,7 +23,13 @@ DQ011156	date	1970-XX-XX
 DQ011157	date	2003-XX-XX
 LC722946	date	2022-07-XX
 MG693723	date	2017-XX-XX
+AF380138	date	1996-XX-XX
+DQ011154	date	2003-XX-XX
+DQ011155	date	1978-XX-XX
+HM172544	date	1979-XX-XX
+HQ857562	date	1979-XX-XX
 MT903337	date	2018-XX-XX
+MT903338	date	2018-XX-XX
 MT903339	date	2018-XX-XX
 MT903340	date	2018-XX-XX
 MT903341	date	2018-08-14
@@ -40,6 +59,12 @@ OX044345	date	2022-XX-XX
 OX044346	date	2022-XX-XX
 OX044347	date	2022-XX-XX
 OX044348	date	2022-XX-XX
+AF380138	strain	Zaire-96-I-16
+DQ011154	strain	Congo_2003_358
+DQ011155	strain	Zaire_1979-005
+HM172544	strain	Zaire 1979-005
+HQ857562	strain	V79-I-005
+MT903338	strain	MPXV-M2957_Lagos
 AY603973	institution	Biochemistry & Microbiology, University of Victoria, Canada
 AY741551	institution	Biochemistry & Microbiology, University of Victoria, Canada
 AY753185	institution	Biochemistry & Microbiology, University of Victoria, Canada
@@ -219,9 +244,3 @@ ON694341	institution	Centre for Biological Threats, Highly Pathogenic Viruses, R
 ON694342	institution	Centre for Biological Threats, Highly Pathogenic Viruses, Robert Koch Institute, Germany
 ON720848	institution	Microbial Genomics, Hospital General Universitario Gregorio Marañón, Madrid, Spain
 ON720849	institution	Microbial Genomics, Hospital General Universitario Gregorio Marañón, Madrid, Spain
-AY753185	region	Africa
-DQ011153	region	North America
-DQ011154	region	Africa
-DQ011156	region	Africa
-DQ011157	region	North America
-NC_003310	region	Africa
