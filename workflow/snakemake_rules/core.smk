@@ -254,13 +254,11 @@ rule refine:
             --metadata {input.metadata} \
             --output-tree {output.tree} \
             --timetree \
-            --use-fft \
             --root {params.root} \
             --precision 3 \
             --keep-polytomies \
             {params.clock_rate} \
             {params.clock_std_dev} \
-            --use-fft \
             --output-node-data {output.node_data} \
             --coalescent {params.coalescent} \
             --date-inference {params.date_inference} \
