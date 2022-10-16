@@ -42,4 +42,7 @@ AF380138	# Duplicate of RefSeq NC_003310
 OP605555	# Slovenia overdiverged
 OP605556	# Slovenia overdiverged
 OP605557	# Slovenia overdiverged
+OP605577	# Slovenia overdiverged
 OP605588	# Slovenia overdiverged
+OP605579	# Slovenia overdiverged
+OP642362	# India A.2 overdiverged MCL-22-H-MPxV-16-5316
