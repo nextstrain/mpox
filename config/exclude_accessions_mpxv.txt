@@ -39,3 +39,7 @@ OP470374	# Overdiverged and with rev to ref, MPXV_USA_2022_DC0013
 HQ857562	# Duplicate of DQ011155 
 HQ857563	# D14L knockout
 AF380138	# Duplicate of RefSeq NC_003310
+OP605555	# Slovenia overdiverged
+OP605556	# Slovenia overdiverged
+OP605557	# Slovenia overdiverged
+OP605588	# Slovenia overdiverged
