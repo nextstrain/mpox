@@ -60,6 +60,11 @@
       "key": "date_submitted",
       "title": "Release Date",
       "type": "categorical"
+    },
+    {
+      "key": "date",
+      "title": "Collection date",
+      "type": "categorical"
     }
   ],
   "geo_resolutions": [
