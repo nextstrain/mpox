@@ -46,6 +46,7 @@ params = {
             ('sra_accession',           'SRALink_csv'),
             ('title',                   'Definition_s'),
             ('authors',                 'Authors_csv'),
+            ('submitting_organization', 'SubmitterAffilFull_s'),
             ('publications',            'PubMed_csv'),
             ('sequence',                'Nucleotide_seq'),
         ]
