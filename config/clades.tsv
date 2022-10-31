@@ -32,6 +32,14 @@ A.2.2	nuc	21991	A
 A.2.2	nuc	103019	T
 A.2.2	nuc	158424	A
 
+A.2.3	clade	A.2
+A.2.3	nuc	52374	T
+A.2.3	nuc	74226	T
+
+A.3	clade	A
+A.3	nuc	96841	A
+A.3	nuc	100971	T
+
 A.1	clade	A
 A.1	nuc	83326	T
 
@@ -74,9 +82,14 @@ B.1.10	nuc	94798	A
 
 B.1.11	clade	B.1
 B.1.11	nuc	18133	T
-B.1.11	nuc	67611	A
-B.1.11	nuc	130231	A
 B.1.11	nuc	159277	A
 
 B.1.12	clade	B.1
 B.1.12	nuc	182950	T
+
+B.1.13	clade	B.1
+B.1.13	nuc	175093	A
+
+B.1.14	clade	B.1
+B.1.14	nuc	36617	A
+B.1.14	nuc	159779	T
