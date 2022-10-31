@@ -11,12 +11,16 @@ if __name__=="__main__":
 
     parser.add_argument('--alignment', type=str, required=True, help="input sequences")
     parser.add_argument('--input-tree', type=str, required=True, help="input nwk")
+    parser.add_argument('--root', type=str, required=False, help="root node")
     parser.add_argument('--output', type=str, required=True, help="output nwk")
     args = parser.parse_args()
 
     T = Phylo.read(args.input_tree, 'newick')
 
-    T.root_at_midpoint()
+    if args.root:
+        T.root_with_outgroup(args.root)
+    else:
+        T.root_at_midpoint()
 
     tt = TreeAnc(tree=T, aln=args.alignment, gtr='JC69')
     tt.optimize_tree(prune_short=True)
@@ -27,6 +31,42 @@ if __name__=="__main__":
         for mut in n.mutations:
             if (mut[0] in 'ACGT') and (mut[2] in 'ACGT'):
                 n.relevant_mutations.add(mut)
+
+    print(f"### Checking for immediate reversions\n")
+    reversions = list()
+    for clade in T.find_clades():
+        for child in clade.clades:
+            if child.is_terminal():
+                continue
+            for grandchild in child.clades:
+                if grandchild.is_terminal():
+                    continue
+                # Check if one of grandchild mutation reverts one of child
+                for mut_child in child.relevant_mutations:
+                    for mut_grandchild in grandchild.relevant_mutations:
+                        if mut_child[1] == mut_grandchild[1] and mut_child[2] == mut_grandchild[0]:
+                            reversions.append(
+                                {
+                                    "parent": clade,
+                                    "child": child,
+                                    "grandchild": grandchild,
+                                    "mut_child": mut_child,
+                                    "mut_grandchild": mut_grandchild
+                                }
+                            )
+                            print(f"Below {clade}: {mut_child} in {child.name} reverted in {grandchild.name}")
+
+    for reversion in reversions:
+        # Remove reversion from grandchild
+        reversion["grandchild"].relevant_mutations.remove(reversion["mut_grandchild"])
+        # Remove grandchild from child
+        reversion["child"].clades.remove(reversion["grandchild"])
+        # If there are mutations, add grandchild as child of parent
+        if reversion["grandchild"].relevant_mutations != reversion["parent"].relevant_mutations:
+            reversion["parent"].clades.append(reversion["grandchild"])
+        else:
+            # Otherwise add grandchild clades to parent
+            reversion["parent"].clades.extend(reversion["grandchild"].clades)
 
     # find mutations that occur multiple times in branches leading to children of a node.
     # use these mutations to group clades to merge later.
