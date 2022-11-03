@@ -47,3 +47,4 @@ OP605588	# Slovenia overdiverged
 OP605579	# Slovenia overdiverged
 OP642362	# India A.2 overdiverged MCL-22-H-MPxV-16-5316
 OP696838	# Overdiverged MPXV/Germany/2022/RKI335
+OP642407	# Breaks up B.1.8 due to reversion to reference
