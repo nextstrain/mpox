@@ -81,6 +81,12 @@ uncertain.
 
 Follow the [standard installation instructions](https://docs.nextstrain.org/en/latest/install.html) for Nextstrain's suite of software tools.
 
+If you don't use the `nextstrain` CLI but a custom conda environment, make sure that you have `tsv-utils` and `seqkit` installed, e.g. using:
+
+```sh
+conda install -c bioconda tsv-utils seqkit
+```
+
 ### Nextstrain build vs Snakemake
 
 The above commands use the Nextstrain CLI and `nextstrain build` along with Docker to run using Nextalign v2.
