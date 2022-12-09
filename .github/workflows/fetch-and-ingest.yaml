@@ -60,7 +60,7 @@ jobs:
         AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        PAT_GITHUB_DISPATCH: ${{ secrets.PAT_GITHUB_DISPATCH }}
+        PAT_GITHUB_DISPATCH: ${{ secrets.GH_TOKEN_NEXTSTRAIN_BOT_WORKFLOW_DISPATCH }}
 
     - name: notify_pipeline_failed
       if: ${{ failure() }}
