@@ -6,13 +6,12 @@ on:
 jobs:
   rebuild_all:
     runs-on: ubuntu-latest
-    env:
-      GITHUB_RUN_ID: ${{ github.run_id }}
-      SLACK_CHANNELS: monkeypox-updates
-      SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
     steps:
+      - uses: actions/checkout@v3
       - name: Repository Dispatch
-        uses: peter-evans/repository-dispatch@v2
-        with:
-          token: ${{ secrets.GH_TOKEN_NEXTSTRAIN_BOT_WORKFLOW_DISPATCH }}
-          event-type: rebuild
+        run: ./ingest/bin/trigger monkeypox rebuild
+        env:
+          GITHUB_RUN_ID: ${{ github.run_id }}
+          SLACK_CHANNELS: monkeypox-updates
+          SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
+          PAT_GITHUB_DISPATCH: ${{ secrets.GH_TOKEN_NEXTSTRAIN_BOT_WORKFLOW_DISPATCH }}
