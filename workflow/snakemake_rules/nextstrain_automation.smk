@@ -42,10 +42,9 @@ rule notify_on_deploy:
 
 
 onstart:
-    # Saves onstart Slack message thread timestamp to file SLACK_TS_FILE
     shell(
         f"./bin/notify-on-start {config.get('build_name', 'unknown')} {SLACK_TS_FILE}"
-    )
+    )  # Saves onstart Slack message thread timestamp to file SLACK_TS_FILE
 
 
 onsuccess:
