@@ -45,7 +45,6 @@ if config.get("data_source", None) == "lapis":
 
     include: "workflow/snakemake_rules/download_via_lapis.smk"
 
-
 else:
 
     include: "workflow/snakemake_rules/prepare.smk"
