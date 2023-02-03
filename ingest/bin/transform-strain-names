@@ -40,6 +40,7 @@ if __name__ == '__main__':
                 for field in args.backup_fields:
                     if record.get(field):
                         record['strain'] = str(record[field])
+                        break
 
         if record['strain'] == '':
             print(f"WARNING: Record number {index} has an empty string as the strain name.", file=stderr)
