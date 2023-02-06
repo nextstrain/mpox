@@ -20,6 +20,7 @@ column_map = {
     "qc.privateMutations.status": "QC_rare_mutations",
     "qc.frameShifts.status": "QC_frame_shifts",
     "qc.stopCodons.status": "QC_stop_codons",
+    "qc.overallStatus": "QC_overall_status",
     "frameShifts": "frame_shifts",
     "isReverseComplement": "is_reverse_complement",
 #    "deletions": "deletions",
@@ -49,7 +50,7 @@ def main():
     clades = pd.read_csv(args.nextclade, index_col=NEXTCLADE_JOIN_COLUMN_NAME,
                          sep='\t', low_memory=False, na_filter = False) \
             .rename(columns=column_map)
-    
+
     clades.index = clades.index.map(lambda x: re.sub(" \|.*", "", x))
 
     # Select columns in column map
