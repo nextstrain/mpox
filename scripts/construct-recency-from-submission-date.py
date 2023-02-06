@@ -20,8 +20,16 @@ def get_recency(date_str, ref_date):
         return 'One week ago'
     elif delta_days<31:
         return 'One month ago'
+    elif delta_days < 121:
+        return '1-3 months ago'
+    elif delta_days < 365:
+        return '3-12 months ago'
+    elif delta_days < 365*4:
+        return '1-3 years ago'
+    elif delta_days < 365*16:
+        return '3-15 years ago'
     elif delta_days>=31:
-        return 'Older'
+        return 'Older than 15 years'
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
