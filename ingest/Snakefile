@@ -63,11 +63,7 @@ rule all:
 
 
 include: "workflow/snakemake_rules/fetch_sequences.smk"
-
-
 include: "workflow/snakemake_rules/transform.smk"
-
-
 include: "workflow/snakemake_rules/nextclade.smk"
 
 
