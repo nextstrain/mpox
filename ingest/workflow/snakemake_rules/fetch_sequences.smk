@@ -19,7 +19,7 @@ rule fetch_from_genbank:
         genbank_ndjson="data/genbank.ndjson",
     shell:
         """
-        ./bin/fetch-from-genbank > {output.genbank_ndjson}
+        ./bin/fetch-from-genbank 10244 > {output.genbank_ndjson}
         """
 
 
