@@ -51,3 +51,4 @@ OP642407	# Breaks up B.1.8 due to reversion to reference
 OQ249660	# Reverted French B.1s
 OQ249661	# Reverted French B.1s
 OQ172216	# Overdiverged French B.1
+OQ503825	# Overdiverged MPXV/Human/USA/CA-LACPHL-MA00402/2023
