@@ -7,12 +7,14 @@ set -euo pipefail
 
 bin="$(dirname "$0")"
 
+
 main() {
-    fetch | "$bin"/csv-to-ndjson
+    local ncbi_taxon_id="${1:?NCBI taxon id is required.}"
+    fetch "$ncbi_taxon_id" | "$bin"/csv-to-ndjson
 }
 
 fetch() {
-    curl "$("$bin"/genbank-url)" \
+    curl "$("$bin"/genbank-url --ncbi-taxon-id "$1")" \
         --fail --silent --show-error --http1.1 \
         --header 'User-Agent: https://github.com/nextstrain/monkeypox (hello@nextstrain.org)'
 }
