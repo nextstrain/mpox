@@ -11,7 +11,7 @@ def replace_name_recursive(node, lookup):
 
 if __name__=="__main__":
     parser = argparse.ArgumentParser(
-        description="remove time info",
+        description="Swaps out the strain names in the Auspice JSON with the final strain name",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter
     )
 
