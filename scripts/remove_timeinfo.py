@@ -1,5 +1,7 @@
+import argparse
+import json
 from collections import defaultdict
-import json, argparse
+
 
 def sample_date(node):
     """
@@ -31,13 +33,17 @@ if __name__=="__main__":
     new_node_data = {}
 
     for name, node in data["nodes"].items():
-        new_node_data[name] = {
-            "mutation_length": node["mutation_length"],
-            "branch_length": node["branch_length"]
-        }
-        sdate = sample_date(node)
-        if sdate:
-            new_node_data[name]["sample_date"] = sdate
+        try:
+            new_node_data[name] = {
+                "mutation_length": node["mutation_length"],
+                "branch_length": node["branch_length"]
+            }
+            sdate = sample_date(node)
+            if sdate:
+                new_node_data[name]["sample_date"] = sdate
+        except KeyError:
+            # internal node or tip with no date info
+            pass
 
     data["nodes"] = new_node_data
     with open(args.output_node_data, 'w') as fh:
