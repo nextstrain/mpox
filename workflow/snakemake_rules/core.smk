@@ -219,14 +219,13 @@ rule fix_tree:
 
 
 rule refine:
-    message:
-        """
-        Refining tree
-          - estimate timetree
-          - use {params.coalescent} coalescent timescale
-          - estimate {params.date_inference} node dates
-          - filter tips more than {params.clock_filter_iqd} IQDs from clock expectation
-        """
+    """
+    Refining tree
+        - estimate timetree
+        - use {params.coalescent} coalescent timescale
+        - estimate {params.date_inference} node dates
+        - filter tips more than {params.clock_filter_iqd} IQDs from clock expectation
+    """
     input:
         tree=lambda w: rules.fix_tree.output.tree
         if config["fix_tree"]
@@ -260,6 +259,7 @@ rule refine:
             --keep-polytomies \
             {params.clock_rate} \
             {params.clock_std_dev} \
+            --use-fft \
             --output-node-data {output.node_data} \
             --coalescent {params.coalescent} \
             --date-inference {params.date_inference} \
