@@ -53,3 +53,6 @@ OQ249661	# Reverted French B.1s
 OQ172216	# Overdiverged French B.1
 OQ503825	# Overdiverged MPXV/Human/USA/CA-LACPHL-MA00402/2023
 OQ621553	# Monkeypox virus isolate MPXV/Sudan/2022/RKI630, many insertions, clade I
+OQ581847	# Spain, B.1.10, overdiverged
+OQ581850	# Spain, B.1.10, overdiverged
+
