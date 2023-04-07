@@ -67,7 +67,7 @@ rule transform:
         (cat {input.sequences_ndjson} \
             | ./bin/transform-field-names \
                 --field-map {params.field_map} \
-            | ./bin/transform-string-fields --normalize \
+            | augur curate normalize-strings \
             | ./bin/transform-strain-names \
                 --strain-regex {params.strain_regex} \
                 --backup-fields {params.strain_backup_fields} \
