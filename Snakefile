@@ -8,6 +8,13 @@ if version.parse(augur_version) < version.parse(min_version):
     print(f"Current augur version: {augur_version}. Minimum required: {min_version}")
     sys.exit(1)
 
+# Set the maximum recursion limit globally for all shell commands, to avoid
+# issues with large trees crashing the workflow.  Preserve Snakemake's default
+# use of Bash's "strict mode", as we rely on that behaviour.
+# Copied directly from the ncov workflow
+# https://github.com/nextstrain/ncov/blob/c6fcdf6b19f9dcb92c9f59d0fda1c953192e3950/Snakefile#L15-L18
+shell.prefix("set -euo pipefail; export AUGUR_RECURSION_LIMIT=10000; ")
+
 if not config:
 
     configfile: "config/config_hmpxv1.yaml"
