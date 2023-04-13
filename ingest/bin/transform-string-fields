@@ -6,7 +6,6 @@ modified record to stdout.
 import argparse
 import json
 import re
-import unicodedata
 from sys import stdin, stdout
 from typing import Optional, Set, Union
 
@@ -58,9 +57,6 @@ if __name__ == '__main__':
         description=__doc__,
         formatter_class=argparse.ArgumentDefaultsHelpFormatter
     )
-    parser.add_argument("--normalize", action='store_true',
-        help="Normalize all string data to Unicode Normalization Form C, " +
-             "for consistent, predictable string comparisons")
     parser.add_argument("--titlecase-fields", nargs="*",
         help="List of fields to convert to titlecase.")
     parser.add_argument("--articles", nargs="*",
@@ -79,14 +75,6 @@ if __name__ == '__main__':
 
     for record in stdin:
         record = json.loads(record)
-
-        if args.normalize:
-            str_kvs = {
-                key: unicodedata.normalize('NFC', value).strip()
-                for key, value in record.items()
-                if isinstance(value, str)
-            }
-            record.update(str_kvs)
 
         if args.titlecase_fields:
             for field in args.titlecase_fields:
