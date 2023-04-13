@@ -35,7 +35,7 @@ jobs:
             envdir env.d snakemake \
               --configfiles config/config.yaml config/optional-branch.yaml \
               --config trigger_rebuild=False \
-              --cores all
+              --cores all \
               --printshellcmds
       env:
         AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}

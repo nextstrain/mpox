@@ -55,7 +55,7 @@ jobs:
           ingest \
             envdir env.d snakemake \
               --configfiles config/config.yaml config/optional.yaml \
-              --cores all
+              --cores all \
               --printshellcmds
       env:
         AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}

@@ -37,7 +37,7 @@ jobs:
             . \
               envdir env.d snakemake notify_on_deploy \
                 --configfiles config/config_hmpxv1_big.yaml config/nextstrain_automation.yaml \
-                --cores 8
+                --cores 8 \
                 --printshellcmds
         env:
           AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
