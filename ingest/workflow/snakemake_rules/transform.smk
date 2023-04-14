@@ -91,6 +91,7 @@ rule transform:
             | ./bin/ndjson-to-tsv-and-fasta \
                 --metadata-columns {params.metadata_columns} \
                 --metadata {output.metadata} \
+                --fasta {output.sequences} \
                 --id-field {params.id_field} \
                 --sequence-field {params.sequence_field} ) 2>> {log}
         """
