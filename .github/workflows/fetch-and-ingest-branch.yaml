@@ -31,6 +31,7 @@ jobs:
           --detach \
           --no-download \
           --exec env \
+          --cpus 8 \
           ingest \
             envdir env.d snakemake \
               --configfiles config/config.yaml config/optional-branch.yaml \
