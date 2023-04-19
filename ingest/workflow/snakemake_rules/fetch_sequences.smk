@@ -17,6 +17,7 @@ Produces final output as
 rule fetch_from_genbank:
     output:
         genbank_ndjson="data/genbank.ndjson",
+    retries: 5  # Requires snakemake 7.7.0 or later
     shell:
         """
         ./bin/fetch-from-genbank 10244 > {output.genbank_ndjson}
