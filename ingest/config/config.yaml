@@ -39,7 +39,7 @@ transform:
   geolocation_rules_url: 'https://raw.githubusercontent.com/nextstrain/ncov-ingest/master/source-data/gisaid_geoLocationRules.tsv'
   # Local geolocation rules that are only applicable to monkeypox data
   # Local rules can overwrite the general geolocation rules provided above
-  local_geolocation_rules: './source-data/geolocation-rules.tsv'
+  local_geolocation_rules: 'source-data/geolocation-rules.tsv'
   # User annotations file
   annotations: './source-data/annotations.tsv'
   # ID field used to merge annotations
