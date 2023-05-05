@@ -22,9 +22,8 @@ rule wrangle_metadata:
         strain_id=lambda w: config.get("strain_id_field", "strain"),
     shell:
         """
-        python3 scripts/wrangle_metadata.py --metadata {input.metadata} \
-                    --strain-id {params.strain_id} \
-                    --output {output.metadata}
+        csvtk -t rename -f strain -n strain_original {input.metadata} \
+            | csvtk mutate -t -f {params.strain_id} -n strain > {output.metadata}
         """
 
 
