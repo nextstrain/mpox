@@ -40,11 +40,13 @@ jobs:
           --aws-batch \
           --detach \
           --no-download \
+          --cpus 8 \
+          --memory 32gib \
           --exec env \
           . \
             envdir env.d snakemake notify_on_deploy \
               --configfiles config/config_hmpxv1.yaml config/nextstrain_automation.yaml \
-              --cores all \
+              --cores 8 \
               --printshellcmds
       env:
         AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
