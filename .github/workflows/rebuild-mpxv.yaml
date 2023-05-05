@@ -7,6 +7,13 @@ on:
       - rebuild_mpxv
 
   workflow_dispatch:
+    inputs:
+      image:
+        description: 'Specific container image to use for build (will override the default of "nextstrain build")'
+        required: false
+
+env:
+  NEXTSTRAIN_DOCKER_IMAGE: ${{ github.event.inputs.image }}
 
 jobs:
   rebuild_mpxv:
@@ -18,6 +25,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: nextstrain/.github/actions/setup-nextstrain-cli@master
+      with:
+        python-version: "3.10"
 
     - name: launch_build
       run: |
