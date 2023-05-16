@@ -1,0 +1,44 @@
+#!/usr/bin/env python3
+"""
+Parses GISAID's 'location' field of the NDJSON record from stdin to 3 separate
+fields: 'region', 'country', and 'division'. 
+TODO: Checks that a record is from GenBank by verifying that the 'database' field has a value of "GenBank" or "RefSeq".
+
+Outputs the modified record to stdout.
+"""
+import json
+from sys import stdin, stdout
+
+
+def parse_location(record: dict) -> dict:
+    # Expected pattern for the location field is "region / country / division"
+    geographic_data = record['location'].split('/')
+
+    region = geographic_data[0]
+    country = ''
+    division = ''
+
+    if len(geographic_data) > 1: 
+        country = geographic_data[1]
+    
+    if len(geographic_data) > 2:
+        division = geographic_data[2]
+
+    record['region'] = region.strip()
+    record['country'] = country.strip()
+    record['division'] = division.strip()
+
+    return record
+
+
+if __name__ == '__main__':
+
+    for record in stdin:
+        record = json.loads(record)
+
+        # database = record.get('database', '')
+        # if database in {'GenBank', 'RefSeq'}:
+        parse_location(record)
+
+        json.dump(record, stdout, allow_nan=False, indent=None, separators=',:')
+        print()

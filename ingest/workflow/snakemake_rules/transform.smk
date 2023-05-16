@@ -74,7 +74,7 @@ rule transform:
             | ./bin/transform-date-fields \
                 --date-fields {params.date_fields} \
                 --expected-date-formats {params.expected_date_formats} \
-            | ./bin/transform-genbank-location \
+            | ./bin/transform-gisaid-location \
             | ./bin/transform-string-fields \
                 --titlecase-fields {params.titlecase_fields} \
                 --articles {params.articles} \
