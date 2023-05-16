@@ -10,6 +10,7 @@ import csv
 import json
 from sys import stderr, stdin
 
+from xopen import xopen
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
@@ -30,8 +31,8 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    with open(args.metadata, 'wt') as metadata_output:
-        with open(args.fasta, 'wt') as fasta_output:
+    with xopen(args.metadata, 'wt') as metadata_output:
+        with xopen(args.fasta, 'wt') as fasta_output:
             metadata_csv = csv.DictWriter(
                 metadata_output,
                 args.metadata_columns,

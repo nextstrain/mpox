@@ -1,3 +1,14 @@
+"""
+Snakemake workflow for curating sequences
+Subworkflows (in workflow/snakemake_rules) are used to organize the rules:
+    1. fetch_sequences.smk: Fetch sequences from GenBank/GISAID
+    2. transform.smk: Transform sequences and metadata
+    3. nextclade.smk: Run Nextclade on sequences
+    4. (optional) upload.smk: Upload files to remote destinations
+    5. (optional) slack_notifications.smk: Send notifications to Nextstrain's internal Slack
+    6. (optional) trigger_rebuild.smk: Trigger rebuild of Nextstrain's internal builds
+Most configuration is done in config/config.yaml
+"""
 from snakemake.utils import min_version
 
 min_version(

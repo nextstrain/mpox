@@ -63,7 +63,7 @@ rule gisaid_to_ndjson:
         augur curate passthru \
             --fasta {input.fasta} \
             --metadata {input.metadata} \
-            --seq-field accession \
+            --seq-field sequence \
             --seq-id-column "Accession ID" \
             --unmatched-reporting warn \
         | zstd -c > {output.ndjson}
@@ -71,7 +71,7 @@ rule gisaid_to_ndjson:
 
 
 def _get_all_sources(wildcards):
-    return [f"data/{source}.ndjson" for source in config["sources"]]
+    return [f"data/{source}.ndjson.zst" for source in config["sources"]]
 
 
 rule fetch_all_sequences:

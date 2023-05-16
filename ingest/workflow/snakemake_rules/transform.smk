@@ -38,11 +38,11 @@ rule concat_geolocation_rules:
 
 rule transform:
     input:
-        sequences_ndjson="data/sequences.ndjson",
+        sequences_ndjson="data/sequences.ndjson.zst",
         all_geolocation_rules="data/all-geolocation-rules.tsv",
     output:
         metadata="data/metadata_raw.tsv",
-        sequences="data/sequences.fasta",
+        sequences="data/sequences.fasta.zst",
     log:
         "logs/transform.txt",
     params:
@@ -64,7 +64,7 @@ rule transform:
         sequence_field=config["transform"]["sequence_field"],
     shell:
         """
-        (cat {input.sequences_ndjson} \
+        (zstdcat {input.sequences_ndjson} \
             | ./bin/transform-field-names \
                 --field-map {params.field_map} \
             | augur curate normalize-strings \
@@ -79,10 +79,6 @@ rule transform:
                 --titlecase-fields {params.titlecase_fields} \
                 --articles {params.articles} \
                 --abbreviations {params.abbreviations} \
-            | ./bin/transform-authors \
-                --authors-field {params.authors_field} \
-                --default-value {params.authors_default_value} \
-                --abbr-authors-field {params.abbr_authors_field} \
             | ./bin/apply-geolocation-rules \
                 --geolocation-rules {input.all_geolocation_rules} \
             | ./bin/merge-user-metadata \
