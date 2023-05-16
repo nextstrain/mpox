@@ -4,7 +4,9 @@ rule nextclade_dataset:
         temp("mpxv.zip"),
     shell:
         """
-        nextclade dataset get --name MPXV --output-zip {output}
+        nextclade dataset get \
+            --name MPXV \
+            --output-zip {output}
         """
 
 
@@ -13,40 +15,52 @@ rule nextclade_dataset_hMPXV:
         temp("hmpxv.zip"),
     shell:
         """
-        nextclade dataset get --name hMPXV --output-zip {output}
+        nextclade dataset get \
+            --name hMPXV \
+            --output-zip {output}
         """
 
 
 rule align:
     input:
-        sequences="data/sequences.fasta",
+        sequences="data/sequences.fasta.zst",
         dataset="hmpxv.zip",
     output:
-        alignment="data/alignment.fasta",
+        alignment="data/alignment.fasta.zst",
         insertions="data/insertions.csv",
         translations="data/translations.zip",
     params:
         translations=lambda w: "data/translations/{gene}.fasta",
-    threads: 4
+    threads: 10
     shell:
         """
-        nextclade run -D {input.dataset} -j {threads}   --retry-reverse-complement \
-                  --output-fasta {output.alignment}  --output-translations {params.translations} \
-                  --output-insertions {output.insertions} {input.sequences}
+        nextclade run \
+            -D {input.dataset} \
+            -j {threads} \
+            --retry-reverse-complement \
+            --output-fasta {output.alignment} \
+            --output-translations {params.translations} \
+            --output-insertions {output.insertions} \
+            {input.sequences}
         zip -rj {output.translations} data/translations
         """
 
 
 rule nextclade:
     input:
-        sequences="data/sequences.fasta",
+        sequences="data/sequences.fasta.zst",
         dataset="mpxv.zip",
     output:
         "data/nextclade.tsv",
-    threads: 4
+    threads: 10
     shell:
         """
-        nextclade run -D {input.dataset} -j {threads} --output-tsv {output}  {input.sequences}  --retry-reverse-complement
+        nextclade run \
+            -D {input.dataset} \
+            -j {threads} \
+            --retry-reverse-complement \
+            --output-tsv {output} \
+            {input.sequences}
         """
 
 
@@ -61,8 +75,8 @@ rule join_metadata_clades:
     shell:
         """
         python3 bin/join-metadata-and-clades.py \
-                --id-field {params.id_field} \
-                --metadata {input.metadata} \
-                --nextclade {input.nextclade} \
-                -o {output}
+            --id-field {params.id_field} \
+            --metadata {input.metadata} \
+            --nextclade {input.nextclade} \
+            -o {output}
         """

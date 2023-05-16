@@ -8,6 +8,10 @@ Subworkflows (in workflow/snakemake_rules) are used to organize the rules:
     5. (optional) slack_notifications.smk: Send notifications to Nextstrain's internal Slack
     6. (optional) trigger_rebuild.smk: Trigger rebuild of Nextstrain's internal builds
 Most configuration is done in config/config.yaml
+
+Output files:
+    - data/sequences.fasta
+    - data/metadata.tsv
 """
 from snakemake.utils import min_version
 
