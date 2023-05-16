@@ -1,5 +1,5 @@
 # Sources of sequences to include in the ingest run
-sources: ['genbank']
+sources: ['gisaid']
 
 # Params for the transform rule
 transform:

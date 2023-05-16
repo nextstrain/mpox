@@ -24,6 +24,52 @@ rule fetch_from_genbank:
         """
 
 
+rule fetch_from_gisaid:
+    output:
+        fasta="data/gisaid.fasta.zst",
+        metadata="data/gisaid_metadata.tsv",
+    params:
+        folder="data",
+    shell:
+        """
+        cp {params.folder}/sequences_till_2023-05-05.fasta.zst {output.fasta}
+        cp {params.folder}/metadata_till_2023-05-05.tsv {output.metadata}
+        """
+
+
+rule parse_gisaid_fasta:
+    input:
+        fasta="data/gisaid.fasta.zst",
+    output:
+        parsed="data/gisaid_parsed.fasta.gz",
+    shell:
+        """
+        seqkit seq \
+            --id-regexp "^.*\|([^\|]+)\|" \
+            -i \
+            {input.fasta} \
+        | gzip -2 > {output.parsed}
+        """
+
+
+rule gisaid_to_ndjson:
+    input:
+        fasta="data/gisaid_parsed.fasta.gz",
+        metadata="data/gisaid_metadata.tsv",
+    output:
+        ndjson="data/gisaid.ndjson.zst",
+    shell:
+        """
+        augur curate passthru \
+            --fasta {input.fasta} \
+            --metadata {input.metadata} \
+            --seq-field accession \
+            --seq-id-column "Accession ID" \
+            --unmatched-reporting warn \
+        | zstd -c > {output.ndjson}
+        """
+
+
 def _get_all_sources(wildcards):
     return [f"data/{source}.ndjson" for source in config["sources"]]
 
@@ -32,8 +78,9 @@ rule fetch_all_sequences:
     input:
         all_sources=_get_all_sources,
     output:
-        sequences_ndjson="data/sequences.ndjson",
+        sequences_ndjson="data/sequences.ndjson.zst",
     shell:
         """
-        cat {input.all_sources} > {output.sequences_ndjson}
+        zstdcat {input.all_sources} \
+        | zstd > {output.sequences_ndjson}
         """
