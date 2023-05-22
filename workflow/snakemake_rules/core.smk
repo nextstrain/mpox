@@ -224,6 +224,7 @@ rule refine:
         - use {params.coalescent} coalescent timescale
         - estimate {params.date_inference} node dates
         - filter tips more than {params.clock_filter_iqd} IQDs from clock expectation
+    Note: --use-fft was removed (temporarily) due to https://github.com/neherlab/treetime/issues/242
     """
     input:
         tree=lambda w: rules.fix_tree.output.tree
@@ -258,7 +259,6 @@ rule refine:
             --keep-polytomies \
             {params.clock_rate} \
             {params.clock_std_dev} \
-            --use-fft \
             --output-node-data {output.node_data} \
             --coalescent {params.coalescent} \
             --date-inference {params.date_inference} \
