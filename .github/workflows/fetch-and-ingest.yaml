@@ -61,12 +61,12 @@ jobs:
           --detach \
           --no-download \
           --exec env \
-          --cpus 8 \
-          --memory 32gib \
+          --cpus 32 \
+          --memory 64gib \
           ingest \
             envdir env.d snakemake \
               --configfiles config/config.yaml config/optional.yaml \
-              --cores 8 \
+              --cores 32 \
               --printshellcmds
       env:
         AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
