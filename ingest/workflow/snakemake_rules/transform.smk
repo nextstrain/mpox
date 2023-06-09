@@ -40,6 +40,7 @@ rule transform:
     input:
         sequences_ndjson="data/sequences.ndjson",
         all_geolocation_rules="data/all-geolocation-rules.tsv",
+        annotations=config["transform"]["annotations"],
     output:
         metadata="data/metadata_raw.tsv",
         sequences="data/sequences.fasta",
@@ -57,7 +58,6 @@ rule transform:
         authors_field=config["transform"]["authors_field"],
         authors_default_value=config["transform"]["authors_default_value"],
         abbr_authors_field=config["transform"]["abbr_authors_field"],
-        annotations=config["transform"]["annotations"],
         annotations_id=config["transform"]["annotations_id"],
         metadata_columns=config["transform"]["metadata_columns"],
         id_field=config["transform"]["id_field"],
@@ -86,7 +86,7 @@ rule transform:
             | ./bin/apply-geolocation-rules \
                 --geolocation-rules {input.all_geolocation_rules} \
             | ./bin/merge-user-metadata \
-                --annotations {params.annotations} \
+                --annotations {input.annotations} \
                 --id-field {params.annotations_id} \
             | ./bin/ndjson-to-tsv-and-fasta \
                 --metadata-columns {params.metadata_columns} \
