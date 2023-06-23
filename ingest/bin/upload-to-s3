@@ -38,6 +38,8 @@ main() {
             gzip -c "$src"
         elif  [[ "$dst" == *.xz ]]; then
             xz -2 -T0 -c "$src"
+        elif [[ "$dst" == *.zst ]]; then
+            zstd -T0 -c "$src"
         else
             cat "$src"
         fi | aws s3 cp --no-progress - "$dst" --metadata sha256sum="$src_hash",recordcount="$src_record_count" "$(content-type "$dst")"
@@ -69,6 +71,7 @@ content-type() {
         *.ndjson)   echo --content-type=application/x-ndjson;;
         *.gz)       echo --content-type=application/gzip;;
         *.xz)       echo --content-type=application/x-xz;;
+        *.zst)      echo --content-type=application/zstd;;
         *)          echo --content-type=text/plain;;
     esac
 }

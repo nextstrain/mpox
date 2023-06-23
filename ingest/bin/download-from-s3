@@ -23,6 +23,8 @@ main() {
             gunzip -cfq
         elif  [[ "$src" == *.xz ]]; then
             xz -T0 -dcq
+        elif [[ "$src" == *.zst ]]; then
+            zstd -T0 -dcq
         else
             cat
         fi > "$dst"
