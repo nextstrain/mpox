@@ -45,29 +45,26 @@ jobs:
     - uses: actions/checkout@v2
     - uses: nextstrain/.github/actions/setup-nextstrain-cli@master
       with:
+        cli-version: ">=7.1.0"
         python-version: "3.10"
 
     - name: run_pipeline
       run: |
-        ./bin/write-envdir ingest/env.d \
-          AWS_DEFAULT_REGION \
-          GITHUB_RUN_ID \
-          SLACK_TOKEN \
-          SLACK_CHANNELS \
-          PAT_GITHUB_DISPATCH
-
         nextstrain build \
           --aws-batch \
           --detach \
           --no-download \
-          --exec env \
           --cpus 32 \
           --memory 64gib \
+          --env AWS_DEFAULT_REGION \
+          --env AWS_ACCESS_KEY_ID \
+          --env AWS_SECRET_ACCESS_KEY \
+          --env GITHUB_RUN_ID \
+          --env SLACK_TOKEN \
+          --env SLACK_CHANNELS \
+          --env PAT_GITHUB_DISPATCH \
           ingest \
-            envdir env.d snakemake \
-              --configfiles config/config.yaml config/optional.yaml \
-              --cores 32 \
-              --printshellcmds
+            --configfiles config/config.yaml config/optional.yaml
       env:
         AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
