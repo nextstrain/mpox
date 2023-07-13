@@ -35,3 +35,9 @@ approach to "ingest" has been discussed in various internal places, including:
 - [5 July 2023 Slack thread](https://bedfordlab.slack.com/archives/C7SDVPBLZ/p1688577879947079)
 - [6 July 2023 team meeting](https://docs.google.com/document/d/1FPfx-ON5RdqL2wyvODhkrCcjgOVX3nlXgBwCPhIEsco/edit)
 - _…many others_
+
+## Scripts
+
+Scripts for supporting ingest workflow automation that don’t really belong in any of our existing tools.
+
+- [s3-object-exists](s3-object-exists) - Used to prevent 404 errors during S3 file comparisons in the notify-* scripts
