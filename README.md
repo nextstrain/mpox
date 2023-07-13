@@ -41,3 +41,4 @@ approach to "ingest" has been discussed in various internal places, including:
 Scripts for supporting ingest workflow automation that don’t really belong in any of our existing tools.
 
 - [s3-object-exists](s3-object-exists) - Used to prevent 404 errors during S3 file comparisons in the notify-* scripts
+- [trigger](trigger) - Triggers downstream GitHub Actions via the GitHub API using repository_dispatch events.
