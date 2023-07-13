@@ -42,3 +42,7 @@ Scripts for supporting ingest workflow automation that don’t really belong in 
 
 - [s3-object-exists](s3-object-exists) - Used to prevent 404 errors during S3 file comparisons in the notify-* scripts
 - [trigger](trigger) - Triggers downstream GitHub Actions via the GitHub API using repository_dispatch events.
+
+Potential Nextstrain CLI scripts
+
+- [sha256sum](sha256sum) - Used to check if files are identical in upload-to-s3 and download-from-s3 scripts. 
