@@ -54,3 +54,4 @@ Potential augur curate scripts
 - [merge-user-metadata](merge-user-metadata) - Merges user annotations with NDJSON records
 - [transform-authors](transform-authors) - Abbreviates full author lists to '<first author> et al.'
 - [transform-field-names](transform-field-names) - Rename fields of NDJSON records
+- [transform-genbank-location](transform-genbank-location) - Parses `location` field with the expected pattern `"<country_value>[:<region>][, <locality>]"` based on [GenBank's country field](https://www.ncbi.nlm.nih.gov/genbank/collab/country/)
