@@ -52,3 +52,4 @@ Potential Nextstrain CLI scripts
 Potential augur curate scripts
 
 - [merge-user-metadata](merge-user-metadata) - Merges user annotations with NDJSON records
+- [transform-authors](transform-authors) - Abbreviates full author lists to '<first author> et al.'
