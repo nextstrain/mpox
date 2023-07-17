@@ -35,3 +35,23 @@ approach to "ingest" has been discussed in various internal places, including:
 - [5 July 2023 Slack thread](https://bedfordlab.slack.com/archives/C7SDVPBLZ/p1688577879947079)
 - [6 July 2023 team meeting](https://docs.google.com/document/d/1FPfx-ON5RdqL2wyvODhkrCcjgOVX3nlXgBwCPhIEsco/edit)
 - _…many others_
+
+## Scripts
+
+Scripts for supporting ingest workflow automation that don’t really belong in any of our existing tools.
+
+- [s3-object-exists](s3-object-exists) - Used to prevent 404 errors during S3 file comparisons in the notify-* scripts
+- [trigger](trigger) - Triggers downstream GitHub Actions via the GitHub API using repository_dispatch events.
+
+Potential Nextstrain CLI scripts
+
+- [sha256sum](sha256sum) - Used to check if files are identical in upload-to-s3 and download-from-s3 scripts.
+- [cloudfront-invalidate](cloudfront-invalidate) - CloudFront invalidation is already supported in the [nextstrain remote command for S3 files](https://github.com/nextstrain/cli/blob/a5dda9c0579ece7acbd8e2c32a4bbe95df7c0bce/nextstrain/cli/remote/s3.py#L104).
+  This exists as a separate script to support CloudFront invalidation when using the upload-to-s3 script.
+
+Potential augur curate scripts
+
+- [merge-user-metadata](merge-user-metadata) - Merges user annotations with NDJSON records
+- [transform-authors](transform-authors) - Abbreviates full author lists to '<first author> et al.'
+- [transform-field-names](transform-field-names) - Rename fields of NDJSON records
+- [transform-genbank-location](transform-genbank-location) - Parses `location` field with the expected pattern `"<country_value>[:<region>][, <locality>]"` based on [GenBank's country field](https://www.ncbi.nlm.nih.gov/genbank/collab/country/)
