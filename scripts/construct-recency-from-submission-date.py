@@ -38,10 +38,11 @@ if __name__ == '__main__':
     )
 
     parser.add_argument('--metadata', type=str, required=True, help="metadata file")
+    parser.add_argument('--metadata-id-columns', nargs="+", help="names of possible metadata columns containing identifier information, ordered by priority. Only one ID column will be inferred.")
     parser.add_argument('--output', type=str, required=True, help="output json")
     args = parser.parse_args()
 
-    meta = read_metadata(args.metadata).to_dict(orient="index")
+    meta = read_metadata(args.metadata, id_columns=args.metadata_id_columns).to_dict(orient="index")
 
     node_data = {'nodes':{}}
     ref_date = datetime.now()
