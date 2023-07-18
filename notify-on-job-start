@@ -10,6 +10,7 @@ set -euo pipefail
 bin="$(dirname "$0")"
 job_name="${1:?A job name is required as the first argument}"
 repo_name="${2:?A repository name is required as the second argument}"
+build_dir="${3:-ingest}"
 
 echo "Notifying Slack about started ${job_name} job."
 message="${job_name} job has started."
@@ -20,7 +21,7 @@ fi
 
 if [[ -n "${AWS_BATCH_JOB_ID}" ]]; then
   message+=" The job was launched as AWS Batch job \`${AWS_BATCH_JOB_ID}\` (<https://console.aws.amazon.com/batch/v2/home?region=us-east-1#jobs/detail/${AWS_BATCH_JOB_ID}|link>)."
-  message+=" Follow along in your local \`${repo_name}\` repo with: "'```'"nextstrain build --aws-batch --no-download --attach ${AWS_BATCH_JOB_ID} ingest"'```'
+  message+=" Follow along in your local \`${repo_name}\` repo with: "'```'"nextstrain build --aws-batch --no-download --attach ${AWS_BATCH_JOB_ID} ${build_dir}"'```'
 fi
 
 "$bin"/notify-slack "$message"
