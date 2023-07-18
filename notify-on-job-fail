@@ -4,18 +4,18 @@ set -euo pipefail
 : "${SLACK_TOKEN:?The SLACK_TOKEN environment variable is required.}"
 : "${SLACK_CHANNELS:?The SLACK_CHANNELS environment variable is required.}"
 
-bin="$(dirname "$0")"
+: "${AWS_BATCH_JOB_ID:=}"
+: "${GITHUB_RUN_ID:=}"
 
-aws_batch_job_id="${AWS_BATCH_JOB_ID:-}"
-github_run_id="${GITHUB_RUN_ID:-}"
+bin="$(dirname "$0")"
 
 echo "Notifying Slack about failed ingest job."
 message="❌ Ingest job has FAILED 😞 "
 
-if [ -n "${aws_batch_job_id}" ]; then
-    message+="See AWS Batch job \`${aws_batch_job_id}\` (<https://console.aws.amazon.com/batch/v2/home?region=us-east-1#jobs/detail/${aws_batch_job_id}|link>) for error details. "
-elif [ -n "${github_run_id}" ]; then
-    message+="See GitHub Action <https://github.com/nextstrain/ncov-ingest/actions/runs/${github_run_id}?check_suite_focus=true|${github_run_id}> for error details. "
+if [[ -n "${AWS_BATCH_JOB_ID}" ]]; then
+    message+="See AWS Batch job \`${AWS_BATCH_JOB_ID}\` (<https://console.aws.amazon.com/batch/v2/home?region=us-east-1#jobs/detail/${AWS_BATCH_JOB_ID}|link>) for error details. "
+elif [[ -n "${GITHUB_RUN_ID}" ]]; then
+    message+="See GitHub Action <https://github.com/nextstrain/ncov-ingest/actions/runs/${GITHUB_RUN_ID}?check_suite_focus=true|${GITHUB_RUN_ID}> for error details. "
 fi
 
 "$bin"/notify-slack "$message"
