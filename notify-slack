@@ -37,7 +37,6 @@ if [[ "$upload" == 1 ]]; then
         --form-string title="$text" \
         --form-string filename="$text" \
         --form-string thread_ts="$thread_ts" \
-        --form-string reply_broadcast="$broadcast" \
         --form file=@/dev/stdin \
         --form filetype=text \
         --fail --silent --show-error \
