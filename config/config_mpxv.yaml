@@ -9,6 +9,8 @@ description: "config/description.md"
 clades: "config/clades.tsv"
 tree_mask: "config/tree_mask.tsv"
 
+# Use `accession` as the ID column since `strain` currently contains duplicates¹.
+# ¹ https://github.com/nextstrain/monkeypox/issues/33
 strain_id_field: "accession"
 display_strain_field: "strain_original"
 

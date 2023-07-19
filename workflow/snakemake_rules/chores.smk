@@ -5,9 +5,6 @@ rule update_example_data:
     - sets the subsampling size to 50
     - includes the root (defined in config but hardcoded here)
     - ensures all clades and lineages are accounted for using --group-by
-    - uses `accession` as the ID column since `strain` currently contains duplicates
-
-    TODO: Use `strain` as the ID column after https://github.com/nextstrain/monkeypox/issues/33 is done.
     """
     message:
         "Update example data"
@@ -17,11 +14,13 @@ rule update_example_data:
     output:
         sequences="example_data/sequences.fasta",
         metadata="example_data/metadata.tsv",
+    params:
+        strain_id=config["strain_id_field"],
     shell:
         """
         augur filter \
             --metadata {input.metadata} \
-            --metadata-id-columns accession \
+            --metadata-id-columns {params.strain_id} \
             --sequences {input.sequences} \
             --include-where strain=MK783032 strain=MK783030 \
             --group-by clade lineage \

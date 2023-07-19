@@ -19,7 +19,7 @@ rule wrangle_metadata:
     output:
         metadata="results/metadata.tsv",
     params:
-        strain_id=config.get("strain_id_field", "strain"),
+        strain_id=config["strain_id_field"],
     shell:
         """
         csvtk -t rename -f strain -n strain_original {input.metadata} \
