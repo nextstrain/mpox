@@ -19,7 +19,7 @@ rule wrangle_metadata:
     output:
         metadata="results/metadata.tsv",
     params:
-        strain_id=lambda w: config.get("strain_id_field", "strain"),
+        strain_id=config.get("strain_id_field", "strain"),
     shell:
         """
         csvtk -t rename -f strain -n strain_original {input.metadata} \
@@ -227,7 +227,7 @@ rule refine:
     Note: --use-fft was removed (temporarily) due to https://github.com/neherlab/treetime/issues/242
     """
     input:
-        tree=lambda w: rules.fix_tree.output.tree
+        tree=rules.fix_tree.output.tree
         if config["fix_tree"]
         else rules.tree.output.tree,
         alignment=build_dir + "/{build_name}/masked.fasta",
@@ -240,10 +240,10 @@ rule refine:
         date_inference="marginal",
         clock_filter_iqd=0,
         root=config["root"],
-        clock_rate=lambda w: f"--clock-rate {config['clock_rate']}"
+        clock_rate=f"--clock-rate {config['clock_rate']}"
         if "clock_rate" in config
         else "",
-        clock_std_dev=lambda w: f"--clock-std-dev {config['clock_std_dev']}"
+        clock_std_dev=f"--clock-std-dev {config['clock_std_dev']}"
         if "clock_std_dev" in config
         else "",
     shell:
@@ -431,7 +431,7 @@ rule export:
     input:
         tree=rules.refine.output.tree,
         metadata=build_dir + "/{build_name}/metadata.tsv",
-        branch_lengths=lambda w: "results/{build_name}/branch_lengths.json"
+        branch_lengths="results/{build_name}/branch_lengths.json"
         if config.get("timetree", False)
         else "results/{build_name}/branch_lengths_no_time.json",
         traits=rules.traits.output.node_data,
@@ -439,9 +439,7 @@ rule export:
         aa_muts=rules.translate.output.node_data,
         clades=build_dir + "/{build_name}/clades.json",
         mutation_context=rules.mutation_context.output.node_data,
-        recency=lambda w: rules.recency.output.node_data
-        if config.get("recency", False)
-        else [],
+        recency=rules.recency.output.node_data if config.get("recency", False) else [],
         colors=rules.colors.output.colors,
         lat_longs=config["lat_longs"],
         description=config["description"],
@@ -473,7 +471,7 @@ rule final_strain_name:
         auspice_json=build_dir + "/{build_name}/tree.json",
         root_sequence=build_dir + "/{build_name}/tree_root-sequence.json",
     params:
-        display_strain_field=lambda w: config.get("display_strain_field", "strain"),
+        display_strain_field=config.get("display_strain_field", "strain"),
     shell:
         """
         python3 scripts/set_final_strain_name.py --metadata {input.metadata} \
