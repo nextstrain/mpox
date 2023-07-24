@@ -37,8 +37,8 @@ rule all:
 
 rule rename:
     input:
-        auspice_json=build_dir + f"/{config.get('build_name')}/tree.json",
-        root_sequence=build_dir + f"/{config.get('build_name')}/tree_root-sequence.json",
+        auspice_json=build_dir + f"/{config['build_name']}/tree.json",
+        root_sequence=build_dir + f"/{config['build_name']}/tree_root-sequence.json",
     output:
         auspice_json=auspice_dir + f"/{config.get('auspice_name','tree')}.json",
         root_sequence_json=auspice_dir
@@ -63,7 +63,7 @@ include: "workflow/snakemake_rules/chores.smk"
 include: "workflow/snakemake_rules/core.smk"
 
 
-if config.get("deploy_url"):
+if config.get("deploy_url", False):
 
     include: "workflow/snakemake_rules/nextstrain_automation.smk"
 
