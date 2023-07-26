@@ -1,0 +1,56 @@
+#!/bin/bash
+set -euo pipefail
+
+: "${SLACK_TOKEN:?The SLACK_TOKEN environment variable is required.}"
+: "${SLACK_CHANNELS:?The SLACK_CHANNELS environment variable is required.}"
+
+upload=0
+output=/dev/null
+thread_ts=""
+broadcast=0
+args=()
+
+for arg; do
+    case "$arg" in
+        --upload)
+            upload=1;;
+        --output=*)
+            output="${arg#*=}";;
+        --thread-ts=*)
+            thread_ts="${arg#*=}";;
+        --broadcast)
+            broadcast=1;;
+        *)
+            args+=("$arg");;
+    esac
+done
+
+set -- "${args[@]}"
+
+text="${1:?Some message text is required.}"
+
+if [[ "$upload" == 1 ]]; then
+    echo "Uploading data to Slack with the message: $text"
+    curl https://slack.com/api/files.upload \
+        --header "Authorization: Bearer $SLACK_TOKEN" \
+        --form-string channels="$SLACK_CHANNELS" \
+        --form-string title="$text" \
+        --form-string filename="$text" \
+        --form-string thread_ts="$thread_ts" \
+        --form file=@/dev/stdin \
+        --form filetype=text \
+        --fail --silent --show-error \
+        --http1.1 \
+        --output "$output"
+else
+    echo "Posting Slack message: $text"
+    curl https://slack.com/api/chat.postMessage \
+        --header "Authorization: Bearer $SLACK_TOKEN" \
+        --form-string channel="$SLACK_CHANNELS" \
+        --form-string text="$text" \
+        --form-string thread_ts="$thread_ts" \
+        --form-string reply_broadcast="$broadcast" \
+        --fail --silent --show-error \
+        --http1.1 \
+        --output "$output"
+fi
