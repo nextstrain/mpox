@@ -27,10 +27,10 @@ diff "$dst_local" "$src" > "$diff" || diff_exit_code=$?
 
 if [[ "$diff_exit_code" -eq 1 ]]; then
     echo "Notifying Slack about diff."
-    "$bin"/notify-slack --upload "$src.diff" < "$diff"
+    "$vendored"/notify-slack --upload "$src.diff" < "$diff"
 elif [[ "$diff_exit_code" -gt 1 ]]; then
     echo "Notifying Slack about diff failure"
-    "$bin"/notify-slack "Diff failed for $src"
+    "$vendored"/notify-slack "Diff failed for $src"
 else
     echo "No change in $src."
 fi

@@ -52,4 +52,4 @@ fi
 
 slack_message+=" (Total record count: $src_record_count)"
 
-"$bin"/notify-slack "$slack_message"
+"$vendored"/notify-slack "$slack_message"
