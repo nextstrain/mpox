@@ -65,7 +65,7 @@ rule transform:
     shell:
         """
         (cat {input.sequences_ndjson} \
-            | ./bin/transform-field-names \
+            | ./vendored/transform-field-names \
                 --field-map {params.field_map} \
             | augur curate normalize-strings \
             | ./bin/transform-strain-names \
@@ -74,18 +74,18 @@ rule transform:
             | ./bin/transform-date-fields \
                 --date-fields {params.date_fields} \
                 --expected-date-formats {params.expected_date_formats} \
-            | ./bin/transform-genbank-location \
+            | ./vendored/transform-genbank-location \
             | ./bin/transform-string-fields \
                 --titlecase-fields {params.titlecase_fields} \
                 --articles {params.articles} \
                 --abbreviations {params.abbreviations} \
-            | ./bin/transform-authors \
+            | ./vendored/transform-authors \
                 --authors-field {params.authors_field} \
                 --default-value {params.authors_default_value} \
                 --abbr-authors-field {params.abbr_authors_field} \
             | ./bin/apply-geolocation-rules \
                 --geolocation-rules {input.all_geolocation_rules} \
-            | ./bin/merge-user-metadata \
+            | ./vendored/merge-user-metadata \
                 --annotations {input.annotations} \
                 --id-field {params.annotations_id} \
             | ./bin/ndjson-to-tsv-and-fasta \

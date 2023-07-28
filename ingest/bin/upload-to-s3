@@ -3,6 +3,7 @@
 set -euo pipefail
 
 bin="$(dirname "$0")"
+vendored="$(dirname "$0")"/../vendored
 
 main() {
     local quiet=0
@@ -26,7 +27,7 @@ main() {
     local key="${s3path#*/}"
 
     local src_hash dst_hash no_hash=0000000000000000000000000000000000000000000000000000000000000000
-    src_hash="$("$bin/sha256sum" < "$src")"
+    src_hash="$("$vendored/sha256sum" < "$src")"
     dst_hash="$(aws s3api head-object --bucket "$bucket" --key "$key" --query Metadata.sha256sum --output text 2>/dev/null || echo "$no_hash")"
 
     if [[ $src_hash != "$dst_hash" ]]; then
@@ -46,7 +47,7 @@ main() {
 
         if [[ -n $cloudfront_domain ]]; then
             echo "Creating CloudFront invalidation for $cloudfront_domain/$key"
-            if ! "$bin"/cloudfront-invalidate "$cloudfront_domain" "/$key"; then
+            if ! "$vendored"/cloudfront-invalidate "$cloudfront_domain" "/$key"; then
                 echo "CloudFront invalidation failed, but exiting with success anyway."
             fi
         fi
