@@ -6,6 +6,7 @@ set -euo pipefail
 : "${SLACK_CHANNELS:?The SLACK_CHANNELS environment variable is required.}"
 
 bin="$(dirname "$0")"
+vendored="$(dirname "$0")"/../vendored
 
 src="${1:?A source file is required as the first argument.}"
 dst="${2:?A destination s3:// URL is required as the second argument.}"
@@ -16,7 +17,7 @@ diff="$(mktemp -t diff-XXXXXX)"
 trap "rm -f '$dst_local' '$diff'" EXIT
 
 # if the file is not already present, just exit
-"$bin"/s3-object-exists "$dst" || exit 0
+"$vendored"/s3-object-exists "$dst" || exit 0
 
 "$bin"/download-from-s3 "$dst" "$dst_local"
 
