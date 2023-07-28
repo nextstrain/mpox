@@ -2,7 +2,6 @@
 # Originally copied from nextstrain/ncov-ingest repo
 set -euo pipefail
 
-bin="$(dirname "$0")"
 vendored="$(dirname "$0")"/../vendored
 
 main() {
