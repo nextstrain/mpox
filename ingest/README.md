@@ -85,3 +85,16 @@ These are optional environment variables used in our automated pipeline for prov
 
 GenBank sequences and metadata are fetched via NCBI Virus.
 The exact URL used to fetch data is constructed in `bin/genbank-url`.
+
+## `ingest/vendored`
+
+This repository uses `git subtree` to manage copies of ingest scripts in `ingest/vendored`, from [nextstrain/ingest](https://github.com/nextstrain/ingest). To pull new changes from the central ingest repository, run:
+
+```sh
+git subtree pull --prefix ingest/vendored https://github.com/nextstrain/ingest HEAD
+```
+
+Changes should not be pushed using `git subtree push`.
+
+1. For pathogen-specific changes, make them in this repository via a pull request.
+2. For pathogen-agnostic changes, make them on [nextstrain/ingest](https://github.com/nextstrain/ingest) via pull request there, then use `git subtree pull` to add those changes to this repository.
