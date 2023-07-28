@@ -8,7 +8,7 @@ set -euo pipefail
 : "${GITHUB_RUN_ID:=}"
 
 base="$(realpath "$(dirname "$0")/..")"
-ingest_bin="$base/ingest/bin"
+ingest_vendored="$base/ingest/vendored"
 
 slack_ts_file="${1:-}"
 
@@ -26,6 +26,6 @@ elif [[ -n "${GITHUB_RUN_ID}" ]]; then
   message+="See GitHub Action <https://github.com/nextstrain/monkeypox/actions/runs/${GITHUB_RUN_ID}?check_suite_focus=true|${GITHUB_RUN_ID}> for error details."
 fi
 
-"$ingest_bin"/notify-slack "$message" \
+"$ingest_vendored"/notify-slack "$message" \
   --thread-ts="$thread_ts" \
   --broadcast

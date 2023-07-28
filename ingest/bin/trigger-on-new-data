@@ -26,6 +26,6 @@ else
 fi
 
 
-if ! "$bin"/notify-slack "$slack_message"; then
+if ! "$vendored"/notify-slack "$slack_message"; then
     echo "Notifying Slack failed, but exiting with success anyway."
 fi
