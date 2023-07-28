@@ -3,7 +3,6 @@ set -euo pipefail
 
 : "${PAT_GITHUB_DISPATCH:?The PAT_GITHUB_DISPATCH environment variable is required.}"
 
-bin="$(dirname "$0")"
 vendored="$(dirname "$0")"/../vendored
 
 metadata="${1:?A metadata upload output file is required as the first argument.}"
