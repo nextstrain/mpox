@@ -1,5 +1,4 @@
 #!/bin/bash
-# Originally copied from nextstrain/ncov-ingest repo
 set -euo pipefail
 
 : "${SLACK_TOKEN:?The SLACK_TOKEN environment variable is required.}"
@@ -38,7 +37,6 @@ if [[ "$upload" == 1 ]]; then
         --form-string title="$text" \
         --form-string filename="$text" \
         --form-string thread_ts="$thread_ts" \
-        --form-string reply_broadcast="$broadcast" \
         --form file=@/dev/stdin \
         --form filetype=text \
         --fail --silent --show-error \

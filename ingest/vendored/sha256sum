@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# Originally copied from nextstrain/ncov-ingest repo
 """
 Portable sha256sum utility.
 """

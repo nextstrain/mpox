@@ -1,5 +1,4 @@
 #!/bin/bash
-# Originally copied from nextstrain/ncov-ingest
 set -euo pipefail
 
 url="${1#s3://}"

@@ -48,8 +48,8 @@ rule notify_on_metadata_diff:
 
 
 onstart:
-    shell("./bin/notify-on-job-start")
+    shell("./vendored/notify-on-job-start Ingest nextstrain/monkeypox")
 
 
 onerror:
-    shell("./bin/notify-on-job-fail")
+    shell("./vendored/notify-on-job-fail Ingest nextstrain/monkeypox")
