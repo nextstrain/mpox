@@ -2,7 +2,7 @@ from packaging import version
 from augur.__version__ import __version__ as augur_version
 import sys
 
-min_augur_version = "16.0.0"
+min_augur_version = "22.2.0"
 if version.parse(augur_version) < version.parse(min_augur_version):
     print("This pipeline needs a newer version of augur than you currently have...")
     print(
@@ -37,8 +37,8 @@ rule all:
 
 rule rename:
     input:
-        auspice_json=build_dir + f"/{config.get('build_name')}/tree.json",
-        root_sequence=build_dir + f"/{config.get('build_name')}/tree_root-sequence.json",
+        auspice_json=build_dir + f"/{config['build_name']}/tree.json",
+        root_sequence=build_dir + f"/{config['build_name']}/tree_root-sequence.json",
     output:
         auspice_json=auspice_dir + f"/{config.get('auspice_name','tree')}.json",
         root_sequence_json=auspice_dir
@@ -63,7 +63,7 @@ include: "workflow/snakemake_rules/chores.smk"
 include: "workflow/snakemake_rules/core.smk"
 
 
-if config.get("deploy_url"):
+if config.get("deploy_url", False):
 
     include: "workflow/snakemake_rules/nextstrain_automation.smk"
 

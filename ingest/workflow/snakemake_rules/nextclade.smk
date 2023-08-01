@@ -26,6 +26,8 @@ rule align:
         insertions="data/insertions.csv",
         translations="data/translations.zip",
     params:
+        # The lambda is used to deactivate automatic wildcard expansion.
+        # https://github.com/snakemake/snakemake/blob/384d0066c512b0429719085f2cf886fdb97fd80a/snakemake/rules.py#L997-L1000
         translations=lambda w: "data/translations/{gene}.fasta",
     threads: 4
     shell:

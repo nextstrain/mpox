@@ -13,20 +13,6 @@ In addition, `build_dir` and `auspice_dir` need to be defined upstream.
 """
 
 
-rule wrangle_metadata:
-    input:
-        metadata="data/metadata.tsv",
-    output:
-        metadata="results/metadata.tsv",
-    params:
-        strain_id=lambda w: config.get("strain_id_field", "strain"),
-    shell:
-        """
-        csvtk -t rename -f strain -n strain_original {input.metadata} \
-            | csvtk mutate -t -f {params.strain_id} -n strain > {output.metadata}
-        """
-
-
 rule exclude_bad:
     message:
         """
@@ -37,7 +23,7 @@ rule exclude_bad:
         """
     input:
         sequences="data/sequences.fasta",
-        metadata="results/metadata.tsv",
+        metadata="data/metadata.tsv",
         exclude=config["exclude"],
     output:
         sequences=build_dir + "/{build_name}/good_sequences.fasta",
@@ -46,11 +32,13 @@ rule exclude_bad:
     params:
         min_date=config["min_date"],
         min_length=config["min_length"],
+        strain_id=config["strain_id_field"],
     shell:
         """
         augur filter \
             --sequences {input.sequences} \
             --metadata {input.metadata} \
+            --metadata-id-columns {params.strain_id} \
             --exclude {input.exclude} \
             --output-sequences {output.sequences} \
             --output-metadata {output.metadata} \
@@ -93,11 +81,13 @@ rule filter:
         group_by=config.get("group_by", "--group-by clade lineage"),
         sequences_per_group=config["sequences_per_group"],
         other_filters=config.get("filters", ""),
+        strain_id=config["strain_id_field"],
     shell:
         """
         augur filter \
             --sequences {input.sequences} \
             --metadata {input.metadata} \
+            --metadata-id-columns {params.strain_id} \
             --include {input.include} \
             --output-sequences {output.sequences} \
             --output-metadata {output.metadata} \
@@ -227,7 +217,7 @@ rule refine:
     Note: --use-fft was removed (temporarily) due to https://github.com/neherlab/treetime/issues/242
     """
     input:
-        tree=lambda w: rules.fix_tree.output.tree
+        tree=rules.fix_tree.output.tree
         if config["fix_tree"]
         else rules.tree.output.tree,
         alignment=build_dir + "/{build_name}/masked.fasta",
@@ -240,18 +230,20 @@ rule refine:
         date_inference="marginal",
         clock_filter_iqd=0,
         root=config["root"],
-        clock_rate=lambda w: f"--clock-rate {config['clock_rate']}"
+        clock_rate=f"--clock-rate {config['clock_rate']}"
         if "clock_rate" in config
         else "",
-        clock_std_dev=lambda w: f"--clock-std-dev {config['clock_std_dev']}"
+        clock_std_dev=f"--clock-std-dev {config['clock_std_dev']}"
         if "clock_std_dev" in config
         else "",
+        strain_id=config["strain_id_field"],
     shell:
         """
         augur refine \
             --tree {input.tree} \
             --alignment {input.alignment} \
             --metadata {input.metadata} \
+            --metadata-id-columns {params.strain_id} \
             --output-tree {output.tree} \
             --timetree \
             --root {params.root} \
@@ -320,11 +312,13 @@ rule traits:
     params:
         columns="country",
         sampling_bias_correction=3,
+        strain_id=config["strain_id_field"],
     shell:
         """
         augur traits \
             --tree {input.tree} \
             --metadata {input.metadata} \
+            --metadata-id-columns {params.strain_id} \
             --output {output.node_data} \
             --columns {params.columns} \
             --confidence \
@@ -400,10 +394,13 @@ rule recency:
         metadata=build_dir + "/{build_name}/metadata.tsv",
     output:
         node_data=build_dir + "/{build_name}/recency.json",
+    params:
+        strain_id=config["strain_id_field"],
     shell:
         """
         python3 scripts/construct-recency-from-submission-date.py \
             --metadata {input.metadata} \
+            --metadata-id-columns {params.strain_id} \
             --output {output} 2>&1
         """
 
@@ -431,7 +428,7 @@ rule export:
     input:
         tree=rules.refine.output.tree,
         metadata=build_dir + "/{build_name}/metadata.tsv",
-        branch_lengths=lambda w: "results/{build_name}/branch_lengths.json"
+        branch_lengths="results/{build_name}/branch_lengths.json"
         if config.get("timetree", False)
         else "results/{build_name}/branch_lengths_no_time.json",
         traits=rules.traits.output.node_data,
@@ -439,9 +436,7 @@ rule export:
         aa_muts=rules.translate.output.node_data,
         clades=build_dir + "/{build_name}/clades.json",
         mutation_context=rules.mutation_context.output.node_data,
-        recency=lambda w: rules.recency.output.node_data
-        if config.get("recency", False)
-        else [],
+        recency=rules.recency.output.node_data if config.get("recency", False) else [],
         colors=rules.colors.output.colors,
         lat_longs=config["lat_longs"],
         description=config["description"],
@@ -449,11 +444,14 @@ rule export:
     output:
         auspice_json=build_dir + "/{build_name}/raw_tree.json",
         root_sequence=build_dir + "/{build_name}/raw_tree_root-sequence.json",
+    params:
+        strain_id=config["strain_id_field"],
     shell:
         """
         augur export v2 \
             --tree {input.tree} \
             --metadata {input.metadata} \
+            --metadata-id-columns {params.strain_id} \
             --node-data {input.branch_lengths} {input.nt_muts} {input.aa_muts} {input.mutation_context} {input.clades} {input.recency}\
             --colors {input.colors} \
             --lat-longs {input.lat_longs} \
@@ -473,10 +471,12 @@ rule final_strain_name:
         auspice_json=build_dir + "/{build_name}/tree.json",
         root_sequence=build_dir + "/{build_name}/tree_root-sequence.json",
     params:
-        display_strain_field=lambda w: config.get("display_strain_field", "strain"),
+        strain_id=config["strain_id_field"],
+        display_strain_field=config.get("display_strain_field", "strain"),
     shell:
         """
         python3 scripts/set_final_strain_name.py --metadata {input.metadata} \
+                --metadata-id-columns {params.strain_id} \
                 --input-auspice-json {input.auspice_json} \
                 --display-strain-name {params.display_strain_field} \
                 --output {output.auspice_json}

@@ -57,7 +57,7 @@ def _get_all_targets(wildcards):
             ]
         )
 
-    if config.get("trigger_rebuild"):
+    if config.get("trigger_rebuild", False):
         all_targets.append("data/trigger/rebuild.done")
 
     return all_targets
@@ -73,7 +73,7 @@ include: "workflow/snakemake_rules/transform.smk"
 include: "workflow/snakemake_rules/nextclade.smk"
 
 
-if config.get("upload"):
+if config.get("upload", False):
 
     include: "workflow/snakemake_rules/upload.smk"
 
@@ -83,6 +83,6 @@ if send_slack_notifications:
     include: "workflow/snakemake_rules/slack_notifications.smk"
 
 
-if config.get("trigger_rebuild"):
+if config.get("trigger_rebuild", False):
 
     include: "workflow/snakemake_rules/trigger_rebuild.smk"
