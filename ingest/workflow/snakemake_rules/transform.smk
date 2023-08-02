@@ -75,7 +75,7 @@ rule transform:
                 --date-fields {params.date_fields} \
                 --expected-date-formats {params.expected_date_formats} \
             | ./vendored/transform-genbank-location \
-            | ./bin/transform-string-fields \
+            | augur curate titlecase \
                 --titlecase-fields {params.titlecase_fields} \
                 --articles {params.articles} \
                 --abbreviations {params.abbreviations} \
