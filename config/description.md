@@ -1,6 +1,6 @@
 We gratefully acknowledge the authors, originating and submitting laboratories of the genetic sequences and metadata for sharing their work. Please note that although data generators have generously shared data in an open fashion, that does not mean there should be free license to publish on this data. Data generators should be cited where possible and collaborations should be sought in some circumstances. Please try to avoid scooping someone else's work. Reach out if uncertain.
 
-We maintain two views of monkeypox virus evolution:
+We maintain two views of MPXV evolution:
 
 The first is [`monkeypox/hmpxv1`](https://nextstrain.org/monkeypox/hmpxv1), which focuses on recent viruses transmitting from human-to-human and includes viruses belonging to the hMPXV1 clade as denoted by [Happi et al](https://virological.org/t/urgent-need-for-a-non-discriminatory-and-non-stigmatizing-nomenclature-for-monkeypox-virus/853). Here, we conduct a molecular clock analysis in which evolutionary rate is estimated from the data (with a resulting estimate of ~6 &times; 10<sup>-5</sup> subs per site per year).
 

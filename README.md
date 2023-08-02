@@ -1,7 +1,7 @@
 # nextstrain.org/monkeypox
 
-This is the [Nextstrain](https://nextstrain.org) build for monkeypox virus. Output from this build is visible at [nextstrain.org/monkeypox](https://nextstrain.org/monkeypox).
-The lineages within the recent monkeypox outbreaks in humans are defined in a separate [lineage-designation repository](https://github.com/mpxv-lineages/lineage-designation).
+This is the [Nextstrain](https://nextstrain.org) build for MPXV (monkeypox virus). Output from this build is visible at [nextstrain.org/monkeypox](https://nextstrain.org/monkeypox).
+The lineages within the recent mpox outbreaks in humans are defined in a separate [lineage-designation repository](https://github.com/mpxv-lineages/lineage-designation).
 
 ## Usage
 
