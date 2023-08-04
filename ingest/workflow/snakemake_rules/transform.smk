@@ -83,7 +83,7 @@ rule transform:
                 --authors-field {params.authors_field} \
                 --default-value {params.authors_default_value} \
                 --abbr-authors-field {params.abbr_authors_field} \
-            | ./bin/apply-geolocation-rules \
+            | ./vendored/apply-geolocation-rules \
                 --geolocation-rules {input.all_geolocation_rules} \
             | ./vendored/merge-user-metadata \
                 --annotations {input.annotations} \
