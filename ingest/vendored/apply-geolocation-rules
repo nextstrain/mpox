@@ -32,7 +32,7 @@ def load_geolocation_rules(geolocation_rules_file):
     with open(geolocation_rules_file, 'r') as rules_fh:
         for line in rules_fh:
             # ignore comments
-            if line.lstrip()[0] == '#':
+            if line.strip()=="" or line.lstrip()[0] == '#':
                 continue
 
             row = line.strip('\n').split('\t')
@@ -222,7 +222,7 @@ if __name__ == '__main__':
         record = json.loads(record)
 
         try:
-            annotated_values = transform_geolocations(geolocation_rules, [record[field] for field in location_fields])
+            annotated_values = transform_geolocations(geolocation_rules, [record.get(field, '') for field in location_fields])
         except CyclicGeolocationRulesError as e:
             print(e, file=stderr)
             exit(1)
