@@ -30,7 +30,7 @@ rule notify_on_genbank_record_change:
         s3_src=S3_SRC,
     shell:
         """
-        ./bin/notify-on-record-change {input.genbank_ndjson} {params.s3_src:q}/genbank.ndjson.xz Genbank
+        ./vendored/notify-on-record-change {input.genbank_ndjson} {params.s3_src:q}/genbank.ndjson.xz Genbank
         """
 
 
@@ -43,7 +43,7 @@ rule notify_on_metadata_diff:
         s3_src=S3_SRC,
     shell:
         """
-        ./bin/notify-on-diff {input.metadata} {params.s3_src:q}/metadata.tsv.gz
+        ./vendored/notify-on-diff {input.metadata} {params.s3_src:q}/metadata.tsv.gz
         """
 
 
