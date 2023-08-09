@@ -15,5 +15,5 @@ rule trigger_build:
         touch("data/trigger/rebuild.done")
     shell:
         """
-        ./bin/trigger-on-new-data {input.metadata_upload} {input.fasta_upload}
+        ./vendored/trigger-on-new-data nextstrain/monkeypox rebuild {input.metadata_upload} {input.fasta_upload}
         """

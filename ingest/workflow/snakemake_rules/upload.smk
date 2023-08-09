@@ -56,7 +56,7 @@ rule upload_to_s3:
         cloudfront_domain=config["upload"].get("s3", {}).get("cloudfront_domain", ""),
     shell:
         """
-        ./bin/upload-to-s3 \
+        ./vendored/upload-to-s3 \
             {params.quiet} \
             {input.file_to_upload:q} \
             {params.s3_dst:q}/{wildcards.remote_file_name:q} \
