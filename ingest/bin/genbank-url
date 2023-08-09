@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Generate URL to download all Monkeypox sequences and their curated metadata
+Generate URL to download all mpox virus sequences and their curated metadata
 from GenBank via NCBI Virus.
 
 The URL this program builds is based on the URL for SARS-CoV-2 constructed with
