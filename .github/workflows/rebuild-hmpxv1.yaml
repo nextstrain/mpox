@@ -59,4 +59,3 @@ jobs:
     - name: notify_pipeline_failed
       if: ${{ failure() }}
       run: ./bin/notify-on-error
-
