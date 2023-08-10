@@ -48,3 +48,5 @@ env.d/
 Icon?
 ehthumbs.db
 Thumbs.db
+
+.vscode/
