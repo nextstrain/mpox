@@ -20,22 +20,19 @@ build_dir = "results"
 
 auspice_dir = "auspice"
 
+AUSPICE_PREFIX = config.get("auspice_prefix", "")
+AUSPICE_PREFIX = AUSPICE_PREFIX + "_" if AUSPICE_PREFIX else AUSPICE_PREFIX
+AUSPICE_NAME = config.get("auspice_name", "tree")
+AUSPICE_FILENAME = AUSPICE_PREFIX + AUSPICE_NAME
+
 
 rule all:
-    input:
-        auspice_json=auspice_dir + f"/{config.get('auspice_name','tree')}.json",
-        root_sequence_json=auspice_dir
-        + f"/{config.get('auspice_name','')}_root-sequence.json",
-
-
-rule rename:
     input:
         auspice_json=build_dir + f"/{config['build_name']}/tree.json",
         root_sequence=build_dir + f"/{config['build_name']}/tree_root-sequence.json",
     output:
-        auspice_json=auspice_dir + f"/{config.get('auspice_name','tree')}.json",
-        root_sequence_json=auspice_dir
-        + f"/{config.get('auspice_name','')}_root-sequence.json",
+        auspice_json=f"{auspice_dir}/{AUSPICE_FILENAME}.json",
+        root_sequence_json=f"{auspice_dir}/{AUSPICE_FILENAME}_root-sequence.json",
     shell:
         """
         cp {input.auspice_json} {output.auspice_json}
