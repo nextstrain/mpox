@@ -1,6 +1,6 @@
 # nextstrain.org/monkeypox/ingest
 
-This is the ingest pipeline for Monkeypox virus sequences.
+This is the ingest pipeline for mpox virus sequences.
 
 ## Usage
 
