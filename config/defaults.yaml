@@ -1,0 +1,29 @@
+# This configuration file contains configuration values that should apply to all
+# builds of this pathogen repo.
+# Some required keys are missing and must be additionally defined through
+# Snakemake's --configfile/--config options. Those options can also override
+# any values in this file.
+
+exclude: "config/exclude_accessions_mpxv.txt"
+reference: "config/reference.fasta"
+genemap: "config/genemap.gff"
+genbank_reference: "config/reference.gb"
+clades: "config/clades.tsv"
+lat_longs: "config/lat_longs.tsv"
+description: "config/description.md"
+tree_mask: "config/tree_mask.tsv"
+
+# Use `accession` as the ID column since `strain` currently contains duplicates¹.
+# ¹ https://github.com/nextstrain/monkeypox/issues/33
+strain_id_field: "accession"
+display_strain_field: "strain"
+
+## align
+max_indel: 10000
+seed_spacing: 1000
+
+## treefix
+fix_tree: true
+
+## recency
+recency: true
