@@ -1,7 +1,6 @@
 reference: "config/reference.fasta"
 genemap: "config/genemap.gff"
 genbank_reference: "config/reference.gb"
-colors: "config/hmpxv1/colors.tsv"
 include: "config/hmpxv1_big/include.txt"
 clades: "config/clades.tsv"
 lat_longs: "config/lat_longs.tsv"
