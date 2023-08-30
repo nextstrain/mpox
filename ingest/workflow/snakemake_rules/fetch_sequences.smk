@@ -20,7 +20,7 @@ rule fetch_from_genbank:
     retries: 5  # Requires snakemake 7.7.0 or later
     shell:
         """
-        ./bin/fetch-from-genbank 10244 > {output.genbank_ndjson}
+        ./vendored/fetch-from-ncbi-virus 10244 nextstrain/monkeypox > {output.genbank_ndjson}
         """
 
 
