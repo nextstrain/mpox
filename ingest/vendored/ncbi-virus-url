@@ -1,0 +1,103 @@
+#!/usr/bin/env python3
+"""
+Generate URL to download all virus sequences and their curated metadata for a
+specified NCBI Taxon ID from GenBank via NCBI Virus.
+
+The URL this program builds is based on the URL for SARS-CoV-2 constructed with
+
+    https://github.com/nextstrain/ncov-ingest/blob/2a5f255329ee5bdf0cabc8b8827a700c92becbe4/bin/genbank-url
+
+and observing the network activity at
+
+    https://www.ncbi.nlm.nih.gov/labs/virus/vssi/#/virus?SeqType_s=Nucleotide
+"""
+from urllib.parse import urlencode
+from typing import List, Optional
+import argparse
+
+def parse_args():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--ncbi-taxon-id", required=True,
+        help="NCBI Taxon ID. Visit NCBI virus at " +
+             "https://www.ncbi.nlm.nih.gov/labs/virus/vssi/#/find-data/virus " +
+             "to search for supported taxon IDs.")
+    parser.add_argument("--filters", required=False, nargs="*",
+        help="Filter criteria to add as `fq` param values. " +
+             "Apply filters via the NCBI Virus UI and observe the network " +
+             "activity to find the desired filter string.")
+    parser.add_argument("--fields", required=False, nargs="*",
+        help="Metadata fields to add as `fl` param values. " +
+             "Expected to be formatted as <output_column_name>:<ncbi_virus_field_name>. " +
+             "See docs/ncbi-virus-all-fields-example.json for the available NCBI Virus fields.")
+    return parser.parse_args()
+
+def build_query_url(ncbi_taxon_id: str,
+                    filters: Optional[List[str]]=None,
+                    fields: Optional[List[str]]=None):
+    """
+    Generate URL to download all viral sequences and their curated metadata
+    from GenBank via NCBI Virus.
+    """
+    endpoint = "https://www.ncbi.nlm.nih.gov/genomes/VirusVariation/vvsearch2/"
+    params = {
+        # Search criteria
+        'fq': [
+            '{!tag=SeqType_s}SeqType_s:("Nucleotide")', # Nucleotide sequences (as opposed to protein)
+            f'VirusLineageId_ss:({ncbi_taxon_id})',
+            *(filters or []),
+        ],
+
+        # Unclear, but seems necessary.
+        'q': '*:*',
+
+        # Response format
+        'cmd': 'download',
+        'dlfmt': 'csv',
+        'fl': ','.join(
+            [':'.join(names) for names in [
+                # Pairs of (output column name, source data field).
+                ('genbank_accession',       'id'),
+                ('genbank_accession_rev',   'AccVer_s'),
+                ('database',                'SourceDB_s'),
+                ('strain',                  'Isolate_s'),
+                ('region',                  'Region_s'),
+                ('location',                'CountryFull_s'),
+                ('collected',               'CollectionDate_s'),
+                ('submitted',               'CreateDate_dt'),
+                ('updated',                 'UpdateDate_dt'),
+                ('length',                  'SLen_i'),
+                ('host',                    'Host_s'),
+                ('isolation_source',        'Isolation_csv'),
+                ('bioproject_accession',    'BioProject_s'),
+                ('biosample_accession',     'BioSample_s'),
+                ('sra_accession',           'SRALink_csv'),
+                ('title',                   'Definition_s'),
+                ('authors',                 'Authors_csv'),
+                ('submitting_organization', 'SubmitterAffilFull_s'),
+                ('publications',            'PubMed_csv'),
+                ('sequence',                'Nucleotide_seq'),
+            ]] + (fields or [])
+        ),
+
+        # Stable sort with GenBank accessions.
+        # Columns are source data fields, not our output columns.
+        'sort': 'id asc',
+
+        # This isn't Entrez, but include the same email parameter it requires just
+        # to be nice.
+        'email': 'hello@nextstrain.org',
+    }
+    query = urlencode(params, doseq = True, encoding = "utf-8")
+
+    print(f"{endpoint}?{query}")
+
+def main():
+    args = parse_args()
+    build_query_url(
+        ncbi_taxon_id=args.ncbi_taxon_id,
+        filters=args.filters,
+        fields=args.fields
+    )
+
+if __name__ == '__main__':
+    main()

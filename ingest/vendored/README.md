@@ -69,6 +69,14 @@ Scripts for supporting ingest workflow automation that don’t really belong in 
 - [trigger-on-new-data](trigger-on-new-data) - Triggers downstream GitHub Actions if the provided `upload-to-s3` outputs do not contain the `identical_file_message`
   A hacky way to ensure that we only trigger downstream phylogenetic builds if the S3 objects have been updated.
 
+NCBI interaction scripts that are useful for fetching public metadata and sequences.
+
+- [fetch-from-ncbi-entrez](fetch-from-ncbi-entrez) - Fetch metadata and nucleotide sequences from [NCBI Entrez](https://www.ncbi.nlm.nih.gov/books/NBK25501/) and output to a GenBank file.
+  Useful for pathogens with metadata and annotations in custom fields that are not part of the standard [NCBI Virus](https://www.ncbi.nlm.nih.gov/labs/virus/vssi/) or [NCBI Datasets](https://www.ncbi.nlm.nih.gov/datasets/) outputs.
+- [fetch-from-ncbi-virus](fetch-from-ncbi-virus) - Fetch metadata and nucleotide sequences from [NCBI Virus](https://www.ncbi.nlm.nih.gov/labs/virus/vssi/#/) and output NDJSON records to stdout.
+- [ncbi-virus-url](ncbi-virus-url) - Generates the URL to download metadata and sequences from NCBI Virus as a single CSV file.
+- [csv-to-ndjson](csv-to-ndjson) - Converts CSV file to NDJSON file with a hard-coded 200MiB field size limit to accommodate sequences in the NCBI Virus download.
+
 Potential Nextstrain CLI scripts
 
 - [sha256sum](sha256sum) - Used to check if files are identical in upload-to-s3 and download-from-s3 scripts.
@@ -89,3 +97,16 @@ Potential augur curate scripts
 - [transform-authors](transform-authors) - Abbreviates full author lists to '<first author> et al.'
 - [transform-field-names](transform-field-names) - Rename fields of NDJSON records
 - [transform-genbank-location](transform-genbank-location) - Parses `location` field with the expected pattern `"<country_value>[:<region>][, <locality>]"` based on [GenBank's country field](https://www.ncbi.nlm.nih.gov/genbank/collab/country/)
+
+## Software requirements
+
+Some scripts may require Bash ≥4. If you are running these scripts on macOS, the builtin Bash (`/bin/bash`) does not meet this requirement. You can install [Homebrew's Bash](https://formulae.brew.sh/formula/bash) which is more up to date.
+
+## Testing
+
+Most scripts are untested within this repo, relying on "testing in production". That is the only practical testing option for some scripts such as the ones interacting with S3 and Slack.
+
+For more locally testable scripts, Cram-style functional tests live in `tests` and are run as part of CI. To run these locally,
+
+1. Download Cram: `pip install cram`
+2. Run the tests: `cram tests/`
