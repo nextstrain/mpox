@@ -1,0 +1,17 @@
+key	value
+Accession	genbank_accession_rev
+Source database	database
+Isolate Lineage	strain
+Geographic Region	region
+Geographic Location	location
+Isolate Collection date	collected
+Release date	submitted
+Update date	updated
+Length	length
+Host Name	host
+Isolate Lineage source	isolation_source
+BioProjects	bioproject_accession
+BioSample accession	biosample_accession
+SRA Accessions	sra_accession
+Submitter Names	authors
+Submitter Affiliation	submitting_organization
