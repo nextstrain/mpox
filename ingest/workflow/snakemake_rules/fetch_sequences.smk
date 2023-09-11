@@ -16,8 +16,8 @@ Produces final output as
 
 rule fetch_ncbi_dataset_package:
     output:
-        dataset_package = temp("data/ncbi_dataset.zip")
-    retries: 5 # Requires snakemake 7.7.0 or later
+        dataset_package=temp("data/ncbi_dataset.zip"),
+    retries: 5  # Requires snakemake 7.7.0 or later
     benchmark:
         "benchmarks/fetch_ncbi_dataset_package.txt"
     shell:
@@ -30,9 +30,9 @@ rule fetch_ncbi_dataset_package:
 
 rule extract_ncbi_dataset_sequences:
     input:
-        dataset_package = "data/ncbi_dataset.zip"
+        dataset_package="data/ncbi_dataset.zip",
     output:
-        ncbi_dataset_sequences = temp("data/ncbi_dataset_sequences.fasta")
+        ncbi_dataset_sequences=temp("data/ncbi_dataset_sequences.fasta"),
     benchmark:
         "benchmarks/extract_ncbi_dataset_sequences.txt"
     shell:
@@ -77,12 +77,12 @@ rule format_ncbi_dataset_report:
     # Formats the headers to be the same as before we used NCBI Datasets
     # The only fields we do not have equivalents for are "title" and "publications"
     input:
-        dataset_package = "data/ncbi_dataset.zip",
-        ncbi_field_map = "source-data/ncbi-dataset-field-map.tsv"
+        dataset_package="data/ncbi_dataset.zip",
+        ncbi_field_map="source-data/ncbi-dataset-field-map.tsv",
     output:
-        ncbi_dataset_tsv = temp("data/ncbi_dataset_report.tsv")
+        ncbi_dataset_tsv=temp("data/ncbi_dataset_report.tsv"),
     params:
-        fields_to_include = _get_ncbi_dataset_field_mnemonics
+        fields_to_include=_get_ncbi_dataset_field_mnemonics,
     benchmark:
         "benchmarks/format_ncbi_dataset_report.txt"
     shell:
@@ -99,12 +99,12 @@ rule format_ncbi_dataset_report:
 
 rule format_ncbi_datasets_ndjson:
     input:
-        ncbi_dataset_sequences = "data/ncbi_dataset_sequences.fasta",
-        ncbi_dataset_tsv = "data/ncbi_dataset_report.tsv",
+        ncbi_dataset_sequences="data/ncbi_dataset_sequences.fasta",
+        ncbi_dataset_tsv="data/ncbi_dataset_report.tsv",
     output:
-        ndjson = "data/genbank.ndjson",
+        ndjson="data/genbank.ndjson",
     log:
-        "logs/format_ncbi_datasets_ndjson.txt"
+        "logs/format_ncbi_datasets_ndjson.txt",
     benchmark:
         "benchmarks/format_ncbi_datasets_ndjson.txt"
     shell:
