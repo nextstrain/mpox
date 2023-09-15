@@ -16,7 +16,9 @@ Our bioinformatic processing workflow can be found at [github.com/nextstrain/mon
 - clade assignment via [clade definitions defined here](https://github.com/nextstrain/monkeypox/blob/master/config/clades.tsv), to label broader MPXV clades I, IIa and IIb and to label hMPXV1 lineages A, A.1, A.1.1, etc...
 
 #### Underlying data
-We curate sequence data and metadata from [NCBI Virus](https://www.ncbi.nlm.nih.gov/labs/virus/vssi/#/virus?SeqType_s=Nucleotide&VirusLineage_ss=Monkeypox%20virus,%20taxid:10244) as starting point for these analyses. Curated sequences and metadata are available as flat files at:
+We curate sequence data and metadata from the [NCBI Datasets command line tools](https://www.ncbi.nlm.nih.gov/datasets/docs/v2/download-and-install/),
+using NCBI Taxonomy ID "10244", as starting point for these analyses.
+Curated sequences and metadata are available as flat files at:
 - [data.nextstrain.org/files/workflows/monkeypox/sequences.fasta.xz](https://data.nextstrain.org/files/workflows/monkeypox/sequences.fasta.xz)
 - [data.nextstrain.org/files/workflows/monkeypox/metadata.tsv.gz](https://data.nextstrain.org/files/workflows/monkeypox/metadata.tsv.gz)
 
