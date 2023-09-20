@@ -15,7 +15,7 @@ strain_id_field: "accession"
 display_strain_field: "strain"
 
 build_name: "hmpxv1_big"
-auspice_name: "mpox_mpxv-IIb-B.1"
+auspice_name: "mpox_lineage-B.1"
 
 ## filter
 min_date: 2022

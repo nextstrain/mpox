@@ -15,7 +15,7 @@ strain_id_field: "accession"
 display_strain_field: "strain"
 
 build_name: "hmpxv1"
-auspice_name: "mpox_mpxv-IIb"
+auspice_name: "mpox_clade-IIb"
 
 ## filter
 min_date: 2017

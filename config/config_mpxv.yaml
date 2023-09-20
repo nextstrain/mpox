@@ -15,7 +15,7 @@ strain_id_field: "accession"
 display_strain_field: "strain"
 
 build_name: "mpxv"
-auspice_name: "mpox_mpxv"
+auspice_name: "mpox_all-clades"
 
 ## filter
 min_date: 1950
