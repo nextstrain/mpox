@@ -14,13 +14,13 @@ In addition, `build_dir` and `auspice_dir` need to be defined upstream.
 
 
 rule exclude_bad:
-    message:
-        """
-        Removing strains that violate one of
-          - from {params.min_date} onwards
-          - excluding strains in {input.exclude}
-          - minimum genome length of {params.min_length}
-        """
+    """
+    Removing strains that violate one of
+        - from {params.min_date} onwards
+        - excluding strains in {input.exclude}
+        - minimum genome length of {params.min_length}
+        - QC_rare_mutations == bad
+    """
     input:
         sequences="data/sequences.fasta",
         metadata="data/metadata.tsv",
@@ -44,6 +44,7 @@ rule exclude_bad:
             --output-metadata {output.metadata} \
             --min-date {params.min_date} \
             --min-length {params.min_length} \
+            --exclude-where QC_rare_mutations=bad \
             --output-log {output.log}
         """
 
