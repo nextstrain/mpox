@@ -18,26 +18,34 @@ If you analyze and plan to publish using these data, please contact these labs f
 Within the analysis pipeline, these data are fetched from data.nextstrain.org and written to `data/` with:
 
 ```bash
-nextstrain build --docker . data/sequences.fasta data/metadata.tsv
+nextstrain build . data/sequences.fasta data/metadata.tsv
 ```
 
 ### Run analysis pipeline
 
-Run pipeline to produce "overview" tree for `/monkeypox/mpxv` with:
+Run pipeline to produce the "overview" tree for `/mpox/all-clades` with:
 
 ```bash
-nextstrain build --docker --cpus 1 . --configfile config/config_mpxv.yaml
+nextstrain build . --configfile config/config_mpxv.yaml
 ```
 
-Run pipeline to produce "outbreak" tree for `/monkeypox/hmpxv1` with:
+Run pipeline to produce the "clade IIb" tree for `/mpox/clade-IIb` with:
 
 ```bash
-nextstrain build --docker --cpus 1 . --configfile config/config_hmpxv1.yaml
+nextstrain build . --configfile config/config_hmpxv1.yaml
 ```
 
-Adjust the number of CPUs to what your machine has available if you want to perform alignment and tree building a bit faster.
+Run pipeline to produce the "lineage B.1" tree for `/mpox/lineage-B.1` with:
+
+```bash
+nextstrain build . --configfile config/config_hmpxv1_big.yaml
+```
 
 ### Deploying
+
+⚠️ The below is outdated and needs to be adjusted for the new build names (mpxv instead of monkeypox, etc.)
+
+<details>
 
 Run the python script [`scripts/deploy.py`](scripts/deploy.py) to deploy the staging build to production.
 
@@ -53,17 +61,19 @@ To deploy a locally built build to staging, use the `--staging` flag.
 
 To not deploy a dated build to production, add the `--no-dated` flag.
 
+</details>
+
 ### Visualize results
 
 View results with:
 
 ```bash
-nextstrain view auspice/
+nextstrain view .
 ```
 
 ## Configuration
 
-Configuration takes place in `config/config.yml` by default.
+Configuration takes place in `config/config_*.yaml` files for each build..
 The analysis pipeline is contained in `workflow/snakemake_rule/core.smk`.
 This can be read top-to-bottom, each rule specifies its file inputs and output and pulls its parameters from `config`.
 There is little redirection and each rule should be able to be reasoned with on its own.
@@ -84,7 +94,7 @@ Follow the [standard installation instructions](https://docs.nextstrain.org/en/l
 If you don't use the `nextstrain` CLI but a custom conda environment, make sure that you have `tsv-utils` and `seqkit` installed, e.g. using:
 
 ```sh
-conda install -c bioconda tsv-utils seqkit
+mamba install -c bioconda tsv-utils seqkit
 ```
 
 ### Nextstrain build vs Snakemake
@@ -93,10 +103,10 @@ The above commands use the Nextstrain CLI and `nextstrain build` along with Dock
 Alternatively, if you [install Nextalign/Nextclade v2 locally](https://github.com/nextstrain/nextclade/releases) you can run the pipeline with:
 
 ```bash
-snakemake -j 1 -p --configfile config/config_mpxv.yaml
-snakemake -j 1 -p --configfile config/config_hmpxv1.yaml
+snakemake --configfile config/config_mpxv.yaml
+snakemake --configfile config/config_hmpxv1.yaml
+snakemake --configfile config/config_hmpxv1_big.yaml
 ```
-
 
 ### Update colors to include new countries
 
@@ -121,5 +131,5 @@ python3 scripts/update_colours.py --colors config/colors_mpxv.tsv \
 Example data should be updated every time metadata schema is changed or a new clade/lineage emerges. To update, run:
 
 ```sh
-nextstrain build --docker . update_example_data -F
+nextstrain build . update_example_data -F
 ```
