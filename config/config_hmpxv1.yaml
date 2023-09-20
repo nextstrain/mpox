@@ -1,5 +1,18 @@
+exclude: "config/exclude_accessions_mpxv.txt"
+reference: "config/reference.fasta"
+genemap: "config/genemap.gff"
+genbank_reference: "config/reference.gb"
 colors: "config/colors_hmpxv1.tsv"
+clades: "config/clades.tsv"
+lat_longs: "config/lat_longs.tsv"
 auspice_config: "config/auspice_config_hmpxv1.json"
+description: "config/description.md"
+tree_mask: "config/tree_mask.tsv"
+
+# Use `accession` as the ID column since `strain` currently contains duplicates¹.
+# ¹ https://github.com/nextstrain/monkeypox/issues/33
+strain_id_field: "accession"
+display_strain_field: "strain"
 
 build_name: "hmpxv1"
 auspice_name: "mpox_mpxv-IIb"
@@ -57,6 +70,9 @@ timetree: true
 root: "MK783032 MK783030"
 clock_rate: 5.7e-5
 clock_std_dev: 2e-5
+
+## recency
+recency: true
 
 mask:
   from_beginning: 800

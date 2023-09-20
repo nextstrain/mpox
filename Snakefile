@@ -11,10 +11,6 @@ if version.parse(augur_version) < version.parse(min_augur_version):
     sys.exit(1)
 
 
-# Use default configuration values. Override with Snakemake's --configfile/--config options.
-configfile: "config/defaults.yaml"
-
-
 build_dir = "results"
 
 
