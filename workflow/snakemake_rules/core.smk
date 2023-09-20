@@ -14,13 +14,13 @@ In addition, `build_dir` and `auspice_dir` need to be defined upstream.
 
 
 rule exclude_bad:
-    message:
-        """
-        Removing strains that violate one of
-          - from {params.min_date} onwards
-          - excluding strains in {input.exclude}
-          - minimum genome length of {params.min_length}
-        """
+    """
+    Removing strains that violate one of
+        - from {params.min_date} onwards
+        - excluding strains in {input.exclude}
+        - minimum genome length of {params.min_length}
+        - QC_rare_mutations == bad
+    """
     input:
         sequences="data/sequences.fasta",
         metadata="data/metadata.tsv",
@@ -44,43 +44,25 @@ rule exclude_bad:
             --output-metadata {output.metadata} \
             --min-date {params.min_date} \
             --min-length {params.min_length} \
+            --exclude-where QC_rare_mutations=bad \
             --output-log {output.log}
         """
 
 
-rule include_A_strains:
-    input:
-        metadata=rules.exclude_bad.output.metadata,
-    output:
-        include_strains=build_dir + "/{build_name}/include_strains.txt",
-    shell:
-        """
-        tsv-filter -H \
-            --str-in-fld lineage:'A'\
-            {input.metadata} \
-        | tsv-select -f 1 \
-        > {output.include_strains}
-        """
-
-
 rule filter:
-    message:
-        """
-        Filtering to
-          - {params.sequences_per_group} sequence(s) per {params.group_by!s}
-        """
     input:
         sequences=rules.exclude_bad.output.sequences,
         metadata=rules.exclude_bad.output.metadata,
-        include=rules.include_A_strains.output.include_strains,
     output:
-        sequences=build_dir + "/{build_name}/filtered.fasta",
-        metadata=build_dir + "/{build_name}/metadata.tsv",
-        log=build_dir + "/{build_name}/filter.log",
+        strains=build_dir + "/{build_name}/{subset}_strains.txt",
+        log=build_dir + "/{build_name}/{subset}_filter.log",
     params:
-        group_by=config.get("group_by", "--group-by clade lineage"),
-        sequences_per_group=config["sequences_per_group"],
-        other_filters=config.get("filters", ""),
+        group_by=lambda w: config["filter"][w.subset]["group_by"],
+        sequences_per_group=lambda w: config["filter"][w.subset]["sequences_per_group"],
+        other_filters=lambda w: config["filter"][w.subset].get("other_filters", ""),
+        exclude=lambda w: f"--exclude-where {' '.join([f'lineage={l}' for l in config['filter'][w.subset]['exclude_lineages']])}"
+        if "exclude_lineages" in config["filter"][w.subset]
+        else "",
         strain_id=config["strain_id_field"],
     shell:
         """
@@ -88,13 +70,39 @@ rule filter:
             --sequences {input.sequences} \
             --metadata {input.metadata} \
             --metadata-id-columns {params.strain_id} \
-            --include {input.include} \
-            --output-sequences {output.sequences} \
-            --output-metadata {output.metadata} \
+            --output-strains {output.strains} \
             {params.group_by} \
             {params.sequences_per_group} \
+            {params.exclude} \
             {params.other_filters} \
             --output-log {output.log}
+        """
+
+
+rule filter_merge:
+    input:
+        strains=lambda w: [
+            f"{build_dir}/{w.build_name}/{subset}_strains.txt"
+            for subset in config["filter"]
+        ],
+        sequences=rules.exclude_bad.output.sequences,
+        metadata=rules.exclude_bad.output.metadata,
+        include="config/include_{build_name}.txt",
+    output:
+        sequences=build_dir + "/{build_name}/filtered.fasta",
+        metadata=build_dir + "/{build_name}/metadata.tsv",
+    params:
+        strain_id=config["strain_id_field"],
+    shell:
+        """
+        augur filter \
+            --metadata-id-columns {params.strain_id} \
+            --sequences {input.sequences} \
+            --metadata {input.metadata} \
+            --exclude-all \
+            --include {input.strains} {input.include}\
+            --output-sequences {output.sequences} \
+            --output-metadata {output.metadata}
         """
 
 
@@ -198,11 +206,14 @@ rule fix_tree:
         alignment=build_dir + "/{build_name}/masked.fasta",
     output:
         tree=build_dir + "/{build_name}/tree_fixed.nwk",
+    params:
+        root=lambda w: config.get("treefix_root", ""),
     shell:
         """
         python3 scripts/fix_tree.py \
             --alignment {input.alignment} \
             --input-tree {input.tree} \
+            {params.root} \
             --output {output.tree}
         """
 

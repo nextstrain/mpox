@@ -16,7 +16,7 @@ SLACK_TS_FILE = build_dir + f"/{BUILD_NAME}/slack_thread_ts.txt"
 
 rule deploy:
     input:
-        *rules.all.input,
+        *rules.all.output,
     output:
         touch(build_dir + f"/{BUILD_NAME}/deploy.done"),
     params:
