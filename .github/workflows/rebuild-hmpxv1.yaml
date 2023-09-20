@@ -50,7 +50,7 @@ jobs:
           . \
             notify_on_deploy \
               --configfiles config/config_hmpxv1.yaml config/nextstrain_automation.yaml \
-              --config auspice_prefix=trial_$TRIAL_NAME
+              --config auspice_prefix=$TRIAL_NAME
       env:
         AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}

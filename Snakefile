@@ -16,10 +16,9 @@ build_dir = "results"
 
 auspice_dir = "auspice"
 
-AUSPICE_PREFIX = config.get("auspice_prefix", "")
-AUSPICE_PREFIX = AUSPICE_PREFIX + "_" if AUSPICE_PREFIX else AUSPICE_PREFIX
-AUSPICE_NAME = config.get("auspice_name", "tree")
-AUSPICE_FILENAME = AUSPICE_PREFIX + AUSPICE_NAME
+prefix = config.get("auspice_prefix", None)
+AUSPICE_PREFIX = ("trial_" + prefix + "_") if prefix is not None else ""
+AUSPICE_FILENAME = AUSPICE_PREFIX + config.get("auspice_name")
 
 
 rule all:
