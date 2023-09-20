@@ -6,6 +6,7 @@ DQ011155	country	Democratic Republic of the Congo
 DQ011156	country	Liberia
 DQ011157	country	USA
 NC_003310	country	Democratic Republic of the Congo
+OR473631	country	France
 AF380138	region	Africa
 AY741551	region	Africa
 AY753185	region	Africa
@@ -15,6 +16,7 @@ DQ011155	region	Africa
 DQ011156	region	Africa
 DQ011157	region	North America
 NC_003310	region	Africa
+OR473631	region	Europe
 AY603973	date	1961-XX-XX
 AY741551	date	1970-XX-XX
 AY753185	date	1958-XX-XX
