@@ -68,7 +68,7 @@ rule transform:
             | ./vendored/transform-field-names \
                 --field-map {params.field_map} \
             | augur curate normalize-strings \
-            | ./bin/transform-strain-names \
+            | ./vendored/transform-strain-names \
                 --strain-regex {params.strain_regex} \
                 --backup-fields {params.strain_backup_fields} \
             | ./bin/transform-date-fields \
