@@ -2,4 +2,4 @@ cores: all
 printshellcmds: true
 reason: true
 rerun-incomplete: true
-configfile: config/config_mpxv.yaml
+configfile: config/mpxv/config.yaml

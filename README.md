@@ -26,19 +26,19 @@ nextstrain build . data/sequences.fasta data/metadata.tsv
 Run pipeline to produce the "overview" tree for `/mpox/all-clades` with:
 
 ```bash
-nextstrain build . --configfile config/config_mpxv.yaml
+nextstrain build . --configfile config/mpxv/config.yaml
 ```
 
 Run pipeline to produce the "clade IIb" tree for `/mpox/clade-IIb` with:
 
 ```bash
-nextstrain build . --configfile config/config_hmpxv1.yaml
+nextstrain build . --configfile config/hmpxv1/config.yaml
 ```
 
 Run pipeline to produce the "lineage B.1" tree for `/mpox/lineage-B.1` with:
 
 ```bash
-nextstrain build . --configfile config/config_hmpxv1_big.yaml
+nextstrain build . --configfile config/hmpxv1_big/config.yaml
 ```
 
 ### Deploying
@@ -73,7 +73,7 @@ nextstrain view .
 
 ## Configuration
 
-Configuration takes place in `config/config_*.yaml` files for each build..
+Configuration takes place in `config/*/config.yaml` files for each build.
 The analysis pipeline is contained in `workflow/snakemake_rule/core.smk`.
 This can be read top-to-bottom, each rule specifies its file inputs and output and pulls its parameters from `config`.
 There is little redirection and each rule should be able to be reasoned with on its own.
@@ -110,18 +110,18 @@ snakemake --configfile config/config_hmpxv1_big.yaml
 
 ### Update colors to include new countries
 
-Update `colors_hmpxv1.tsv` to group countries by region based on countries present in its `metadata.tsv`:
+Update `hmpxv1/colors.tsv` to group countries by region based on countries present in its `metadata.tsv`:
 
 ```bash
-python3 scripts/update_colours.py --colors config/colors_hmpxv1.tsv \
-    --metadata results/hmpxv1/metadata.tsv --output config/colors_hmpxv1.tsv
+python3 scripts/update_colours.py --colors config/hmpxv1/colors.tsv \
+    --metadata results/hmpxv1/metadata.tsv --output config/hmpxv1/colors.tsv
 ```
 
-and similarly update `colors_mpxv.tsv`:
+and similarly update `mpxv/colors.tsv`:
 
 ```bash
-python3 scripts/update_colours.py --colors config/colors_mpxv.tsv \
-    --metadata results/mpxv/metadata.tsv --output config/colors_mpxv.tsv
+python3 scripts/update_colours.py --colors config/mpxv/colors.tsv \
+    --metadata results/mpxv/metadata.tsv --output config/mpxv/colors.tsv
 ```
 
 ### Update example data
