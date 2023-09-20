@@ -84,7 +84,7 @@ These are optional environment variables used in our automated pipeline for prov
 ### GenBank data
 
 GenBank sequences and metadata are fetched via NCBI Virus.
-The exact URL used to fetch data is constructed in `bin/genbank-url`.
+The exact URL used to fetch data is constructed by `vendored/ncbi-virus-url`.
 
 ## `ingest/vendored`
 

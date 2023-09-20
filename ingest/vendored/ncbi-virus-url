@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Generate URL to download all mpox virus sequences and their curated metadata
-from GenBank via NCBI Virus.
+Generate URL to download all virus sequences and their curated metadata for a
+specified NCBI Taxon ID from GenBank via NCBI Virus.
 
 The URL this program builds is based on the URL for SARS-CoV-2 constructed with
 
@@ -9,25 +9,31 @@ The URL this program builds is based on the URL for SARS-CoV-2 constructed with
 
 and observing the network activity at
 
-    https://www.ncbi.nlm.nih.gov/labs/virus/vssi/#/virus?SeqType_s=Nucleotide&VirusLineage_ss=Monkeypox%20virus,%20taxid:10244
+    https://www.ncbi.nlm.nih.gov/labs/virus/vssi/#/virus?SeqType_s=Nucleotide
 """
 from urllib.parse import urlencode
+from typing import List, Optional
 import argparse
 
 def parse_args():
-    parser = argparse.ArgumentParser(
-        description="Given an NCBI taxon ID, generate URL to download "
-        "all viral sequences and their curated metadata from GenBank via NCBI Virus."
-    )
-    parser.add_argument(
-        "--ncbi-taxon-id",
-        help="NCBI Taxon ID.",
-        default="10244",
-        required=True
-    )
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--ncbi-taxon-id", required=True,
+        help="NCBI Taxon ID. Visit NCBI virus at " +
+             "https://www.ncbi.nlm.nih.gov/labs/virus/vssi/#/find-data/virus " +
+             "to search for supported taxon IDs.")
+    parser.add_argument("--filters", required=False, nargs="*",
+        help="Filter criteria to add as `fq` param values. " +
+             "Apply filters via the NCBI Virus UI and observe the network " +
+             "activity to find the desired filter string.")
+    parser.add_argument("--fields", required=False, nargs="*",
+        help="Metadata fields to add as `fl` param values. " +
+             "Expected to be formatted as <output_column_name>:<ncbi_virus_field_name>. " +
+             "See docs/ncbi-virus-all-fields-example.json for the available NCBI Virus fields.")
     return parser.parse_args()
 
-def build_query_url(ncbi_taxon_id: str):
+def build_query_url(ncbi_taxon_id: str,
+                    filters: Optional[List[str]]=None,
+                    fields: Optional[List[str]]=None):
     """
     Generate URL to download all viral sequences and their curated metadata
     from GenBank via NCBI Virus.
@@ -37,7 +43,8 @@ def build_query_url(ncbi_taxon_id: str):
         # Search criteria
         'fq': [
             '{!tag=SeqType_s}SeqType_s:("Nucleotide")', # Nucleotide sequences (as opposed to protein)
-            f'VirusLineageId_ss:({ncbi_taxon_id})',                # NCBI Taxon id for Monkeypox
+            f'VirusLineageId_ss:({ncbi_taxon_id})',
+            *(filters or []),
         ],
 
         # Unclear, but seems necessary.
@@ -47,7 +54,7 @@ def build_query_url(ncbi_taxon_id: str):
         'cmd': 'download',
         'dlfmt': 'csv',
         'fl': ','.join(
-            ':'.join(names) for names in [
+            [':'.join(names) for names in [
                 # Pairs of (output column name, source data field).
                 ('genbank_accession',       'id'),
                 ('genbank_accession_rev',   'AccVer_s'),
@@ -57,6 +64,7 @@ def build_query_url(ncbi_taxon_id: str):
                 ('location',                'CountryFull_s'),
                 ('collected',               'CollectionDate_s'),
                 ('submitted',               'CreateDate_dt'),
+                ('updated',                 'UpdateDate_dt'),
                 ('length',                  'SLen_i'),
                 ('host',                    'Host_s'),
                 ('isolation_source',        'Isolation_csv'),
@@ -68,7 +76,7 @@ def build_query_url(ncbi_taxon_id: str):
                 ('submitting_organization', 'SubmitterAffilFull_s'),
                 ('publications',            'PubMed_csv'),
                 ('sequence',                'Nucleotide_seq'),
-            ]
+            ]] + (fields or [])
         ),
 
         # Stable sort with GenBank accessions.
@@ -85,7 +93,11 @@ def build_query_url(ncbi_taxon_id: str):
 
 def main():
     args = parse_args()
-    build_query_url(args.ncbi_taxon_id)
+    build_query_url(
+        ncbi_taxon_id=args.ncbi_taxon_id,
+        filters=args.filters,
+        fields=args.fields
+    )
 
 if __name__ == '__main__':
     main()

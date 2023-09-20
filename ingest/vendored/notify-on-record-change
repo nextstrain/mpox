@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -euo pipefail
 
 : "${SLACK_TOKEN:?The SLACK_TOKEN environment variable is required.}"

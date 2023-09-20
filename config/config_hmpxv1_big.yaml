@@ -15,14 +15,25 @@ strain_id_field: "accession"
 display_strain_field: "strain"
 
 build_name: "hmpxv1_big"
-auspice_name: "monkeypox_hmpxv1_big"
+auspice_name: "mpox_lineage-B.1"
 
 ## filter
-min_date: 2017
-min_length: 100000
-sequences_per_group: ""
-group_by: ""
-filters: "--exclude-where outbreak!=hMPXV-1"
+min_date: 2022
+min_length: 180000
+filter:
+  b1:
+    group_by: "--group-by year month country"
+    sequences_per_group: "--subsample-max-sequences 5000"
+    other_filters: "outbreak!=hMPXV-1 clade!=IIb"
+    exclude_lineages:
+      - A
+      - A.1
+      - A.1.1
+      - A.2
+      - A.2.1
+      - A.2.2
+      - A.2.3
+      - A.3
 
 ## align
 max_indel: 10000
@@ -30,10 +41,11 @@ seed_spacing: 1000
 
 ## treefix
 fix_tree: true
+treefix_root: "--root OP890401"
 
 ## refine
 timetree: true
-root: "MK783032 MK783030"
+root: "OP890401"
 clock_rate: 5.7e-5
 clock_std_dev: 2e-5
 

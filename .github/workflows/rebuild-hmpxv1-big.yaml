@@ -40,7 +40,7 @@ jobs:
             --detach \
             --no-download \
             --cpus 8 \
-            --memory 32gib \
+            --memory 68gib \
             --env AWS_DEFAULT_REGION \
             --env AWS_ACCESS_KEY_ID \
             --env AWS_SECRET_ACCESS_KEY \
