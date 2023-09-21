@@ -15,11 +15,7 @@ In addition, `build_dir` and `auspice_dir` need to be defined upstream.
 
 rule exclude_bad:
     """
-    Removing strains that violate one of
-        - from {params.min_date} onwards
-        - excluding strains in {input.exclude}
-        - minimum genome length of {params.min_length}
-        - QC_rare_mutations == bad
+    Removing strains that do not satisfy certain requirements.
     """
     input:
         sequences="data/sequences.fasta",
