@@ -13,21 +13,21 @@ In addition, `build_dir` and `auspice_dir` need to be defined upstream.
 """
 
 
-rule exclude_bad:
+rule filter:
     """
     Removing strains that do not satisfy certain requirements.
     """
     input:
         sequences="data/sequences.fasta",
         metadata="data/metadata.tsv",
-        exclude=config["exclude"],
     output:
         sequences=build_dir + "/{build_name}/good_sequences.fasta",
         metadata=build_dir + "/{build_name}/good_metadata.tsv",
         log=build_dir + "/{build_name}/good_filter.log",
     params:
-        min_date=config["min_date"],
-        min_length=config["min_length"],
+        exclude=config["filter"]["exclude"],
+        min_date=config["filter"]["min_date"],
+        min_length=config["filter"]["min_length"],
         strain_id=config["strain_id_field"],
     shell:
         """
@@ -35,9 +35,9 @@ rule exclude_bad:
             --sequences {input.sequences} \
             --metadata {input.metadata} \
             --metadata-id-columns {params.strain_id} \
-            --exclude {input.exclude} \
             --output-sequences {output.sequences} \
             --output-metadata {output.metadata} \
+            --exclude {params.exclude} \
             --min-date {params.min_date} \
             --min-length {params.min_length} \
             --exclude-where QC_rare_mutations=bad \
@@ -45,19 +45,21 @@ rule exclude_bad:
         """
 
 
-rule filter:
+rule subsample:
     input:
-        sequences=rules.exclude_bad.output.sequences,
-        metadata=rules.exclude_bad.output.metadata,
+        sequences=rules.filter.output.sequences,
+        metadata=rules.filter.output.metadata,
     output:
-        strains=build_dir + "/{build_name}/{subset}_strains.txt",
-        log=build_dir + "/{build_name}/{subset}_filter.log",
+        strains=build_dir + "/{build_name}/{sample}_strains.txt",
+        log=build_dir + "/{build_name}/{sample}_filter.log",
     params:
-        group_by=lambda w: config["filter"][w.subset]["group_by"],
-        sequences_per_group=lambda w: config["filter"][w.subset]["sequences_per_group"],
-        other_filters=lambda w: config["filter"][w.subset].get("other_filters", ""),
-        exclude=lambda w: f"--exclude-where {' '.join([f'lineage={l}' for l in config['filter'][w.subset]['exclude_lineages']])}"
-        if "exclude_lineages" in config["filter"][w.subset]
+        group_by=lambda w: config["subsample"][w.sample]["group_by"],
+        sequences_per_group=lambda w: config["subsample"][w.sample][
+            "sequences_per_group"
+        ],
+        other_filters=lambda w: config["subsample"][w.sample].get("other_filters", ""),
+        exclude=lambda w: f"--exclude-where {' '.join([f'lineage={l}' for l in config['subsample'][w.sample]['exclude_lineages']])}"
+        if "exclude_lineages" in config["subsample"][w.sample]
         else "",
         strain_id=config["strain_id_field"],
     shell:
@@ -75,14 +77,14 @@ rule filter:
         """
 
 
-rule filter_merge:
+rule combine_samples:
     input:
         strains=lambda w: [
-            f"{build_dir}/{w.build_name}/{subset}_strains.txt"
-            for subset in config["filter"]
+            f"{build_dir}/{w.build_name}/{sample}_strains.txt"
+            for sample in config["subsample"]
         ],
-        sequences=rules.exclude_bad.output.sequences,
-        metadata=rules.exclude_bad.output.metadata,
+        sequences=rules.filter.output.sequences,
+        metadata=rules.filter.output.metadata,
         include="config/include_{build_name}.txt",
     output:
         sequences=build_dir + "/{build_name}/filtered.fasta",
