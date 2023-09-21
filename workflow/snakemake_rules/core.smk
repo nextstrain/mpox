@@ -47,7 +47,6 @@ rule filter:
 
 rule subsample:
     input:
-        sequences=rules.filter.output.sequences,
         metadata=rules.filter.output.metadata,
     output:
         strains=build_dir + "/{build_name}/{sample}_strains.txt",
@@ -65,7 +64,6 @@ rule subsample:
     shell:
         """
         augur filter \
-            --sequences {input.sequences} \
             --metadata {input.metadata} \
             --metadata-id-columns {params.strain_id} \
             --output-strains {output.strains} \
