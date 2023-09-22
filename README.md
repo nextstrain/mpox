@@ -45,7 +45,7 @@ Run pipeline to produce the "lineage B.1" tree for `/mpox/lineage-B.1` with:
 nextstrain build . --configfile config/hmpxv1_big/config.yaml
 ```
 
-### Deploying
+### Deploy
 
 ⚠️ The below is outdated and needs to be adjusted for the new build names (mpxv instead of monkeypox, etc.)
 
