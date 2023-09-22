@@ -1,6 +1,5 @@
 auspice_config: "config/mpxv/auspice_config.json"
 include: "config/mpxv/include.txt"
-colors: "config/mpxv/colors.tsv"
 reference: "config/reference.fasta"
 genemap: "config/genemap.gff"
 genbank_reference: "config/reference.gb"
