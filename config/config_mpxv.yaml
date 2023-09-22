@@ -1,4 +1,3 @@
-exclude: "config/exclude_accessions_mpxv.txt"
 reference: "config/reference.fasta"
 genemap: "config/genemap.gff"
 genbank_reference: "config/reference.gb"
@@ -17,13 +16,14 @@ display_strain_field: "strain"
 build_name: "mpxv"
 auspice_name: "mpox_all-clades"
 
-## filter
-min_date: 1950
-min_length: 100000
+filter:
+  exclude: "config/exclude_accessions_mpxv.txt"
+  min_date: 1950
+  min_length: 100000
 
 ### Set 1: Non-B.1 sequences: use all
 ### Set 2: B.1 sequences: small sample across year/country, maybe month
-filter:
+subsample:
   non_b1:
     group_by: "--group-by clade year country"
     sequences_per_group: "--sequences-per-group 50"
