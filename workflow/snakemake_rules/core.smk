@@ -83,7 +83,7 @@ rule combine_samples:
         ],
         sequences=rules.filter.output.sequences,
         metadata=rules.filter.output.metadata,
-        include="config/include_{build_name}.txt",
+        include=config["include"],
     output:
         sequences=build_dir + "/{build_name}/filtered.fasta",
         metadata=build_dir + "/{build_name}/metadata.tsv",

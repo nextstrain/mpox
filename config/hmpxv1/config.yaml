@@ -1,10 +1,11 @@
 reference: "config/reference.fasta"
 genemap: "config/genemap.gff"
 genbank_reference: "config/reference.gb"
-colors: "config/colors_hmpxv1.tsv"
+colors: "config/hmpxv1/colors.tsv"
+include: "config/hmpxv1/include.txt"
 clades: "config/clades.tsv"
 lat_longs: "config/lat_longs.tsv"
-auspice_config: "config/auspice_config_hmpxv1.json"
+auspice_config: "config/hmpxv1/auspice_config.json"
 description: "config/description.md"
 tree_mask: "config/tree_mask.tsv"
 
@@ -17,7 +18,7 @@ build_name: "hmpxv1"
 auspice_name: "mpox_clade-IIb"
 
 filter:
-  exclude: "config/exclude_accessions_mpxv.txt"
+  exclude: "config/exclude_accessions.txt"
   min_date: 2017
   min_length: 100000
 
