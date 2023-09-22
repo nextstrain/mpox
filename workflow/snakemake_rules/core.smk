@@ -256,6 +256,7 @@ rule refine:
             --root {params.root} \
             --precision 3 \
             --keep-polytomies \
+            --use-fft \
             {params.clock_rate} \
             {params.clock_std_dev} \
             --output-node-data {output.node_data} \
