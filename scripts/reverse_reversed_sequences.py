@@ -20,13 +20,10 @@ if __name__=="__main__":
         with open(args.output, 'w') as f_out:
             for seq in SeqIO.parse(f_in, 'fasta'):
                 # Check if metadata['reverse'] is True
-                try:
-                    if metadata.loc[metadata['strain'] == seq.id, 'reverse'].values[0] == True:
-                        # Reverse-complement sequence
-                        seq.seq = seq.seq.reverse_complement()
-                        print("Reverse-complementing sequence:", seq.id)
-                except:
-                    print("No reverse complement for:", seq.id)
+                if metadata.loc[metadata['accession'] == seq.id, 'reverse'].values[0] == True:
+                    # Reverse-complement sequence
+                    seq.seq = seq.seq.reverse_complement()
+                    print("Reverse-complementing sequence:", seq.id)
                     
                 # Write sequences to file
                 SeqIO.write(seq, f_out, 'fasta')
