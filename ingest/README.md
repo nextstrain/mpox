@@ -10,19 +10,19 @@ This is the ingest pipeline for mpox virus sequences.
 Fetch sequences with
 
 ```sh
-nextstrain build --cpus 1 . data/sequences.ndjson
+nextstrain build . data/sequences.ndjson
 ```
 
 Run the complete ingest pipeline with
 
 ```sh
-nextstrain build --cpus 1 .
+nextstrain build .
 ```
 
 This will produce two files (within the `ingest` directory):
 
-- data/metadata.tsv
-- data/sequences.fasta
+- `data/metadata.tsv`
+- `data/sequences.fasta`
 
 Run the complete ingest pipeline and upload results to AWS S3 with
 
