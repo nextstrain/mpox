@@ -108,22 +108,6 @@ snakemake --configfile config/config_hmpxv1.yaml
 snakemake --configfile config/config_hmpxv1_big.yaml
 ```
 
-### Update colors to include new countries
-
-Update `hmpxv1/colors.tsv` to group countries by region based on countries present in its `metadata.tsv`:
-
-```bash
-python3 scripts/update_colours.py --colors config/hmpxv1/colors.tsv \
-    --metadata results/hmpxv1/metadata.tsv --output config/hmpxv1/colors.tsv
-```
-
-and similarly update `mpxv/colors.tsv`:
-
-```bash
-python3 scripts/update_colours.py --colors config/mpxv/colors.tsv \
-    --metadata results/mpxv/metadata.tsv --output config/mpxv/colors.tsv
-```
-
 ### Update example data
 
 [Example data](./example_data/) is used by [CI](https://github.com/nextstrain/monkeypox/actions/workflows/ci.yaml). It can also be used as a small subset of real-world data.
