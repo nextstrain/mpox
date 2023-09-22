@@ -19,7 +19,10 @@ environment*
 env.d/
 
 # Snakemake state dir
-.snakemake
+.snakemake/
+
+# Git dir
+.git/
 
 # Local config overrides
 /config_local.yaml
