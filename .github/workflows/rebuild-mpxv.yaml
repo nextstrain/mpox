@@ -47,7 +47,7 @@ jobs:
           --env GITHUB_RUN_ID \
           --env SLACK_TOKEN \
           --env SLACK_CHANNELS \
-          . \
+          phylogenetics \
             notify_on_deploy \
               --configfiles config/config_mpxv.yaml config/nextstrain_automation.yaml \
               --config auspice_prefix=$TRIAL_NAME
