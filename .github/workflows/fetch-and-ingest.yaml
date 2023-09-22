@@ -31,27 +31,20 @@ on:
         description: 'Specific container image to use for build (will override the default of "nextstrain build")'
         required: false
 
-env:
-  NEXTSTRAIN_DOCKER_IMAGE: ${{ github.event.inputs.image }}
-
 jobs:
   fetch-and-ingest:
-    runs-on: ubuntu-latest
-    env:
-      GITHUB_RUN_ID: ${{ github.run_id }}
-      SLACK_CHANNELS: monkeypox-updates
-      SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
-    steps:
-    - uses: actions/checkout@v3
-    - uses: nextstrain/.github/actions/setup-nextstrain-cli@master
-      with:
-        cli-version: ">=7.1.0"
-        python-version: "3.10"
-
-    - name: run_pipeline
+    permissions:
+      id-token: write
+    uses: nextstrain/.github/.github/workflows/pathogen-repo-build.yaml@master
+    secrets: inherit
+    with:
+      runtime: aws-batch
+      env: |
+        NEXTSTRAIN_DOCKER_IMAGE: ${{ inputs.image }}
+        GITHUB_RUN_ID: ${{ github.run_id }}
+        SLACK_CHANNELS: monkeypox-updates
       run: |
         nextstrain build \
-          --aws-batch \
           --detach \
           --no-download \
           --cpus 32 \
@@ -62,15 +55,6 @@ jobs:
           --env GITHUB_RUN_ID \
           --env SLACK_TOKEN \
           --env SLACK_CHANNELS \
-          --env PAT_GITHUB_DISPATCH \
+          --env PAT_GITHUB_DISPATCH="$GH_TOKEN_NEXTSTRAIN_BOT_WORKFLOW_DISPATCH" \
           ingest \
             --configfiles config/config.yaml config/optional.yaml
-      env:
-        AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        PAT_GITHUB_DISPATCH: ${{ secrets.GH_TOKEN_NEXTSTRAIN_BOT_WORKFLOW_DISPATCH }}
-
-    - name: notify_pipeline_failed
-      if: ${{ failure() }}
-      run: ./ingest/vendored/notify-on-job-fail Ingest nextstrain/monkeypox
