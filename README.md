@@ -3,6 +3,10 @@
 This is the [Nextstrain](https://nextstrain.org) build for MPXV (mpox virus). Output from this build is visible at [nextstrain.org/monkeypox](https://nextstrain.org/monkeypox).
 The lineages within the recent mpox outbreaks in humans are defined in a separate [lineage-designation repository](https://github.com/mpxv-lineages/lineage-designation).
 
+## Software requirements
+
+Follow the [standard installation instructions](https://docs.nextstrain.org/en/latest/install.html) for Nextstrain's suite of software tools.
+
 ## Usage
 
 ### Provision input data
@@ -78,20 +82,7 @@ The analysis pipeline is contained in `workflow/snakemake_rule/core.smk`.
 This can be read top-to-bottom, each rule specifies its file inputs and output and pulls its parameters from `config`.
 There is little redirection and each rule should be able to be reasoned with on its own.
 
-### Data use
-
-We gratefully acknowledge the authors, originating and submitting laboratories of the genetic
-sequences and metadata for sharing their work. Please note that although data generators have
-generously shared data in an open fashion, that does not mean there should be free license to
-publish on this data. Data generators should be cited where possible and collaborations should be
-sought in some circumstances. Please try to avoid scooping someone else's work. Reach out if
-uncertain.
-
-## Installation
-
-Follow the [standard installation instructions](https://docs.nextstrain.org/en/latest/install.html) for Nextstrain's suite of software tools.
-
-### Update example data
+## Update example data
 
 [Example data](./example_data/) is used by [CI](https://github.com/nextstrain/monkeypox/actions/workflows/ci.yaml). It can also be used as a small subset of real-world data.
 
@@ -100,3 +91,12 @@ Example data should be updated every time metadata schema is changed or a new cl
 ```sh
 nextstrain build . update_example_data -F
 ```
+
+## Data use
+
+We gratefully acknowledge the authors, originating and submitting laboratories of the genetic
+sequences and metadata for sharing their work. Please note that although data generators have
+generously shared data in an open fashion, that does not mean there should be free license to
+publish on this data. Data generators should be cited where possible and collaborations should be
+sought in some circumstances. Please try to avoid scooping someone else's work. Reach out if
+uncertain.
