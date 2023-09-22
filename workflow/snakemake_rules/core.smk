@@ -40,7 +40,7 @@ rule filter:
             --exclude {params.exclude} \
             --min-date {params.min_date} \
             --min-length {params.min_length} \
-            --exclude-where QC_rare_mutations=bad \
+            --query "(QC_rare_mutations == 'good' | QC_rare_mutations == 'mediocre')" \
             --output-log {output.log}
         """
 
@@ -102,7 +102,7 @@ rule combine_samples:
         """
 
 
-rule separate_reverse_complement:
+rule reverse_reverse_complements:
     input:
         metadata=build_dir + "/{build_name}/metadata.tsv",
         sequences=build_dir + "/{build_name}/filtered.fasta",
@@ -124,7 +124,7 @@ rule align:
           - filling gaps with N
         """
     input:
-        sequences=rules.separate_reverse_complement.output,
+        sequences=rules.reverse_reverse_complements.output,
         reference=config["reference"],
         genemap=config["genemap"],
     output:
@@ -256,6 +256,7 @@ rule refine:
             --root {params.root} \
             --precision 3 \
             --keep-polytomies \
+            --use-fft \
             {params.clock_rate} \
             {params.clock_std_dev} \
             --output-node-data {output.node_data} \
