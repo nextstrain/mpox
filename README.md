@@ -91,17 +91,6 @@ uncertain.
 
 Follow the [standard installation instructions](https://docs.nextstrain.org/en/latest/install.html) for Nextstrain's suite of software tools.
 
-### Nextstrain build vs Snakemake
-
-The above commands use the Nextstrain CLI and `nextstrain build` along with Docker to run using Nextalign v2.
-Alternatively, if you [install Nextalign/Nextclade v2 locally](https://github.com/nextstrain/nextclade/releases) you can run the pipeline with:
-
-```bash
-snakemake --configfile config/config_mpxv.yaml
-snakemake --configfile config/config_hmpxv1.yaml
-snakemake --configfile config/config_hmpxv1_big.yaml
-```
-
 ### Update example data
 
 [Example data](./example_data/) is used by [CI](https://github.com/nextstrain/monkeypox/actions/workflows/ci.yaml). It can also be used as a small subset of real-world data.
