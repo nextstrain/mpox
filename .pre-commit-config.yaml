@@ -1,0 +1,5 @@
+repos:
+  - repo: https://github.com/snakemake/snakefmt
+    rev: v0.8.4 # Update when snakefmt has new release
+    hooks:
+      - id: snakefmt
