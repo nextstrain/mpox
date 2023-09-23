@@ -1,5 +1,9 @@
 repos:
   - repo: https://github.com/snakemake/snakefmt
-    rev: v0.8.4 # Update when snakefmt has new release
+    rev: v0.8.4
     hooks:
       - id: snakefmt
+  - repo: https://github.com/rhysd/actionlint
+    rev: v1.6.26
+    hooks:
+      - id: actionlint
