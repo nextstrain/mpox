@@ -12,12 +12,13 @@ jobs:
     uses: nextstrain/.github/.github/workflows/pathogen-repo-ci.yaml@master
 
   lint:
-     runs-on: ubuntu-latest
-     steps:
-     - uses: actions/checkout@v3
-     - uses: actions/setup-python@v4
-       with:
-         python-version: ~3
-     - run: pip install snakefmt
-     - run: snakefmt --check --compact-diff .
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: ~3
+      - run: pip install snakefmt
+      - run: snakefmt --check --compact-diff .
+      - uses: pre-commit/action@v3.0.0
 
