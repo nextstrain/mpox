@@ -18,7 +18,7 @@ on:
     #  - https://crontab.guru/
     #
     # Runs at 4pm UTC (12pm EDT) since curation by NCBI happens on the East Coast.
-    - cron:  '0 16 * * *'
+    - cron: '0 16 * * *'
 
   repository_dispatch:
     types:

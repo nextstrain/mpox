@@ -6,25 +6,11 @@ upload:
     # AWS S3 Bucket with prefix
     dst: 's3://nextstrain-data/files/workflows/monkeypox'
     # Files to upload to S3 that are in the `data` directory
-    files_to_upload: [
-      'genbank.ndjson',
-      'sequences.ndjson',
-      'metadata.tsv',
-      'sequences.fasta',
-      'alignment.fasta',
-      'insertions.csv',
-      'translations.zip'
-    ]
+    files_to_upload: ['genbank.ndjson', 'sequences.ndjson', 'metadata.tsv', 'sequences.fasta', 'alignment.fasta', 'insertions.csv',
+      'translations.zip']
     # Remote file names for the files to upload, must be in the same order as local files above
-    remote_file_names: [
-      'genbank.ndjson.xz',
-      'all_sequences.ndjson.xz',
-      'metadata.tsv.gz',
-      'sequences.fasta.xz',
-      'alignment.fasta.xz',
-      'insertions.csv.gz',
-      'translations.zip'
-    ]
+    remote_file_names: ['genbank.ndjson.xz', 'all_sequences.ndjson.xz', 'metadata.tsv.gz', 'sequences.fasta.xz', 'alignment.fasta.xz',
+      'insertions.csv.gz', 'translations.zip']
     cloudfront_domain: 'data.nextstrain.org'
 
 # Toggle for Slack notifications

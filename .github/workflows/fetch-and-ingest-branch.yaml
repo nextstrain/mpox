@@ -15,39 +15,39 @@ jobs:
   fetch-and-ingest:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: nextstrain/.github/actions/setup-nextstrain-cli@master
-      with:
-        cli-version: ">=7.1.0"
-        python-version: "3.10"
+      - uses: actions/checkout@v3
+      - uses: nextstrain/.github/actions/setup-nextstrain-cli@master
+        with:
+          cli-version: ">=7.1.0"
+          python-version: "3.10"
 
-    - name: install-pyyaml
-      run: python3 -m pip install pyyaml
+      - name: install-pyyaml
+        run: python3 -m pip install pyyaml
 
-    - name: run_pipeline
-      run: |
-        GITHUB_BRANCH=${GITHUB_REF#refs/heads/}
-        ./bin/set-branch-ingest-config \
-          --config-yaml ingest/config/optional.yaml \
-          --s3-dst s3://nextstrain-data/files/workflows/monkeypox/branch/"${GITHUB_BRANCH}" \
-          > ingest/config/optional-branch.yaml
+      - name: run_pipeline
+        run: |
+          GITHUB_BRANCH=${GITHUB_REF#refs/heads/}
+          ./bin/set-branch-ingest-config \
+            --config-yaml ingest/config/optional.yaml \
+            --s3-dst s3://nextstrain-data/files/workflows/monkeypox/branch/"${GITHUB_BRANCH}" \
+            > ingest/config/optional-branch.yaml
 
-        nextstrain build \
-          --aws-batch \
-          --detach \
-          --no-download \
-          --cpus 32 \
-          --memory 64gib \
-          --env AWS_DEFAULT_REGION \
-          --env AWS_ACCESS_KEY_ID \
-          --env AWS_SECRET_ACCESS_KEY \
-          --env GITHUB_RUN_ID \
-          ingest \
-            --configfiles config/config.yaml config/optional-branch.yaml \
-            --config trigger_rebuild=False
-      env:
-        AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        GITHUB_RUN_ID: ${{ github.run_id }}
+          nextstrain build \
+            --aws-batch \
+            --detach \
+            --no-download \
+            --cpus 32 \
+            --memory 64gib \
+            --env AWS_DEFAULT_REGION \
+            --env AWS_ACCESS_KEY_ID \
+            --env AWS_SECRET_ACCESS_KEY \
+            --env GITHUB_RUN_ID \
+            ingest \
+              --configfiles config/config.yaml config/optional-branch.yaml \
+              --config trigger_rebuild=False
+        env:
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
 

@@ -23,10 +23,8 @@ transform:
     # Abbreviations not cast to titlecase, keeps uppercase
     abbreviations: ['USA']
     # Articles that should not be cast to titlecase
-    articles: [
-      'and', 'd', 'de', 'del', 'des', 'di', 'do', 'en', 'l', 'la', 'las', 'le',
-      'los', 'nad', 'of', 'op', 'sur', 'the', 'y'
-    ]
+    articles: ['and', 'd', 'de', 'del', 'des', 'di', 'do', 'en', 'l', 'la', 'las', 'le', 'los', 'nad', 'of', 'op', 'sur',
+      'the', 'y']
     # List of string fields to titlecase
     fields: ['region', 'country', 'division', 'location']
   # Authors field name
@@ -49,20 +47,5 @@ transform:
   # Field to use as the sequence in the FASTA file
   sequence_field: 'sequence'
   # Final output columns for the metadata TSV
-  metadata_columns: [
-    'accession',
-    'genbank_accession_rev',
-    'strain',
-    'date',
-    'region',
-    'country',
-    'division',
-    'location',
-    'host',
-    'date_submitted',
-    'sra_accession',
-    'abbr_authors',
-    'reverse',
-    'authors',
-    'institution'
-  ]
+  metadata_columns: ['accession', 'genbank_accession_rev', 'strain', 'date', 'region', 'country', 'division', 'location',
+    'host', 'date_submitted', 'sra_accession', 'abbr_authors', 'reverse', 'authors', 'institution']
