@@ -45,5 +45,5 @@ jobs:
           --env SLACK_CHANNELS \
           . \
             notify_on_deploy \
-              --configfiles config/config_hmpxv1.yaml config/nextstrain_automation.yaml \
+              --configfiles config/hmpxv1/config.yaml config/nextstrain_automation.yaml \
               --config auspice_prefix=$TRIAL_NAME
