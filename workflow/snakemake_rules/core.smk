@@ -6,7 +6,7 @@ This part of the workflow expects input files
 
 and will produce output files as
 
-        auspice_json = auspice_dir + "/monkeypox_{build_name}.json"
+        auspice_json = auspice_dir + "/mpox_{build_name}.json"
 
 Parameter are expected to sit in the `config` data structure.
 In addition, `build_dir` and `auspice_dir` need to be defined upstream.

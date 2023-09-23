@@ -1,5 +1,5 @@
 """
-This part of the workflow handles triggering new monkeypox builds after the
+This part of the workflow handles triggering new mpox builds after the
 latest metadata TSV and sequence FASTA files have been uploaded to S3.
 
 Designed to be used internally by the Nextstrain team with hard-coded paths

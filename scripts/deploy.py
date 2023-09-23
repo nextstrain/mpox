@@ -51,14 +51,14 @@ if __name__=="__main__":
 
             # Upload basic builds to staging
             for auspice_file in ['', '_root-sequence']:
-                os.system(f"aws s3 cp s3://nextstrain-staging/monkeypox_{build_name}{auspice_file}.json s3://nextstrain-data/monkeypox_{build_name}{auspice_file}.json")
-            print(f">> Uploaded {build_name} to production: https://nextstrain.org/staging/monkeypox/{build_name.replace('_', '/')}/")
+                os.system(f"aws s3 cp s3://nextstrain-staging/mpox_{build_name}{auspice_file}.json s3://nextstrain-data/mpox_{build_name}{auspice_file}.json")
+            print(f">> Uploaded {build_name} to production: https://nextstrain.org/staging/mpox/{build_name.replace('_', '/')}/")
 
 
             if not args.no_dated:
                 # Check how many today dated builds exist
                 today = datetime.date.today().strftime("%Y-%m-%d")
-                os.system(f"aws s3 ls nextstrain-data/monkeypox_{build_name}_{today}.json > dated_builds.txt")
+                os.system(f"aws s3 ls nextstrain-data/mpox_{build_name}_{today}.json > dated_builds.txt")
 
                 with open('dated_builds.txt') as fh:
                     today_dated_builds_count = len(fh.readlines())
@@ -68,28 +68,28 @@ if __name__=="__main__":
                         print(f">> Overwriting existing dated build due to --force flag being present")
 
                     for auspice_file in ['', '_root-sequence']:
-                        os.system(f"aws s3 cp s3://nextstrain-staging/monkeypox_{build_name}{auspice_file}.json staging/")
+                        os.system(f"aws s3 cp s3://nextstrain-staging/mpox_{build_name}{auspice_file}.json staging/")
                 
                     # Load auspice json
-                    with gzip.open(f"staging/monkeypox_{build_name}.json") as fh:
+                    with gzip.open(f"staging/mpox_{build_name}.json") as fh:
                         auspice_json = json.load(fh)
 
                     add_branch_id_recursive(auspice_json['tree'])
                     
-                    with open(f"staging/monkeypox_{build_name}_{today}.json", 'wt') as fh:
+                    with open(f"staging/mpox_{build_name}_{today}.json", 'wt') as fh:
                         json.dump(auspice_json, fh)
 
-                    os.system(f"aws s3 cp staging/monkeypox_{build_name}_{today}.json s3://nextstrain-data")
-                    os.system(f"aws s3 cp s3://nextstrain-staging/monkeypox_{build_name}_root-sequence.json s3://nextstrain-data/monkeypox_{build_name}_{today}_root-sequence.json")
-                    print(f">> Uploaded dated {build_name} to production: https://nextstrain.org/monkeypox/{build_name.replace('_', '/')}/{today}/")
+                    os.system(f"aws s3 cp staging/mpox_{build_name}_{today}.json s3://nextstrain-data")
+                    os.system(f"aws s3 cp s3://nextstrain-staging/mpox_{build_name}_root-sequence.json s3://nextstrain-data/mpox_{build_name}_{today}_root-sequence.json")
+                    print(f">> Uploaded dated {build_name} to production: https://nextstrain.org/mpox/{build_name.replace('_', '/')}/{today}/")
             
                 else:
-                    print(f">> Warning: Dated {build_name} with date today already exists, skipping upload: https://nextstrain.org/monkeypox/{build_name.replace('_', '/')}/{today}/")
+                    print(f">> Warning: Dated {build_name} with date today already exists, skipping upload: https://nextstrain.org/mpox/{build_name.replace('_', '/')}/{today}/")
                     print(f">> Hint: Use the --f/--force flag to overwrite existing dated builds")
         if args.staging:
             print(f">> Deploying build {build_name} to staging")
             for auspice_file in ['', '_root-sequence']:
-                os.system(f"aws s3 cp auspice/monkeypox_{build_name}{auspice_file}.json s3://nextstrain-staging/monkeypox_{build_name}{auspice_file}.json")
-            print(f">> Uploaded {build_name} to staging: https://nextstrain.org/staging/monkeypox/{build_name.replace('_', '/')}/")
+                os.system(f"aws s3 cp auspice/mpox_{build_name}{auspice_file}.json s3://nextstrain-staging/mpox_{build_name}{auspice_file}.json")
+            print(f">> Uploaded {build_name} to staging: https://nextstrain.org/staging/mpox/{build_name.replace('_', '/')}/")
 
         print("----------------------------------------")
