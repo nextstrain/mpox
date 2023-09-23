@@ -10,6 +10,9 @@ if version.parse(augur_version) < version.parse(min_augur_version):
     )
     sys.exit(1)
 
+if not config:
+
+    configfile: "config/hmpxv1/config.yaml"
 
 build_dir = "results"
 
