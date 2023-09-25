@@ -1,0 +1,469 @@
+if not config:
+
+    configfile: "config/config.yaml"
+
+
+build_names = ["b1", "hpxv1", "MPXV"]
+
+
+genes = [line.strip() for line in open("resources/genes.txt")]
+
+
+rule all:
+    input:
+        auspice_json=[
+            f"auspice/nextclade_mpox_{build_name}.json" for build_name in build_names
+        ],
+        root_sequence_json=[
+            f"auspice/nextclade_mpox_{build_name}_root-sequence.json"
+            for build_name in build_names
+        ],
+
+
+rule deploy_all:
+    input:
+        rules.all.input,
+    shell:
+        """
+        nextstrain deploy s3://nextstrain-staging {input}
+        """
+
+
+rule download:
+    "Downloading sequences and metadata from data.nextstrain.org"
+    output:
+        sequences="data/sequences.fasta.xz",
+        metadata="data/metadata.tsv.gz",
+    params:
+        sequences_url="https://data.nextstrain.org/files/workflows/monkeypox/sequences.fasta.xz",
+        metadata_url="https://data.nextstrain.org/files/workflows/monkeypox/metadata.tsv.gz",
+    shell:
+        """
+        curl -fsSL --compressed {params.sequences_url:q} --output {output.sequences}
+        curl -fsSL --compressed {params.metadata_url:q} --output {output.metadata}
+        """
+
+
+rule decompress:
+    "Decompressing sequences and metadata"
+    input:
+        sequences="data/sequences.fasta.xz",
+        metadata="data/metadata.tsv.gz",
+    output:
+        sequences="data/sequences.fasta",
+        metadata="data/metadata.tsv",
+    shell:
+        """
+        gzip --decompress --keep {input.metadata}
+        xz --decompress --keep {input.sequences}
+        """
+
+
+rule index:
+    "Indexing sequences"
+    input:
+        sequences="data/sequences.fasta",
+    output:
+        index="results/index.tsv",
+    shell:
+        """
+        augur index \
+            --sequences {input.sequences} \
+            --output {output.index}
+        """
+
+
+rule prealign:
+    """
+    Aligning sequences to reference
+    """
+    input:
+        sequences=rules.decompress.output.sequences,
+        reference="resources/b1/reference.fasta",
+    output:
+        alignment="data/prealigned.fasta",
+    params:
+        max_indel=config["max_indel"],
+        seed_spacing=500,
+        terminal_bandwidth=500,
+        excess_bandwidth=20,
+    shell:
+        """
+        nextalign run \
+            {input.sequences} \
+            --retry-reverse-complement \
+            --reference {input.reference} \
+            --max-indel {params.max_indel} \
+            --seed-spacing {params.seed_spacing} \
+            --terminal-bandwidth {params.terminal_bandwidth} \
+            --excess-bandwidth {params.excess_bandwidth} \
+            --gap-alignment-side left \
+            --genemap resources/genemap.gff \
+            --output-fasta {output.alignment} \
+            --include-reference
+        """
+
+
+rule exclude_bad:
+    """
+    Removing strains that do not satisfy certain requirements.
+    """
+    input:
+        sequences="data/sequences.fasta",
+        metadata="data/metadata.tsv",
+        index="results/index.tsv",
+    output:
+        sequences="results/decent_sequences.fasta",
+        metadata="results/decent_metadata.tsv",
+        log="results/decent_filter.log",
+    shell:
+        """
+        augur filter \
+            --sequences {input.sequences} \
+            --sequence-index {input.index} \
+            --metadata-id-columns accession \
+            --metadata {input.metadata} \
+            --output-sequences {output.sequences} \
+            --output-metadata {output.metadata} \
+            --min-length 150000 \
+            --query "(QC_rare_mutations == 'good' | QC_rare_mutations == 'mediocre')" \
+            --output-log {output.log}
+        """
+
+
+rule premask:
+    input:
+        sequences="data/prealigned.fasta",
+        mask="resources/b1/mask.bed",
+    output:
+        "data/premasked.fasta",
+    shell:
+        """
+        augur mask \
+            --sequences {input.sequences} \
+            --mask {input.mask} \
+            --output {output}
+        """
+
+
+rule deduplicate:
+    """
+    Remove identical sequences (even if they have differing Ns)
+    Keep those sequences with fewer Ns
+    Focus for Nextclade is on diversity, not on representativeness
+    """
+    input:
+        sequences=rules.premask.output,
+    output:
+        "data/duplicates.txt",
+    shell:
+        """
+        python3 scripts/deduplicate.py {input.sequences} {output}
+        """
+
+
+rule subsample:
+    input:
+        sequences="results/decent_sequences.fasta",
+        metadata="results/decent_metadata.tsv",
+        exclude=config["exclude"],
+        specific_exclude="resources/{build_name}/exclude_accessions.txt",
+        deduplicate_exclude="data/duplicates.txt",
+        specific_include="resources/{build_name}/include_accessions.txt",
+        include="resources/include_accessions.txt",
+        index="results/index.tsv",
+    output:
+        sequences="results/{build_name}/filtered_raw.fasta",
+        metadata="results/{build_name}/filtered_raw_metadata.tsv",
+        log="results/{build_name}/filtered_raw.log",
+    params:
+        min_date=lambda w: config[w.build_name]["min_date"],
+        min_length=config["min_length"],
+        exclude_where=lambda w: config[w.build_name]["exclude_where"],
+        subsampling=lambda w: config[w.build_name]["subsampling"],
+    shell:
+        """
+        augur filter \
+            --sequences {input.sequences} \
+            --metadata {input.metadata} \
+            --sequence-index {input.index} \
+            --metadata-id-columns accession \
+            --exclude {input.exclude} {input.specific_exclude} {input.deduplicate_exclude} \
+            {params.exclude_where} \
+            {params.min_date} \
+            {params.subsampling} \
+            --include {input.include} {input.specific_include} \
+            --probabilistic-sampling \
+            --output {output.sequences} \
+            --output-metadata {output.metadata} \
+            --min-length {params.min_length} \
+            --output-log {output.log}
+        """
+
+
+rule postsample_exclude:
+    input:
+        sequences="results/{build_name}/filtered_raw.fasta",
+        metadata="results/{build_name}/filtered_raw_metadata.tsv",
+        exclude="resources/{build_name}/post_filter_exclude.txt",
+        index="results/index.tsv",
+    output:
+        sequences="results/{build_name}/filtered.fasta",
+        metadata="results/{build_name}/metadata.tsv",
+        log="results/{build_name}/filtered.log",
+    shell:
+        """
+        augur filter \
+            --sequences {input.sequences} \
+            --metadata {input.metadata} \
+            --sequence-index {input.index} \
+            --metadata-id-columns accession \
+            --exclude {input.exclude} \
+            --output {output.sequences} \
+            --output-metadata {output.metadata} \
+            --output-log {output.log}
+        """
+
+
+rule align:
+    message:
+        """
+        Aligning sequences to {input.reference}
+        - filling gaps with N
+        """
+    input:
+        sequences=rules.postsample_exclude.output.sequences,
+        reference="resources/{build_name}/reference.fasta",
+    output:
+        alignment="results/{build_name}/aligned.fasta",
+        insertions="results/{build_name}/insertions.fasta",
+    params:
+        max_indel=config["max_indel"],
+        # seed_spacing = config["seed_spacing"]
+        seed_spacing=500,
+        terminal_bandwidth=500,
+        excess_bandwidth=20,
+        translation_template=lambda w: f"results/{w.build_name}/translations/{{gene}}.fasta",
+        genes=",".join(genes),
+    shell:
+        """
+        nextalign run \
+            {input.sequences} \
+            --retry-reverse-complement \
+            --reference {input.reference} \
+            --max-indel {params.max_indel} \
+            --seed-spacing {params.seed_spacing} \
+            --terminal-bandwidth {params.terminal_bandwidth} \
+            --excess-bandwidth {params.excess_bandwidth} \
+            --gap-alignment-side left \
+            --genemap resources/genemap.gff \
+            --output-fasta {output.alignment} \
+            --include-reference \
+            --genes {params.genes} \
+            --output-translations {params.translation_template} \
+            --output-insertions {output.insertions}
+        """
+
+
+rule mask:
+    input:
+        sequences="results/{build_name}/aligned.fasta",
+        mask="resources/{build_name}/mask.bed",
+    output:
+        "results/{build_name}/masked.fasta",
+    shell:
+        """
+        augur mask \
+            --sequences {input.sequences} \
+            --mask {input.mask} \
+            --output {output}
+        """
+
+
+rule tree:
+    message:
+        "Building tree"
+    input:
+        alignment="results/{build_name}/masked.fasta",
+    output:
+        tree="results/{build_name}/tree_raw.nwk",
+    shell:
+        """
+        augur tree \
+            --alignment {input.alignment} \
+            --output {output.tree} \
+            --tree-builder-args '-czb -redo'
+        """
+
+
+rule fix_tree:
+    input:
+        tree=rules.tree.output.tree,
+        alignment="results/{build_name}/masked.fasta",
+    output:
+        tree="results/{build_name}/tree_fixed.nwk",
+    params:
+        root=lambda w: config[w.build_name]["root"],
+    shell:
+        """
+        python3 scripts/fix_tree.py \
+            --alignment {input.alignment} \
+            --input-tree {input.tree} \
+            --root {params.root} \
+            --output {output.tree}
+        """
+
+
+rule refine:
+    message:
+        """
+        Refining tree
+        """
+    input:
+        tree=rules.fix_tree.output.tree,
+        alignment="results/{build_name}/masked.fasta",
+        metadata="results/{build_name}/metadata.tsv",
+    output:
+        tree="results/{build_name}/tree.nwk",
+        node_data="results/{build_name}/branch_lengths.json",
+    params:
+        root=lambda w: config[w.build_name]["root"],
+    shell:
+        """
+        augur refine \
+            --tree {input.tree} \
+            --alignment {input.alignment} \
+            --metadata {input.metadata} \
+            --output-tree {output.tree} \
+            --root {params.root} \
+            --divergence-unit mutations \
+            --keep-polytomies \
+            --use-fft \
+            --output-node-data {output.node_data}
+        """
+
+
+rule ancestral:
+    message:
+        "Reconstructing ancestral sequences and mutations"
+    input:
+        tree=rules.refine.output.tree,
+        alignment="results/{build_name}/aligned.fasta",
+        annotation="resources/genemap.gff",
+        genes="resources/genes.txt",
+    output:
+        node_data="results/{build_name}/nt_muts.json",
+    params:
+        inference="joint",
+        translation_template="results/{build_name}/translations/%GENE.fasta",
+        genes=" ".join(genes),
+    shell:
+        """
+        augur ancestral \
+            --tree {input.tree} \
+            --annotation {input.annotation} \
+            --alignment {input.alignment} \
+            --infer-ambiguous \
+            --translations {params.translation_template} \
+            --genes {params.genes} \
+            --output-node-data {output.node_data} \
+            --inference joint
+        """
+
+
+rule clades:
+    message:
+        "Adding internal clade labels"
+    input:
+        tree=rules.refine.output.tree,
+        nuc_muts=rules.ancestral.output.node_data,
+        clades="resources/{build_name}/clades.tsv",
+    output:
+        node_data="results/{build_name}/clades_raw.json",
+    shell:
+        """
+        augur clades \
+            --tree {input.tree} \
+            --mutations {input.nuc_muts} \
+            --clades {input.clades} \
+            --output-node-data {output.node_data} 2>&1 | tee {log}
+        """
+
+
+rule rename_clades:
+    input:
+        rules.clades.output.node_data,
+    output:
+        node_data="results/{build_name}/clades.json",
+    shell:
+        """
+        python scripts/clades_renaming.py \
+        --input-node-data {input} \
+        --output-node-data {output.node_data}
+        """
+
+
+rule colors:
+    input:
+        ordering="resources/color_ordering.tsv",
+        color_schemes="resources/color_schemes.tsv",
+        metadata="results/{build_name}/metadata.tsv",
+    output:
+        colors="results/{build_name}/colors.tsv",
+    shell:
+        """
+        python3 scripts/assign-colors.py \
+            --ordering {input.ordering} \
+            --color-schemes {input.color_schemes} \
+            --output {output.colors} \
+            --metadata {input.metadata} 2>&1
+        """
+
+
+rule export:
+    message:
+        "Exporting data files for for auspice"
+    input:
+        colors=rules.colors.output.colors,
+        tree=rules.refine.output.tree,
+        metadata="results/{build_name}/metadata.tsv",
+        branch_lengths="results/{build_name}/branch_lengths.json",
+        clades=rules.rename_clades.output.node_data,
+        nt_muts=rules.ancestral.output.node_data,
+        auspice_config="resources/{build_name}/auspice_config.json",
+    output:
+        auspice_json="auspice/nextclade_mpox_{build_name}.json",
+        root_sequence="auspice/nextclade_mpox_{build_name}_root-sequence.json",
+    shell:
+        """
+        augur export v2 \
+            --tree {input.tree} \
+            --metadata {input.metadata} \
+            --node-data {input.branch_lengths} {input.nt_muts} {input.clades} \
+            --colors {input.colors} \
+            --auspice-config {input.auspice_config} \
+            --include-root-sequence \
+            --metadata-id-columns accession \
+            --output {output.auspice_json}
+        """
+
+
+rule clean:
+    message:
+        "Removing directories: {params}"
+    params:
+        "results",
+        "auspice",
+    shell:
+        "rm -rfv {params}"
+
+
+rule cleanall:
+    message:
+        "Removing directories: {params}"
+    params:
+        "results",
+        "auspice",
+        "data",
+    shell:
+        "rm -rfv {params}"

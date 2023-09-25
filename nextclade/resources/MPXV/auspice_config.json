@@ -1,0 +1,81 @@
+{
+  "title": "Nextclade reference tree for MPXV (reconstructed ancestral reference seq in NC_063383.1 coordinates)",
+  "maintainers": [
+    { "name": "Nextstrain team", "url": "http://nextstrain.org" }
+  ],
+  "data_provenance": [
+    {
+      "name": "GenBank",
+      "url": "https://www.ncbi.nlm.nih.gov/genbank/"
+    }
+  ],
+  "extensions": {
+    "nextclade": {
+      "clade_node_attrs": [
+        {
+          "name": "outbreak",
+          "displayName": "Outbreak",
+          "description": ""
+        },
+        {
+          "name": "lineage",
+          "displayName": "Lineage",
+          "description": ""
+        }
+      ]
+    }
+  },
+  "build_url": "https://github.com/nextstrain/monkeypox",
+  "colorings": [
+    {
+      "key": "outbreak",
+      "title": "Outbreak",
+      "type": "categorical"
+    },
+    {
+      "key": "lineage",
+      "title": "Lineage",
+      "type": "categorical"
+    },
+    {
+      "key": "date",
+      "title": "Collection Date",
+      "type": "categorical"
+    },
+    {
+      "key": "host",
+      "title": "Host",
+      "type": "categorical"
+    },
+    {
+      "key": "strain",
+      "title": "Strain name",
+      "type": "categorical"
+    },
+    {
+      "key": "region",
+      "title": "Region",
+      "type": "categorical"
+    },
+    {
+      "key": "country",
+      "title": "Country",
+      "type": "categorical"
+    }
+  ],
+  "display_defaults": {
+    "color_by": "clade_membership",
+    "map_triplicate": false,
+    "distance_measure": "div",
+    "transmission_lines": false
+  },
+  "panels": ["tree", "entropy"],
+  "filters": [
+    "clade_membership",
+    "lineage",
+    "country",
+    "host",
+    "institution",
+    "region"
+  ]
+}

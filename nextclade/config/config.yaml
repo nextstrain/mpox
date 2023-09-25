@@ -1,0 +1,38 @@
+include: "resources/include_accessions.txt"
+exclude: "resources/exclude_accessions.txt"
+reference: "resources/reference.fasta"
+genemap: "resources/genemap.gff"
+colors: "resources/colors.tsv"
+lat_longs: "resources/lat_longs.tsv"
+
+hpxv1:
+  root: "NC_063383"
+  min_date: "--min-date 2017"
+  exclude_where: "--exclude-where outbreak!=hMPXV-1"
+  subsampling: "--subsample-max-sequences 500 --group-by clade lineage year month country --probabilistic-sampling"
+
+MPXV:
+  root: "reconstructed_ancestral_mpox"
+  min_date: ""
+  exclude_where: ""
+  subsampling: "--subsample-max-sequences 500 --group-by clade lineage year month country"
+
+b1:
+  root: "ref_in_coord"
+  min_date: "--min-date 2022"
+  exclude_where: "--exclude-where outbreak!=hMPXV-1 lineage=A.2 lineage=A.2.1 lineage=A.2.2 lineage=A.2.3 lineage=A lineage=A.1 lineage=A.3"
+  subsampling: "--subsample-max-sequences 500 --group-by clade lineage year month country --probabilistic-sampling"
+
+## filter
+min_length: 160000
+
+## align
+max_indel: 20000
+seed_spacing: 1000
+
+## refine
+timetree: false
+
+mask:
+  from_beginning: 1500
+  from_end: 6422
