@@ -15,11 +15,11 @@ jobs:
 
 
   lint:
-     runs-on: ubuntu-latest
-     steps:
-     - uses: actions/checkout@v3
-     - uses: actions/setup-python@v4
-       with:
-         python-version: ~3
-     - run: pip install snakefmt
-     - run: snakefmt --check --compact-diff .
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: ~3
+      - run: pip install snakefmt
+      - run: snakefmt --check --compact-diff .

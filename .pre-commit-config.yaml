@@ -44,3 +44,7 @@ repos:
     rev: v0.23.1
     hooks:
       - id: toml-sort-fix
+  - repo: https://github.com/google/yamlfmt
+    rev: v0.10.0
+    hooks:
+      - id: yamlfmt
