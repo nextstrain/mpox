@@ -15,7 +15,7 @@ slack_ts_output="${2:?A Slack thread timestamp file is required as the second ar
 
 slack_response="$(mktemp -t slack-response-XXXXXX)"
 
-trap "rm -f '$slack_response'" EXIT
+trap 'rm -f "$slack_response"' EXIT
 
 echo "Notifying Slack about starting build."
 message="Pipeline starting for the \`$build_name\` build, which will run the phylogenetics and deploy the build."

@@ -14,7 +14,7 @@ if __name__=="__main__":
     args = parser.parse_args()
 
     metadata = pd.read_csv(args.metadata, sep='\t')
-    
+
     # Read in fasta file
     with open(args.sequences, 'r') as f_in:
         with open(args.output, 'w') as f_out:
@@ -24,6 +24,6 @@ if __name__=="__main__":
                     # Reverse-complement sequence
                     seq.seq = seq.seq.reverse_complement()
                     print("Reverse-complementing sequence:", seq.id)
-                    
+
                 # Write sequences to file
                 SeqIO.write(seq, f_out, 'fasta')

@@ -34,3 +34,9 @@ To activate pre-commit, run:
 ```bash
 pre-commit install
 ```
+
+## Development
+
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/nextstrain/monkeypox/master.svg)](https://results.pre-commit.ci/latest/github/nextstrain/monkeypox/master)
+
+This repository can be used with pre-commit to automatically run checks before committing.
