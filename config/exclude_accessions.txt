@@ -36,7 +36,7 @@ OP526856 	# Does not align well, very divergent MPXV_USA_2022_FL0065
 OP526859	# Does not align well, very divergent MPXV_USA_2022_MD0005
 OP526862	# Does not align well, very divergent MPXV_USA_2022_DC0013
 OP470374	# Overdiverged and with rev to ref, MPXV_USA_2022_DC0013
-HQ857562	# Duplicate of DQ011155 
+HQ857562	# Duplicate of DQ011155
 HQ857563	# D14L knockout
 AF380138	# Duplicate of RefSeq NC_003310
 OP605555	# Slovenia overdiverged
@@ -55,4 +55,3 @@ OQ503825	# Overdiverged MPXV/Human/USA/CA-LACPHL-MA00402/2023
 OQ621553	# Monkeypox virus isolate MPXV/Sudan/2022/RKI630, many insertions, clade I
 OQ581847	# Spain, B.1.10, overdiverged
 OQ581850	# Spain, B.1.10, overdiverged
-

@@ -152,7 +152,7 @@ rule align:
 rule mask:
     message:
         """
-        Mask ends of the alignement:
+        Mask ends of the alignment:
           - from start: {params.from_start}
           - from end: {params.from_end}
         """

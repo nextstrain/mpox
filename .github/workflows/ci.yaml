@@ -20,4 +20,3 @@ jobs:
          python-version: ~3
      - run: pip install snakefmt
      - run: snakefmt --check --compact-diff .
-

@@ -1,3 +1,6 @@
+[tool.codespell]
+write = ''
+
 [tool.snakefmt]
 include = '\.smk$|^Snakefile'
 exclude = ''
