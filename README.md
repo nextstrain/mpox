@@ -100,3 +100,9 @@ generously shared data in an open fashion, that does not mean there should be fr
 publish on this data. Data generators should be cited where possible and collaborations should be
 sought in some circumstances. Please try to avoid scooping someone else's work. Reach out if
 uncertain.
+
+## Development
+
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/nextstrain/monkeypox/master.svg)](https://results.pre-commit.ci/latest/github/nextstrain/monkeypox/master)
+
+This repository can be used with pre-commit to automatically run checks before committing.
