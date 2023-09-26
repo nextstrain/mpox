@@ -126,7 +126,7 @@ rule exclude_bad:
             --output-sequences {output.sequences} \
             --output-metadata {output.metadata} \
             --min-length 150000 \
-            --query "(QC_rare_mutations == 'good' | QC_rare_mutations == 'mediocre')" \
+            --query "(QC_rare_mutations == 'good')" \
             --output-log {output.log}
         """
 

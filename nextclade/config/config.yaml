@@ -20,7 +20,8 @@ MPXV:
 b1:
   root: "ref_in_coord"
   min_date: "--min-date 2022"
-  exclude_where: "--exclude-where outbreak!=hMPXV-1 lineage=A.2 lineage=A.2.1 lineage=A.2.2 lineage=A.2.3 lineage=A lineage=A.1 lineage=A.3"
+  exclude_where: "--exclude-where outbreak!=hMPXV-1 lineage=A.2 lineage=A.2.1 lineage=A.2.2 lineage=A.2.3 lineage=A lineage=A.1
+    lineage=A.3"
   subsampling: "--subsample-max-sequences 500 --group-by clade lineage year month country --probabilistic-sampling"
 
 ## filter
