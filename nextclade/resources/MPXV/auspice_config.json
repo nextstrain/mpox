@@ -53,6 +53,11 @@
       "type": "categorical"
     },
     {
+      "key": "strain_display",
+      "title": "Pretty strain name",
+      "type": "categorical"
+    },
+    {
       "key": "region",
       "title": "Region",
       "type": "categorical"
@@ -67,6 +72,7 @@
     "color_by": "clade_membership",
     "map_triplicate": false,
     "distance_measure": "div",
+    "tip_label": "strain_display",
     "transmission_lines": false
   },
   "panels": ["tree", "entropy"],

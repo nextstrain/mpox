@@ -427,13 +427,29 @@ rule colors:
         """
 
 
+rule nice_strain_names:
+    input:
+        metadata="results/{build_name}/metadata.tsv",
+    output:
+        metadata="results/{build_name}/metadata_display.tsv",
+    shell:
+        """
+        python3 scripts/make_nice_strain_names.py \
+            --metadata {input.metadata} \
+            --input-columns country accession date \
+            --separator '/' \
+            --output-column strain_display \
+            --output {output.metadata}
+        """
+
+
 rule export:
     message:
         "Exporting data files for for auspice"
     input:
         colors=rules.colors.output.colors,
         tree=rules.refine.output.tree,
-        metadata="results/{build_name}/metadata.tsv",
+        metadata="results/{build_name}/metadata_display.tsv",
         branch_lengths="results/{build_name}/branch_lengths.json",
         clades=rules.rename_clades.output.node_data,
         nt_muts=rules.ancestral.output.node_data,

@@ -48,6 +48,11 @@
       "type": "categorical"
     },
     {
+      "key": "strain_display",
+      "title": "Pretty strain name",
+      "type": "categorical"
+    },
+    {
       "key": "strain",
       "title": "Strain name",
       "type": "categorical"
@@ -67,7 +72,8 @@
     "color_by": "lineage",
     "map_triplicate": false,
     "distance_measure": "div",
-    "transmission_lines": false
+    "transmission_lines": false,
+    "tip_label": "strain_display"
   },
   "panels": ["tree", "entropy"],
   "filters": [
