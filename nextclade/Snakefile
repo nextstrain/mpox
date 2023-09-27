@@ -20,7 +20,7 @@ rule all:
         ],
 
 
-rule deploy_all:
+rule deploy_to_nextstrain_staging:
     input:
         rules.all.input,
     shell:
@@ -173,7 +173,7 @@ rule subsample:
     input:
         sequences="results/decent_sequences.fasta",
         metadata="results/decent_metadata.tsv",
-        exclude=config["exclude"],
+        exclude="resources/exclude_accessions.txt",
         specific_exclude="resources/{build_name}/exclude_accessions.txt",
         deduplicate_exclude="data/duplicates.txt",
         specific_include="resources/{build_name}/include_accessions.txt",
@@ -245,11 +245,6 @@ rule align:
     output:
         alignment="results/{build_name}/aligned.fasta",
     params:
-        max_indel=config["max_indel"],
-        # seed_spacing = config["seed_spacing"]
-        seed_spacing=500,
-        terminal_bandwidth=500,
-        excess_bandwidth=20,
         translation_template=lambda w: f"results/{w.build_name}/translations/{{gene}}.fasta",
         genes=",".join(genes),
     shell:
@@ -488,5 +483,7 @@ rule cleanall:
         "results",
         "auspice",
         "data",
+        "logs",
+        "bin",
     shell:
         "rm -rfv {params}"
