@@ -1,5 +1,31 @@
 # Developer guide
 
+## CI
+
+This repository uses GitHub Actions for CI. The workflows are defined in `.github/workflows/`.
+
+## Pre-commit
+
+This repository uses [pre-commit](https://pre-commit.com/) to run checks on the code before committing.
+
+To install pre-commit on macOS, run:
+
+```bash
+brew install pre-commit
+```
+
+To install pre-commit on Ubuntu, run:
+
+```bash
+sudo apt install pre-commit
+```
+
+To activate pre-commit, run:
+
+```bash
+pre-commit install
+```
+
 ## Snakemake formatting
 
 We use [`snakefmt`](https://github.com/snakemake/snakefmt) to ensure consistency in style across Snakemake files in this project.
