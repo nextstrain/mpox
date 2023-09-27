@@ -4,7 +4,7 @@ set -euo pipefail
 : "${SLACK_TOKEN:?The SLACK_TOKEN environment variable is required.}"
 : "${SLACK_CHANNELS:?The SLACK_CHANNELS environment variable is required.}"
 
-base="$(realpath "$(dirname "$0")/..")"
+base="$(realpath "$(dirname "$0")/../..")"
 ingest_vendored="$base/ingest/vendored"
 
 deployment_url="${1:?A deployment url is required as the first argument.}"
