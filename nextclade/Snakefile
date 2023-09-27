@@ -29,6 +29,16 @@ rule deploy_all:
         """
 
 
+rule get_nextclade_v3:
+    output:
+        "bin/nextclade",
+    shell:
+        """
+        cp ../../nextclade_master/target/release/nextclade {output}
+        chmod +x {output}
+        """
+
+
 rule download:
     "Downloading sequences and metadata from data.nextstrain.org"
     output:
@@ -80,25 +90,22 @@ rule prealign:
     input:
         sequences=rules.decompress.output.sequences,
         reference="resources/b1/reference.fasta",
+        nextclade="bin/nextclade",
     output:
         alignment="data/prealigned.fasta",
-    params:
-        max_indel=config["max_indel"],
-        seed_spacing=500,
-        terminal_bandwidth=500,
-        excess_bandwidth=20,
     shell:
         """
-        nextalign run \
+        ./{input.nextclade} run \
             {input.sequences} \
             --retry-reverse-complement \
+            --excess-bandwidth 100 \
+            --terminal-bandwidth 300 \
+            --allowed-mismatches 8 \
+            --window-size 40 \
+            --min-seed-cover 0.1 \
             --reference {input.reference} \
-            --max-indel {params.max_indel} \
-            --seed-spacing {params.seed_spacing} \
-            --terminal-bandwidth {params.terminal_bandwidth} \
-            --excess-bandwidth {params.excess_bandwidth} \
             --gap-alignment-side left \
-            --genemap resources/genemap.gff \
+            --input-annotation resources/genemap.gff \
             --output-fasta {output.alignment} \
             --include-reference
         """
@@ -234,9 +241,9 @@ rule align:
     input:
         sequences=rules.postsample_exclude.output.sequences,
         reference="resources/{build_name}/reference.fasta",
+        nextclade="bin/nextclade",
     output:
         alignment="results/{build_name}/aligned.fasta",
-        insertions="results/{build_name}/insertions.fasta",
     params:
         max_indel=config["max_indel"],
         # seed_spacing = config["seed_spacing"]
@@ -247,21 +254,21 @@ rule align:
         genes=",".join(genes),
     shell:
         """
-        nextalign run \
+        ./{input.nextclade} run \
             {input.sequences} \
             --retry-reverse-complement \
             --reference {input.reference} \
-            --max-indel {params.max_indel} \
-            --seed-spacing {params.seed_spacing} \
-            --terminal-bandwidth {params.terminal_bandwidth} \
-            --excess-bandwidth {params.excess_bandwidth} \
+            --excess-bandwidth 100 \
+            --terminal-bandwidth 300 \
+            --allowed-mismatches 8 \
+            --window-size 40 \
+            --min-seed-cover 0.1 \
+            --input-annotation resources/genemap.gff \
             --gap-alignment-side left \
-            --genemap resources/genemap.gff \
             --output-fasta {output.alignment} \
             --include-reference \
             --genes {params.genes} \
-            --output-translations {params.translation_template} \
-            --output-insertions {output.insertions}
+            --output-translations {params.translation_template}
         """
 
 
