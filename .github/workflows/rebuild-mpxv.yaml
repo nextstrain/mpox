@@ -47,4 +47,4 @@ jobs:
           . \
             notify_on_deploy \
               --configfiles $BUILD_DIR/config/mpxv/config.yaml $BUILD_DIR/config/nextstrain_automation.yaml \
-              --config auspice_prefix=$TRIAL_NAME --directory $BUILD_DIR
+              --config auspice_prefix=$TRIAL_NAME --directory $BUILD_DIR --snakefile $BUILD_DIR/Snakefile
