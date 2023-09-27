@@ -31,6 +31,7 @@ jobs:
         NEXTSTRAIN_DOCKER_IMAGE: ${{ inputs.image }}
         GITHUB_RUN_ID: ${{ github.run_id }}
         SLACK_CHANNELS: monkeypox-updates
+        BUILD_DIR: phylogenetic
       run: |
         nextstrain build \
           --detach \
@@ -43,7 +44,7 @@ jobs:
           --env GITHUB_RUN_ID \
           --env SLACK_TOKEN \
           --env SLACK_CHANNELS \
-          phylogenetic \
+          . \
             notify_on_deploy \
-              --configfiles config/hmpxv1/config.yaml config/nextstrain_automation.yaml \
-              --config auspice_prefix=$TRIAL_NAME
+            --configfiles $BUILD_DIR/config/mpxv/config.yaml $BUILD_DIR/config/nextstrain_automation.yaml \
+            --config auspice_prefix=$TRIAL_NAME --directory $BUILD_DIR --snakefile $BUILD_DIR/Snakefile
