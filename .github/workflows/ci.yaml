@@ -9,15 +9,17 @@ on:
 
 jobs:
   pathogen-ci:
-    uses: nextstrain/.github/.github/workflows/pathogen-repo-ci.yaml@dec0880059017dac7facf100435c5737bf1386c8
+    # Temporarily use this ref until the commit is merged into the main repo
+    # PR: https://github.com/nextstrain/.github/pull/62 (opened on 2023-09-27)
+    uses: nextstrain/.github/.github/workflows/pathogen-repo-ci.yaml@4f3074183d6ab612faed84444eefe08a5ded0c69
     with:
-      workflow-root: phylogenetic
+      build-dir: phylogenetic
 
 
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-python@v4
         with:
           python-version: ~3
