@@ -2,4 +2,4 @@
 # Intended to be used internally by the Nextstrain team
 
 # deploy
-deploy_url: "s3://nextstrain-staging"
+deploy_url: "s3://nextstrain-data"
