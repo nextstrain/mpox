@@ -9,6 +9,8 @@ on:
 
 jobs:
   pathogen-ci:
+    # Temporarily use this ref until the commit is merged into the main repo
+    # PR: https://github.com/nextstrain/.github/pull/62 (opened on 2023-09-27)
     uses: nextstrain/.github/.github/workflows/pathogen-repo-ci.yaml@4f3074183d6ab612faed84444eefe08a5ded0c69
     with:
       build-dir: phylogenetic
