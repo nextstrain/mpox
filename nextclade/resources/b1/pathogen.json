@@ -1,0 +1,289 @@
+{
+  "alignmentParams": {
+    "excessBandwidth": 40,
+    "terminalBandwidth": 200,
+    "allowedMismatches": 5,
+    "windowSize": 30,
+    "minSeedCover": 0.1,
+    "gapAlignmentSide": "left"
+  },
+  "attributes": {
+    "name": {
+      "value": "hMPXV_B1",
+      "valueFriendly": "Human Monkeypox Lineage B.1*"
+    },
+    "reference": {
+      "value": "pseudo_ON563414",
+      "valueFriendly": "MPXV_USA_2022_MA001 in NC_063383 coordinates"
+    }
+  },
+  "compatibility": {
+    "cli": "3.0.0-alpha.0",
+    "web": "3.0.0-alpha.0"
+  },
+  "deprecated": false,
+  "enabled": true,
+  "experimental": false,
+  "files": {
+    "changelog": "CHANGELOG.md",
+    "examples": "sequences.fasta",
+    "genomeAnnotation": "genome_annotation.gff3",
+    "pathogenJson": "pathogen.json",
+    "readme": "README.md",
+    "reference": "reference.fasta",
+    "treeJson": "tree.json"
+  },
+  "mutLabels": {
+    "nucMutLabelMap": {
+      "100261A": [
+        "rev"
+      ],
+      "119296C": [
+        "rev"
+      ],
+      "121320C": [
+        "rev"
+      ],
+      "124130G": [
+        "rev"
+      ],
+      "124674G": [
+        "rev"
+      ],
+      "125249G": [
+        "rev"
+      ],
+      "1262G": [
+        "rev"
+      ],
+      "128698C": [
+        "rev"
+      ],
+      "14000G": [
+        "rev"
+      ],
+      "148412G": [
+        "rev"
+      ],
+      "150469C": [
+        "rev"
+      ],
+      "151461A": [
+        "rev"
+      ],
+      "15428G": [
+        "rev"
+      ],
+      "154408T": [
+        "rev"
+      ],
+      "155795G": [
+        "rev"
+      ],
+      "162243G": [
+        "rev"
+      ],
+      "162331C": [
+        "rev"
+      ],
+      "164832C": [
+        "rev"
+      ],
+      "168120C": [
+        "rev"
+      ],
+      "170262G": [
+        "rev"
+      ],
+      "178133G": [
+        "rev"
+      ],
+      "181980G": [
+        "rev"
+      ],
+      "183519C": [
+        "rev"
+      ],
+      "186578G": [
+        "rev"
+      ],
+      "187428C": [
+        "rev"
+      ],
+      "18769A": [
+        "rev"
+      ],
+      "193392G": [
+        "rev"
+      ],
+      "193688C": [
+        "rev"
+      ],
+      "194099C": [
+        "rev"
+      ],
+      "194619C": [
+        "rev"
+      ],
+      "195948C": [
+        "rev"
+      ],
+      "21723G": [
+        "rev"
+      ],
+      "23564C": [
+        "rev"
+      ],
+      "25661G": [
+        "rev"
+      ],
+      "2591G": [
+        "rev"
+      ],
+      "28175T": [
+        "rev"
+      ],
+      "30367G": [
+        "rev"
+      ],
+      "31053G": [
+        "rev"
+      ],
+      "3111G": [
+        "rev"
+      ],
+      "34459G": [
+        "rev"
+      ],
+      "3522G": [
+        "rev"
+      ],
+      "37202G": [
+        "rev"
+      ],
+      "3818C": [
+        "rev"
+      ],
+      "38360G": [
+        "rev"
+      ],
+      "38662C": [
+        "rev"
+      ],
+      "39119C": [
+        "rev"
+      ],
+      "39139C": [
+        "rev"
+      ],
+      "52885G": [
+        "rev"
+      ],
+      "54117G": [
+        "rev"
+      ],
+      "54635G": [
+        "rev"
+      ],
+      "64297G": [
+        "rev"
+      ],
+      "72362C": [
+        "rev"
+      ],
+      "73066C": [
+        "rev"
+      ],
+      "73239G": [
+        "rev"
+      ],
+      "74205G": [
+        "rev"
+      ],
+      "77383G": [
+        "rev"
+      ],
+      "7771C": [
+        "rev"
+      ],
+      "81275G": [
+        "rev"
+      ],
+      "81977A": [
+        "rev"
+      ],
+      "82373C": [
+        "rev"
+      ],
+      "82451G": [
+        "rev"
+      ],
+      "83326C": [
+        "rev"
+      ],
+      "84587C": [
+        "rev"
+      ],
+      "87230G": [
+        "rev"
+      ],
+      "87297G": [
+        "rev"
+      ],
+      "91728G": [
+        "rev"
+      ],
+      "95034G": [
+        "rev"
+      ]
+    }
+  },
+  "official": true,
+  "qc": {
+    "frameShifts": {
+      "enabled": true,
+      "scoreWeight": 20
+    },
+    "missingData": {
+      "enabled": true,
+      "missingDataThreshold": 20000,
+      "scoreBias": 1000
+    },
+    "mixedSites": {
+      "enabled": true,
+      "mixedSitesThreshold": 40
+    },
+    "privateMutations": {
+      "cutoff": 50,
+      "enabled": true,
+      "typical": 5,
+      "weightLabeledSubstitutions": 6,
+      "weightReversionSubstitutions": 6,
+      "weightUnlabeledSubstitutions": 1
+    },
+    "snpClusters": {
+      "clusterCutOff": 5,
+      "enabled": true,
+      "scoreWeight": 20,
+      "windowSize": 100
+    },
+    "stopCodons": {
+      "enabled": true,
+      "ignoredStopCodons": [
+        {
+          "codon": 187,
+          "geneName": "NBT03_gp175"
+        },
+        {
+          "codon": 187,
+          "geneName": "OPG015"
+        }
+      ],
+      "scoreWeight": 40
+    }
+  },
+  "schemaVersion": "3.0.0",
+  "version": {
+    "tag": "unreleased"
+  }
+}

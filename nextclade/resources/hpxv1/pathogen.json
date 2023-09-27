@@ -1,0 +1,97 @@
+{
+  "alignmentParams": {
+    "allowedMismatches": 5,
+    "excessBandwidth": 40,
+    "gapAlignmentSide": "left",
+    "minSeedCover": 0.1,
+    "terminalBandwidth": 200,
+    "windowSize": 30
+  },
+  "attributes": {
+    "name": {
+      "value": "hMPXV",
+      "valueFriendly": "Human Monkeypox (hMPXV)"
+    },
+    "reference": {
+      "value": "NC_063383.1",
+      "valueFriendly": "MPXV-M5312_HM12_Rivers"
+    }
+  },
+  "compatibility": {
+    "cli": "3.0.0-alpha.0",
+    "web": "3.0.0-alpha.0"
+  },
+  "deprecated": false,
+  "enabled": true,
+  "experimental": false,
+  "files": {
+    "changelog": "CHANGELOG.md",
+    "examples": "sequences.fasta",
+    "genomeAnnotation": "genome_annotation.gff3",
+    "pathogenJson": "pathogen.json",
+    "readme": "README.md",
+    "reference": "reference.fasta",
+    "treeJson": "tree.json"
+  },
+  "official": true,
+  "qc": {
+    "frameShifts": {
+      "enabled": true,
+      "ignoredFrameShifts": [
+        {
+          "codonRange": {
+            "begin": 289,
+            "end": 346
+          },
+          "geneName": "OPG174"
+        }
+      ],
+      "scoreWeight": 20
+    },
+    "missingData": {
+      "enabled": true,
+      "missingDataThreshold": 20000,
+      "scoreBias": 1000
+    },
+    "mixedSites": {
+      "enabled": true,
+      "mixedSitesThreshold": 40
+    },
+    "privateMutations": {
+      "cutoff": 50,
+      "enabled": true,
+      "typical": 5,
+      "weightLabeledSubstitutions": 6,
+      "weightReversionSubstitutions": 6,
+      "weightUnlabeledSubstitutions": 1
+    },
+    "snpClusters": {
+      "clusterCutOff": 5,
+      "enabled": true,
+      "scoreWeight": 20,
+      "windowSize": 100
+    },
+    "stopCodons": {
+      "enabled": true,
+      "ignoredStopCodons": [
+        {
+          "codon": 187,
+          "geneName": "NBT03_gp175"
+        },
+        {
+          "codon": 187,
+          "geneName": "OPG015"
+        },
+        {
+          "codon": 21,
+          "geneName": "OPG176"
+        }
+      ],
+      "scoreWeight": 40
+    }
+  },
+  "schemaVersion": "3.0.0",
+  "version": {
+    "tag": "unreleased"
+  }
+}

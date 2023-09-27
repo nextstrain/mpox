@@ -8,16 +8,21 @@ build_names = ["b1", "hpxv1", "MPXV"]
 
 genes = [line.strip() for line in open("resources/genes.txt")]
 
+dataset_files = [
+    "pathogen.json",
+    "sequences.fasta",
+    "genome_annotation.gff3",
+    "README.md",
+    "CHANGELOG.md",
+]
+
 
 rule all:
     input:
-        auspice_json=[
-            f"auspice/nextclade_mpox_{build_name}.json" for build_name in build_names
-        ],
-        root_sequence_json=[
-            f"auspice/nextclade_mpox_{build_name}_root-sequence.json"
-            for build_name in build_names
-        ],
+        datasets=expand(
+            "datasets/{dataset}/{file}", dataset=build_names, file=dataset_files
+        ),
+        tests=expand("test_output/{dataset}", dataset=build_names),
 
 
 rule deploy_to_nextstrain_staging:
@@ -463,6 +468,57 @@ rule export:
             --include-root-sequence \
             --metadata-id-columns accession \
             --output {output.auspice_json}
+        """
+
+
+rule assemble_dataset:
+    input:
+        reference="resources/{build_name}/reference.fasta",
+        tree="auspice/nextclade_mpox_{build_name}.json",
+        pathogen_json="resources/{build_name}/pathogen.json",
+        sequences="resources/{build_name}/sequences.fasta",
+        annotation="resources/genome_annotation.gff3",
+        readme="resources/{build_name}/README.md",
+        changelog="resources/{build_name}/CHANGELOG.md",
+    output:
+        reference="datasets/{build_name}/reference.fasta",
+        tree="datasets/{build_name}/tree.json",
+        pathogen_json="datasets/{build_name}/pathogen.json",
+        sequences="datasets/{build_name}/sequences.fasta",
+        annotation="datasets/{build_name}/genome_annotation.gff3",
+        readme="datasets/{build_name}/README.md",
+        changelog="datasets/{build_name}/CHANGELOG.md",
+    shell:
+        """
+        cp {input.reference} {output.reference}
+        cp {input.tree} {output.tree}
+        cp {input.pathogen_json} {output.pathogen_json}
+        cp {input.sequences} {output.sequences}
+        cp {input.annotation} {output.annotation}
+        cp {input.readme} {output.readme}
+        cp {input.changelog} {output.changelog}
+        """
+
+
+rule test_dataset:
+    input:
+        tree="datasets/{build_name}/tree.json",
+        pathogen_json="datasets/{build_name}/pathogen.json",
+        sequences="datasets/{build_name}/sequences.fasta",
+        annotation="datasets/{build_name}/genome_annotation.gff3",
+        readme="datasets/{build_name}/README.md",
+        changelog="datasets/{build_name}/CHANGELOG.md",
+        nextclade="bin/nextclade",
+    output:
+        outdir=directory("test_output/{build_name}"),
+    params:
+        dataset_dir="datasets/{build_name}",
+    shell:
+        """
+        ./{input.nextclade} run \
+            {input.sequences} \
+            --input-dataset {params.dataset_dir} \
+            --output-all {output.outdir}
         """
 
 
