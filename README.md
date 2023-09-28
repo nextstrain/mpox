@@ -2,8 +2,8 @@
 
 This repository contains two workflows for the analysis of mpox virus (MPXV) data:
 
-- `ingest/` - Download data from GenBank, clean and curate it and upload it to S3
-- `phylogenetic/` - Make phylogenetic trees for nextstrain.org
+- [`ingest/`](./ingest) - Download data from GenBank, clean and curate it and upload it to S3
+- [`phylogenetic/`](./phylogenetic) - Make phylogenetic trees for nextstrain.org
 
 Each folder contains a README.md with more information.
 
