@@ -2,29 +2,23 @@
 
 ## CI
 
-This repository uses GitHub Actions for CI. The workflows are defined in `.github/workflows/`.
+Checks are automatically run on certain pushed commits for testing and linting
+purposes. Some are defined by [.github/workflows/ci.yaml][] while others are
+configured outside of this repository.
+
+[.github/workflows/ci.yaml]: ./.github/workflows/ci.yaml
 
 ## Pre-commit
 
-This repository uses [pre-commit](https://pre-commit.com/) to run checks on the code before committing.
+[pre-commit][] is used for various checks (see [configuration][]).
 
-To install pre-commit on macOS, run:
+You can either [install it yourself][] to catch issues before pushing or look
+for the [pre-commit.ci run][] after pushing.
 
-```bash
-brew install pre-commit
-```
-
-To install pre-commit on Ubuntu, run:
-
-```bash
-sudo apt install pre-commit
-```
-
-To activate pre-commit, run:
-
-```bash
-pre-commit install
-```
+[pre-commit]: https://pre-commit.com/
+[configuration]: ./.pre-commit-config.yaml
+[install it yourself]: https://pre-commit.com/#install
+[pre-commit.ci run]: https://results.pre-commit.ci/repo/github/493877605
 
 ## Snakemake formatting
 
