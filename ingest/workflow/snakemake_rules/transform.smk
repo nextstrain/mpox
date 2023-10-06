@@ -47,6 +47,8 @@ rule transform:
     log:
         "logs/transform.txt",
     params:
+        vendored_basedir=f"{workflow.current_basedir}/../../vendored",
+        bin_basedir=f"{workflow.current_basedir}/../../bin",
         field_map=config["transform"]["field_map"],
         strain_regex=config["transform"]["strain_regex"],
         strain_backup_fields=config["transform"]["strain_backup_fields"],
@@ -65,30 +67,30 @@ rule transform:
     shell:
         """
         (cat {input.sequences_ndjson} \
-            | ./vendored/transform-field-names \
+            | {params.vendored_basedir}/transform-field-names \
                 --field-map {params.field_map} \
             | augur curate normalize-strings \
-            | ./vendored/transform-strain-names \
+            | {params.vendored_basedir}/transform-strain-names \
                 --strain-regex {params.strain_regex} \
                 --backup-fields {params.strain_backup_fields} \
             | augur curate format-dates \
                 --date-fields {params.date_fields} \
                 --expected-date-formats {params.expected_date_formats} \
-            | ./vendored/transform-genbank-location \
+            | {params.vendored_basedir}/transform-genbank-location \
             | augur curate titlecase \
                 --titlecase-fields {params.titlecase_fields} \
                 --articles {params.articles} \
                 --abbreviations {params.abbreviations} \
-            | ./vendored/transform-authors \
+            | {params.vendored_basedir}/transform-authors \
                 --authors-field {params.authors_field} \
                 --default-value {params.authors_default_value} \
                 --abbr-authors-field {params.abbr_authors_field} \
-            | ./vendored/apply-geolocation-rules \
+            | {params.vendored_basedir}/apply-geolocation-rules \
                 --geolocation-rules {input.all_geolocation_rules} \
-            | ./vendored/merge-user-metadata \
+            | {params.vendored_basedir}/merge-user-metadata \
                 --annotations {input.annotations} \
                 --id-field {params.annotations_id} \
-            | ./bin/ndjson-to-tsv-and-fasta \
+            | {params.bin_basedir}/ndjson-to-tsv-and-fasta \
                 --metadata-columns {params.metadata_columns} \
                 --metadata {output.metadata} \
                 --fasta {output.sequences} \

@@ -15,7 +15,9 @@ rule trigger_build:
         fasta_upload="data/upload/s3/sequences.fasta-to-sequences.fasta.xz.done",
     output:
         touch("data/trigger/rebuild.done"),
+    params:
+        vendored_basedir=f"{workflow.current_basedir}/../../vendored",
     shell:
         """
-        ./vendored/trigger-on-new-data nextstrain/monkeypox rebuild {input.metadata_upload} {input.fasta_upload}
+        {params.vendored_basedir}/trigger-on-new-data nextstrain/monkeypox rebuild {input.metadata_upload} {input.fasta_upload}
         """

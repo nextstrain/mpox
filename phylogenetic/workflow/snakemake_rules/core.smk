@@ -25,7 +25,7 @@ rule filter:
         metadata=build_dir + "/{build_name}/good_metadata.tsv",
         log=build_dir + "/{build_name}/good_filter.log",
     params:
-        exclude=config["filter"]["exclude"],
+        exclude=f"{workflow.current_basedir}/../../{config['filter']['exclude']}",
         min_date=config["filter"]["min_date"],
         min_length=config["filter"]["min_length"],
         strain_id=config["strain_id_field"],

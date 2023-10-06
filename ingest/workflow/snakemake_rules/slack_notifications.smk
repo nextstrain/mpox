@@ -28,9 +28,10 @@ rule notify_on_genbank_record_change:
         touch("data/notify/genbank-record-change.done"),
     params:
         s3_src=S3_SRC,
+        vendored_basedir=f"{workflow.current_basedir}/../../vendored",
     shell:
         """
-        ./vendored/notify-on-record-change {input.genbank_ndjson} {params.s3_src:q}/genbank.ndjson.xz Genbank
+        {params.vendored_basedir}/notify-on-record-change {input.genbank_ndjson} {params.s3_src:q}/genbank.ndjson.xz Genbank
         """
 
 
@@ -41,15 +42,16 @@ rule notify_on_metadata_diff:
         touch("data/notify/metadata-diff.done"),
     params:
         s3_src=S3_SRC,
+        vendored_basedir=f"{workflow.current_basedir}/../../vendored",
     shell:
         """
-        ./vendored/notify-on-diff {input.metadata} {params.s3_src:q}/metadata.tsv.gz
+        {params.vendored_basedir}/notify-on-diff {input.metadata} {params.s3_src:q}/metadata.tsv.gz
         """
 
 
 onstart:
-    shell("./vendored/notify-on-job-start Ingest nextstrain/monkeypox")
+    shell(f"{workflow.current_basedir}/../../vendored/notify-on-job-start Ingest nextstrain/monkeypox")
 
 
 onerror:
-    shell("./vendored/notify-on-job-fail Ingest nextstrain/monkeypox")
+    shell(f"{workflow.current_basedir}/../../vendored/notify-on-job-fail Ingest nextstrain/monkeypox")
