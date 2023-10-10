@@ -27,7 +27,7 @@ jobs:
       - name: run_pipeline
         run: |
           GITHUB_BRANCH=${GITHUB_REF#refs/heads/}
-          ./bin/set-branch-ingest-config \
+          ./phylogenetic/bin/set-branch-ingest-config \
             --config-yaml ingest/config/optional.yaml \
             --s3-dst s3://nextstrain-data/files/workflows/monkeypox/branch/"${GITHUB_BRANCH}" \
             > ingest/config/optional-branch.yaml
