@@ -37,7 +37,8 @@ if __name__ == '__main__':
                 args.metadata_columns,
                 restval="",
                 extrasaction='ignore',
-                delimiter='\t'
+                delimiter='\t',
+                lineterminator='\n',
             )
             metadata_csv.writeheader()
 

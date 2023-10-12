@@ -66,3 +66,10 @@ transform:
     'authors',
     'institution'
   ]
+
+# Params for Nextclade related rules
+nextclade:
+  # Field to use as the sequence ID in the Nextclade file
+  id_field: 'seqName'
+  # Fields from a Nextclade file to be renamed (if desired) and appended to a metadata file
+  field_map: 'source-data/nextclade-field-map.tsv'
