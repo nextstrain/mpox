@@ -62,7 +62,6 @@ transform:
     'date_submitted',
     'sra_accession',
     'abbr_authors',
-    'reverse',
     'authors',
     'institution'
   ]

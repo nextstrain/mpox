@@ -19,7 +19,7 @@ if __name__=="__main__":
     with open(args.sequences, 'r') as f_in:
         with open(args.output, 'w') as f_out:
             for seq in SeqIO.parse(f_in, 'fasta'):
-                # Check if metadata['reverse'] is True
+                # Check if metadata['is_reverse_complement'] is True
                 if metadata.loc[metadata['accession'] == seq.id, 'is_reverse_complement'].values[0] == True:
                     # Reverse-complement sequence
                     seq.seq = seq.seq.reverse_complement()
