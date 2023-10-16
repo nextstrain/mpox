@@ -2,6 +2,10 @@
 
 This is the ingest pipeline for mpox virus sequences.
 
+## Software requirements
+
+Follow the [standard installation instructions](https://docs.nextstrain.org/en/latest/install.html) for Nextstrain's suite of software tools.
+
 ## Usage
 
 > NOTE: All command examples assume you are within the `ingest` directory.
@@ -83,8 +87,7 @@ These are optional environment variables used in our automated pipeline for prov
 
 ### GenBank data
 
-GenBank sequences and metadata are fetched via NCBI Virus.
-The exact URL used to fetch data is constructed by `vendored/ncbi-virus-url`.
+GenBank sequences and metadata are fetched via [NCBI datasets](https://www.ncbi.nlm.nih.gov/datasets/docs/v2/download-and-install/).
 
 ## `ingest/vendored`
 
