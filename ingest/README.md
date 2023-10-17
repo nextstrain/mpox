@@ -88,13 +88,7 @@ The exact URL used to fetch data is constructed by `vendored/ncbi-virus-url`.
 
 ## `ingest/vendored`
 
-This repository uses [`git subrepo`](https://github.com/ingydotnet/git-subrepo) to manage copies of ingest scripts in `ingest/vendored`, from [nextstrain/ingest](https://github.com/nextstrain/ingest). To pull new changes from the central ingest repository, first install `git subrepo`, then run:
+This repository uses [`git subrepo`](https://github.com/ingydotnet/git-subrepo) to manage copies of ingest scripts in [ingest/vendored](./vendored), from [nextstrain/ingest](https://github.com/nextstrain/ingest).
 
-```sh
-git subrepo pull ingest/vendored
-```
-
-Changes should not be pushed using `git subrepo push`.
-
-1. For pathogen-specific changes, make them in this repository via a pull request.
-2. For pathogen-agnostic changes, make them on [nextstrain/ingest](https://github.com/nextstrain/ingest) via pull request there, then use `git subrepo pull` to add those changes to this repository.
+See [vendored/README.md](vendored/README.md#vendoring) for instructions on how to update
+the vendored scripts.
