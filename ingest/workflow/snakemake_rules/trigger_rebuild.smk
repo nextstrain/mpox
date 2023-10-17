@@ -8,8 +8,9 @@ to expected upload flag files.
 
 
 rule trigger_build:
-    message:
-        "Triggering monekypox builds via repository action type `rebuild`."
+    """
+    Triggering monekypox builds via repository action type `rebuild`.
+    """
     input:
         metadata_upload="data/upload/s3/metadata.tsv-to-metadata.tsv.gz.done",
         fasta_upload="data/upload/s3/sequences.fasta-to-sequences.fasta.xz.done",

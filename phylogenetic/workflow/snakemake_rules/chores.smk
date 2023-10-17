@@ -6,8 +6,6 @@ rule update_example_data:
     - includes the root (defined in config but hardcoded here)
     - ensures all clades and lineages are accounted for using --group-by
     """
-    message:
-        "Update example data"
     input:
         sequences="data/sequences.fasta",
         metadata="data/metadata.tsv",

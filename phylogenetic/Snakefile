@@ -58,8 +58,9 @@ if config.get("deploy_url", False):
 
 
 rule clean:
-    message:
-        "Removing directories: {params}"
+    """
+    Removing directories: {params}
+    """
     params:
         build_dir,
         auspice_dir,
@@ -68,8 +69,9 @@ rule clean:
 
 
 rule cleanall:
-    message:
-        "Removing directories: {params}"
+    """
+    Removing directories: {params}
+    """
     params:
         build_dir,
         auspice_dir,
