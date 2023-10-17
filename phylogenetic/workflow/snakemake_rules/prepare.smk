@@ -1,6 +1,7 @@
 rule download:
-    message:
-        "Downloading sequences and metadata from data.nextstrain.org"
+    """
+    Downloading sequences and metadata from data.nextstrain.org
+    """
     output:
         sequences="data/sequences.fasta.xz",
         metadata="data/metadata.tsv.gz",
@@ -15,8 +16,9 @@ rule download:
 
 
 rule decompress:
-    message:
-        "Decompressing sequences and metadata"
+    """
+    Decompressing sequences and metadata
+    """
     input:
         sequences="data/sequences.fasta.xz",
         metadata="data/metadata.tsv.gz",
