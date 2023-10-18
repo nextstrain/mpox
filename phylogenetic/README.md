@@ -9,6 +9,20 @@ Follow the [standard installation instructions](https://docs.nextstrain.org/en/l
 
 ## Usage
 
+### Example build
+
+You can run an example build using the example data provided in this repository via:
+
+```
+nextstrain build .  --configfile profiles/ci/builds.yaml
+```
+
+When the build has finished running, view the output Auspice trees via:
+
+```
+nextstrain view .
+```
+
 ### Provision input data
 
 Input sequences and metadata can be retrieved from data.nextstrain.org
