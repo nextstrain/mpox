@@ -6,14 +6,14 @@ transform:
   # Fields to rename.
   # This is the first step in the pipeline, so any references to field names
   # in the configs below should use the new field names
-  field_map: ['collected=date', 'submitted=date_submitted', 'genbank_accession=accession', 'submitting_organization=institution']
+  field_map: ['collected=date', 'genbank_accession=accession', 'submitting_organization=institution']
   # Standardized strain name regex
   # Currently accepts any characters because we do not have a clear standard for strain names
   strain_regex: '^.+$'
   # Back up strain name field if 'strain' doesn't match regex above
   strain_backup_fields: ['accession']
   # List of date fields to standardize
-  date_fields: ['date', 'date_submitted']
+  date_fields: ['date', 'date_released']
   # Expected date formats present in date fields
   # These date formats should use directives expected by datetime
   # See https://docs.python.org/3.9/library/datetime.html#strftime-and-strptime-format-codes
@@ -59,7 +59,7 @@ transform:
     'division',
     'location',
     'host',
-    'date_submitted',
+    'date_released',
     'sra_accession',
     'abbr_authors',
     'reverse',
