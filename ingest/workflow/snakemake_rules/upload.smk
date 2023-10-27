@@ -52,7 +52,7 @@ rule upload_to_s3:
         "data/upload/s3/{file_to_upload}-to-{remote_file_name}.done",
     params:
         quiet="" if send_notifications else "--quiet",
-        s3_dst=config["upload"].get("s3", {}).get("dst", ""),
+        s3_dst=config.get("s3_dst", ""),
         cloudfront_domain=config["upload"].get("s3", {}).get("cloudfront_domain", ""),
     shell:
         """

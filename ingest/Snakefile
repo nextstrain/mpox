@@ -32,7 +32,7 @@ def _get_all_targets(wildcards):
             print(
                 f"Skipping file upload for {target!r} because there are duplicate remote file names."
             )
-        elif not params.get("dst"):
+        elif not params.get("s3_dst"):
             print(
                 f"Skipping file upload for {target!r} because the destintion was not defined."
             )

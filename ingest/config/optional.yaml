@@ -1,10 +1,10 @@
 # Optional configs used by Nextstrain team
 # Params for uploads
+# AWS S3 Bucket with prefix
+s3_dst: 's3://nextstrain-data/files/workflows/monkeypox'
 upload:
   # Upload params for AWS S3
   s3:
-    # AWS S3 Bucket with prefix
-    dst: 's3://nextstrain-data/files/workflows/monkeypox'
     # Files to upload to S3 that are in the `data` directory
     files_to_upload: [
       'genbank.ndjson',
