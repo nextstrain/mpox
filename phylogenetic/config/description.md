@@ -18,7 +18,7 @@ Our bioinformatic processing workflow can be found at [github.com/nextstrain/mon
 
 #### Underlying data
 We curate sequence data and metadata from the [NCBI Datasets command line tools](https://www.ncbi.nlm.nih.gov/datasets/docs/v2/download-and-install/),
-using NCBI Taxonomy ID "10244", as starting point for these analyses.
+using an NCBI Taxonomy ID defined in [ingest/config/config.yaml](https://github.com/nextstrain/monkeypox/blob/master/ingest/config/config.yaml), as starting point for these analyses.
 Curated sequences and metadata are available as flat files at:
 - [data.nextstrain.org/files/workflows/monkeypox/sequences.fasta.xz](https://data.nextstrain.org/files/workflows/monkeypox/sequences.fasta.xz)
 - [data.nextstrain.org/files/workflows/monkeypox/metadata.tsv.gz](https://data.nextstrain.org/files/workflows/monkeypox/metadata.tsv.gz)
