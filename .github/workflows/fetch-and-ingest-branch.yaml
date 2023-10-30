@@ -34,7 +34,6 @@ jobs:
       runtime: aws-batch
       env: |
         NEXTSTRAIN_DOCKER_IMAGE: ${{ inputs.image }}
-        GITHUB_RUN_ID: ${{ github.run_id }}
         UPLOAD_CONFIG: ${{ needs.set_config_overrides.outputs.upload_config }}
       run: |
         nextstrain build \
@@ -45,7 +44,6 @@ jobs:
           --memory 64gib \
           --env AWS_ACCESS_KEY_ID \
           --env AWS_SECRET_ACCESS_KEY \
-          --env GITHUB_RUN_ID \
           ingest \
             --configfiles config/config.yaml config/optional.yaml \
             --config trigger_rebuild=False send_slack_notifications=False upload="$UPLOAD_CONFIG"
