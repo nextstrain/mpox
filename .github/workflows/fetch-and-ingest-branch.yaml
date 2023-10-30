@@ -8,41 +8,45 @@ on:
         description: 'Specific container image to use for build (will override the default of "nextstrain build")'
         required: false
 
-env:
-  NEXTSTRAIN_DOCKER_IMAGE: ${{ github.event.inputs.image }}
 
 jobs:
-  fetch-and-ingest:
+  set_config_overrides:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: nextstrain/.github/actions/setup-nextstrain-cli@master
-        with:
-          cli-version: ">=7.1.0"
-          python-version: "3.10"
-
-      - name: run_pipeline
+      - id: upload_config
         run: |
           # Create JSON string for the nested upload config
           GITHUB_BRANCH=${GITHUB_REF#refs/heads/}
           S3_DST="s3://nextstrain-data/files/workflows/monkeypox/branch/${GITHUB_BRANCH}"
           UPLOAD_CONFIG=$(jq -cn --arg S3_DST "$S3_DST" '{"s3": {"dst": $S3_DST }}')
 
-          nextstrain build \
-            --aws-batch \
-            --detach \
-            --no-download \
-            --cpus 32 \
-            --memory 64gib \
-            --env AWS_DEFAULT_REGION \
-            --env AWS_ACCESS_KEY_ID \
-            --env AWS_SECRET_ACCESS_KEY \
-            --env GITHUB_RUN_ID \
-            ingest \
-              --configfiles config/config.yaml config/optional.yaml \
-              --config trigger_rebuild=False send_slack_notifications=False upload="$UPLOAD_CONFIG"
-        env:
-          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          GITHUB_RUN_ID: ${{ github.run_id }}
+          echo "upload_config=$UPLOAD_CONFIG" >> "$GITHUB_OUTPUT"
+    outputs:
+      upload_config: ${{ steps.upload_config.outputs.upload_config }}
+
+  fetch-and-ingest:
+    needs: [set_config_overrides]
+    permissions:
+      id-token: write
+    uses: nextstrain/.github/.github/workflows/pathogen-repo-build.yaml@master
+    secrets: inherit
+    with:
+      runtime: aws-batch
+      env: |
+        NEXTSTRAIN_DOCKER_IMAGE: ${{ inputs.image }}
+        GITHUB_RUN_ID: ${{ github.run_id }}
+        UPLOAD_CONFIG: ${{ needs.set_config_overrides.outputs.upload_config }}
+      run: |
+        nextstrain build \
+          --aws-batch \
+          --detach \
+          --no-download \
+          --cpus 32 \
+          --memory 64gib \
+          --env AWS_DEFAULT_REGION \
+          --env AWS_ACCESS_KEY_ID \
+          --env AWS_SECRET_ACCESS_KEY \
+          --env GITHUB_RUN_ID \
+          ingest \
+            --configfiles config/config.yaml config/optional.yaml \
+            --config trigger_rebuild=False send_slack_notifications=False upload="$UPLOAD_CONFIG"
