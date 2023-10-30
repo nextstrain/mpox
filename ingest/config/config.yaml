@@ -1,5 +1,7 @@
 # Sources of sequences to include in the ingest run
 sources: ['genbank']
+# Pathogen NCBI Taxonomy ID
+ncbi_taxon_id: '10244'
 
 # Params for the transform rule
 transform:
