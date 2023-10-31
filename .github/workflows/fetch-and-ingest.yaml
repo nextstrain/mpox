@@ -49,7 +49,6 @@ jobs:
           --no-download \
           --cpus 32 \
           --memory 64gib \
-          --env AWS_DEFAULT_REGION \
           --env AWS_ACCESS_KEY_ID \
           --env AWS_SECRET_ACCESS_KEY \
           --env GITHUB_RUN_ID \

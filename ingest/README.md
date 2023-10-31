@@ -70,7 +70,6 @@ The complete ingest pipeline with AWS S3 uploads and Slack notifications uses th
 
 #### Required
 
-- `AWS_DEFAULT_REGION`
 - `AWS_ACCESS_KEY_ID`
 - `AWS_SECRET_ACCESS_KEY`
 - `SLACK_TOKEN`
