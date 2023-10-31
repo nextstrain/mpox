@@ -80,7 +80,7 @@ rule format_ncbi_dataset_report:
     # The only fields we do not have equivalents for are "title" and "publications"
     input:
         dataset_package="data/ncbi_dataset.zip",
-        ncbi_field_map="source-data/ncbi-dataset-field-map.tsv",
+        ncbi_field_map=config["ncbi_field_map"],
     output:
         ncbi_dataset_tsv=temp("data/ncbi_dataset_report.tsv"),
     params:
