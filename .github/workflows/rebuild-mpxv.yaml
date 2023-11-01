@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
     inputs:
       trial_name:
-        description: "If set, result will be at nextstrain.org/staging/trial/trial_name/monkeypox/mpxv"
+        description: "If set, result will be at nextstrain.org/staging/trial/trial_name/mpox/mpxv"
         required: false
       image:
         description: 'Specific container image to use for build (will override the default of "nextstrain build")'

@@ -17,7 +17,7 @@ jobs:
         run: |
           # Create JSON string for the nested upload config
           GITHUB_BRANCH=${GITHUB_REF#refs/heads/}
-          S3_DST="s3://nextstrain-data/files/workflows/monkeypox/branch/${GITHUB_BRANCH}"
+          S3_DST="s3://nextstrain-data/files/workflows/mpox/branch/${GITHUB_BRANCH}"
           UPLOAD_CONFIG=$(jq -cn --arg S3_DST "$S3_DST" '{"s3": {"dst": $S3_DST }}')
 
           echo "upload_config=$UPLOAD_CONFIG" >> "$GITHUB_OUTPUT"

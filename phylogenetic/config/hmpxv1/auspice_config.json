@@ -1,5 +1,5 @@
 {
-  "title": "Genomic epidemiology of MPXV",
+  "title": "Genomic epidemiology of mpox clade IIb viruses",
   "maintainers": [
     {"name": "Nextstrain team", "url": "http://nextstrain.org"}
   ],
@@ -9,7 +9,7 @@
       "url": "https://www.ncbi.nlm.nih.gov/genbank/"
     }
   ],
-  "build_url": "https://github.com/nextstrain/monkeypox",
+  "build_url": "https://github.com/nextstrain/mpox",
   "colorings": [
     {
       "key": "lineage",

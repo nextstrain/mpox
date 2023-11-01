@@ -1,6 +1,6 @@
 # Nextstrain repository for mpox virus
 
-[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/nextstrain/monkeypox/master.svg)](https://results.pre-commit.ci/latest/github/nextstrain/monkeypox/master)
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/nextstrain/mpox/master.svg)](https://results.pre-commit.ci/latest/github/nextstrain/mpox/master)
 
 This repository contains two workflows for the analysis of mpox virus (MPXV) data:
 
