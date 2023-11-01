@@ -1,4 +1,4 @@
-# nextstrain.org/monkeypox/ingest
+# nextstrain.org/mpox/ingest
 
 This is the ingest pipeline for mpox virus sequences.
 
@@ -9,7 +9,7 @@ Follow the [standard installation instructions](https://docs.nextstrain.org/en/l
 ## Usage
 
 > NOTE: All command examples assume you are within the `ingest` directory.
-> If running commands from the outer `monkeypox` directory, please replace the `.` with `ingest`
+> If running commands from the outer `mpox` directory, please replace the `.` with `ingest`
 
 Fetch sequences with
 

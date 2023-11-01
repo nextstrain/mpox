@@ -21,12 +21,12 @@ echo "Notifying Slack about starting build."
 message="Pipeline starting for the \`$build_name\` build, which will run the phylogenetics and deploy the build."
 
 if [[ -n "${GITHUB_RUN_ID}" ]]; then
-  message+=" The job was submitted by GitHub Action <https://github.com/nextstrain/monkeypox/actions/runs/${GITHUB_RUN_ID}?check_suite_focus=true|${GITHUB_RUN_ID}>."
+  message+=" The job was submitted by GitHub Action <https://github.com/nextstrain/mpox/actions/runs/${GITHUB_RUN_ID}?check_suite_focus=true|${GITHUB_RUN_ID}>."
 fi
 
 if [[ -n "${AWS_BATCH_JOB_ID}" ]]; then
   message+=" The job was launched as AWS Batch job \`${AWS_BATCH_JOB_ID}\` (<https://console.aws.amazon.com/batch/v2/home?region=us-east-1#jobs/detail/${AWS_BATCH_JOB_ID}|link>)."
-  message+=" Follow along in your local \`monkeypox\` repo with: "'```'"nextstrain build --aws-batch --no-download --attach ${AWS_BATCH_JOB_ID} . "'```'
+  message+=" Follow along in your local \`mpox\` repo with: "'```'"nextstrain build --aws-batch --no-download --attach ${AWS_BATCH_JOB_ID} . "'```'
 fi
 
 "$ingest_vendored"/notify-slack "$message" --output="$slack_response"

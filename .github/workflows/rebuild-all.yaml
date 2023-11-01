@@ -9,6 +9,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Repository Dispatch
-        run: ./ingest/vendored/trigger nextstrain/monkeypox rebuild
+        run: ./ingest/vendored/trigger nextstrain/mpox rebuild
         env:
           PAT_GITHUB_DISPATCH: ${{ secrets.GH_TOKEN_NEXTSTRAIN_BOT_WORKFLOW_DISPATCH }}

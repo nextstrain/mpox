@@ -4,7 +4,7 @@ upload:
   # Upload params for AWS S3
   s3:
     # AWS S3 Bucket with prefix
-    dst: 's3://nextstrain-data/files/workflows/monkeypox'
+    dst: 's3://nextstrain-data/files/workflows/mpox'
     # Files to upload to S3 that are in the `data` directory
     files_to_upload: [
       'genbank.ndjson',

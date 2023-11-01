@@ -1,6 +1,6 @@
-# nextstrain.org/monkeypox
+# nextstrain.org/mpox
 
-This is the [Nextstrain](https://nextstrain.org) build for MPXV (mpox virus). Output from this build is visible at [nextstrain.org/monkeypox](https://nextstrain.org/monkeypox).
+This is the [Nextstrain](https://nextstrain.org) build for MPXV (mpox virus). Output from this build is visible at [nextstrain.org/mpox](https://nextstrain.org/mpox).
 The lineages within the recent mpox outbreaks in humans are defined in a separate [lineage-designation repository](https://github.com/mpxv-lineages/lineage-designation).
 
 ## Software requirements
@@ -13,8 +13,8 @@ Follow the [standard installation instructions](https://docs.nextstrain.org/en/l
 
 Input sequences and metadata can be retrieved from data.nextstrain.org
 
-* [sequences.fasta.xz](https://data.nextstrain.org/files/workflows/monkeypox/sequences.fasta.xz)
-* [metadata.tsv.gz](https://data.nextstrain.org/files/workflows/monkeypox/metadata.tsv.gz)
+* [sequences.fasta.xz](https://data.nextstrain.org/files/workflows/mpox/sequences.fasta.xz)
+* [metadata.tsv.gz](https://data.nextstrain.org/files/workflows/mpox/metadata.tsv.gz)
 
 Note that these data are generously shared by many labs around the world.
 If you analyze and plan to publish using these data, please contact these labs first.
@@ -47,7 +47,7 @@ nextstrain build . --configfile config/hmpxv1_big/config.yaml
 
 ### Deploy
 
-⚠️ The below is outdated and needs to be adjusted for the new build names (mpxv instead of monkeypox, etc.)
+⚠️ The below is outdated and needs to be adjusted for the new build names (mpox instead of monkeypox, etc.)
 
 <details>
 
@@ -84,7 +84,7 @@ There is little redirection and each rule should be able to be reasoned with on 
 
 ## Update example data
 
-[Example data](./example_data/) is used by [CI](https://github.com/nextstrain/monkeypox/actions/workflows/ci.yaml). It can also be used as a small subset of real-world data.
+[Example data](./example_data/) is used by [CI](https://github.com/nextstrain/mpox/actions/workflows/ci.yaml). It can also be used as a small subset of real-world data.
 
 Example data should be updated every time metadata schema is changed or a new clade/lineage emerges. To update, run:
 
