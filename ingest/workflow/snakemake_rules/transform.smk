@@ -6,7 +6,7 @@ formats and expects input file
 
 This will produce output files as
 
-    metadata = "data/metadata.tsv"
+    metadata = "data/metadata_raw.tsv"
     sequences = "data/sequences.fasta"
 
 Parameters are expected to be defined in `config.transform`.
