@@ -27,7 +27,9 @@ def _get_upload_inputs(wildcards):
     `send_notifications` is True.
     """
     inputs = {
-        "file_to_upload": config["upload"]["s3"]["files_to_upload"][wildcards.remote_file_name],
+        "file_to_upload": config["upload"]["s3"]["files_to_upload"][
+            wildcards.remote_file_name
+        ],
     }
 
     if send_notifications:

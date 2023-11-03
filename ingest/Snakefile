@@ -29,11 +29,9 @@ def _get_all_targets(wildcards):
         else:
             all_targets.extend(
                 expand(
-                    [
-                        f"data/upload/{target}/{{remote_file_name}}.done"
-                    ],
+                    [f"data/upload/{target}/{{remote_file_name}}.done"],
                     zip,
-                    remote_file_name=files_to_upload.keys()
+                    remote_file_name=files_to_upload.keys(),
                 )
             )
 
