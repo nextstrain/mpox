@@ -10,8 +10,8 @@ upload:
     files_to_upload:
       genbank.ndjson.xz: data/genbank.ndjson
       all_sequences.ndjson.xz: data/sequences.ndjson
-      metadata.tsv.gz: data/metadata.tsv
-      sequences.fasta.xz: data/sequences.fasta
+      metadata.tsv.gz: results/metadata.tsv
+      sequences.fasta.xz: results/sequences.fasta
       alignment.fasta.xz: data/alignment.fasta
       insertions.csv.gz: data/insertions.csv
       translations.zip: data/translations.zip

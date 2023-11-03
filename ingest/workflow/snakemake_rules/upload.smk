@@ -35,7 +35,7 @@ def _get_upload_inputs(wildcards):
 
         if file_to_upload == "data/genbank.ndjson":
             flag_file = "data/notify/genbank-record-change.done"
-        elif file_to_upload == "data/metadata.tsv":
+        elif file_to_upload == "results/metadata.tsv":
             flag_file = "data/notify/metadata-diff.done"
 
         inputs["notify_flag_file"] = flag_file

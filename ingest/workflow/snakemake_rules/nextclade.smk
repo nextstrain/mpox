@@ -19,7 +19,7 @@ rule nextclade_dataset_hMPXV:
 
 rule align:
     input:
-        sequences="data/sequences.fasta",
+        sequences="results/sequences.fasta",
         dataset="hmpxv.zip",
     output:
         alignment="data/alignment.fasta",
@@ -41,7 +41,7 @@ rule align:
 
 rule nextclade:
     input:
-        sequences="data/sequences.fasta",
+        sequences="results/sequences.fasta",
         dataset="mpxv.zip",
     output:
         "data/nextclade.tsv",
@@ -58,7 +58,7 @@ rule join_metadata_clades:
         metadata="data/metadata_raw.tsv",
         nextclade_field_map=config["nextclade"]["field_map"],
     output:
-        metadata="data/metadata.tsv",
+        metadata="results/metadata.tsv",
     params:
         id_field=config["transform"]["id_field"],
         nextclade_id_field=config["nextclade"]["id_field"],

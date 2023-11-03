@@ -14,7 +14,7 @@ send_slack_notifications = config.get("send_slack_notifications", False)
 
 def _get_all_targets(wildcards):
     # Default targets are the metadata TSV and sequences FASTA files
-    all_targets = ["data/sequences.fasta", "data/metadata.tsv"]
+    all_targets = ["results/sequences.fasta", "results/metadata.tsv"]
 
     # Add additional targets based on upload config
     upload_config = config.get("upload", {})
