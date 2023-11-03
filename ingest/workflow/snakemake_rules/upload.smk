@@ -26,18 +26,16 @@ def _get_upload_inputs(wildcards):
     the rules in `slack_notifications.smk`, so it only includes flag files if
     `send_notifications` is True.
     """
-    file_to_upload = config["upload"]["s3"]["files_to_upload"][wildcards.remote_file_name]
-
     inputs = {
-        "file_to_upload": f"data/{file_to_upload}",
+        "file_to_upload": config["upload"]["s3"]["files_to_upload"][wildcards.remote_file_name],
     }
 
     if send_notifications:
         flag_file = []
 
-        if file_to_upload == "genbank.ndjson":
+        if file_to_upload == "data/genbank.ndjson":
             flag_file = "data/notify/genbank-record-change.done"
-        elif file_to_upload == "metadata.tsv":
+        elif file_to_upload == "data/metadata.tsv":
             flag_file = "data/notify/metadata-diff.done"
 
         inputs["notify_flag_file"] = flag_file

@@ -6,15 +6,15 @@ upload:
     # AWS S3 Bucket with prefix
     dst: 's3://nextstrain-data/files/workflows/mpox'
     # Mapping of files to upload, with key as remote file name and the value
-    # the local file path relative to the ingest/data directory.
+    # the local file path relative to the ingest directory.
     files_to_upload:
-      genbank.ndjson.xz: genbank.ndjson
-      all_sequences.ndjson.xz: sequences.ndjson
-      metadata.tsv.gz: metadata.tsv
-      sequences.fasta.xz: sequences.fasta
-      alignment.fasta.xz: alignment.fasta
-      insertions.csv.gz: insertions.csv
-      translations.zip: translations.zip
+      genbank.ndjson.xz: data/genbank.ndjson
+      all_sequences.ndjson.xz: data/sequences.ndjson
+      metadata.tsv.gz: data/metadata.tsv
+      sequences.fasta.xz: data/sequences.fasta
+      alignment.fasta.xz: data/alignment.fasta
+      insertions.csv.gz: data/insertions.csv
+      translations.zip: data/translations.zip
 
     cloudfront_domain: 'data.nextstrain.org'
 
