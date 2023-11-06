@@ -25,8 +25,8 @@ nextstrain build .
 
 This will produce two files (within the `ingest` directory):
 
-- `data/metadata.tsv`
-- `data/sequences.fasta`
+- `results/metadata.tsv`
+- `results/sequences.fasta`
 
 Run the complete ingest pipeline and upload results to AWS S3 with
 

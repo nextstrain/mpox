@@ -36,7 +36,7 @@ rule notify_on_genbank_record_change:
 
 rule notify_on_metadata_diff:
     input:
-        metadata="data/metadata.tsv",
+        metadata="results/metadata.tsv",
     output:
         touch("data/notify/metadata-diff.done"),
     params:
