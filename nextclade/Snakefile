@@ -266,7 +266,7 @@ rule align:
     output:
         alignment="results/{build_name}/aligned.fasta",
     params:
-        translation_template=lambda w: f"results/{w.build_name}/translations/{{gene}}.fasta",
+        translation_template=lambda w: f"results/{w.build_name}/translations/{{cds}}.fasta",
         genes=",".join(genes),
     shell:
         """
