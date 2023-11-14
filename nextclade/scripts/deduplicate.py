@@ -86,7 +86,7 @@ def deduplicate(input: str, output: str):
     with open(input, "r") as f:
         sequences = [
             {   "id": record.id,
-                "seq": record.seq,
+                "seq": str(record.seq),
                 "number_informative_sites": informative_sites(str(record.seq)),
             }
             for record in itertools.islice(SeqIO.parse(f, "fasta"), 0, None)

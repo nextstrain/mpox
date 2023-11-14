@@ -1,5 +1,7 @@
 # Nextclade reference tree workflow for monkeypox
 
+This README doesn't end up in the datasets, so it's more of a developer README, rather than a dataset user README.
+
 ## Usage
 
 ```bash

@@ -1,15 +1,16 @@
 exclude: '\.(tsv|fasta|gb)$|^ingest/vendored/'
 repos:
-  - repo: https://github.com/snakemake/snakefmt
-    rev: v0.8.4
-    hooks:
-      - id: snakefmt
+  # Disabled for now due to bug:
+  # - repo: https://github.com/snakemake/snakefmt
+  #   rev: v0.8.5
+  #   hooks:
+  #     - id: snakefmt
   - repo: https://github.com/rhysd/actionlint
     rev: v1.6.26
     hooks:
       - id: actionlint
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v4.5.0
     hooks:
       - id: trailing-whitespace
       - id: check-ast
@@ -31,13 +32,13 @@ repos:
     hooks:
       - id: sync-pre-commit-deps
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.2.5
+    rev: v2.2.6
     hooks:
       - id: codespell
         additional_dependencies:
           - tomli
   - repo: https://github.com/shellcheck-py/shellcheck-py
-    rev: v0.9.0.5
+    rev: v0.9.0.6
     hooks:
       - id: shellcheck
   - repo: https://github.com/pappasam/toml-sort

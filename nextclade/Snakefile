@@ -3,8 +3,10 @@ if not config:
     configfile: "config/config.yaml"
 
 
-build_names = ["b1", "hpxv1", "MPXV"]
+build_names = ["lineage-b.1", "clade-iib", "all-clades"]
 
+PREALIGN_REFERENCE = "resources/lineage-b.1/reference.fasta"
+PREMASK_BED = "resources/lineage-b.1/mask.bed"
 
 genes = [line.strip() for line in open("resources/genes.txt")]
 
@@ -45,7 +47,7 @@ rule get_nextclade_v3:
 
 
 rule download:
-    "Downloading sequences and metadata from data.nextstrain.org"
+    "Downloading ingested sequences and metadata from data.nextstrain.org"
     output:
         sequences="data/sequences.fasta.xz",
         metadata="data/metadata.tsv.gz",
@@ -88,16 +90,29 @@ rule index:
         """
 
 
+rule remove_known_duplicates:
+    input:
+        known_duplicates="resources/known_duplicates.txt",
+        sequences="data/sequences.fasta",
+    output:
+        sequences_without_known_duplicates="results/sequences_without_known_duplicates.fasta",
+    shell:
+        """
+        seqkit grep -w0 -v -f {input.known_duplicates} {input.sequences} > {output.sequences_without_known_duplicates}
+        """
+
+
 rule prealign:
     """
     Aligning sequences to reference
     """
     input:
-        sequences=rules.decompress.output.sequences,
-        reference="resources/b1/reference.fasta",
+        sequences="results/sequences_without_known_duplicates.fasta",
+        reference=PREALIGN_REFERENCE,
         nextclade="bin/nextclade",
+        annotation="resources/genome_annotation.gff3",
     output:
-        alignment="data/prealigned.fasta",
+        alignment="results/prealigned.fasta",
     shell:
         """
         ./{input.nextclade} run \
@@ -108,9 +123,9 @@ rule prealign:
             --allowed-mismatches 8 \
             --window-size 40 \
             --min-seed-cover 0.1 \
-            --reference {input.reference} \
+            --input-ref {input.reference} \
             --gap-alignment-side left \
-            --input-annotation resources/genemap.gff \
+            --input-annotation {input.annotation} \
             --output-fasta {output.alignment} \
             --include-reference
         """
@@ -145,10 +160,10 @@ rule exclude_bad:
 
 rule premask:
     input:
-        sequences="data/prealigned.fasta",
-        mask="resources/b1/mask.bed",
+        sequences="results/prealigned.fasta",
+        mask=PREMASK_BED,
     output:
-        "data/premasked.fasta",
+        "results/premasked.fasta",
     shell:
         """
         augur mask \
@@ -165,9 +180,9 @@ rule deduplicate:
     Focus for Nextclade is on diversity, not on representativeness
     """
     input:
-        sequences=rules.premask.output,
+        sequences="results/premasked.fasta",
     output:
-        "data/duplicates.txt",
+        "results/duplicates.txt",
     shell:
         """
         python3 scripts/deduplicate.py {input.sequences} {output}
@@ -180,7 +195,7 @@ rule subsample:
         metadata="results/decent_metadata.tsv",
         exclude="resources/exclude_accessions.txt",
         specific_exclude="resources/{build_name}/exclude_accessions.txt",
-        deduplicate_exclude="data/duplicates.txt",
+        deduplicate_exclude="results/duplicates.txt",
         specific_include="resources/{build_name}/include_accessions.txt",
         include="resources/include_accessions.txt",
         index="results/index.tsv",
@@ -244,9 +259,10 @@ rule align:
         - filling gaps with N
         """
     input:
-        sequences=rules.postsample_exclude.output.sequences,
+        sequences="results/{build_name}/filtered.fasta",
         reference="resources/{build_name}/reference.fasta",
         nextclade="bin/nextclade",
+        annotation="resources/genome_annotation.gff3",
     output:
         alignment="results/{build_name}/aligned.fasta",
     params:
@@ -257,17 +273,16 @@ rule align:
         ./{input.nextclade} run \
             {input.sequences} \
             --retry-reverse-complement \
-            --reference {input.reference} \
+            --input-ref {input.reference} \
             --excess-bandwidth 100 \
             --terminal-bandwidth 300 \
             --allowed-mismatches 8 \
             --window-size 40 \
             --min-seed-cover 0.1 \
-            --input-annotation resources/genemap.gff \
+            --input-annotation {input.annotation} \
             --gap-alignment-side left \
             --output-fasta {output.alignment} \
             --include-reference \
-            --genes {params.genes} \
             --output-translations {params.translation_template}
         """
 
@@ -305,7 +320,7 @@ rule tree:
 
 rule fix_tree:
     input:
-        tree=rules.tree.output.tree,
+        tree="results/{build_name}/tree_raw.nwk",
         alignment="results/{build_name}/masked.fasta",
     output:
         tree="results/{build_name}/tree_fixed.nwk",
@@ -327,7 +342,7 @@ rule refine:
         Refining tree
         """
     input:
-        tree=rules.fix_tree.output.tree,
+        tree="results/{build_name}/tree_fixed.nwk",
         alignment="results/{build_name}/masked.fasta",
         metadata="results/{build_name}/metadata.tsv",
     output:
@@ -354,9 +369,9 @@ rule ancestral:
     message:
         "Reconstructing ancestral sequences and mutations"
     input:
-        tree=rules.refine.output.tree,
+        tree="results/{build_name}/tree.nwk",
         alignment="results/{build_name}/aligned.fasta",
-        annotation="resources/genemap.gff",
+        annotation="resources/genome_annotation.gff3",
         genes="resources/genes.txt",
     output:
         node_data="results/{build_name}/nt_muts.json",
@@ -382,8 +397,8 @@ rule clades:
     message:
         "Adding internal clade labels"
     input:
-        tree=rules.refine.output.tree,
-        nuc_muts=rules.ancestral.output.node_data,
+        tree="results/{build_name}/tree.nwk",
+        nuc_muts="results/{build_name}/nt_muts.json",
         clades="resources/{build_name}/clades.tsv",
     output:
         node_data="results/{build_name}/clades_raw.json",
@@ -399,7 +414,7 @@ rule clades:
 
 rule rename_clades:
     input:
-        rules.clades.output.node_data,
+        "results/{build_name}/clades_raw.json",
     output:
         node_data="results/{build_name}/clades.json",
     shell:
@@ -447,12 +462,12 @@ rule export:
     message:
         "Exporting data files for for auspice"
     input:
-        colors=rules.colors.output.colors,
-        tree=rules.refine.output.tree,
+        colors="results/{build_name}/colors.tsv",
+        tree="results/{build_name}/tree.nwk",
         metadata="results/{build_name}/metadata_display.tsv",
         branch_lengths="results/{build_name}/branch_lengths.json",
-        clades=rules.rename_clades.output.node_data,
-        nt_muts=rules.ancestral.output.node_data,
+        clades="results/{build_name}/clades.json",
+        nt_muts="results/{build_name}/nt_muts.json",
         auspice_config="resources/{build_name}/auspice_config.json",
     output:
         auspice_json="auspice/nextclade_mpox_{build_name}.json",
