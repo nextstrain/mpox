@@ -1,6 +1,7 @@
 exclude: '\.(tsv|fasta|gb)$|^ingest/vendored/'
 repos:
   # Disabled for now due to bug:
+  # https://github.com/snakemake/snakefmt/issues/207
   # - repo: https://github.com/snakemake/snakefmt
   #   rev: v0.8.5
   #   hooks:
