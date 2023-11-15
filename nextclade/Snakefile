@@ -52,8 +52,8 @@ rule download:
         sequences="data/sequences.fasta.xz",
         metadata="data/metadata.tsv.gz",
     params:
-        sequences_url="https://data.nextstrain.org/files/workflows/monkeypox/sequences.fasta.xz",
-        metadata_url="https://data.nextstrain.org/files/workflows/monkeypox/metadata.tsv.gz",
+        sequences_url="https://data.nextstrain.org/files/workflows/mpox/sequences.fasta.xz",
+        metadata_url="https://data.nextstrain.org/files/workflows/mpox/metadata.tsv.gz",
     shell:
         """
         curl -fsSL --compressed {params.sequences_url:q} --output {output.sequences}
@@ -103,9 +103,6 @@ rule remove_known_duplicates:
 
 
 rule prealign:
-    """
-    Aligning sequences to reference
-    """
     input:
         sequences="results/sequences_without_known_duplicates.fasta",
         reference=PREALIGN_REFERENCE,
@@ -132,9 +129,7 @@ rule prealign:
 
 
 rule exclude_bad:
-    """
-    Removing strains that do not satisfy certain requirements.
-    """
+    # Removing strains that do not satisfy certain requirements.
     input:
         sequences="data/sequences.fasta",
         metadata="data/metadata.tsv",
@@ -253,11 +248,6 @@ rule postsample_exclude:
 
 
 rule align:
-    message:
-        """
-        Aligning sequences to {input.reference}
-        - filling gaps with N
-        """
     input:
         sequences="results/{build_name}/filtered.fasta",
         reference="resources/{build_name}/reference.fasta",
@@ -265,6 +255,7 @@ rule align:
         annotation="resources/genome_annotation.gff3",
     output:
         alignment="results/{build_name}/aligned.fasta",
+        translations=directory("results/{build_name}/translations"),
     params:
         translation_template=lambda w: f"results/{w.build_name}/translations/{{cds}}.fasta",
         genes=",".join(genes),
@@ -303,8 +294,6 @@ rule mask:
 
 
 rule tree:
-    message:
-        "Building tree"
     input:
         alignment="results/{build_name}/masked.fasta",
     output:
@@ -314,6 +303,7 @@ rule tree:
         augur tree \
             --alignment {input.alignment} \
             --output {output.tree} \
+            --nthreads 3 \
             --tree-builder-args '-czb -redo'
         """
 
@@ -337,10 +327,6 @@ rule fix_tree:
 
 
 rule refine:
-    message:
-        """
-        Refining tree
-        """
     input:
         tree="results/{build_name}/tree_fixed.nwk",
         alignment="results/{build_name}/masked.fasta",
@@ -366,13 +352,13 @@ rule refine:
 
 
 rule ancestral:
-    message:
-        "Reconstructing ancestral sequences and mutations"
+    # "Reconstructing ancestral sequences and mutations"
     input:
         tree="results/{build_name}/tree.nwk",
         alignment="results/{build_name}/aligned.fasta",
         annotation="resources/genome_annotation.gff3",
         genes="resources/genes.txt",
+        translations="results/{build_name}/translations",
     output:
         node_data="results/{build_name}/nt_muts.json",
     params:
@@ -394,8 +380,7 @@ rule ancestral:
 
 
 rule clades:
-    message:
-        "Adding internal clade labels"
+    # "Adding internal clade labels"
     input:
         tree="results/{build_name}/tree.nwk",
         nuc_muts="results/{build_name}/nt_muts.json",
@@ -459,8 +444,7 @@ rule nice_strain_names:
 
 
 rule export:
-    message:
-        "Exporting data files for for auspice"
+    # "Exporting data files for for auspice"
     input:
         colors="results/{build_name}/colors.tsv",
         tree="results/{build_name}/tree.nwk",
@@ -538,8 +522,7 @@ rule test_dataset:
 
 
 rule clean:
-    message:
-        "Removing directories: {params}"
+    # Removing directories: {params}"
     params:
         "results",
         "auspice",
@@ -548,8 +531,7 @@ rule clean:
 
 
 rule cleanall:
-    message:
-        "Removing directories: {params}"
+    # Removing directories: {params}"
     params:
         "results",
         "auspice",
