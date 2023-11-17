@@ -76,7 +76,7 @@
       "ignoredStopCodons": [
         {
           "codon": 187,
-          "geneName": "NBT03_gp175"
+          "geneName": "OPG015_dup"
         },
         {
           "codon": 187,
@@ -90,8 +90,5 @@
       "scoreWeight": 40
     }
   },
-  "schemaVersion": "3.0.0",
-  "version": {
-    "tag": "unreleased"
-  }
+  "schemaVersion": "3.0.0"
 }

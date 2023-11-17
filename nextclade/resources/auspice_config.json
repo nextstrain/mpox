@@ -1,7 +1,9 @@
 {
-  "title": "Nextclade reference tree for hMPXV-1 clade B.1 (reference seq: ON622721.3 in NC_063383.1 coordinates)",
+  "title": "Nextclade reference tree for Mpox virus (All clades) dataset",
   "maintainers": [
-    { "name": "Nextstrain team", "url": "http://nextstrain.org" }
+    { "name": "Cornelius Roemer", "url": "https://neherlab.org" },
+    { "name": "Richard Neher", "url": "https://neherlab.org" },
+    { "name": "Nextstrain team", "url": "https://nextstrain.org" }
   ],
   "data_provenance": [
     {
@@ -25,7 +27,7 @@
       ]
     }
   },
-  "build_url": "https://github.com/nextstrain/monkeypox",
+  "build_url": "https://github.com/nextstrain/mpox/nextclade",
   "colorings": [
     {
       "key": "outbreak",
@@ -48,13 +50,13 @@
       "type": "categorical"
     },
     {
-      "key": "strain_display",
-      "title": "Pretty strain name",
+      "key": "strain",
+      "title": "Strain name",
       "type": "categorical"
     },
     {
-      "key": "strain",
-      "title": "Strain name",
+      "key": "strain_display",
+      "title": "Pretty strain name",
       "type": "categorical"
     },
     {
@@ -69,11 +71,11 @@
     }
   ],
   "display_defaults": {
-    "color_by": "lineage",
+    "color_by": "clade_membership",
     "map_triplicate": false,
     "distance_measure": "div",
-    "transmission_lines": false,
-    "tip_label": "strain_display"
+    "tip_label": "strain_display",
+    "transmission_lines": false
   },
   "panels": ["tree", "entropy"],
   "filters": [
@@ -82,6 +84,10 @@
     "country",
     "host",
     "institution",
-    "region"
+    "region",
+    "strain_display",
+    "strain",
+    "date",
+    "outbreak"
   ]
 }

@@ -443,6 +443,18 @@ rule nice_strain_names:
         """
 
 
+rule patch_auspice_config:
+    input:
+        auspice_config="resources/auspice_config.json",
+        patch_json="resources/{build_name}/auspice_config_patch.json",
+    output:
+        auspice_config="results/{build_name}/auspice_config.json",
+    shell:
+        """
+        jsonpatch {input.auspice_config} {input.patch_json} > {output.auspice_config}
+        """
+
+
 rule export:
     # "Exporting data files for for auspice"
     input:
@@ -452,10 +464,10 @@ rule export:
         branch_lengths="results/{build_name}/branch_lengths.json",
         clades="results/{build_name}/clades.json",
         nt_muts="results/{build_name}/nt_muts.json",
-        auspice_config="resources/{build_name}/auspice_config.json",
+        auspice_config="results/{build_name}/auspice_config.json",
     output:
-        auspice_json="auspice/nextclade_mpox_{build_name}.json",
-        root_sequence="auspice/nextclade_mpox_{build_name}_root-sequence.json",
+        auspice_json="auspice/nextclade_mpox_{build_name}_pretty.json",
+        root_sequence="auspice/nextclade_mpox_{build_name}_pretty_root-sequence.json",
     shell:
         """
         augur export v2 \
@@ -467,6 +479,17 @@ rule export:
             --include-root-sequence \
             --metadata-id-columns accession \
             --output {output.auspice_json}
+        """
+
+
+rule minify_tree:
+    input:
+        auspice="auspice/nextclade_mpox_{build_name}_pretty.json",
+    output:
+        auspice="auspice/nextclade_mpox_{build_name}.json",
+    shell:
+        """
+        jq -c '.' {input.auspice} > {output.auspice}
         """
 
 

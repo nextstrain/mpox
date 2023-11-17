@@ -1,0 +1,8 @@
+[
+  {
+    "op": "replace",
+    "path": "/title",
+    "value": "Nextclade reference tree for Mpox virus (Clade IIb)"
+  },
+  { "op": "replace", "path": "/display_defaults/color_by", "value": "lineage" }
+]

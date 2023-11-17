@@ -47,6 +47,13 @@
         },
         {
           "codonRange": {
+            "begin": 3,
+            "end": 589
+          },
+          "geneName": "OPG003_dup"
+        },
+        {
+          "codonRange": {
             "begin": 281,
             "end": 285
           },
@@ -181,7 +188,7 @@
       "ignoredStopCodons": [
         {
           "codon": 187,
-          "geneName": "NBT03_gp175"
+          "geneName": "OPG015_dup"
         },
         {
           "codon": 187,
@@ -203,8 +210,5 @@
       "scoreWeight": 20
     }
   },
-  "schemaVersion": "3.0.0",
-  "version": {
-    "tag": "unreleased"
-  }
+  "schemaVersion": "3.0.0"
 }

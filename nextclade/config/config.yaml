@@ -19,14 +19,3 @@ lineage-b.1:
 
 ## filter
 min_length: 160000
-
-## align
-max_indel: 20000
-seed_spacing: 1000
-
-## refine
-timetree: false
-
-mask:
-  from_beginning: 1500
-  from_end: 6422
