@@ -74,12 +74,15 @@ if __name__=="__main__":
     for ii in range(max_iter):
         print(f"###\nIteration: {ii+1}\n")
         nodes_to_merge = defaultdict(list)
+
+        # For each node, for each mutation, find all children that have this mutation
         for n in T.get_nonterminals():
             shared_mutations = defaultdict(list)
             for c in n:
                 for mut in c.relevant_mutations:
                     shared_mutations[mut].append(c)
 
+            # For each mutation, if it occurs in more than one child, add the node and the children to the list of nodes to merge
             for mut in shared_mutations:
                 if len(shared_mutations[mut])>1:
                     nodes_to_merge[(n,tuple(shared_mutations[mut]))].append(mut)
@@ -89,7 +92,11 @@ if __name__=="__main__":
             break
 
         already_touched = set()
+
+        # Merge children starting with the ones that have the most shared mutations
         for (parent, children), mutations in sorted(nodes_to_merge.items(), key=lambda x:len(x[1]), reverse=True):
+
+            # Each child can only be merged once per iteration
             if any([c in already_touched for c in children]):
                 continue
 
@@ -97,19 +104,38 @@ if __name__=="__main__":
             print("shared mutations:", mutations)
             print("\n")
 
+            # Remove children to be merged from parent
             parent.clades = [c for c in parent if c not in children]
-            new_clade = Phylo.BaseTree.Clade(branch_length=tt.one_mutation*len(mutations))
+
+            # Create new internal node for the merged children
+            new_clade = Phylo.BaseTree.Clade(branch_length=tt.one_mutation*len(mutations), name=f"{'_'.join([c.name for c in children])}_merged")
             new_clade.relevant_mutations = set(mutations)
+
+            # Add merged children to new internal node
             for c in children:
                 left_over_mutations = c.relevant_mutations.difference(mutations)
-                if len(left_over_mutations):
+
+                # Terminal nodes and internal nodes with mutations should be added as children to the new internal node
+                if len(left_over_mutations) or c.is_terminal():
                     c.relevant_mutations = left_over_mutations
                     c.branch_length = tt.one_mutation*len(c.relevant_mutations)
                     new_clade.clades.append(c)
+                # Internal branches of 0 length should be removed and children added to the new internal node directly
                 else:
                     new_clade.clades.extend(c.clades)
                 already_touched.add(c)
 
             parent.clades.append(new_clade)
+
+    # Prune all terminals without names
+    count = 0
+    while True:
+        for n in T.find_clades():
+            if n.is_terminal() and n.name is None:
+                T.prune(n)
+                print(f"Warning: Pruned terminal node without name. This should not happen.")
+                count += 1
+        if count == 0:
+            break
 
     Phylo.write(T, args.output, 'newick')
