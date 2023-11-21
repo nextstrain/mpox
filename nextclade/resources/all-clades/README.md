@@ -14,14 +14,15 @@
 | references          | [Urgent need for a non-discriminatory and non-stigmatizing nomenclature for monkeypox virus](https://doi.org/10.1371/journal.pbio.3001769) |
 | related datasets    | Mpox virus (Clade IIb): `nextstrain/mpox/clade-iib`<br> Mpox virus (Lineage B.1) `nextstrain/mpox/lineage-b.1`                             |
 
+## Scope of this dataset
 This dataset is for Mpox viruses of all clades (I, IIa and IIb). For a focused analysis of sequences from clade IIb, you may want to use the more specific dataset: "Clade IIb" (`nextstrain/mpox/clade-iib`). For an even more focused analysis of 2022-2023 outbreak sequences (lineage B.1 and sublineages), you may want to use the even more specific dataset: "Lineage B.1" (`nextstrain/mpox/lineage-b.1`).
 
-The lineage system used is defined in [Happi et. al. (2022)](https://doi.org/10.1371/journal.pbio.3001769). Lineage definitions are available at [github.com/mpxv-lineages/lineage-designation](https://github.com/nextstrain/mpox/nextclade).
-
+## Reference sequence and data source
 The reference used in this dataset is the cladde IIb NCBI refseq `NC_063383.1` (Isolate `MPXV-M5312_HM12_Rivers`).
-
 Sequences for the reference tree come from NCBI/Genbank and are downsampled to around 500 sequences from the diversity of clades, lineages, countries and collection dates.
 
 ## Further reading
+
+The lineage system used is described in [Happi et. al. (2022)](https://doi.org/10.1371/journal.pbio.3001769). Lineage definitions are available at [github.com/mpxv-lineages/lineage-designation](https://github.com/nextstrain/mpox/nextclade).
 
 Read more about Nextclade datasets in Nextclade documentation: https://docs.nextstrain.org/projects/nextclade/en/stable/user/datasets.html
