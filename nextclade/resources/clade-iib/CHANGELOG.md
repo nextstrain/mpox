@@ -2,13 +2,12 @@
 
 Initial release of this dataset. This dataset is similar to the v2 dataset [`hMPXV/NC_063383.1`](https://github.com/nextstrain/nextclade_data/tree/2023-08-17--15-51-24--UTC/data/datasets/hMPXV/references/NC_063383.1/versions/2023-08-01T12%3A00%3A00Z/files) with some differences.
 
-Read more about Nextclade datasets in the documentation: https://docs.nextstrain.org/projects/nextclade/en/stable/user/datasets.html
+### New and changed gene names
 
-### Important changes compared to v2 dataset
+Some genes have been renamed and one has been added. The new annotation is based on NCBI refseq annotations that were released in November 2022. The v2 dataset predates this refseq:
 
-- Some genes have been renamed and one has been added. The new annotation is based on NCBI refseq annotations that were released in November 2022. The v2 dataset predates this refseq.
-  - The 4 genes in the inverted terminal repeat segment (ITR) on both ends of the genome (OPG001, OPG002, OPG003,OPG015) are now all included. The genes on the 3' end (~positions 190000-197000) now have an `_dup` appended to distinguish them.
-  - The gene previously named `NBT03_gp052` is now called `OPG073`
-  - The gene previously named `NBT03_gp174` is now called `OPG016`
-  - The gene previously named `NBT03_gp175` is now called `OPG015_dup`
-  - Gene `OPG166` has been added
+- The 4 genes in the inverted terminal repeat segment (ITR) on both ends of the genome (OPG001, OPG002, OPG003,OPG015) are now all included. The genes on the 3' end (~positions 190000-197000) now have an `_dup` appended to distinguish them.
+- The gene previously named `NBT03_gp052` is now called `OPG073`
+- The gene previously named `NBT03_gp174` is now called `OPG016`
+- The gene previously named `NBT03_gp175` is now called `OPG015_dup`
+- Gene `OPG166` has been added

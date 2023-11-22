@@ -8,14 +8,9 @@
     "gapAlignmentSide": "left"
   },
   "attributes": {
-    "name": {
-      "value": "MPXV",
-      "valueFriendly": "Monkeypox (All Clades)"
-    },
-    "reference": {
-      "value": "ancestral",
-      "valueFriendly": "Reconstructed ancestral MPXV"
-    }
+    "name": "Mpox virus (All clades)",
+    "reference accession": "NC_063383.1",
+    "reference name": "MPXV-M5312_HM12_Rivers"
   },
   "compatibility": {
     "cli": "3.0.0-alpha.0",

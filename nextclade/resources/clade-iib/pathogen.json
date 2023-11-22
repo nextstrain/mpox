@@ -8,14 +8,9 @@
     "windowSize": 30
   },
   "attributes": {
-    "name": {
-      "value": "hMPXV",
-      "valueFriendly": "Human Monkeypox (hMPXV)"
-    },
-    "reference": {
-      "value": "NC_063383.1",
-      "valueFriendly": "MPXV-M5312_HM12_Rivers"
-    }
+    "name": "Mpox virus (Clade IIb)",
+    "reference accession": "NC_063383.1",
+    "reference name": "MPXV-M5312_HM12_Rivers"
   },
   "compatibility": {
     "cli": "3.0.0-alpha.0",

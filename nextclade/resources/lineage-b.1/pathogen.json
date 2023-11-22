@@ -8,14 +8,9 @@
     "gapAlignmentSide": "left"
   },
   "attributes": {
-    "name": {
-      "value": "hMPXV_B1",
-      "valueFriendly": "Human Monkeypox Lineage B.1*"
-    },
-    "reference": {
-      "value": "pseudo_ON563414",
-      "valueFriendly": "MPXV_USA_2022_MA001 in NC_063383 coordinates"
-    }
+    "name": "Mpox virus (Lineage B.1)",
+    "reference accession": "NC_063383.1 (with B.1 SNPs)",
+    "reference name": "MPXV-M5312_HM12_Rivers with B.1 SNPs"
   },
   "compatibility": {
     "cli": "3.0.0-alpha.0",
