@@ -55,21 +55,21 @@ rule all:
         _get_all_targets,
 
 
-include: "workflow/snakemake_rules/fetch_sequences.smk"
-include: "workflow/snakemake_rules/transform.smk"
-include: "workflow/snakemake_rules/nextclade.smk"
+include: "rules/fetch_sequences.smk"
+include: "rules/transform.smk"
+include: "rules/nextclade.smk"
 
 
 if config.get("upload", False):
 
-    include: "workflow/snakemake_rules/upload.smk"
+    include: "rules/upload.smk"
 
 
 if send_slack_notifications:
 
-    include: "workflow/snakemake_rules/slack_notifications.smk"
+    include: "rules/slack_notifications.smk"
 
 
 if config.get("trigger_rebuild", False):
 
-    include: "workflow/snakemake_rules/trigger_rebuild.smk"
+    include: "rules/trigger_rebuild.smk"
