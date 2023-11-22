@@ -3,7 +3,7 @@ sources: ['genbank']
 # Pathogen NCBI Taxonomy ID
 ncbi_taxon_id: '10244'
 # Renames the NCBI dataset headers
-ncbi_field_map: 'source-data/ncbi-dataset-field-map.tsv'
+ncbi_field_map: 'config/ncbi-dataset-field-map.tsv'
 
 # Params for the transform rule
 transform:
@@ -43,9 +43,9 @@ transform:
   geolocation_rules_url: 'https://raw.githubusercontent.com/nextstrain/ncov-ingest/master/source-data/gisaid_geoLocationRules.tsv'
   # Local geolocation rules that are only applicable to mpox data
   # Local rules can overwrite the general geolocation rules provided above
-  local_geolocation_rules: 'source-data/geolocation-rules.tsv'
+  local_geolocation_rules: 'config/geolocation-rules.tsv'
   # User annotations file
-  annotations: 'source-data/annotations.tsv'
+  annotations: 'config/annotations.tsv'
   # ID field used to merge annotations
   annotations_id: 'accession'
   # Field to use as the sequence ID in the FASTA file
@@ -76,4 +76,4 @@ nextclade:
   # Field to use as the sequence ID in the Nextclade file
   id_field: 'seqName'
   # Fields from a Nextclade file to be renamed (if desired) and appended to a metadata file
-  field_map: 'source-data/nextclade-field-map.tsv'
+  field_map: 'config/nextclade-field-map.tsv'
