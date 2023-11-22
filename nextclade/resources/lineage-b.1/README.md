@@ -14,7 +14,7 @@
 
 This dataset is for Mpox viruses of the 2022-2023 outbreak lineage B.1. Two broader datasets for clade IIb and all clades are available as well: `nextstrain/mpox/clade-iib` for Clade IIb and `nextstrain/mpox/all-clades` for all clades (I, IIa and IIb).
 
-## Reference and reference tree
+## Reference sequence and reference tree
 
 The reference used in this dataset is the clade IIb NCBI refseq `NC_063383.1` (Isolate `MPXV-M5312_HM12_Rivers`) with all B.1 defining SNPs added to make the mutation view less cluttered.
 

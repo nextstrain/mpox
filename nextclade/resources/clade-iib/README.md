@@ -14,7 +14,7 @@
 
 This dataset is for Mpox viruses of clade IIb. A more specific dataset just for outbreak lineage B.1 is available as `nextstrain/mpox/lineage-b.1`. There is also a broader dataset for all clades I, IIa and IIb under `nextstrain/mpox/all-clades`.
 
-## Reference and reference tree
+## Reference sequence and reference tree
 
 The reference used in this dataset is the clade IIb NCBI refseq `NC_063383.1` (Isolate `MPXV-M5312_HM12_Rivers`).
 
