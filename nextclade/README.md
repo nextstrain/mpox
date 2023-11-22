@@ -26,7 +26,21 @@ nextstrain view auspice/
 
 ### Creating a new dataset version
 
-Edit CHANGELOG.md
+- [ ] Edit CHANGELOG.md
+- [ ] Switch to `nextclade_data/data/mpox` repo
+- [ ] Create branch there, copy datasets, commit, push, open PR:
+
+```bash
+cd ../../nextclade_data
+git checkout master
+git pull
+git checkout -b mpox-update
+cp -r ../monkeypox/nextclade/datasets/ data/nextstrain/mpox
+git add data/nextstrain/mpox
+git commit -m "Update mpox dataset"
+git push -u origin mpox-update
+gh pr create
+```
 
 ## Configuration
 

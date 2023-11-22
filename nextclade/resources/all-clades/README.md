@@ -1,18 +1,14 @@
 # Nextclade dataset for "Mpox virus (All Clades)"
 
-| property            | value                                                                                                                                      |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| authors             | [Cornelius Roemer](https://neherlab.org), [Richard Neher](https://neherlab.org), [Nextstrain](https://nextstrain.org)                      |
-| data source         | Genbank                                                                                                                                    |
-| workflow            | [github.com/nextstrain/mpox/nextclade](https://github.com/nextstrain/mpox/nextclade)                                                       |
-| issues              | github.com/nextstrain/mpox/issues                                                                                                          |
-| nextclade data path | nextstrain/mpox/all-clades                                                                                                                 |
-| title               | Mpox virus (All Clades)                                                                                                                    |
-| taxon               | [NCBI:txid10244](https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=10244)                                              |
-| annotation          | [NC_063383.1](https://www.ncbi.nlm.nih.gov/nuccore/NC_063383)                                                                              |
-| clade definitions   | github.com/mpxv-lineages/lineage-designation                                                                                               |
-| references          | [Urgent need for a non-discriminatory and non-stigmatizing nomenclature for monkeypox virus](https://doi.org/10.1371/journal.pbio.3001769) |
-| related datasets    | Mpox virus (Clade IIb): `nextstrain/mpox/clade-iib`<br> Mpox virus (Lineage B.1) `nextstrain/mpox/lineage-b.1`                             |
+| Key                    | Value                                                                                                                 |
+| ---------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| authors                | [Cornelius Roemer](https://neherlab.org), [Richard Neher](https://neherlab.org), [Nextstrain](https://nextstrain.org) |
+| data source            | Genbank                                                                                                               |
+| workflow               | [github.com/nextstrain/mpox/nextclade](https://github.com/nextstrain/mpox/nextclade)                                  |
+| nextclade dataset path | nextstrain/mpox/all-clades                                                                                            |
+| annotation             | [NC_063383.1](https://www.ncbi.nlm.nih.gov/nuccore/NC_063383)                                                         |
+| clade definitions      | [github.com/mpxv-lineages/lineage-designation](https://github.com/mpxv-lineages/lineage-designation)                  |
+| related datasets       | Mpox virus (Clade IIb): `nextstrain/mpox/clade-iib`<br> Mpox virus (Lineage B.1) `nextstrain/mpox/lineage-b.1`        |
 
 ## Scope of this dataset
 
@@ -20,7 +16,7 @@ This dataset is for Mpox viruses of all clades (I, IIa and IIb). For a focused a
 
 ## Reference sequence and reference tree
 
-The reference used in this dataset is the cladde IIb NCBI refseq `NC_063383.1` (Isolate `MPXV-M5312_HM12_Rivers`).
+The reference used in this dataset is the clade IIb NCBI refseq `NC_063383.1` (Isolate `MPXV-M5312_HM12_Rivers`).
 
 Sequences for the reference tree come from NCBI/Genbank and are downsampled to around 500 sequences from the diversity of clades, lineages, countries and collection dates.
 
