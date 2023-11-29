@@ -41,20 +41,20 @@ rule all:
 
 if config.get("data_source", None) == "lapis":
 
-    include: "workflow/snakemake_rules/download_via_lapis.smk"
+    include: "rules/download_via_lapis.smk"
 
 else:
 
-    include: "workflow/snakemake_rules/prepare.smk"
+    include: "rules/prepare.smk"
 
 
-include: "workflow/snakemake_rules/chores.smk"
-include: "workflow/snakemake_rules/core.smk"
+include: "rules/chores.smk"
+include: "rules/core.smk"
 
 
 if config.get("deploy_url", False):
 
-    include: "workflow/snakemake_rules/nextstrain_automation.smk"
+    include: "rules/nextstrain_automation.smk"
 
 
 # Include custom rules defined in the config.

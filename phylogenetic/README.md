@@ -109,7 +109,7 @@ nextstrain view .
 ## Configuration
 
 Configuration takes place in `config/*/config.yaml` files for each build.
-The analysis pipeline is contained in `workflow/snakemake_rule/core.smk`.
+The analysis pipeline is contained in `rules/core.smk`.
 This can be read top-to-bottom, each rule specifies its file inputs and output and pulls its parameters from `config`.
 There is little redirection and each rule should be able to be reasoned with on its own.
 
