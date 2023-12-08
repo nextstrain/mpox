@@ -1,3 +1,4 @@
-test_output/
-datasets/
-bin/
+/test_output/
+/datasets/
+/bin/
+/test/
