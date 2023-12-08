@@ -36,16 +36,6 @@ rule deploy_to_nextstrain_staging:
         """
 
 
-rule get_nextclade_v3:
-    output:
-        "bin/nextclade",
-    shell:
-        """
-        cp ../../nextclade_master/target/release/nextclade {output}
-        chmod +x {output}
-        """
-
-
 rule download:
     "Downloading ingested sequences and metadata from data.nextstrain.org"
     output:
@@ -106,13 +96,12 @@ rule prealign:
     input:
         sequences="results/sequences_without_known_duplicates.fasta",
         reference=PREALIGN_REFERENCE,
-        nextclade="bin/nextclade",
         annotation="resources/genome_annotation.gff3",
     output:
         alignment="results/prealigned.fasta",
     shell:
         """
-        ./{input.nextclade} run \
+        nextclade3 run \
             {input.sequences} \
             --retry-reverse-complement \
             --excess-bandwidth 100 \
@@ -252,7 +241,6 @@ rule align:
         sequences="results/{build_name}/filtered.fasta",
         reference="resources/{build_name}/reference.fasta",
         root="resources/{build_name}/root.fasta",
-        nextclade="bin/nextclade",
         annotation="resources/genome_annotation.gff3",
     output:
         alignment="results/{build_name}/aligned.fasta",
@@ -264,7 +252,7 @@ rule align:
         """
         cat {input.root} {input.reference} {input.sequences} \
         | seqkit rmdup -n \
-        | ./{input.nextclade} run \
+        | nextclade3 run \
             --retry-reverse-complement \
             --input-ref {input.reference} \
             --excess-bandwidth 100 \
@@ -533,14 +521,13 @@ rule test_dataset:
         annotation="datasets/{build_name}/genome_annotation.gff3",
         readme="datasets/{build_name}/README.md",
         changelog="datasets/{build_name}/CHANGELOG.md",
-        nextclade="bin/nextclade",
     output:
         outdir=directory("test_output/{build_name}"),
     params:
         dataset_dir="datasets/{build_name}",
     shell:
         """
-        ./{input.nextclade} run \
+        nextclade3 run \
             {input.sequences} \
             --input-dataset {params.dataset_dir} \
             --output-all {output.outdir}
