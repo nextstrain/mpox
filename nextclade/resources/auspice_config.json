@@ -1,0 +1,139 @@
+{
+  "title": "Nextclade reference tree for Mpox virus (All clades) dataset",
+  "maintainers": [
+    { "name": "Cornelius Roemer", "url": "https://neherlab.org" },
+    { "name": "Richard Neher", "url": "https://neherlab.org" },
+    { "name": "Nextstrain team", "url": "https://nextstrain.org" }
+  ],
+  "data_provenance": [
+    {
+      "name": "GenBank",
+      "url": "https://www.ncbi.nlm.nih.gov/genbank/"
+    }
+  ],
+  "extensions": {
+    "nextclade": {
+      "clade_node_attrs": [
+        {
+          "name": "outbreak",
+          "displayName": "Outbreak",
+          "description": ""
+        },
+        {
+          "name": "lineage",
+          "displayName": "Lineage",
+          "description": ""
+        }
+      ],
+      "placement_mask_ranges": [
+        {
+          "begin": 0,
+          "end": 1500
+        },
+        {
+          "begin": 133050,
+          "end": 133250
+        },
+        {
+          "begin": 136500,
+          "end": 136600
+        },
+        {
+          "begin": 140050,
+          "end": 140250
+        },
+        {
+          "begin": 146750,
+          "end": 147000
+        },
+        {
+          "begin": 150500,
+          "end": 150650
+        },
+        {
+          "begin": 169250,
+          "end": 169500
+        },
+        {
+          "begin": 169700,
+          "end": 169800
+        },
+        {
+          "begin": 173150,
+          "end": 173350
+        },
+        {
+          "begin": 179000,
+          "end": 179300
+        },
+        {
+          "begin": 190787,
+          "end": 197209
+        }
+      ]
+    }
+  },
+  "build_url": "https://github.com/nextstrain/mpox/nextclade",
+  "colorings": [
+    {
+      "key": "outbreak",
+      "title": "Outbreak",
+      "type": "categorical"
+    },
+    {
+      "key": "lineage",
+      "title": "Lineage",
+      "type": "categorical"
+    },
+    {
+      "key": "date",
+      "title": "Collection Date",
+      "type": "categorical"
+    },
+    {
+      "key": "host",
+      "title": "Host",
+      "type": "categorical"
+    },
+    {
+      "key": "strain",
+      "title": "Strain name",
+      "type": "categorical"
+    },
+    {
+      "key": "strain_display",
+      "title": "Pretty strain name",
+      "type": "categorical"
+    },
+    {
+      "key": "region",
+      "title": "Region",
+      "type": "categorical"
+    },
+    {
+      "key": "country",
+      "title": "Country",
+      "type": "categorical"
+    }
+  ],
+  "display_defaults": {
+    "color_by": "clade_membership",
+    "map_triplicate": false,
+    "distance_measure": "div",
+    "tip_label": "strain_display",
+    "transmission_lines": false
+  },
+  "panels": ["tree", "entropy"],
+  "filters": [
+    "clade_membership",
+    "lineage",
+    "country",
+    "host",
+    "institution",
+    "region",
+    "strain_display",
+    "strain",
+    "date",
+    "outbreak"
+  ]
+}

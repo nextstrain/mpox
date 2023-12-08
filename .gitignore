@@ -8,6 +8,7 @@ outbreak_data/
 logs/
 staging/
 benchmarks/
+bin/
 
 # Keep ingest/data directory, but ignore all files within it
 !ingest/data/

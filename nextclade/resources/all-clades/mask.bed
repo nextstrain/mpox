@@ -1,0 +1,13 @@
+Chrom	ChromStart	ChromEnd	locus tag	Comment
+chr	0	1500		mask from beginning
+chr	6400	7100		very diverse region in clade IIa vs (clade IIb and clade I)
+chr	133050	133250		indel variation and long homopolymers
+chr	136500	136600		indel variation and long homopolymers
+chr	140050	140250		indel variation and long repetitive elements
+chr	146750	147000		indel variation and long repetitive elements
+chr	150500	150650		indel variation and long repetitive elements
+chr	169250	169500		indel variation and long repetitive elements
+chr	169700	169800		indel variation and long repetitive elements
+chr	173150	173350		indel variation and long repetitive elements
+chr	179000	179300		indel variation and long repetitive elements
+chr	190787	197209		mask from end (6422)

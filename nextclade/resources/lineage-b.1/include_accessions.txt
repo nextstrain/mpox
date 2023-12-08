@@ -1,0 +1,2 @@
+ON676708    #outgroup
+ref_in_coord #reference
