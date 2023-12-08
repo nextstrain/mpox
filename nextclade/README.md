@@ -1,12 +1,14 @@
 # Nextclade reference tree workflow for monkeypox
 
-This README doesn't end up in the datasets, so it's more of a developer README, rather than a dataset user README.
+This README doesn't end up in the datasets, so it's a developer README, rather than a dataset user README.
 
 ## Usage
 
 ```bash
 snakemake
 ```
+
+You need to have a `nextclade3` binary in your path. It's in the `nextstrain/docker-base` image or you can get it from <https://github.com/nextstrain/nextclade/releases/tag/3.0.0-alpha.0>.
 
 ### Visualize results
 
