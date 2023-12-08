@@ -50,7 +50,3 @@ repos:
     rev: v0.9.0.6
     hooks:
       - id: shellcheck
-  - repo: https://github.com/snakemake/snakefmt
-    rev: v0.8.5
-    hooks:
-      - id: snakefmt
