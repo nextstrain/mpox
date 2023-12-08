@@ -19,7 +19,7 @@ rule nextclade_dataset_hMPXV:
 
 rule align:
     input:
-        sequences="data/sequences.fasta",
+        sequences="results/sequences.fasta",
         dataset="hmpxv.zip",
     output:
         alignment="data/alignment.fasta",
@@ -41,7 +41,7 @@ rule align:
 
 rule nextclade:
     input:
-        sequences="data/sequences.fasta",
+        sequences="results/sequences.fasta",
         dataset="mpxv.zip",
     output:
         "data/nextclade.tsv",
@@ -56,15 +56,31 @@ rule join_metadata_clades:
     input:
         nextclade="data/nextclade.tsv",
         metadata="data/metadata_raw.tsv",
+        nextclade_field_map=config["nextclade"]["field_map"],
     output:
-        "data/metadata.tsv",
+        metadata="results/metadata.tsv",
     params:
         id_field=config["transform"]["id_field"],
+        nextclade_id_field=config["nextclade"]["id_field"],
     shell:
         """
-        python3 bin/join-metadata-and-clades.py \
-                --id-field {params.id_field} \
-                --metadata {input.metadata} \
-                --nextclade {input.nextclade} \
-                -o {output}
+        export SUBSET_FIELDS=`awk 'NR>1 {{print $1}}' {input.nextclade_field_map} | tr '\n' ',' | sed 's/,$//g'`
+
+        csvtk -tl cut -f $SUBSET_FIELDS \
+            {input.nextclade} \
+        | csvtk -tl rename2 \
+            -F \
+            -f '*' \
+            -p '(.+)' \
+            -r '{{kv}}' \
+            -k {input.nextclade_field_map} \
+        | tsv-join -H \
+            --filter-file - \
+            --key-fields {params.nextclade_id_field} \
+            --data-fields {params.id_field} \
+            --append-fields '*' \
+            --write-all ? \
+            {input.metadata} \
+        | tsv-select -H --exclude {params.nextclade_id_field} \
+            > {output.metadata}
         """

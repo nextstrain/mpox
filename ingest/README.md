@@ -1,11 +1,15 @@
-# nextstrain.org/monkeypox/ingest
+# nextstrain.org/mpox/ingest
 
 This is the ingest pipeline for mpox virus sequences.
+
+## Software requirements
+
+Follow the [standard installation instructions](https://docs.nextstrain.org/en/latest/install.html) for Nextstrain's suite of software tools.
 
 ## Usage
 
 > NOTE: All command examples assume you are within the `ingest` directory.
-> If running commands from the outer `monkeypox` directory, please replace the `.` with `ingest`
+> If running commands from the outer `mpox` directory, please replace the `.` with `ingest`
 
 Fetch sequences with
 
@@ -21,8 +25,8 @@ nextstrain build .
 
 This will produce two files (within the `ingest` directory):
 
-- `data/metadata.tsv`
-- `data/sequences.fasta`
+- `results/metadata.tsv`
+- `results/sequences.fasta`
 
 Run the complete ingest pipeline and upload results to AWS S3 with
 
@@ -66,7 +70,6 @@ The complete ingest pipeline with AWS S3 uploads and Slack notifications uses th
 
 #### Required
 
-- `AWS_DEFAULT_REGION`
 - `AWS_ACCESS_KEY_ID`
 - `AWS_SECRET_ACCESS_KEY`
 - `SLACK_TOKEN`
@@ -83,18 +86,11 @@ These are optional environment variables used in our automated pipeline for prov
 
 ### GenBank data
 
-GenBank sequences and metadata are fetched via NCBI Virus.
-The exact URL used to fetch data is constructed by `vendored/ncbi-virus-url`.
+GenBank sequences and metadata are fetched via [NCBI datasets](https://www.ncbi.nlm.nih.gov/datasets/docs/v2/download-and-install/).
 
 ## `ingest/vendored`
 
-This repository uses [`git subrepo`](https://github.com/ingydotnet/git-subrepo) to manage copies of ingest scripts in `ingest/vendored`, from [nextstrain/ingest](https://github.com/nextstrain/ingest). To pull new changes from the central ingest repository, first install `git subrepo`, then run:
+This repository uses [`git subrepo`](https://github.com/ingydotnet/git-subrepo) to manage copies of ingest scripts in [ingest/vendored](./vendored), from [nextstrain/ingest](https://github.com/nextstrain/ingest).
 
-```sh
-git subrepo pull ingest/vendored
-```
-
-Changes should not be pushed using `git subrepo push`.
-
-1. For pathogen-specific changes, make them in this repository via a pull request.
-2. For pathogen-agnostic changes, make them on [nextstrain/ingest](https://github.com/nextstrain/ingest) via pull request there, then use `git subrepo pull` to add those changes to this repository.
+See [vendored/README.md](vendored/README.md#vendoring) for instructions on how to update
+the vendored scripts.

@@ -18,7 +18,7 @@ if not slack_envvars_defined:
     )
     sys.exit(1)
 
-S3_SRC = "s3://nextstrain-data/files/workflows/monkeypox"
+S3_SRC = "s3://nextstrain-data/files/workflows/mpox"
 
 
 rule notify_on_genbank_record_change:
@@ -36,7 +36,7 @@ rule notify_on_genbank_record_change:
 
 rule notify_on_metadata_diff:
     input:
-        metadata="data/metadata.tsv",
+        metadata="results/metadata.tsv",
     output:
         touch("data/notify/metadata-diff.done"),
     params:
@@ -48,8 +48,8 @@ rule notify_on_metadata_diff:
 
 
 onstart:
-    shell("./vendored/notify-on-job-start Ingest nextstrain/monkeypox")
+    shell("./vendored/notify-on-job-start Ingest nextstrain/mpox")
 
 
 onerror:
-    shell("./vendored/notify-on-job-fail Ingest nextstrain/monkeypox")
+    shell("./vendored/notify-on-job-fail Ingest nextstrain/mpox")

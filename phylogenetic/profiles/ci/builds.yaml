@@ -1,3 +1,6 @@
+custom_rules:
+  - profiles/ci/copy_example_data.smk
+
 reference: "config/reference.fasta"
 genemap: "config/genemap.gff"
 genbank_reference: "config/reference.gb"
@@ -9,7 +12,7 @@ description: "config/description.md"
 tree_mask: "config/tree_mask.tsv"
 
 # Use `accession` as the ID column since `strain` currently contains duplicates¹.
-# ¹ https://github.com/nextstrain/mpox/issues/33
+# ¹ https://github.com/nextstrain/monkeypox/issues/33
 strain_id_field: "accession"
 display_strain_field: "strain"
 

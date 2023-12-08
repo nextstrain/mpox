@@ -12,6 +12,9 @@ Some tools may only live here temporarily before finding a permanent home in
 Nextstrain maintained pathogen repos will use [`git subrepo`](https://github.com/ingydotnet/git-subrepo) to vendor ingest scripts.
 (See discussion on this decision in https://github.com/nextstrain/ingest/issues/3)
 
+For a list of Nextstrain repos that are currently using this method, use [this
+GitHub code search](https://github.com/search?type=code&q=org%3Anextstrain+subrepo+%22remote+%3D+https%3A%2F%2Fgithub.com%2Fnextstrain%2Fingest%22).
+
 If you don't already have `git subrepo` installed, follow the [git subrepo installation instructions](https://github.com/ingydotnet/git-subrepo#installation).
 Then add the latest ingest scripts to the pathogen repo by running:
 
@@ -23,6 +26,13 @@ Any future updates of ingest scripts can be pulled in with:
 
 ```
 git subrepo pull ingest/vendored
+```
+
+If you run into merge conflicts and would like to pull in a fresh copy of the
+latest ingest scripts, pull with the `--force` flag:
+
+```
+git subrepo pull ingest/vendored --force
 ```
 
 > **Warning**
@@ -47,14 +57,14 @@ commit hash if needed.
 
 Much of this tooling originated in
 [ncov-ingest](https://github.com/nextstrain/ncov-ingest) and was passaged thru
-[monkeypox's ingest/](https://github.com/nextstrain/monkeypox/tree/@/ingest/).
-It subsequently proliferated from [monkeypox][] to other pathogen repos
-([rsv][], [zika][], [dengue][], [hepatitisB][], [forecasts-ncov][]) primarily
-thru copying.  To [counter that
+[mpox's ingest/](https://github.com/nextstrain/mpox/tree/@/ingest/). It
+subsequently proliferated from [mpox][] to other pathogen repos ([rsv][],
+[zika][], [dengue][], [hepatitisB][], [forecasts-ncov][]) primarily thru
+copying.  To [counter that
 proliferation](https://bedfordlab.slack.com/archives/C7SDVPBLZ/p1688577879947079),
 this repo was made.
 
-[monkeypox]: https://github.com/nextstrain/monkeypox
+[mpox]: https://github.com/nextstrain/mpox
 [rsv]: https://github.com/nextstrain/rsv
 [zika]: https://github.com/nextstrain/zika/pull/24
 [dengue]: https://github.com/nextstrain/dengue/pull/10

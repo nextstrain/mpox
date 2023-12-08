@@ -1,5 +1,9 @@
 # Sources of sequences to include in the ingest run
 sources: ['genbank']
+# Pathogen NCBI Taxonomy ID
+ncbi_taxon_id: '10244'
+# Renames the NCBI dataset headers
+ncbi_field_map: 'source-data/ncbi-dataset-field-map.tsv'
 
 # Params for the transform rule
 transform:
@@ -66,3 +70,10 @@ transform:
     'authors',
     'institution'
   ]
+
+# Params for Nextclade related rules
+nextclade:
+  # Field to use as the sequence ID in the Nextclade file
+  id_field: 'seqName'
+  # Fields from a Nextclade file to be renamed (if desired) and appended to a metadata file
+  field_map: 'source-data/nextclade-field-map.tsv'

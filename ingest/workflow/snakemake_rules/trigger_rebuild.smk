@@ -8,14 +8,15 @@ to expected upload flag files.
 
 
 rule trigger_build:
-    message:
-        "Triggering monekypox builds via repository action type `rebuild`."
+    """
+    Triggering monekypox builds via repository action type `rebuild`.
+    """
     input:
-        metadata_upload="data/upload/s3/metadata.tsv-to-metadata.tsv.gz.done",
-        fasta_upload="data/upload/s3/sequences.fasta-to-sequences.fasta.xz.done",
+        metadata_upload="data/upload/s3/metadata.tsv.gz.done",
+        fasta_upload="data/upload/s3/sequences.fasta.xz.done",
     output:
         touch("data/trigger/rebuild.done"),
     shell:
         """
-        ./vendored/trigger-on-new-data nextstrain/monkeypox rebuild {input.metadata_upload} {input.fasta_upload}
+        ./vendored/trigger-on-new-data nextstrain/mpox rebuild {input.metadata_upload} {input.fasta_upload}
         """

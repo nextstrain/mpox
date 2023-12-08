@@ -118,11 +118,10 @@ rule reverse_reverse_complements:
 
 
 rule align:
-    message:
-        """
-        Aligning sequences to {input.reference}
-          - filling gaps with N
-        """
+    """
+    Aligning sequences to {input.reference}
+      - filling gaps with N
+    """
     input:
         sequences=rules.reverse_reverse_complements.output,
         reference=config["reference"],
@@ -150,12 +149,11 @@ rule align:
 
 
 rule mask:
-    message:
-        """
-        Mask ends of the alignment:
-          - from start: {params.from_start}
-          - from end: {params.from_end}
-        """
+    """
+    Mask ends of the alignment:
+      - from start: {params.from_start}
+      - from end: {params.from_end}
+    """
     input:
         sequences=build_dir + "/{build_name}/aligned.fasta",
         mask=config["mask"]["maskfile"],
@@ -175,8 +173,9 @@ rule mask:
 
 
 rule tree:
-    message:
-        "Building tree"
+    """
+    Building tree
+    """
     input:
         alignment=build_dir + "/{build_name}/masked.fasta",
         tree_mask=config["tree_mask"],
@@ -195,8 +194,9 @@ rule tree:
 
 
 rule fix_tree:
-    message:
-        "Building tree"
+    """
+    Fixing tree
+    """
     input:
         tree=rules.tree.output.tree,
         alignment=build_dir + "/{build_name}/masked.fasta",
@@ -268,8 +268,9 @@ rule refine:
 
 
 rule ancestral:
-    message:
-        "Reconstructing ancestral sequences and mutations"
+    """
+    Reconstructing ancestral sequences and mutations
+    """
     input:
         tree=rules.refine.output.tree,
         alignment=build_dir + "/{build_name}/masked.fasta",
@@ -288,8 +289,9 @@ rule ancestral:
 
 
 rule translate:
-    message:
-        "Translating amino acid sequences"
+    """
+    Translating amino acid sequences
+    """
     input:
         tree=rules.refine.output.tree,
         node_data=rules.ancestral.output.node_data,
@@ -307,11 +309,10 @@ rule translate:
 
 
 rule traits:
-    message:
-        """
-        Inferring ancestral traits for {params.columns!s}
-          - increase uncertainty of reconstruction by {params.sampling_bias_correction} to partially account for sampling bias
-        """
+    """
+    Inferring ancestral traits for {params.columns!s}
+      - increase uncertainty of reconstruction by {params.sampling_bias_correction} to partially account for sampling bias
+    """
     input:
         tree=rules.refine.output.tree,
         metadata=build_dir + "/{build_name}/metadata.tsv",
@@ -335,8 +336,9 @@ rule traits:
 
 
 rule clades:
-    message:
-        "Adding internal clade labels"
+    """
+    Adding internal clade labels
+    """
     input:
         tree=rules.refine.output.tree,
         aa_muts=rules.translate.output.node_data,
@@ -396,8 +398,9 @@ rule remove_time:
 
 
 rule recency:
-    message:
-        "Use metadata on submission date to construct submission recency field"
+    """
+    Use metadata on submission date to construct submission recency field
+    """
     input:
         metadata=build_dir + "/{build_name}/metadata.tsv",
     output:
@@ -431,8 +434,9 @@ rule colors:
 
 
 rule export:
-    message:
-        "Exporting data files for for auspice"
+    """
+    Exporting data files for auspice
+    """
     input:
         tree=rules.refine.output.tree,
         metadata=build_dir + "/{build_name}/metadata.tsv",

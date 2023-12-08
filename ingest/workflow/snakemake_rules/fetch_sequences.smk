@@ -20,9 +20,11 @@ rule fetch_ncbi_dataset_package:
     retries: 5  # Requires snakemake 7.7.0 or later
     benchmark:
         "benchmarks/fetch_ncbi_dataset_package.txt"
+    params:
+        ncbi_taxon_id=config["ncbi_taxon_id"],
     shell:
         """
-        datasets download virus genome taxon 10244 \
+        datasets download virus genome taxon {params.ncbi_taxon_id} \
             --no-progressbar \
             --filename {output.dataset_package}
         """
@@ -78,7 +80,7 @@ rule format_ncbi_dataset_report:
     # The only fields we do not have equivalents for are "title" and "publications"
     input:
         dataset_package="data/ncbi_dataset.zip",
-        ncbi_field_map="source-data/ncbi-dataset-field-map.tsv",
+        ncbi_field_map=config["ncbi_field_map"],
     output:
         ncbi_dataset_tsv=temp("data/ncbi_dataset_report.tsv"),
     params:

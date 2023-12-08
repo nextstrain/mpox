@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
     inputs:
       trial_name:
-        description: "If set, result will be at nextstrain.org/staging/trial/trial_name/monkeypox/mpxv"
+        description: "If set, result will be at nextstrain.org/staging/trial/trial_name/mpox/mpxv"
         required: false
       image:
         description: 'Specific container image to use for build (will override the default of "nextstrain build")'
@@ -30,20 +30,21 @@ jobs:
       env: |
         NEXTSTRAIN_DOCKER_IMAGE: ${{ inputs.image }}
         GITHUB_RUN_ID: ${{ github.run_id }}
-        SLACK_CHANNELS: monkeypox-updates
+        SLACK_CHANNELS: ${{ vars.SLACK_CHANNELS }}
+        BUILD_DIR: phylogenetic
+        BUILD_NAME: mpxv
       run: |
         nextstrain build \
           --detach \
           --no-download \
           --cpus 8 \
           --memory 32gib \
-          --env AWS_DEFAULT_REGION \
           --env AWS_ACCESS_KEY_ID \
           --env AWS_SECRET_ACCESS_KEY \
           --env GITHUB_RUN_ID \
           --env SLACK_TOKEN \
           --env SLACK_CHANNELS \
-          phylogenetic \
+          . \
             notify_on_deploy \
-              --configfiles config/mpxv/config.yaml config/nextstrain_automation.yaml \
-              --config auspice_prefix=$TRIAL_NAME
+              --configfiles $BUILD_DIR/config/$BUILD_NAME/config.yaml $BUILD_DIR/config/nextstrain_automation.yaml \
+              --config auspice_prefix=$TRIAL_NAME --directory $BUILD_DIR --snakefile $BUILD_DIR/Snakefile

@@ -6,8 +6,8 @@ formats and expects input file
 
 This will produce output files as
 
-    metadata = "data/metadata.tsv"
-    sequences = "data/sequences.fasta"
+    metadata = "data/metadata_raw.tsv"
+    sequences = "results/sequences.fasta"
 
 Parameters are expected to be defined in `config.transform`.
 """
@@ -43,7 +43,7 @@ rule transform:
         annotations=config["transform"]["annotations"],
     output:
         metadata="data/metadata_raw.tsv",
-        sequences="data/sequences.fasta",
+        sequences="results/sequences.fasta",
     log:
         "logs/transform.txt",
     params:
