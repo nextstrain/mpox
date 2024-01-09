@@ -86,6 +86,9 @@
     }
   },
   "schemaVersion": "3.0.0",
+  "shortcuts": [
+    "hMPXV"
+  ],
   "version": {
     "tag": "unreleased"
   }

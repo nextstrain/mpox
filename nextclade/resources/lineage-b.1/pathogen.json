@@ -144,6 +144,9 @@
     }
   },
   "schemaVersion": "3.0.0",
+  "shortcuts": [
+    "hMPXV_B1"
+  ],
   "version": {
     "tag": "unreleased"
   }

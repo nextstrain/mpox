@@ -206,6 +206,10 @@
     }
   },
   "schemaVersion": "3.0.0",
+  "shortcuts": [
+    "MPXV",
+    "nextstrain/mpox"
+  ],
   "version": {
     "tag": "unreleased"
   }
