@@ -133,11 +133,11 @@
       "ignoredStopCodons": [
         {
           "codon": 187,
-          "geneName": "OPG015_dup"
+          "cdsName": "OPG015_dup"
         },
         {
           "codon": 187,
-          "geneName": "OPG015"
+          "cdsName": "OPG015"
         }
       ],
       "scoreWeight": 40

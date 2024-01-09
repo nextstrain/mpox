@@ -38,119 +38,119 @@
             "begin": 3,
             "end": 589
           },
-          "geneName": "OPG003"
+          "cdsName": "OPG003"
         },
         {
           "codonRange": {
             "begin": 3,
             "end": 589
           },
-          "geneName": "OPG003_dup"
+          "cdsName": "OPG003_dup"
         },
         {
           "codonRange": {
             "begin": 281,
             "end": 285
           },
-          "geneName": "OPG105"
+          "cdsName": "OPG105"
         },
         {
           "codonRange": {
             "begin": 227,
             "end": 229
           },
-          "geneName": "OPG164"
+          "cdsName": "OPG164"
         },
         {
           "codonRange": {
             "begin": 554,
             "end": 560
           },
-          "geneName": "OPG180"
+          "cdsName": "OPG180"
         },
         {
           "codonRange": {
             "begin": 42,
             "end": 101
           },
-          "geneName": "OPG197"
+          "cdsName": "OPG197"
         },
         {
           "codonRange": {
             "begin": 443,
             "end": 443
           },
-          "geneName": "OPG037"
+          "cdsName": "OPG037"
         },
         {
           "codonRange": {
             "begin": 57,
             "end": 443
           },
-          "geneName": "OPG037"
+          "cdsName": "OPG037"
         },
         {
           "codonRange": {
             "begin": 481,
             "end": 483
           },
-          "geneName": "OPG047"
+          "cdsName": "OPG047"
         },
         {
           "codonRange": {
             "begin": 482,
             "end": 483
           },
-          "geneName": "OPG047"
+          "cdsName": "OPG047"
         },
         {
           "codonRange": {
             "begin": 72,
             "end": 76
           },
-          "geneName": "OPG050"
+          "cdsName": "OPG050"
         },
         {
           "codonRange": {
             "begin": 369,
             "end": 371
           },
-          "geneName": "OPG153"
+          "cdsName": "OPG153"
         },
         {
           "codonRange": {
             "begin": 370,
             "end": 371
           },
-          "geneName": "OPG153"
+          "cdsName": "OPG153"
         },
         {
           "codonRange": {
             "begin": 166,
             "end": 169
           },
-          "geneName": "OPG191"
+          "cdsName": "OPG191"
         },
         {
           "codonRange": {
             "begin": 72,
             "end": 222
           },
-          "geneName": "OPG195"
+          "cdsName": "OPG195"
         },
         {
           "codonRange": {
             "begin": 208,
             "end": 222
           },
-          "geneName": "OPG195"
+          "cdsName": "OPG195"
         },
         {
           "codonRange": {
             "begin": 289,
             "end": 346
           },
-          "geneName": "OPG174"
+          "cdsName": "OPG174"
         }
       ],
       "scoreWeight": 20
@@ -183,23 +183,23 @@
       "ignoredStopCodons": [
         {
           "codon": 187,
-          "geneName": "OPG015_dup"
+          "cdsName": "OPG015_dup"
         },
         {
           "codon": 187,
-          "geneName": "OPG015"
+          "cdsName": "OPG015"
         },
         {
           "codon": 21,
-          "geneName": "OPG176"
+          "cdsName": "OPG176"
         },
         {
           "codon": 299,
-          "geneName": "OPG187"
+          "cdsName": "OPG187"
         },
         {
           "codon": 48,
-          "geneName": "OPG059"
+          "cdsName": "OPG059"
         }
       ],
       "scoreWeight": 20

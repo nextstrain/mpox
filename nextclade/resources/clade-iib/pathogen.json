@@ -38,7 +38,7 @@
             "begin": 289,
             "end": 346
           },
-          "geneName": "OPG174"
+          "cdsName": "OPG174"
         }
       ],
       "scoreWeight": 20
@@ -71,15 +71,15 @@
       "ignoredStopCodons": [
         {
           "codon": 187,
-          "geneName": "OPG015_dup"
+          "cdsName": "OPG015_dup"
         },
         {
           "codon": 187,
-          "geneName": "OPG015"
+          "cdsName": "OPG015"
         },
         {
           "codon": 21,
-          "geneName": "OPG176"
+          "cdsName": "OPG176"
         }
       ],
       "scoreWeight": 40
