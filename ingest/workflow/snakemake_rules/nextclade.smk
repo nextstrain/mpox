@@ -32,7 +32,7 @@ rule align:
     threads: 4
     shell:
         """
-        nextclade run -D {input.dataset} -j {threads}   --retry-reverse-complement \
+        nextclade2 run -D {input.dataset} -j {threads}   --retry-reverse-complement \
                   --output-fasta {output.alignment}  --output-translations {params.translations} \
                   --output-insertions {output.insertions} {input.sequences}
         zip -rj {output.translations} data/translations
@@ -48,7 +48,7 @@ rule nextclade:
     threads: 4
     shell:
         """
-        nextclade run -D {input.dataset} -j {threads} --output-tsv {output}  {input.sequences}  --retry-reverse-complement
+        nextclade2 run -D {input.dataset} -j {threads} --output-tsv {output}  {input.sequences}  --retry-reverse-complement
         """
 
 
