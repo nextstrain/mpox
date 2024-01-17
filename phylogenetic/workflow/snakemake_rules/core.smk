@@ -135,7 +135,7 @@ rule align:
     threads: workflow.cores
     shell:
         """
-        nextalign run \
+        nextalign2 run \
             --jobs {threads} \
             --reference {input.reference} \
             --genemap {input.genemap} \
