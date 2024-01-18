@@ -4,7 +4,7 @@ rule nextclade_dataset:
         temp("mpxv.zip"),
     shell:
         """
-        nextclade dataset get --name MPXV --output-zip {output}
+        nextclade2 dataset get --name MPXV --output-zip {output}
         """
 
 
@@ -13,7 +13,7 @@ rule nextclade_dataset_hMPXV:
         temp("hmpxv.zip"),
     shell:
         """
-        nextclade dataset get --name hMPXV --output-zip {output}
+        nextclade2 dataset get --name hMPXV --output-zip {output}
         """
 
 
