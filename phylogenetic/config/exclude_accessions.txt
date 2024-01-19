@@ -56,3 +56,17 @@ OQ621553	# Monkeypox virus isolate MPXV/Sudan/2022/RKI630, many insertions, clad
 OQ581847	# Spain, B.1.10, overdiverged
 OQ581850	# Spain, B.1.10, overdiverged
 OR540671	# Slovenia, overdiverged
+
+PP098612	# Italy/Campania overdiverged, version .1
+PP098592	# Italy/Campania overdiverged, version .1
+PP098584	# Italy/Campania overdiverged, version .1
+PP098601	# Italy/Campania overdiverged, version .1
+PP098604	# Italy/Campania overdiverged, version .1
+PP098613	# Italy/Campania overdiverged, version .2
+PP098593	# Italy/Campania overdiverged, version .2
+PP098605	# Italy/Campania overdiverged, version .2
+PP098614	# Italy/Campania overdiverged, version .2
+PP098587	# Italy/Campania overdiverged, version .2
+PP098582	# Italy/Campania overdiverged, version .2
+PP098610	# Italy/Campania overdiverged, version .2
+PP098599	# Italy/Campania overdiverged, version .2
