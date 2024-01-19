@@ -66,20 +66,6 @@ rule decompress:
         """
 
 
-rule index:
-    "Indexing sequences"
-    input:
-        sequences="data/sequences.fasta",
-    output:
-        index="results/index.tsv",
-    shell:
-        """
-        augur index \
-            --sequences {input.sequences} \
-            --output {output.index}
-        """
-
-
 rule remove_known_duplicates:
     input:
         known_duplicates="resources/known_duplicates.txt",
@@ -89,6 +75,20 @@ rule remove_known_duplicates:
     shell:
         """
         seqkit grep -w0 -v -f {input.known_duplicates} {input.sequences} > {output.sequences_without_known_duplicates}
+        """
+
+
+rule index:
+    "Indexing sequences"
+    input:
+        sequences="results/sequences_without_known_duplicates.fasta",
+    output:
+        index="results/index.tsv",
+    shell:
+        """
+        augur index \
+            --sequences {input.sequences} \
+            --output {output.index}
         """
 
 
@@ -112,15 +112,16 @@ rule prealign:
             --input-ref {input.reference} \
             --gap-alignment-side left \
             --input-annotation {input.annotation} \
-            --output-fasta {output.alignment} \
-            --include-reference
+            --output-fasta /dev/stdout \
+            --include-reference \
+        | sed 's/ |(reverse complement)$//' > {output.alignment}
         """
 
 
 rule exclude_bad:
     # Removing strains that do not satisfy certain requirements.
     input:
-        sequences="data/sequences.fasta",
+        sequences="results/sequences_without_known_duplicates.fasta",
         metadata="data/metadata.tsv",
         index="results/index.tsv",
     output:
@@ -251,6 +252,7 @@ rule align:
     shell:
         """
         cat {input.root} {input.reference} {input.sequences} \
+        | seqkit seq -w0 -i \
         | seqkit rmdup -n \
         | nextclade3 run \
             --retry-reverse-complement \
@@ -262,8 +264,9 @@ rule align:
             --min-seed-cover 0.1 \
             --input-annotation {input.annotation} \
             --gap-alignment-side left \
-            --output-fasta {output.alignment} \
-            --output-translations {params.translation_template}
+            --output-fasta /dev/stdout \
+            --output-translations {params.translation_template} \
+        | seqkit seq -w0 -i > {output.alignment}
         """
 
 
