@@ -5,9 +5,23 @@ The lineages within the recent mpox outbreaks in humans are defined in a separat
 
 ## Software requirements
 
-Follow the [standard installation instructions](https://docs.nextstrain.org/en/latest/install.html) for Nextstrain's suite of software tools.
+Follow the [standard installation instructions](https://docs.nextstrain.org/en/latest/install.html)
+for Nextstrain's suite of software tools.
 
 ## Usage
+
+If you're unfamiliar with Nextstrain builds, you may want to follow our
+[Running a Pathogen Workflow guide][] first and then come back here.
+
+The easiest way to run this pathogen build is using the Nextstrain
+command-line tool from within the `phylogenetic/` directory:
+
+    cd phylogenetic/
+    nextstrain build .
+
+Once you've run the build, you can view the results with:
+
+    nextstrain view .
 
 ### Example build
 
@@ -29,6 +43,9 @@ Input sequences and metadata can be retrieved from data.nextstrain.org
 
 * [sequences.fasta.xz](https://data.nextstrain.org/files/workflows/mpox/sequences.fasta.xz)
 * [metadata.tsv.gz](https://data.nextstrain.org/files/workflows/mpox/metadata.tsv.gz)
+
+The above datasets have been preprocessed and cleaned from GenBank using the
+[ingest/](../ingest/) workflow and are updated at regular intervals.
 
 Note that these data are generously shared by many labs around the world.
 If you analyze and plan to publish using these data, please contact these labs first.
