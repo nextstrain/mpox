@@ -221,7 +221,6 @@ rule refine:
         - use {params.coalescent} coalescent timescale
         - estimate {params.date_inference} node dates
         - filter tips more than {params.clock_filter_iqd} IQDs from clock expectation
-    Note: --use-fft was removed (temporarily) due to https://github.com/neherlab/treetime/issues/242
     """
     input:
         tree=rules.fix_tree.output.tree
@@ -244,6 +243,7 @@ rule refine:
         if "clock_std_dev" in config
         else "",
         strain_id=config["strain_id_field"],
+        divergence_units=config["divergence_units"],
     shell:
         """
         augur refine \
@@ -263,6 +263,7 @@ rule refine:
             --coalescent {params.coalescent} \
             --date-inference {params.date_inference} \
             --date-confidence \
+            --divergence-units {params.divergence_units} \
             --clock-filter-iqd {params.clock_filter_iqd}
         """
 
