@@ -66,6 +66,7 @@ timetree: false
 root: "min_dev"
 clock_rate: 3e-6
 clock_std_dev: 6e-6
+divergence_units: "mutations-per-site"
 
 ## recency
 recency: true
