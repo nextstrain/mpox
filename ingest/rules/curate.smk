@@ -36,6 +36,13 @@ rule concat_geolocation_rules:
         """
 
 
+def format_field_map(field_map: dict[str, str]) -> str:
+    """
+    Format dict to `"key1"="value1" "key2"="value2"...` for use in shell commands.
+    """
+    return " ".join([f'"{key}"="{value}"' for key, value in field_map.items()])
+
+
 rule curate:
     input:
         sequences_ndjson="data/sequences.ndjson",
@@ -47,7 +54,7 @@ rule curate:
     log:
         "logs/curate.txt",
     params:
-        field_map=config["curate"]["field_map"],
+        field_map=format_field_map(config["curate"]["field_map"]),
         strain_regex=config["curate"]["strain_regex"],
         strain_backup_fields=config["curate"]["strain_backup_fields"],
         date_fields=config["curate"]["date_fields"],
