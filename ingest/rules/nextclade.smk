@@ -60,7 +60,7 @@ rule join_metadata_clades:
     output:
         metadata="results/metadata.tsv",
     params:
-        id_field=config["transform"]["id_field"],
+        id_field=config["curate"]["id_field"],
         nextclade_id_field=config["nextclade"]["id_field"],
     shell:
         """

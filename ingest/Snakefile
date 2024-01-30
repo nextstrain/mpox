@@ -17,7 +17,7 @@ rule all:
 
 
 include: "rules/fetch_from_ncbi.smk"
-include: "rules/transform.smk"
+include: "rules/curate.smk"
 include: "rules/nextclade.smk"
 
 

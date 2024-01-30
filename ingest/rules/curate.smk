@@ -1,5 +1,5 @@
 """
-This part of the workflow handles transforming the data into standardized
+This part of the workflow handles curating the data into standardized
 formats and expects input file
 
     sequences_ndjson = "data/sequences.ndjson"
@@ -9,7 +9,7 @@ This will produce output files as
     metadata = "data/metadata_raw.tsv"
     sequences = "results/sequences.fasta"
 
-Parameters are expected to be defined in `config.transform`.
+Parameters are expected to be defined in `config.curate`.
 """
 
 
@@ -17,7 +17,7 @@ rule fetch_general_geolocation_rules:
     output:
         general_geolocation_rules="data/general-geolocation-rules.tsv",
     params:
-        geolocation_rules_url=config["transform"]["geolocation_rules_url"],
+        geolocation_rules_url=config["curate"]["geolocation_rules_url"],
     shell:
         """
         curl {params.geolocation_rules_url} > {output.general_geolocation_rules}
@@ -27,7 +27,7 @@ rule fetch_general_geolocation_rules:
 rule concat_geolocation_rules:
     input:
         general_geolocation_rules="data/general-geolocation-rules.tsv",
-        local_geolocation_rules=config["transform"]["local_geolocation_rules"],
+        local_geolocation_rules=config["curate"]["local_geolocation_rules"],
     output:
         all_geolocation_rules="data/all-geolocation-rules.tsv",
     shell:
@@ -36,32 +36,32 @@ rule concat_geolocation_rules:
         """
 
 
-rule transform:
+rule curate:
     input:
         sequences_ndjson="data/sequences.ndjson",
         all_geolocation_rules="data/all-geolocation-rules.tsv",
-        annotations=config["transform"]["annotations"],
+        annotations=config["curate"]["annotations"],
     output:
         metadata="data/metadata_raw.tsv",
         sequences="results/sequences.fasta",
     log:
-        "logs/transform.txt",
+        "logs/curate.txt",
     params:
-        field_map=config["transform"]["field_map"],
-        strain_regex=config["transform"]["strain_regex"],
-        strain_backup_fields=config["transform"]["strain_backup_fields"],
-        date_fields=config["transform"]["date_fields"],
-        expected_date_formats=config["transform"]["expected_date_formats"],
-        articles=config["transform"]["titlecase"]["articles"],
-        abbreviations=config["transform"]["titlecase"]["abbreviations"],
-        titlecase_fields=config["transform"]["titlecase"]["fields"],
-        authors_field=config["transform"]["authors_field"],
-        authors_default_value=config["transform"]["authors_default_value"],
-        abbr_authors_field=config["transform"]["abbr_authors_field"],
-        annotations_id=config["transform"]["annotations_id"],
-        metadata_columns=config["transform"]["metadata_columns"],
-        id_field=config["transform"]["id_field"],
-        sequence_field=config["transform"]["sequence_field"],
+        field_map=config["curate"]["field_map"],
+        strain_regex=config["curate"]["strain_regex"],
+        strain_backup_fields=config["curate"]["strain_backup_fields"],
+        date_fields=config["curate"]["date_fields"],
+        expected_date_formats=config["curate"]["expected_date_formats"],
+        articles=config["curate"]["titlecase"]["articles"],
+        abbreviations=config["curate"]["titlecase"]["abbreviations"],
+        titlecase_fields=config["curate"]["titlecase"]["fields"],
+        authors_field=config["curate"]["authors_field"],
+        authors_default_value=config["curate"]["authors_default_value"],
+        abbr_authors_field=config["curate"]["abbr_authors_field"],
+        annotations_id=config["curate"]["annotations_id"],
+        metadata_columns=config["curate"]["metadata_columns"],
+        id_field=config["curate"]["id_field"],
+        sequence_field=config["curate"]["sequence_field"],
     shell:
         """
         (cat {input.sequences_ndjson} \

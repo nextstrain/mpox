@@ -5,8 +5,8 @@ ncbi_taxon_id: '10244'
 # Renames the NCBI dataset headers
 ncbi_field_map: 'defaults/ncbi-dataset-field-map.tsv'
 
-# Params for the transform rule
-transform:
+# Params for the curate rule
+curate:
   # Fields to rename.
   # This is the first step in the pipeline, so any references to field names
   # in the configs below should use the new field names
