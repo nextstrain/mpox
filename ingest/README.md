@@ -31,7 +31,7 @@ This will produce two files (within the `ingest` directory):
 Run the complete ingest pipeline and upload results to AWS S3 with
 
 ```sh
-nextstrain build . --configfiles defaults/optional.yaml
+nextstrain build . --configfiles build-configs/nextstrain-automation/config.yaml
 ```
 
 ### Adding new sequences not from GenBank
@@ -62,7 +62,7 @@ Do the following to include sequences from static FASTA files.
 ## Configuration
 
 Configuration takes place in `defaults/config.yaml` by default.
-Optional configs for uploading files and Slack notifications are in `defaults/optional.yaml`.
+Optional configs for uploading files and Slack notifications are in `build-configs/nextstrain-automation/config.yaml`.
 
 ### Environment Variables
 

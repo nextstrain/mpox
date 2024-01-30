@@ -56,4 +56,5 @@ jobs:
           --env SLACK_CHANNELS \
           --env PAT_GITHUB_DISPATCH="$GH_TOKEN_NEXTSTRAIN_BOT_WORKFLOW_DISPATCH" \
           ingest \
-            --configfiles config/config.yaml config/optional.yaml
+            nextstrain_automation \
+              --configfiles build-configs/nextstrain-automation/config.yaml \

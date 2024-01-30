@@ -1,4 +1,10 @@
-# Optional configs used by Nextstrain team
+# Default configs used by Nextstrain automation
+
+# Custom rules to run as part of the Nextstrain automated workflow
+# The paths should be relative to the ingest directory.
+custom_rules:
+  - build-configs/nextstrain-automation/nextstrain_automation.smk
+
 # Params for uploads
 upload:
   # Upload params for AWS S3
