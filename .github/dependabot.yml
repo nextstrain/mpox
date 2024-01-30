@@ -8,7 +8,6 @@
 #
 # and look for a "Check for updates" button.  You may need to click around a
 # bit first.
----
 version: 2
 updates:
   - package-ecosystem: "github-actions"
