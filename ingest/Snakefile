@@ -16,7 +16,7 @@ rule all:
         "results/metadata.tsv",
 
 
-include: "rules/fetch_sequences.smk"
+include: "rules/fetch_from_ncbi.smk"
 include: "rules/transform.smk"
 include: "rules/nextclade.smk"
 
