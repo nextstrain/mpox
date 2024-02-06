@@ -50,5 +50,6 @@ jobs:
           --env SLACK_TOKEN \
           --env SLACK_CHANNELS \
           ingest \
-            --configfiles config/config.yaml config/optional.yaml \
-            --config trigger_rebuild=False send_slack_notifications=True upload="$UPLOAD_CONFIG"
+            nextstrain_automation \
+              --configfiles build-configs/nextstrain-automation/config.yaml \
+              --config trigger_rebuild=False send_slack_notifications=True upload="$UPLOAD_CONFIG"

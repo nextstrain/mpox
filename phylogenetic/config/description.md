@@ -18,7 +18,7 @@ Our bioinformatic processing workflow can be found at [github.com/nextstrain/mpo
 
 #### Underlying data
 We curate sequence data and metadata from the [NCBI Datasets command line tools](https://www.ncbi.nlm.nih.gov/datasets/docs/v2/download-and-install/),
-using an NCBI Taxonomy ID defined in [ingest/config/config.yaml](https://github.com/nextstrain/mpox/blob/master/ingest/config/config.yaml), as starting point for these analyses.
+using an NCBI Taxonomy ID defined in [ingest/defaults/config.yaml](https://github.com/nextstrain/mpox/blob/master/ingest/defaults/config.yaml), as starting point for these analyses.
 Curated sequences and metadata are available as flat files at:
 - [data.nextstrain.org/files/workflows/mpox/sequences.fasta.xz](https://data.nextstrain.org/files/workflows/mpox/sequences.fasta.xz)
 - [data.nextstrain.org/files/workflows/mpox/metadata.tsv.gz](https://data.nextstrain.org/files/workflows/mpox/metadata.tsv.gz)

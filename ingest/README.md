@@ -31,7 +31,7 @@ This will produce two files (within the `ingest` directory):
 Run the complete ingest pipeline and upload results to AWS S3 with
 
 ```sh
-nextstrain build . --configfiles config/config.yaml config/optional.yaml
+nextstrain build . --configfiles build-configs/nextstrain-automation/config.yaml
 ```
 
 ### Adding new sequences not from GenBank
@@ -57,12 +57,12 @@ Do the following to include sequences from static FASTA files.
     !ingest/data/{file-name}.ndjson
     ```
 
-3. Add the `file-name` (without the `.ndjson` extension) as a source to `ingest/config/config.yaml`. This will tell the ingest pipeline to concatenate the records to the GenBank sequences and run them through the same transform pipeline.
+3. Add the `file-name` (without the `.ndjson` extension) as a source to `defaults/config.yaml`. This will tell the ingest pipeline to concatenate the records to the GenBank sequences and run them through the same transform pipeline.
 
 ## Configuration
 
-Configuration takes place in `config/config.yaml` by default.
-Optional configs for uploading files and Slack notifications are in `config/optional.yaml`.
+Configuration takes place in `defaults/config.yaml` by default.
+Optional configs for uploading files and Slack notifications are in `build-configs/nextstrain-automation/config.yaml`.
 
 ### Environment Variables
 

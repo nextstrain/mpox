@@ -4,72 +4,24 @@ min_version(
     "7.7.0"
 )  # Snakemake 7.7.0 introduced `retries` directive used in fetch-sequences
 
-if not config:
 
-    configfile: "config/config.yaml"
-
-
-send_slack_notifications = config.get("send_slack_notifications", False)
+# Use default configuration values. Override with Snakemake's --configfile/--config options.
+configfile: "defaults/config.yaml"
 
 
-def _get_all_targets(wildcards):
-    # Default targets are the metadata TSV and sequences FASTA files
-    all_targets = ["results/sequences.fasta", "results/metadata.tsv"]
-
-    # Add additional targets based on upload config
-    upload_config = config.get("upload", {})
-
-    for target, params in upload_config.items():
-        files_to_upload = params.get("files_to_upload", {})
-
-        if not params.get("dst"):
-            print(
-                f"Skipping file upload for {target!r} because the destination was not defined."
-            )
-        else:
-            all_targets.extend(
-                expand(
-                    [f"data/upload/{target}/{{remote_file_name}}.done"],
-                    zip,
-                    remote_file_name=files_to_upload.keys(),
-                )
-            )
-
-    # Add additional targets for Nextstrain's internal Slack notifications
-    if send_slack_notifications:
-        all_targets.extend(
-            [
-                "data/notify/genbank-record-change.done",
-                "data/notify/metadata-diff.done",
-            ]
-        )
-
-    if config.get("trigger_rebuild", False):
-        all_targets.append("data/trigger/rebuild.done")
-
-    return all_targets
-
-
+# This is the default rule that Snakemake will run when there are no specified targets.
 rule all:
     input:
-        _get_all_targets,
+        "results/sequences.fasta",
+        "results/metadata.tsv",
 
 
-include: "workflow/snakemake_rules/fetch_sequences.smk"
-include: "workflow/snakemake_rules/transform.smk"
-include: "workflow/snakemake_rules/nextclade.smk"
+include: "rules/fetch_from_ncbi.smk"
+include: "rules/curate.smk"
+include: "rules/nextclade.smk"
 
 
-if config.get("upload", False):
+if "custom_rules" in config:
+    for rule_file in config["custom_rules"]:
 
-    include: "workflow/snakemake_rules/upload.smk"
-
-
-if send_slack_notifications:
-
-    include: "workflow/snakemake_rules/slack_notifications.smk"
-
-
-if config.get("trigger_rebuild", False):
-
-    include: "workflow/snakemake_rules/trigger_rebuild.smk"
+        include: rule_file
