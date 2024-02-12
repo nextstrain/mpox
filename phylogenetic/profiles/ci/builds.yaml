@@ -1,15 +1,15 @@
 custom_rules:
   - profiles/ci/copy_example_data.smk
 
-reference: "config/reference.fasta"
-genemap: "config/genemap.gff"
-genbank_reference: "config/reference.gb"
-include: "config/hmpxv1/include.txt"
-clades: "config/clades.tsv"
-lat_longs: "config/lat_longs.tsv"
-auspice_config: "config/hmpxv1/auspice_config.json"
-description: "config/description.md"
-tree_mask: "config/tree_mask.tsv"
+reference: "defaults/reference.fasta"
+genemap: "defaults/genemap.gff"
+genbank_reference: "defaults/reference.gb"
+include: "defaults/hmpxv1/include.txt"
+clades: "defaults/clades.tsv"
+lat_longs: "defaults/lat_longs.tsv"
+auspice_config: "defaults/hmpxv1/auspice_config.json"
+description: "defaults/description.md"
+tree_mask: "defaults/tree_mask.tsv"
 
 # Use `accession` as the ID column since `strain` currently contains duplicates¹.
 # ¹ https://github.com/nextstrain/monkeypox/issues/33
@@ -20,7 +20,7 @@ build_name: "hmpxv1"
 auspice_name: "mpox_clade-IIb"
 
 filter:
-  exclude: "config/exclude_accessions.txt"
+  exclude: "defaults/exclude_accessions.txt"
   min_date: 2017
   min_length: 100000
 
@@ -81,4 +81,4 @@ recency: true
 mask:
   from_beginning: 800
   from_end: 6422
-  maskfile: "config/mask.bed"
+  maskfile: "defaults/mask.bed"

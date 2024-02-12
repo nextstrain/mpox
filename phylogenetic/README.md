@@ -61,19 +61,19 @@ nextstrain build . data/sequences.fasta data/metadata.tsv
 Run pipeline to produce the "overview" tree for `/mpox/all-clades` with:
 
 ```bash
-nextstrain build . --configfile config/mpxv/config.yaml
+nextstrain build . --configfile defaults/mpxv/config.yaml
 ```
 
 Run pipeline to produce the "clade IIb" tree for `/mpox/clade-IIb` with:
 
 ```bash
-nextstrain build . --configfile config/hmpxv1/config.yaml
+nextstrain build . --configfile defaults/hmpxv1/config.yaml
 ```
 
 Run pipeline to produce the "lineage B.1" tree for `/mpox/lineage-B.1` with:
 
 ```bash
-nextstrain build . --configfile config/hmpxv1_big/config.yaml
+nextstrain build . --configfile defaults/hmpxv1_big/config.yaml
 ```
 
 ### Deploy
@@ -108,7 +108,7 @@ nextstrain view .
 
 ## Configuration
 
-Configuration takes place in `config/*/config.yaml` files for each build.
+The default configuration takes place in `defaults/*/config.yaml` files for each build.
 The analysis pipeline is contained in `rules/core.smk`.
 This can be read top-to-bottom, each rule specifies its file inputs and output and pulls its parameters from `config`.
 There is little redirection and each rule should be able to be reasoned with on its own.

@@ -419,8 +419,8 @@ rule recency:
 
 rule colors:
     input:
-        ordering="config/color_ordering.tsv",
-        color_schemes="config/color_schemes.tsv",
+        ordering="defaults/color_ordering.tsv",
+        color_schemes="defaults/color_schemes.tsv",
         metadata=build_dir + "/{build_name}/metadata.tsv",
     output:
         colors=build_dir + "/{build_name}/colors.tsv",
