@@ -28,7 +28,7 @@ jobs:
     needs: [set_config_overrides]
     permissions:
       id-token: write
-    uses: nextstrain/.github/.github/workflows/pathogen-repo-build.yaml@master
+    uses: nextstrain/.github/.github/workflows/pathogen-repo-build.yaml@trs/pathogen-repo-build/wait-for-aws-batch-job
     secrets: inherit
     with:
       runtime: aws-batch
