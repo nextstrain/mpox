@@ -1,15 +1,32 @@
 """
-This part of the workflow expects input files
+This part of the workflow collects the phylogenetic tree and annotations to
+export a Nextstrain dataset.
 
-        sequences = "data/sequences.fasta",
-        metadata =  "data/metadata.tsv",
+REQUIRED INPUTS:
 
-and will produce output files as
+    metadata            = {build_dir}/{build_name}/metadata.tsv
+    tree                = {build_dir}/{build_name}/tree.nwk
+    branch_lengths      = {build_dir}/{build_name}/branch_lengths.json
+    nt_muts             = {build_dir}/{build_name}/nt_muts.json
+    aa_muts             = {build_dir}/{build_name}/aa_muts.json
+    traits              = {build_dir}/{build_name}/traits.json
+    clades              = {build_dir}/{build_name}/clades.json
+    mutation_context    = {build_dir}/{build_name}/mutation_context.json
+    color_ordering      = defaults/color_ordering.tsv
+    color_schemes       = defaults/color_schemes.tsv
+    lat_longs           = path to lat/long TSV
+    description         = path to description Markdown
+    auspice_config      = path to Auspice config JSON
 
-        auspice_json = auspice_dir + "/mpox_{build_name}.json"
+OPTIONAL INPUTS:
 
-Parameter are expected to sit in the `config` data structure.
-In addition, `build_dir` and `auspice_dir` need to be defined upstream.
+    recency             = {build_dir}/{build_name}/recency.json
+
+OUTPUTS:
+
+    auspice_json        = {build_dir}/{build_name}/tree.json
+    root_sequence       = {build_dir}/{build_name}/tree_root-sequence.json
+
 """
 
 

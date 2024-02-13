@@ -42,7 +42,7 @@ rule all:
 include: "rules/prepare_sequences.smk"
 include: "rules/construct_phylogeny.smk"
 include: "rules/annotate_phylogeny.smk"
-include: "rules/core.smk"
+include: "rules/export.smk"
 
 
 # Include custom rules defined in the config.
