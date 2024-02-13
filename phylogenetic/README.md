@@ -11,7 +11,7 @@ for Nextstrain's suite of software tools.
 ## Usage
 
 If you're unfamiliar with Nextstrain builds, you may want to follow our
-[Running a Pathogen Workflow guide][] first and then come back here.
+[Running a Pathogen Workflow guide](https://docs.nextstrain.org/en/latest/tutorials/running-a-workflow.html) first and then come back here.
 
 The easiest way to run this pathogen build is using the Nextstrain
 command-line tool from within the `phylogenetic/` directory:
