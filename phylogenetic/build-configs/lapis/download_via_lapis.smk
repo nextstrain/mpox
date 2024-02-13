@@ -16,3 +16,7 @@ rule download_metadata_via_lapis:
             tr -d "\r" |
             sed -E 's/("([^"]*)")?,/\\2\\t/g' > {output.metadata}
         """
+
+# Override the default download/decompress rules to download data from LAPIS
+ruleorder: download_sequences_via_lapis > decompress
+ruleorder: download_metadata_via_lapis > decompress

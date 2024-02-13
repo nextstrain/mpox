@@ -119,6 +119,7 @@ The build-configs directory contains configs and customizations that override an
 
 - [chores](build-configs/chores/) - internal Nextstrain chores such as [updating the example data](#update-example-data).
 - [ci](build-configs/ci/) - CI build that run the [example build](#example-build) with the [example data](example_data/).
+- [lapis](build-configs/lapis/) - builds that use LAPIS as the data source.
 - [nextstrain-automation](build-configs/nextstrain-automation/) - internal Nextstrain automated builds
 
 ## Update example data

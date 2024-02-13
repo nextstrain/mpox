@@ -39,15 +39,7 @@ rule all:
         """
 
 
-if config.get("data_source", None) == "lapis":
-
-    include: "rules/download_via_lapis.smk"
-
-else:
-
-    include: "rules/prepare.smk"
-
-
+include: "rules/prepare.smk"
 include: "rules/core.smk"
 
 

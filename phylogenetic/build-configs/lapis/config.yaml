@@ -1,0 +1,2 @@
+custom_rules:
+  - build-configs/lapis/download_via_lapis.smk
