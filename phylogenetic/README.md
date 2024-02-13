@@ -76,28 +76,6 @@ Run pipeline to produce the "lineage B.1" tree for `/mpox/lineage-B.1` with:
 nextstrain build . --configfile defaults/hmpxv1_big/config.yaml
 ```
 
-### Deploy
-
-⚠️ The below is outdated and needs to be adjusted for the new build names (mpox instead of monkeypox, etc.)
-
-<details>
-
-Run the python script [`scripts/deploy.py`](scripts/deploy.py) to deploy the staging build to production.
-
-This will also automatically create a dated build where each node has a unique (random) ID so it can be targeted in shared links/narratives.
-
-```bash
-python scripts/deploy.py --build-names hmpxv1 mpxv
-```
-
-If a dated build already exists it is not overwritten by default. To overwrite, pass `-f`.
-
-To deploy a locally built build to staging, use the `--staging` flag.
-
-To not deploy a dated build to production, add the `--no-dated` flag.
-
-</details>
-
 ### Visualize results
 
 View results with:
