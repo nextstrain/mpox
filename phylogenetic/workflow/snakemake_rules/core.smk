@@ -52,14 +52,7 @@ rule subsample:
         strains=build_dir + "/{build_name}/{sample}_strains.txt",
         log=build_dir + "/{build_name}/{sample}_filter.log",
     params:
-        group_by=lambda w: config["subsample"][w.sample]["group_by"],
-        sequences_per_group=lambda w: config["subsample"][w.sample][
-            "sequences_per_group"
-        ],
-        other_filters=lambda w: config["subsample"][w.sample].get("other_filters", ""),
-        exclude=lambda w: f"--exclude-where {' '.join([f'lineage={l}' for l in config['subsample'][w.sample]['exclude_lineages']])}"
-        if "exclude_lineages" in config["subsample"][w.sample]
-        else "",
+        arguments=lambda w: config["subsample"][w.sample],
         strain_id=config["strain_id_field"],
     shell:
         """
@@ -67,11 +60,8 @@ rule subsample:
             --metadata {input.metadata} \
             --metadata-id-columns {params.strain_id} \
             --output-strains {output.strains} \
-            {params.group_by} \
-            {params.sequences_per_group} \
-            {params.exclude} \
-            {params.other_filters} \
-            --output-log {output.log}
+            --output-log {output.log} \
+            {params.arguments}
         """
 
 
