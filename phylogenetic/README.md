@@ -117,16 +117,20 @@ There is little redirection and each rule should be able to be reasoned with on 
 
 The build-configs directory contains configs and customizations that override and/or extend the default workflow.
 
+- [chores](build-configs/chores/) - internal Nextstrain chores such as [updating the example data](#update-example-data).
 - [ci](build-configs/ci/) - CI build that run the [example build](#example-build) with the [example data](example_data/).
 
 ## Update example data
 
-[Example data](./example_data/) is used by [CI](https://github.com/nextstrain/mpox/actions/workflows/ci.yaml). It can also be used as a small subset of real-world data.
+[Example data](./example_data/) is used by [CI](https://github.com/nextstrain/mpox/actions/workflows/ci.yaml).
+It can also be used as a small subset of real-world data.
 
-Example data should be updated every time metadata schema is changed or a new clade/lineage emerges. To update, run:
+Example data should be updated every time metadata schema is changed or a new clade/lineage emerges.
+To update, run:
 
 ```sh
-nextstrain build . update_example_data -F
+nextstrain build . update_example_data -F \
+    --configfiles build-configs/ci/config.yaml build-configs/chores/config.yaml
 ```
 
 ## Data use

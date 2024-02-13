@@ -48,7 +48,6 @@ else:
     include: "rules/prepare.smk"
 
 
-include: "rules/chores.smk"
 include: "rules/core.smk"
 
 

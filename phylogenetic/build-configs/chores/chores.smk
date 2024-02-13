@@ -1,3 +1,6 @@
+# I was hoping to use the Snakemake `default_target` directive to make this the
+# default target when including this rule via `custom_rules`, but that is
+# currently not possible: https://github.com/snakemake/snakemake/issues/2056
 rule update_example_data:
     """This updates the files under example_data/ based on latest available data from data.nextstrain.org.
 
