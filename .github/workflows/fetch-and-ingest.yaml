@@ -35,7 +35,7 @@ jobs:
   fetch-and-ingest:
     permissions:
       id-token: write
-    uses: nextstrain/.github/.github/workflows/pathogen-repo-build.yaml@trs/pathogen-repo-build/wait-for-aws-batch-job
+    uses: nextstrain/.github/.github/workflows/pathogen-repo-build.yaml@master
     secrets: inherit
     with:
       runtime: aws-batch
