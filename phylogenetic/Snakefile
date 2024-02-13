@@ -51,11 +51,6 @@ else:
 include: "rules/core.smk"
 
 
-if config.get("deploy_url", False):
-
-    include: "rules/nextstrain_automation.smk"
-
-
 # Include custom rules defined in the config.
 if "custom_rules" in config:
     for rule_file in config["custom_rules"]:

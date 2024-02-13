@@ -1,5 +1,8 @@
 # Optional configs to include for automated Nextstrain builds
 # Intended to be used internally by the Nextstrain team
 
+custom_rules:
+  - build-configs/nextstrain-automation/nextstrain-automation.smk
+
 # deploy
 deploy_url: "s3://nextstrain-data"

@@ -63,5 +63,5 @@ jobs:
           --env SLACK_CHANNELS \
           . \
             notify_on_deploy \
-              --configfiles $BUILD_DIR/defaults/$BUILD_NAME/config.yaml $BUILD_DIR/defaults/nextstrain_automation.yaml \
+              --configfiles $BUILD_DIR/defaults/$BUILD_NAME/config.yaml $BUILD_DIR/build-configs/nextstrain-automation/config.yaml \
               $CONFIG_OVERRIDES --directory $BUILD_DIR --snakefile $BUILD_DIR/Snakefile
