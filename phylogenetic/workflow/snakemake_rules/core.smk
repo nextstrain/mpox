@@ -52,14 +52,18 @@ rule subsample:
         strains=build_dir + "/{build_name}/{sample}_strains.txt",
         log=build_dir + "/{build_name}/{sample}_filter.log",
     params:
-        group_by=lambda w: config["subsample"][w.sample]["group_by"],
-        sequences_per_group=lambda w: config["subsample"][w.sample][
-            "sequences_per_group"
-        ],
-        other_filters=lambda w: config["subsample"][w.sample].get("other_filters", ""),
-        exclude=lambda w: f"--exclude-where {' '.join([f'lineage={l}' for l in config['subsample'][w.sample]['exclude_lineages']])}"
-        if "exclude_lineages" in config["subsample"][w.sample]
-        else "",
+        group_by=lambda w: f'--group-by {" ".join(config["subsample"][w.sample]["group_by"])}'
+            if "group_by" in config["subsample"][w.sample]
+            else "",
+        sequences_per_group=lambda w: f'--sequences-per-group {config["subsample"][w.sample]["sequences_per_group"]}'
+            if "sequences_per_group" in config["subsample"][w.sample]
+            else "",
+        subsample_max_sequences=lambda w: f'--subsample-max-sequences {config["subsample"][w.sample]["subsample_max_sequences"]}'
+            if "subsample_max_sequences" in config["subsample"][w.sample]
+            else "",
+        exclude_where=lambda w: f'--exclude-where {" ".join(config["subsample"][w.sample]["exclude_where"])}'
+            if "exclude_where" in config["subsample"][w.sample]
+            else "",
         strain_id=config["strain_id_field"],
     shell:
         """
@@ -67,11 +71,11 @@ rule subsample:
             --metadata {input.metadata} \
             --metadata-id-columns {params.strain_id} \
             --output-strains {output.strains} \
+            --output-log {output.log} \
             {params.group_by} \
             {params.sequences_per_group} \
-            {params.exclude} \
-            {params.other_filters} \
-            --output-log {output.log}
+            {params.subsample_max_sequences} \
+            {params.exclude_where}
         """
 
 
