@@ -1,5 +1,5 @@
 custom_rules:
-  - profiles/ci/copy_example_data.smk
+  - build-configs/ci/copy_example_data.smk
 
 reference: "defaults/reference.fasta"
 genemap: "defaults/genemap.gff"

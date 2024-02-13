@@ -28,7 +28,7 @@ Once you've run the build, you can view the results with:
 You can run an example build using the example data provided in this repository via:
 
 ```
-nextstrain build .  --configfile profiles/ci/builds.yaml
+nextstrain build .  --configfile build-configs/ci/config.yaml
 ```
 
 When the build has finished running, view the output Auspice trees via:
@@ -112,6 +112,12 @@ The default configuration takes place in `defaults/*/config.yaml` files for each
 The analysis pipeline is contained in `rules/core.smk`.
 This can be read top-to-bottom, each rule specifies its file inputs and output and pulls its parameters from `config`.
 There is little redirection and each rule should be able to be reasoned with on its own.
+
+### Custom build configs
+
+The build-configs directory contains configs and customizations that override and/or extend the default workflow.
+
+- [ci](build-configs/ci/) - CI build that run the [example build](#example-build) with the [example data](example_data/).
 
 ## Update example data
 
