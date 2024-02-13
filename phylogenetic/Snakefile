@@ -39,7 +39,7 @@ rule all:
         """
 
 
-include: "rules/prepare.smk"
+include: "rules/prepare_sequences.smk"
 include: "rules/core.smk"
 
 
