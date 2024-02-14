@@ -25,7 +25,7 @@ rule ancestral:
     Reconstructing ancestral sequences and mutations
     """
     input:
-        tree=rules.refine.output.tree,
+        tree=build_dir + "/{build_name}/tree.nwk",
         alignment=build_dir + "/{build_name}/masked.fasta",
     output:
         node_data=build_dir + "/{build_name}/nt_muts.json",
@@ -46,8 +46,8 @@ rule translate:
     Translating amino acid sequences
     """
     input:
-        tree=rules.refine.output.tree,
-        node_data=rules.ancestral.output.node_data,
+        tree=build_dir + "/{build_name}/tree.nwk",
+        node_data=build_dir + "/{build_name}/nt_muts.json",
         genemap=config["genemap"],
     output:
         node_data=build_dir + "/{build_name}/aa_muts.json",
@@ -67,7 +67,7 @@ rule traits:
       - increase uncertainty of reconstruction by {params.sampling_bias_correction} to partially account for sampling bias
     """
     input:
-        tree=rules.refine.output.tree,
+        tree=build_dir + "/{build_name}/tree.nwk",
         metadata=build_dir + "/{build_name}/metadata.tsv",
     output:
         node_data=build_dir + "/{build_name}/traits.json",
@@ -93,9 +93,9 @@ rule clades:
     Adding internal clade labels
     """
     input:
-        tree=rules.refine.output.tree,
-        aa_muts=rules.translate.output.node_data,
-        nuc_muts=rules.ancestral.output.node_data,
+        tree=build_dir + "/{build_name}/tree.nwk",
+        aa_muts=build_dir + "/{build_name}/aa_muts.json",
+        nuc_muts=build_dir + "/{build_name}/nt_muts.json",
         clades=config["clades"],
     output:
         node_data=build_dir + "/{build_name}/clades_raw.json",
@@ -113,7 +113,7 @@ rule clades:
 
 rule rename_clades:
     input:
-        rules.clades.output.node_data,
+        build_dir + "/{build_name}/clades_raw.json",
     output:
         node_data=build_dir + "/{build_name}/clades.json",
     shell:
@@ -126,7 +126,7 @@ rule rename_clades:
 
 rule mutation_context:
     input:
-        tree=rules.refine.output.tree,
+        tree=build_dir + "/{build_name}/tree.nwk",
         node_data=build_dir + "/{build_name}/nt_muts.json",
     output:
         node_data=build_dir + "/{build_name}/mutation_context.json",

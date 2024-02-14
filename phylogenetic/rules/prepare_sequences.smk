@@ -83,7 +83,7 @@ rule filter:
 
 rule subsample:
     input:
-        metadata=rules.filter.output.metadata,
+        metadata=build_dir + "/{build_name}/good_metadata.tsv",
     output:
         strains=build_dir + "/{build_name}/{sample}_strains.txt",
         log=build_dir + "/{build_name}/{sample}_filter.log",
@@ -117,8 +117,8 @@ rule combine_samples:
             f"{build_dir}/{w.build_name}/{sample}_strains.txt"
             for sample in config["subsample"]
         ],
-        sequences=rules.filter.output.sequences,
-        metadata=rules.filter.output.metadata,
+        sequences=build_dir + "/{build_name}/good_sequences.fasta",
+        metadata=build_dir + "/{build_name}/good_metadata.tsv",
         include=config["include"],
     output:
         sequences=build_dir + "/{build_name}/filtered.fasta",
@@ -159,7 +159,7 @@ rule align:
       - filling gaps with N
     """
     input:
-        sequences=rules.reverse_reverse_complements.output,
+        sequences=build_dir + "/{build_name}/reversed.fasta",
         reference=config["reference"],
         genemap=config["genemap"],
     output:

@@ -41,7 +41,7 @@ rule fix_tree:
     Fixing tree
     """
     input:
-        tree=rules.tree.output.tree,
+        tree=build_dir + "/{build_name}/tree_raw.nwk",
         alignment=build_dir + "/{build_name}/masked.fasta",
     output:
         tree=build_dir + "/{build_name}/tree_fixed.nwk",
@@ -66,9 +66,9 @@ rule refine:
         - filter tips more than {params.clock_filter_iqd} IQDs from clock expectation
     """
     input:
-        tree=rules.fix_tree.output.tree
+        tree=build_dir + "/{build_name}/tree_fixed.nwk"
         if config["fix_tree"]
-        else rules.tree.output.tree,
+        else build_dir + "/{build_name}/tree_raw.nwk",
         alignment=build_dir + "/{build_name}/masked.fasta",
         metadata=build_dir + "/{build_name}/metadata.tsv",
     output:
