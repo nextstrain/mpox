@@ -47,7 +47,7 @@ jobs:
         NEXTSTRAIN_DOCKER_IMAGE: ${{ inputs.image }}
         CONFIG_OVERRIDES: ${{ needs.set_config_overrides.outputs.config_overrides }}
         GITHUB_RUN_ID: ${{ github.run_id }}
-        SLACK_CHANNELS: ${{ vars.SLACK_CHANNELS }}
+        SLACK_CHANNELS: ${{ inputs.trial_name && vars.TEST_SLACK_CHANNEL || vars.SLACK_CHANNELS }}
         BUILD_DIR: phylogenetic
         BUILD_NAME: mpxv
       run: |
