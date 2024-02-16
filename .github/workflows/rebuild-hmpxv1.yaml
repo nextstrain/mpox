@@ -9,18 +9,34 @@ on:
   workflow_dispatch:
     inputs:
       trial_name:
-        description: "If set, result will be at nextstrain.org/staging/trial/trial_name/mpox/mpxv"
+        description: "If set, result will be at nextstrain.org/staging/trial/${trial_name}/${auspice_name}"
         required: false
       image:
         description: 'Specific container image to use for build (will override the default of "nextstrain build")'
         required: false
 
-env:
-  TRIAL_NAME: ${{ github.event.inputs.trial_name }}
-  NEXTSTRAIN_DOCKER_IMAGE: ${{ github.event.inputs.image }}
-
 jobs:
+  set_config_overrides:
+    runs-on: ubuntu-latest
+    steps:
+      - id: config
+        name: Set config overrides
+        env:
+          TRIAL_NAME: ${{ inputs.trial_name }}
+        run: |
+          config=""
+          if [[ "$TRIAL_NAME" ]]; then
+            config+="--config"
+            config+=" deploy_url='s3://nextstrain-staging/'"
+            config+=" auspice_prefix='"$TRIAL_NAME"'"
+          fi
+
+          echo "config=$config" >> "$GITHUB_OUTPUT"
+    outputs:
+      config_overrides: ${{ steps.config.outputs.config }}
+
   rebuild_hmpxv1:
+    needs: [set_config_overrides]
     permissions:
       id-token: write
     uses: nextstrain/.github/.github/workflows/pathogen-repo-build.yaml@master
@@ -29,8 +45,9 @@ jobs:
       runtime: aws-batch
       env: |
         NEXTSTRAIN_DOCKER_IMAGE: ${{ inputs.image }}
+        CONFIG_OVERRIDES: ${{ needs.set_config_overrides.outputs.config_overrides }}
         GITHUB_RUN_ID: ${{ github.run_id }}
-        SLACK_CHANNELS: ${{ vars.SLACK_CHANNELS }}
+        SLACK_CHANNELS: ${{ inputs.trial_name && vars.TEST_SLACK_CHANNEL || vars.SLACK_CHANNELS }}
         BUILD_DIR: phylogenetic
         BUILD_NAME: hmpxv1
       run: |
@@ -47,4 +64,4 @@ jobs:
           . \
             notify_on_deploy \
             --configfiles $BUILD_DIR/config/$BUILD_NAME/config.yaml $BUILD_DIR/config/nextstrain_automation.yaml \
-            --config auspice_prefix=$TRIAL_NAME --directory $BUILD_DIR --snakefile $BUILD_DIR/Snakefile
+            $CONFIG_OVERRIDES --directory $BUILD_DIR --snakefile $BUILD_DIR/Snakefile
