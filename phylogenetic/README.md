@@ -11,7 +11,7 @@ for Nextstrain's suite of software tools.
 ## Usage
 
 If you're unfamiliar with Nextstrain builds, you may want to follow our
-[Running a Pathogen Workflow guide][] first and then come back here.
+[Running a Pathogen Workflow guide](https://docs.nextstrain.org/en/latest/tutorials/running-a-workflow.html) first and then come back here.
 
 The easiest way to run this pathogen build is using the Nextstrain
 command-line tool from within the `phylogenetic/` directory:
@@ -28,7 +28,7 @@ Once you've run the build, you can view the results with:
 You can run an example build using the example data provided in this repository via:
 
 ```
-nextstrain build .  --configfile profiles/ci/builds.yaml
+nextstrain build .  --configfile build-configs/ci/config.yaml
 ```
 
 When the build has finished running, view the output Auspice trees via:
@@ -61,42 +61,20 @@ nextstrain build . data/sequences.fasta data/metadata.tsv
 Run pipeline to produce the "overview" tree for `/mpox/all-clades` with:
 
 ```bash
-nextstrain build . --configfile config/mpxv/config.yaml
+nextstrain build . --configfile defaults/mpxv/config.yaml
 ```
 
 Run pipeline to produce the "clade IIb" tree for `/mpox/clade-IIb` with:
 
 ```bash
-nextstrain build . --configfile config/hmpxv1/config.yaml
+nextstrain build . --configfile defaults/hmpxv1/config.yaml
 ```
 
 Run pipeline to produce the "lineage B.1" tree for `/mpox/lineage-B.1` with:
 
 ```bash
-nextstrain build . --configfile config/hmpxv1_big/config.yaml
+nextstrain build . --configfile defaults/hmpxv1_big/config.yaml
 ```
-
-### Deploy
-
-⚠️ The below is outdated and needs to be adjusted for the new build names (mpox instead of monkeypox, etc.)
-
-<details>
-
-Run the python script [`scripts/deploy.py`](scripts/deploy.py) to deploy the staging build to production.
-
-This will also automatically create a dated build where each node has a unique (random) ID so it can be targeted in shared links/narratives.
-
-```bash
-python scripts/deploy.py --build-names hmpxv1 mpxv
-```
-
-If a dated build already exists it is not overwritten by default. To overwrite, pass `-f`.
-
-To deploy a locally built build to staging, use the `--staging` flag.
-
-To not deploy a dated build to production, add the `--no-dated` flag.
-
-</details>
 
 ### Visualize results
 
@@ -108,19 +86,30 @@ nextstrain view .
 
 ## Configuration
 
-Configuration takes place in `config/*/config.yaml` files for each build.
-The analysis pipeline is contained in `workflow/snakemake_rule/core.smk`.
+The default configuration takes place in `defaults/*/config.yaml` files for each build.
+The analysis pipeline is contained in `rules/core.smk`.
 This can be read top-to-bottom, each rule specifies its file inputs and output and pulls its parameters from `config`.
 There is little redirection and each rule should be able to be reasoned with on its own.
 
+### Custom build configs
+
+The build-configs directory contains configs and customizations that override and/or extend the default workflow.
+
+- [chores](build-configs/chores/) - internal Nextstrain chores such as [updating the example data](#update-example-data).
+- [ci](build-configs/ci/) - CI build that run the [example build](#example-build) with the [example data](example_data/).
+- [nextstrain-automation](build-configs/nextstrain-automation/) - internal Nextstrain automated builds
+
 ## Update example data
 
-[Example data](./example_data/) is used by [CI](https://github.com/nextstrain/mpox/actions/workflows/ci.yaml). It can also be used as a small subset of real-world data.
+[Example data](./example_data/) is used by [CI](https://github.com/nextstrain/mpox/actions/workflows/ci.yaml).
+It can also be used as a small subset of real-world data.
 
-Example data should be updated every time metadata schema is changed or a new clade/lineage emerges. To update, run:
+Example data should be updated every time metadata schema is changed or a new clade/lineage emerges.
+To update, run:
 
 ```sh
-nextstrain build . update_example_data -F
+nextstrain build . update_example_data -F \
+    --configfiles build-configs/ci/config.yaml build-configs/chores/config.yaml
 ```
 
 ## Data use

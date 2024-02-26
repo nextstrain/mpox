@@ -1,0 +1,2 @@
+custom_rules:
+  - build-configs/chores/chores.smk
