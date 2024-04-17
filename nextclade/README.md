@@ -34,15 +34,10 @@ nextstrain view auspice/
 - [ ] Create branch there, copy datasets, commit, push, open PR:
 
 ```bash
-cd ../../nextclade_data
-git checkout master
-git pull
-git checkout -b mpox-update
-cp -r ../monkeypox/nextclade/datasets/ data/nextstrain/mpox
-git add data/nextstrain/mpox
-git commit -m "Update mpox dataset"
-git push -u origin mpox-update
-gh pr create
+cd ~/code
+cp mpox/nextclade/datasets/all-clades/tree.json nextclade_data/data/nextstrain/mpox/all-clades/tree.json
+cp mpox/nextclade/datasets/clade-iib/tree.json nextclade_data/data/nextstrain/mpox/clade_iib/tree.json
+p mpox/nextclade/datasets/lineage-b.1/tree.json nextclade_data/data/nextstrain/mpox/lineage-b.1/tree.json
 ```
 
 ## Configuration
