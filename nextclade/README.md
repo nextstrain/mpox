@@ -24,6 +24,7 @@ nextstrain view auspice/
 
 - [ ] Update each `config/{build}/clades.tsv` with new clades
 - [ ] Add new clades to color ordering
+- [ ] Add representative sequences to `resources/include_accessions.txt`
 - [ ] Check that clades look good, exclude problematic sequences as necessary
 
 ### Creating a new dataset version

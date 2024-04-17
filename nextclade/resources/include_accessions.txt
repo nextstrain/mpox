@@ -1,5 +1,4 @@
 ON563414    #prototypical B.1
-LC753968    #reference for C.1
 ON563414    #reference for B.1
 ON843175    #reference for B.1.9
 OP215224    #reference for B.1.8
@@ -15,7 +14,7 @@ ON929079    #reference for B.1.2
 OP442552    #reference for B.1.17
 ON694335    #reference for B.1.15
 OP693647    #reference for B.1.16
-OP642395     #reference for B.1.16
+OP642395    #reference for B.1.16
 ON694342    #reference for B.1.14
 OP838893    #reference for B.1.19
 OP169336    #reference for B.1.11
@@ -26,3 +25,9 @@ OP536663    #reference for B.1.13
 OP257254    #reference for B.1.13
 OP205110    #reference for B.1.10
 OQ320441    #reference for B.1.20
+OP539939    #reference for B.1.21
+OQ773522    #reference for B.1.22
+OR095023    #reference for B.1.22
+LC753968    #reference for C.1
+LC753968    #reference for C.1.1
+OR643705    #reference for C.1.1
