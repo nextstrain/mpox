@@ -74,7 +74,6 @@ JX878413    # clade I
 JX878428    # clade I
 JX878422    # clade I
 KC257460    # clade I
-HM172544    # clade I
 DQ011155    # clade I
 MN702446    # clade I
 MN702449    # clade I
