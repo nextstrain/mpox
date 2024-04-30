@@ -65,15 +65,21 @@ rule export:
     input:
         tree=build_dir + "/{build_name}/tree.nwk",
         metadata=build_dir + "/{build_name}/metadata.tsv",
-        branch_lengths="results/{build_name}/branch_lengths.json"
-        if config.get("timetree", False)
-        else "results/{build_name}/branch_lengths_no_time.json",
+        branch_lengths=(
+            "results/{build_name}/branch_lengths.json"
+            if config.get("timetree", False)
+            else "results/{build_name}/branch_lengths_no_time.json"
+        ),
         traits=build_dir + "/{build_name}/traits.json",
         nt_muts=build_dir + "/{build_name}/nt_muts.json",
         aa_muts=build_dir + "/{build_name}/aa_muts.json",
         clades=build_dir + "/{build_name}/clades.json",
         mutation_context=build_dir + "/{build_name}/mutation_context.json",
-        recency=build_dir + "/{build_name}/recency.json" if config.get("recency", False) else [],
+        recency=(
+            build_dir + "/{build_name}/recency.json"
+            if config.get("recency", False)
+            else []
+        ),
         colors=build_dir + "/{build_name}/colors.tsv",
         lat_longs=config["lat_longs"],
         description=config["description"],

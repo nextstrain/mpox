@@ -23,6 +23,7 @@ AUSPICE_PREFIX = ("trial_" + prefix + "_") if prefix is not None else ""
 # Defaults to the `build_name` if no `auspice_name` is provided in the config
 AUSPICE_FILENAME = AUSPICE_PREFIX + config.get("auspice_name", config["build_name"])
 
+
 rule all:
     input:
         auspice_json=build_dir + f"/{config['build_name']}/tree.json",

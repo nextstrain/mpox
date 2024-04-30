@@ -9,6 +9,7 @@ used as target rules without explicitly defining the output files.
 
 Requires `build_dir` to be defined upstream.
 """
+
 BUILD_NAME = config["build_name"]
 DEPLOY_URL = config["deploy_url"]
 SLACK_TS_FILE = build_dir + f"/{BUILD_NAME}/slack_thread_ts.txt"

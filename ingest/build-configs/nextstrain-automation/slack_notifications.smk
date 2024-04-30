@@ -7,6 +7,7 @@ All rules here require two environment variables:
     * SLACK_TOKEN
     * SLACK_CHANNELS
 """
+
 import os
 import sys
 

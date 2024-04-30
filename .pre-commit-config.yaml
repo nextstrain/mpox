@@ -4,10 +4,12 @@ repos:
     rev: v0.10.1
     hooks:
       - id: snakefmt
+        language_version: python3.11
   - repo: https://github.com/rhysd/actionlint
     rev: v1.6.27
     hooks:
       - id: actionlint
+        entry: env SHELLCHECK_OPTS='--exclude=SC2027' actionlint
   - repo: https://github.com/codespell-project/codespell
     rev: v2.2.6
     hooks:
