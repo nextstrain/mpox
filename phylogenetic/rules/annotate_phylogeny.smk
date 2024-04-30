@@ -48,7 +48,7 @@ rule translate:
     input:
         tree=build_dir + "/{build_name}/tree.nwk",
         node_data=build_dir + "/{build_name}/nt_muts.json",
-        genemap=config["genemap"],
+        genome_annotation=config["genome_annotation"],
     output:
         node_data=build_dir + "/{build_name}/aa_muts.json",
     shell:
@@ -56,7 +56,7 @@ rule translate:
         augur translate \
             --tree {input.tree} \
             --ancestral-sequences {input.node_data} \
-            --reference-sequence {input.genemap} \
+            --reference-sequence {input.genome_annotation} \
             --output {output.node_data}
         """
 

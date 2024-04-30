@@ -5,7 +5,7 @@ REQUIRED INPUTS:
 
     include     = path to file of sequences to in force include
     reference   = path to reference sequence FASTA for Nextclade alignment
-    genemap     = path to genemap GFF for Nextclade alignment
+    genome_annotation     = path to genome_annotation GFF for Nextclade alignment
     maskfile    = path to maskfile of sites to be masked
 
 OUTPUTS:
@@ -158,30 +158,35 @@ rule reverse_reverse_complements:
 rule align:
     """
     Aligning sequences to {input.reference}
-      - filling gaps with N
     """
     input:
         sequences=build_dir + "/{build_name}/reversed.fasta",
         reference=config["reference"],
-        genemap=config["genemap"],
+        genome_annotation=config["genome_annotation"],
     output:
         alignment=build_dir + "/{build_name}/aligned.fasta",
-        insertions=build_dir + "/{build_name}/insertions.fasta",
     params:
-        max_indel=config["max_indel"],
-        seed_spacing=config["seed_spacing"],
+        # Alignment params from all-clades nextclade dataset
+        excess_bandwidth=100,
+        terminal_bandwidth=300,
+        window_size=40,
+        min_seed_cover=0.1,
+        allowed_mismatches=8,
+        gap_alignment_side="left",
     threads: workflow.cores
     shell:
         """
-        nextalign run \
+        nextclade3 run \
             --jobs {threads} \
-            --reference {input.reference} \
-            --genemap {input.genemap} \
-            --max-indel {params.max_indel} \
-            --seed-spacing {params.seed_spacing} \
-            --retry-reverse-complement \
+            --input-ref {input.reference} \
+            --input-annotation {input.genome_annotation} \
+            --excess-bandwidth {params.excess_bandwidth} \
+            --terminal-bandwidth {params.terminal_bandwidth} \
+            --window-size {params.window_size} \
+            --min-seed-cover {params.min_seed_cover} \
+            --allowed-mismatches {params.allowed_mismatches} \
+            --gap-alignment-side {params.gap_alignment_side} \
             --output-fasta - \
-            --output-insertions {output.insertions} \
             {input.sequences} | seqkit seq -i > {output.alignment}
         """
 
