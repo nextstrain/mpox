@@ -17,7 +17,6 @@ build_name: "mpxv"
 auspice_name: "mpox_all-clades"
 
 filter:
-  exclude: "defaults/exclude_accessions.txt"
   min_date: 1950
   min_length: 100000
 

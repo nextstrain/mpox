@@ -56,12 +56,12 @@ rule filter:
     input:
         sequences="data/sequences.fasta",
         metadata="data/metadata.tsv",
+        exclude="defaults/exclude_accessions.txt",
     output:
         sequences=build_dir + "/{build_name}/good_sequences.fasta",
         metadata=build_dir + "/{build_name}/good_metadata.tsv",
         log=build_dir + "/{build_name}/good_filter.log",
     params:
-        exclude=config["filter"]["exclude"],
         min_date=config["filter"]["min_date"],
         min_length=config["filter"]["min_length"],
         strain_id=config["strain_id_field"],
@@ -73,7 +73,7 @@ rule filter:
             --metadata-id-columns {params.strain_id} \
             --output-sequences {output.sequences} \
             --output-metadata {output.metadata} \
-            --exclude {params.exclude} \
+            --exclude {input.exclude} \
             --min-date {params.min_date} \
             --min-length {params.min_length} \
             --query "(QC_rare_mutations == 'good' | QC_rare_mutations == 'mediocre')" \
@@ -93,9 +93,11 @@ rule subsample:
             "sequences_per_group"
         ],
         other_filters=lambda w: config["subsample"][w.sample].get("other_filters", ""),
-        exclude=lambda w: f"--exclude-where {' '.join([f'lineage={l}' for l in config['subsample'][w.sample]['exclude_lineages']])}"
-        if "exclude_lineages" in config["subsample"][w.sample]
-        else "",
+        exclude=lambda w: (
+            f"--exclude-where {' '.join([f'lineage={l}' for l in config['subsample'][w.sample]['exclude_lineages']])}"
+            if "exclude_lineages" in config["subsample"][w.sample]
+            else ""
+        ),
         strain_id=config["strain_id_field"],
     shell:
         """

@@ -17,7 +17,6 @@ build_name: "hmpxv1"
 auspice_name: "mpox_clade-IIb"
 
 filter:
-  exclude: "defaults/exclude_accessions.txt"
   min_date: 2017
   min_length: 100000
 
