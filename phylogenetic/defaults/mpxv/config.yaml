@@ -1,7 +1,7 @@
 auspice_config: "defaults/mpxv/auspice_config.json"
 include: "defaults/mpxv/include.txt"
 reference: "defaults/reference.fasta"
-genemap: "defaults/genemap.gff"
+genome_annotation: "defaults/genome_annotation.gff3"
 genbank_reference: "defaults/reference.gb"
 lat_longs: "defaults/lat_longs.tsv"
 description: "defaults/description.md"
@@ -17,7 +17,6 @@ build_name: "mpxv"
 auspice_name: "mpox_all-clades"
 
 filter:
-  exclude: "defaults/exclude_accessions.txt"
   min_date: 1950
   min_length: 100000
 

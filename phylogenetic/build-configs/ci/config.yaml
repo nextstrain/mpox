@@ -2,7 +2,7 @@ custom_rules:
   - build-configs/ci/copy_example_data.smk
 
 reference: "defaults/reference.fasta"
-genemap: "defaults/genemap.gff"
+genome_annotation: "defaults/genome_annotation.gff3"
 genbank_reference: "defaults/reference.gb"
 include: "defaults/hmpxv1/include.txt"
 clades: "defaults/clades.tsv"
@@ -20,7 +20,6 @@ build_name: "hmpxv1"
 auspice_name: "mpox_clade-IIb"
 
 filter:
-  exclude: "defaults/exclude_accessions.txt"
   min_date: 2017
   min_length: 100000
 
