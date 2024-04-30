@@ -66,9 +66,11 @@ rule refine:
         - filter tips more than {params.clock_filter_iqd} IQDs from clock expectation
     """
     input:
-        tree=build_dir + "/{build_name}/tree_fixed.nwk"
-        if config["fix_tree"]
-        else build_dir + "/{build_name}/tree_raw.nwk",
+        tree=(
+            build_dir + "/{build_name}/tree_fixed.nwk"
+            if config["fix_tree"]
+            else build_dir + "/{build_name}/tree_raw.nwk"
+        ),
         alignment=build_dir + "/{build_name}/masked.fasta",
         metadata=build_dir + "/{build_name}/metadata.tsv",
     output:
@@ -79,12 +81,14 @@ rule refine:
         date_inference="marginal",
         clock_filter_iqd=0,
         root=config["root"],
-        clock_rate=f"--clock-rate {config['clock_rate']}"
-        if "clock_rate" in config
-        else "",
-        clock_std_dev=f"--clock-std-dev {config['clock_std_dev']}"
-        if "clock_std_dev" in config
-        else "",
+        clock_rate=(
+            f"--clock-rate {config['clock_rate']}" if "clock_rate" in config else ""
+        ),
+        clock_std_dev=(
+            f"--clock-std-dev {config['clock_std_dev']}"
+            if "clock_std_dev" in config
+            else ""
+        ),
         strain_id=config["strain_id_field"],
         divergence_units=config["divergence_units"],
     shell:

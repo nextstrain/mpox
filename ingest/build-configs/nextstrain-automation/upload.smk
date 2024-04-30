@@ -9,6 +9,7 @@ Produces output files as `data/upload/{upload_target_name}/{remote_file_name}.do
 Currently only supports uploads to AWS S3, but additional upload rules can
 be easily added as long as they follow the output pattern described above.
 """
+
 import os
 
 slack_envvars_defined = "SLACK_CHANNELS" in os.environ and "SLACK_TOKEN" in os.environ

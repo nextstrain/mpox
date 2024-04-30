@@ -9,6 +9,7 @@ include
 
 send_slack_notifications = config.get("send_slack_notifications", False)
 
+
 def _get_all_targets(wildcards):
     # Default targets are the metadata TSV and sequences FASTA files
     all_targets = ["results/sequences.fasta", "results/metadata.tsv"]
@@ -21,7 +22,7 @@ def _get_all_targets(wildcards):
 
         if not params.get("dst"):
             print(
-                f"Skipping file upload for {target!r} because the destination was not defined."
+                f"Skipping file upload for {target ! r} because the destination was not defined."
             )
         else:
             all_targets.extend(
