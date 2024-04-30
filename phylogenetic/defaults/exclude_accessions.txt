@@ -74,3 +74,8 @@ PP098595
 PP098578
 
 HM172544	# cidofovir-resistant lab strain that is derived from DQ011155 (h/t Andrew Rambaut)
+
+TMP0003	# Overdiverged 23MPX1786C
+TMP0045	# Overdiverged RDC-NKV-GOM-MPOX-004
+
+NC_003310	# Overdiverged RefSeq NC_003310

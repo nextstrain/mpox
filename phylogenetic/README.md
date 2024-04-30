@@ -16,24 +16,28 @@ If you're unfamiliar with Nextstrain builds, you may want to follow our
 The easiest way to run this pathogen build is using the Nextstrain
 command-line tool from within the `phylogenetic/` directory:
 
-    cd phylogenetic/
-    nextstrain build .
+```bash
+cd phylogenetic/
+nextstrain build .
+```
 
 Once you've run the build, you can view the results with:
 
-    nextstrain view .
+```bash
+nextstrain view .
+```
 
 ### Example build
 
 You can run an example build using the example data provided in this repository via:
 
-```
+```bash
 nextstrain build .  --configfile build-configs/ci/config.yaml
 ```
 
 When the build has finished running, view the output Auspice trees via:
 
-```
+```bash
 nextstrain view .
 ```
 
@@ -53,7 +57,7 @@ If you analyze and plan to publish using these data, please contact these labs f
 Within the analysis pipeline, these data are fetched from data.nextstrain.org and written to `data/` with:
 
 ```bash
-nextstrain build . data/sequences.fasta data/metadata.tsv
+nextstrain build . data/sequences.fasta.xz data/metadata.tsv.gz
 ```
 
 ### Run analysis pipeline
@@ -107,7 +111,7 @@ It can also be used as a small subset of real-world data.
 Example data should be updated every time metadata schema is changed or a new clade/lineage emerges.
 To update, run:
 
-```sh
+```bash
 nextstrain build . update_example_data -F \
     --configfiles build-configs/ci/config.yaml build-configs/chores/config.yaml
 ```
