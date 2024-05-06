@@ -184,3 +184,5 @@ PP098595
 PP098578
 
 HM172544       # cidofovir-resistant lab strain that is derived from DQ011155 (h/t Andrew Rambaut)
+
+OR540672    # Overdiverged Slovenia-MPXV-38-2022
