@@ -20,8 +20,6 @@ Our bioinformatic processing workflow can be found at [github.com/nextstrain/mpo
 We curate sequence data and metadata from the [NCBI Datasets command line tools](https://www.ncbi.nlm.nih.gov/datasets/docs/v2/download-and-install/),
 using an NCBI Taxonomy ID defined in [ingest/defaults/config.yaml](https://github.com/nextstrain/mpox/blob/master/ingest/defaults/config.yaml), as starting point for these analyses.
 
-In addition to data shared via INSDC, we also include, with permission, sequences from INRB, the Institut National de Recherche Biomédicale in the Democratic Republic of the Congo, as shared via their Github repository [inrb-labgenpath/Mpox_sequencing_Kamituga](https://github.com/inrb-labgenpath/Mpox_sequencing_Kamituga). These sequences are discussed in the preprint [Sustained Human Outbreak of a New MPXV Clade I Lineage in Eastern Democratic Republic of the Congo](https://www.medrxiv.org/content/10.1101/2024.04.12.24305195v2).
-
 Curated sequences and metadata are available as flat files at:
 - [data.nextstrain.org/files/workflows/mpox/sequences.fasta.xz](https://data.nextstrain.org/files/workflows/mpox/sequences.fasta.xz)
 - [data.nextstrain.org/files/workflows/mpox/metadata.tsv.gz](https://data.nextstrain.org/files/workflows/mpox/metadata.tsv.gz)
