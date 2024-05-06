@@ -17,7 +17,7 @@ repos:
         additional_dependencies:
           - tomli
   - repo: https://github.com/google/yamlfmt
-    rev: v0.11.0
+    rev: v0.12.1
     hooks:
       - id: yamlfmt
   - repo: https://github.com/pappasam/toml-sort
