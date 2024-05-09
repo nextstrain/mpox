@@ -71,7 +71,7 @@ clock_std_dev: 6e-6
 divergence_units: "mutations-per-site"
 
 traits:
-  columns: "country"
+  columns: ""
   sampling_bias_correction: 3
 
 ## recency
