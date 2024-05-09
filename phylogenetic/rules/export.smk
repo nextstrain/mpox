@@ -70,7 +70,11 @@ rule export:
             if config.get("timetree", False)
             else "results/{build_name}/branch_lengths_no_time.json"
         ),
-        traits=build_dir + "/{build_name}/traits.json",
+        traits=(
+            build_dir + "/{build_name}/traits.json"
+            if config.get("traits", {}).get("columns", False)
+            else []
+        ),
         nt_muts=build_dir + "/{build_name}/nt_muts.json",
         aa_muts=build_dir + "/{build_name}/aa_muts.json",
         clades=build_dir + "/{build_name}/clades.json",
@@ -95,7 +99,7 @@ rule export:
             --tree {input.tree} \
             --metadata {input.metadata} \
             --metadata-id-columns {params.strain_id} \
-            --node-data {input.branch_lengths} {input.nt_muts} {input.aa_muts} {input.mutation_context} {input.clades} {input.recency}\
+            --node-data {input.branch_lengths} {input.traits} {input.nt_muts} {input.aa_muts} {input.mutation_context} {input.clades} {input.recency}\
             --colors {input.colors} \
             --lat-longs {input.lat_longs} \
             --description {input.description} \
