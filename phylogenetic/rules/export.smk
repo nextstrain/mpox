@@ -32,9 +32,9 @@ OUTPUTS:
 
 rule remove_time:
     input:
-        "results/{build_name}/branch_lengths.json",
+        build_dir + "/{build_name}/branch_lengths.json",
     output:
-        "results/{build_name}/branch_lengths_no_time.json",
+        build_dir + "/{build_name}/branch_lengths_no_time.json",
     shell:
         """
         python3 scripts/remove_timeinfo.py --input-node-data {input} --output-node-data {output}
@@ -66,9 +66,9 @@ rule export:
         tree=build_dir + "/{build_name}/tree.nwk",
         metadata=build_dir + "/{build_name}/metadata.tsv",
         branch_lengths=(
-            "results/{build_name}/branch_lengths.json"
+            build_dir + "/{build_name}/branch_lengths.json"
             if config.get("timetree", False)
-            else "results/{build_name}/branch_lengths_no_time.json"
+            else build_dir + "/{build_name}/branch_lengths_no_time.json"
         ),
         traits=(
             build_dir + "/{build_name}/traits.json"
