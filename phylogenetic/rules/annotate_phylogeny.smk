@@ -72,8 +72,8 @@ rule traits:
     output:
         node_data=build_dir + "/{build_name}/traits.json",
     params:
-        columns="country",
-        sampling_bias_correction=3,
+        columns=config["traits"]["columns"],
+        sampling_bias_correction=config["traits"]["sampling_bias_correction"],
         strain_id=config["strain_id_field"],
     shell:
         """

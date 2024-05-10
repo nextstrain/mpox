@@ -50,6 +50,10 @@ clock_rate: 5.7e-5
 clock_std_dev: 2e-5
 divergence_units: "mutations"
 
+traits:
+  columns: ""
+  sampling_bias_correction: 3
+
 ## recency
 recency: true
 
