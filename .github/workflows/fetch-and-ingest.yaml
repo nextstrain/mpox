@@ -17,8 +17,10 @@ on:
     # Tool that deciphers this particular format of crontab string:
     #  - https://crontab.guru/
     #
-    # Runs at 4pm UTC (12pm EDT) since curation by NCBI happens on the East Coast.
-    - cron: '0 16 * * *'
+    # Runs at 5pm UTC (1pm EDT/10am PDT) since curation by NCBI happens on the East Coast.
+    # We were running into invalid zip archive errors at 9am PDT, so hoping an hour
+    # delay will lower the error frequency
+    - cron: '0 17 * * *'
 
   repository_dispatch:
     types:
