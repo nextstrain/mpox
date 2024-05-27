@@ -65,6 +65,11 @@ rule filter:
         min_date=config["filter"]["min_date"],
         min_length=config["filter"]["min_length"],
         strain_id=config["strain_id_field"],
+        exclude_where=lambda w: (
+            f"--exclude-where {config['filter']['exclude_where']}"
+            if "exclude_where" in config["filter"]
+            else ""
+        ),
     shell:
         """
         augur filter \
@@ -74,6 +79,7 @@ rule filter:
             --output-sequences {output.sequences} \
             --output-metadata {output.metadata} \
             --exclude {input.exclude} \
+            {params.exclude_where} \
             --min-date {params.min_date} \
             --min-length {params.min_length} \
             --query "(QC_rare_mutations == 'good' | QC_rare_mutations == 'mediocre')" \
