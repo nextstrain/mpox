@@ -1,0 +1,11 @@
+# Custom config file for INRB Clade-I builds.
+# This should be used as an additional config on top of the clade-i config, i.e.
+# --configfile defaults/clade-i/config.yaml build-configs/inrb/config.yaml
+
+
+# Custom INRB footer contents & auspice config
+description: "build-configs/inrb/description.md"
+auspice_config: "build-configs/inrb/auspice_config.json"
+
+# INRB builds inject private data
+private_data: true
