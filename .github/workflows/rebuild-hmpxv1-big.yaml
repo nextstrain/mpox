@@ -56,8 +56,6 @@ jobs:
           --no-download \
           --cpus 8 \
           --memory 68gib \
-          --env AWS_ACCESS_KEY_ID \
-          --env AWS_SECRET_ACCESS_KEY \
           --env GITHUB_RUN_ID \
           --env SLACK_TOKEN \
           --env SLACK_CHANNELS \
