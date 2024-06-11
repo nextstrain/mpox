@@ -8,24 +8,5 @@ on:
   workflow_dispatch:
 
 jobs:
-  pathogen-ci:
-    strategy:
-      matrix:
-        runtime: [docker, conda]
-    permissions:
-      id-token: write
-    uses: nextstrain/.github/.github/workflows/pathogen-repo-build.yaml@master
-    secrets: inherit
-    with:
-      runtime: ${{ matrix.runtime }}
-      run: |
-        nextstrain build \
-          phylogenetic \
-          --configfiles build-configs/ci/config.yaml
-      artifact-name: output-${{ matrix.runtime }}
-      artifact-paths: |
-        phylogenetic/auspice/
-        phylogenetic/results/
-        phylogenetic/benchmarks/
-        phylogenetic/logs/
-        phylogenetic/.snakemake/log/
+  ci:
+    uses: nextstrain/.github/.github/workflows/pathogen-repo-ci.yaml@master
