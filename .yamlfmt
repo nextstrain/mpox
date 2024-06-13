@@ -1,5 +1,6 @@
 exclude:
   - ingest/
+  - nextstrain-pathogen.yaml
 formatter:
   type: basic
   line_ending: lf
