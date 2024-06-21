@@ -1,0 +1,59 @@
+name: Rebuild clade-I
+
+on:
+  repository_dispatch:
+    types:
+      - rebuild
+      - rebuild_clade-i
+
+  workflow_dispatch:
+    inputs:
+      trial_name:
+        description: "If set, result will be at nextstrain.org/staging/trial/${trial_name}/${auspice_name}"
+        required: false
+
+jobs:
+  set_config_overrides:
+    runs-on: ubuntu-latest
+    steps:
+      - id: config
+        name: Set config overrides
+        env:
+          TRIAL_NAME: ${{ inputs.trial_name }}
+        run: |
+          config=""
+          if [[ "$TRIAL_NAME" ]]; then
+            config+="--config"
+            config+=" deploy_url='s3://nextstrain-staging/'"
+            config+=" auspice_prefix='"$TRIAL_NAME"'"
+          fi
+
+          echo "config=$config" >> "$GITHUB_OUTPUT"
+    outputs:
+      config_overrides: ${{ steps.config.outputs.config }}
+
+  rebuild_clade_i:
+    needs: [set_config_overrides]
+    permissions:
+      id-token: write
+    uses: nextstrain/.github/.github/workflows/pathogen-repo-build.yaml@master
+    secrets: inherit
+    with:
+      # We can migrate to AWS Batch when/if we need to for more resources,
+      # but at the time of writing the clade-I build is small & quick
+      runtime: docker
+      env: |
+        CONFIG_OVERRIDES: ${{ needs.set_config_overrides.outputs.config_overrides }}
+        GITHUB_RUN_ID: ${{ github.run_id }}
+        SLACK_CHANNELS: ${{ inputs.trial_name && vars.TEST_SLACK_CHANNEL || vars.SLACK_CHANNELS }}
+        BUILD_DIR: phylogenetic
+        BUILD_NAME: clade-i
+      run: |
+        nextstrain build \
+          --env GITHUB_RUN_ID \
+          --env SLACK_TOKEN \
+          --env SLACK_CHANNELS \
+          . \
+            notify_on_deploy \
+            --configfiles $BUILD_DIR/defaults/$BUILD_NAME/config.yaml $BUILD_DIR/build-configs/nextstrain-automation/config.yaml \
+            $CONFIG_OVERRIDES --directory $BUILD_DIR --snakefile $BUILD_DIR/Snakefile
