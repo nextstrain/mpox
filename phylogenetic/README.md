@@ -80,6 +80,12 @@ Run pipeline to produce the "lineage B.1" tree for `/mpox/lineage-B.1` with:
 nextstrain build . --configfile defaults/hmpxv1_big/config.yaml
 ```
 
+Run pipeline to produce the "clade I" tree for `/mpox/clade-I` with:
+
+```bash
+nextstrain build . --configfile defaults/clade-i/config.yaml
+```
+
 ### Visualize results
 
 View results with:
