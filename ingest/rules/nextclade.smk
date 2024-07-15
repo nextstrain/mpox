@@ -55,7 +55,7 @@ rule nextclade:
 rule join_metadata_clades:
     input:
         nextclade="data/nextclade.tsv",
-        metadata="data/metadata_raw.tsv",
+        metadata="data/subset_metadata.tsv",
         nextclade_field_map=config["nextclade"]["field_map"],
     output:
         metadata="results/metadata.tsv",
