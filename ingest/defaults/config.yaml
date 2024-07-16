@@ -26,6 +26,8 @@ curate:
   # These date formats should use directives expected by datetime
   # See https://docs.python.org/3.9/library/datetime.html#strftime-and-strptime-format-codes
   expected_date_formats: ['%Y', '%Y-%m', '%Y-%m-%d', '%Y-%m-%dT%H:%M:%SZ']
+  # The expected field that contains the GenBank geo_loc_name
+  genbank_location_field: location
   # Titlecase rules
   titlecase:
     # Abbreviations not cast to titlecase, keeps uppercase
@@ -70,7 +72,6 @@ curate:
     'date_submitted',
     'sra_accession',
     'abbr_authors',
-    'reverse',
     'authors',
     'institution'
   ]
