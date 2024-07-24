@@ -2,6 +2,8 @@
 write = ''
 skip = '*.gff,*.gff3'
 
+[tool.ruff]
+
 [tool.snakefmt]
 include = '\.smk$|^Snakefile'
 exclude = ''
