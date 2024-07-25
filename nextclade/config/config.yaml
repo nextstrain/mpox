@@ -1,21 +1,21 @@
 clade-iib:
-  root: "NC_063383"
+  root: "MT903346 AY603973"
   min_date: "--min-date 2017"
-  exclude_where: "--exclude-where outbreak!=hMPXV-1"
-  subsampling: "--subsample-max-sequences 500 --group-by clade lineage year month country --probabilistic-sampling"
+  exclude_where: "--exclude-where clade!=IIb"
+  subsampling: "--subsample-max-sequences 1000 --group-by clade lineage year month country --probabilistic-sampling"
 
 all-clades:
   root: "reconstructed_ancestral_mpox"
   min_date: ""
   exclude_where: ""
-  subsampling: "--subsample-max-sequences 500 --group-by clade lineage year month country"
+  subsampling: "--subsample-max-sequences 1000 --group-by clade lineage year month country --probabilistic-sampling"
 
 lineage-b.1:
   root: "ref_in_coord"
   min_date: "--min-date 2022"
   exclude_where: "--exclude-where outbreak!=hMPXV-1 lineage=A.2 lineage=A.2.1 lineage=A.2.2 lineage=A.2.3 lineage=A lineage=A.1
     lineage=A.3"
-  subsampling: "--subsample-max-sequences 1000 --group-by clade year month country --probabilistic-sampling"
+  subsampling: "--subsample-max-sequences 2000 --group-by clade year month country --probabilistic-sampling"
 
 ## filter
 min_length: 160000

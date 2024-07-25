@@ -56,7 +56,6 @@ JX878426    # clade I
 JX878408    # clade I
 JX878420    # clade I
 JX878419    # clade I
-NC_003310   # clade I
 JX878418    # clade I
 MT724771    # clade I
 KP849471    # clade I
