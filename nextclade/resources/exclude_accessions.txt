@@ -28,6 +28,7 @@ OP390203	# UK-LMO with artefacts
 OP390204	# UK-LMO with artefacts
 OP390205	# UK-LMO with artefacts
 OP390206	# UK-LMO with artefacts
+
 # Overdiverged B.1
 OP012849
 
@@ -183,6 +184,53 @@ PP098599	# Italy/Campania overdiverged, version .2
 PP098595
 PP098578
 
-HM172544       # cidofovir-resistant lab strain that is derived from DQ011155 (h/t Andrew Rambaut)
+HM172544    # cidofovir-resistant lab strain that is derived from DQ011155 (h/t Andrew Rambaut)
 
 OR540672    # Overdiverged Slovenia-MPXV-38-2022
+
+NC_003310	# Overdiverged RefSeq NC_003310
+
+PP853038    # A.3 Overdiverged (mutation cluster) TRM344
+PP852985    # A.3 Overdiverged
+PP853003    # A.3 Overdiverged
+PP852993    # Clusters A.3
+
+OP535317    # A, suspicious cluster of mutations
+OP535319    # A, suspicious cluster of mutations
+
+PP852982    # A.2.3 overdiverged
+PP852999    # A.2.2, TRM302
+PP853022    # A.2.2, TRM328
+PP853043    # A.2, TRM351
+
+PP853014    # Artifact cluster 8803-8878
+PP853002
+PP853045
+PP853015
+PP852998
+PP853017
+PP853006
+PP853032
+PP853028
+PP853004
+PP853020
+PP852994
+PP853050
+PP853007
+PP853011
+PP853010
+PP853000
+
+PP852945    # Overdiverged A.2.3
+PP852973    # Overdiverged A.2.3
+PP853052    # Suspicious clusters
+PP853012    # Suspicious clusters
+PP852987    # Suspicious clusters
+
+MG693723    # Spotty/gappy/clusters
+
+PP852989    # Mutation clusters
+
+OR601602    # B.1 with reversions
+
+NC_003310   # Likely passaged clade I ref_seq, overdiverged

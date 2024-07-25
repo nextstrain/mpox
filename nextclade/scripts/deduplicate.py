@@ -12,7 +12,7 @@ python3 scripts/deduplicate.py \\
 import typer
 from Bio import SeqIO
 import itertools
-import pyllist
+import llist
 
 
 def informative_sites(sequence: str) -> int:
@@ -98,7 +98,7 @@ def deduplicate(input: str, output: str):
 
     info_sites = informative_indexes_sorted_by_entropy(composition)
 
-    dll = pyllist.dllist(sequences)
+    dll = llist.dllist(sequences)
 
     dup_list = []
 

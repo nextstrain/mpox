@@ -1,4 +1,4 @@
-KJ642617 #outgroup
+KJ642617
 NC_063383 #reference
 
 MT903337    #reference for A
@@ -18,3 +18,6 @@ MT903342    #reference for A.1
 MT903343    #reference for A.1
 MT903345    #reference for A.1
 ON676708    #reference for A.1.1
+
+MT903346 # outgroup IIa
+AY603973 # outgroup IIa

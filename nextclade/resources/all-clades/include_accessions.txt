@@ -1,6 +1,5 @@
 reconstructed_ancestral_mpox #reference
 
-NC_063383    #reference for A
 MT903337    #reference for A
 MK783031    #reference for A
 MG693723    #reference for A.3

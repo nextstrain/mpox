@@ -173,10 +173,10 @@
       "weightUnlabeledSubstitutions": 1
     },
     "snpClusters": {
-      "clusterCutOff": 10,
-      "enabled": false,
+      "clusterCutOff": 5,
+      "enabled": true,
       "scoreWeight": 10,
-      "windowSize": 100
+      "windowSize": 300
     },
     "stopCodons": {
       "enabled": true,
