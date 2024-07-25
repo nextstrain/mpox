@@ -296,31 +296,13 @@ rule tree:
             --alignment {input.alignment} \
             --output {output.tree} \
             --nthreads 3 \
-            --tree-builder-args '-czb -redo'
-        """
-
-
-rule fix_tree:
-    input:
-        tree="results/{build_name}/tree_raw.nwk",
-        alignment="results/{build_name}/masked.fasta",
-    output:
-        tree="results/{build_name}/tree_fixed.nwk",
-    params:
-        root=lambda w: config[w.build_name]["root"],
-    shell:
-        """
-        python3 scripts/fix_tree.py \
-            --alignment {input.alignment} \
-            --input-tree {input.tree} \
-            --root {params.root} \
-            --output {output.tree}
+            --tree-builder-args '--polytomy --redo --pathogen-force'
         """
 
 
 rule refine:
     input:
-        tree="results/{build_name}/tree_fixed.nwk",
+        tree="results/{build_name}/tree_raw.nwk",
         alignment="results/{build_name}/masked.fasta",
         metadata="results/{build_name}/metadata.tsv",
     output:
@@ -483,7 +465,7 @@ rule minify_tree:
         auspice="auspice/nextclade_mpox_{build_name}.json",
     shell:
         """
-        jq -c '.' {input.auspice} > {output.auspice}
+        gojq -c '.' {input.auspice} > {output.auspice}
         """
 
 
