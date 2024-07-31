@@ -1,27 +1,28 @@
-# Nextclade dataset for "Mpox virus (Clade IIb)"
+# Nextclade dataset for "Mpox virus (Clade I)"
 
-| Key                    | Value                                                                                                                 |
-| ---------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| authors                | [Cornelius Roemer](https://neherlab.org), [Richard Neher](https://neherlab.org), [Nextstrain](https://nextstrain.org) |
-| data source            | Genbank                                                                                                               |
-| workflow               | [github.com/nextstrain/mpox/nextclade](https://github.com/nextstrain/mpox/nextclade)                                  |
-| nextclade dataset path | nextstrain/mpox/clade-iib                                                                                             |
-| annotation             | [NC_063383.1](https://www.ncbi.nlm.nih.gov/nuccore/NC_063383)                                                         |
-| clade definitions      | [github.com/mpxv-lineages/lineage-designation](https://github.com/mpxv-lineages/lineage-designation)                  |
-| related datasets       | Mpox virus (All clades): `nextstrain/mpox/all-clades`<br> Mpox virus (Lineage B.1) `nextstrain/mpox/lineage-b.1`      |
+| Key                    | Value                                                                                                                                                                                  |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| authors                | [Cornelius Roemer](https://neherlab.org), [Richard Neher](https://neherlab.org), [Nextstrain](https://nextstrain.org)                                                                  |
+| data source            | Genbank                                                                                                                                                                                |
+| workflow               | [github.com/nextstrain/mpox/nextclade](https://github.com/nextstrain/mpox/nextclade)                                                                                                   |
+| nextclade dataset path | nextstrain/mpox/clade-i                                                                                                                                                                |
+| reference              | [DQ011155.1](https://www.ncbi.nlm.nih.gov/nuccore/DQ011155.1), isolate `Zaire_1979-005`, an early complete clade I sequence                                                            |
+| annotation             | based on [DQ011155.1](https://www.ncbi.nlm.nih.gov/nuccore/DQ011155.1), but with genes called by modern names (OPGXXX)                                                                 |
+| clade definitions      | [github.com/mpxv-lineages/lineage-designation](https://github.com/mpxv-lineages/lineage-designation)                                                                                   |
+| related datasets       | Mpox virus (All clades): `nextstrain/mpox/all-clades`<br>Mpox virus (clade IIb) `nextstrain/mpox/clade-iib`<br>Mpox virus (Lineage B.1 within clade IIb) `nextstrain/mpox/lineage-b.1` |
 
 ## Scope of this dataset
 
-This dataset is for Mpox viruses of clade IIb. A more specific dataset just for outbreak lineage B.1 is available as `nextstrain/mpox/lineage-b.1`. There is also a broader dataset for all clades I, IIa and IIb under `nextstrain/mpox/all-clades`.
+This dataset is for Mpox viruses of clade I (Ia and Ib). A broader dataset for all clades I, IIa and IIb is available under `nextstrain/mpox/all-clades`.
 
 ## Reference sequence and reference tree
 
-The reference used in this dataset is the clade IIb NCBI refseq `NC_063383.1` (Isolate `MPXV-M5312_HM12_Rivers`).
+The reference used in this dataset is [DQ011155.1](https://www.ncbi.nlm.nih.gov/nuccore/DQ011155.1), an early complete clade I sequence (Isolate `Zaire_1979-005`).
 
-The reference tree consists of around 500 sequences with representatives from all clade IIb lineages.
+This is in contrast to the reference used in the other Nextclade mpox datasets, which use a clade IIb reference sequence.
+
+The reference tree consists of all good quality clade I sequences available within Genbank at the time of dataset creation, as well as 3 outgroup genomes (a reconstructed ancestor of all clades, and one sequence for each of clade IIa and clade IIb).
 
 ## Further reading
 
-The lineage system used is defined in [Happi et al. (2022)](https://doi.org/10.1371/journal.pbio.3001769). Lineage definitions are available at [github.com/mpxv-lineages/lineage-designation](https://github.com/nextstrain/mpox/nextclade).
-
-Read more about Nextclade datasets in Nextclade documentation: https://docs.nextstrain.org/projects/nextclade/en/stable/user/datasets.html
+Read more about Nextclade datasets in the Nextclade documentation: https://docs.nextstrain.org/projects/nextclade/en/stable/user/datasets.html
