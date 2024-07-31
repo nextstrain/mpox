@@ -1,4 +1,5 @@
-import json, argparse
+import argparse
+import json
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
@@ -35,10 +36,12 @@ if __name__ == "__main__":
         #     clade_name = clade[outbreak_name]
         elif old_clade_name.startswith("outgroup"):
             clade_name = "outgroup"
-        else:
+        elif old_clade_name.startswith("lineage"):
             clade_name = "IIb"
             outbreak_name = "hMPXV-1"
             lineage_name = old_clade_name
+        else:
+            raise ValueError(f"Unknown clade name: {old_clade_name}")
 
         new_node_data[name] = {
             "clade_membership": clade_name,

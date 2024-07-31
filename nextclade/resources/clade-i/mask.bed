@@ -1,0 +1,12 @@
+Chrom	ChromStart	ChromEnd	locus tag	Comment
+chr	0	1500		mask from beginning
+chr	133165	133365		indel variation and long homopolymers
+chr	136612	136712		indel variation and long homopolymers
+chr	140150	140350		indel variation and long repetitive elements
+chr	146846	147096		indel variation and long repetitive elements
+chr	150624	150774		indel variation and long repetitive elements
+chr	169245	169582		indel variation and long repetitive elements
+chr	169802	169901		indel variation and long repetitive elements
+chr	173260	173460		indel variation and long repetitive elements
+chr	179096	179396		indel variation and long repetitive elements
+chr	190885	196967		mask ITR from end
