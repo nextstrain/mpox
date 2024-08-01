@@ -1,16 +1,16 @@
 {
   "alignmentParams": {
-    "allowedMismatches": 5,
-    "excessBandwidth": 40,
-    "gapAlignmentSide": "left",
+    "excessBandwidth": 100,
+    "terminalBandwidth": 300,
+    "allowedMismatches": 8,
+    "windowSize": 40,
     "minSeedCover": 0.1,
-    "terminalBandwidth": 200,
-    "windowSize": 30
+    "gapAlignmentSide": "left"
   },
   "attributes": {
     "name": "Mpox virus (Clade I)",
-    "reference accession": "NC_063383.1",
-    "reference name": "MPXV-M5312_HM12_Rivers"
+    "reference accession": "DQ011155.1",
+    "reference name": "Zaire_1979-005"
   },
   "compatibility": {
     "cli": "3.0.0-alpha.0",
