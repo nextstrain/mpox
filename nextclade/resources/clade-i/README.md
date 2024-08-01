@@ -21,7 +21,7 @@ The reference used in this dataset is [DQ011155.1](https://www.ncbi.nlm.nih.gov/
 
 This is in contrast to the reference used in the other Nextclade mpox datasets, which use a clade IIb reference sequence.
 
-The reference tree consists of all good quality clade I sequences available within Genbank at the time of dataset creation, as well as 3 outgroup genomes (a reconstructed ancestor of all clades, and one sequence for each of clade IIa and clade IIb).
+The reference tree consists of all good quality clade I sequences available within Genbank at the time of dataset creation (with identical sequences deduplicated to 1), as well as 3 outgroup genomes (a reconstructed ancestor of all clades, and one sequence for each of clade IIa and clade IIb).
 
 ## Further reading
 
