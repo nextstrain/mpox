@@ -14,11 +14,11 @@ Our bioinformatic processing workflow can be found at [github.com/nextstrain/mpo
 - masking several regions of the genome, including the first 1350 and last 6422 base pairs and multiple repetitive regions of variable length
 - phylogenetic reconstruction using [IQTREE-2](http://www.iqtree.org/)
 - ancestral state reconstruction and temporal inference using [TreeTime](https://github.com/neherlab/treetime)
-- clade assignment via [clade definitions defined here](https://github.com/nextstrain/mpox/blob/master/defaults/clades.tsv), to label broader MPXV clades I, IIa and IIb and to label hMPXV1 lineages A, A.1, A.1.1, etc...
+- clade assignment via [clade definitions defined here](https://github.com/nextstrain/mpox/blob/-/phylogenetic/defaults/clades.tsv), to label broader MPXV clades I, IIa and IIb and to label hMPXV1 lineages A, A.1, A.1.1, etc...
 
 #### Underlying data
 We curate sequence data and metadata from the [NCBI Datasets command line tools](https://www.ncbi.nlm.nih.gov/datasets/docs/v2/download-and-install/),
-using an NCBI Taxonomy ID defined in [ingest/defaults/config.yaml](https://github.com/nextstrain/mpox/blob/master/ingest/defaults/config.yaml), as starting point for these analyses.
+using an NCBI Taxonomy ID defined in [ingest/defaults/config.yaml](https://github.com/nextstrain/mpox/blob/-/ingest/defaults/config.yaml), as starting point for these analyses.
 
 Curated sequences and metadata are available as flat files at:
 - [data.nextstrain.org/files/workflows/mpox/sequences.fasta.xz](https://data.nextstrain.org/files/workflows/mpox/sequences.fasta.xz)
