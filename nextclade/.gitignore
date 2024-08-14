@@ -2,3 +2,4 @@
 /datasets/
 /bin/
 /test/
+!environment.yaml

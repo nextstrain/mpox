@@ -1,0 +1,13 @@
+name: mpox-nextclade
+channels:
+  - conda-forge
+  - bioconda
+  - dnachun
+dependencies:
+  - augur
+  - auspice
+  - nextclade
+  - jsonpatch
+  - llist
+  - gojq # only available from dnachun channel, see https://github.com/conda-forge/staged-recipes/issues/27099
+  - snakemake

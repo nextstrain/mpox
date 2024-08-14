@@ -1,0 +1,3 @@
+AY603973 # outgroup IIa
+KJ642617 # outgroup IIb
+reconstructed_ancestral_mpox #reference

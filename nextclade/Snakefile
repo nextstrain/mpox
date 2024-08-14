@@ -3,12 +3,12 @@ if not config:
     configfile: "config/config.yaml"
 
 
-build_names = ["lineage-b.1", "clade-iib", "all-clades"]
+# build_names = ["lineage-b.1", "clade-iib", "all-clades", "clade-i"]
+# build_names = ["lineage-b.1", "clade-iib", "all-clades"]
+build_names = ["clade-i"]
 
 PREALIGN_REFERENCE = "resources/lineage-b.1/reference.fasta"
 PREMASK_BED = "resources/lineage-b.1/mask.bed"
-
-genes = [line.strip() for line in open("resources/genes.txt")]
 
 dataset_files = [
     "pathogen.json",
@@ -17,6 +17,25 @@ dataset_files = [
     "README.md",
     "CHANGELOG.md",
 ]
+
+
+# Helper functions to allow build-specific annotations
+def annotation_path(wildcards):
+    if "annotation" in config[wildcards.build_name]:
+        return config[wildcards.build_name]["annotation"]
+    return "resources/genome_annotation.gff3"
+
+
+def gene_path(wildcards):
+    if "genes" in config[wildcards.build_name]:
+        return config[wildcards.build_name]["genes"]
+    return "resources/genes.txt"
+
+
+def genes(wildcards):
+    gene_file = gene_path(wildcards)
+    genes = [line.strip() for line in open(gene_file)]
+    return genes
 
 
 rule all:
@@ -96,7 +115,7 @@ rule prealign:
     input:
         sequences="results/sequences_without_known_duplicates.fasta",
         reference=PREALIGN_REFERENCE,
-        annotation="resources/genome_annotation.gff3",
+        annotation=annotation_path,
     output:
         alignment="results/prealigned.fasta",
     shell:
@@ -182,7 +201,7 @@ rule subsample:
         specific_exclude="resources/{build_name}/exclude_accessions.txt",
         deduplicate_exclude="results/duplicates.txt",
         specific_include="resources/{build_name}/include_accessions.txt",
-        include="resources/include_accessions.txt",
+        include=lambda w: config[w.build_name]["general_include"],
         index="results/index.tsv",
     output:
         sequences="results/{build_name}/filtered_raw.fasta",
@@ -242,13 +261,13 @@ rule align:
         sequences="results/{build_name}/filtered.fasta",
         reference="resources/{build_name}/reference.fasta",
         root="resources/{build_name}/root.fasta",
-        annotation="resources/genome_annotation.gff3",
+        annotation=annotation_path,
     output:
         alignment="results/{build_name}/aligned.fasta",
         translations=directory("results/{build_name}/translations"),
     params:
         translation_template=lambda w: f"results/{w.build_name}/translations/{{cds}}.fasta",
-        genes=",".join(genes),
+        genes=lambda w: ",".join(genes(w)),
     shell:
         """
         cat {input.root} {input.reference} {input.sequences} \
@@ -296,31 +315,29 @@ rule tree:
             --alignment {input.alignment} \
             --output {output.tree} \
             --nthreads 3 \
-            --tree-builder-args '-czb -redo'
+            --tree-builder-args '--redo --pathogen-force --tree-search EXHAUSTIVE  --output-multifurcating-tree --make-consistent'
         """
 
 
-rule fix_tree:
+rule collapse:
     input:
+        script="scripts/collapse-zero-branches.py",
         tree="results/{build_name}/tree_raw.nwk",
-        alignment="results/{build_name}/masked.fasta",
     output:
-        tree="results/{build_name}/tree_fixed.nwk",
-    params:
-        root=lambda w: config[w.build_name]["root"],
+        tree="results/{build_name}/tree_collapsed.nwk",
     shell:
         """
-        python3 scripts/fix_tree.py \
-            --alignment {input.alignment} \
+        python {input.script} \
+            --threshold 0.0000001 \
+            --verbose \
             --input-tree {input.tree} \
-            --root {params.root} \
-            --output {output.tree}
+            --output-tree {output.tree}
         """
 
 
 rule refine:
     input:
-        tree="results/{build_name}/tree_fixed.nwk",
+        tree="results/{build_name}/tree_collapsed.nwk",
         alignment="results/{build_name}/masked.fasta",
         metadata="results/{build_name}/metadata.tsv",
     output:
@@ -338,7 +355,6 @@ rule refine:
             --root {params.root} \
             --divergence-unit mutations \
             --keep-polytomies \
-            --use-fft \
             --output-node-data {output.node_data}
         """
 
@@ -348,8 +364,8 @@ rule ancestral:
     input:
         tree="results/{build_name}/tree.nwk",
         alignment="results/{build_name}/aligned.fasta",
-        annotation="resources/genome_annotation.gff3",
-        genes="resources/genes.txt",
+        annotation=annotation_path,
+        genes=lambda w: gene_path(w),
         translations="results/{build_name}/translations",
         reference="resources/{build_name}/reference.fasta",
     output:
@@ -357,7 +373,7 @@ rule ancestral:
     params:
         inference="joint",
         translation_template="results/{build_name}/translations/%GENE.fasta",
-        genes=" ".join(genes),
+        genes=lambda w: " ".join(genes(w)),
     shell:
         """
         augur ancestral \
@@ -483,7 +499,7 @@ rule minify_tree:
         auspice="auspice/nextclade_mpox_{build_name}.json",
     shell:
         """
-        jq -c '.' {input.auspice} > {output.auspice}
+        gojq -c '.' {input.auspice} > {output.auspice}
         """
 
 
@@ -493,7 +509,7 @@ rule assemble_dataset:
         tree="auspice/nextclade_mpox_{build_name}.json",
         pathogen_json="resources/{build_name}/pathogen.json",
         sequences="resources/{build_name}/sequences.fasta",
-        annotation="resources/genome_annotation.gff3",
+        annotation=annotation_path,
         readme="resources/{build_name}/README.md",
         changelog="resources/{build_name}/CHANGELOG.md",
     output:

@@ -1,6 +1,5 @@
 reconstructed_ancestral_mpox #reference
 
-NC_063383    #reference for A
 MT903337    #reference for A
 MK783031    #reference for A
 MG693723    #reference for A.3
@@ -57,7 +56,6 @@ JX878426    # clade I
 JX878408    # clade I
 JX878420    # clade I
 JX878419    # clade I
-NC_003310   # clade I
 JX878418    # clade I
 MT724771    # clade I
 KP849471    # clade I

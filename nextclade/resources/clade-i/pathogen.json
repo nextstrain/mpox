@@ -1,16 +1,16 @@
 {
   "alignmentParams": {
-    "allowedMismatches": 5,
-    "excessBandwidth": 40,
-    "gapAlignmentSide": "left",
+    "excessBandwidth": 100,
+    "terminalBandwidth": 300,
+    "allowedMismatches": 8,
+    "windowSize": 40,
     "minSeedCover": 0.1,
-    "terminalBandwidth": 200,
-    "windowSize": 30
+    "gapAlignmentSide": "left"
   },
   "attributes": {
-    "name": "Mpox virus (Clade IIb)",
-    "reference accession": "NC_063383.1",
-    "reference name": "MPXV-M5312_HM12_Rivers"
+    "name": "Mpox virus (Clade I)",
+    "reference accession": "DQ011155.1",
+    "reference name": "Zaire_1979-005"
   },
   "compatibility": {
     "cli": "3.0.0-alpha.0",
@@ -33,13 +33,6 @@
     "frameShifts": {
       "enabled": true,
       "ignoredFrameShifts": [
-        {
-          "codonRange": {
-            "begin": 289,
-            "end": 346
-          },
-          "cdsName": "OPG174"
-        }
       ],
       "scoreWeight": 20
     },
@@ -69,25 +62,12 @@
     "stopCodons": {
       "enabled": true,
       "ignoredStopCodons": [
-        {
-          "codon": 187,
-          "cdsName": "OPG015_dup"
-        },
-        {
-          "codon": 187,
-          "cdsName": "OPG015"
-        },
-        {
-          "codon": 21,
-          "cdsName": "OPG176"
-        }
       ],
       "scoreWeight": 40
     }
   },
   "schemaVersion": "3.0.0",
   "shortcuts": [
-    "hMPXV"
   ],
   "version": {
     "tag": "unreleased"
