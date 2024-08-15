@@ -2,11 +2,14 @@
 clade	gene	site	alt
 outgroup	nuc	179226	T
 
-clade I	nuc	87560	T
-clade I	nuc	136015	A
+clade I	nuc	86502	T
+clade I	nuc	133368	A
 
-clade Ib	nuc	6014	G
-clade Ib	nuc	108966	T
+clade Ia	clade	clade I
+clade Ia	nuc	35352	A
+
+clade Ib	clade	clade I
+clade Ib	nuc	19455	T
 
 clade II	nuc	86502	G
 clade II	nuc	150970	A
@@ -28,10 +31,12 @@ A.2	nuc	34472	T
 A.2.1	clade	A.2
 A.2.1	nuc	25072	T
 A.2.1	nuc	140492	C
+A.2.1	nuc	179537	T
 
 A.2.2	clade	A.2
 A.2.2	nuc	21991	A
 A.2.2	nuc	103019	T
+A.2.2	nuc	158424	A
 
 A.2.3	clade	A.2
 A.2.3	nuc	57284	T
