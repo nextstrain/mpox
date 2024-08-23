@@ -11,9 +11,9 @@ clade Ia	nuc	35352	A
 clade Ib	clade	clade I
 clade Ib	nuc	19455	T
 
+clade II	nuc	20605	A
 clade II	nuc	86502	G
-clade II	nuc	150970	A
-clade II	nuc	35352	C
+clade II	nuc	174146	C
 
 clade IIa	clade	clade II
 clade IIa	nuc	54013	G
