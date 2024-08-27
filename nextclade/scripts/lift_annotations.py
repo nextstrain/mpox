@@ -3,7 +3,7 @@
 Use the output of nextclade to lift annotations from reference to query
 """
 
-
+import json
 from pathlib import Path
 
 import pandas as pd
@@ -36,7 +36,7 @@ for i in insertions:
     pos, seq = i.split(":")
     ins.append((int(pos), len(seq)))
 
-offset = - (alignment_start - 1)
+offset = -(alignment_start - 1)
 next_del = dels.pop(0) if dels else None
 next_ins = ins.pop(0) if ins else None
 
@@ -60,15 +60,11 @@ for r in range(alignment_start, alignment_end + 1):
             next_ins = ins.pop(0) if ins else None
 
 
-
-
 print(offsets)
 
-import json
 
 with open("out/offsets.json", "w") as f:
     f.write(json.dumps(offsets, indent=2))
-
 
 
 # %%
@@ -97,14 +93,15 @@ new_gff = gff.copy()
 # Editing the gff DataFrame new_gff in place
 qry_len = len(qry)
 new_gff[3] = gff[3].apply(lambda x: offsets.get(x, [1, 1])[1])
-new_gff[4] = gff[4].apply(lambda x: offsets.get(x, [qry_len,qry_len])[1])
-
+new_gff[4] = gff[4].apply(lambda x: offsets.get(x, [qry_len, qry_len])[1])
 
 
 # %%
 new_gff
 
-Path("resources/clade-i/genome_annotation2.gff3").write_text(new_gff.to_csv(sep="\t", header=False, index=False))
+Path("resources/clade-i/genome_annotation2.gff3").write_text(
+    new_gff.to_csv(sep="\t", header=False, index=False)
+)
 
 # %%
 

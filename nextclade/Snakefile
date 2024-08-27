@@ -3,9 +3,9 @@ if not config:
     configfile: "config/config.yaml"
 
 
-# build_names = ["lineage-b.1", "clade-iib", "all-clades", "clade-i"]
+build_names = ["lineage-b.1", "clade-iib", "all-clades", "clade-i"]
 # build_names = ["lineage-b.1", "clade-iib", "all-clades"]
-build_names = ["clade-i"]
+# build_names = ["all-clades"]
 
 PREALIGN_REFERENCE = "resources/lineage-b.1/reference.fasta"
 PREMASK_BED = "resources/lineage-b.1/mask.bed"
