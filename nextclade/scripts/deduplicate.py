@@ -9,10 +9,11 @@ python3 scripts/deduplicate.py \\
 
 """
 
+import itertools
+
+import llist
 import typer
 from Bio import SeqIO
-import itertools
-import llist
 
 
 def informative_sites(sequence: str) -> int:
@@ -20,6 +21,7 @@ def informative_sites(sequence: str) -> int:
     Count number of ACGT characters in a sequence
     """
     return sum([1 for c in sequence if c in "ACGT"])
+
 
 def identical(seq1: str, seq2: str, info_sites: list) -> bool:
     """
@@ -32,6 +34,7 @@ def identical(seq1: str, seq2: str, info_sites: list) -> bool:
         if c1 != c2 and c2 in "ACGT" and c1 in "ACGT":
             return False
     return True
+
 
 def composition_per_site(sequences) -> list:
     """
@@ -47,6 +50,7 @@ def composition_per_site(sequences) -> list:
             composition[i][c] += 1
     return composition
 
+
 def mismatch_prob_per_site(composition: list) -> list:
     """
     Compute the mismatch probability of each site in a list of sequences
@@ -55,7 +59,7 @@ def mismatch_prob_per_site(composition: list) -> list:
     result = []
     seqs = sum(composition[0].values())
     for site in composition:
-        values = [val/seqs for char, val in site.items() if char in "ACGT"]
+        values = [val / seqs for char, val in site.items() if char in "ACGT"]
         prob = 0
         for i, value in enumerate(values):
             for j, other_value in enumerate(values):
@@ -64,15 +68,15 @@ def mismatch_prob_per_site(composition: list) -> list:
         result.append(prob)
     return result
 
+
 def informative_indexes_sorted_by_entropy(composition: list) -> list:
     """
     List of indexes of informative sites sorted by entropy
     Uninformative sites are not included
     """
-    site_information = { i: info for i, info in enumerate(mismatch_prob_per_site(composition)) if info > 0 }
+    site_information = {i: info for i, info in enumerate(mismatch_prob_per_site(composition)) if info > 0}
     site_information = sorted(site_information.items(), key=lambda x: x[1], reverse=True)
     return [x[0] for x in site_information]
-
 
 
 def deduplicate(input: str, output: str):
@@ -85,7 +89,8 @@ def deduplicate(input: str, output: str):
     """
     with open(input, "r") as f:
         sequences = [
-            {   "id": record.id,
+            {
+                "id": record.id,
                 "seq": str(record.seq),
                 "number_informative_sites": informative_sites(str(record.seq)),
             }
@@ -106,7 +111,7 @@ def deduplicate(input: str, output: str):
     while ying is not None:
         yang = ying.next
         while yang is not None:
-            if identical(str(ying.value["seq"]),str(yang.value["seq"]), info_sites):
+            if identical(str(ying.value["seq"]), str(yang.value["seq"]), info_sites):
                 print(f"Removing {yang.value['id']} as identical to {ying.value['id']}")
                 to_remove = yang
                 dup_list.append(yang.value["id"])

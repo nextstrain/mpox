@@ -1,0 +1,7 @@
+line-length = 110
+indent-width = 4
+
+[lint]
+ignore = [
+  "E712" # Messes with pandas
+]

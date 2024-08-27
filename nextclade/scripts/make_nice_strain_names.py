@@ -14,19 +14,21 @@ import argparse
 
 import pandas as pd
 
+
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--metadata', required=True)
-    parser.add_argument('--input-columns', nargs='+', required=True)
-    parser.add_argument('--separator', required=True)
-    parser.add_argument('--output-column', required=True)
-    parser.add_argument('--output', required=True)
+    parser.add_argument("--metadata", required=True)
+    parser.add_argument("--input-columns", nargs="+", required=True)
+    parser.add_argument("--separator", required=True)
+    parser.add_argument("--output-column", required=True)
+    parser.add_argument("--output", required=True)
     args = parser.parse_args()
 
-    df = pd.read_csv(args.metadata, sep='\t', dtype=str)
+    df = pd.read_csv(args.metadata, sep="\t", dtype=str)
     separator = str(args.separator)
     df[args.output_column] = df[args.input_columns].astype(str).apply(lambda x: separator.join(x), axis=1)
-    df.to_csv(args.output, sep='\t', index=False)
+    df.to_csv(args.output, sep="\t", index=False)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

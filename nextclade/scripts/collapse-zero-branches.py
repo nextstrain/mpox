@@ -6,11 +6,7 @@ from Bio import Phylo
 
 
 def get_branch_length_distribution(tree) -> Counter[float, int]:
-    return Counter(
-        node.branch_length
-        for node in tree.find_clades()
-        if node.branch_length is not None
-    )
+    return Counter(node.branch_length for node in tree.find_clades() if node.branch_length is not None)
 
 
 def collapse_near_zero_branches(tree, threshold=0.001, verbose=False):
@@ -35,9 +31,7 @@ def collapse_near_zero_branches(tree, threshold=0.001, verbose=False):
     difference = branch_length_counts_before - branch_length_counts_after
 
     if verbose:
-        print(
-            f"Collapsed {difference.total()} internal branches with lengths below {threshold}"
-        )
+        print(f"Collapsed {difference.total()} internal branches with lengths below {threshold}")
         print("Collapsed branches:")
         for length, count in difference.items():
             print(f"Branch length {length}: {count} branches")

@@ -6,9 +6,7 @@ if __name__ == "__main__":
         description="remove time info",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
-    parser.add_argument(
-        "--input-node-data", type=str, required=True, help="input data"
-    )
+    parser.add_argument("--input-node-data", type=str, required=True, help="input data")
     parser.add_argument(
         "--output-node-data",
         type=str,
@@ -37,6 +35,10 @@ if __name__ == "__main__":
         elif old_clade_name.startswith("outgroup"):
             clade_name = "outgroup"
         elif old_clade_name.startswith("lineage"):
+            clade_name = "IIb"
+            outbreak_name = "hMPXV-1"
+            lineage_name = old_clade_name
+        elif old_clade_name[0] in "ABCDEFGHIJKLMNOPQRSTUVWXYZ":
             clade_name = "IIb"
             outbreak_name = "hMPXV-1"
             lineage_name = old_clade_name

@@ -1,38 +1,39 @@
-from collections import defaultdict
 import argparse
-from treetime import TreeAnc
-from Bio import Phylo
+from collections import defaultdict
 
-if __name__=="__main__":
+from Bio import Phylo
+from treetime import TreeAnc
+
+if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="remove time info",
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
 
-    parser.add_argument('--alignment', type=str, required=True, help="input sequences")
-    parser.add_argument('--input-tree', type=str, required=True, help="input nwk")
-    parser.add_argument('--root', type=str, required=False, help="root node")
-    parser.add_argument('--output', type=str, required=True, help="output nwk")
+    parser.add_argument("--alignment", type=str, required=True, help="input sequences")
+    parser.add_argument("--input-tree", type=str, required=True, help="input nwk")
+    parser.add_argument("--root", type=str, required=False, help="root node")
+    parser.add_argument("--output", type=str, required=True, help="output nwk")
     args = parser.parse_args()
 
-    T = Phylo.read(args.input_tree, 'newick')
+    T = Phylo.read(args.input_tree, "newick")
 
     if args.root:
         T.root_with_outgroup(args.root)
     else:
         T.root_at_midpoint()
 
-    tt = TreeAnc(tree=T, aln=args.alignment, gtr='JC69')
+    tt = TreeAnc(tree=T, aln=args.alignment, gtr="JC69")
     tt.optimize_tree(prune_short=True)
 
     # make list of mutations that are phylogenetically informative (not gaps of N)
     for n in T.find_clades():
         n.relevant_mutations = set()
         for mut in n.mutations:
-            if (mut[0] in 'ACGT') and (mut[2] in 'ACGT'):
+            if (mut[0] in "ACGT") and (mut[2] in "ACGT"):
                 n.relevant_mutations.add(mut)
 
-    print(f"### Checking for immediate reversions\n")
+    print("### Checking for immediate reversions\n")
     reversions = list()
     for clade in T.find_clades():
         for child in clade.clades:
@@ -51,7 +52,7 @@ if __name__=="__main__":
                                     "child": child,
                                     "grandchild": grandchild,
                                     "mut_child": mut_child,
-                                    "mut_grandchild": mut_grandchild
+                                    "mut_grandchild": mut_grandchild,
                                 }
                             )
                             print(f"Below {clade}: {mut_child} in {child.name} reverted in {grandchild.name}")
@@ -84,23 +85,32 @@ if __name__=="__main__":
 
             # For each mutation, if it occurs in more than one child, add the node and the children to the list of nodes to merge
             for mut in shared_mutations:
-                if len(shared_mutations[mut])>1:
-                    nodes_to_merge[(n,tuple(shared_mutations[mut]))].append(mut)
+                if len(shared_mutations[mut]) > 1:
+                    nodes_to_merge[(n, tuple(shared_mutations[mut]))].append(mut)
 
-        if len(nodes_to_merge)==0:
+        if len(nodes_to_merge) == 0:
             print("No more shared mutations -- breaking out of loop.")
             break
 
         already_touched = set()
 
         # Merge children starting with the ones that have the most shared mutations
-        for (parent, children), mutations in sorted(nodes_to_merge.items(), key=lambda x:len(x[1]), reverse=True):
-
+        for (parent, children), mutations in sorted(
+            nodes_to_merge.items(), key=lambda x: len(x[1]), reverse=True
+        ):
             # Each child can only be merged once per iteration
             if any([c in already_touched for c in children]):
                 continue
 
-            print("####\nmerging clades:\n\t", '\n\t'.join([f"{c.name} with mutations {c.relevant_mutations} and {c.count_terminals()} tips" for c in children]))
+            print(
+                "####\nmerging clades:\n\t",
+                "\n\t".join(
+                    [
+                        f"{c.name} with mutations {c.relevant_mutations} and {c.count_terminals()} tips"
+                        for c in children
+                    ]
+                ),
+            )
             print("shared mutations:", mutations)
             print("\n")
 
@@ -108,7 +118,10 @@ if __name__=="__main__":
             parent.clades = [c for c in parent if c not in children]
 
             # Create new internal node for the merged children
-            new_clade = Phylo.BaseTree.Clade(branch_length=tt.one_mutation*len(mutations), name=f"{'_'.join([c.name for c in children])}_merged")
+            new_clade = Phylo.BaseTree.Clade(
+                branch_length=tt.one_mutation * len(mutations),
+                name=f"{'_'.join([c.name for c in children])}_merged",
+            )
             new_clade.relevant_mutations = set(mutations)
 
             # Add merged children to new internal node
@@ -118,7 +131,7 @@ if __name__=="__main__":
                 # Terminal nodes and internal nodes with mutations should be added as children to the new internal node
                 if len(left_over_mutations) or c.is_terminal():
                     c.relevant_mutations = left_over_mutations
-                    c.branch_length = tt.one_mutation*len(c.relevant_mutations)
+                    c.branch_length = tt.one_mutation * len(c.relevant_mutations)
                     new_clade.clades.append(c)
                 # Internal branches of 0 length should be removed and children added to the new internal node directly
                 else:
@@ -133,9 +146,9 @@ if __name__=="__main__":
         for n in T.find_clades():
             if n.is_terminal() and n.name is None:
                 T.prune(n)
-                print(f"Warning: Pruned terminal node without name. This should not happen.")
+                print("Warning: Pruned terminal node without name. This should not happen.")
                 count += 1
         if count == 0:
             break
 
-    Phylo.write(T, args.output, 'newick')
+    Phylo.write(T, args.output, "newick")
