@@ -72,12 +72,16 @@
     }
   ],
   "geo_resolutions": [
-    "country"
+    "region",
+    "country",
+    "division",
+    "location"
   ],
   "display_defaults": {
-    "color_by": "country",
+    "geo_resolution": "location",
+    "color_by": "num_date",
     "map_triplicate": false,
-    "distance_measure": "num_date",
-    "transmission_lines": false
+    "distance_measure": "div",
+    "transmission_lines": true
   }
 }

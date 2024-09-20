@@ -9,3 +9,7 @@ auspice_config: "build-configs/inrb/auspice_config.json"
 
 # INRB builds inject private data
 private_data: true
+
+traits:
+  columns: region country division location
+  sampling_bias_correction: 3

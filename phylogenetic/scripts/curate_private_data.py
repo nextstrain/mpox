@@ -14,6 +14,37 @@ MetadataHeader = list[str]
 DATE_COLUMN = 'date'
 ACCESSION = 'accession'
 REQUIRED_COLUMNS = [ACCESSION, DATE_COLUMN, 'strain']
+LAT_LONG_FNAME = path.join(path.dirname(path.realpath(__file__)), "..", "defaults", "clade-i", "lat_longs.tsv")
+GEOGRAPHIC_RENAMINGS = {
+    "division": {
+        "Sud Ubangi": "Sud-Ubangi",
+        "Nord Ubangi": "Nord-Ubangi",
+        "Mai ndombe": "Maindombe",
+        "Mai-Ndombe": "Maindombe",
+        "South Kivu": "Sud Kivu",
+        "Sud-Kivu": "Sud Kivu",
+        "Nord-Kivu": "Nord Kivu",
+        "Mongala ": "Mongala", # note trailing space
+    },
+    "location": {
+        "Miti-muresa": "Miti-Murhesa",
+        "Ototi": "Ototo", # Not sure which is correct, but Ototo is in lat-longs file from Eddy
+        # "Yelenge", - now included in lat-longs file
+        "Lilanga": "Lilanga-Bobangi",
+        "Lilanga Bobangi": "Lilanga-Bobangi",
+        "Nyiragongo": "Nyirangongo",
+        "Bunyakiru": "Bunyakiri",
+        "Nyatende": "Nyantende",
+        "Nyagezi": "Nyangezi",
+        "Kalamu I": "Kalamu-I",
+        "Kalamu II": "Kalamu-II",
+        "Masina I": "Masina-I",
+        "Masina II": "Masina-II",
+        "Omendjadji": "Omendjadi",
+        "Police": "Kokolo", # Eddy WhatsApp 2024-09-13. 24MPX2706V
+        "NYIRAGONGO": "Nyirangongo",
+    }
+}
 
 # The following could be better provided via parsing the (S3) metadata here, but I want to keep this script isolated
 # from the Snakemake workflow as much as possible
@@ -109,6 +140,62 @@ def compare_ids(sequences: Sequences, metadata: Metadata) -> tuple[Sequences, Me
 
     return (sequences, metadata)
 
+def read_lat_longs():
+    """Adapted from augur.utils to avoid this script needing augur to be installed"""
+    coordinates = {}
+    # TODO: make parsing of tsv files more robust while allow for whitespace delimiting for backwards compatibility
+    def add_line_to_coordinates(line):
+        if line.startswith('#') or line.strip() == "":
+            return
+        fields = line.strip().split() if not '\t' in line else line.strip().split('\t')
+        if len(fields) == 4:
+            geo_field, loc = fields[0].lower(), fields[1].lower()
+            lat, long = float(fields[2]), float(fields[3])
+            coordinates[(geo_field, loc)] = {
+                "latitude": lat,
+                "longitude": long
+            }
+        else:
+            print("WARNING: geo-coordinate file contains invalid line. Please make sure not to mix tabs and spaces as delimiters (use only tabs):",line)
+    with open(LAT_LONG_FNAME) as fh:
+        for line in fh:
+            add_line_to_coordinates(line)
+    return coordinates
+
+
+def curate_metadata(metadata: Metadata) -> Metadata:
+    lat_longs = read_lat_longs()
+    logs = set()
+    errors = set()
+
+    for resolution in ["division", "location"]:
+        for strain, data in metadata.items():
+            original_deme = data[resolution]
+            if original_deme in GEOGRAPHIC_RENAMINGS[resolution]:
+                deme = GEOGRAPHIC_RENAMINGS[resolution][original_deme]
+                logs.add(f"\t'{strain}' {resolution} '{original_deme}' -> '{deme}'")
+                data[resolution] = deme
+
+            if (resolution, data[resolution].lower()) not in lat_longs:
+                errors.add(f"\t{resolution} {data[resolution]}")
+
+    if len(logs):
+        print("\nThe following metadata changes were made:")
+        for l in logs:
+            print(l)
+    if len(errors):
+        print("\nERROR! The following geographic locations did not have associated lat-longs. "
+              "We cannot proceed until this is fixed. There are two potential ways to solve this: "
+              "\n(1) Within the phylogenetic/defaults/clade-i/lat_longs.tsv file we can add coordinates"
+              "\n(2) We can change the value in the metadata to match a lat-long which already exists in that file."
+              "\nHere are the problematic values:"
+        )
+        for l in errors:
+            print(l)
+        exit(2)
+
+    return metadata
+
 
 def parse_sequences(fnames: list[str], fasta_header_idx: int|None) -> Sequences:
     sequences = {}
@@ -164,8 +251,13 @@ def parse_remap_columns(arg: list[str]) -> list[tuple[str, str]]:
 
 if __name__=="__main__":
     args = parse_args()
+    print()
     metadata, header = parse_excel(args.xlsx, parse_remap_columns(args.remap_columns))
     sequences = parse_sequences(args.sequences, args.fasta_header_idx)
     sequences, metadata = compare_ids(sequences, metadata)
+
+    metadata = curate_metadata(metadata)
+
+    print()
     write_sequences(sequences)
     write_metadata(metadata, header)
