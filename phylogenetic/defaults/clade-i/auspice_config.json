@@ -22,6 +22,16 @@
       "type": "categorical"
     },
     {
+      "key": "division",
+      "title": "Province",
+      "type": "categorical"
+    },
+    {
+      "key": "location",
+      "title": "Health Zone",
+      "type": "categorical"
+    },
+    {
       "key": "host",
       "title": "Host",
       "type": "categorical"
@@ -53,13 +63,16 @@
     }
   ],
   "geo_resolutions": [
-    "country"
+    "region",
+    "country",
+    "division",
+    "location"
   ],
   "display_defaults": {
     "color_by": "country",
     "map_triplicate": true,
     "distance_measure": "num_date",
-    "transmission_lines": false
+    "transmission_lines": true
   },
   "filters": [
     "country",
