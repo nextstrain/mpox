@@ -116,11 +116,26 @@ rule rename_clades:
         build_dir + "/{build_name}/clades_raw.json",
     output:
         node_data=build_dir + "/{build_name}/clades.json",
+    wildcard_constraints:
+        build_name="^(?!clade-i)$",
     shell:
         """
         python scripts/clades_renaming.py \
         --input-node-data {input} \
         --output-node-data {output.node_data}
+        """
+
+
+rule clades_for_clade_I:
+    input:
+        tree=build_dir + "/clade-i/tree.nwk",
+    output:
+        node_data=build_dir + "/clade-i/clades.json",
+    shell:
+        """
+        python scripts/assign-clade-I-clades.py \
+            < {input.tree} \
+            > {output.node_data}
         """
 
 

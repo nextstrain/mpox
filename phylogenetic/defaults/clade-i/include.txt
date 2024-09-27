@@ -1,0 +1,7 @@
+# Ensure we include 2 Ia and Ib samples so we can use them to check clade assignment
+# Clade Ia
+PP601197
+KJ642618
+# Clade Ib
+PP601222
+PP601209
