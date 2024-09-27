@@ -41,9 +41,27 @@ rule remove_time:
         """
 
 
-rule colors:
+rule clade_i_color_ordering:
+    """
+    We don't want an ordering for division & location in the clade-I builds as these are constantly
+    changing and we want to avoid auspice using greys for demes
+    """
     input:
         ordering="defaults/color_ordering.tsv",
+    output:
+        ordering=build_dir + "/{build_name}/color_ordering.tsv",
+    shell:
+        r"""
+        cat {input.ordering} \
+            | grep -v '^division' \
+            | grep -v '^location' \
+            > {output.ordering}
+        """
+
+
+rule colors:
+    input:
+        ordering=lambda w: config.get("color_ordering", "defaults/color_ordering.tsv"),
         color_schemes="defaults/color_schemes.tsv",
         metadata=build_dir + "/{build_name}/metadata.tsv",
     output:
