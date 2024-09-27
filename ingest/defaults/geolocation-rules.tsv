@@ -14,3 +14,9 @@ Europe/Italy/Fvg/Gorizia	Europe/Italy/Friuli Venezia Giulia/Gorizia
 # Unclear which location is the real location
 Europe/Netherlands/Utrecht/Rotterdam	Europe/Netherlands//
 North America/USA/Washington/Dc	North America/USA/Washington DC/
+# Following renamings as part of work on INRB Clade-I builds
+Africa/Democratic Republic of the Congo/*/Nyagezi	Africa/Democratic Republic of the Congo/*/Nyangezi
+# Note that in our master geolocation rules we replace "Sud-Kivu" with "Sud Kivu" (similarly for "Nord-Kivu")
+# however the INRB tends to use "Sud-Kivu". We can't add a rule here to change it back (`augur curate` doesn't
+# allow it) so we enforce the use of "Sud Kivu" in INRB data as well.
+Africa/Democratic Republic of the Congo/South Kivu/*	Africa/Democratic Republic of the Congo/Sud Kivu/*
