@@ -21,6 +21,7 @@ Data will be shared via virological.org and [Nextstrain](https://nextstrain.org/
 * UCLA
 * USDA
 * WHO
+* U.S. Centers for Disease Control and Prevention (CDC)
 
 ### Acknowledgements
 This work was funded by :
