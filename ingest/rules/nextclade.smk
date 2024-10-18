@@ -1,7 +1,7 @@
 
 rule get_nextclade_dataset:
     output:
-        temp("mpxv.zip"),
+        temp("data/mpxv.zip"),
     params:
         dataset_name="MPXV",
     shell:
@@ -15,15 +15,15 @@ rule get_nextclade_dataset:
 rule run_nextclade:
     input:
         sequences="results/sequences.fasta",
-        dataset="mpxv.zip",
+        dataset="data/mpxv.zip",
     output:
-        nextclade="data/nextclade.tsv",
-        alignment="data/alignment.fasta",
-        translations="data/translations.zip",
+        nextclade="results/nextclade.tsv",
+        alignment="results/alignment.fasta",
+        translations="results/translations.zip",
     params:
         # The lambda is used to deactivate automatic wildcard expansion.
         # https://github.com/snakemake/snakemake/blob/384d0066c512b0429719085f2cf886fdb97fd80a/snakemake/rules.py#L997-L1000
-        translations=lambda w: "data/translations/{cds}.fasta",
+        translations=lambda w: "results/translations/{cds}.fasta",
     threads: 4
     shell:
         r"""
@@ -36,13 +36,13 @@ rule run_nextclade:
             --output-fasta {output.alignment:q} \
             --output-translations {params.translations:q}
 
-        zip -rj {output.translations:q} data/translations
+        zip -rj {output.translations:q} results/translations
         """
 
 
 rule join_metadata_clades:
     input:
-        nextclade="data/nextclade.tsv",
+        nextclade="results/nextclade.tsv",
         metadata="data/subset_metadata.tsv",
         nextclade_field_map=config["nextclade"]["field_map"],
     output:
