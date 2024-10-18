@@ -18,9 +18,9 @@ upload:
       all_sequences.ndjson.xz: data/sequences.ndjson
       metadata.tsv.gz: results/metadata.tsv
       sequences.fasta.xz: results/sequences.fasta
-      alignment.fasta.xz: data/alignment.fasta
-      insertions.csv.gz: data/insertions.csv
-      translations.zip: data/translations.zip
+      nextclade.tsv.zst: results/nextclade.tsv
+      alignment.fasta.xz: results/alignment.fasta
+      translations.zip: results/translations.zip
 
     cloudfront_domain: 'data.nextstrain.org'
 
