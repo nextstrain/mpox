@@ -1,3 +1,5 @@
+import sys
+
 
 rule get_nextclade_dataset:
     output:
@@ -40,28 +42,39 @@ rule run_nextclade:
         """
 
 
+if isinstance(config["nextclade"]["field_map"], str):
+    print(
+        f"Converting config['nextclade']['field_map'] from TSV file ({config['nextclade']['field_map']}) to dictionary; "
+        f"consider putting the field map directly in the config file.",
+        file=sys.stderr,
+    )
+    with open(config["nextclade"]["field_map"], "r") as f:
+        config["nextclade"]["field_map"] = dict(
+            line.rstrip("\n").split("\t", 1) for line in f if not line.startswith("#")
+        )
+
+
 rule join_metadata_clades:
     input:
         nextclade="results/nextclade.tsv",
         metadata="data/subset_metadata.tsv",
-        nextclade_field_map=config["nextclade"]["field_map"],
     output:
         metadata="results/metadata.tsv",
     params:
         id_field=config["curate"]["id_field"],
         nextclade_id_field=config["nextclade"]["id_field"],
+        nextclade_field_map=[
+            f"{old}={new}" for old, new in config["nextclade"]["field_map"].items()
+        ],
+        nextclade_fields=",".join(config["nextclade"]["field_map"].keys()),
     shell:
         r"""
-        export SUBSET_FIELDS=`awk 'NR>1 {{print $1}}' {input.nextclade_field_map} | tr '\n' ',' | sed 's/,$//g'`
-
-        csvtk -tl cut -f $SUBSET_FIELDS \
-            {input.nextclade} \
-        | csvtk -tl rename2 \
-            -F \
-            -f '*' \
-            -p '(.+)' \
-            -r '{{kv}}' \
-            -k {input.nextclade_field_map} \
+        tsv-select --header --fields {params.nextclade_fields:q} {input.nextclade} \
+        | augur curate rename \
+            --metadata - \
+            --id-column {params.nextclade_id_field:q} \
+            --field-map {params.nextclade_field_map:q} \
+            --output-metadata - \
         | tsv-join -H \
             --filter-file - \
             --key-fields {params.nextclade_id_field} \
