@@ -30,7 +30,7 @@ rule run_nextclade:
         # The lambda is used to deactivate automatic wildcard expansion.
         # https://github.com/snakemake/snakemake/blob/384d0066c512b0429719085f2cf886fdb97fd80a/snakemake/rules.py#L997-L1000
         translations=lambda w: "results/translations/{cds}.fasta",
-    threads: 4
+    threads: workflow.cores
     log:
         "logs/run_nextclade.txt",
     benchmark:
