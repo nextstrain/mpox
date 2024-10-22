@@ -6,11 +6,15 @@ rule get_nextclade_dataset:
         temp("data/mpxv.zip"),
     params:
         dataset_name="MPXV",
+    log:
+        "logs/get_nextclade_dataset.txt",
+    benchmark:
+        "benchmarks/get_nextclade_dataset.txt"
     shell:
         r"""
         nextclade3 dataset get \
             --name {params.dataset_name:q} \
-            --output-zip {output:q}
+            --output-zip {output:q} 2>&1 | tee {log}
         """
 
 
@@ -27,6 +31,10 @@ rule run_nextclade:
         # https://github.com/snakemake/snakemake/blob/384d0066c512b0429719085f2cf886fdb97fd80a/snakemake/rules.py#L997-L1000
         translations=lambda w: "results/translations/{cds}.fasta",
     threads: 4
+    log:
+        "logs/run_nextclade.txt",
+    benchmark:
+        "benchmarks/run_nextclade.txt"
     shell:
         r"""
         nextclade3 run \
@@ -36,7 +44,7 @@ rule run_nextclade:
             --input-dataset {input.dataset:q} \
             --output-tsv {output.nextclade:q} \
             --output-fasta {output.alignment:q} \
-            --output-translations {params.translations:q}
+            --output-translations {params.translations:q} 2>&1 | tee {log}
 
         zip -rj {output.translations:q} results/translations
         """
@@ -65,14 +73,18 @@ rule nextclade_metadata:
             f"{old}={new}" for old, new in config["nextclade"]["field_map"].items()
         ],
         nextclade_fields=",".join(config["nextclade"]["field_map"].keys()),
+    log:
+        "logs/nextclade_metadata.txt",
+    benchmark:
+        "benchmarks/nextclade_metadata.txt"
     shell:
         r"""
-        tsv-select --header --fields {params.nextclade_fields:q} {input.nextclade} \
+        (tsv-select --header --fields {params.nextclade_fields:q} {input.nextclade} \
         | augur curate rename \
             --metadata - \
             --id-column {params.nextclade_id_field:q} \
             --field-map {params.nextclade_field_map:q} \
-            --output-metadata {output.nextclade_metadata:q}
+            --output-metadata {output.nextclade_metadata:q} ) 2>&1 | tee {log}
         """
 
 
@@ -85,6 +97,10 @@ rule join_metadata_and_nextclade:
     params:
         metadata_id_field=config["curate"]["id_field"],
         nextclade_id_field=config["nextclade"]["id_field"],
+    log:
+        "logs/join_metadata_and_nextclade.txt",
+    benchmark:
+        "benchmarks/join_metadata_and_nextclade.txt"
     shell:
         r"""
         augur merge \
@@ -95,5 +111,5 @@ rule join_metadata_and_nextclade:
                 metadata={params.metadata_id_field:q} \
                 nextclade={params.nextclade_id_field:q} \
             --output-metadata {output.metadata:q} \
-            --no-source-columns
+            --no-source-columns 2>&1 | tee {log}
         """
