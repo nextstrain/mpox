@@ -12,7 +12,7 @@ The fourth is [`mpox/clade-I`](https://nextstrain.org/mpox/clade-I), which focus
 
 #### Analysis
 Our bioinformatic processing workflow can be found at [github.com/nextstrain/mpox](https://github.com/nextstrain/mpox) and includes:
-- sequence alignment by [nextalign](https://docs.nextstrain.org/projects/nextclade/en/stable/user/nextalign-cli.html)
+- sequence alignment by [Nextclade](https://docs.nextstrain.org/projects/nextclade/en/stable/user/nextclade-cli/index.html)
 - masking several regions of the genome, including the first 1350 and last 6422 base pairs and multiple repetitive regions of variable length
 - phylogenetic reconstruction using [IQTREE-2](http://www.iqtree.org/)
 - ancestral state reconstruction and temporal inference using [TreeTime](https://github.com/neherlab/treetime)
@@ -26,9 +26,9 @@ Curated sequences and metadata are available as flat files at:
 - [data.nextstrain.org/files/workflows/mpox/sequences.fasta.xz](https://data.nextstrain.org/files/workflows/mpox/sequences.fasta.xz)
 - [data.nextstrain.org/files/workflows/mpox/metadata.tsv.gz](https://data.nextstrain.org/files/workflows/mpox/metadata.tsv.gz)
 
-Pairwise alignments with [Nextclade](https://clades.nextstrain.org/) against the [reference sequence MPXV-M5312_HM12_Rivers](https://www.ncbi.nlm.nih.gov/nuccore/NC_063383), insertions relative to the reference, and translated ORFs are available at
+Pairwise alignments with [Nextclade](https://clades.nextstrain.org/) against the [reference sequence MPXV-M5312_HM12_Rivers](https://www.ncbi.nlm.nih.gov/nuccore/NC_063383), Nextclade analysis results, and translated ORFs are available at
 - [data.nextstrain.org/files/workflows/mpox/alignment.fasta.xz](https://data.nextstrain.org/files/workflows/mpox/alignment.fasta.xz)
-- [data.nextstrain.org/files/workflows/mpox/insertions.csv.gz](https://data.nextstrain.org/files/workflows/mpox/insertions.csv.gz)
+- [data.nextstrain.org/files/workflows/mpox/nextclade.tsv.zst](https://data.nextstrain.org/files/workflows/mpox/nextclade.tsv.zst)
 - [data.nextstrain.org/files/workflows/mpox/translations.zip](https://data.nextstrain.org/files/workflows/mpox/translations.zip)
 
 ---

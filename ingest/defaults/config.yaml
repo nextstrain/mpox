@@ -80,5 +80,23 @@ curate:
 nextclade:
   # Field to use as the sequence ID in the Nextclade file
   id_field: 'seqName'
-  # Fields from a Nextclade file to be renamed (if desired) and appended to a metadata file
-  field_map: 'defaults/nextclade-field-map.tsv'
+  # The first column should be the original column name of the Nextclade TSV
+  # The second column should be the new column name to use in the final metadata TSV
+  # Nextclade can have pathogen specific output columns so make sure to check which
+  # columns would be useful for your downstream phylogenetic analysis.
+  field_map:
+    seqName: "seqName"
+    clade: "clade"
+    outbreak: "outbreak"
+    lineage: "lineage"
+    coverage: "coverage"
+    totalMissing: "missing_data"
+    totalSubstitutions: "divergence"
+    totalNonACGTNs: "nonACGTN"
+    qc.missingData.status: "QC_missing_data"
+    qc.mixedSites.status: "QC_mixed_sites"
+    qc.privateMutations.status: "QC_rare_mutations"
+    qc.frameShifts.status: "QC_frame_shifts"
+    qc.stopCodons.status: "QC_stop_codons"
+    frameShifts: "frame_shifts"
+    isReverseComplement: "is_reverse_complement"
