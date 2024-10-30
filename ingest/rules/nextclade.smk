@@ -1,86 +1,115 @@
+import sys
 
-rule nextclade_dataset:
+
+rule get_nextclade_dataset:
     output:
-        temp("mpxv.zip"),
+        temp("data/mpxv.zip"),
+    params:
+        dataset_name="MPXV",
+    log:
+        "logs/get_nextclade_dataset.txt",
+    benchmark:
+        "benchmarks/get_nextclade_dataset.txt"
     shell:
-        """
-        nextclade2 dataset get --name MPXV --output-zip {output}
-        """
-
-
-rule nextclade_dataset_hMPXV:
-    output:
-        temp("hmpxv.zip"),
-    shell:
-        """
-        nextclade2 dataset get --name hMPXV --output-zip {output}
+        r"""
+        nextclade3 dataset get \
+            --name {params.dataset_name:q} \
+            --output-zip {output:q} 2>&1 | tee {log}
         """
 
 
-rule align:
+rule run_nextclade:
     input:
         sequences="results/sequences.fasta",
-        dataset="hmpxv.zip",
+        dataset="data/mpxv.zip",
     output:
-        alignment="data/alignment.fasta",
-        insertions="data/insertions.csv",
-        translations="data/translations.zip",
+        nextclade="results/nextclade.tsv",
+        alignment="results/alignment.fasta",
+        translations="results/translations.zip",
     params:
         # The lambda is used to deactivate automatic wildcard expansion.
         # https://github.com/snakemake/snakemake/blob/384d0066c512b0429719085f2cf886fdb97fd80a/snakemake/rules.py#L997-L1000
-        translations=lambda w: "data/translations/{gene}.fasta",
-    threads: 4
+        translations=lambda w: "results/translations/{cds}.fasta",
+    threads: workflow.cores
+    log:
+        "logs/run_nextclade.txt",
+    benchmark:
+        "benchmarks/run_nextclade.txt"
     shell:
-        """
-        nextclade2 run -D {input.dataset} -j {threads}   --retry-reverse-complement \
-                  --output-fasta {output.alignment}  --output-translations {params.translations} \
-                  --output-insertions {output.insertions} {input.sequences}
-        zip -rj {output.translations} data/translations
+        r"""
+        nextclade3 run \
+            {input.sequences:q} \
+            --jobs {threads:q} \
+            --retry-reverse-complement \
+            --input-dataset {input.dataset:q} \
+            --output-tsv {output.nextclade:q} \
+            --output-fasta {output.alignment:q} \
+            --output-translations {params.translations:q} 2>&1 | tee {log}
+
+        zip -rj {output.translations:q} results/translations
         """
 
 
-rule nextclade:
+if isinstance(config["nextclade"]["field_map"], str):
+    print(
+        f"Converting config['nextclade']['field_map'] from TSV file ({config['nextclade']['field_map']}) to dictionary; "
+        f"consider putting the field map directly in the config file.",
+        file=sys.stderr,
+    )
+    with open(config["nextclade"]["field_map"], "r") as f:
+        config["nextclade"]["field_map"] = dict(
+            line.rstrip("\n").split("\t", 1) for line in f if not line.startswith("#")
+        )
+
+
+rule nextclade_metadata:
     input:
-        sequences="results/sequences.fasta",
-        dataset="mpxv.zip",
+        nextclade="results/nextclade.tsv",
     output:
-        "data/nextclade.tsv",
-    threads: 4
+        nextclade_metadata=temp("results/nextclade_metadata.tsv"),
+    params:
+        nextclade_id_field=config["nextclade"]["id_field"],
+        nextclade_field_map=[
+            f"{old}={new}" for old, new in config["nextclade"]["field_map"].items()
+        ],
+        nextclade_fields=",".join(config["nextclade"]["field_map"].keys()),
+    log:
+        "logs/nextclade_metadata.txt",
+    benchmark:
+        "benchmarks/nextclade_metadata.txt"
     shell:
-        """
-        nextclade2 run -D {input.dataset} -j {threads} --output-tsv {output}  {input.sequences}  --retry-reverse-complement
+        r"""
+        (tsv-select --header --fields {params.nextclade_fields:q} {input.nextclade} \
+        | augur curate rename \
+            --metadata - \
+            --id-column {params.nextclade_id_field:q} \
+            --field-map {params.nextclade_field_map:q} \
+            --output-metadata {output.nextclade_metadata:q} ) 2>&1 | tee {log}
         """
 
 
-rule join_metadata_clades:
+rule join_metadata_and_nextclade:
     input:
-        nextclade="data/nextclade.tsv",
         metadata="data/subset_metadata.tsv",
-        nextclade_field_map=config["nextclade"]["field_map"],
+        nextclade_metadata="results/nextclade_metadata.tsv",
     output:
         metadata="results/metadata.tsv",
     params:
-        id_field=config["curate"]["id_field"],
+        metadata_id_field=config["curate"]["id_field"],
         nextclade_id_field=config["nextclade"]["id_field"],
+    log:
+        "logs/join_metadata_and_nextclade.txt",
+    benchmark:
+        "benchmarks/join_metadata_and_nextclade.txt"
     shell:
-        """
-        export SUBSET_FIELDS=`awk 'NR>1 {{print $1}}' {input.nextclade_field_map} | tr '\n' ',' | sed 's/,$//g'`
-
-        csvtk -tl cut -f $SUBSET_FIELDS \
-            {input.nextclade} \
-        | csvtk -tl rename2 \
-            -F \
-            -f '*' \
-            -p '(.+)' \
-            -r '{{kv}}' \
-            -k {input.nextclade_field_map} \
-        | tsv-join -H \
-            --filter-file - \
-            --key-fields {params.nextclade_id_field} \
-            --data-fields {params.id_field} \
-            --append-fields '*' \
-            --write-all ? \
-            {input.metadata} \
-        | tsv-select -H --exclude {params.nextclade_id_field} \
-            > {output.metadata}
+        r"""
+        augur merge \
+            --metadata \
+                metadata={input.metadata:q} \
+                nextclade={input.nextclade_metadata:q} \
+            --metadata-id-columns \
+                metadata={params.metadata_id_field:q} \
+                nextclade={params.nextclade_id_field:q} \
+            --output-metadata {output.metadata:q} \
+            --no-source-columns 2>&1 | tee {log}
         """
