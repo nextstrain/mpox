@@ -19,14 +19,14 @@ auspice_name: "mpox_clade-I"
 filter:
   min_date: 1900
   min_length: 100000
-  exclude_where: 'clade!=I'
 
 
-### We don't want to subsample, so specify a config which is essentially a no-op
+### Filter to only Clade I sequences
 subsample:
   everything:
     group_by: ""
     sequences_per_group: ""
+    other_filters: "--query \"clade in ['I', 'Ia', 'Ib']\""
 
 ## align
 max_indel: 10000
