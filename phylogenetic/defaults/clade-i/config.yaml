@@ -26,7 +26,7 @@ subsample:
   everything:
     group_by: ""
     sequences_per_group: ""
-    other_filters: "--query \"clade in ['I', 'Ia', 'Ib']\""
+    query: "'clade in [\"I\", \"Ia\", \"Ib\"]'"
 
 ## align
 max_indel: 10000
