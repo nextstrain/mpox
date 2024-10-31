@@ -98,6 +98,11 @@ rule subsample:
         sequences_per_group=lambda w: config["subsample"][w.sample][
             "sequences_per_group"
         ],
+        query=lambda w: (
+            f"--query {config['subsample'][w.sample]['query']}"
+            if "query" in config["subsample"][w.sample]
+            else ""
+        ),
         other_filters=lambda w: config["subsample"][w.sample].get("other_filters", ""),
         exclude=lambda w: (
             f"--exclude-where {' '.join([f'lineage={l}' for l in config['subsample'][w.sample]['exclude_lineages']])}"
@@ -113,6 +118,7 @@ rule subsample:
             --output-strains {output.strains} \
             {params.group_by} \
             {params.sequences_per_group} \
+            {params.query} \
             {params.exclude} \
             {params.other_filters} \
             --output-log {output.log}
