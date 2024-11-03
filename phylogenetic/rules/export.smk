@@ -48,12 +48,17 @@ rule colors:
         metadata=build_dir + "/{build_name}/metadata.tsv",
     output:
         colors=build_dir + "/{build_name}/colors.tsv",
+    params:
+        ignore_categories=lambda w: config.get("colors", {}).get(
+            "ignore_categories", ""
+        ),
     shell:
-        """
+        r"""
         python3 scripts/assign-colors.py \
             --ordering {input.ordering} \
             --color-schemes {input.color_schemes} \
             --output {output.colors} \
+            --ignore-categories {params.ignore_categories} \
             --metadata {input.metadata} 2>&1
         """
 

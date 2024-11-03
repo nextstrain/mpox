@@ -57,3 +57,6 @@ mask:
   from_beginning: 800
   from_end: 6422
   maskfile: "defaults/mask.bed"
+
+colors:
+  ignore_categories: "division location"
