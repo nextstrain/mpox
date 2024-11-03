@@ -116,11 +116,34 @@ rule rename_clades:
         build_dir + "/{build_name}/clades_raw.json",
     output:
         node_data=build_dir + "/{build_name}/clades.json",
+    wildcard_constraints:
+        build_name="(?!clade-i).*",
     shell:
         """
         python scripts/clades_renaming.py \
         --input-node-data {input} \
         --output-node-data {output.node_data}
+        """
+
+
+rule assign_clades_via_metadata:
+    """
+    For clade-i builds run a custom script rather than using `augur clades` as that approach can't reliably
+    identify basal clades due to the stochastic way `augur ancestral` assigns mutations on basal branches
+    """
+    input:
+        metadata=build_dir + "/{build_name}/metadata.tsv",
+        tree=build_dir + "/{build_name}/tree.nwk",
+    output:
+        node_data=build_dir + "/{build_name}/clades.json",
+    wildcard_constraints:
+        build_name="clade-i",
+    shell:
+        r"""
+        python scripts/assign-clades-via-metadata.py \
+            --metadata {input.metadata} \
+            --tree {input.tree} \
+            --output-node-data {output.node_data}
         """
 
 
