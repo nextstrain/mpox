@@ -45,8 +45,9 @@ clock_rate: 1.465e-06
 clock_std_dev: 6.7e-07
 divergence_units: "mutations"
 
+
 traits:
-  columns: "country"
+  columns: region country
   sampling_bias_correction: 3
 
 ## recency
@@ -56,3 +57,6 @@ mask:
   from_beginning: 800
   from_end: 6422
   maskfile: "defaults/mask.bed"
+
+colors:
+  ignore_categories: "division location"

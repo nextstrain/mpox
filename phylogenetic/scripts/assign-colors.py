@@ -16,6 +16,8 @@ if __name__ == '__main__':
     parser.add_argument('--color-schemes', type=str, required=True, help="input color schemes file")
     parser.add_argument('--metadata', type=str, help="if provided, restrict colors to only those found in metadata")
     parser.add_argument('--output', type=str, required=True, help="output colors tsv")
+    parser.add_argument('--ignore-categories', type=str, required=False, nargs='*',
+                        help="Do not create colors for these categories")
     args = parser.parse_args()
 
     assignment = {}
@@ -25,6 +27,8 @@ if __name__ == '__main__':
             if len(array) == 2:
                 name = array[0]
                 trait = array[1]
+                if name in args.ignore_categories:
+                    continue
                 if name not in assignment:
                     assignment[name] = [trait]
                 else:
