@@ -87,9 +87,43 @@ rule filter:
         """
 
 
+# Basic config sanity checking in lieu of a proper schema
+if any([k in config for k in ["private_sequences", "private_metadata"]]):
+    assert all(
+        [k in config for k in ["private_sequences", "private_metadata"]]
+    ), "Your config defined one of ['private_sequences', 'private_metadata'] but both must be supplied together"
+
+
+# At this point we merge in private data (iff requested)
+rule add_private_data:
+    """
+    This rule is conditionally added to the DAG if a config defines 'private_sequences' and 'private_metadata'
+    """
+    input:
+        sequences=build_dir + "/{build_name}/good_sequences.fasta",
+        metadata=build_dir + "/{build_name}/good_metadata.tsv",
+        private_sequences=config.get("private_sequences", ""),
+        private_metadata=config.get("private_metadata", ""),
+    output:
+        sequences=build_dir + "/{build_name}/good_sequences_combined.fasta",
+        metadata=build_dir + "/{build_name}/good_metadata_combined.tsv",
+    shell:
+        """
+        python3 scripts/combine_data_sources.py \
+            --metadata nextstrain={input.metadata} private={input.private_metadata} \
+            --sequences {input.sequences} {input.private_sequences} \
+            --output-metadata {output.metadata} \
+            --output-sequences {output.sequences}
+        """
+
+
 rule subsample:
     input:
-        metadata=build_dir + "/{build_name}/good_metadata.tsv",
+        metadata=(
+            build_dir + "/{build_name}/good_metadata_combined.tsv"
+            if config.get("private_metadata", False)
+            else build_dir + "/{build_name}/good_metadata.tsv"
+        ),
     output:
         strains=build_dir + "/{build_name}/{sample}_strains.txt",
         log=build_dir + "/{build_name}/{sample}_filter.log",
@@ -131,8 +165,16 @@ rule combine_samples:
             f"{build_dir}/{w.build_name}/{sample}_strains.txt"
             for sample in config["subsample"]
         ],
-        sequences=build_dir + "/{build_name}/good_sequences.fasta",
-        metadata=build_dir + "/{build_name}/good_metadata.tsv",
+        sequences=(
+            build_dir + "/{build_name}/good_sequences_combined.fasta"
+            if config.get("private_sequences", False)
+            else build_dir + "/{build_name}/good_sequences.fasta"
+        ),
+        metadata=(
+            build_dir + "/{build_name}/good_metadata_combined.tsv"
+            if config.get("private_metadata", False)
+            else build_dir + "/{build_name}/good_metadata.tsv"
+        ),
         include=config["include"],
     output:
         sequences=build_dir + "/{build_name}/filtered.fasta",
