@@ -1,0 +1,87 @@
+{
+  "title": "Genomic epidemiology of mpox clade I viruses: INRB build",
+  "maintainers": [
+    {"name": "INRB", "url": "https://inrb.net/"},
+    {"name": "Nextstrain team", "url": "http://nextstrain.org"}
+  ],
+  "data_provenance": [
+    {
+      "name": "INRB, DRC"
+    },
+    {
+      "name": "GenBank",
+      "url": "https://www.ncbi.nlm.nih.gov/genbank/"
+    }
+  ],
+  "build_url": "https://github.com/nextstrain/mpox",
+  "colorings": [
+    {
+      "key": "region",
+      "title": "Region",
+      "type": "categorical"
+    },
+    {
+      "key": "country",
+      "title": "Country",
+      "type": "categorical"
+    },
+    {
+      "key": "division",
+      "title": "Province",
+      "type": "categorical"
+    },
+    {
+      "key": "location",
+      "title": "Health Zone",
+      "type": "categorical"
+    },
+    {
+      "key": "source_private",
+      "title": "INRB (private data)",
+      "type": "boolean"
+    },
+    {
+      "key": "host",
+      "title": "Host",
+      "type": "categorical"
+    },
+    {
+      "key": "GA_CT_fraction",
+      "title": "G→A or C→T fraction",
+      "type": "continuous"
+    },
+    {
+      "key": "dinuc_context_fraction",
+      "title": "NGA/TCN context of G→A/C→T mutations",
+      "type": "continuous"
+    },
+    {
+      "key": "recency",
+      "title": "Submission Recency",
+      "type": "categorical"
+    },
+    {
+      "key": "date_submitted",
+      "title": "Release Date",
+      "type": "categorical"
+    },
+    {
+      "key": "date",
+      "title": "Collection date",
+      "type": "categorical"
+    }
+  ],
+  "geo_resolutions": [
+    "region",
+    "country",
+    "division",
+    "location"
+  ],
+  "display_defaults": {
+    "geo_resolution": "location",
+    "color_by": "num_date",
+    "map_triplicate": false,
+    "distance_measure": "div",
+    "transmission_lines": true
+  }
+}
