@@ -118,3 +118,6 @@ PP853012    # Suspicious clusters
 PP852987    # Suspicious clusters
 
 MG693723    # Spotty/gappy/clusters
+
+PP852989    # Nigerian overdiverged B.1
+OP605587    # Slovenia overdiverged B.1
