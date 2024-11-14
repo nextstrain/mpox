@@ -72,7 +72,7 @@
     "color_by": "country",
     "map_triplicate": true,
     "distance_measure": "num_date",
-    "transmission_lines": true
+    "transmission_lines": false
   },
   "filters": [
     "country",
