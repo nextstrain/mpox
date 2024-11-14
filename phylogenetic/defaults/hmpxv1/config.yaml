@@ -67,7 +67,7 @@ subsample:
       - B.1.23
   b1:
     group_by: "--group-by country year"
-    sequences_per_group: "--subsample-max-sequences 100"
+    sequences_per_group: "--subsample-max-sequences 300"
     other_filters: "--exclude-where outbreak!=hMPXV-1 clade!=IIb"
 
 ## align
