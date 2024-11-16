@@ -315,7 +315,7 @@ rule tree:
             --alignment {input.alignment} \
             --output {output.tree} \
             --nthreads 3 \
-            --tree-builder-args '--redo --pathogen-force --tree-search EXHAUSTIVE  --output-multifurcating-tree --make-consistent'
+            --tree-builder-args '--polytomy --pathogen-force --tree-search EXHAUSTIVE --output-multifurcating-tree --make-consistent'
         """
 
 
