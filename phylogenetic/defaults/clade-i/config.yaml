@@ -1,12 +1,12 @@
-reference: "defaults/reference.fasta"
-genome_annotation: "defaults/genome_annotation.gff3"
-genbank_reference: "defaults/reference.gb"
+reference: "defaults/clade-i/reference.fasta"
+genome_annotation: "defaults/clade-i/genome_annotation.gff3"
+genbank_reference: "defaults/clade-i/reference.gb"
 include: "defaults/clade-i/include.txt"
 clades: "defaults/clades.tsv"
 lat_longs: "defaults/lat_longs.tsv"
 auspice_config: "defaults/clade-i/auspice_config.json"
 description: "defaults/description.md"
-tree_mask: "defaults/tree_mask.tsv"
+tree_mask: "defaults/clade-i/tree_mask.tsv"
 
 # Use `accession` as the ID column since `strain` currently contains duplicates¹.
 # ¹ https://github.com/nextstrain/mpox/issues/33
@@ -18,7 +18,7 @@ auspice_name: "mpox_clade-I"
 
 filter:
   min_date: 1900
-  min_length: 100000
+  min_length: 170000
 
 
 ### Filter to only Clade I sequences
@@ -56,7 +56,7 @@ recency: true
 mask:
   from_beginning: 800
   from_end: 6422
-  maskfile: "defaults/mask.bed"
+  maskfile: "defaults/clade-i/mask.bed"
 
 colors:
   ignore_categories: "division location"

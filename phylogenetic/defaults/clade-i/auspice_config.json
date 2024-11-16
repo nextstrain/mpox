@@ -57,6 +57,46 @@
       "type": "categorical"
     },
     {
+      "key": "sra_accession",
+      "title": "SRA Accession",
+      "type": "categorical"
+    },
+    {
+      "key": "coverage",
+      "title": "Coverage",
+      "type": "continuous"
+    },
+    {
+      "key": "missing_data",
+      "title": "Missing Data",
+      "type": "continuous"
+    },
+    {
+      "key": "nonACGTN",
+      "title": "Non-ACGTN",
+      "type": "continuous"
+    },
+    {
+      "key": "institution",
+      "title": "Institution",
+      "type": "categorical"
+    },
+    {
+      "key": "division",
+      "title": "Division",
+      "type": "categorical"
+    },
+    {
+      "key": "location",
+      "title": "Location",
+      "type": "categorical"
+    },
+    {
+      "key": "abbr_authors",
+      "title": "Abbreviated Authors",
+      "type": "categorical"
+    },
+    {
       "key": "date",
       "title": "Collection date",
       "type": "categorical"
