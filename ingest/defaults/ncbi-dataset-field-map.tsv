@@ -13,5 +13,5 @@ Isolate Lineage source	isolation_source
 BioProjects	bioproject_accession
 BioSample accession	biosample_accession
 SRA Accessions	sra_accession
-Submitter Names	authors
+Submitter Names	full_authors
 Submitter Affiliation	submitting_organization

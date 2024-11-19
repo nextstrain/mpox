@@ -40,11 +40,11 @@ curate:
     # List of string fields to titlecase
     fields: ['region', 'country', 'division', 'location']
   # Authors field name
-  authors_field: 'authors'
+  authors_field: 'full_authors'
   # Authors default value if authors value is empty
   authors_default_value: '?'
   # Field name for the generated abbreviated authors
-  abbr_authors_field: 'abbr_authors'
+  abbr_authors_field: 'authors'
   # General geolocation rules to apply to geolocation fields
   geolocation_rules_url: 'https://raw.githubusercontent.com/nextstrain/ncov-ingest/master/source-data/gisaid_geoLocationRules.tsv'
   # Local geolocation rules that are only applicable to mpox data
@@ -71,8 +71,8 @@ curate:
     'host',
     'date_submitted',
     'sra_accession',
-    'abbr_authors',
     'authors',
+    'full_authors',
     'institution'
   ]
 
