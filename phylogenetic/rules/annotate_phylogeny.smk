@@ -31,13 +31,19 @@ rule ancestral:
         node_data=build_dir + "/{build_name}/nt_muts.json",
     params:
         inference="joint",
+        root_sequence=lambda w: (
+            f"--root-sequence {config['ancestral_root_seq']!r}"
+            if config.get("ancestral_root_seq")
+            else ""
+        ),
     shell:
         """
         augur ancestral \
             --tree {input.tree} \
             --alignment {input.alignment} \
             --output-node-data {output.node_data} \
-            --inference {params.inference}
+            --inference {params.inference} \
+            {params.root_sequence}
         """
 
 
