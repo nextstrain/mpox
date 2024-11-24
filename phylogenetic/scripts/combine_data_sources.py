@@ -30,7 +30,7 @@ def parse_tsv(fname: str) -> Metadata:
     assert list(fname).count('=')<=1, f"Too many '=' characters in argument {fname!r}"
     if '=' in fname:
         source_name, fname = fname.split('=')
-    with open(fname, "r") as fh:
+    with open(fname, "r", newline='') as fh:
         reader = csv.DictReader(fh, delimiter="\t")
         metadata = [row for row in reader]
     if source_name:
@@ -77,10 +77,11 @@ def write_sequences(fname: str, sequences: Sequences) -> None:
 
 def write_metadata(fname: str, metadata: Metadata, header: MetadataHeader) -> None:
     print(f"Writing metadata to {fname}")
-    with open(fname, "w") as fh:
-        print("\t".join(header), file=fh)
+    with open(fname, "w", newline='') as fh:
+        writer = csv.DictWriter(fh, header, extrasaction='ignore', delimiter='\t', lineterminator='\n')
+        writer.writeheader()
         for row in metadata:
-            print("\t".join([row.get(field, '') for field in header]), file=fh)
+            writer.writerow(row)
 
 if __name__=="__main__":
     args = parse_args()

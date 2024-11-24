@@ -13,3 +13,9 @@ private_metadata: "data/metadata-private.tsv"
 traits:
   columns: region country division location
   sampling_bias_correction: 3
+
+# Private INRB data doesn't have clade annotations so allow empty clade fields
+# (i.e. we're assuming all INRB data is clade I)
+subsample:
+  everything:
+    query: "'clade in [\"I\", \"Ia\", \"Ib\", \"\"]'"

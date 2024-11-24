@@ -5,6 +5,7 @@ from openpyxl import load_workbook
 from datetime import datetime
 from os import path, mkdir
 from sys import exit
+import csv
 
 Sequences = dict[str, SeqIO.SeqRecord]
 Metadata = dict[str, dict[str, str]]
@@ -238,10 +239,11 @@ def write_sequences(sequences: Sequences) -> None:
 def write_metadata(metadata: Metadata, header: MetadataHeader) -> None:
     fname = fname_in_data_dir("metadata-private.tsv")
     print(f"Writing metadata to {fname}")
-    with open(fname, "w") as fh:
-        print("\t".join(header), file=fh)
-        for _, value in metadata.items():
-            print("\t".join([value[field] for field in header]), file=fh)
+    with open(fname, "w", newline='') as fh:
+        writer = csv.DictWriter(fh, header, extrasaction='ignore', delimiter='\t', lineterminator='\n')
+        writer.writeheader()
+        for line in metadata.values():
+            writer.writerow(line)
 
 def parse_remap_columns(arg: list[str]) -> list[tuple[str, str]]:
     try:

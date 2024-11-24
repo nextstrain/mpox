@@ -1,24 +1,30 @@
 """
-Use provided metadata to assign clade to terminal nodes. If the metadata is complete (i.e. all tips are assigned a clade)
-then for each clade we assign the clade to internal nodes and set a label for the MRCA node, iff the tips are monophyletic.
+Use provided metadata to assign clades to internal nodes and those with missing metadata.
+For each valid clades (i.e. those which match a hardcoded list) as long as the tips are monophyletic
+in the tree (ignoring missing data) then we label all internal nodes and missing tips with that clade
+as well as labelling the MRCA branch.
 """
 
 import argparse
-from sys import stderr, stdout, exit
+from sys import exit
 from Bio import Phylo
 import json
 from augur.io import read_metadata
 from augur.argparse_ import ExtendOverwriteDefault
 from collections import defaultdict
 
+VALID_CLADES = set(['Ia', 'Ib', 'I'])
+MISSING = ''
 
-def assign_internal_nodes(clade_name, terminal_nodes, node_data):
-    print(f"Assigning {clade_name} to internal nodes")
-    mrca = t.is_monophyletic(terminal_nodes)
-    if not mrca:
-        print(f"WARNING: {clade_name} wasn't monophyletic! Clades will not be assigned to internal nodes")
+def assign_internal_nodes(t, clade_name, terminal_nodes, missing_nodes, node_data):
+    print(f"[clade metadata] Assigning {clade_name} to internal nodes & labelling MRCA branch")
+    mrca = t.common_ancestor(terminal_nodes)
+
+    if not all([(n in terminal_nodes or n in missing_nodes) for n in mrca.get_terminals()]):
+        print(f"[clade metadata] ERROR {clade_name} wasn't monophyloetic (after accounting for nodes missing clade values).  Clades will not be assigned to internal nodes.")
         return
-    for node in mrca.get_nonterminals():
+
+    for node in (n for n in mrca.find_clades() if n not in terminal_nodes): # skip ones we have already assigned
         node_data['nodes'][node.name] = {'clade_membership': clade_name}
     node_data['branches'][mrca.name] = {'labels': {'clade': clade_name}}
 
@@ -41,23 +47,29 @@ if __name__=="__main__":
     t = Phylo.read(args.tree, "newick")
 
     node_data = {'nodes': {}, 'branches': {}}
-    counts = [0,0]
+    counts = {'missing': 0, 'valid': 0, 'invalid': 0}
     terminals = defaultdict(list)
+    missing_nodes = []
 
+
+    print(f"[clade metadata] Pass 1/2 - assigning clades from metadata to nodes")
     for node in t.get_terminals():
-        counts[0]+=1
-        if node.name in clades:
-            counts[1]+=1
-            node_data['nodes'][node.name] = {'clade_membership': clades[node.name]}
-            terminals[clades[node.name]].append(node)
+        clade_value = clades[node.name]
+        if clade_value == MISSING:
+            counts['missing']+=1
+            missing_nodes.append(node)
+        elif clade_value in VALID_CLADES:
+            counts['valid']+=1
+            node_data['nodes'][node.name] = {'clade_membership': clade_value}
+            terminals[clade_value].append(node)
+        else:
+            counts['invalid']+=1
+    print(f"[clade metadata] {sum(counts.values())} tips: {counts['valid']} valid, {counts['invalid']} invalid, {counts['missing']} missing clade values")
 
-    print(f"Metadata defined clades for {counts[1]}/{counts[0]} tips in tree", file=stderr)
 
-    if counts[0]==counts[1]:
-        for clade_name, clade_terminals in terminals.items():
-            assign_internal_nodes(clade_name, clade_terminals, node_data)
-    else:
-        print(f"WARNING: incomplete metadata. Assignment of clade labels is uncertain and thus we are skipping it")
+    print(f"[clade metadata] Pass 2/2 - if (valid) clades are monophyletic then label internal nodes (and missing tips)")
+    for clade_name, clade_terminals in terminals.items():
+        assign_internal_nodes(t, clade_name, clade_terminals, missing_nodes, node_data)
 
     with open(args.output_node_data, 'w') as fh:
         json.dump(node_data, fh)
