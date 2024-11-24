@@ -16,6 +16,15 @@
   "build_url": "https://github.com/nextstrain/mpox",
   "colorings": [
     {
+      "key": "clade_membership",
+      "title": "Clade",
+      "type": "categorical",
+      "scale": [
+        ["Ia", "#4C90C0"],
+        ["Ib", "#CBB742"]
+      ]
+    },
+    {
       "key": "region",
       "title": "Region",
       "type": "categorical"
