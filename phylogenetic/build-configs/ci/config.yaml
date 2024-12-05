@@ -2,6 +2,7 @@ custom_rules:
   - build-configs/ci/copy_example_data.smk
 
 reference: "defaults/reference.fasta"
+ancestral_root_seq: "defaults/reference.fasta"
 genome_annotation: "defaults/genome_annotation.gff3"
 genbank_reference: "defaults/reference.gb"
 include: "defaults/hmpxv1/include.txt"
