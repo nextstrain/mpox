@@ -57,10 +57,14 @@ if __name__=="__main__":
                             print(f"Below {clade}: {mut_child} in {child.name} reverted in {grandchild.name}")
 
     for reversion in reversions:
-        # Remove reversion from grandchild
-        reversion["grandchild"].relevant_mutations.remove(reversion["mut_grandchild"])
-        # Remove grandchild from child
-        reversion["child"].clades.remove(reversion["grandchild"])
+        if reversion["mut_grandchild"] in reversion["grandchild"].relevant_mutations:
+            # Remove reversion from grandchild
+            reversion["grandchild"].relevant_mutations.remove(reversion["mut_grandchild"])
+
+        if reversion["grandchild"] in reversion["child"].clades:
+            # Remove grandchild from child
+            reversion["child"].clades.remove(reversion["grandchild"])
+
         # If there are mutations, add grandchild as child of parent
         if reversion["grandchild"].relevant_mutations != reversion["parent"].relevant_mutations:
             reversion["parent"].clades.append(reversion["grandchild"])
