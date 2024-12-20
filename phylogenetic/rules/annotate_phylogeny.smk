@@ -123,7 +123,7 @@ rule rename_clades:
     output:
         node_data=build_dir + "/{build_name}/clades.json",
     wildcard_constraints:
-        build_name="(?!clade-i).*",
+        build_name="(?!clade-i)[^b].*",
     shell:
         """
         python scripts/clades_renaming.py \
@@ -143,7 +143,7 @@ rule assign_clades_via_metadata:
     output:
         node_data=build_dir + "/{build_name}/clades.json",
     wildcard_constraints:
-        build_name="clade-i",
+        build_name="clade-ib?",
     shell:
         r"""
         python scripts/assign-clades-via-metadata.py \

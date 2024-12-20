@@ -1,0 +1,59 @@
+reference: "defaults/clade-ib/reference.fasta"
+genome_annotation: "defaults/clade-ib/genome_annotation.gff3"
+genbank_reference: "defaults/clade-ib/reference.gb"
+include: "defaults/clade-ib/include.txt"
+clades: "defaults/clades.tsv"
+lat_longs: "defaults/lat_longs.tsv"
+auspice_config: "defaults/clade-ib/auspice_config.json"
+description: "defaults/description.md"
+tree_mask: "defaults/clade-ib/tree_mask.tsv"
+
+# Use `accession` as the ID column since `strain` currently contains duplicates¹.
+# ¹ https://github.com/nextstrain/mpox/issues/33
+strain_id_field: "accession"
+display_strain_field: "strain"
+
+build_name: "clade-ib"
+auspice_name: "mpox_clade-Ib"
+
+filter:
+  min_date: 1900
+  min_length: 170000
+
+
+### Filter to only Clade I sequences
+subsample:
+  everything:
+    group_by: ""
+    sequences_per_group: ""
+    query: "'clade in [\"Ib\"]'"
+
+## align
+max_indel: 10000
+seed_spacing: 1000
+
+## treefix
+fix_tree: true
+treefix_root: "--root PP601228" # without a root we'll midpoint root which should work great for clade I
+
+## refine
+timetree: true
+root: "best"
+
+divergence_units: "mutations"
+
+
+traits:
+  columns: region country
+  sampling_bias_correction: 3
+
+## recency
+recency: true
+
+mask:
+  from_beginning: 800
+  from_end: 6422
+  maskfile: "defaults/clade-i/mask.bed"
+
+colors:
+  ignore_categories: "division location"
