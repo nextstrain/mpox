@@ -43,6 +43,8 @@ treefix_root: "--root EPI_ISL_19093833" # without a root we'll midpoint root whi
 timetree: true
 root: "best"
 keep_polytomies: false
+clock_rate: 5.7e-5
+clock_std_dev: 2e-5
 
 divergence_units: "mutations"
 

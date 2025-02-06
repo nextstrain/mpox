@@ -55,8 +55,8 @@ rule add_private_data:
     This rule is conditionally added to the DAG if a config defines 'private_sequences' and 'private_metadata'
     """
     input:
-        # sequences=None,#"data/sequences.fasta",
-        # metadata=,#"data/metadata.tsv",
+        sequences="data/mpox_nuc.fasta",
+        metadata="data/ppx_massaged.tsv",
         private_sequences=config.get("private_sequences", ""),
         private_metadata=config.get("private_metadata", ""),
     output:
@@ -65,8 +65,8 @@ rule add_private_data:
     shell:
         """
         python3 scripts/combine_data_sources.py \
-            --metadata private={input.private_metadata} \
-            --sequences  {input.private_sequences} \
+            --metadata ppx={input.metadata} private={input.private_metadata} \
+            --sequences {input.sequences} {input.private_sequences} \
             --output-metadata {output.metadata} \
             --output-sequences {output.sequences}
         """
@@ -96,7 +96,7 @@ rule filter:
     params:
         min_length=config["filter"]["min_length"],
         min_date=(
-            ("--min-date " + config["filter"]["min_date"])
+            ("--min-date " + str(config["filter"]["min_date"]))
             if "min_date" in config["filter"]
             else ""
         ),

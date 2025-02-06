@@ -16,6 +16,11 @@
   "build_url": "https://github.com/nextstrain/mpox",
   "colorings": [
     {
+      "key": "source",
+      "title": "Data source",
+      "type": "categorical"
+    },
+    {
       "key": "region",
       "title": "Region",
       "type": "categorical"

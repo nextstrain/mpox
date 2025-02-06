@@ -1,4 +1,5 @@
 import csv
+import subprocess
 
 import pandas as pd
 
@@ -32,9 +33,9 @@ def convert_metadata(input_file, output_file):
     output_df = pd.DataFrame(columns=output_columns)
 
     # Map the columns we have
-    output_df['accession'] = df['Accession ID']
-    output_df['date'] = df['Collection date']
-    output_df['date_submitted'] = df['Submission date'].replace('unknown', '')
+    output_df['accession'] = df['accessionVersion']
+    output_df['date'] = df['sampleCollectionDate']
+    output_df['date_submitted'] = df['releasedDate']
 
     # Massage dates by replacing missing date parts (day or month) with XX
     # 2024 -> 2024-XX-XX
@@ -44,15 +45,15 @@ def convert_metadata(input_file, output_file):
 
 
     # Process location field
-    locations = df['Location'].apply(process_location)
-    output_df['region'] = locations.apply(lambda x: x[0])
-    output_df['country'] = locations.apply(lambda x: x[1])
-    output_df['division'] = locations.apply(lambda x: x[2])
-    output_df['location'] = locations.apply(lambda x: x[3])
+    output_df['region'] = "Africa"
+    output_df['country'] = df["geoLocCountry"]
+    output_df['division'] = df["geoLocAdmin1"]
 
-    output_df['strain'] = output_df.apply(lambda row: f"{row['date']}|{row['country']}|{row['division']}|{row['location']}", axis=1)
+    output_df['strain'] = output_df.apply(lambda row: f"{row['date']}|{row['country']}|{row['division']}", axis=1)
 
     output_df['date'] = output_df['date'].apply(lambda x: 'XXXX-XX-XX' if isinstance(x, float) else f'{x}-XX-XX' if len(x) == 4 else f'{x}-XX' if len(x) == 7 else x)
+
+    output_df['authors'] = df['authors']
 
     # Fill default values for other columns
     default_values = {
@@ -75,7 +76,7 @@ def convert_metadata(input_file, output_file):
         'QC_frame_shifts': 'good',
         'QC_stop_codons': 'good',
         'frame_shifts': '',
-        'source': 'GISAID',
+        'source': 'Pathoplexus',
         'is_reverse_complement': 'false'
     }
 
@@ -87,4 +88,4 @@ def convert_metadata(input_file, output_file):
 
 # Usage
 if __name__ == "__main__":
-    convert_metadata("data/gisaid.tsv", "data/gisaid_massaged.tsv")
+    convert_metadata("data/mpox_metadata.tsv", "data/ppx_massaged.tsv")
