@@ -7,6 +7,10 @@
     {
       "name": "GenBank",
       "url": "https://www.ncbi.nlm.nih.gov/genbank/"
+    },
+    {
+      "name": "GISAID",
+      "url": "https://www.gisaid.org/"
     }
   ],
   "build_url": "https://github.com/nextstrain/mpox",

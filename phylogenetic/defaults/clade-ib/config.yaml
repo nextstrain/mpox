@@ -1,23 +1,26 @@
-reference: "defaults/clade-ib/reference.fasta"
-genome_annotation: "defaults/clade-ib/genome_annotation.gff3"
-genbank_reference: "defaults/clade-ib/reference.gb"
+# Mostly reuse the clade-i config
+reference: "defaults/clade-i/reference.fasta"
+genome_annotation: "defaults/clade-i/genome_annotation.gff3"
+genbank_reference: "defaults/clade-i/reference.gb"
 include: "defaults/clade-ib/include.txt"
 clades: "defaults/clades.tsv"
 lat_longs: "defaults/lat_longs.tsv"
 auspice_config: "defaults/clade-ib/auspice_config.json"
 description: "defaults/description.md"
-tree_mask: "defaults/clade-ib/tree_mask.tsv"
+tree_mask: "defaults/clade-i/tree_mask.tsv"
 
 # Use `accession` as the ID column since `strain` currently contains duplicates¹.
 # ¹ https://github.com/nextstrain/mpox/issues/33
 strain_id_field: "accession"
 display_strain_field: "strain"
 
+private_metadata: "data/gisaid_massaged.tsv"
+private_sequences: "data/gisaid_massaged.fasta"
+
 build_name: "clade-ib"
 auspice_name: "mpox_clade-Ib"
 
 filter:
-  min_date: 1900
   min_length: 170000
 
 
@@ -34,11 +37,12 @@ seed_spacing: 1000
 
 ## treefix
 fix_tree: true
-treefix_root: "--root PP601228" # without a root we'll midpoint root which should work great for clade I
+treefix_root: "--root EPI_ISL_19093833" # without a root we'll midpoint root which should work great for clade I
 
 ## refine
 timetree: true
 root: "best"
+keep_polytomies: false
 
 divergence_units: "mutations"
 

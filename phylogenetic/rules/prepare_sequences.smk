@@ -49,21 +49,57 @@ rule decompress:
         """
 
 
+# At this point we merge in private data (iff requested)
+rule add_private_data:
+    """
+    This rule is conditionally added to the DAG if a config defines 'private_sequences' and 'private_metadata'
+    """
+    input:
+        # sequences=None,#"data/sequences.fasta",
+        # metadata=,#"data/metadata.tsv",
+        private_sequences=config.get("private_sequences", ""),
+        private_metadata=config.get("private_metadata", ""),
+    output:
+        sequences=build_dir + "/{build_name}/sequences_combined.fasta",
+        metadata=build_dir + "/{build_name}/metadata_combined.tsv",
+    shell:
+        """
+        python3 scripts/combine_data_sources.py \
+            --metadata private={input.private_metadata} \
+            --sequences  {input.private_sequences} \
+            --output-metadata {output.metadata} \
+            --output-sequences {output.sequences}
+        """
+
+
 rule filter:
     """
     Removing strains that do not satisfy certain requirements.
     """
     input:
-        sequences="data/sequences.fasta",
-        metadata="data/metadata.tsv",
+        # sequences="data/sequences.fasta",
+        sequences=(
+            build_dir + "/{build_name}/sequences_combined.fasta"
+            if config.get("private_sequences", False)
+            else "data/sequences.fasta"
+        ),
+        metadata=(
+            build_dir + "/{build_name}/metadata_combined.tsv"
+            if config.get("private_metadata", False)
+            else "data/metadata.tsv"
+        ),
         exclude="defaults/exclude_accessions.txt",
     output:
         sequences=build_dir + "/{build_name}/good_sequences.fasta",
         metadata=build_dir + "/{build_name}/good_metadata.tsv",
         log=build_dir + "/{build_name}/good_filter.log",
     params:
-        min_date=config["filter"]["min_date"],
         min_length=config["filter"]["min_length"],
+        min_date=(
+            ("--min-date " + config["filter"]["min_date"])
+            if "min_date" in config["filter"]
+            else ""
+        ),
         strain_id=config["strain_id_field"],
         exclude_where=lambda w: (
             f"--exclude-where {config['filter']['exclude_where']}"
@@ -80,7 +116,7 @@ rule filter:
             --output-metadata {output.metadata} \
             --exclude {input.exclude} \
             {params.exclude_where} \
-            --min-date {params.min_date} \
+            {params.min_date} \
             --min-length {params.min_length} \
             --query "(QC_rare_mutations == 'good' | QC_rare_mutations == 'mediocre')" \
             --output-log {output.log}
@@ -94,36 +130,9 @@ if any([k in config for k in ["private_sequences", "private_metadata"]]):
     ), "Your config defined one of ['private_sequences', 'private_metadata'] but both must be supplied together"
 
 
-# At this point we merge in private data (iff requested)
-rule add_private_data:
-    """
-    This rule is conditionally added to the DAG if a config defines 'private_sequences' and 'private_metadata'
-    """
-    input:
-        sequences=build_dir + "/{build_name}/good_sequences.fasta",
-        metadata=build_dir + "/{build_name}/good_metadata.tsv",
-        private_sequences=config.get("private_sequences", ""),
-        private_metadata=config.get("private_metadata", ""),
-    output:
-        sequences=build_dir + "/{build_name}/good_sequences_combined.fasta",
-        metadata=build_dir + "/{build_name}/good_metadata_combined.tsv",
-    shell:
-        """
-        python3 scripts/combine_data_sources.py \
-            --metadata nextstrain={input.metadata} private={input.private_metadata} \
-            --sequences {input.sequences} {input.private_sequences} \
-            --output-metadata {output.metadata} \
-            --output-sequences {output.sequences}
-        """
-
-
 rule subsample:
     input:
-        metadata=(
-            build_dir + "/{build_name}/good_metadata_combined.tsv"
-            if config.get("private_metadata", False)
-            else build_dir + "/{build_name}/good_metadata.tsv"
-        ),
+        metadata=build_dir + "/{build_name}/good_metadata.tsv",
     output:
         strains=build_dir + "/{build_name}/{sample}_strains.txt",
         log=build_dir + "/{build_name}/{sample}_filter.log",
@@ -166,12 +175,12 @@ rule combine_samples:
             for sample in config["subsample"]
         ],
         sequences=(
-            build_dir + "/{build_name}/good_sequences_combined.fasta"
+            build_dir + "/{build_name}/sequences_combined.fasta"
             if config.get("private_sequences", False)
             else build_dir + "/{build_name}/good_sequences.fasta"
         ),
         metadata=(
-            build_dir + "/{build_name}/good_metadata_combined.tsv"
+            build_dir + "/{build_name}/metadata_combined.tsv"
             if config.get("private_metadata", False)
             else build_dir + "/{build_name}/good_metadata.tsv"
         ),

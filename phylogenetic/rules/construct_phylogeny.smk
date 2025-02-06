@@ -90,6 +90,12 @@ rule refine:
         ),
         strain_id=config["strain_id_field"],
         divergence_units=config["divergence_units"],
+        timetree="--timetree" if config["timetree"] else "",
+        keep_polytomies=(
+            "--keep-polytomies"
+            if config["keep_polytomies"]
+            else "--stochastic-resolve"
+        ),
     shell:
         """
         augur refine \
@@ -98,11 +104,11 @@ rule refine:
             --metadata {input.metadata} \
             --metadata-id-columns {params.strain_id} \
             --output-tree {output.tree} \
-            --timetree \
             --root {params.root} \
             --precision 3 \
-            --keep-polytomies \
             --use-fft \
+            {params.keep_polytomies} \
+            {params.timetree} \
             {params.clock_rate} \
             {params.clock_std_dev} \
             --output-node-data {output.node_data} \
