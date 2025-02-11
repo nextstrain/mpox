@@ -1,0 +1,22 @@
+# Nuc coordinates valid for reference NC_063383 (MPXV-M5312_HM12_Rivers)
+clade	gene	site	alt
+
+A	nuc	165253	C
+
+A.1	nuc	71540	T
+A.1	nuc	139251	T
+A.1	nuc	147983	A
+
+A.2	nuc	103450	A
+A.2	nuc	63906	A
+
+A.3	nuc	103450	A
+A.3	nuc	185697	A
+
+A.4	nuc	103450	A
+A.4	nuc	77015	T
+A.4	nuc	104774	T
+
+A.5	nuc	103450	A
+A.5	nuc	151380	T
+A.5	nuc	171077	A

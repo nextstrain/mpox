@@ -1,19 +1,20 @@
 {
-  "title": "Genomic epidemiology of mpox clade Ib viruses",
+  "title": "Mpox clade Ib lineage proposal based on Pathoplexus and GISAID data",
   "maintainers": [
+    {"name": "Cornelius Roemer", "url": "http://neherlab.org"},
     {"name": "Nextstrain team", "url": "http://nextstrain.org"}
   ],
   "data_provenance": [
     {
-      "name": "GenBank",
-      "url": "https://www.ncbi.nlm.nih.gov/genbank/"
+      "name": "Pathoplexus",
+      "url": "https://pathoplexus.org"
     },
     {
       "name": "GISAID",
-      "url": "https://www.gisaid.org/"
+      "url": "https://www.gisaid.org"
     }
   ],
-  "build_url": "https://github.com/nextstrain/mpox",
+  "build_url": "https://github.com/nextstrain/mpox/phylogenetic",
   "colorings": [
     {
       "key": "source",
@@ -101,8 +102,43 @@
       "type": "categorical"
     },
     {
+      "key": "authors",
+      "title": "Authors",
+      "type": "categorical"
+    },
+    {
       "key": "abbr_authors",
       "title": "Abbreviated Authors",
+      "type": "categorical"
+    },
+    {
+      "key": "dataUseTerms",
+      "title": "Data Use Terms",
+      "type": "categorical"
+    },
+    {
+      "key": "dataUseTermsUrl",
+      "title": "Data Use Terms URL",
+      "type": "categorical"
+    },
+    {
+      "key": "dataUseTermsRestrictedUntil",
+      "title": "Restricted Use Until Date",
+      "type": "temporal"
+    },
+    {
+      "key": "ppx_accession",
+      "title": "Pathoplexus accession",
+      "type": "categorical"
+    },
+    {
+      "key": "ppx_url",
+      "title": "Pathoplexus URL",
+      "type": "categorical"
+    },
+    {
+      "key": "gisaid_epi_isl",
+      "title": "GISAID EPI ISL",
       "type": "categorical"
     },
     {
@@ -114,11 +150,10 @@
   "geo_resolutions": [
     "region",
     "country",
-    "division",
-    "location"
+    "division"
   ],
   "display_defaults": {
-    "color_by": "country",
+    "color_by": "clade",
     "map_triplicate": true,
     "distance_measure": "num_date",
     "transmission_lines": false
@@ -126,7 +161,6 @@
   "filters": [
     "country",
     "region",
-    "recency",
-    "host"
+    "recency"
   ]
 }

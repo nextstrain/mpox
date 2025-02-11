@@ -49,6 +49,9 @@ def convert_metadata(input_file, output_file):
     output_df['country'] = df["geoLocCountry"]
     output_df['division'] = df["geoLocAdmin1"]
 
+    output_df['ppx_accession'] = df['accessionVersion']
+    output_df['ppx_url'] = "https://pathoplexus.org/seq/" + df['accessionVersion']
+
     output_df['strain'] = output_df.apply(lambda row: f"{row['date']}|{row['country']}|{row['division']}", axis=1)
 
     output_df['date'] = output_df['date'].apply(lambda x: 'XXXX-XX-XX' if isinstance(x, float) else f'{x}-XX-XX' if len(x) == 4 else f'{x}-XX' if len(x) == 7 else x)

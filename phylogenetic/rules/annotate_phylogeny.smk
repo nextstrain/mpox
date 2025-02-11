@@ -104,7 +104,7 @@ rule clades:
         nuc_muts=build_dir + "/{build_name}/nt_muts.json",
         clades=config["clades"],
     output:
-        node_data=build_dir + "/{build_name}/clades_raw.json",
+        node_data=build_dir + "/{build_name}/clades.json",
     log:
         "logs/clades_{build_name}.txt",
     shell:
@@ -117,40 +117,40 @@ rule clades:
         """
 
 
-rule rename_clades:
-    input:
-        build_dir + "/{build_name}/clades_raw.json",
-    output:
-        node_data=build_dir + "/{build_name}/clades.json",
-    wildcard_constraints:
-        build_name="(?!clade-i)[^b].*",
-    shell:
-        """
-        python scripts/clades_renaming.py \
-        --input-node-data {input} \
-        --output-node-data {output.node_data}
-        """
+# rule rename_clades:
+#     input:
+#         build_dir + "/{build_name}/clades_raw.json",
+#     output:
+#         node_data=build_dir + "/{build_name}/clades.json",
+#     wildcard_constraints:
+#         build_name="(?!clade-i)[^b].*",
+#     shell:
+#         """
+#         python scripts/clades_renaming.py \
+#         --input-node-data {input} \
+#         --output-node-data {output.node_data}
+#         """
 
 
-rule assign_clades_via_metadata:
-    """
-    For clade-i builds run a custom script rather than using `augur clades` as that approach can't reliably
-    identify basal clades due to the stochastic way `augur ancestral` assigns mutations on basal branches
-    """
-    input:
-        metadata=build_dir + "/{build_name}/metadata.tsv",
-        tree=build_dir + "/{build_name}/tree.nwk",
-    output:
-        node_data=build_dir + "/{build_name}/clades.json",
-    wildcard_constraints:
-        build_name="clade-ib?",
-    shell:
-        r"""
-        python scripts/assign-clades-via-metadata.py \
-            --metadata {input.metadata} \
-            --tree {input.tree} \
-            --output-node-data {output.node_data}
-        """
+# rule assign_clades_via_metadata:
+#     """
+#     For clade-i builds run a custom script rather than using `augur clades` as that approach can't reliably
+#     identify basal clades due to the stochastic way `augur ancestral` assigns mutations on basal branches
+#     """
+#     input:
+#         metadata=build_dir + "/{build_name}/metadata.tsv",
+#         tree=build_dir + "/{build_name}/tree.nwk",
+#     output:
+#         node_data=build_dir + "/{build_name}/clades.json",
+#     wildcard_constraints:
+#         build_name="clade-ib?",
+#     shell:
+#         r"""
+#         python scripts/assign-clades-via-metadata.py \
+#             --metadata {input.metadata} \
+#             --tree {input.tree} \
+#             --output-node-data {output.node_data}
+#         """
 
 
 rule mutation_context:

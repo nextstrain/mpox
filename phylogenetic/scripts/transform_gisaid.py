@@ -33,6 +33,7 @@ def convert_metadata(input_file, output_file):
 
     # Map the columns we have
     output_df['accession'] = df['Accession ID']
+    output_df['gisaid_epi_isl'] = df['Accession ID']
     output_df['date'] = df['Collection date']
     output_df['date_submitted'] = df['Submission date'].replace('unknown', '')
 

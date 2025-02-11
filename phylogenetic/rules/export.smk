@@ -110,6 +110,7 @@ rule export:
             --description {input.description} \
             --auspice-config {input.auspice_config} \
             --include-root-sequence \
+            --validation-mode warn \
             --output {output.auspice_json}
         """
 
