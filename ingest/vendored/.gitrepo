@@ -6,7 +6,7 @@
 [subrepo]
 	remote = https://github.com/nextstrain/ingest
 	branch = main
-	commit = 258ab8ce898a88089bc88caee336f8d683a0e79a
-	parent = a1dd6dedc766e0ca82c893d1c6bd1118dec89889
+	commit = cd6d31a3b35cd1bb7eddf830c565be6d6e69f27a
+	parent = 45a96a043c864f303888bd6704f99d3d6cdbaca3
 	method = merge
 	cmdver = 0.4.6
