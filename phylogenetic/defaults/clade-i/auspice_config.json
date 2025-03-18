@@ -111,7 +111,7 @@
   "display_defaults": {
     "color_by": "country",
     "map_triplicate": true,
-    "distance_measure": "num_date",
+    "distance_measure": "div",
     "transmission_lines": false
   },
   "filters": [
