@@ -1,0 +1,36 @@
+rule align:
+    input:
+        target_ref="../phylogenetic/defaults/reference.fasta",
+        query_ref="../phylogenetic/defaults/clade-i/reference.fasta",
+    output:
+        tsv="results/align.tsv",
+    shell:
+        """
+        nextclade run {input.query_ref} \
+            -r {input.target_ref} \
+            -t {output.tsv}
+        """
+
+
+rule filter:
+    input:
+        tsv="results/align.tsv",
+    output:
+        filtered_tsv="results/filtered.tsv",
+    shell:
+        """
+        tsv-select -H -f alignmentStart,alignmentEnd,deletions,insertions {input.tsv} > {output.filtered_tsv}
+        """
+
+
+rule mapping:
+    input:
+        tsv="results/filtered.tsv",
+    output:
+        mapping="results/mapping.tsv",
+    shell:
+        """
+        python scripts/map.py \
+            -i {input.tsv} \
+            -o {output.mapping}
+        """
