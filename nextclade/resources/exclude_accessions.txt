@@ -1,236 +1,439 @@
 OP381201	# Very underdiverged on the clock, identical to UK_P2
+PP_000U8LW	# Very underdiverged on the clock, identical to UK_P2
 OP381202	# Very underdiverged on the clock, identical to UK_P2
+PP_000U8MU	# Very underdiverged on the clock, identical to UK_P2
 OP381203	# Very underdiverged on the clock, identical to UK_P2
+PP_000U6VE	# Very underdiverged on the clock, identical to UK_P2
 OP381204	# Very underdiverged on the clock, identical to UK_P2
+PP_000TVAY	# Very underdiverged on the clock, identical to UK_P2
 OP381205	# Very underdiverged on the clock, identical to UK_P2
+PP_000TVJF	# Very underdiverged on the clock, identical to UK_P2
 OP381206	# Very underdiverged on the clock, identical to UK_P2
+PP_000U8NS	# Very underdiverged on the clock, identical to UK_P2
 OP381207	# Very underdiverged on the clock, identical to UK_P2
+PP_000U8PQ	# Very underdiverged on the clock, identical to UK_P2
 OP381208	# Very underdiverged on the clock, identical to UK_P2
+PP_000U8QN	# Very underdiverged on the clock, identical to UK_P2
 OP381209	# Reversion to reference, Idaho
+PP_000U8RL	# Reversion to reference, Idaho
 OP390186	# UK-LMO with artefacts
+PP_000U96Q	# UK-LMO with artefacts
 OP390187	# UK-LMO with artefacts
+PP_000U97N	# UK-LMO with artefacts
 OP390188	# UK-LMO with artefacts
+PP_000U98L	# UK-LMO with artefacts
 OP390189	# UK-LMO with artefacts
+PP_000U99J	# UK-LMO with artefacts
 OP390190	# UK-LMO with artefacts
+PP_000U9AG	# UK-LMO with artefacts
 OP390191	# UK-LMO with artefacts
+PP_000U9BE	# UK-LMO with artefacts
 OP390192	# UK-LMO with artefacts
+PP_000U9CC	# UK-LMO with artefacts
 OP390193	# UK-LMO with artefacts
+PP_000U9DA	# UK-LMO with artefacts
 OP390194	# UK-LMO with artefacts
+PP_000U9E8	# UK-LMO with artefacts
 OP390195	# UK-LMO with artefacts
+PP_000U9F6	# UK-LMO with artefacts
 OP390196	# UK-LMO with artefacts
+PP_000U9G4	# UK-LMO with artefacts
 OP390197	# UK-LMO with artefacts
+PP_000U9H1	# UK-LMO with artefacts
 OP390198	# UK-LMO with artefacts
+PP_000U9JZ	# UK-LMO with artefacts
 OP390199	# UK-LMO with artefacts
+PP_000U9KX	# UK-LMO with artefacts
 OP390200	# UK-LMO with artefacts
+PP_000U9LV	# UK-LMO with artefacts
 OP390201	# UK-LMO with artefacts
+PP_000U9MT	# UK-LMO with artefacts
 OP390202	# UK-LMO with artefacts
+PP_000U9NR	# UK-LMO with artefacts
 OP390203	# UK-LMO with artefacts
+PP_000U9PP	# UK-LMO with artefacts
 OP390204	# UK-LMO with artefacts
+PP_000U9QM	# UK-LMO with artefacts
 OP390205	# UK-LMO with artefacts
+PP_000U9RK	# UK-LMO with artefacts
 OP390206	# UK-LMO with artefacts
+PP_000U9SH	# UK-LMO with artefacts
 
 # Overdiverged B.1
 OP012849
+PP_000TNQA
 
 # Colombian B.1 reverted to reference
 OP295382
+PP_000U1DJ
 OP295383
+PP_000U1EG
 OP295383
+PP_000U1EG
 
 # Mess up B.1.3
 OP440547
+PP_000UJHS
 OP440590
+PP_000UKGU
 ON755251
+PP_000TEPL
 
 # Cause reversion in B.1.10, no QC problem, just messing with tree
 OP477457
+PP_000UP0N
 OP477456
+PP_000UNZQ
 OP477451
+PP_000UNU0
 OP477450
+PP_000UNT2
 OP477449
+PP_000UNS4
 OP477447
+PP_000UNQ8
 OP477446
+PP_000UNPA
 OP459220
+PP_000UNKJ
 OP459219
+PP_000UNJL
 OP459216
+PP_000UNFT
 OP459215
+PP_000UNEV
 OP459213
+PP_000UNCZ
 OP459209
+PP_000UN87
 OP431401
+PP_000UHT7
 OP431399
+PP_000UHRB
 OP431398
+PP_000UHQD
 OP431397
+PP_000UHPF
 OP431396
+PP_000UHNH
 
 FV537349	#UNKNOWN_FV537349
+PP_000T136	#UNKNOWN_PP_000T136
 FV537350	#UNKNOWN_FV537350
+PP_000T144	#UNKNOWN_PP_000T144
 FV537351	#UNKNOWN_FV537351
 FV537352	#UNKNOWN_FV537352
 KC257459	#Sudan_2005_01
+PP_000T2DK	#Sudan_2005_01
 KJ642614	#UTC
+PP_000T2K6	#UTC
 MG693725	#MPX_Nig_2017_298481
+PP_000T4DH	#MPX_Nig_2017_298481
 MN346693	#MPXV_TNP_2017_North_Ponan
+PP_000T4RS	#MPXV_TNP_2017_North_Ponan
 ON602722	# MPXV_FRA_2022_TLS67
+PP_000TBF6	# MPXV_FRA_2022_TLS67
 ON622721	#MPXV_1_IT_Milan_2022
+PP_000TBSH	#MPXV_1_IT_Milan_2022
 ON754989	#mpx_2022_Canada_AB2
+PP_000TDZ1	#mpx_2022_Canada_AB2
 OP012849	#MPXV/human/Taiwan/110-364682/2022
+PP_000TNQA	#MPXV/human/Taiwan/110-364682/2022
 KJ642615	#Potential recombinant between clade IIa and IIb
+PP_000T2L4	#Potential recombinant between clade IIa and IIb
 OP390207	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-004b/2022
+PP_000U9TF	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-004b/2022
 OP390208	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-005b/2022
+PP_000U9UD	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-005b/2022
 OP390209	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-010b/2022
+PP_000U9VB	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-010b/2022
 OP390210	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-022b/2022
+PP_000U9W9	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-022b/2022
 OP390211	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-023b/2022
+PP_000U9X7	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-023b/2022
 OP390212	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-024b/2022
+PP_000U9Y5	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-024b/2022
 OP390213	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-026b/2022
+PP_000U9Z3	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-026b/2022
 OP390214	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-029b/2022
+PP_000UA01	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-029b/2022
 OP390215	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-031b/2022
+PP_000UA1Z	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-031b/2022
 OP390216	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-032b/2022
+PP_000UA2X	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-032b/2022
 OP390217	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-033b/2022
+PP_000UA3V	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-033b/2022
 OP390218	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-034b/2022
+PP_000UA4T	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-034b/2022
 OP390219	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-036b/2022
+PP_000UA5R	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-036b/2022
 OP390220	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-038b/2022
+PP_000UA6P	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-038b/2022
 OP390221	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-040b/2022
+PP_000UA7M	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-040b/2022
 OP390222	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-043b/2022
+PP_000UA8K	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-043b/2022
 OP390223	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-046b/2022
+PP_000UA9H	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-046b/2022
 OP390224	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-047b/2022
+PP_000UAAF	# Duplicate sequence, but with different ITR hMpxV/UK/LMO-047b/2022
 MT903340	# Duplicate of Rivers ref seq NC_063383
+PP_000T5J5	# Duplicate of Rivers ref seq PP_000T5WF
 OP526860	# Does not align well, very divergent MPXV_USA_2022_RI0001
+PP_000US3D	# Does not align well, very divergent MPXV_USA_2022_RI0001
 OP526858	# Does not align well, very divergent MPXV_USA_2022_MN0001
+PP_000US1H	# Does not align well, very divergent MPXV_USA_2022_MN0001
 OP526856 	# Does not align well, very divergent MPXV_USA_2022_FL0065
+PP_000URZM 	# Does not align well, very divergent MPXV_USA_2022_FL0065
 OP526859	# Does not align well, very divergent MPXV_USA_2022_MD0005
+PP_000US2F	# Does not align well, very divergent MPXV_USA_2022_MD0005
 OP526862	# Does not align well, very divergent MPXV_USA_2022_DC0013
+PP_000US59	# Does not align well, very divergent MPXV_USA_2022_DC0013
 OP470374	# Overdiverged and with rev to ref, MPXV_USA_2022_DC0013
+PP_000UNLG	# Overdiverged and with rev to ref, MPXV_USA_2022_DC0013
 HQ857562	# Duplicate of DQ011155
+PP_000T1GE	# Duplicate of PP_000SZJD
 HQ857563	# D14L knockout
+PP_000T1HB	# D14L knockout
 AF380138	# Duplicate of RefSeq NC_003310
+PP_000SX58	# Duplicate of RefSeq PP_000T5VH
 OP605555	# Slovenia overdiverged
+PP_000VA8H	# Slovenia overdiverged
 OP605556	# Slovenia overdiverged
+PP_000VA9F	# Slovenia overdiverged
 OP605557	# Slovenia overdiverged
+PP_000VAAD	# Slovenia overdiverged
 OP605577	# Slovenia overdiverged
+PP_000VAW6	# Slovenia overdiverged
 OP605588	# Slovenia overdiverged
+PP_000VB7J	# Slovenia overdiverged
 OP605579	# Slovenia overdiverged
+PP_000VAY2	# Slovenia overdiverged
 OP642362	# India A.2 overdiverged MCL-22-H-MPxV-16-5316
+PP_000VG3M	# India A.2 overdiverged MCL-22-H-MPxV-16-5316
 OP696838	# Overdiverged MPXV/Germany/2022/RKI335
+PP_000VLS4	# Overdiverged MPXV/Germany/2022/RKI335
 
 OP696839	# Overdiverged B.1
+PP_000VLT2	# Overdiverged B.1
 OP696840	# Overdiverged B.1
+PP_000VLU0	# Overdiverged B.1
 OP696842	# Overdiverged B.1
+PP_000VLWW	# Overdiverged B.1
 OP526861	# Overdiverged B.1
+PP_000US4B	# Overdiverged B.1
 OQ249660	# Reverted B.1
+PP_000WARE	# Reverted B.1
 OQ249661	# Reverted B.1
+PP_000WASC	# Reverted B.1
 OP890499	# Overdiverged B.1
+PP_000W1K1	# Overdiverged B.1
 
 OP936001	# Overdiverged/reverted A.2.1
+PP_000W66P	# Overdiverged/reverted A.2.1
 OP597769	# Overdiverged/reverted A.2.1
+PP_000V85R	# Overdiverged/reverted A.2.1
 
 OP588280	# B.1.3 with 190660A reverted, causing tree issues
+PP_000V79J	# B.1.3 with 190660A reverted, causing tree issues
 OP650027	# B.1.3 with 190660A reverted, causing tree issues
+PP_000VHMH	# B.1.3 with 190660A reverted, causing tree issues
 OP440547	# B.1.3 with 190660A reverted, causing tree issues
+PP_000UJHS	# B.1.3 with 190660A reverted, causing tree issues
 OP615267	# B.1.3 with 190660A reverted, causing tree issues
+PP_000VC6K	# B.1.3 with 190660A reverted, causing tree issues
 OP920675	# B.1.3 with 190660A reverted, causing tree issues
+PP_000W4H2	# B.1.3 with 190660A reverted, causing tree issues
 OP580596	# B.1.3 with 190660A reverted, causing tree issues
+PP_000V1VH	# B.1.3 with 190660A reverted, causing tree issues
 OP580591	# B.1.3 with 190660A reverted, causing tree issues
+PP_000V0UL	# B.1.3 with 190660A reverted, causing tree issues
 OP539934	# B.1.3 with 190660A reverted, causing tree issues
+PP_000UZAS	# B.1.3 with 190660A reverted, causing tree issues
 OP440590	# B.1.3 with 190660A reverted, causing tree issues
+PP_000UKGU	# B.1.3 with 190660A reverted, causing tree issues
 OP920690	# B.1.3 with 190660A reverted, causing tree issues
+PP_000W4Y6	# B.1.3 with 190660A reverted, causing tree issues
 OP920683	# B.1.3 with 190660A reverted, causing tree issues
+PP_000W4RL	# B.1.3 with 190660A reverted, causing tree issues
 OP748966	# B.1.3 with 190660A reverted, causing tree issues
+PP_000VR4A	# B.1.3 with 190660A reverted, causing tree issues
 OP748949	# B.1.3 with 190660A reverted, causing tree issues
+PP_000VQMA	# B.1.3 with 190660A reverted, causing tree issues
 OP722503	# B.1.3 with 190660A reverted, causing tree issues
+PP_000VMVX	# B.1.3 with 190660A reverted, causing tree issues
 OP890549	# B.1.3 with 190660A reverted, causing tree issues
+PP_000W312	# B.1.3 with 190660A reverted, causing tree issues
 OP539923	# B.1.3 with 190660A reverted, causing tree issues
+PP_000UYZE	# B.1.3 with 190660A reverted, causing tree issues
 OP890526	# B.1.3 with 190660A reverted, causing tree issues
+PP_000W2CF	# B.1.3 with 190660A reverted, causing tree issues
 OP580600	# B.1.3 with 190660A reverted, causing tree issues
+PP_000V2PU	# B.1.3 with 190660A reverted, causing tree issues
 OP890551	# B.1.3 with 190660A reverted, causing tree issues
+PP_000W33Y	# B.1.3 with 190660A reverted, causing tree issues
 OP890550	# B.1.3 with 190660A reverted, causing tree issues
+PP_000W320	# B.1.3 with 190660A reverted, causing tree issues
 OP539893	# B.1.3 with 190660A reverted, causing tree issues
+PP_000UY37	# B.1.3 with 190660A reverted, causing tree issues
 
 OQ172216	# Overdiverged French B.1
+PP_000WA2T	# Overdiverged French B.1
 
 OQ581850	# Overdiverged B.1.10
+PP_000XQ63	# Overdiverged B.1.10
 
 OQ773425
+PP_000XV0A
 OP642407
+PP_000VH4J
 OR030919
+PP_000XZLZ
 OP642407
+PP_000VH4J
 OP715828
+PP_000VMCY
 OR035671
+PP_000Y1H1
 OR035724
+PP_000Y3AE
 OP373392
+PP_000U803
 OQ581851
+PP_000XQ71
 OQ581852
+PP_000XQ8Z
 
 OQ621553	# MPXV/Sudan/2022/RKI630, 800 private mutations, clade 1
+PP_000XQTU	# MPXV/Sudan/2022/RKI630, 800 private mutations, clade 1
 
 OR086950
+PP_000Y49F
 OQ547772
+PP_000XKKF
 OP605564
+PP_000VAHY
 
 OR464204	# MPXV_USA_2022_OH0008 splits B.1.4
+PP_000YS19	# MPXV_USA_2022_OH0008 splits B.1.4
 
 PP098612	# Italy/Campania overdiverged, version .1
+PP_000Z9GU	# Italy/Campania overdiverged, version .1
 PP098592	# Italy/Campania overdiverged, version .1
+PP_000Z8W0	# Italy/Campania overdiverged, version .1
 PP098584	# Italy/Campania overdiverged, version .1
+PP_000Z8NG	# Italy/Campania overdiverged, version .1
 PP098601	# Italy/Campania overdiverged, version .1
+PP_000Z95G	# Italy/Campania overdiverged, version .1
 PP098604	# Italy/Campania overdiverged, version .1
+PP_000Z98A	# Italy/Campania overdiverged, version .1
 PP098613	# Italy/Campania overdiverged, version .2
+PP_000Z9HR	# Italy/Campania overdiverged, version .2
 PP098593	# Italy/Campania overdiverged, version .2
+PP_000Z8XY	# Italy/Campania overdiverged, version .2
 PP098605	# Italy/Campania overdiverged, version .2
+PP_000Z998	# Italy/Campania overdiverged, version .2
 PP098614	# Italy/Campania overdiverged, version .2
+PP_000Z9JP	# Italy/Campania overdiverged, version .2
 PP098587	# Italy/Campania overdiverged, version .2
+PP_000Z8RA	# Italy/Campania overdiverged, version .2
 PP098582	# Italy/Campania overdiverged, version .2
+PP_000Z8LL	# Italy/Campania overdiverged, version .2
 PP098610	# Italy/Campania overdiverged, version .2
+PP_000Z9EY	# Italy/Campania overdiverged, version .2
 PP098599	# Italy/Campania overdiverged, version .2
+PP_000Z93L	# Italy/Campania overdiverged, version .2
 PP098595
+PP_000Z8ZU
 PP098578
+PP_000Z8GV
 
 HM172544    # cidofovir-resistant lab strain that is derived from DQ011155 (h/t Andrew Rambaut)
+PP_000T1FG    # cidofovir-resistant lab strain that is derived from PP_000SZJD (h/t Andrew Rambaut)
 
 OR540672    # Overdiverged Slovenia-MPXV-38-2022
+PP_000YW7T    # Overdiverged Slovenia-MPXV-38-2022
 
 NC_003310	# Overdiverged RefSeq NC_003310
+PP_000T5VH	# Overdiverged RefSeq PP_000T5VH
 
 PP853038    # A.3 Overdiverged (mutation cluster) TRM344
+PP_000ZQ51    # A.3 Overdiverged (mutation cluster) TRM344
 PP852985    # A.3 Overdiverged
+PP_000ZMUR    # A.3 Overdiverged
 PP853003    # A.3 Overdiverged
+PP_000ZNL6    # A.3 Overdiverged
 PP852993    # Clusters A.3
+PP_000ZN61    # Clusters A.3
 
 OP535317    # A, suspicious cluster of mutations
+PP_000USKE    # A, suspicious cluster of mutations
 OP535319    # A, suspicious cluster of mutations
+PP_000USMA    # A, suspicious cluster of mutations
 
 PP852982    # A.2.3 overdiverged
+PP_000ZMP1    # A.2.3 overdiverged
 PP852999    # A.2.2, TRM302
+PP_000ZNEK    # A.2.2, TRM302
 PP853022    # A.2.2, TRM328
+PP_000ZPFG    # A.2.2, TRM328
 PP853043    # A.2, TRM351
+PP_000ZQCM    # A.2, TRM351
 
 PP853014    # Artifact cluster 8803-8878
+PP_000ZP36    # Artifact cluster 8803-8878
 PP853002
+PP_000ZNK8
 PP853045
+PP_000ZQGD
 PP853015
+PP_000ZP44
 PP852998
+PP_000ZNDM
 PP853017
+PP_000ZP8W
 PP853006
+PP_000ZNRW
 PP853032
+PP_000ZPVM
 PP853028
+PP_000ZPPZ
 PP853004
+PP_000ZNM4
 PP853020
+PP_000ZPBQ
 PP852994
+PP_000ZN7Z
 PP853050
+PP_000ZQPY
 PP853007
+PP_000ZNSU
 PP853011
+PP_000ZNYG
 PP853010
+PP_000ZNXJ
 PP853000
+PP_000ZNFH
 
 PP852945    # Overdiverged A.2.3
+PP_000ZL2B    # Overdiverged A.2.3
 PP852973    # Overdiverged A.2.3
+PP_000ZMAU    # Overdiverged A.2.3
 PP853052    # Suspicious clusters
+PP_000ZQRU    # Suspicious clusters
 PP853012    # Suspicious clusters
+PP_000ZNZE    # Suspicious clusters
 PP852987    # Suspicious clusters
+PP_000ZMWM    # Suspicious clusters
 
 MG693723    # Spotty/gappy/clusters
+PP_000T4BM    # Spotty/gappy/clusters
 
 PP852989    # Mutation clusters
+PP_000ZN0D    # Mutation clusters
 
 OR601602    # B.1 with reversions
+PP_000YWQS    # B.1 with reversions
 
 NC_003310   # Likely passaged clade I ref_seq, overdiverged
+PP_000T5VH   # Likely passaged clade I ref_seq, overdiverged

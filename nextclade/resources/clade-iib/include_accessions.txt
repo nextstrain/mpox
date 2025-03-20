@@ -1,24 +1,46 @@
 KJ642617
+PP_000T2N0
 NC_063383 #reference
+PP_000T5WF #reference
 
 MT903337    #reference for A
+PP_000T5FC    #reference for A
 MK783031    #reference for A
+PP_000T4K4    #reference for A
 MG693723    #reference for A.3
+PP_000T4BM    #reference for A.3
 MK783033    #reference for A.3
+PP_000T4M0    #reference for A.3
 ON674051    #reference for A.2
+PP_000TCPN    #reference for A.2
 ON676707    #reference for A.2
+PP_000TCVA    #reference for A.2
 ON675438    #reference for A.2
+PP_000TCQL    #reference for A.2
 OP612690    #reference for A.2
+PP_000VBRF    #reference for A.2
 ON676707    #reference for A.2.3
+PP_000TCVA    #reference for A.2.3
 OP555515    #reference for A.2.3
+PP_000V16W    #reference for A.2.3
 OP450997    #reference for A.2.2
+PP_000UMLH    #reference for A.2.2
 OP331336    #reference for A.2.2
+PP_000U4SN    #reference for A.2.2
 OP331335    #reference for A.2.1
+PP_000U4K2    #reference for A.2.1
 ON674051    #reference for A.2.1
+PP_000TCPN    #reference for A.2.1
 MT903342    #reference for A.1
+PP_000T5MZ    #reference for A.1
 MT903343    #reference for A.1
+PP_000T5NX    #reference for A.1
 MT903345    #reference for A.1
+PP_000T5QT    #reference for A.1
 ON676708    #reference for A.1.1
+PP_000TCW8    #reference for A.1.1
 
 MT903346 # outgroup IIa
+PP_000T5SP # outgroup IIa
 AY603973 # outgroup IIa
+PP_000SYZJ # outgroup IIa

@@ -61,8 +61,8 @@ rule download:
         sequences="data/sequences.fasta.zst",
         metadata="data/metadata.tsv.zst",
     params:
-        sequences_url="https://data.nextstrain.org/files/workflows/mpox/sequences.fasta.zst",
-        metadata_url="https://data.nextstrain.org/files/workflows/mpox/metadata.tsv.zst",
+        sequences_url="https://lapis.pathoplexus.org/mpox/sample/unalignedNucleotideSequences?downloadAsFile=true&downloadFileBasename=mpox_nuc_2025-03-19T1422&versionStatus=LATEST_VERSION&isRevocation=false&dataFormat=fasta&compression=zstd",
+        metadata_url="https://lapis.pathoplexus.org/mpox/sample/details?downloadAsFile=true&downloadFileBasename=mpox_metadata_2025-03-19T1422&versionStatus=LATEST_VERSION&isRevocation=false&dataFormat=tsv&compression=zstd",
     shell:
         """
         curl -fsSL --compressed {params.sequences_url:q} --output {output.sequences}
@@ -80,8 +80,11 @@ rule decompress:
         metadata="data/metadata.tsv",
     shell:
         """
-        zstd --decompress --stdout {input.sequences:q} > {output.sequences:q}
-        zstd --decompress --stdout {input.metadata:q} > {output.metadata:q}
+        zstd --decompress --keep {input.metadata}
+        zstdcat {input.sequences} \
+        | seqkit replace \
+            -p "^([^.]+).*" -r '$1' \
+        > {output.sequences}
         """
 
 
@@ -114,26 +117,53 @@ rule index:
 rule prealign:
     input:
         sequences="results/sequences_without_known_duplicates.fasta",
-        reference=PREALIGN_REFERENCE,
-        annotation=annotation_path,
     output:
         alignment="results/prealigned.fasta",
+        stats="results/prealign_stats.tsv",
     shell:
         """
         nextclade3 run \
             {input.sequences} \
-            --retry-reverse-complement \
-            --excess-bandwidth 100 \
-            --terminal-bandwidth 300 \
-            --allowed-mismatches 8 \
-            --window-size 40 \
-            --min-seed-cover 0.1 \
-            --input-ref {input.reference} \
-            --gap-alignment-side left \
-            --input-annotation {input.annotation} \
+            -d nextstrain/mpox/all-clades \
             --output-fasta /dev/stdout \
             --include-reference \
+            -t {output.stats} \
         | sed 's/ |(reverse complement)$//' > {output.alignment}
+        """
+
+
+rule filter_nextclade_results:
+    input:
+        stats="results/prealign_stats.tsv",
+    output:
+        stats="results/prealign_stats_filtered.tsv",
+    shell:
+        """
+        tsv-filter \
+            --header \
+            --lt 'privateNucMutations.totalPrivateSubstitutions':25 \
+            {input.stats} \
+        > {output.stats}
+        """
+
+
+rule join_metadata:
+    input:
+        metadata="data/metadata.tsv",
+        stats=rules.filter_nextclade_results.output.stats,
+    output:
+        metadata="results/metadata.tsv",
+    shell:
+        """
+        tsv-join \
+            --header \
+            --filter-file {input.stats} \
+            --data-fields accession \
+            --key-fields seqName \
+            --append-fields 1-20,'privateNucMutations.totalPrivateSubstitutions' \
+            {input.metadata} \
+        | sed '1s/sampleCollectionDate/date/' \
+        > {output.metadata}
         """
 
 
@@ -141,7 +171,7 @@ rule exclude_bad:
     # Removing strains that do not satisfy certain requirements.
     input:
         sequences="results/sequences_without_known_duplicates.fasta",
-        metadata="data/metadata.tsv",
+        metadata="results/metadata.tsv",
         index="results/index.tsv",
     output:
         sequences="results/decent_sequences.fasta",
@@ -157,7 +187,6 @@ rule exclude_bad:
             --output-sequences {output.sequences} \
             --output-metadata {output.metadata} \
             --min-length 150000 \
-            --query "(QC_rare_mutations == 'good')" \
             --output-log {output.log}
         """
 
@@ -355,7 +384,8 @@ rule refine:
             --root {params.root} \
             --divergence-unit mutations \
             --keep-polytomies \
-            --output-node-data {output.node_data}
+            --output-node-data {output.node_data} \
+            --seed 42
         """
 
 
@@ -446,7 +476,7 @@ rule nice_strain_names:
         """
         python3 scripts/make_nice_strain_names.py \
             --metadata {input.metadata} \
-            --input-columns country accession date \
+            --input-columns geoLocCountry accession date \
             --separator '/' \
             --output-column strain_display \
             --output {output.metadata}
