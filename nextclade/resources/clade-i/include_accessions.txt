@@ -1,3 +1,5 @@
 AY603973 # outgroup IIa
+PP_000SYZJ # outgroup IIa
 KJ642617 # outgroup IIb
+PP_000T2N0 # outgroup IIb
 reconstructed_ancestral_mpox #reference
