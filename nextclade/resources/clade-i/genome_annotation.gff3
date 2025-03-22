@@ -1,3 +1,8 @@
+##gff-version 3
+#!gff-spec-version 1.21
+#!processor NCBI annotwriter
+##sequence-region NC_003310.1 1 196967
+##species https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=10244
 NC_003310.1	RefSeq	region	1	196967	.	+	.	ID=NC_003310.1:1..196858;Dbxref=taxon:10244;collection-date=1996;country=Zaire: Sankuru subregion%2C Kasdai Oriental;gbkey=Src;genome=genomic;genotype=MPXV clade 1;mol_type=genomic DNA;nat-host=Homo sapiens;note=isolated in rhesus monkey kidney cell culture LLC-MK2 from a scab sample of a monkeypox patient residing in the Sankuru subregion%2C Kasdai Oriental%2C Zaire during a human monkeypox outbreak in 1996;strain=Zaire-96-I-16
 NC_003310.1	RefSeq	long_terminal_repeat	1	6389	.	-	.	ID=id-NC_003310.1:1..6378;gbkey=repeat_region;rpt_type=long_terminal_repeat
 NC_003310.1	RefSeq	gene	884	1624	.	-	.	ID=gene-MPXV_gp001;Dbxref=GeneID:928994;Name=OPG001;gbkey=Gene;gene=OPG001;gene_biotype=protein_coding;locus_tag=MPXV_gp001

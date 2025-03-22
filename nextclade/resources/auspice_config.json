@@ -7,8 +7,8 @@
   ],
   "data_provenance": [
     {
-      "name": "GenBank",
-      "url": "https://www.ncbi.nlm.nih.gov/genbank/"
+      "name": "Pathoplexus",
+      "url": "https://pathoplexus.org/mpox"
     }
   ],
   "extensions": {
@@ -96,24 +96,74 @@
       "type": "categorical"
     },
     {
-      "key": "strain",
-      "title": "Strain name",
-      "type": "categorical"
-    },
-    {
-      "key": "strain_display",
-      "title": "Pretty strain name",
-      "type": "categorical"
-    },
-    {
-      "key": "region",
-      "title": "Region",
-      "type": "categorical"
-    },
-    {
-      "key": "country",
+      "key": "geoLocCountry",
       "title": "Country",
       "type": "categorical"
+    },
+    {
+      "key": "geoLocAdmin1",
+      "title": "Admin Division 1",
+      "type": "categorical"
+    },
+    {
+      "key": "geoLocAdmin2",
+      "title": "Admin Division 2",
+      "type": "categorical"
+    },
+    {
+      "key": "authors",
+      "title": "Authors",
+      "type": "categorical"
+    },
+    {
+      "key": "authorAffiliations",
+      "title": "Author Affiliations",
+      "type": "categorical"
+    },
+    {
+      "key": "totalAmbiguousNucs",
+      "title": "Ambiguous Nucleotides",
+      "type": "continuous"
+    },
+    {
+      "key": "totalInsertions",
+      "title": "Insertions",
+      "type": "continuous"
+    },
+    {
+      "key": "totalDeletions",
+      "title": "Deletions",
+      "type": "continuous"
+    },
+    {
+      "key": "earliestReleaseDate",
+      "title": "Release Date",
+      "type": "categorical"
+    },
+    {
+      "key": "dataUseTerms",
+      "title": "Data Use Terms",
+      "type": "categorical"
+    },
+    {
+      "key": "hostNameScientific",
+      "title": "Host",
+      "type": "categorical"
+    },
+    {
+      "key": "length",
+      "title": "Length",
+      "type": "continuous"
+    },
+    {
+      "key": "insdcAccession",
+      "title": "INSDC Accession",
+      "type": "categorical"
+    },
+    {
+      "key": "completeness",
+      "title": "Completeness",
+      "type": "continuous"
     }
   ],
   "display_defaults": {
@@ -127,10 +177,9 @@
   "filters": [
     "clade_membership",
     "lineage",
-    "country",
+    "geoLocCountry",
     "host",
-    "institution",
-    "region",
+    "authorAffiliations",
     "strain_display",
     "strain",
     "date",

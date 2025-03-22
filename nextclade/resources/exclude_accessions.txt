@@ -437,3 +437,5 @@ PP_000YWQS    # B.1 with reversions
 
 NC_003310   # Likely passaged clade I ref_seq, overdiverged
 PP_000T5VH   # Likely passaged clade I ref_seq, overdiverged
+
+PP_0011BTZ    # B.1 with reversion
