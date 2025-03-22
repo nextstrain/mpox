@@ -34,6 +34,8 @@ if __name__ == "__main__":
         #     clade_name = clade[outbreak_name]
         elif old_clade_name.startswith("outgroup"):
             clade_name = "outgroup"
+        elif old_clade_name.startswith("unassigned"):
+            clade_name = "unassigned"
         elif old_clade_name.startswith("lineage"):
             clade_name = "IIb"
             outbreak_name = "hMPXV-1"

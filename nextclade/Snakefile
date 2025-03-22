@@ -44,6 +44,7 @@ rule all:
             "datasets/{dataset}/{file}", dataset=build_names, file=dataset_files
         ),
         tests=expand("test_output/{dataset}", dataset=build_names),
+        duplicates=expand("results/{dataset}/duplicates.txt", dataset=build_names),
 
 
 rule deploy_to_nextstrain_staging:
@@ -241,9 +242,15 @@ rule subsample:
         min_length=config["min_length"],
         exclude_where=lambda w: config[w.build_name]["exclude_where"],
         subsampling=lambda w: config[w.build_name]["subsampling"],
+        weights=lambda w: (
+            f"--group-by-weights resources/{w.build_name}/weights.tsv"
+            if "weights" in config[w.build_name]
+            else ""
+        ),
     shell:
         """
         augur filter \
+            {params.weights} \
             --sequences {input.sequences} \
             --metadata {input.metadata} \
             --sequence-index {input.index} \
@@ -333,25 +340,43 @@ rule mask:
         """
 
 
+rule deduplicate_2:
+    """
+    Remove identical sequences (even if they have differing Ns)
+    Keep those sequences with fewer Ns
+    Focus for Nextclade is on diversity, not on representativeness
+    """
+    input:
+        sequences="results/{build_name}/masked.fasta",
+    output:
+        duplicates="results/{build_name}/duplicates.txt",
+    shell:
+        """
+        python3 scripts/deduplicate.py {input.sequences} {output.duplicates}
+        """
+
+
 rule tree:
     input:
         alignment="results/{build_name}/masked.fasta",
     output:
-        tree="results/{build_name}/tree_raw.nwk",
+        tree="results/{build_name}/masked.fasta.treefile",
     shell:
         """
-        augur tree \
-            --alignment {input.alignment} \
-            --output {output.tree} \
-            --nthreads 3 \
-            --tree-builder-args '--polytomy --pathogen-force --tree-search EXHAUSTIVE --output-multifurcating-tree --make-consistent'
+        cmaple \
+            -aln {input.alignment} \
+            --search EXHAUSTIVE \
+            --out-mul-tree \
+            --make-consistent \
+            -nt AUTO \
+            --overwrite
         """
 
 
 rule collapse:
     input:
         script="scripts/collapse-zero-branches.py",
-        tree="results/{build_name}/tree_raw.nwk",
+        tree=rules.tree.output.tree,
     output:
         tree="results/{build_name}/tree_collapsed.nwk",
     shell:
@@ -393,13 +418,14 @@ rule ancestral:
     # "Reconstructing ancestral sequences and mutations"
     input:
         tree="results/{build_name}/tree.nwk",
-        alignment="results/{build_name}/aligned.fasta",
+        alignment="results/{build_name}/masked.fasta",
         annotation=annotation_path,
         genes=lambda w: gene_path(w),
         translations="results/{build_name}/translations",
         reference="resources/{build_name}/reference.fasta",
     output:
         node_data="results/{build_name}/nt_muts.json",
+        log="results/{build_name}/ancestral.log",
     params:
         inference="joint",
         translation_template="results/{build_name}/translations/%GENE.fasta",
@@ -415,7 +441,8 @@ rule ancestral:
             --translations {params.translation_template} \
             --genes {params.genes} \
             --output-node-data {output.node_data} \
-            --inference joint
+            --inference joint \
+            2>&1 > {output.log}
         """
 
 
@@ -506,8 +533,7 @@ rule export:
         nt_muts="results/{build_name}/nt_muts.json",
         auspice_config="results/{build_name}/auspice_config.json",
     output:
-        auspice_json="auspice/nextclade_mpox_{build_name}_pretty.json",
-        root_sequence="auspice/nextclade_mpox_{build_name}_pretty_root-sequence.json",
+        auspice_json="results/nextclade_mpox_{build_name}.json",
     shell:
         """
         augur export v2 \
@@ -520,6 +546,61 @@ rule export:
             --metadata-id-columns accession \
             --output {output.auspice_json}
         """
+
+
+rule extra_node_data:
+    input:
+        metadata="results/{build_name}/metadata.tsv",
+        json=rules.export.output.auspice_json,
+    output:
+        json="auspice/nextclade_mpox_{build_name}_pretty.json",
+    run:
+        import pandas as pd
+        import json
+
+        df = pd.read_csv(input.metadata, sep="\t", keep_default_na=False)
+
+        result = {}
+        for index, row in df.iterrows():
+            accession = row["accession"]
+            accessionVersion = row["accessionVersion"]
+            data_use_terms = row["dataUseTerms"]
+            data_use_terms_url = row["dataUseTermsUrl"]
+            insdc_accession = row["insdcAccessionFull"]
+            insdc_accession_url = (
+                f"https://www.ncbi.nlm.nih.gov/nuccore/{insdc_accession}"
+            )
+            url = f"https://pathoplexus.org/seq/{accessionVersion}"
+            result[accession] = {
+                "url": url,
+                "dataUseTerms": {
+                    "value": data_use_terms,
+                    "url": data_use_terms_url,
+                },
+            }
+            if insdc_accession:
+                result[accession]["insdcAccession"] = {
+                    "value": insdc_accession,
+                    "url": insdc_accession_url,
+                }
+
+        with open(input.json) as f:
+            data = json.load(f)
+
+
+        def update_node_data(node):
+            name = node["name"]
+            if name in result:
+                node["node_attrs"] |= result[name]
+            if "children" in node:
+                for child in node["children"]:
+                    update_node_data(child)
+
+
+        update_node_data(data["tree"])
+
+        with open(output.json, "w") as f:
+            json.dump(data, f, indent=2)
 
 
 rule minify_tree:

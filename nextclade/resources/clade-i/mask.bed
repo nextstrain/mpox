@@ -1,5 +1,26 @@
 Chrom	ChromStart	ChromEnd	locus tag	Comment
 chr	0	1500		mask from beginning
+chr	6610	6612		artefact in some DRC sequences
+chr	10399	10521		very diverse in clade I
+chr	13867	13869		reverted in some Ib
+chr	18280	18282		homoplasic in Ib
+chr	20570	20580		homoplasic in Ib
+chr	31903	31905		homoplasic in Ib
+chr	58388	58490		homoplasic in Ib
+chr	64227	64329		homoplasic in Ib
+chr	99174	99276		homoplasic in Ib
+chr	115598	115700		homoplasic in Ib
+chr	123717	123819		homoplasic in Ib
+chr	138399	138501		homoplasic in Ib
+chr	148799	148901		homoplasic in Ib
+chr	148677	148779		homoplasic in Ib
+chr	150299	150401		homoplasic in Ib
+chr	152519	152651		homoplasic in Ib
+chr	159132	159234		homoplasic in Ib
+chr	165586	165688		homoplasic in Ib
+chr	169399	169601		homoplasic in Ib
+chr	177247	177349		homoplasic in Ib
+chr	185990	186092		homoplasic in Ib
 chr	133165	133365		indel variation and long homopolymers
 chr	136612	136712		indel variation and long homopolymers
 chr	140150	140350		indel variation and long repetitive elements

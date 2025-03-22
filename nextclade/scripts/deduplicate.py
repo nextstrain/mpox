@@ -132,7 +132,7 @@ def deduplicate(input: str, output: str, num_processes: int = 10):
     pool.join()
 
     # Combine results
-    dup_list = [dup for batch_result in results for dup in batch_result]
+    dup_list = {dup for batch_result in results for dup in batch_result}
 
     # Write output
     with open(output, "w") as f:
