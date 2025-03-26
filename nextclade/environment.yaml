@@ -4,7 +4,7 @@ channels:
   - bioconda
   - dnachun
 dependencies:
-  - augur
+  - augur <= 27 # Augur 27-29.0 have issues with ancestral reconstruction
   - auspice
   - nextclade
   - jsonpatch
