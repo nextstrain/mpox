@@ -3,6 +3,9 @@ if not config:
     configfile: "config/config.yaml"
 
 
+TREE_METHOD = "iqtree"
+
+
 build_names = [
     "lineage-b.1",
     "clade-iib",
@@ -403,22 +406,39 @@ rule deduplicate_2:
         python3 scripts/deduplicate.py {input.sequences} {output.duplicates}
         """
 
+if TREE_METHOD == "cmaple":
+    rule tree:
+        input:
+            alignment="results/{build_name}/masked.fasta",
+        output:
+            tree="results/{build_name}/masked.fasta.treefile",
+        shell:
+            """
+            cmaple \
+                -aln {input.alignment} \
+                -m JC \
+                -st DNA \
+                --search EXHAUSTIVE \
+                --out-mul-tree \
+                --make-consistent \
+                -nt AUTO \
+                --overwrite
+            """
 
-rule tree:
-    input:
-        alignment="results/{build_name}/masked.fasta",
-    output:
-        tree="results/{build_name}/masked.fasta.treefile",
-    shell:
-        """
-        cmaple \
-            -aln {input.alignment} \
-            --search EXHAUSTIVE \
-            --out-mul-tree \
-            --make-consistent \
-            -nt AUTO \
-            --overwrite
-        """
+else:
+    rule tree:
+        input:
+            alignment="results/{build_name}/masked.fasta",
+        output:
+            tree="results/{build_name}/masked.fasta.treefile",
+        shell:
+            """
+            augur tree \
+                --alignment {input.alignment} \
+                --tree-builder-args "--polytomy --ninit 2 -n 2 --epsilon 0.05 -T AUTO --redo" \
+                --nthreads 4 \
+                --output {output.tree}
+            """
 
 
 rule collapse:
