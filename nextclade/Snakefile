@@ -3,7 +3,12 @@ if not config:
     configfile: "config/config.yaml"
 
 
-build_names = ["lineage-b.1", "clade-iib", "all-clades", "clade-i"]
+build_names = [
+    "lineage-b.1",
+    "clade-iib",
+    "all-clades",
+    "clade-i",
+]
 # build_names = ["lineage-b.1", "clade-iib", "all-clades"]
 # build_names = ["all-clades"]
 
@@ -223,7 +228,7 @@ rule deduplicate:
         """
 
 
-rule subsample:
+rule subsample_b1:
     input:
         sequences="results/decent_sequences.fasta",
         metadata="results/decent_metadata.tsv",
@@ -237,20 +242,15 @@ rule subsample:
         sequences="results/{build_name}/filtered_raw.fasta",
         metadata="results/{build_name}/filtered_raw_metadata.tsv",
         log="results/{build_name}/filtered_raw.log",
+        strains="results/{build_name}/strains_b1.txt",
     params:
         min_date=lambda w: config[w.build_name]["min_date"],
         min_length=config["min_length"],
-        exclude_where=lambda w: config[w.build_name]["exclude_where"],
-        subsampling=lambda w: config[w.build_name]["subsampling"],
-        weights=lambda w: (
-            f"--group-by-weights resources/{w.build_name}/weights.tsv"
-            if "weights" in config[w.build_name]
-            else ""
-        ),
+        exclude_where=lambda w: config[w.build_name]["exclude_where"]["b1"],
+        subsampling=lambda w: config[w.build_name]["subsampling"]["b1"],
     shell:
         """
         augur filter \
-            {params.weights} \
             --sequences {input.sequences} \
             --metadata {input.metadata} \
             --sequence-index {input.index} \
@@ -263,6 +263,48 @@ rule subsample:
             --probabilistic-sampling \
             --output {output.sequences} \
             --output-metadata {output.metadata} \
+            --output-strains {output.strains} \
+            --min-length {params.min_length} \
+            --output-log {output.log}
+        """
+
+
+rule subsample_nonb1:
+    input:
+        sequences="results/decent_sequences.fasta",
+        metadata="results/decent_metadata.tsv",
+        exclude="resources/exclude_accessions.txt",
+        specific_exclude="resources/{build_name}/exclude_accessions.txt",
+        deduplicate_exclude="results/duplicates.txt",
+        specific_include="resources/{build_name}/include_accessions.txt",
+        include=lambda w: config[w.build_name]["general_include"],
+        index="results/index.tsv",
+    output:
+        sequences="results/{build_name}/filtered_raw.fasta",
+        metadata="results/{build_name}/filtered_raw_metadata.tsv",
+        strains="results/{build_name}/strains_nonb1.txt",
+        log="results/{build_name}/filtered_raw.log",
+    params:
+        min_date=lambda w: config[w.build_name]["min_date"],
+        min_length=config["min_length"],
+        exclude_where=lambda w: config[w.build_name]["exclude_where"]["nonb1"],
+        subsampling=lambda w: config[w.build_name]["subsampling"]["nonb1"],
+    shell:
+        """
+        augur filter \
+            --sequences {input.sequences} \
+            --metadata {input.metadata} \
+            --sequence-index {input.index} \
+            --metadata-id-columns accession \
+            --exclude {input.exclude} {input.specific_exclude} {input.deduplicate_exclude} \
+            {params.exclude_where} \
+            {params.min_date} \
+            {params.subsampling} \
+            --include {input.include} {input.specific_include} \
+            --probabilistic-sampling \
+            --output {output.sequences} \
+            --output-metadata {output.metadata} \
+            --output-strains {output.strains} \
             --min-length {params.min_length} \
             --output-log {output.log}
         """
@@ -270,8 +312,12 @@ rule subsample:
 
 rule postsample_exclude:
     input:
-        sequences="results/{build_name}/filtered_raw.fasta",
-        metadata="results/{build_name}/filtered_raw_metadata.tsv",
+        strains=lambda w: [
+            f"results/{{build_name}}/strains_{sample}.txt"
+            for sample in ["b1", "nonb1"]
+        ],
+        sequences="results/decent_sequences.fasta",
+        metadata="results/decent_metadata.tsv",
         exclude="resources/{build_name}/post_filter_exclude.txt",
         index="results/index.tsv",
     output:
@@ -281,11 +327,13 @@ rule postsample_exclude:
     shell:
         """
         augur filter \
+            --exclude-all \
             --sequences {input.sequences} \
             --metadata {input.metadata} \
             --sequence-index {input.index} \
             --metadata-id-columns accession \
             --exclude {input.exclude} \
+            --include {input.strains} \
             --output {output.sequences} \
             --output-metadata {output.metadata} \
             --output-log {output.log}
