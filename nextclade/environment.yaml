@@ -8,6 +8,7 @@ dependencies:
   - auspice
   - nextclade
   - jsonpatch
+  - tsv-utils
   - llist
   - gojq # only available from dnachun channel, see https://github.com/conda-forge/staged-recipes/issues/27099
   - snakemake
