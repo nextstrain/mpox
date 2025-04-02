@@ -3,14 +3,14 @@ if not config:
     configfile: "config/config.yaml"
 
 
-TREE_METHOD = "iqtree"
+TREE_METHOD = "cmaple"
 
 
 build_names = [
-    "lineage-b.1",
-    "clade-iib",
+    # "lineage-b.1",
+    # "clade-iib",
     "all-clades",
-    "clade-i",
+    # "clade-i",
 ]
 # build_names = ["lineage-b.1", "clade-iib", "all-clades"]
 # build_names = ["all-clades"]
@@ -407,26 +407,39 @@ rule deduplicate_2:
         """
 
 if TREE_METHOD == "cmaple":
-    rule tree:
+    rule mapletree:
         input:
             alignment="results/{build_name}/masked.fasta",
         output:
-            tree="results/{build_name}/masked.fasta.treefile",
+            tree1="results/{build_name}/masked.fasta.treefile",
+            vcf="results/{build_name}/masked.fasta.vcf",
+            treepb="results/{build_name}/masked.fasta.tree.pb",
+            treeoptpb="results/{build_name}/masked.fasta.treeopt.pb",
+            tree="results/{build_name}/masked.fasta.nwk",
+        params:
+            optdir="results/{build_name}",
+        log:
+            "results/{build_name}/mapletree.log",
         shell:
             """
             cmaple \
                 -aln {input.alignment} \
-                -m JC \
+                --out-internal \
                 -st DNA \
                 --search EXHAUSTIVE \
                 --out-mul-tree \
                 --make-consistent \
                 -nt AUTO \
                 --overwrite
+            /opt/homebrew/Cellar/micromamba/2.0.8/envs/intel/bin/faToVcf {input.alignment} {output.vcf}
+            /opt/homebrew/Cellar/micromamba/2.0.8/envs/intel/bin/usher -v {output.vcf} -t {output.tree1} -o {output.treepb} -d {params.optdir}
+            /opt/homebrew/Cellar/micromamba/2.0.8/envs/intel/bin/matOptimize -n -i {output.treepb} -o {output.treeoptpb} -r 200 -m 0.0000001 -d 1000 2>&1 > {log}
+            /opt/homebrew/Cellar/micromamba/2.0.8/envs/intel/bin/usher -v {output.vcf} -i {output.treeoptpb} -u -d {params.optdir}
+            cp {params.optdir}/uncondensed-final-tree.nh {output.tree}
             """
 
-else:
-    rule tree:
+elif TREE_METHOD == "iqtree":
+    rule iqtree:
         input:
             alignment="results/{build_name}/masked.fasta",
         output:
@@ -440,11 +453,23 @@ else:
                 --output {output.tree}
             """
 
+else:
+    rule mpboot:
+        input:
+            alignment="results/{build_name}/masked.fasta",
+        output:
+            tree="results/{build_name}/masked.fasta.treefile",
+        shell:
+            """
+            /Users/cr/code/mpboot -s {input.alignment}
+            """
+
+
 
 rule collapse:
     input:
         script="scripts/collapse-zero-branches.py",
-        tree=rules.tree.output.tree,
+        tree="results/{build_name}/masked.fasta.nwk",
     output:
         tree="results/{build_name}/tree_collapsed.nwk",
     shell:
@@ -453,6 +478,7 @@ rule collapse:
             --threshold 0.0000001 \
             --verbose \
             --input-tree {input.tree} \
+            --divide-by 190000 \
             --output-tree {output.tree}
         """
 
