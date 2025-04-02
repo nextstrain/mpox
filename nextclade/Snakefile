@@ -184,7 +184,7 @@ rule exclude_bad:
         index="results/index.tsv",
     output:
         sequences="results/decent_sequences.fasta",
-        metadata="results/decent_metadata.tsv",
+        metadata="results/decent_metadata_raw.tsv",
         log="results/decent_filter.log",
     shell:
         """
@@ -229,6 +229,33 @@ rule deduplicate:
         """
         python3 scripts/deduplicate.py {input.sequences} {output}
         """
+
+
+rule reformat_ambiguous:
+    input:
+        metadata="results/decent_metadata_raw.tsv",
+    output:
+        metadata="results/decent_metadata.tsv",
+    run:
+        import pandas as pd
+
+        df = pd.read_csv(input.metadata, sep="\t", keep_default_na=False)
+
+
+        def replace_ambiguous_date(date):
+            if date == "":
+                return "XXXX-XX-XX"
+            parts = date.split("-")
+            year = parts[0]
+            rest = [p.zfill(2) for p in parts[1:]]
+            while len(rest) < 2:
+                rest.append("XX")
+            return "-".join([year] + rest)
+
+
+        df["date"] = df["date"].apply(replace_ambiguous_date)
+
+        df.to_csv(output.metadata, sep="\t", index=False)
 
 
 rule subsample_b1:
@@ -283,10 +310,10 @@ rule subsample_nonb1:
         include=lambda w: config[w.build_name]["general_include"],
         index="results/index.tsv",
     output:
-        sequences="results/{build_name}/filtered_raw.fasta",
-        metadata="results/{build_name}/filtered_raw_metadata.tsv",
+        sequences="results/{build_name}/filtered_raw_nonb1.fasta",
+        metadata="results/{build_name}/filtered_raw_metadata_nonb1.tsv",
         strains="results/{build_name}/strains_nonb1.txt",
-        log="results/{build_name}/filtered_raw.log",
+        log="results/{build_name}/filtered_raw_nonb1.log",
     params:
         min_date=lambda w: config[w.build_name]["min_date"],
         min_length=config["min_length"],
@@ -406,7 +433,9 @@ rule deduplicate_2:
         python3 scripts/deduplicate.py {input.sequences} {output.duplicates}
         """
 
+
 if TREE_METHOD == "cmaple":
+
     rule tree:
         input:
             alignment="results/{build_name}/masked.fasta",
@@ -426,6 +455,7 @@ if TREE_METHOD == "cmaple":
             """
 
 else:
+
     rule tree:
         input:
             alignment="results/{build_name}/masked.fasta",
@@ -435,7 +465,7 @@ else:
             """
             augur tree \
                 --alignment {input.alignment} \
-                --tree-builder-args "--polytomy --ninit 2 -n 2 --epsilon 0.05 -T AUTO --redo" \
+                --tree-builder-args "--polytomy --ninit 2 -n 2 --epsilon 0.05 -T 4 --redo" \
                 --nthreads 4 \
                 --output {output.tree}
             """
@@ -655,7 +685,6 @@ rule extra_node_data:
         with open(input.json) as f:
             data = json.load(f)
 
-
         def update_node_data(node):
             name = node["name"]
             if name in result:
@@ -664,11 +693,11 @@ rule extra_node_data:
                 for child in node["children"]:
                     update_node_data(child)
 
-
         update_node_data(data["tree"])
 
         with open(output.json, "w") as f:
             json.dump(data, f, indent=2)
+
 
 
 rule minify_tree:
