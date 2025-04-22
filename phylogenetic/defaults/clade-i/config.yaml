@@ -37,7 +37,7 @@ fix_tree: true
 treefix_root: "" # without a root we'll midpoint root which should work great for clade I
 
 ## refine
-timetree: true
+timetree: false # Disable as rates vary too much depending on clade/outbreak
 root: "best"
 # Clock rate chosen via treetime inference on Clade-I data excluding Clade-Ib seqs (n=73)
 # TODO: update this once more public data is available.
