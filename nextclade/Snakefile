@@ -291,7 +291,7 @@ rule subsample_b1:
             {params.subsampling} \
             --include {input.include} {input.specific_include} \
             --probabilistic-sampling \
-            --output {output.sequences} \
+            --output-sequences {output.sequences} \
             --output-metadata {output.metadata} \
             --output-strains {output.strains} \
             --min-length {params.min_length} \
@@ -332,7 +332,7 @@ rule subsample_nonb1:
             {params.subsampling} \
             --include {input.include} {input.specific_include} \
             --probabilistic-sampling \
-            --output {output.sequences} \
+            --output-sequences {output.sequences} \
             --output-metadata {output.metadata} \
             --output-strains {output.strains} \
             --min-length {params.min_length} \
@@ -462,12 +462,19 @@ else:
         output:
             tree="results/{build_name}/masked.fasta.treefile",
         shell:
+            # """
+            # augur tree \
+            #     --alignment {input.alignment} \
+            #     --tree-builder-args "--polytomy --ninit 2 -n 2 --epsilon 0.05 -T 4 --redo" \
+            #     --nthreads 4 \
+            #     --output {output.tree}
+            # """
             """
-            augur tree \
-                --alignment {input.alignment} \
-                --tree-builder-args "--polytomy --ninit 2 -n 2 --epsilon 0.05 -T 4 --redo" \
-                --nthreads 4 \
-                --output {output.tree}
+            ~/code/pree/rust/target/release/rust_parsimony build \
+                {input.alignment} \
+                --output-file {output.tree} \
+                --num-trees 100 \
+                --spr-trees 32
             """
 
 
@@ -516,7 +523,7 @@ rule ancestral:
     # "Reconstructing ancestral sequences and mutations"
     input:
         tree="results/{build_name}/tree.nwk",
-        alignment="results/{build_name}/masked.fasta",
+        alignment="results/{build_name}/aligned.fasta",
         annotation=annotation_path,
         genes=lambda w: gene_path(w),
         translations="results/{build_name}/translations",
