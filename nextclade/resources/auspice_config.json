@@ -47,7 +47,7 @@
       ]
     }
   },
-  "build_url": "https://github.com/nextstrain/mpox/nextclade",
+  "build_url": "https://github.com/nextstrain/mpox/tree/master/nextclade",
   "colorings": [
     {
       "key": "outbreak",
