@@ -92,8 +92,8 @@
       "type": "categorical"
     },
     {
-      "key": "abbr_authors",
-      "title": "Abbreviated Authors",
+      "key": "author",
+      "title": "Authors",
       "type": "categorical"
     },
     {
@@ -118,6 +118,7 @@
     "country",
     "region",
     "recency",
-    "host"
+    "host",
+    "author"
   ]
 }
