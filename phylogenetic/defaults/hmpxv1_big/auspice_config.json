@@ -60,6 +60,11 @@
       "key": "date",
       "title": "Collection date",
       "type": "categorical"
+    },
+    {
+      "key": "author",
+      "title": "Authors",
+      "type": "categorical"
     }
   ],
   "geo_resolutions": [
@@ -77,6 +82,7 @@
     "country",
     "region",
     "recency",
-    "host"
+    "host",
+    "author"
   ]
 }
