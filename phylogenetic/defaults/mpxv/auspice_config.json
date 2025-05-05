@@ -75,8 +75,12 @@
   "geo_resolutions": [
     "country"
   ],
+  "metadata_columns": [
+    "strain"
+  ],
   "display_defaults": {
     "color_by": "clade_membership",
+    "tip_label": "strain",
     "map_triplicate": true,
     "distance_measure": "div",
     "transmission_lines": false

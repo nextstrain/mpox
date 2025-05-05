@@ -94,8 +94,8 @@ rule export:
         description=config["description"],
         auspice_config=config["auspice_config"],
     output:
-        auspice_json=build_dir + "/{build_name}/raw_tree.json",
-        root_sequence=build_dir + "/{build_name}/raw_tree_root-sequence.json",
+        auspice_json=build_dir + "/{build_name}/tree.json",
+        root_sequence=build_dir + "/{build_name}/tree_root-sequence.json",
     params:
         strain_id=config["strain_id_field"],
     shell:
@@ -111,26 +111,4 @@ rule export:
             --auspice-config {input.auspice_config} \
             --include-root-sequence \
             --output {output.auspice_json}
-        """
-
-
-rule final_strain_name:
-    input:
-        auspice_json=build_dir + "/{build_name}/raw_tree.json",
-        metadata=build_dir + "/{build_name}/metadata.tsv",
-        root_sequence=build_dir + "/{build_name}/raw_tree_root-sequence.json",
-    output:
-        auspice_json=build_dir + "/{build_name}/tree.json",
-        root_sequence=build_dir + "/{build_name}/tree_root-sequence.json",
-    params:
-        strain_id=config["strain_id_field"],
-        display_strain_field=config.get("display_strain_field", "strain"),
-    shell:
-        """
-        python3 scripts/set_final_strain_name.py --metadata {input.metadata} \
-                --metadata-id-columns {params.strain_id} \
-                --input-auspice-json {input.auspice_json} \
-                --display-strain-name {params.display_strain_field} \
-                --output {output.auspice_json}
-        cp {input.root_sequence} {output.root_sequence}
         """
