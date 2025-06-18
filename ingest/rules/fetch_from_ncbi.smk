@@ -7,7 +7,7 @@ REQUIRED INPUTS:
 
 OUTPUTS:
 
-    ndjson = data/genbank.ndjson
+    ndjson = data/ncbi.ndjson
 
 """
 
@@ -102,7 +102,7 @@ rule format_ncbi_datasets_ndjson:
         ncbi_dataset_sequences="data/ncbi_dataset_sequences.fasta",
         ncbi_dataset_tsv="data/ncbi_dataset_report.tsv",
     output:
-        ndjson="data/genbank.ndjson",
+        ndjson="data/ncbi.ndjson",
     log:
         "logs/format_ncbi_datasets_ndjson.txt",
     benchmark:

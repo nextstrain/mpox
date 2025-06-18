@@ -14,7 +14,7 @@ Follow the [standard installation instructions](https://docs.nextstrain.org/en/l
 Fetch sequences with
 
 ```sh
-nextstrain build . data/genbank.ndjson
+nextstrain build . data/ncbi.ndjson
 ```
 
 Run the complete ingest pipeline with
