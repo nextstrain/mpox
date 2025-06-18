@@ -15,7 +15,6 @@ upload:
     # the local file path relative to the ingest directory.
     files_to_upload:
       genbank.ndjson.xz: data/genbank.ndjson
-      all_sequences.ndjson.xz: data/sequences.ndjson
       metadata.tsv.gz: results/metadata.tsv
       sequences.fasta.xz: results/sequences.fasta
       nextclade.tsv.zst: results/nextclade.tsv
