@@ -10,6 +10,10 @@ Instead, changes appear below grouped by the date they were added to the workflo
 
 ## 2025
 
+* 23 June 2025: added the following zstd compressed outputs. ([#317][])
+    * https://data.nextstrain.org/files/workflows/mpox/metadata.tsv.zst
+    * https://data.nextstrain.org/files/workflows/mpox/sequences.fasta.zst
+    * https://data.nextstrain.org/files/workflows/mpox/alignment.fasta.zst
 * 23 June 2025: ingest - updated intermediate NDJSON file. ([#316][])
     * Removed the following intermediate NDJSON files
         * https://data.nextstrain.org/files/workflows/mpox/all_sequences.ndjson.xz
@@ -19,5 +23,6 @@ Instead, changes appear below grouped by the date they were added to the workflo
 * 23 June 2025: ingest - removed path for separate data sources. ([#316][])
     * The config param `sources` is no longer supported
 
+[#317]: https://github.com/nextstrain/mpox/pull/317
 [#316]: https://github.com/nextstrain/mpox/pull/316
 [NCBI Datasets mnemonics]: https://www.ncbi.nlm.nih.gov/datasets/docs/v2/reference-docs/command-line/dataformat/tsv/dataformat_tsv_virus-genome/#fields
