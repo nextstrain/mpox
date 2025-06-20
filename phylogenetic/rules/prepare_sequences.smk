@@ -20,11 +20,11 @@ rule download:
     Downloading sequences and metadata from data.nextstrain.org
     """
     output:
-        sequences="data/sequences.fasta.xz",
-        metadata="data/metadata.tsv.gz",
+        sequences="data/sequences.fasta.zst",
+        metadata="data/metadata.tsv.zst",
     params:
-        sequences_url="https://data.nextstrain.org/files/workflows/mpox/sequences.fasta.xz",
-        metadata_url="https://data.nextstrain.org/files/workflows/mpox/metadata.tsv.gz",
+        sequences_url="https://data.nextstrain.org/files/workflows/mpox/sequences.fasta.zst",
+        metadata_url="https://data.nextstrain.org/files/workflows/mpox/metadata.tsv.zst",
     shell:
         """
         curl -fsSL --compressed {params.sequences_url:q} --output {output.sequences}
@@ -37,15 +37,15 @@ rule decompress:
     Decompressing sequences and metadata
     """
     input:
-        sequences="data/sequences.fasta.xz",
-        metadata="data/metadata.tsv.gz",
+        sequences="data/sequences.fasta.zst",
+        metadata="data/metadata.tsv.zst",
     output:
         sequences="data/sequences.fasta",
         metadata="data/metadata.tsv",
     shell:
         """
-        gzip --decompress --keep {input.metadata}
-        xz --decompress --keep {input.sequences}
+        zstd --decompress --stdout {input.sequences:q} > {output.sequences:q}
+        zstd --decompress --stdout {input.metadata:q} > {output.metadata:q}
         """
 
 
