@@ -95,6 +95,7 @@ curate:
     'country',
     'division',
     'location',
+    'length',
     'host',
     'date_released',
     'date_updated',
