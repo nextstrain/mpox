@@ -79,7 +79,7 @@ rule nextclade_metadata:
         "benchmarks/nextclade_metadata.txt"
     shell:
         r"""
-        (tsv-select --header --fields {params.nextclade_fields:q} {input.nextclade} \
+        (csvtk cut -t --fields {params.nextclade_fields:q} {input.nextclade} \
         | augur curate rename \
             --metadata - \
             --id-column {params.nextclade_id_field:q} \
