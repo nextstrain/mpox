@@ -85,6 +85,8 @@ curate:
   id_field: 'accession'
   # Field to use as the sequence in the FASTA file
   sequence_field: 'sequence'
+  # The field in the NDJSON record that contains the actual GenBank accession
+  genbank_accession: 'accession'
   # Final output columns for the metadata TSV
   metadata_columns: [
     'accession',
@@ -102,7 +104,8 @@ curate:
     'sra_accession',
     'authors',
     'full_authors',
-    'institution'
+    'institution',
+    'url'
   ]
 
 # Params for Nextclade related rules

@@ -86,9 +86,36 @@ rule curate:
         """
 
 
+rule add_metadata_columns:
+    """Add columns to metadata
+    Notable columns:
+    - [NEW] url: URL linking to the NCBI GenBank record ('https://www.ncbi.nlm.nih.gov/nuccore/*').
+    """
+    input:
+        metadata = "data/all_metadata.tsv"
+    output:
+        metadata = temp("data/all_metadata_added.tsv")
+    params:
+        accession=config['curate']['genbank_accession']
+    benchmark:
+        "benchmarks/add_metadata_columns.txt"
+    log:
+        "logs/add_metadata_columns.txt"
+    shell:
+        r"""
+        exec &> >(tee {log:q})
+
+        csvtk mutate2 -t \
+          -n url \
+          -e '"https://www.ncbi.nlm.nih.gov/nuccore/" + ${params.accession:q}' \
+          {input.metadata:q} \
+        > {output.metadata:q}
+        """
+
+
 rule subset_metadata:
     input:
-        metadata="data/all_metadata.tsv",
+        metadata="data/all_metadata_added.tsv",
     output:
         subset_metadata="data/subset_metadata.tsv",
     params:
