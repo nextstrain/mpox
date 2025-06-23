@@ -2,7 +2,7 @@
 This part of the workflow handles curating the data into standardized
 formats and expects input file
 
-    sequences_ndjson = "data/sequences.ndjson"
+    sequences_ndjson = "data/ncbi.ndjson"
 
 This will produce output files as
 
@@ -22,7 +22,7 @@ def format_field_map(field_map: dict[str, str]) -> str:
 
 rule curate:
     input:
-        sequences_ndjson="data/sequences.ndjson",
+        sequences_ndjson="data/ncbi.ndjson",
         geolocation_rules=config["curate"]["local_geolocation_rules"],
         annotations=config["curate"]["annotations"],
     output:

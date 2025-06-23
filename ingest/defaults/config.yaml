@@ -1,9 +1,26 @@
-# Sources of sequences to include in the ingest run
-sources: ['genbank']
 # Pathogen NCBI Taxonomy ID
 ncbi_taxon_id: '10244'
-# Renames the NCBI dataset headers
-ncbi_field_map: 'defaults/ncbi-dataset-field-map.tsv'
+# The list of NCBI Datasets fields to include from NCBI Datasets output
+# These need to be the "mnemonics" of the NCBI Datasets fields, see docs for full list of fields
+# https://www.ncbi.nlm.nih.gov/datasets/docs/v2/reference-docs/command-line/dataformat/tsv/dataformat_tsv_virus-genome/#fields
+# Note: the "accession" field MUST be provided to match with the sequences
+ncbi_datasets_fields:
+  - accession
+  - sourcedb
+  - isolate-lineage
+  - geo-region
+  - geo-location
+  - isolate-collection-date
+  - release-date
+  - update-date
+  - length
+  - host-name
+  - isolate-lineage-source
+  - bioprojects
+  - biosample-acc
+  - sra-accs
+  - submitter-names
+  - submitter-affiliation
 
 # Params for the curate rule
 curate:
@@ -11,10 +28,25 @@ curate:
   # This is the first step in the pipeline, so any references to field names
   # in the configs below should use the new field names
   field_map:
-    collected: date
-    submitted: date_submitted
-    genbank_accession: accession
-    submitting_organization: institution
+    accession: accession
+    accession_version: genbank_accession_rev
+    sourcedb: database
+    isolate-lineage: strain
+    geo-region: region
+    geo-location: location
+    isolate-collection-date: date
+    # This should really be date_released
+    # see <https://github.com/nextstrain/mpox/issues/104>
+    release-date: date_submitted
+    update-date: date_updated
+    length: length
+    host-name: host
+    isolate-lineage-source: isolation_source
+    bioprojects: bioproject_accession
+    biosample-acc: biosample_accessions
+    sra-accs: sra_accession
+    submitter-names: full_authors
+    submitter-affiliation: institution
   # Standardized strain name regex
   # Currently accepts any characters because we do not have a clear standard for strain names
   strain_regex: '^.+$'
