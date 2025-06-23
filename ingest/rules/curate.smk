@@ -19,7 +19,7 @@ def format_field_map(field_map: dict[str, str]) -> list[str]:
     When used in a Snakemake shell block, the list is automatically expanded and
     spaces are handled by quoted interpolation.
     """
-    return [f'{key}={value}' for key, value in field_map.items()]
+    return [f"{key}={value}" for key, value in field_map.items()]
 
 
 rule curate:
@@ -31,7 +31,7 @@ rule curate:
         metadata="data/all_metadata.tsv",
         sequences="results/sequences.fasta",
     benchmark:
-        "benchmarks/curate.txt",
+        "benchmarks/curate.txt"
     log:
         "logs/curate.txt",
     params:
@@ -92,15 +92,15 @@ rule add_metadata_columns:
     - [NEW] url: URL linking to the NCBI GenBank record ('https://www.ncbi.nlm.nih.gov/nuccore/*').
     """
     input:
-        metadata = "data/all_metadata.tsv"
+        metadata="data/all_metadata.tsv",
     output:
-        metadata = temp("data/all_metadata_added.tsv")
+        metadata=temp("data/all_metadata_added.tsv"),
     params:
-        accession=config['curate']['genbank_accession']
+        accession=config["curate"]["genbank_accession"],
     benchmark:
         "benchmarks/add_metadata_columns.txt"
     log:
-        "logs/add_metadata_columns.txt"
+        "logs/add_metadata_columns.txt",
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -123,7 +123,7 @@ rule subset_metadata:
     benchmark:
         "benchmarks/subset_metadata.txt"
     log:
-        "logs/subset_metadata.txt"
+        "logs/subset_metadata.txt",
     shell:
         r"""
         exec &> >(tee {log:q})

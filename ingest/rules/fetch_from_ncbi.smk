@@ -21,7 +21,7 @@ rule fetch_ncbi_dataset_package:
     params:
         ncbi_taxon_id=config["ncbi_taxon_id"],
     log:
-        "logs/fetch_ncbi_dataset_package.txt"
+        "logs/fetch_ncbi_dataset_package.txt",
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -40,7 +40,7 @@ rule extract_ncbi_dataset_sequences:
     benchmark:
         "benchmarks/extract_ncbi_dataset_sequences.txt"
     log:
-        "logs/extract_ncbi_dataset_sequences.txt"
+        "logs/extract_ncbi_dataset_sequences.txt",
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -60,7 +60,7 @@ rule format_ncbi_dataset_report:
     benchmark:
         "benchmarks/format_ncbi_dataset_report.txt"
     log:
-        "logs/format_ncbi_dataset_report.txt"
+        "logs/format_ncbi_dataset_report.txt",
     shell:
         r"""
         exec &> >(tee {log:q})
