@@ -10,6 +10,12 @@ Instead, changes appear below grouped by the date they were added to the workflo
 
 ## 2025
 
+* 25 June 2025: metadata.tsv column changes. ([#319][])
+    * `date_submitted` has been corrected to `date_released`.
+    * added columns `date_updated`, `length`, and `url`
+    Note that our public metadata.tsv files still has the `date_submitted` column
+    for backwards compatibility, but it will be removed by 28 July 2025 so please
+    update your workflows to use the new `date_released` column.
 * 25 June 2025: All workflows now use the zstd compressed outputs on S3. ([#318][])
     Note that the gzip and xz compressed files on S3 will be removed by 28 July 2025,
     so please update your workflows to use the zstd compressed files.
@@ -26,6 +32,7 @@ Instead, changes appear below grouped by the date they were added to the workflo
 * 23 June 2025: ingest - removed path for separate data sources. ([#316][])
     * The config param `sources` is no longer supported
 
+[#319]: https://github.com/nextstrain/mpox/pull/319
 [#318]: https://github.com/nextstrain/mpox/pull/318
 [#317]: https://github.com/nextstrain/mpox/pull/317
 [#316]: https://github.com/nextstrain/mpox/pull/316
