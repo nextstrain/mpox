@@ -152,21 +152,7 @@ rule subsample:
         strains=build_dir + "/{build_name}/{sample}_strains.txt",
         log=build_dir + "/{build_name}/{sample}_filter.log",
     params:
-        group_by=lambda w: config["subsample"][w.sample]["group_by"],
-        sequences_per_group=lambda w: config["subsample"][w.sample][
-            "sequences_per_group"
-        ],
-        query=lambda w: (
-            f"--query {config['subsample'][w.sample]['query']}"
-            if "query" in config["subsample"][w.sample]
-            else ""
-        ),
-        other_filters=lambda w: config["subsample"][w.sample].get("other_filters", ""),
-        exclude=lambda w: (
-            f"--exclude-where {' '.join([f'lineage={l}' for l in config['subsample'][w.sample]['exclude_lineages']])}"
-            if "exclude_lineages" in config["subsample"][w.sample]
-            else ""
-        ),
+        augur_filter_args=lambda w: config["subsample"][w.sample],
         strain_id=config["strain_id_field"],
     log:
         "logs/{build_name}/{sample}_subsample.txt",
@@ -180,11 +166,7 @@ rule subsample:
             --metadata {input.metadata:q} \
             --metadata-id-columns {params.strain_id:q} \
             --output-strains {output.strains:q} \
-            {params.group_by} \
-            {params.sequences_per_group} \
-            {params.query} \
-            {params.exclude} \
-            {params.other_filters} \
+            {params.augur_filter_args} \
             --output-log {output.log:q}
         """
 
