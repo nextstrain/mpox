@@ -91,7 +91,7 @@ rule refine:
         coalescent="opt",
         date_inference="marginal",
         clock_filter_iqd=0,
-        root=config["root"],
+        root=as_list(config["root"]),
         clock_rate=(
             f"--clock-rate {config['clock_rate']!r}" if "clock_rate" in config else ""
         ),
@@ -117,7 +117,7 @@ rule refine:
             --metadata-id-columns {params.strain_id:q} \
             --output-tree {output.tree:q} \
             --timetree \
-            --root {params.root} \
+            --root {params.root:q} \
             --precision 3 \
             --keep-polytomies \
             --use-fft \

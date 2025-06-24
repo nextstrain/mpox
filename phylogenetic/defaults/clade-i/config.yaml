@@ -46,7 +46,9 @@ divergence_units: "mutations"
 
 
 traits:
-  columns: region country
+  columns:
+    - region
+    - country
   sampling_bias_correction: 3
 
 ## recency
@@ -58,4 +60,6 @@ mask:
   maskfile: "defaults/clade-i/mask.bed"
 
 colors:
-  ignore_categories: "division location"
+  ignore_categories:
+    - division
+    - location

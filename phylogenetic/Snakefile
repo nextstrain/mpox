@@ -38,6 +38,7 @@ rule all:
         """
 
 
+include: "rules/config.smk"
 include: "rules/prepare_sequences.smk"
 include: "rules/construct_phylogeny.smk"
 include: "rules/annotate_phylogeny.smk"

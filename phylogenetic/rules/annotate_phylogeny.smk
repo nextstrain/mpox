@@ -90,7 +90,7 @@ rule traits:
     output:
         node_data=build_dir + "/{build_name}/traits.json",
     params:
-        columns=config["traits"]["columns"],
+        columns=as_list(config["traits"]["columns"]),
         sampling_bias_correction=config["traits"]["sampling_bias_correction"],
         strain_id=config["strain_id_field"],
     log:
@@ -106,7 +106,7 @@ rule traits:
             --metadata {input.metadata:q} \
             --metadata-id-columns {params.strain_id:q} \
             --output {output.node_data:q} \
-            --columns {params.columns} \
+            --columns {params.columns:q} \
             --confidence \
             --sampling-bias-correction {params.sampling_bias_correction:q}
         """
