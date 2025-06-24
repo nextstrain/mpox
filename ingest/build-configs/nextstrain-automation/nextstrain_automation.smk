@@ -53,6 +53,34 @@ rule nextstrain_automation:
         _get_all_targets,
 
 
+# Custom rule to copy `date_released` to `date_submitted` column so that
+# users of our metadata.tsv have time to update their workflows to use the new
+# `date_released` column.
+# This custom rule and the `date_submitted` column will be removed on 28 July 2025.
+rule custom_subset_metadata:
+    input:
+        metadata="data/all_metadata_added.tsv",
+    output:
+        subset_metadata="data/subset_metadata.tsv",
+    params:
+        metadata_fields=",".join(config["curate"]["metadata_columns"]),
+    benchmark:
+        "benchmarks/subset_metadata.txt"
+    log:
+        "logs/subset_metadata.txt",
+    shell:
+        r"""
+        exec &> >(tee {log:q})
+
+        csvtk cut -t -f {params.metadata_fields:q} \
+            {input.metadata:q} \
+            | csvtk mutate -t -f date_released -n date_submitted \
+            > {output.subset_metadata:q}
+        """
+
+ruleorder: custom_subset_metadata > subset_metadata
+
+
 if config.get("upload", False):
 
     include: "upload.smk"
