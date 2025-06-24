@@ -25,10 +25,16 @@ rule download:
     params:
         sequences_url="https://data.nextstrain.org/files/workflows/mpox/sequences.fasta.zst",
         metadata_url="https://data.nextstrain.org/files/workflows/mpox/metadata.tsv.zst",
+    log:
+        "logs/download.txt",
+    benchmark:
+        "benchmarks/download.txt"
     shell:
-        """
-        curl -fsSL --compressed {params.sequences_url:q} --output {output.sequences}
-        curl -fsSL --compressed {params.metadata_url:q} --output {output.metadata}
+        r"""
+        exec &> >(tee {log:q})
+
+        curl -fsSL --compressed {params.sequences_url:q} --output {output.sequences:q}
+        curl -fsSL --compressed {params.metadata_url:q} --output {output.metadata:q}
         """
 
 
@@ -42,8 +48,14 @@ rule decompress:
     output:
         sequences="data/sequences.fasta",
         metadata="data/metadata.tsv",
+    log:
+        "logs/decompress.txt",
+    benchmark:
+        "benchmarks/decompress.txt"
     shell:
-        """
+        r"""
+        exec &> >(tee {log:q})
+
         zstd --decompress --stdout {input.sequences:q} > {output.sequences:q}
         zstd --decompress --stdout {input.metadata:q} > {output.metadata:q}
         """
@@ -66,24 +78,30 @@ rule filter:
         min_length=config["filter"]["min_length"],
         strain_id=config["strain_id_field"],
         exclude_where=lambda w: (
-            f"--exclude-where {config['filter']['exclude_where']}"
+            f"--exclude-where {config['filter']['exclude_where']!r}"
             if "exclude_where" in config["filter"]
             else ""
         ),
+    log:
+        "logs/{build_name}/filter.txt",
+    benchmark:
+        "benchmarks/{build_name}/download.txt"
     shell:
-        """
+        r"""
+        exec &> >(tee {log:q})
+
         augur filter \
-            --sequences {input.sequences} \
-            --metadata {input.metadata} \
-            --metadata-id-columns {params.strain_id} \
-            --output-sequences {output.sequences} \
-            --output-metadata {output.metadata} \
-            --exclude {input.exclude} \
+            --sequences {input.sequences:q} \
+            --metadata {input.metadata:q} \
+            --metadata-id-columns {params.strain_id:q} \
+            --output-sequences {output.sequences:q} \
+            --output-metadata {output.metadata:q} \
+            --exclude {input.exclude:q} \
             {params.exclude_where} \
-            --min-date {params.min_date} \
-            --min-length {params.min_length} \
+            --min-date {params.min_date:q} \
+            --min-length {params.min_length:q} \
             --query "(QC_rare_mutations == 'good' | QC_rare_mutations == 'mediocre')" \
-            --output-log {output.log}
+            --output-log {output.log:q}
         """
 
 
@@ -107,13 +125,19 @@ rule add_private_data:
     output:
         sequences=build_dir + "/{build_name}/good_sequences_combined.fasta",
         metadata=build_dir + "/{build_name}/good_metadata_combined.tsv",
+    log:
+        "logs/{build_name}/add_private_data.txt",
+    benchmark:
+        "benchmarks/{build_name}/add_private_data.txt"
     shell:
-        """
+        r"""
+        exec &> >(tee {log:q})
+
         python3 scripts/combine_data_sources.py \
-            --metadata nextstrain={input.metadata} private={input.private_metadata} \
-            --sequences {input.sequences} {input.private_sequences} \
-            --output-metadata {output.metadata} \
-            --output-sequences {output.sequences}
+            --metadata nextstrain={input.metadata:q} private={input.private_metadata:q} \
+            --sequences {input.sequences:q} {input.private_sequences:q} \
+            --output-metadata {output.metadata:q} \
+            --output-sequences {output.sequences:q}
         """
 
 
@@ -144,18 +168,24 @@ rule subsample:
             else ""
         ),
         strain_id=config["strain_id_field"],
+    log:
+        "logs/{build_name}/{sample}_subsample.txt",
+    benchmark:
+        "benchmarks/{build_name}/{sample}_subsample.txt"
     shell:
-        """
+        r"""
+        exec &> >(tee {log:q})
+
         augur filter \
-            --metadata {input.metadata} \
-            --metadata-id-columns {params.strain_id} \
-            --output-strains {output.strains} \
+            --metadata {input.metadata:q} \
+            --metadata-id-columns {params.strain_id:q} \
+            --output-strains {output.strains:q} \
             {params.group_by} \
             {params.sequences_per_group} \
             {params.query} \
             {params.exclude} \
             {params.other_filters} \
-            --output-log {output.log}
+            --output-log {output.log:q}
         """
 
 
@@ -181,16 +211,22 @@ rule combine_samples:
         metadata=build_dir + "/{build_name}/metadata.tsv",
     params:
         strain_id=config["strain_id_field"],
+    log:
+        "logs/{build_name}/combine_samples.txt",
+    benchmark:
+        "benchmarks/{build_name}/combine_samples.txt"
     shell:
-        """
+        r"""
+        exec &> >(tee {log:q})
+
         augur filter \
-            --metadata-id-columns {params.strain_id} \
-            --sequences {input.sequences} \
-            --metadata {input.metadata} \
+            --metadata-id-columns {params.strain_id:q} \
+            --sequences {input.sequences:q} \
+            --metadata {input.metadata:q} \
             --exclude-all \
-            --include {input.strains} {input.include}\
-            --output-sequences {output.sequences} \
-            --output-metadata {output.metadata}
+            --include {input.strains:q} {input.include:q}\
+            --output-sequences {output.sequences:q} \
+            --output-metadata {output.metadata:q}
         """
 
 
@@ -200,12 +236,18 @@ rule reverse_reverse_complements:
         sequences=build_dir + "/{build_name}/filtered.fasta",
     output:
         build_dir + "/{build_name}/reversed.fasta",
+    log:
+        "logs/{build_name}/reverse_reverse_complements.txt",
+    benchmark:
+        "benchmarks/{build_name}/reverse_reverse_complements.txt"
     shell:
-        """
+        r"""
+        exec &> >(tee {log:q})
+
         python3 scripts/reverse_reversed_sequences.py \
-            --metadata {input.metadata} \
-            --sequences {input.sequences} \
-            --output {output}
+            --metadata {input.metadata:q} \
+            --sequences {input.sequences:q} \
+            --output {output:q}
         """
 
 
@@ -228,20 +270,27 @@ rule align:
         allowed_mismatches=8,
         gap_alignment_side="left",
     threads: workflow.cores
+    log:
+        "logs/{build_name}/align.txt",
+    benchmark:
+        "benchmarks/{build_name}/align.txt"
     shell:
-        """
+        r"""
+        exec &> >(tee {log:q})
+
         nextclade3 run \
             --jobs {threads} \
-            --input-ref {input.reference} \
-            --input-annotation {input.genome_annotation} \
-            --excess-bandwidth {params.excess_bandwidth} \
-            --terminal-bandwidth {params.terminal_bandwidth} \
-            --window-size {params.window_size} \
-            --min-seed-cover {params.min_seed_cover} \
-            --allowed-mismatches {params.allowed_mismatches} \
-            --gap-alignment-side {params.gap_alignment_side} \
+            --input-ref {input.reference:q} \
+            --input-annotation {input.genome_annotation:q} \
+            --excess-bandwidth {params.excess_bandwidth:q} \
+            --terminal-bandwidth {params.terminal_bandwidth:q} \
+            --window-size {params.window_size:q} \
+            --min-seed-cover {params.min_seed_cover:q} \
+            --allowed-mismatches {params.allowed_mismatches:q} \
+            --gap-alignment-side {params.gap_alignment_side:q} \
             --output-fasta - \
-            {input.sequences} | seqkit seq -i > {output.alignment}
+            {input.sequences:q} \
+            | seqkit seq -i > {output.alignment:q}
         """
 
 
@@ -259,11 +308,18 @@ rule mask:
     params:
         from_start=config["mask"]["from_beginning"],
         from_end=config["mask"]["from_end"],
+    log:
+        "logs/{build_name}/mask.txt",
+    benchmark:
+        "benchmarks/{build_name}/mask.txt"
     shell:
-        """
+        r"""
+        exec &> >(tee {log:q})
+
         augur mask \
-            --sequences {input.sequences} \
-            --mask {input.mask} \
-            --mask-from-beginning {params.from_start} \
-            --mask-from-end {params.from_end} --output {output}
+            --sequences {input.sequences:q} \
+            --mask {input.mask:q} \
+            --mask-from-beginning {params.from_start:q} \
+            --mask-from-end {params.from_end:q} \
+            --output {output:q}
         """
