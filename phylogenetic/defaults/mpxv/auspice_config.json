@@ -57,7 +57,7 @@
       "type": "categorical"
     },
     {
-      "key": "date_submitted",
+      "key": "date_released",
       "title": "Release Date",
       "type": "categorical"
     },

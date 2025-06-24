@@ -24,14 +24,14 @@ S3_SRC = "s3://nextstrain-data/files/workflows/mpox"
 
 rule notify_on_genbank_record_change:
     input:
-        genbank_ndjson="data/genbank.ndjson",
+        genbank_ndjson="data/ncbi.ndjson",
     output:
         touch("data/notify/genbank-record-change.done"),
     params:
         s3_src=S3_SRC,
     shell:
         """
-        ./vendored/notify-on-record-change {input.genbank_ndjson} {params.s3_src:q}/genbank.ndjson.xz Genbank
+        ./vendored/notify-on-record-change {input.genbank_ndjson} {params.s3_src:q}/ncbi.ndjson.zst Genbank
         """
 
 
@@ -44,7 +44,7 @@ rule notify_on_metadata_diff:
         s3_src=S3_SRC,
     shell:
         """
-        ./vendored/notify-on-diff {input.metadata} {params.s3_src:q}/metadata.tsv.gz
+        ./vendored/notify-on-diff {input.metadata} {params.s3_src:q}/metadata.tsv.zst
         """
 
 

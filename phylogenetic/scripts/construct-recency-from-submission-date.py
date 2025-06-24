@@ -6,10 +6,10 @@ import json
 ## Script originally from https://github.com/nextstrain/ncov/blob/master/scripts/construct-recency-from-submission-date.py
 
 def get_recency(date_str, ref_date):
-    date_submitted = datetime.strptime(date_str, '%Y-%m-%d').toordinal()
+    date_released = datetime.strptime(date_str, '%Y-%m-%d').toordinal()
     ref_day = ref_date.toordinal()
 
-    delta_days = ref_day - date_submitted
+    delta_days = ref_day - date_released
     if delta_days<=0:
         return 'New'
     elif delta_days<3:
@@ -48,8 +48,8 @@ if __name__ == '__main__':
     ref_date = datetime.now()
 
     for strain, d in meta.items():
-        if 'date_submitted' in d and d['date_submitted'] and d['date_submitted'] != "undefined":
-            node_data['nodes'][strain] = {'recency': get_recency(d['date_submitted'], ref_date)}
+        if 'date_released' in d and d['date_released'] and d['date_released'] != "undefined":
+            node_data['nodes'][strain] = {'recency': get_recency(d['date_released'], ref_date)}
 
     with open(args.output, 'wt') as fh:
         json.dump(node_data, fh)

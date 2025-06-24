@@ -45,8 +45,8 @@ nextstrain view .
 
 Input sequences and metadata can be retrieved from data.nextstrain.org
 
-* [sequences.fasta.xz](https://data.nextstrain.org/files/workflows/mpox/sequences.fasta.xz)
-* [metadata.tsv.gz](https://data.nextstrain.org/files/workflows/mpox/metadata.tsv.gz)
+* [sequences.fasta.zst](https://data.nextstrain.org/files/workflows/mpox/sequences.fasta.zst)
+* [metadata.tsv.zst](https://data.nextstrain.org/files/workflows/mpox/metadata.tsv.zst)
 
 The above datasets have been preprocessed and cleaned from GenBank using the
 [ingest/](../ingest/) workflow and are updated at regular intervals.
@@ -57,7 +57,7 @@ If you analyze and plan to publish using these data, please contact these labs f
 Within the analysis pipeline, these data are fetched from data.nextstrain.org and written to `data/` with:
 
 ```bash
-nextstrain build . data/sequences.fasta.xz data/metadata.tsv.gz
+nextstrain build . data/sequences.fasta.zst data/metadata.tsv.zst
 ```
 
 ### Run analysis pipeline

@@ -36,7 +36,7 @@ def _get_upload_inputs(wildcards):
     if send_notifications:
         flag_file = []
 
-        if inputs["file_to_upload"] == "data/genbank.ndjson":
+        if inputs["file_to_upload"] == "data/ncbi.ndjson":
             flag_file = "data/notify/genbank-record-change.done"
         elif inputs["file_to_upload"] == "results/metadata.tsv":
             flag_file = "data/notify/metadata-diff.done"

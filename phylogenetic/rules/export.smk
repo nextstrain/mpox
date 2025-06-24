@@ -35,9 +35,17 @@ rule remove_time:
         build_dir + "/{build_name}/branch_lengths.json",
     output:
         build_dir + "/{build_name}/branch_lengths_no_time.json",
+    log:
+        "logs/{build_name}/remove_time.txt",
+    benchmark:
+        "benchmarks/{build_name}/remove_time.txt"
     shell:
-        """
-        python3 scripts/remove_timeinfo.py --input-node-data {input} --output-node-data {output}
+        r"""
+        exec &> >(tee {log:q})
+
+        python3 scripts/remove_timeinfo.py \
+            --input-node-data {input:q} \
+            --output-node-data {output:q}
         """
 
 
@@ -52,14 +60,20 @@ rule colors:
         ignore_categories=lambda w: config.get("colors", {}).get(
             "ignore_categories", ""
         ),
+    log:
+        "logs/{build_name}/colors.txt",
+    benchmark:
+        "benchmarks/{build_name}/colors.txt"
     shell:
         r"""
+        exec &> >(tee {log:q})
+
         python3 scripts/assign-colors.py \
-            --ordering {input.ordering} \
-            --color-schemes {input.color_schemes} \
-            --output {output.colors} \
+            --ordering {input.ordering:q} \
+            --color-schemes {input.color_schemes:q} \
+            --output {output.colors:q} \
             --ignore-categories {params.ignore_categories} \
-            --metadata {input.metadata} 2>&1
+            --metadata {input.metadata:q}
         """
 
 
@@ -98,17 +112,23 @@ rule export:
         root_sequence=build_dir + "/{build_name}/tree_root-sequence.json",
     params:
         strain_id=config["strain_id_field"],
+    log:
+        "logs/{build_name}/export.txt",
+    benchmark:
+        "benchmarks/{build_name}/export.txt"
     shell:
-        """
+        r"""
+        exec &> >(tee {log:q})
+
         augur export v2 \
-            --tree {input.tree} \
-            --metadata {input.metadata} \
-            --metadata-id-columns {params.strain_id} \
-            --node-data {input.branch_lengths} {input.traits} {input.nt_muts} {input.aa_muts} {input.mutation_context} {input.clades} {input.recency}\
-            --colors {input.colors} \
-            --lat-longs {input.lat_longs} \
-            --description {input.description} \
-            --auspice-config {input.auspice_config} \
+            --tree {input.tree:q} \
+            --metadata {input.metadata:q} \
+            --metadata-id-columns {params.strain_id:q} \
+            --node-data {input.branch_lengths:q} {input.traits:q} {input.nt_muts:q} {input.aa_muts:q} {input.mutation_context:q} {input.clades:q} {input.recency:q} \
+            --colors {input.colors:q} \
+            --lat-longs {input.lat_longs:q} \
+            --description {input.description:q} \
+            --auspice-config {input.auspice_config:q} \
             --include-root-sequence \
-            --output {output.auspice_json}
+            --output {output.auspice_json:q}
         """
