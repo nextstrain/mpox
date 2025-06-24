@@ -40,7 +40,7 @@ seed_spacing: 1000
 
 ## treefix
 fix_tree: true
-treefix_root: "--root OP890401"
+treefix_root: "OP890401"
 
 ## refine
 timetree: true

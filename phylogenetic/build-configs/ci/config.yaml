@@ -79,7 +79,7 @@ seed_spacing: 1000
 
 ## treefix
 fix_tree: true
-treefix_root: "--root MK783032"
+treefix_root: "MK783032"
 
 ## refine
 timetree: true
