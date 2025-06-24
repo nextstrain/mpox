@@ -20,19 +20,20 @@ filter:
   min_length: 180000
 
 subsample:
-  b1:
-    group_by: "--group-by year month country"
-    sequences_per_group: "--subsample-max-sequences 5000"
-    other_filters: "outbreak!=hMPXV-1 clade!=IIb"
-    exclude_lineages:
-      - A
-      - A.1
-      - A.1.1
-      - A.2
-      - A.2.1
-      - A.2.2
-      - A.2.3
-      - A.3
+  b1: >-
+    --group-by year month country
+    --subsample-max-sequences 5000
+    --exclude-where
+    outbreak!=hMPXV-1
+    clade!=IIb
+    lineage=A
+    lineage=A.1
+    lineage=A.1.1
+    lineage=A.2
+    lineage=A.2.1
+    lineage=A.2.2
+    lineage=A.2.3
+    lineage=A.3
 
 ## align
 max_indel: 10000

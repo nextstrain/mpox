@@ -22,10 +22,8 @@ filter:
 
 ### Filter to only Clade I sequences
 subsample:
-  everything:
-    group_by: ""
-    sequences_per_group: ""
-    query: "'clade in [\"I\", \"Ia\", \"Ib\"]'"
+  everything: >-
+    --query 'clade in ["I", "Ia", "Ib"]'
 
 ## align
 max_indel: 10000
