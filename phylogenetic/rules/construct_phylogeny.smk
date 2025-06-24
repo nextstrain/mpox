@@ -40,6 +40,12 @@ rule tree:
             --nthreads {threads}
         """
 
+ROOT_FLAG = "--root "
+if config.get("treefix_root", "").startswith(ROOT_FLAG):
+    print(f"WARNING: config['treefix_root'] no longer requires the flag {ROOT_FLAG!r}; "
+          f"removing from flag from the config param.", file=sys.stderr)
+    config["treefix_root"] = config["treefix_root"][len(ROOT_FLAG):]
+
 
 rule fix_tree:
     """
@@ -51,7 +57,11 @@ rule fix_tree:
     output:
         tree=build_dir + "/{build_name}/tree_fixed.nwk",
     params:
-        root=lambda w: config.get("treefix_root", ""),
+        root=lambda w: (
+            f"--root {config['treefix_root']!r}"
+            if config.get("treefix_root", False)
+            else ""
+        ),
     log:
         "logs/{build_name}/fix_tree.txt",
     benchmark:
