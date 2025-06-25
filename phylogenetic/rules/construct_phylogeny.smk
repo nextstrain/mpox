@@ -21,7 +21,7 @@ rule tree:
     """
     input:
         alignment=build_dir + "/{build_name}/masked.fasta",
-        tree_mask=config["tree_mask"],
+        tree_mask=phylo_resolve_config_path(config["tree_mask"]),
     output:
         tree=build_dir + "/{build_name}/tree_raw.nwk",
     threads: workflow.cores
@@ -64,7 +64,7 @@ rule fix_tree:
         r"""
         exec &> >(tee {log:q})
 
-        python3 scripts/fix_tree.py \
+        python3 {workflow.basedir}/../scripts/fix_tree.py \
             --alignment {input.alignment:q} \
             --input-tree {input.tree:q} \
             {params.root} \

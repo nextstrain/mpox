@@ -10,10 +10,6 @@ if version.parse(augur_version) < version.parse(min_augur_version):
     )
     sys.exit(1)
 
-if not config:
-
-    configfile: "defaults/hmpxv1/config.yaml"
-
 
 build_dir = "results"
 auspice_dir = "auspice"
@@ -38,18 +34,23 @@ rule all:
         """
 
 
-include: "rules/config.smk"
-include: "rules/prepare_sequences.smk"
-include: "rules/construct_phylogeny.smk"
-include: "rules/annotate_phylogeny.smk"
-include: "rules/export.smk"
+include: "config.smk"
+include: "prepare_sequences.smk"
+include: "construct_phylogeny.smk"
+include: "annotate_phylogeny.smk"
+include: "export.smk"
 
 
 # Include custom rules defined in the config.
 if "custom_rules" in config:
     for rule_file in config["custom_rules"]:
-
-        include: rule_file
+        # Relative custom rule paths in the config are relative to the analysis
+        # directory (i.e. the current working directory, or workdir, usually
+        # given by --directory), but the "include" directive treats relative
+        # paths as relative to the workflow (e.g. workflow.current_basedir).
+        # Convert to an absolute path based on the analysis/current directory
+        # to avoid this mismatch of expectations.
+        include: os.path.join(os.getcwd(), rule_file)
 
 
 rule clean:

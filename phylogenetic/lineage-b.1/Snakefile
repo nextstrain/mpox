@@ -1,0 +1,10 @@
+configfile: os.path.join(workflow.basedir, "../defaults/hmpxv1_big/config.yaml")
+
+if os.path.exists("config.yaml"):
+    configfile: "config.yaml"
+
+
+include:"../rules/main.smk"
+
+rule _all:
+    input: rules.all.input
