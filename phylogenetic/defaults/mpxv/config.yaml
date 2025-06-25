@@ -1,6 +1,6 @@
 auspice_config: "defaults/mpxv/auspice_config.json"
 include: "defaults/mpxv/include.txt"
-exclude: "defaults/exclude_accessions.txt"
+exclude: "defaults/exclude.txt"
 reference: "defaults/reference.fasta"
 genome_annotation: "defaults/genome_annotation.gff3"
 genbank_reference: "defaults/reference.gb"
