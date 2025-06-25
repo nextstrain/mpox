@@ -89,7 +89,7 @@ rule curate:
 rule add_metadata_columns:
     """Add columns to metadata
     Notable columns:
-    - [NEW] url: URL linking to the NCBI GenBank record ('https://www.ncbi.nlm.nih.gov/nuccore/*').
+    - url: URL linking to the NCBI GenBank record ('https://www.ncbi.nlm.nih.gov/nuccore/*').
     """
     input:
         metadata="data/all_metadata.tsv",
