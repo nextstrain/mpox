@@ -62,10 +62,3 @@ These are optional environment variables used in our automated pipeline for prov
 ### GenBank data
 
 GenBank sequences and metadata are fetched via [NCBI datasets](https://www.ncbi.nlm.nih.gov/datasets/docs/v2/download-and-install/).
-
-## `ingest/vendored`
-
-This repository uses [`git subrepo`](https://github.com/ingydotnet/git-subrepo) to manage copies of ingest scripts in [ingest/vendored](./vendored), from [nextstrain/ingest](https://github.com/nextstrain/ingest).
-
-See [vendored/README.md](vendored/README.md#vendoring) for instructions on how to update
-the vendored scripts.
