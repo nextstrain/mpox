@@ -76,9 +76,9 @@ curate:
   # Field name for the generated abbreviated authors
   abbr_authors_field: 'authors'
   # Local geolocation rules that are only applicable to mpox data
-  local_geolocation_rules: 'defaults/geolocation-rules.tsv'
+  local_geolocation_rules: 'geolocation-rules.tsv'
   # User annotations file
-  annotations: 'defaults/annotations.tsv'
+  annotations: 'annotations.tsv'
   # ID field used to merge annotations
   annotations_id: 'accession'
   # Field to use as the sequence ID in the FASTA file
