@@ -29,9 +29,10 @@ rule notify_on_genbank_record_change:
         touch("data/notify/genbank-record-change.done"),
     params:
         s3_src=S3_SRC,
+        vendored_scripts=VENDORED_SCRIPTS,
     shell:
         """
-        ./vendored/notify-on-record-change {input.genbank_ndjson} {params.s3_src:q}/ncbi.ndjson.zst Genbank
+        {params.vendored_scripts}/notify-on-record-change {input.genbank_ndjson} {params.s3_src:q}/ncbi.ndjson.zst Genbank
         """
 
 
@@ -42,15 +43,16 @@ rule notify_on_metadata_diff:
         touch("data/notify/metadata-diff.done"),
     params:
         s3_src=S3_SRC,
+        vendored_scripts=VENDORED_SCRIPTS,
     shell:
         """
-        ./vendored/notify-on-diff {input.metadata} {params.s3_src:q}/metadata.tsv.zst
+        {params.vendored_scripts}/notify-on-diff {input.metadata} {params.s3_src:q}/metadata.tsv.zst
         """
 
 
 onstart:
-    shell("./vendored/notify-on-job-start Ingest nextstrain/mpox")
+    shell(f"{VENDORED_SCRIPTS}/notify-on-job-start Ingest nextstrain/mpox")
 
 
 onerror:
-    shell("./vendored/notify-on-job-fail Ingest nextstrain/mpox")
+    shell(f"{VENDORED_SCRIPTS}/notify-on-job-fail Ingest nextstrain/mpox")
