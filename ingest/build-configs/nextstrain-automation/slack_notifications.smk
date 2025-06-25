@@ -44,7 +44,7 @@ rule notify_on_metadata_diff:
         s3_src=S3_SRC,
     shell:
         """
-        ./vendored/notify-on-diff {input.metadata} {params.s3_src:q}/metadata.tsv.gz
+        ./vendored/notify-on-diff {input.metadata} {params.s3_src:q}/metadata.tsv.zst
         """
 
 

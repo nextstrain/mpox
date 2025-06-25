@@ -12,8 +12,8 @@ rule trigger_build:
     Triggering monekypox builds via repository action type `rebuild`.
     """
     input:
-        metadata_upload="data/upload/s3/metadata.tsv.gz.done",
-        fasta_upload="data/upload/s3/sequences.fasta.xz.done",
+        metadata_upload="data/upload/s3/metadata.tsv.zst.done",
+        fasta_upload="data/upload/s3/sequences.fasta.zst.done",
     output:
         touch("data/trigger/rebuild.done"),
     shell:

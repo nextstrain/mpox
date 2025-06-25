@@ -23,11 +23,11 @@ We curate sequence data and metadata from the [NCBI Datasets command line tools]
 using an NCBI Taxonomy ID defined in [ingest/defaults/config.yaml](https://github.com/nextstrain/mpox/blob/-/ingest/defaults/config.yaml), as starting point for these analyses.
 
 Curated sequences and metadata are available as flat files at:
-- [data.nextstrain.org/files/workflows/mpox/sequences.fasta.xz](https://data.nextstrain.org/files/workflows/mpox/sequences.fasta.xz)
-- [data.nextstrain.org/files/workflows/mpox/metadata.tsv.gz](https://data.nextstrain.org/files/workflows/mpox/metadata.tsv.gz)
+- [data.nextstrain.org/files/workflows/mpox/sequences.fasta.zst](https://data.nextstrain.org/files/workflows/mpox/sequences.fasta.zst)
+- [data.nextstrain.org/files/workflows/mpox/metadata.tsv.zst](https://data.nextstrain.org/files/workflows/mpox/metadata.tsv.zst)
 
 Pairwise alignments with [Nextclade](https://clades.nextstrain.org/) against the [reference sequence MPXV-M5312_HM12_Rivers](https://www.ncbi.nlm.nih.gov/nuccore/NC_063383), Nextclade analysis results, and translated ORFs are available at
-- [data.nextstrain.org/files/workflows/mpox/alignment.fasta.xz](https://data.nextstrain.org/files/workflows/mpox/alignment.fasta.xz)
+- [data.nextstrain.org/files/workflows/mpox/alignment.fasta.zst](https://data.nextstrain.org/files/workflows/mpox/alignment.fasta.zst)
 - [data.nextstrain.org/files/workflows/mpox/nextclade.tsv.zst](https://data.nextstrain.org/files/workflows/mpox/nextclade.tsv.zst)
 - [data.nextstrain.org/files/workflows/mpox/translations.zip](https://data.nextstrain.org/files/workflows/mpox/translations.zip)
 

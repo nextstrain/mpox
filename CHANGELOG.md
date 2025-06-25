@@ -10,6 +10,9 @@ Instead, changes appear below grouped by the date they were added to the workflo
 
 ## 2025
 
+* 25 June 2025: All workflows now use the zstd compressed outputs on S3. ([#318][])
+    Note that the gzip and xz compressed files on S3 will be removed by 28 July 2025,
+    so please update your workflows to use the zstd compressed files.
 * 23 June 2025: added the following zstd compressed outputs. ([#317][])
     * https://data.nextstrain.org/files/workflows/mpox/metadata.tsv.zst
     * https://data.nextstrain.org/files/workflows/mpox/sequences.fasta.zst
@@ -23,6 +26,7 @@ Instead, changes appear below grouped by the date they were added to the workflo
 * 23 June 2025: ingest - removed path for separate data sources. ([#316][])
     * The config param `sources` is no longer supported
 
+[#318]: https://github.com/nextstrain/mpox/pull/318
 [#317]: https://github.com/nextstrain/mpox/pull/317
 [#316]: https://github.com/nextstrain/mpox/pull/316
 [NCBI Datasets mnemonics]: https://www.ncbi.nlm.nih.gov/datasets/docs/v2/reference-docs/command-line/dataformat/tsv/dataformat_tsv_virus-genome/#fields
