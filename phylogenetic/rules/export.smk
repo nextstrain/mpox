@@ -12,8 +12,8 @@ REQUIRED INPUTS:
     traits              = {build_dir}/{build_name}/traits.json
     clades              = {build_dir}/{build_name}/clades.json
     mutation_context    = {build_dir}/{build_name}/mutation_context.json
-    color_ordering      = defaults/color_ordering.tsv
-    color_schemes       = defaults/color_schemes.tsv
+    color_ordering      = path to color_ordering TSV
+    color_schemes       = path to color_schemes TSV
     lat_longs           = path to lat/long TSV
     description         = path to description Markdown
     auspice_config      = path to Auspice config JSON
@@ -51,8 +51,8 @@ rule remove_time:
 
 rule colors:
     input:
-        ordering="defaults/color_ordering.tsv",
-        color_schemes="defaults/color_schemes.tsv",
+        ordering=config["color_ordering"],
+        color_schemes=config["color_scheme"],
         metadata=build_dir + "/{build_name}/metadata.tsv",
     output:
         colors=build_dir + "/{build_name}/colors.tsv",

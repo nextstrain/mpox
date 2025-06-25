@@ -3,7 +3,8 @@ This part of the workflow prepares sequences for constructing the phylogenetic t
 
 REQUIRED INPUTS:
 
-    include     = path to file of sequences to in force include
+    include     = path to file of sequences to force include
+    exclude     = path to file of sequences to exclude
     reference   = path to reference sequence FASTA for Nextclade alignment
     genome_annotation     = path to genome_annotation GFF for Nextclade alignment
     maskfile    = path to maskfile of sites to be masked
@@ -68,7 +69,7 @@ rule filter:
     input:
         sequences="data/sequences.fasta",
         metadata="data/metadata.tsv",
-        exclude="defaults/exclude_accessions.txt",
+        exclude=config["exclude"],
     output:
         sequences=build_dir + "/{build_name}/good_sequences.fasta",
         metadata=build_dir + "/{build_name}/good_metadata.tsv",
