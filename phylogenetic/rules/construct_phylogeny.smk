@@ -40,11 +40,15 @@ rule tree:
             --nthreads {threads}
         """
 
+
 ROOT_FLAG = "--root "
 if config.get("treefix_root", "").startswith(ROOT_FLAG):
-    print(f"WARNING: config['treefix_root'] no longer requires the flag {ROOT_FLAG!r}; "
-          f"removing from flag from the config param.", file=sys.stderr)
-    config["treefix_root"] = config["treefix_root"][len(ROOT_FLAG):]
+    print(
+        f"WARNING: config['treefix_root'] no longer requires the flag {ROOT_FLAG!r}; "
+        f"removing from flag from the config param.",
+        file=sys.stderr,
+    )
+    config["treefix_root"] = config["treefix_root"][len(ROOT_FLAG) :]
 
 
 rule fix_tree:
