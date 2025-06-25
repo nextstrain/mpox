@@ -1,15 +1,15 @@
-auspice_config: "defaults/mpxv/auspice_config.json"
-include: "defaults/mpxv/include.txt"
-exclude: "defaults/exclude.txt"
-reference: "defaults/reference.fasta"
-genome_annotation: "defaults/genome_annotation.gff3"
-genbank_reference: "defaults/reference.gb"
-lat_longs: "defaults/lat_longs.tsv"
-color_ordering: "defaults/color_ordering.tsv"
-color_scheme: "defaults/color_schemes.tsv"
-description: "defaults/description.md"
-clades: "defaults/clades.tsv"
-tree_mask: "defaults/tree_mask.tsv"
+auspice_config: "mpxv/auspice_config.json"
+include: "mpxv/include.txt"
+exclude: "exclude.txt"
+reference: "reference.fasta"
+genome_annotation: "genome_annotation.gff3"
+genbank_reference: "reference.gb"
+lat_longs: "lat_longs.tsv"
+color_ordering: "color_ordering.tsv"
+color_scheme: "color_schemes.tsv"
+description: "description.md"
+clades: "clades.tsv"
+tree_mask: "tree_mask.tsv"
 
 # Use `accession` as the ID column since `strain` currently contains duplicates¹.
 # ¹ https://github.com/nextstrain/mpox/issues/33
@@ -94,4 +94,4 @@ recency: true
 mask:
   from_beginning: 1350
   from_end: 6422
-  maskfile: "defaults/mask_overview.bed"
+  maskfile: "mask_overview.bed"

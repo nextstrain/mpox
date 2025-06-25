@@ -69,7 +69,7 @@ rule filter:
     input:
         sequences="data/sequences.fasta",
         metadata="data/metadata.tsv",
-        exclude=config["exclude"],
+        exclude=resolve_config_path(config["exclude"]),
     output:
         sequences=build_dir + "/{build_name}/good_sequences.fasta",
         metadata=build_dir + "/{build_name}/good_metadata.tsv",
@@ -128,7 +128,7 @@ rule add_private_data:
         r"""
         exec &> >(tee {log:q})
 
-        python3 scripts/combine_data_sources.py \
+        python3 {workflow.basedir}/scripts/combine_data_sources.py \
             --metadata nextstrain={input.metadata:q} private={input.private_metadata:q} \
             --sequences {input.sequences:q} {input.private_sequences:q} \
             --output-metadata {output.metadata:q} \
@@ -182,7 +182,7 @@ rule combine_samples:
             if config.get("private_metadata", False)
             else build_dir + "/{build_name}/good_metadata.tsv"
         ),
-        include=config["include"],
+        include=resolve_config_path(config["include"]),
     output:
         sequences=build_dir + "/{build_name}/filtered.fasta",
         metadata=build_dir + "/{build_name}/metadata.tsv",
@@ -221,7 +221,7 @@ rule reverse_reverse_complements:
         r"""
         exec &> >(tee {log:q})
 
-        python3 scripts/reverse_reversed_sequences.py \
+        python3 {workflow.basedir}/scripts/reverse_reversed_sequences.py \
             --metadata {input.metadata:q} \
             --sequences {input.sequences:q} \
             --output {output:q}
@@ -234,8 +234,8 @@ rule align:
     """
     input:
         sequences=build_dir + "/{build_name}/reversed.fasta",
-        reference=config["reference"],
-        genome_annotation=config["genome_annotation"],
+        reference=resolve_config_path(config["reference"]),
+        genome_annotation=resolve_config_path(config["genome_annotation"]),
     output:
         alignment=build_dir + "/{build_name}/aligned.fasta",
     params:
@@ -279,7 +279,7 @@ rule mask:
     """
     input:
         sequences=build_dir + "/{build_name}/aligned.fasta",
-        mask=config["mask"]["maskfile"],
+        mask=resolve_config_path(config["mask"]["maskfile"]),
     output:
         build_dir + "/{build_name}/masked.fasta",
     params:

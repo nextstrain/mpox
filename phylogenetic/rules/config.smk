@@ -7,6 +7,9 @@ from textwrap import dedent, indent
 from typing import Union
 
 
+include: "../../shared/vendored/snakemake/config.smk"
+
+
 def as_list(config_param: Union[list,str]) -> list:
     if isinstance(config_param, list):
         return config_param
