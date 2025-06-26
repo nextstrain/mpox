@@ -20,11 +20,15 @@ rule fetch_ncbi_dataset_package:
         "benchmarks/fetch_ncbi_dataset_package.txt"
     params:
         ncbi_taxon_id=config["ncbi_taxon_id"],
+    log:
+        "logs/fetch_ncbi_dataset_package.txt",
     shell:
-        """
-        datasets download virus genome taxon {params.ncbi_taxon_id} \
+        r"""
+        exec &> >(tee {log:q})
+
+        datasets download virus genome taxon {params.ncbi_taxon_id:q} \
             --no-progressbar \
-            --filename {output.dataset_package}
+            --filename {output.dataset_package:q}
         """
 
 
@@ -35,10 +39,14 @@ rule extract_ncbi_dataset_sequences:
         ncbi_dataset_sequences=temp("data/ncbi_dataset_sequences.fasta"),
     benchmark:
         "benchmarks/extract_ncbi_dataset_sequences.txt"
+    log:
+        "logs/extract_ncbi_dataset_sequences.txt",
     shell:
-        """
-        unzip -jp {input.dataset_package} \
-            ncbi_dataset/data/genomic.fna > {output.ncbi_dataset_sequences}
+        r"""
+        exec &> >(tee {log:q})
+
+        unzip -jp {input.dataset_package:q} \
+            ncbi_dataset/data/genomic.fna > {output.ncbi_dataset_sequences:q}
         """
 
 
@@ -51,8 +59,12 @@ rule format_ncbi_dataset_report:
         ncbi_datasets_fields=",".join(config["ncbi_datasets_fields"]),
     benchmark:
         "benchmarks/format_ncbi_dataset_report.txt"
+    log:
+        "logs/format_ncbi_dataset_report.txt",
     shell:
         r"""
+        exec &> >(tee {log:q})
+
         dataformat tsv virus-genome \
             --package {input.dataset_package:q} \
             --fields {params.ncbi_datasets_fields:q} \
@@ -76,13 +88,15 @@ rule format_ncbi_datasets_ndjson:
     benchmark:
         "benchmarks/format_ncbi_datasets_ndjson.txt"
     shell:
-        """
+        r"""
+        exec &> >(tee {log:q})
+
         augur curate passthru \
-            --metadata {input.ncbi_dataset_tsv} \
-            --fasta {input.ncbi_dataset_sequences} \
+            --metadata {input.ncbi_dataset_tsv:q} \
+            --fasta {input.ncbi_dataset_sequences:q} \
             --seq-id-column accession_version \
             --seq-field sequence \
             --unmatched-reporting warn \
             --duplicate-reporting warn \
-            2> {log} > {output.ndjson}
+            > {output.ndjson:q}
         """
