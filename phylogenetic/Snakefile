@@ -32,12 +32,13 @@ rule all:
         auspice_json=f"{auspice_dir}/{AUSPICE_FILENAME}.json",
         root_sequence_json=f"{auspice_dir}/{AUSPICE_FILENAME}_root-sequence.json",
     shell:
-        """
-        cp {input.auspice_json} {output.auspice_json}
-        cp {input.root_sequence} {output.root_sequence_json}
+        r"""
+        cp {input.auspice_json:q} {output.auspice_json:q}
+        cp {input.root_sequence:q} {output.root_sequence_json:q}
         """
 
 
+include: "rules/config.smk"
 include: "rules/prepare_sequences.smk"
 include: "rules/construct_phylogeny.smk"
 include: "rules/annotate_phylogeny.smk"
