@@ -65,8 +65,12 @@
   "geo_resolutions": [
     "country"
   ],
+  "metadata_columns": [
+    "strain"
+  ],
   "display_defaults": {
     "color_by": "lineage",
+    "tip_label": "strain",
     "map_triplicate": true,
     "distance_measure": "num_date",
     "transmission_lines": false
