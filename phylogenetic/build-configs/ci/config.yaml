@@ -15,7 +15,6 @@ tree_mask: "defaults/tree_mask.tsv"
 # Use `accession` as the ID column since `strain` currently contains duplicates¹.
 # ¹ https://github.com/nextstrain/monkeypox/issues/33
 strain_id_field: "accession"
-display_strain_field: "strain"
 
 build_name: "hmpxv1"
 auspice_name: "mpox_clade-IIb"
