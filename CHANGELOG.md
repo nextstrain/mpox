@@ -10,6 +10,11 @@ Instead, changes appear below grouped by the date they were added to the workflo
 
 ## 2025
 
+* 01 July 2025: phylogenetic - Use `strain_id_field` for node name. ([#275][])
+    The final Auspice JSONs now use the `strain_id_field` config param as the
+    node name and the `display_strain_field` config param is no longer supported.
+    If you want to use a different field as the default tip label, then add
+    `display_defaults['tip_label']` to your auspice_config.json.
 * 25 June 2025: metadata.tsv column changes. ([#319][])
     * `date_submitted` has been corrected to `date_released`.
     * added columns `date_updated`, `length`, and `url`
@@ -32,8 +37,10 @@ Instead, changes appear below grouped by the date they were added to the workflo
 * 23 June 2025: ingest - removed path for separate data sources. ([#316][])
     * The config param `sources` is no longer supported
 
-[#319]: https://github.com/nextstrain/mpox/pull/319
-[#318]: https://github.com/nextstrain/mpox/pull/318
-[#317]: https://github.com/nextstrain/mpox/pull/317
+
+[#275]: https://github.com/nextstrain/mpox/pull/275
 [#316]: https://github.com/nextstrain/mpox/pull/316
+[#317]: https://github.com/nextstrain/mpox/pull/317
+[#318]: https://github.com/nextstrain/mpox/pull/318
+[#319]: https://github.com/nextstrain/mpox/pull/319
 [NCBI Datasets mnemonics]: https://www.ncbi.nlm.nih.gov/datasets/docs/v2/reference-docs/command-line/dataformat/tsv/dataformat_tsv_virus-genome/#fields
