@@ -40,12 +40,6 @@ rule tree:
             --nthreads {threads}
         """
 
-ROOT_FLAG = "--root "
-if config.get("treefix_root", "").startswith(ROOT_FLAG):
-    print(f"WARNING: config['treefix_root'] no longer requires the flag {ROOT_FLAG!r}; "
-          f"removing from flag from the config param.", file=sys.stderr)
-    config["treefix_root"] = config["treefix_root"][len(ROOT_FLAG):]
-
 
 rule fix_tree:
     """
@@ -101,7 +95,7 @@ rule refine:
         coalescent="opt",
         date_inference="marginal",
         clock_filter_iqd=0,
-        root=as_list(config["root"]),
+        root=config["root"],
         clock_rate=(
             f"--clock-rate {config['clock_rate']!r}" if "clock_rate" in config else ""
         ),

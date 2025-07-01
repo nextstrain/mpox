@@ -57,7 +57,7 @@ rule colors:
     output:
         colors=build_dir + "/{build_name}/colors.tsv",
     params:
-        ignore_categories=as_list(config.get("colors", {}).get("ignore_categories", [])),
+        ignore_categories=config.get("colors", {}).get("ignore_categories", []),
     log:
         "logs/{build_name}/colors.txt",
     benchmark:
