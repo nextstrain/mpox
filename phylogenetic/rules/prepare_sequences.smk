@@ -106,13 +106,6 @@ rule filter:
         """
 
 
-# Basic config sanity checking in lieu of a proper schema
-if any([k in config for k in ["private_sequences", "private_metadata"]]):
-    assert all(
-        [k in config for k in ["private_sequences", "private_metadata"]]
-    ), "Your config defined one of ['private_sequences', 'private_metadata'] but both must be supplied together"
-
-
 # At this point we merge in private data (iff requested)
 rule add_private_data:
     """

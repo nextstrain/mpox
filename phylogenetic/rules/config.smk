@@ -20,6 +20,12 @@ def as_list(config_param: Union[list,str]) -> list:
         """),"    "))
 
 
+# Basic config sanity checking in lieu of a proper schema
+if any([k in config for k in ["private_sequences", "private_metadata"]]):
+    assert all(
+        [k in config for k in ["private_sequences", "private_metadata"]]
+    ), "Your config defined one of ['private_sequences', 'private_metadata'] but both must be supplied together"
+
 # Config manipulations to keep workflow backwards compatible with older configs
 if isinstance(config["root"], str):
     print("Converting config['root'] from a string to a list; "
