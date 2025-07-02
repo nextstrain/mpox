@@ -10,6 +10,27 @@ Instead, changes appear below grouped by the date they were added to the workflo
 
 ## 2025
 
+* 02 July 2025: phylogenetic - config schema updates for easier config overlays ([#321][])
+    * new required config params
+        * `exclude` - path to exclude.txt for `augur filter`
+        * `filter["query"]` - argument for the `--query` option for `augur filter`
+        * `color_ordering` - path to color_ordering.tsv for generating colors.tsv
+        * `color_schemes` - path to color_schemes.tsv for generating colors.tsv
+    * string params that were converted to lists.
+    These are automatically converted to lists in the workflow but you are still encouraged to update your config file
+        * `root`
+        * `traits["columns"]`
+        * `colors["ignore_categories"]`
+    * `["subsampling"][<name>]` values are now expected to be a single string of `augur filter` options.
+    These are automatically converted to a string if they are still a dict in the config file but you are still encouraged to update your config file.
+    See the [default config](./phylogenetic/defaults/hmpxv1/config.yaml) for an example.
+    * specific subsamples can now be disabled by setting the value to null.
+    This is useful for disabling default subsampling when running the workflow with config overlays.
+    For example, you can disable the `non_b1` subsampling in the [default config](./phylogenetic/defaults/hmpxv1/config.yaml) with the YAML null value (~):
+    ```yaml
+    subsample:
+        non_b1: ~
+    ```
 * 01 July 2025: phylogenetic - Use `strain_id_field` for node name. ([#275][])
     The final Auspice JSONs now use the `strain_id_field` config param as the
     node name and the `display_strain_field` config param is no longer supported.
@@ -43,4 +64,5 @@ Instead, changes appear below grouped by the date they were added to the workflo
 [#317]: https://github.com/nextstrain/mpox/pull/317
 [#318]: https://github.com/nextstrain/mpox/pull/318
 [#319]: https://github.com/nextstrain/mpox/pull/319
+[#321]: https://github.com/nextstrain/mpox/pull/321
 [NCBI Datasets mnemonics]: https://www.ncbi.nlm.nih.gov/datasets/docs/v2/reference-docs/command-line/dataformat/tsv/dataformat_tsv_virus-genome/#fields
