@@ -78,6 +78,7 @@ rule filter:
         min_date=config["filter"]["min_date"],
         min_length=config["filter"]["min_length"],
         strain_id=config["strain_id_field"],
+        query=config["filter"]["query"],
         exclude_where=lambda w: (
             f"--exclude-where {config['filter']['exclude_where']!r}"
             if "exclude_where" in config["filter"]
@@ -101,7 +102,7 @@ rule filter:
             {params.exclude_where} \
             --min-date {params.min_date:q} \
             --min-length {params.min_length:q} \
-            --query "(QC_rare_mutations == 'good' | QC_rare_mutations == 'mediocre')" \
+            --query {params.query:q} \
             --output-log {output.log:q}
         """
 

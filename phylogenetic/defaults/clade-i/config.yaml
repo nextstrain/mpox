@@ -21,6 +21,7 @@ auspice_name: "mpox_clade-I"
 filter:
   min_date: 1900
   min_length: 170000
+  query: "(QC_rare_mutations == 'good' | QC_rare_mutations == 'mediocre')"
 
 
 ### Filter to only Clade I sequences

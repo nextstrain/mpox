@@ -21,6 +21,7 @@ auspice_name: "mpox_clade-IIb"
 filter:
   min_date: 2017
   min_length: 100000
+  query: "(QC_rare_mutations == 'good' | QC_rare_mutations == 'mediocre')"
 
 
 ### Set 1: Non-B.1 sequences: use all

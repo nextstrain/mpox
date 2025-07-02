@@ -21,6 +21,7 @@ auspice_name: "mpox_lineage-B.1"
 filter:
   min_date: 2022
   min_length: 180000
+  query: "(QC_rare_mutations == 'good' | QC_rare_mutations == 'mediocre')"
 
 subsample:
   b1: >-

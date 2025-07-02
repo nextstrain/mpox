@@ -21,6 +21,7 @@ auspice_name: "mpox_all-clades"
 filter:
   min_date: 1950
   min_length: 100000
+  query: "(QC_rare_mutations == 'good' | QC_rare_mutations == 'mediocre')"
 
 ### Set 1: Non-B.1 sequences: use all
 ### Set 2: B.1 sequences: small sample across year/country, maybe month
