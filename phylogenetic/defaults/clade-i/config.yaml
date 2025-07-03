@@ -2,8 +2,11 @@ reference: "defaults/clade-i/reference.fasta"
 genome_annotation: "defaults/clade-i/genome_annotation.gff3"
 genbank_reference: "defaults/clade-i/reference.gb"
 include: "defaults/clade-i/include.txt"
+exclude: "defaults/exclude.txt"
 clades: "defaults/clades.tsv"
 lat_longs: "defaults/lat_longs.tsv"
+color_ordering: "defaults/color_ordering.tsv"
+color_scheme: "defaults/color_schemes.tsv"
 auspice_config: "defaults/clade-i/auspice_config.json"
 description: "defaults/description.md"
 tree_mask: "defaults/clade-i/tree_mask.tsv"
@@ -18,14 +21,13 @@ auspice_name: "mpox_clade-I"
 filter:
   min_date: 1900
   min_length: 170000
+  query: "(QC_rare_mutations == 'good' | QC_rare_mutations == 'mediocre')"
 
 
 ### Filter to only Clade I sequences
 subsample:
-  everything:
-    group_by: ""
-    sequences_per_group: ""
-    query: "'clade in [\"I\", \"Ia\", \"Ib\"]'"
+  everything: >-
+    --query 'clade in ["I", "Ia", "Ib"]'
 
 ## align
 max_indel: 10000
@@ -46,7 +48,9 @@ divergence_units: "mutations"
 
 
 traits:
-  columns: region country
+  columns:
+    - region
+    - country
   sampling_bias_correction: 3
 
 ## recency
@@ -58,4 +62,6 @@ mask:
   maskfile: "defaults/clade-i/mask.bed"
 
 colors:
-  ignore_categories: "division location"
+  ignore_categories:
+    - division
+    - location

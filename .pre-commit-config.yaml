@@ -1,4 +1,4 @@
-exclude: '\.(tsv|fasta|gb)$|^ingest/vendored/'
+exclude: '\.(tsv|fasta|gb)$|^ingest/vendored/|^phylogenetic/rules/config.smk'
 repos:
   - repo: https://github.com/snakemake/snakefmt
     rev: v0.10.2

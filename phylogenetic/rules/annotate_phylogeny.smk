@@ -36,14 +36,20 @@ rule ancestral:
             if config.get("ancestral_root_seq")
             else ""
         ),
+    log:
+        "logs/{build_name}/ancestral.txt",
+    benchmark:
+        "benchmarks/{build_name}/ancestral.txt"
     shell:
-        """
+        r"""
+        exec &> >(tee {log:q})
+
         augur ancestral \
-            --tree {input.tree} \
-            --alignment {input.alignment} \
-            --output-node-data {output.node_data} \
-            --inference {params.inference} \
-            {params.root_sequence}
+            --tree {input.tree:q} \
+            --alignment {input.alignment:q} \
+            --inference {params.inference:q} \
+            {params.root_sequence} \
+            --output-node-data {output.node_data:q}
         """
 
 
@@ -57,13 +63,19 @@ rule translate:
         genome_annotation=config["genome_annotation"],
     output:
         node_data=build_dir + "/{build_name}/aa_muts.json",
+    log:
+        "logs/{build_name}/translate.txt",
+    benchmark:
+        "benchmarks/{build_name}/translate.txt"
     shell:
-        """
+        r"""
+        exec &> >(tee {log:q})
+
         augur translate \
-            --tree {input.tree} \
-            --ancestral-sequences {input.node_data} \
-            --reference-sequence {input.genome_annotation} \
-            --output {output.node_data}
+            --tree {input.tree:q} \
+            --ancestral-sequences {input.node_data:q} \
+            --reference-sequence {input.genome_annotation:q} \
+            --output {output.node_data:q}
         """
 
 
@@ -81,16 +93,22 @@ rule traits:
         columns=config["traits"]["columns"],
         sampling_bias_correction=config["traits"]["sampling_bias_correction"],
         strain_id=config["strain_id_field"],
+    log:
+        "logs/{build_name}/traits.txt",
+    benchmark:
+        "benchmarks/{build_name}/traits.txt"
     shell:
-        """
+        r"""
+        exec &> >(tee {log:q})
+
         augur traits \
-            --tree {input.tree} \
-            --metadata {input.metadata} \
-            --metadata-id-columns {params.strain_id} \
-            --output {output.node_data} \
-            --columns {params.columns} \
+            --tree {input.tree:q} \
+            --metadata {input.metadata:q} \
+            --metadata-id-columns {params.strain_id:q} \
+            --output {output.node_data:q} \
+            --columns {params.columns:q} \
             --confidence \
-            --sampling-bias-correction {params.sampling_bias_correction}
+            --sampling-bias-correction {params.sampling_bias_correction:q}
         """
 
 
@@ -106,14 +124,18 @@ rule clades:
     output:
         node_data=build_dir + "/{build_name}/clades_raw.json",
     log:
-        "logs/clades_{build_name}.txt",
+        "logs/{build_name}/clades.txt",
+    benchmark:
+        "benchmarks/{build_name}/clades.txt"
     shell:
-        """
+        r"""
+        exec &> >(tee {log:q})
+
         augur clades \
-            --tree {input.tree} \
-            --mutations {input.nuc_muts} {input.aa_muts} \
-            --clades {input.clades} \
-            --output-node-data {output.node_data} 2>&1 | tee {log}
+            --tree {input.tree:q} \
+            --mutations {input.nuc_muts:q} {input.aa_muts:q} \
+            --clades {input.clades:q} \
+            --output-node-data {output.node_data:q}
         """
 
 
@@ -124,11 +146,17 @@ rule rename_clades:
         node_data=build_dir + "/{build_name}/clades.json",
     wildcard_constraints:
         build_name="(?!clade-i).*",
+    log:
+        "logs/{build_name}/rename_clades.txt",
+    benchmark:
+        "benchmarks/{build_name}/rename_clades.txt"
     shell:
-        """
+        r"""
+        exec &> >(tee {log:q})
+
         python scripts/clades_renaming.py \
-        --input-node-data {input} \
-        --output-node-data {output.node_data}
+            --input-node-data {input:q} \
+            --output-node-data {output.node_data:q}
         """
 
 
@@ -144,12 +172,18 @@ rule assign_clades_via_metadata:
         node_data=build_dir + "/{build_name}/clades.json",
     wildcard_constraints:
         build_name="clade-i",
+    log:
+        "logs/{build_name}/assign_clades_via_metadata.txt",
+    benchmark:
+        "benchmarks/{build_name}/assign_clades_via_metadata.txt"
     shell:
         r"""
+        exec &> >(tee {log:q})
+
         python scripts/assign-clades-via-metadata.py \
-            --metadata {input.metadata} \
-            --tree {input.tree} \
-            --output-node-data {output.node_data}
+            --metadata {input.metadata:q} \
+            --tree {input.tree:q} \
+            --output-node-data {output.node_data:q}
         """
 
 
@@ -159,12 +193,18 @@ rule mutation_context:
         node_data=build_dir + "/{build_name}/nt_muts.json",
     output:
         node_data=build_dir + "/{build_name}/mutation_context.json",
+    log:
+        "logs/{build_name}/mutation_context.txt",
+    benchmark:
+        "benchmarks/{build_name}/mutation_context.txt"
     shell:
-        """
+        r"""
+        exec &> >(tee {log:q})
+
         python3 scripts/mutation_context.py \
-            --tree {input.tree} \
-            --mutations {input.node_data} \
-            --output {output.node_data}
+            --tree {input.tree:q} \
+            --mutations {input.node_data:q} \
+            --output {output.node_data:q}
         """
 
 
@@ -178,10 +218,16 @@ rule recency:
         node_data=build_dir + "/{build_name}/recency.json",
     params:
         strain_id=config["strain_id_field"],
+    log:
+        "logs/{build_name}/recency.txt",
+    benchmark:
+        "benchmarks/{build_name}/recency.txt"
     shell:
-        """
+        r"""
+        exec &> >(tee {log:q})
+
         python3 scripts/construct-recency-from-submission-date.py \
-            --metadata {input.metadata} \
-            --metadata-id-columns {params.strain_id} \
-            --output {output} 2>&1
+            --metadata {input.metadata:q} \
+            --metadata-id-columns {params.strain_id:q} \
+            --output {output:q} 2>&1
         """
