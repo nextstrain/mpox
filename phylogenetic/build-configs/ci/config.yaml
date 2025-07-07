@@ -2,18 +2,20 @@ custom_rules:
   - build-configs/ci/copy_example_data.smk
 
 reference: "defaults/reference.fasta"
-ancestral_root_seq: "defaults/reference.fasta"
 genome_annotation: "defaults/genome_annotation.gff3"
 genbank_reference: "defaults/reference.gb"
 include: "defaults/hmpxv1/include.txt"
+exclude: "defaults/exclude.txt"
 clades: "defaults/clades.tsv"
 lat_longs: "defaults/lat_longs.tsv"
+color_ordering: "defaults/color_ordering.tsv"
+color_scheme: "defaults/color_schemes.tsv"
 auspice_config: "defaults/hmpxv1/auspice_config.json"
 description: "defaults/description.md"
 tree_mask: "defaults/tree_mask.tsv"
 
 # Use `accession` as the ID column since `strain` currently contains duplicates¹.
-# ¹ https://github.com/nextstrain/monkeypox/issues/33
+# ¹ https://github.com/nextstrain/mpox/issues/33
 strain_id_field: "accession"
 
 build_name: "hmpxv1"
@@ -22,56 +24,58 @@ auspice_name: "mpox_clade-IIb"
 filter:
   min_date: 2017
   min_length: 100000
+  query: "(QC_rare_mutations == 'good' | QC_rare_mutations == 'mediocre')"
 
 
 ### Set 1: Non-B.1 sequences: use all
 ### Set 2: B.1 sequences: small sample across year/country, maybe month
 subsample:
-  non_b1:
-    group_by: "--group-by lineage year country"
-    sequences_per_group: "--sequences-per-group 50"
-    other_filters: "outbreak!=hMPXV-1 clade!=IIb"
-    exclude_lineages:
-      - B.1
-      - B.1.1
-      - B.1.2
-      - B.1.3
-      - C.1
-      - C.1.1
-      - E.1
-      - E.2
-      - E.3
-      - B.1.4
-      - B.1.5
-      - B.1.6
-      - D.1
-      - B.1.7
-      - B.1.8
-      - B.1.9
-      - B.1.10
-      - B.1.11
-      - B.1.12
-      - B.1.13
-      - B.1.14
-      - B.1.15
-      - B.1.16
-      - B.1.17
-      - B.1.18
-      - B.1.19
-      - B.1.20
-      - F.1
-      - F.2
-      - F.3
-      - F.4
-      - F.5
-      - F.6
-      - B.1.21
-      - B.1.22
-      - B.1.23
-  b1:
-    group_by: "--group-by country year"
-    sequences_per_group: "--subsample-max-sequences 100"
-    other_filters: "--exclude-where outbreak!=hMPXV-1 clade!=IIb"
+  non_b1: >-
+    --group-by lineage year country
+    --sequences-per-group 50
+    --exclude-where
+    outbreak!=hMPXV-1
+    clade!=IIb
+    lineage=B.1
+    lineage=B.1.1
+    lineage=B.1.2
+    lineage=B.1.3
+    lineage=C.1
+    lineage=C.1.1
+    lineage=E.1
+    lineage=E.2
+    lineage=E.3
+    lineage=B.1.4
+    lineage=B.1.5
+    lineage=B.1.6
+    lineage=D.1
+    lineage=B.1.7
+    lineage=B.1.8
+    lineage=B.1.9
+    lineage=B.1.10
+    lineage=B.1.11
+    lineage=B.1.12
+    lineage=B.1.13
+    lineage=B.1.14
+    lineage=B.1.15
+    lineage=B.1.16
+    lineage=B.1.17
+    lineage=B.1.18
+    lineage=B.1.19
+    lineage=B.1.20
+    lineage=F.1
+    lineage=F.2
+    lineage=F.3
+    lineage=F.4
+    lineage=F.5
+    lineage=F.6
+    lineage=B.1.21
+    lineage=B.1.22
+    lineage=B.1.23
+  b1: >-
+    --group-by country year
+    --subsample-max-sequences 300
+    --exclude-where outbreak!=hMPXV-1 clade!=IIb
 
 ## align
 max_indel: 10000
@@ -79,17 +83,19 @@ seed_spacing: 1000
 
 ## treefix
 fix_tree: true
-treefix_root: "--root MK783032"
+treefix_root: "MK783032"
 
 ## refine
 timetree: true
-root: "MK783032 MK783030"
+root:
+  - MK783032
+  - MK783030
 clock_rate: 5.7e-5
 clock_std_dev: 2e-5
 divergence_units: "mutations"
 
 traits:
-  columns: ""
+  columns: []
   sampling_bias_correction: 3
 
 ## recency
