@@ -8,11 +8,14 @@ min_version(
 # Utility functions shared across all workflows.
 include: "../shared/vendored/snakemake/config.smk"
 
+
 # Use default configuration values. Extend with Snakemake's --configfile/--config options.Add commentMore actions
 configfile: os.path.join(workflow.basedir, "defaults/config.yaml")
 
+
 # Use custom configuration from analysis directory (i.e. working dir), if any.
 if os.path.exists("config.yaml"):
+
     configfile: "config.yaml"
 
 
@@ -30,6 +33,7 @@ include: "rules/nextclade.smk"
 
 if "custom_rules" in config:
     for rule_file in config["custom_rules"]:
+
         # Relative custom rule paths in the config are relative to the analysisAdd commentMore actions
         # directory (i.e. the current working directory, or workdir, usually
         # given by --directory), but the "include" directive treats relative

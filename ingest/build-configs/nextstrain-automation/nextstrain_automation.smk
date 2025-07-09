@@ -6,7 +6,8 @@ include
     - Uploads to AWS S3
     - Triggering downstream workflows
 """
-VENDORED_SCRIPTS=f"{str(workflow.current_basedir)}/../../../shared/vendored/scripts"
+
+VENDORED_SCRIPTS = f"{str(workflow.current_basedir)}/../../../shared/vendored/scripts"
 send_slack_notifications = config.get("send_slack_notifications", False)
 
 
