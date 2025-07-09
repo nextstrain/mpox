@@ -44,6 +44,7 @@ include: "export.smk"
 # Include custom rules defined in the config.
 if "custom_rules" in config:
     for rule_file in config["custom_rules"]:
+
         # Relative custom rule paths in the config are relative to the analysis
         # directory (i.e. the current working directory, or workdir, usually
         # given by --directory), but the "include" directive treats relative
