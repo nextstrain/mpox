@@ -55,9 +55,10 @@ rule upload_to_s3:
         quiet="" if send_notifications else "--quiet",
         s3_dst=config["upload"].get("s3", {}).get("dst", ""),
         cloudfront_domain=config["upload"].get("s3", {}).get("cloudfront_domain", ""),
+        vendored_scripts=VENDORED_SCRIPTS,
     shell:
         """
-        ./vendored/upload-to-s3 \
+        {params.vendored_scripts}/upload-to-s3 \
             {params.quiet} \
             {input.file_to_upload:q} \
             {params.s3_dst:q}/{wildcards.remote_file_name:q} \
