@@ -1,15 +1,15 @@
-reference: "defaults/reference.fasta"
-genome_annotation: "defaults/genome_annotation.gff3"
-genbank_reference: "defaults/reference.gb"
-include: "defaults/hmpxv1/include.txt"
-exclude: "defaults/exclude.txt"
-clades: "defaults/clades.tsv"
-lat_longs: "defaults/lat_longs.tsv"
-color_ordering: "defaults/color_ordering.tsv"
-color_scheme: "defaults/color_schemes.tsv"
-auspice_config: "defaults/hmpxv1/auspice_config.json"
-description: "defaults/description.md"
-tree_mask: "defaults/tree_mask.tsv"
+reference: "reference.fasta"
+genome_annotation: "genome_annotation.gff3"
+genbank_reference: "reference.gb"
+include: "hmpxv1/include.txt"
+exclude: "exclude.txt"
+clades: "clades.tsv"
+lat_longs: "lat_longs.tsv"
+color_ordering: "color_ordering.tsv"
+color_scheme: "color_schemes.tsv"
+auspice_config: "hmpxv1/auspice_config.json"
+description: "description.md"
+tree_mask: "tree_mask.tsv"
 
 # Use `accession` as the ID column since `strain` currently contains duplicates¹.
 # ¹ https://github.com/nextstrain/mpox/issues/33
@@ -101,4 +101,4 @@ recency: true
 mask:
   from_beginning: 800
   from_end: 6422
-  maskfile: "defaults/mask.bed"
+  maskfile: "mask.bed"
