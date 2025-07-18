@@ -16,7 +16,9 @@ rule trigger_build:
         fasta_upload="data/upload/s3/sequences.fasta.zst.done",
     output:
         touch("data/trigger/rebuild.done"),
+    params:
+        vendored_scripts=VENDORED_SCRIPTS,
     shell:
         """
-        ./vendored/trigger-on-new-data nextstrain/mpox rebuild {input.metadata_upload} {input.fasta_upload}
+        {params.vendored_scripts}/trigger-on-new-data nextstrain/mpox rebuild {input.metadata_upload} {input.fasta_upload}
         """
