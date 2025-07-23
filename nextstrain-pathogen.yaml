@@ -6,3 +6,15 @@
 compatibility:
   nextstrain run:
     ingest: ~
+    phylogenetic/all-clades:
+        snakefile: phylogenetic/Snakefile
+        configfile: phylogenetic/defaults/mpxv/config.yaml
+    phylogenetic/clade-I:
+        snakefile: phylogenetic/Snakefile
+        configfile: phylogenetic/defaults/clade-i/config.yaml
+    phylogenetic/clade-IIb:
+        snakefile: phylogenetic/Snakefile
+        configfile: phylogenetic/defaults/hmpxv1/config.yaml
+    phylogenetic/lineage-B.1:
+        snakefile: phylogenetic/Snakefile
+        configfile: phylogenetic/defaults/hmpxv1_big/config.yaml
