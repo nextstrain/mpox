@@ -3,18 +3,30 @@
 #
 # See https://github.com/nextstrain/cli/releases/tag/8.2.0 for more details.
 ---
-compatibility:
-  nextstrain run:
-    ingest: ~
-    phylogenetic/all-clades:
-        snakefile: phylogenetic/Snakefile
-        configfile: phylogenetic/defaults/mpxv/config.yaml
-    phylogenetic/clade-I:
-        snakefile: phylogenetic/Snakefile
-        configfile: phylogenetic/defaults/clade-i/config.yaml
-    phylogenetic/clade-IIb:
-        snakefile: phylogenetic/Snakefile
-        configfile: phylogenetic/defaults/hmpxv1/config.yaml
-    phylogenetic/lineage-B.1:
-        snakefile: phylogenetic/Snakefile
-        configfile: phylogenetic/defaults/hmpxv1_big/config.yaml
+workflows:
+  ingest:
+    compatibility:
+      nextstrain run: True
+  phylogenetic/all-clades:
+    compatibility:
+      nextstrain run: True
+    snakefile: phylogenetic/Snakefile
+    configfile: phylogenetic/defaults/mpxv/config.yaml
+  phylogenetic/clade-I:
+    compatibility:
+      nextstrain run: True
+    snakefile: phylogenetic/Snakefile
+    configfile: phylogenetic/defaults/clade-i/config.yaml
+  phylogenetic/clade-IIb:
+    compatibility:
+      nextstrain run: True
+    snakefile: phylogenetic/Snakefile
+    configfile: phylogenetic/defaults/hmpxv1/config.yaml
+  phylogenetic/lineage-B.1:
+    compatibility:
+      nextstrain run: True
+    snakefile: phylogenetic/Snakefile
+    configfile: phylogenetic/defaults/hmpxv1_big/config.yaml
+  nextclade:
+    compatibility:
+      nextstrain run: False
