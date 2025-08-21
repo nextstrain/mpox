@@ -60,7 +60,7 @@ rule translate:
     input:
         tree=build_dir + "/{build_name}/tree.nwk",
         node_data=build_dir + "/{build_name}/nt_muts.json",
-        genome_annotation=config["genome_annotation"],
+        genome_annotation=resolve_config_path(config["genome_annotation"]),
     output:
         node_data=build_dir + "/{build_name}/aa_muts.json",
     log:
@@ -120,7 +120,7 @@ rule clades:
         tree=build_dir + "/{build_name}/tree.nwk",
         aa_muts=build_dir + "/{build_name}/aa_muts.json",
         nuc_muts=build_dir + "/{build_name}/nt_muts.json",
-        clades=config["clades"],
+        clades=resolve_config_path(config["clades"]),
     output:
         node_data=build_dir + "/{build_name}/clades_raw.json",
     log:
@@ -154,7 +154,7 @@ rule rename_clades:
         r"""
         exec &> >(tee {log:q})
 
-        python scripts/clades_renaming.py \
+        python {workflow.basedir}/scripts/clades_renaming.py \
             --input-node-data {input:q} \
             --output-node-data {output.node_data:q}
         """
@@ -180,7 +180,7 @@ rule assign_clades_via_metadata:
         r"""
         exec &> >(tee {log:q})
 
-        python scripts/assign-clades-via-metadata.py \
+        python {workflow.basedir}/scripts/assign-clades-via-metadata.py \
             --metadata {input.metadata:q} \
             --tree {input.tree:q} \
             --output-node-data {output.node_data:q}
@@ -201,7 +201,7 @@ rule mutation_context:
         r"""
         exec &> >(tee {log:q})
 
-        python3 scripts/mutation_context.py \
+        python3 {workflow.basedir}/scripts/mutation_context.py \
             --tree {input.tree:q} \
             --mutations {input.node_data:q} \
             --output {output.node_data:q}
@@ -226,7 +226,7 @@ rule recency:
         r"""
         exec &> >(tee {log:q})
 
-        python3 scripts/construct-recency-from-submission-date.py \
+        python3 {workflow.basedir}/scripts/construct-recency-from-submission-date.py \
             --metadata {input.metadata:q} \
             --metadata-id-columns {params.strain_id:q} \
             --output {output:q} 2>&1

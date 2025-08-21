@@ -12,7 +12,7 @@ if version.parse(augur_version) < version.parse(min_augur_version):
 
 if not config:
 
-    configfile: "defaults/hmpxv1/config.yaml"
+    configfile: os.path.join(workflow.basedir, "defaults/hmpxv1/config.yaml")
 
 
 build_dir = "results"
@@ -49,7 +49,7 @@ include: "rules/export.smk"
 if "custom_rules" in config:
     for rule_file in config["custom_rules"]:
 
-        include: rule_file
+        include: os.path.join(os.getcwd(), rule_file)
 
 
 rule clean:
