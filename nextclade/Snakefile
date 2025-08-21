@@ -364,7 +364,7 @@ rule postsample_exclude:
             --metadata-id-columns accession \
             --exclude {input.exclude} \
             --include {input.strains} \
-            --output {output.sequences} \
+            --output-sequences {output.sequences} \
             --output-metadata {output.metadata} \
             --output-log {output.log}
         """
