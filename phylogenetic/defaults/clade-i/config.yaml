@@ -1,15 +1,15 @@
-reference: "defaults/clade-i/reference.fasta"
-genome_annotation: "defaults/clade-i/genome_annotation.gff3"
-genbank_reference: "defaults/clade-i/reference.gb"
-include: "defaults/clade-i/include.txt"
-exclude: "defaults/exclude.txt"
-clades: "defaults/clades.tsv"
-lat_longs: "defaults/lat_longs.tsv"
-color_ordering: "defaults/color_ordering.tsv"
-color_scheme: "defaults/color_schemes.tsv"
-auspice_config: "defaults/clade-i/auspice_config.json"
-description: "defaults/description.md"
-tree_mask: "defaults/clade-i/tree_mask.tsv"
+reference: "clade-i/reference.fasta"
+genome_annotation: "clade-i/genome_annotation.gff3"
+genbank_reference: "clade-i/reference.gb"
+include: "clade-i/include.txt"
+exclude: "exclude.txt"
+clades: "clades.tsv"
+lat_longs: "lat_longs.tsv"
+color_ordering: "color_ordering.tsv"
+color_scheme: "color_schemes.tsv"
+auspice_config: "clade-i/auspice_config.json"
+description: "description.md"
+tree_mask: "clade-i/tree_mask.tsv"
 
 # Use `accession` as the ID column since `strain` currently contains duplicates¹.
 # ¹ https://github.com/nextstrain/mpox/issues/33
@@ -59,7 +59,7 @@ recency: true
 mask:
   from_beginning: 800
   from_end: 6422
-  maskfile: "defaults/clade-i/mask.bed"
+  maskfile: "clade-i/mask.bed"
 
 colors:
   ignore_categories:

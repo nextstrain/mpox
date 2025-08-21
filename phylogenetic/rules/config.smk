@@ -7,6 +7,23 @@ from textwrap import dedent, indent
 from typing import Union
 
 
+include: "../../shared/vendored/snakemake/config.smk"
+
+
+def phylo_resolve_config_path(path: str) -> Callable[[Wildcards], str]:
+    """
+    Wrapper around the shared `resolve_config_path` to force the default directory
+    to be `phylogenetic/defaults`. This is necessary because the entry point for
+    each build is nested within phylogenetic (e.g. phylogenetic/clade-i/Snakefile).
+    """
+    PHYLO_DEFAULTS_DIR = os.path.normpath(os.path.join(workflow.current_basedir, "../defaults"))
+    # Strip the `defaults/` prefix to be backwards compatible with older configs
+    # This is necessary in this wrapper because we are providing a custom defaults dir
+    # which skips the handling of the defaults/ prefix within resolve_config_path.
+    path = path.removeprefix("defaults/")
+    return resolve_config_path(path, PHYLO_DEFAULTS_DIR)
+
+
 def as_list(config_param: Union[list,str]) -> list:
     if isinstance(config_param, list):
         return config_param

@@ -43,7 +43,7 @@ rule remove_time:
         r"""
         exec &> >(tee {log:q})
 
-        python3 scripts/remove_timeinfo.py \
+        python3 {workflow.basedir}/../scripts/remove_timeinfo.py \
             --input-node-data {input:q} \
             --output-node-data {output:q}
         """
@@ -51,8 +51,8 @@ rule remove_time:
 
 rule colors:
     input:
-        ordering=config["color_ordering"],
-        color_schemes=config["color_scheme"],
+        ordering=phylo_resolve_config_path(config["color_ordering"]),
+        color_schemes=phylo_resolve_config_path(config["color_scheme"]),
         metadata=build_dir + "/{build_name}/metadata.tsv",
     output:
         colors=build_dir + "/{build_name}/colors.tsv",
@@ -66,7 +66,7 @@ rule colors:
         r"""
         exec &> >(tee {log:q})
 
-        python3 scripts/assign-colors.py \
+        python3 {workflow.basedir}/../scripts/assign-colors.py \
             --ordering {input.ordering:q} \
             --color-schemes {input.color_schemes:q} \
             --output {output.colors:q} \
@@ -102,9 +102,9 @@ rule export:
             else []
         ),
         colors=build_dir + "/{build_name}/colors.tsv",
-        lat_longs=config["lat_longs"],
-        description=config["description"],
-        auspice_config=config["auspice_config"],
+        lat_longs=phylo_resolve_config_path(config["lat_longs"]),
+        description=phylo_resolve_config_path(config["description"]),
+        auspice_config=phylo_resolve_config_path(config["auspice_config"]),
     output:
         auspice_json=build_dir + "/{build_name}/tree.json",
         root_sequence=build_dir + "/{build_name}/tree_root-sequence.json",
