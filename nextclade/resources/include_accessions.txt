@@ -92,3 +92,11 @@ PP533312    #reference for F.5
 PP_000ZDUZ    #reference for F.5
 OR665162    #reference for F.6
 PP_000YX9N    #reference for F.6
+PP_000YPVP    #reference for C.1.5
+PP_0011AYS  #reference for F.1.2
+PP_000ZSCK  #reference for F.1.2
+PP_0015JY8  # A.2.2 diversity
+PP_0015JXA  # A.2.2 diversity
+PP_000ZYPQ  # A.2.2 diversity
+PP_0010X4U  # A.2.2 diversity
+PP_0010DKF  # H.1 diversity
