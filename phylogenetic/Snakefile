@@ -2,7 +2,7 @@ from packaging import version
 from augur.__version__ import __version__ as augur_version
 import sys
 
-min_augur_version = "22.2.0"
+min_augur_version = "31.5.0"
 if version.parse(augur_version) < version.parse(min_augur_version):
     print("This pipeline needs a newer version of augur than you currently have...")
     print(
@@ -39,6 +39,7 @@ rule all:
 
 
 include: "rules/config.smk"
+include: "rules/write_config.smk"
 include: "rules/prepare_sequences.smk"
 include: "rules/construct_phylogeny.smk"
 include: "rules/annotate_phylogeny.smk"

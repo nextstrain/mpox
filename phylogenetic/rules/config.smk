@@ -44,17 +44,6 @@ if isinstance(config.get("colors", {}).get("ignore_categories"), str):
 
 # Looping over a shallow copy of the dict since we remove disabled subsampling groups
 for name, params in config["subsample"].copy().items():
-    if isinstance(params, dict):
-        print(f"Converting config['subsample']['{name}'] from a dictionary to a string; "
-              "consider updating the config param in the config file.", file=sys.stderr)
-        config["subsample"][name] = " ".join((
-            params["group_by"],
-            params["sequences_per_group"],
-            f"--query {params['query']}" if "query" in params else "",
-            f"--exclude-where {' '.join([f'lineage={l}' for l in params['exclude_lineages']])}" if "exclude_lineages" in params else "",
-            params.get("other_filters", ""),
-        ))
-
     # Null subsample params represent disabled subsampling groups
     # This allows config overlays to disable the default subsampling groups with
     # YAML null value (~) which gets mapped to the Python `None`

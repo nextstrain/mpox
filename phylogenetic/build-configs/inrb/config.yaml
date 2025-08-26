@@ -21,5 +21,5 @@ traits:
 # Private INRB data doesn't have clade annotations so allow empty clade fields
 # (i.e. we're assuming all INRB data is clade I)
 subsample:
-  everything: >-
-    --query 'clade in ["I", "Ia", "Ib", ""]'
+  everything:
+    query: clade in ["I", "Ia", "Ib", ""]

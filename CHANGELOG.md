@@ -10,6 +10,7 @@ Instead, changes appear below grouped by the date they were added to the workflo
 
 ## 2025
 
+* TBD: [breaking] Switch to use `augur subsample`.
 * 02 July 2025: phylogenetic - config schema updates for easier config overlays ([#321][])
     * new required config params
         * `exclude` - path to exclude.txt for `augur filter`
