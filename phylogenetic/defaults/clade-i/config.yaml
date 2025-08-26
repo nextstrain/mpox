@@ -1,7 +1,6 @@
 reference: "defaults/clade-i/reference.fasta"
 genome_annotation: "defaults/clade-i/genome_annotation.gff3"
 genbank_reference: "defaults/clade-i/reference.gb"
-include: "defaults/clade-i/include.txt"
 exclude: "defaults/exclude.txt"
 clades: "defaults/clades.tsv"
 lat_longs: "defaults/lat_longs.tsv"
@@ -26,8 +25,11 @@ filter:
 
 ### Filter to only Clade I sequences
 subsample:
-  everything: >-
-    --query 'clade in ["I", "Ia", "Ib"]'
+  samples:
+    everything:
+      query: clade in ["I", "Ia", "Ib"]
+      include:
+        - defaults/clade-i/include.txt
 
 ## align
 max_indel: 10000

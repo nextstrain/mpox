@@ -138,40 +138,6 @@ rule add_private_data:
 
 rule subsample:
     input:
-        metadata=(
-            build_dir + "/{build_name}/good_metadata_combined.tsv"
-            if config.get("private_metadata", False)
-            else build_dir + "/{build_name}/good_metadata.tsv"
-        ),
-    output:
-        strains=build_dir + "/{build_name}/{sample}_strains.txt",
-        log=build_dir + "/{build_name}/{sample}_filter.log",
-    params:
-        augur_filter_args=lambda w: config["subsample"][w.sample],
-        strain_id=config["strain_id_field"],
-    log:
-        "logs/{build_name}/{sample}_subsample.txt",
-    benchmark:
-        "benchmarks/{build_name}/{sample}_subsample.txt"
-    shell:
-        r"""
-        exec &> >(tee {log:q})
-
-        augur filter \
-            --metadata {input.metadata:q} \
-            --metadata-id-columns {params.strain_id:q} \
-            --output-strains {output.strains:q} \
-            {params.augur_filter_args} \
-            --output-log {output.log:q}
-        """
-
-
-rule combine_samples:
-    input:
-        strains=lambda w: [
-            f"{build_dir}/{w.build_name}/{sample}_strains.txt"
-            for sample in config["subsample"]
-        ],
         sequences=(
             build_dir + "/{build_name}/good_sequences_combined.fasta"
             if config.get("private_sequences", False)
@@ -182,26 +148,27 @@ rule combine_samples:
             if config.get("private_metadata", False)
             else build_dir + "/{build_name}/good_metadata.tsv"
         ),
-        include=config["include"],
+        config=build_dir + "/{build_name}/run_config.yaml",
     output:
         sequences=build_dir + "/{build_name}/filtered.fasta",
         metadata=build_dir + "/{build_name}/metadata.tsv",
     params:
         strain_id=config["strain_id_field"],
+        config_root="subsample",
     log:
-        "logs/{build_name}/combine_samples.txt",
+        "logs/{build_name}/subsample.txt",
     benchmark:
-        "benchmarks/{build_name}/combine_samples.txt"
+        "benchmarks/{build_name}/subsample.txt"
     shell:
         r"""
         exec &> >(tee {log:q})
 
-        augur filter \
+        augur subsample \
             --metadata-id-columns {params.strain_id:q} \
             --sequences {input.sequences:q} \
             --metadata {input.metadata:q} \
-            --exclude-all \
-            --include {input.strains:q} {input.include:q}\
+            --config {input.config:q} \
+            --config-root {params.config_root:q} \
             --output-sequences {output.sequences:q} \
             --output-metadata {output.metadata:q}
         """

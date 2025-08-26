@@ -1,7 +1,6 @@
 reference: "defaults/reference.fasta"
 genome_annotation: "defaults/genome_annotation.gff3"
 genbank_reference: "defaults/reference.gb"
-include: "defaults/hmpxv1_big/include.txt"
 exclude: "defaults/exclude.txt"
 clades: "defaults/clades.tsv"
 lat_longs: "defaults/lat_longs.tsv"
@@ -24,20 +23,26 @@ filter:
   query: "(QC_rare_mutations == 'good' | QC_rare_mutations == 'mediocre')"
 
 subsample:
-  b1: >-
-    --group-by year month country
-    --subsample-max-sequences 5000
-    --exclude-where
-    outbreak!=hMPXV-1
-    clade!=IIb
-    lineage=A
-    lineage=A.1
-    lineage=A.1.1
-    lineage=A.2
-    lineage=A.2.1
-    lineage=A.2.2
-    lineage=A.2.3
-    lineage=A.3
+  samples:
+    b1:
+      group_by:
+        - year
+        - month
+        - country
+      max_sequences: 5000
+      exclude_where:
+        - outbreak!=hMPXV-1
+        - clade!=IIb
+        - lineage=A
+        - lineage=A.1
+        - lineage=A.1.1
+        - lineage=A.2
+        - lineage=A.2.1
+        - lineage=A.2.2
+        - lineage=A.2.3
+        - lineage=A.3
+      include:
+        - defaults/hmpxv1_big/include.txt
 
 ## align
 max_indel: 10000
