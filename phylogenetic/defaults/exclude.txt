@@ -124,4 +124,3 @@ OP605587    # Slovenia overdiverged B.1
 
 PQ368495    # Off the clock, no mutations vs 3y older sequence
 PP748917    # Off the clock, no mutations vs 3y older sequence
-
