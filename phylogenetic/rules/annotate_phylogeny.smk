@@ -32,7 +32,7 @@ rule ancestral:
     params:
         inference="joint",
         root_sequence=lambda w: (
-            f"--root-sequence {config['ancestral_root_seq']!r}"
+            ("--root-sequence " + config["ancestral_root_seq"])
             if config.get("ancestral_root_seq")
             else ""
         ),

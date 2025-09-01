@@ -52,7 +52,7 @@ rule fix_tree:
         tree=build_dir + "/{build_name}/tree_fixed.nwk",
     params:
         root=lambda w: (
-            f"--root {config['treefix_root']!r}"
+            ("--root " + config["treefix_root"])
             if config.get("treefix_root", False)
             else ""
         ),
@@ -97,10 +97,10 @@ rule refine:
         clock_filter_iqd=0,
         root=config["root"],
         clock_rate=(
-            f"--clock-rate {config['clock_rate']!r}" if "clock_rate" in config else ""
+            ("--clock-rate " + config["clock_rate"]) if "clock_rate" in config else ""
         ),
         clock_std_dev=(
-            f"--clock-std-dev {config['clock_std_dev']!r}"
+            ("--clock-std-dev " + config["clock_std_dev"])
             if "clock_std_dev" in config
             else ""
         ),
