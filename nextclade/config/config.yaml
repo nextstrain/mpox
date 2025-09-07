@@ -45,11 +45,11 @@ lineage-b.1:
   root: "ref_in_coord"
   min_date: ""
   exclude_where:
-    b1: >
+    b1: >-
       --min-date 2022 --exclude-where outbreak!=hMPXV-1 lineage=A.2 lineage=A.2.1 lineage=A.2.2 lineage=A.2.3 lineage=A.2.4 lineage=A.2.5 
       lineage=G.1 lineage=H.1 lineage=H.2 lineage=A lineage=A.1
     # The nonb1 here is a misnomer, it should be "recent-b1" but this way we keep the structure of the config file
-    nonb1: >
+    nonb1: >-
       --min-date 2022 --exclude-where outbreak!=hMPXV-1 lineage=A.2 lineage=A.2.1 lineage=A.2.2 lineage=A.2.3 lineage=A.2.4 lineage=A.2.5 
       lineage=G.1 lineage=H.1 lineage=H.2 lineage=A lineage=A.1
   subsampling:
