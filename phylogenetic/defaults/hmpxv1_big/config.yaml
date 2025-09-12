@@ -35,8 +35,13 @@ subsample:
     lineage=A.1.1
     lineage=A.2
     lineage=A.2.1
+    lineage=H.1
+    lineage=H.2
     lineage=A.2.2
+    lineage=G.1
     lineage=A.2.3
+    lineage=A.2.4
+    lineage=A.2.5
     lineage=A.3
 
 ## align
