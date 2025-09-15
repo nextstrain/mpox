@@ -29,7 +29,7 @@ filter:
 subsample:
   non_b1: >-
     --group-by lineage year country
-    --sequences-per-group 50
+    --sequences-per-group 75
     --exclude-where
     outbreak!=hMPXV-1
     clade!=IIb
@@ -81,7 +81,8 @@ subsample:
     lineage=B.1.23
   b1: >-
     --group-by country year
-    --subsample-max-sequences 300
+    --subsample-max-sequences 500
+    --probabilistic-sampling
     --exclude-where outbreak!=hMPXV-1 clade!=IIb
 
 ## align
