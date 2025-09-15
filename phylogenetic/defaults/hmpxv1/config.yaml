@@ -81,7 +81,7 @@ subsample:
     lineage=B.1.23
   b1: >-
     --group-by country year
-    --subsample-max-sequences 500
+    --subsample-max-sequences 800
     --probabilistic-sampling
     --exclude-where outbreak!=hMPXV-1 clade!=IIb
 
