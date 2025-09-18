@@ -1,4 +1,6 @@
-exclude: '\.(tsv|fasta|gb)$|^shared/vendored/|^phylogenetic/rules/config.smk'
+# Don't add exceptions for smk files maintained in this repo unless absolutely necessary
+# (e.g. if there's a reported bug in snakefmt we are waiting on a fix for)
+exclude: '\.(tsv|fasta|gb)$|^shared/vendored/'
 repos:
   - repo: https://github.com/snakemake/snakefmt
     rev: v0.11.2
