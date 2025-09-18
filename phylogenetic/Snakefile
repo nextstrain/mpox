@@ -1,6 +1,14 @@
 from packaging import version
 from augur.__version__ import __version__ as augur_version
+import os
 import sys
+
+# The 'exec &> >(tee {log:q})' in each rule makes Python think it's not connected to terminal
+# Setting unbuffered makes it behave as expected
+# Not sure I'm a fan of the exec stuff, might make more sense to add as a feature to snakemake
+# Like the ubiquitous benchmarking, to reduce repetition/boilerplate.
+os.environ["PYTHONUNBUFFERED"] = "1"
+
 
 min_augur_version = "22.2.0"
 if version.parse(augur_version) < version.parse(min_augur_version):

@@ -33,13 +33,35 @@ A.2.1	nuc	25072	T
 A.2.1	nuc	140492	C
 A.2.1	nuc	179537	T
 
+H.1	clade	A.2.1
+H.1	nuc	52289	A
+H.1	nuc	67261	A
+H.1	nuc	181947	A
+
+H.2	clade	A.2.1
+H.2	nuc	43103	A
+H.2	nuc	184924	T
+
 A.2.2	clade	A.2
 A.2.2	nuc	21991	A
 A.2.2	nuc	103019	T
+A.2.2	nuc	158424	A
+
+G.1	clade	A.2.2
+G.1	nuc	85413	T
+G.1	nuc	164382	C
 
 A.2.3	clade	A.2
 A.2.3	nuc	57284	T
 A.2.3	nuc	74226	T
+
+A.2.4	clade	A.2
+A.2.4	nuc	15105	T
+A.2.4	nuc	179628	G
+
+A.2.5	clade	A.2
+A.2.5	nuc	12426	T
+A.2.5	nuc	134107	A
 
 A.3	clade	A
 A.3	nuc	96841	A
@@ -77,13 +99,37 @@ E.1	nuc	13563	A
 E.1	nuc	121394	T
 E.1	nuc	162280	A
 
+E.1.1	clade	E.1
+E.1.1	nuc	41405	T
+E.1.1	nuc	157928	T
+
 E.2	clade	C.1.1
 E.2	nuc	13563	A
 E.2	nuc	151847	A
 E.2	nuc	37738	T
 
+E.2.1	clade	E.2
+E.2.1	nuc	55466	A
+E.2.1	nuc	135121	T
+
 E.3	clade	C.1.1
 E.3	nuc	142797	T
+
+E.3.1	clade	E.3
+E.3.1	nuc	113957	T
+E.3.1	nuc	74018	T
+
+E.4	clade	C.1.1
+E.4	nuc	41806	A
+E.4	nuc	136791	G
+
+C.1.2	clade	C.1
+C.1.2	nuc	28142	A
+C.1.2	nuc	126761	A
+
+C.1.3	clade	C.1
+C.1.3	nuc	33332	T
+C.1.3	nuc	37974	A
 
 B.1.4	clade	B.1
 B.1.4	nuc	34308	A
@@ -161,9 +207,18 @@ F.1	nuc	70414	T
 F.1	nuc	70666	T
 F.1	nuc	96938	T
 
+F.1.1	clade	F.1
+F.1.1	nuc	133402	T
+F.1.1	nuc	143277	T
+
 F.2	clade	B.1.20
 F.2	nuc	161629	A
 F.2	nuc	22167	T
+
+F.2.1	clade	F.2
+F.2.1	nuc	44032	T
+F.2.1	nuc	80820	A
+F.2.1	nuc	165892	A
 
 F.3	clade	B.1.20
 F.3	nuc	174050	T
@@ -175,6 +230,10 @@ F.4	nuc	92382	T
 F.4	nuc	122551	T
 F.4	nuc	126919	A
 F.4	nuc	176643	A
+
+F.4.1	clade	F.4
+F.4.1	nuc	21394	A
+F.4.1	nuc	111492	T
 
 F.5	clade	B.1.20
 F.5	nuc	150831	T
@@ -192,6 +251,10 @@ B.1.21	nuc	132698	T
 B.1.22	clade	B.1
 B.1.22	nuc	34784	T
 B.1.22	nuc	101418	T
+
+J.1	clade	B.1.22
+J.1	nuc	45528	T
+J.1	nuc	121663	A
 
 B.1.23	clade	B.1
 B.1.23	nuc	27935	A
