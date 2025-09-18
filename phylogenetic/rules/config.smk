@@ -4,7 +4,7 @@ Originally copied from
 <https://github.com/nextstrain/zika/blob/3c17db54698cf7836641308f6aa50d714959992b/phylogenetic/rules/config.smk>
 """
 
-from typing import Union
+from typing import Any, Union
 
 
 # Basic config sanity checking in lieu of a proper schema
