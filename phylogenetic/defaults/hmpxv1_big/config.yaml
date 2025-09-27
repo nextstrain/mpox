@@ -1,3 +1,8 @@
+inputs:
+  - name: ncbi
+    metadata: "https://data.nextstrain.org/files/workflows/mpox/metadata.tsv.zst"
+    sequences: "https://data.nextstrain.org/files/workflows/mpox/sequences.fasta.zst"
+
 reference: "defaults/reference.fasta"
 genome_annotation: "defaults/genome_annotation.gff3"
 genbank_reference: "defaults/reference.gb"
