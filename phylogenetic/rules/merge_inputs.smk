@@ -26,35 +26,56 @@ additional_inputs:
 Supports any of the compression formats that are supported by `augur read-file`,
 see <https://docs.nextstrain.org/projects/augur/page/usage/cli/read-file.html>
 """
+
 from pathlib import Path
 
 
 def _gather_inputs():
-    all_inputs = [*config['inputs'], *config.get('additional_inputs', [])]
+    all_inputs = [*config["inputs"], *config.get("additional_inputs", [])]
 
-    if len(all_inputs)==0:
-        raise InvalidConfigError("Config must define at least one element in config.inputs or config.additional_inputs lists")
+    if len(all_inputs) == 0:
+        raise InvalidConfigError(
+            "Config must define at least one element in config.inputs or config.additional_inputs lists"
+        )
     if not all([isinstance(i, dict) for i in all_inputs]):
-        raise InvalidConfigError("All of the elements in config.inputs and config.additional_inputs lists must be dictionaries. "
-            "If you've used a command line '--config' double check your quoting.")
-    if len({i['name'] for i in all_inputs})!=len(all_inputs):
-        raise InvalidConfigError("Names of inputs (config.inputs and config.additional_inputs) must be unique")
-    if not all(['name' in i and ('sequences' in i or 'metadata' in i) for i in all_inputs]):
-        raise InvalidConfigError("Each input (config.inputs and config.additional_inputs) must have a 'name' and 'metadata' and/or 'sequences'")
-    if not any(['metadata' in i for i in all_inputs]):
+        raise InvalidConfigError(
+            "All of the elements in config.inputs and config.additional_inputs lists must be dictionaries. "
+            "If you've used a command line '--config' double check your quoting."
+        )
+    if len({i["name"] for i in all_inputs}) != len(all_inputs):
+        raise InvalidConfigError(
+            "Names of inputs (config.inputs and config.additional_inputs) must be unique"
+        )
+    if not all(
+        ["name" in i and ("sequences" in i or "metadata" in i) for i in all_inputs]
+    ):
+        raise InvalidConfigError(
+            "Each input (config.inputs and config.additional_inputs) must have a 'name' and 'metadata' and/or 'sequences'"
+        )
+    if not any(["metadata" in i for i in all_inputs]):
         raise InvalidConfigError("At least one input must have 'metadata'")
-    if not any (['sequences' in i for i in all_inputs]):
+    if not any(["sequences" in i for i in all_inputs]):
         raise InvalidConfigError("At least one input must have 'sequences'")
 
-    available_keys = set(['name', 'metadata', 'sequences'])
-    if any([len(set(el.keys())-available_keys)>0 for el in all_inputs]):
-        raise InvalidConfigError(f"Each input (config.inputs and config.additional_inputs) can only include keys of {', '.join(available_keys)}")
+    available_keys = set(["name", "metadata", "sequences"])
+    if any([len(set(el.keys()) - available_keys) > 0 for el in all_inputs]):
+        raise InvalidConfigError(
+            f"Each input (config.inputs and config.additional_inputs) can only include keys of {', '.join(available_keys)}"
+        )
 
-    return {el['name']: {k:(v if k=='name' else path_or_url(v)) for k,v in el.items()} for el in all_inputs}
+    return {
+        el["name"]: {k: (v if k == "name" else path_or_url(v)) for k, v in el.items()}
+        for el in all_inputs
+    }
+
 
 input_sources = _gather_inputs()
-_input_metadata = [info['metadata'] for info in input_sources.values() if info.get('metadata', None)]
-_input_sequences = [info['sequences'] for info in input_sources.values() if info.get('sequences', None)]
+_input_metadata = [
+    info["metadata"] for info in input_sources.values() if info.get("metadata", None)
+]
+_input_sequences = [
+    info["sequences"] for info in input_sources.values() if info.get("sequences", None)
+]
 
 
 if len(_input_metadata) == 1:
@@ -66,13 +87,13 @@ if len(_input_metadata) == 1:
         the output of rule.merge_metadata.
         """
         input:
-            metadata = _input_metadata[0],
+            metadata=_input_metadata[0],
         output:
-            metadata = "results/metadata.tsv",
+            metadata="results/metadata.tsv",
         log:
             "logs/decompress_metadata.txt",
         benchmark:
-            "benchmarks/decompress_metadata.txt",
+            "benchmarks/decompress_metadata.txt"
         shell:
             r"""
             exec &> >(tee {log:q})
@@ -88,12 +109,16 @@ else:
         (config.inputs + config.additional_inputs)
         """
         input:
-            **{name: info['metadata'] for name,info in input_sources.items() if info.get('metadata', None)}
+            **{
+                name: info["metadata"]
+                for name, info in input_sources.items()
+                if info.get("metadata", None)
+            },
         params:
-            metadata = lambda w, input: list(map("=".join, input.items())),
-            id_field = config['strain_id_field'],
+            metadata=lambda w, input: list(map("=".join, input.items())),
+            id_field=config["strain_id_field"],
         output:
-            metadata = "results/metadata.tsv"
+            metadata="results/metadata.tsv",
         log:
             "logs/merge_metadata.txt",
         benchmark:
@@ -118,13 +143,13 @@ if len(_input_sequences) == 1:
         the output of rule.merge_sequences.
         """
         input:
-            sequences = _input_sequences[0],
+            sequences=_input_sequences[0],
         output:
-            sequences = "results/sequences.fasta",
+            sequences="results/sequences.fasta",
         log:
             "logs/decompress_sequences.txt",
         benchmark:
-            "benchmarks/decompress_sequences.txt",
+            "benchmarks/decompress_sequences.txt"
         shell:
             r"""
             exec &> >(tee {log:q})
@@ -140,9 +165,13 @@ else:
         (config.inputs + config.additional_inputs)
         """
         input:
-            **{name: info['sequences'] for name,info in input_sources.items() if info.get('sequences', None)}
+            **{
+                name: info["sequences"]
+                for name, info in input_sources.items()
+                if info.get("sequences", None)
+            },
         output:
-            sequences = "results/sequences.fasta",
+            sequences="results/sequences.fasta",
         log:
             "logs/merge_sequences.txt",
         benchmark:

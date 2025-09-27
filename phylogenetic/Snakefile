@@ -49,8 +49,8 @@ rule all:
         cp {input.root_sequence:q} {output.root_sequence_json:q}
         """
 
-include: "../shared/vendored/snakemake/remote_files.smk"
 
+include: "../shared/vendored/snakemake/remote_files.smk"
 include: "rules/config.smk"
 include: "rules/merge_inputs.smk"
 include: "rules/prepare_sequences.smk"
