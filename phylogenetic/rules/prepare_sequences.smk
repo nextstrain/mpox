@@ -66,6 +66,7 @@ rule filter:
 # Only define `add_private_data` rule when the config params are provided
 # so that Snakemake >= 9.12.0 doesn't fail due to optional inputs
 if config.get("private_sequences") and config.get("private_metadata"):
+
     # At this point we merge in private data (iff requested)
     rule add_private_data:
         """
