@@ -22,9 +22,28 @@ def format_field_map(field_map: dict[str, str]) -> list[str]:
     return [f"{key}={value}" for key, value in field_map.items()]
 
 
+rule generate_continent:
+    input:
+        ndjson="results/ppx_flat.ndjson.zst",
+    output:
+        ndjson="results/ppx_flat_continent.ndjson.zst",
+    benchmark:
+        "benchmarks/generate_continent.txt"
+    log:
+        "logs/generate_continent.txt",
+    shell:
+        r"""
+        exec &> >(tee {log:q})
+
+        python scripts/generate_continent.py \
+            --input {input.ndjson:q} \
+            --output {output.ndjson:q}
+        """
+
+
 rule curate:
     input:
-        sequences_ndjson="data/ncbi.ndjson",
+        sequences_ndjson="results/ppx_flat.ndjson.zst",
         geolocation_rules=resolve_config_path(
             config["curate"]["local_geolocation_rules"]
         ),
@@ -32,6 +51,7 @@ rule curate:
     output:
         metadata="data/all_metadata.tsv",
         sequences="results/sequences.fasta",
+        # ndjson="results/curated.ndjson.zst",
     benchmark:
         "benchmarks/curate.txt"
     log:
@@ -42,7 +62,6 @@ rule curate:
         strain_backup_fields=config["curate"]["strain_backup_fields"],
         date_fields=config["curate"]["date_fields"],
         expected_date_formats=config["curate"]["expected_date_formats"],
-        genbank_location_field=config["curate"]["genbank_location_field"],
         articles=config["curate"]["titlecase"]["articles"],
         abbreviations=config["curate"]["titlecase"]["abbreviations"],
         titlecase_fields=config["curate"]["titlecase"]["fields"],
@@ -56,7 +75,11 @@ rule curate:
         r"""
         exec &> >(tee {log:q})
 
-        cat {input.sequences_ndjson:q} \
+        # TODO
+        # - Curate doesn't handle PPX authors
+        # 
+
+        zstdcat {input.sequences_ndjson:q} \
             | augur curate rename \
                 --field-map {params.field_map:q} \
             | augur curate normalize-strings \
@@ -66,8 +89,6 @@ rule curate:
             | augur curate format-dates \
                 --date-fields {params.date_fields:q} \
                 --expected-date-formats {params.expected_date_formats:q} \
-            | augur curate parse-genbank-location \
-                --location-field {params.genbank_location_field:q} \
             | augur curate titlecase \
                 --titlecase-fields {params.titlecase_fields:q} \
                 --articles {params.articles:q} \

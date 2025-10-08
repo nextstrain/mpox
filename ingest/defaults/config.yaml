@@ -22,6 +22,8 @@ ncbi_datasets_fields:
   - submitter-names
   - submitter-affiliation
 
+### TO DELETE ABOVE
+
 # Params for the curate rule
 curate:
   # Fields to rename.
@@ -29,35 +31,40 @@ curate:
   # in the configs below should use the new field names
   field_map:
     accession: accession
-    accession_version: genbank_accession_rev
-    sourcedb: database
-    isolate-lineage: strain
-    geo-region: region
-    geo-location: location
-    isolate-collection-date: date
-    release-date: date_released
-    update-date: date_updated
+    accessionVersion: accession_version
+    insdcAccessionBase: genbank_accession
+    insdcAccessionFull: genbank_accession_rev
+    # sourcedb: database  # Where original submission was made: Pathoplexus vs INSDC
+    specimenCollectorSampleId: strain
+    geoLocCountry: country
+    geoLocAdmin1: division
+    geoLocAdmin2: location
+    geoLocCity: city
+    geoLocSite: site
+    # geo-region: region # We need to derive region from country (possibly do in PPX preprocessing)
+    sampleCollectionDate: date
+    earliestReleaseDate: date_released
+    releasedDate: date_updated
     length: length
-    host-name: host
-    isolate-lineage-source: isolation_source
-    bioprojects: bioproject_accession
-    biosample-acc: biosample_accessions
-    sra-accs: sra_accession
-    submitter-names: full_authors
-    submitter-affiliation: institution
+    hostNameScientific: host
+    # isolate-lineage-source: isolation_source
+    bioprojectAccession: bioproject_accession
+    biosampleAccession: biosample_accessions
+    insdcRawReadsAccession: sra_accession
+    authors: full_authors
+    authorAffiliations: institution
+    # TODO: There are more fields I should look into porting
   # Standardized strain name regex
   # Currently accepts any characters because we do not have a clear standard for strain names
   strain_regex: '^.+$'
   # Back up strain name field if 'strain' doesn't match regex above
-  strain_backup_fields: ['accession']
+  strain_backup_fields: ['submissionId','accession']
   # List of date fields to standardize
   date_fields: ['date', 'date_released', 'date_updated']
   # Expected date formats present in date fields
   # These date formats should use directives expected by datetime
   # See https://docs.python.org/3.9/library/datetime.html#strftime-and-strptime-format-codes
   expected_date_formats: ['%Y', '%Y-%m', '%Y-%m-%d', '%Y-%m-%dT%H:%M:%SZ']
-  # The expected field that contains the GenBank geo_loc_name
-  genbank_location_field: location
   # Titlecase rules
   titlecase:
     # Abbreviations not cast to titlecase, keeps uppercase
@@ -86,6 +93,7 @@ curate:
   # Field to use as the sequence in the FASTA file
   sequence_field: 'sequence'
   # The field in the NDJSON record that contains the actual GenBank accession
+  # TODO: Check what the purpose of this is
   genbank_accession: 'accession'
   # Final output columns for the metadata TSV
   metadata_columns: [
