@@ -1,3 +1,8 @@
+inputs:
+  - name: ncbi
+    metadata: "https://data.nextstrain.org/files/workflows/mpox/metadata.tsv.zst"
+    sequences: "https://data.nextstrain.org/files/workflows/mpox/sequences.fasta.zst"
+
 auspice_config: "defaults/mpxv/auspice_config.json"
 include: "defaults/mpxv/include.txt"
 exclude: "defaults/exclude.txt"

@@ -1,5 +1,7 @@
-custom_rules:
-  - build-configs/ci/copy_example_data.smk
+inputs:
+  - name: example
+    metadata: "example_data/metadata.tsv"
+    sequences: "example_data/sequences.fasta"
 
 reference: "defaults/reference.fasta"
 genome_annotation: "defaults/genome_annotation.gff3"

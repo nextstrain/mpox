@@ -124,6 +124,8 @@ Potential Nextstrain CLI scripts
 Snakemake workflow functions that are shared across many pathogen workflows that don’t really belong in any of our existing tools.
 
 - [config.smk](snakemake/config.smk) - Shared functions for parsing workflow configs.
+- [remote_files.smk](snakemake/remote_files.smk) - Exposes the `path_or_url` function which will use Snakemake's storage plugins to download/upload files to remote providers as needed.
+
 
 ## Software requirements
 

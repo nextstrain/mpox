@@ -3,6 +3,8 @@ This part of the workflow prepares sequences for constructing the phylogenetic t
 
 REQUIRED INPUTS:
 
+    metadata    = results/metadata.tsv
+    sequences   = results/sequences.fasta
     include     = path to file of sequences to force include
     exclude     = path to file of sequences to exclude
     reference   = path to reference sequence FASTA for Nextclade alignment
@@ -16,59 +18,13 @@ OUTPUTS:
 """
 
 
-rule download:
-    """
-    Downloading sequences and metadata from data.nextstrain.org
-    """
-    output:
-        sequences="data/sequences.fasta.zst",
-        metadata="data/metadata.tsv.zst",
-    params:
-        sequences_url="https://data.nextstrain.org/files/workflows/mpox/sequences.fasta.zst",
-        metadata_url="https://data.nextstrain.org/files/workflows/mpox/metadata.tsv.zst",
-    log:
-        "logs/download.txt",
-    benchmark:
-        "benchmarks/download.txt"
-    shell:
-        r"""
-        exec &> >(tee {log:q})
-
-        curl -fsSL --compressed {params.sequences_url:q} --output {output.sequences:q}
-        curl -fsSL --compressed {params.metadata_url:q} --output {output.metadata:q}
-        """
-
-
-rule decompress:
-    """
-    Decompressing sequences and metadata
-    """
-    input:
-        sequences="data/sequences.fasta.zst",
-        metadata="data/metadata.tsv.zst",
-    output:
-        sequences="data/sequences.fasta",
-        metadata="data/metadata.tsv",
-    log:
-        "logs/decompress.txt",
-    benchmark:
-        "benchmarks/decompress.txt"
-    shell:
-        r"""
-        exec &> >(tee {log:q})
-
-        zstd --decompress --stdout {input.sequences:q} > {output.sequences:q}
-        zstd --decompress --stdout {input.metadata:q} > {output.metadata:q}
-        """
-
-
 rule filter:
     """
     Removing strains that do not satisfy certain requirements.
     """
     input:
-        sequences="data/sequences.fasta",
-        metadata="data/metadata.tsv",
+        sequences="results/sequences.fasta",
+        metadata="results/metadata.tsv",
         exclude=config["exclude"],
     output:
         sequences=build_dir + "/{build_name}/good_sequences.fasta",
