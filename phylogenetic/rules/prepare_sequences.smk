@@ -63,32 +63,36 @@ rule filter:
         """
 
 
-# At this point we merge in private data (iff requested)
-rule add_private_data:
-    """
-    This rule is conditionally added to the DAG if a config defines 'private_sequences' and 'private_metadata'
-    """
-    input:
-        sequences=build_dir + "/{build_name}/good_sequences.fasta",
-        metadata=build_dir + "/{build_name}/good_metadata.tsv",
-        private_sequences=config.get("private_sequences", ""),
-        private_metadata=config.get("private_metadata", ""),
-    output:
-        sequences=build_dir + "/{build_name}/good_sequences_combined.fasta",
-        metadata=build_dir + "/{build_name}/good_metadata_combined.tsv",
-    log:
-        "logs/{build_name}/add_private_data.txt",
-    benchmark:
-        "benchmarks/{build_name}/add_private_data.txt"
-    shell:
-        r"""
-        exec &> >(tee {log:q})
+# Only define `add_private_data` rule when the config params are provided
+# so that Snakemake >= 9.12.0 doesn't fail due to optional inputs
+if config.get("private_sequences") and config.get("private_metadata"):
 
-        python3 scripts/combine_data_sources.py \
-            --metadata nextstrain={input.metadata:q} private={input.private_metadata:q} \
-            --sequences {input.sequences:q} {input.private_sequences:q} \
-            --output-metadata {output.metadata:q} \
-            --output-sequences {output.sequences:q}
+    # At this point we merge in private data (iff requested)
+    rule add_private_data:
+        """
+        This rule is conditionally added to the DAG if a config defines 'private_sequences' and 'private_metadata'
+        """
+        input:
+            sequences=build_dir + "/{build_name}/good_sequences.fasta",
+            metadata=build_dir + "/{build_name}/good_metadata.tsv",
+            private_sequences=config["private_sequences"],
+            private_metadata=config["private_metadata"],
+        output:
+            sequences=build_dir + "/{build_name}/good_sequences_combined.fasta",
+            metadata=build_dir + "/{build_name}/good_metadata_combined.tsv",
+        log:
+            "logs/{build_name}/add_private_data.txt",
+        benchmark:
+            "benchmarks/{build_name}/add_private_data.txt"
+        shell:
+            r"""
+            exec &> >(tee {log:q})
+
+            python3 scripts/combine_data_sources.py \
+                --metadata nextstrain={input.metadata:q} private={input.private_metadata:q} \
+                --sequences {input.sequences:q} {input.private_sequences:q} \
+                --output-metadata {output.metadata:q} \
+                --output-sequences {output.sequences:q}
         """
 
 
