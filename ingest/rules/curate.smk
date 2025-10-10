@@ -43,7 +43,7 @@ rule generate_continent:
 
 rule curate:
     input:
-        sequences_ndjson="results/ppx_flat.ndjson.zst",
+        sequences_ndjson="results/ppx_flat_continent.ndjson.zst",
         geolocation_rules=resolve_config_path(
             config["curate"]["local_geolocation_rules"]
         ),
