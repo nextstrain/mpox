@@ -171,6 +171,12 @@ def process_records(input_file, output_file):
                     continent = get_continent(country)
                     record['geoLocContinent'] = continent
 
+                    # Replace `null` values with empty strings
+                    # `augur curate` doesn't like nulls
+                    for key, value in record.items():
+                        if value is None:
+                            record[key] = ""
+
                     # Write modified record
                     output_line = json.dumps(record) + '\n'
                     writer.write(output_line.encode('utf-8'))

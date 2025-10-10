@@ -25,6 +25,7 @@ def format_field_map(field_map: dict[str, str]) -> list[str]:
 rule generate_continent:
     input:
         ndjson="results/ppx_flat.ndjson.zst",
+        script="scripts/generate_continent.py",
     output:
         ndjson="results/ppx_flat_continent.ndjson.zst",
     benchmark:
@@ -35,7 +36,7 @@ rule generate_continent:
         r"""
         exec &> >(tee {log:q})
 
-        python scripts/generate_continent.py \
+        python {input.script:q} \
             --input {input.ndjson:q} \
             --output {output.ndjson:q}
         """
