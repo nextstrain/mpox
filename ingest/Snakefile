@@ -22,9 +22,9 @@ if os.path.exists("config.yaml"):
 # This is the default rule that Snakemake will run when there are no specified targets.
 rule all:
     input:
-        # "results/sequences.fasta",
-        # "results/metadata.tsv",
-        "results/ppx.ndjson.zst",
+        "results/sequences.fasta",
+        "results/metadata.tsv",
+        # "results/ppx.ndjson.zst",
 
 
 include: "rules/fetch_from_ncbi.smk"
