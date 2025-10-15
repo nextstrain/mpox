@@ -62,44 +62,47 @@ rule flatten_ppx_data:
 
         echo "Flattening Pathoplexus data and removing all-null fields..."
         zstdcat {input.ppx_ndjson:q} | jq -c '
-          .metadata + {{sequence: .unalignedNucleotideSequences.main}} |
-          del(
-            .bodyProduct,
-            .comment,
-            .diagnosticMeasurementMethod,
-            .diagnosticMeasurementUnit,
-            .diagnosticMeasurementValue,
-            .diagnosticTargetGeneName,
-            .diagnosticTargetPresence,
-            .environmentalMaterial,
-            .experimentalSpecimenRoleType,
-            .exposureDetails,
-            .exposureEvent,
-            .exposureSetting,
-            .foodProduct,
-            .foodProductProperties,
-            .geoLocLatitude,
-            .geoLocLongitude,
-            .gisaidIsolateId,
-            .hostAgeBin,
-            .hostHealthOutcome,
-            .hostRole,
-            .hostVaccinationStatus,
-            .ncbiSubmitterCountry,
-            .passageMethod,
-            .presamplingActivity,
-            .purposeOfSampling,
-            .qualityControlDetails,
-            .qualityControlDetermination,
-            .qualityControlIssues,
-            .qualityControlMethodName,
-            .qualityControlMethodVersion,
-            .rawSequenceDataProcessingMethod,
-            .signsAndSymptoms,
-            .specimenProcessing,
-            .specimenProcessingDetails,
-            .travelHistory,
-            .versionComment
-          )
+          select(.metadata.versionStatus == "LATEST_VERSION")
+          | (.metadata
+              | del(
+                .bodyProduct,
+                .comment,
+                .diagnosticMeasurementMethod,
+                .diagnosticMeasurementUnit,
+                .diagnosticMeasurementValue,
+                .diagnosticTargetGeneName,
+                .diagnosticTargetPresence,
+                .environmentalMaterial,
+                .experimentalSpecimenRoleType,
+                .exposureDetails,
+                .exposureEvent,
+                .exposureSetting,
+                .foodProduct,
+                .foodProductProperties,
+                .geoLocLatitude,
+                .geoLocLongitude,
+                .gisaidIsolateId,
+                .hostAgeBin,
+                .hostHealthOutcome,
+                .hostRole,
+                .hostVaccinationStatus,
+                .ncbiSubmitterCountry,
+                .passageMethod,
+                .presamplingActivity,
+                .purposeOfSampling,
+                .qualityControlDetails,
+                .qualityControlDetermination,
+                .qualityControlIssues,
+                .qualityControlMethodName,
+                .qualityControlMethodVersion,
+                .rawSequenceDataProcessingMethod,
+                .signsAndSymptoms,
+                .specimenProcessing,
+                .specimenProcessingDetails,
+                .travelHistory,
+                .versionComment
+              )
+            )
+          + {{sequence: .unalignedNucleotideSequences.main}}
         ' | zstd -c > {output.ppx_flat:q}
         """

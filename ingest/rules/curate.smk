@@ -78,7 +78,6 @@ rule curate:
 
         # TODO
         # - Curate doesn't handle PPX authors
-        # 
 
         zstdcat {input.sequences_ndjson:q} \
             | augur curate rename \
@@ -119,8 +118,6 @@ rule add_metadata_columns:
         metadata="data/all_metadata.tsv",
     output:
         metadata=temp("data/all_metadata_added.tsv"),
-    params:
-        accession=config["curate"]["genbank_accession"],
     benchmark:
         "benchmarks/add_metadata_columns.txt"
     log:
@@ -131,7 +128,7 @@ rule add_metadata_columns:
 
         csvtk mutate2 -t \
           -n url \
-          -e '"https://www.ncbi.nlm.nih.gov/nuccore/" + ${params.accession:q}' \
+          -e '"https://pathoplexus.org/seq/" + $accession' \
           {input.metadata:q} \
         > {output.metadata:q}
         """
