@@ -36,6 +36,7 @@ curate:
     insdcAccessionFull: genbank_accession_rev
     # sourcedb: database  # Where original submission was made: Pathoplexus vs INSDC
     specimenCollectorSampleId: strain
+    geoLocContinent: region
     geoLocCountry: country
     geoLocAdmin1: division
     geoLocAdmin2: location
