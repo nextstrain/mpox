@@ -173,9 +173,12 @@ def process_records(input_file, output_file):
 
                     # Replace `null` values with empty strings
                     # `augur curate` doesn't like nulls
+                    # Also replace newlines in string values to prevent TSV corruption
                     for key, value in record.items():
                         if value is None:
                             record[key] = ""
+                        elif isinstance(value, str) and '\n' in value:
+                            record[key] = value.replace('\n', ' ').replace('\r', '')
 
                     # Write modified record
                     output_line = json.dumps(record) + '\n'
@@ -188,6 +191,14 @@ def process_records(input_file, output_file):
                 country = record.get('geoLocCountry')
                 continent = get_continent(country)
                 record['geoLocContinent'] = continent
+
+                # Replace `null` values with empty strings and strip newlines
+                for key, value in record.items():
+                    if value is None:
+                        record[key] = ""
+                    elif isinstance(value, str) and '\n' in value:
+                        record[key] = value.replace('\n', ' ').replace('\r', '')
+
                 output_line = json.dumps(record) + '\n'
                 writer.write(output_line.encode('utf-8'))
 
