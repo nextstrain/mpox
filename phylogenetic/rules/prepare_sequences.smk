@@ -88,6 +88,35 @@ rule decompress:
         """
 
 
+rule map_accessions:
+    """
+    Map INSDC accessions to PPX accessions in exclude/include files.
+    INSDC accessions (versioned or unversioned) are transformed to PPX accessions.
+    PPX accessions pass through unchanged. This allows exclude/include files to
+    contain a mixture of INSDC and PPX accessions.
+    """
+    input:
+        accession_list=lambda w: config[w.in_ex_clude],
+        metadata="data/metadata.tsv",
+    output:
+        accession_list=build_dir + "/{build_name}/{in_ex_clude}_ppx.txt",
+    wildcard_constraints:
+        in_ex_clude="(include|exclude)",
+    log:
+        "logs/{build_name}/map_accessions_{in_ex_clude}.txt",
+    benchmark:
+        "benchmarks/{build_name}/map_accessions_{in_ex_clude}.txt"
+    shell:
+        r"""
+        exec &> >(tee {log:q})
+
+        python3 scripts/map_accessions.py \
+            --input {input.accession_list:q} \
+            --metadata {input.metadata:q} \
+            --output {output.accession_list:q}
+        """
+
+
 rule filter:
     """
     Removing strains that do not satisfy certain requirements.
@@ -95,7 +124,7 @@ rule filter:
     input:
         sequences="data/sequences.fasta",
         metadata="data/metadata.tsv",
-        exclude=config["exclude"],
+        exclude=build_dir + "/{build_name}/exclude_ppx.txt",
     output:
         sequences=build_dir + "/{build_name}/good_sequences.fasta",
         metadata=build_dir + "/{build_name}/good_metadata.tsv",
@@ -212,7 +241,7 @@ rule combine_samples:
             if config.get("private_metadata", False)
             else build_dir + "/{build_name}/good_metadata.tsv"
         ),
-        include=config["include"],
+        include=build_dir + "/{build_name}/include_ppx.txt",
     output:
         sequences=build_dir + "/{build_name}/filtered.fasta",
         metadata=build_dir + "/{build_name}/metadata.tsv",
