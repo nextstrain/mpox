@@ -15,6 +15,7 @@ OUTPUTS:
 
 """
 
+# While the data on s3 is still Genbank, need to use local ingest data option
 use_local_ingest_data = config.get("use_local_ingest_data", True)
 if use_local_ingest_data:
 
