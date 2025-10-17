@@ -237,33 +237,12 @@ rule combine_samples:
         """
 
 
-rule reverse_reverse_complements:
-    input:
-        metadata=build_dir + "/{build_name}/metadata.tsv",
-        sequences=build_dir + "/{build_name}/filtered.fasta",
-    output:
-        build_dir + "/{build_name}/reversed.fasta",
-    log:
-        "logs/{build_name}/reverse_reverse_complements.txt",
-    benchmark:
-        "benchmarks/{build_name}/reverse_reverse_complements.txt"
-    shell:
-        r"""
-        exec &> >(tee {log:q})
-
-        python3 scripts/reverse_reversed_sequences.py \
-            --metadata {input.metadata:q} \
-            --sequences {input.sequences:q} \
-            --output {output:q}
-        """
-
-
 rule align:
     """
     Aligning sequences to {input.reference}
     """
     input:
-        sequences=build_dir + "/{build_name}/reversed.fasta",
+        sequences=build_dir + "/{build_name}/filtered.fasta",
         reference=config["reference"],
         genome_annotation=config["genome_annotation"],
     output:
