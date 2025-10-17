@@ -1,39 +1,13 @@
-# Pathogen NCBI Taxonomy ID
-ncbi_taxon_id: '10244'
-# The list of NCBI Datasets fields to include from NCBI Datasets output
-# These need to be the "mnemonics" of the NCBI Datasets fields, see docs for full list of fields
-# https://www.ncbi.nlm.nih.gov/datasets/docs/v2/reference-docs/command-line/dataformat/tsv/dataformat_tsv_virus-genome/#fields
-# Note: the "accession" field MUST be provided to match with the sequences
-ncbi_datasets_fields:
-  - accession
-  - sourcedb
-  - isolate-lineage
-  - geo-region
-  - geo-location
-  - isolate-collection-date
-  - release-date
-  - update-date
-  - length
-  - host-name
-  - isolate-lineage-source
-  - bioprojects
-  - biosample-acc
-  - sra-accs
-  - submitter-names
-  - submitter-affiliation
-
-### TO DELETE ABOVE
-
 # Params for the curate rule
 curate:
   # Fields to rename.
   # This is the first step in the pipeline, so any references to field names
   # in the configs below should use the new field names
   field_map:
-    accession: accession
-    accessionVersion: accession_version
-    insdcAccessionBase: genbank_accession
-    insdcAccessionFull: genbank_accession_rev
+    accession: PPX_accession
+    accessionVersion: PPX_accession_version
+    insdcAccessionBase: INSDC_accession
+    insdcAccessionFull: INSDC_accession_version
     # sourcedb: database  # Where original submission was made: Pathoplexus vs INSDC
     specimenCollectorSampleId: strain
     geoLocContinent: region
@@ -54,12 +28,15 @@ curate:
     insdcRawReadsAccession: sra_accession
     authors: full_authors
     authorAffiliations: institution
+    dataUseTerms: dataUseTerms
+    dataUseTermsRestrictedUntil: restrictedUntil
+    dataUseTermsUrl: dataUseTerms__url
     # TODO: There are more fields I should look into porting
   # Standardized strain name regex
   # Currently accepts any characters because we do not have a clear standard for strain names
   strain_regex: '^.+$'
   # Back up strain name field if 'strain' doesn't match regex above
-  strain_backup_fields: ['submissionId','accession']
+  strain_backup_fields: ['submissionId','PPX_accession']
   # List of date fields to standardize
   date_fields: ['date', 'date_released', 'date_updated']
   # Expected date formats present in date fields
@@ -88,18 +65,19 @@ curate:
   # User annotations file
   annotations: 'annotations.tsv'
   # ID field used to merge annotations
-  annotations_id: 'accession'
+  annotations_id: 'PPX_accession'
   # Field to use as the sequence ID in the FASTA file
-  id_field: 'accession'
+  id_field: 'PPX_accession'
   # Field to use as the sequence in the FASTA file
   sequence_field: 'sequence'
-  # The field in the NDJSON record that contains the actual GenBank accession
-  # TODO: Check what the purpose of this is
-  genbank_accession: 'accession'
   # Final output columns for the metadata TSV
   metadata_columns: [
-    'accession',
-    'genbank_accession_rev',
+    'PPX_accession',
+    'PPX_accession__url',
+    'PPX_accession_version',
+    'PPX_accession_version__url',
+    'INSDC_accession_version',
+    'INSDC_accession_version__url',
     'strain',
     'date',
     'region',
@@ -114,7 +92,9 @@ curate:
     'authors',
     'full_authors',
     'institution',
-    'url'
+    'dataUseTerms',
+    'dataUseTerms__url',
+    'restrictedUntil',
   ]
 
 # Params for Nextclade related rules

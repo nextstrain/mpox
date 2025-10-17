@@ -49,6 +49,7 @@ rule curate:
             config["curate"]["local_geolocation_rules"]
         ),
         annotations=resolve_config_path(config["curate"]["annotations"]),
+        urls_script="scripts/curate-urls.py",
     output:
         metadata="data/all_metadata.tsv",
         sequences="results/sequences.fasta",
@@ -99,6 +100,7 @@ rule curate:
                 --abbr-authors-field {params.abbr_authors_field:q} \
             | augur curate apply-geolocation-rules \
                 --geolocation-rules {input.geolocation_rules:q} \
+            | python {input.urls_script:q} \
             | augur curate apply-record-annotations \
                 --annotations {input.annotations:q} \
                 --id-field {params.annotations_id:q} \
@@ -109,34 +111,9 @@ rule curate:
         """
 
 
-rule add_metadata_columns:
-    """Add columns to metadata
-    Notable columns:
-    - url: URL linking to the NCBI GenBank record ('https://www.ncbi.nlm.nih.gov/nuccore/*').
-    """
-    input:
-        metadata="data/all_metadata.tsv",
-    output:
-        metadata=temp("data/all_metadata_added.tsv"),
-    benchmark:
-        "benchmarks/add_metadata_columns.txt"
-    log:
-        "logs/add_metadata_columns.txt",
-    shell:
-        r"""
-        exec &> >(tee {log:q})
-
-        csvtk mutate2 -t \
-          -n url \
-          -e '"https://pathoplexus.org/seq/" + $accession' \
-          {input.metadata:q} \
-        > {output.metadata:q}
-        """
-
-
 rule subset_metadata:
     input:
-        metadata="data/all_metadata_added.tsv",
+        metadata="data/all_metadata.tsv",
     output:
         subset_metadata="data/subset_metadata.tsv",
     params:

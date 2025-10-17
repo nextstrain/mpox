@@ -27,7 +27,6 @@ rule all:
         # "results/ppx.ndjson.zst",
 
 
-include: "rules/fetch_from_ncbi.smk"
 include: "rules/curate.smk"
 include: "rules/nextclade.smk"
 include: "rules/fetch_from_ppx.smk"

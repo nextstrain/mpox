@@ -11,6 +11,10 @@
     {
       "name": "GenBank",
       "url": "https://www.ncbi.nlm.nih.gov/genbank/"
+    },
+    {
+      "name": "Pathoplexus",
+      "url": "https://pathoplexus.org"
     }
   ],
   "build_url": "https://github.com/nextstrain/mpox",
@@ -32,6 +36,11 @@
     {
       "key": "country",
       "title": "Country",
+      "type": "categorical"
+    },
+    {
+      "key": "dataUseTerms",
+      "title": "Data use terms",
       "type": "categorical"
     },
     {
@@ -85,6 +94,12 @@
     "country",
     "division",
     "location"
+  ],
+  "metadata_columns": [
+    "strain",
+    "PPX_accession",
+    "INSDC_accession",
+    "restrictedUntil"
   ],
   "display_defaults": {
     "geo_resolution": "location",
