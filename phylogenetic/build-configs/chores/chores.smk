@@ -23,7 +23,7 @@ rule update_example_data:
             --metadata {input.metadata} \
             --metadata-id-columns {params.strain_id} \
             --sequences {input.sequences} \
-            --include-where strain=MK783032 strain=MK783030 \
+            --include-where PPX_accession=PP_000T4L2 PPX_accession=PP_000T4J6 \
             --group-by clade lineage \
             --subsample-max-sequences 50 \
             --subsample-seed 0 \

@@ -17,15 +17,117 @@ OUTPUTS:
 
 """
 
+# While the data on s3 is still Genbank, need to use local ingest data option
+use_local_ingest_data = config.get("use_local_ingest_data", True)
+if use_local_ingest_data:
+
+    rule copy:
+        """
+        Copying sequences and metadata from local ingest data
+        """
+        input:
+            sequences="../ingest/results/sequences.fasta",
+            metadata="../ingest/results/metadata.tsv",
+        output:
+            sequences="data/sequences.fasta.zst",
+            metadata="data/metadata.tsv.zst",
+        log:
+            "logs/copy.txt",
+        benchmark:
+            "benchmarks/copy.txt"
+        shell:
+            r"""
+            exec &> >(tee {log:q})
+
+            zstd {input.sequences:q} -o {output.sequences:q}
+            zstd {input.metadata:q} -o {output.metadata:q}
+            """
+
+else:
+
+    rule download:
+        """
+        Downloading sequences and metadata from data.nextstrain.org
+        """
+        output:
+            sequences="data/sequences.fasta.zst",
+            metadata="data/metadata.tsv.zst",
+        params:
+            sequences_url="https://data.nextstrain.org/files/workflows/mpox/sequences.fasta.zst",
+            metadata_url="https://data.nextstrain.org/files/workflows/mpox/metadata.tsv.zst",
+        log:
+            "logs/download.txt",
+        benchmark:
+            "benchmarks/download.txt"
+        shell:
+            r"""
+            exec &> >(tee {log:q})
+
+            curl -fsSL --compressed {params.sequences_url:q} --output {output.sequences:q}
+            curl -fsSL --compressed {params.metadata_url:q} --output {output.metadata:q}
+            """
+
+
+rule decompress:
+    """
+    Decompressing sequences and metadata
+    """
+    input:
+        sequences="data/sequences.fasta.zst",
+        metadata="data/metadata.tsv.zst",
+    output:
+        sequences="data/sequences.fasta",
+        metadata="data/metadata.tsv",
+    log:
+        "logs/decompress.txt",
+    benchmark:
+        "benchmarks/decompress.txt"
+    shell:
+        r"""
+        exec &> >(tee {log:q})
+
+        zstd --decompress --stdout {input.sequences:q} > {output.sequences:q}
+        zstd --decompress --stdout {input.metadata:q} > {output.metadata:q}
+        """
+
+
+rule map_accessions:
+    """
+    Map INSDC accessions to PPX accessions in exclude/include files.
+    INSDC accessions (versioned or unversioned) are transformed to PPX accessions.
+    PPX accessions pass through unchanged. This allows exclude/include files to
+    contain a mixture of INSDC and PPX accessions.
+    """
+    input:
+        accession_list=lambda w: config[w.in_ex_clude],
+        metadata="data/metadata.tsv",
+    output:
+        accession_list=build_dir + "/{build_name}/{in_ex_clude}_ppx.txt",
+    wildcard_constraints:
+        in_ex_clude="(include|exclude)",
+    log:
+        "logs/{build_name}/map_accessions_{in_ex_clude}.txt",
+    benchmark:
+        "benchmarks/{build_name}/map_accessions_{in_ex_clude}.txt"
+    shell:
+        r"""
+        exec &> >(tee {log:q})
+
+        python3 scripts/map_accessions.py \
+            --input {input.accession_list:q} \
+            --metadata {input.metadata:q} \
+            --output {output.accession_list:q}
+        """
+
 
 rule filter:
     """
     Removing strains that do not satisfy certain requirements.
     """
     input:
-        sequences="results/sequences.fasta",
-        metadata="results/metadata.tsv",
-        exclude=config["exclude"],
+        sequences="data/sequences.fasta",
+        metadata="data/metadata.tsv",
+        exclude=build_dir + "/{build_name}/exclude_ppx.txt",
     output:
         sequences=build_dir + "/{build_name}/good_sequences.fasta",
         metadata=build_dir + "/{build_name}/good_metadata.tsv",
@@ -67,7 +169,6 @@ rule filter:
 # so that Snakemake >= 9.12.0 doesn't fail due to optional inputs
 if config.get("private_sequences") and config.get("private_metadata"):
 
-    # At this point we merge in private data (iff requested)
     rule add_private_data:
         """
         This rule is conditionally added to the DAG if a config defines 'private_sequences' and 'private_metadata'
@@ -75,8 +176,8 @@ if config.get("private_sequences") and config.get("private_metadata"):
         input:
             sequences=build_dir + "/{build_name}/good_sequences.fasta",
             metadata=build_dir + "/{build_name}/good_metadata.tsv",
-            private_sequences=config["private_sequences"],
-            private_metadata=config["private_metadata"],
+            private_sequences=config.get("private_sequences", ""),
+            private_metadata=config.get("private_metadata", ""),
         output:
             sequences=build_dir + "/{build_name}/good_sequences_combined.fasta",
             metadata=build_dir + "/{build_name}/good_metadata_combined.tsv",
@@ -93,7 +194,7 @@ if config.get("private_sequences") and config.get("private_metadata"):
                 --sequences {input.sequences:q} {input.private_sequences:q} \
                 --output-metadata {output.metadata:q} \
                 --output-sequences {output.sequences:q}
-        """
+            """
 
 
 rule subsample:
@@ -142,7 +243,7 @@ rule combine_samples:
             if config.get("private_metadata", False)
             else build_dir + "/{build_name}/good_metadata.tsv"
         ),
-        include=config["include"],
+        include=build_dir + "/{build_name}/include_ppx.txt",
     output:
         sequences=build_dir + "/{build_name}/filtered.fasta",
         metadata=build_dir + "/{build_name}/metadata.tsv",
@@ -167,33 +268,12 @@ rule combine_samples:
         """
 
 
-rule reverse_reverse_complements:
-    input:
-        metadata=build_dir + "/{build_name}/metadata.tsv",
-        sequences=build_dir + "/{build_name}/filtered.fasta",
-    output:
-        build_dir + "/{build_name}/reversed.fasta",
-    log:
-        "logs/{build_name}/reverse_reverse_complements.txt",
-    benchmark:
-        "benchmarks/{build_name}/reverse_reverse_complements.txt"
-    shell:
-        r"""
-        exec &> >(tee {log:q})
-
-        python3 scripts/reverse_reversed_sequences.py \
-            --metadata {input.metadata:q} \
-            --sequences {input.sequences:q} \
-            --output {output:q}
-        """
-
-
 rule align:
     """
     Aligning sequences to {input.reference}
     """
     input:
-        sequences=build_dir + "/{build_name}/reversed.fasta",
+        sequences=build_dir + "/{build_name}/filtered.fasta",
         reference=config["reference"],
         genome_annotation=config["genome_annotation"],
     output:
