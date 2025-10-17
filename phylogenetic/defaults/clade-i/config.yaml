@@ -11,8 +11,6 @@ auspice_config: "defaults/clade-i/auspice_config.json"
 description: "defaults/description.md"
 tree_mask: "defaults/clade-i/tree_mask.tsv"
 
-# Use `accession` as the ID column since `strain` currently contains duplicates¹.
-# ¹ https://github.com/nextstrain/mpox/issues/33
 strain_id_field: "PPX_accession"
 
 build_name: "clade-i"

@@ -11,8 +11,6 @@ auspice_config: "defaults/hmpxv1_big/auspice_config.json"
 description: "defaults/description.md"
 tree_mask: "defaults/tree_mask.tsv"
 
-# Use `accession` as the ID column since `strain` currently contains duplicates¹.
-# ¹ https://github.com/nextstrain/mpox/issues/33
 strain_id_field: "PPX_accession"
 
 build_name: "hmpxv1_big"
@@ -50,11 +48,11 @@ seed_spacing: 1000
 
 ## treefix
 fix_tree: true
-treefix_root: "OP890401"
+treefix_root: "PP_000VYPY"
 
 ## refine
 timetree: true
-root: "OP890401"
+root: "PP_000VYPY"
 clock_rate: 5.7e-5
 clock_std_dev: 2e-5
 divergence_units: "mutations"
