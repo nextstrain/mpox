@@ -10,8 +10,8 @@ rule update_example_data:
     - ensures all clades and lineages are accounted for using --group-by
     """
     input:
-        sequences="data/sequences.fasta",
-        metadata="data/metadata.tsv",
+        sequences="results/sequences.fasta",
+        metadata="results/metadata.tsv",
     output:
         sequences="example_data/sequences.fasta",
         metadata="example_data/metadata.tsv",

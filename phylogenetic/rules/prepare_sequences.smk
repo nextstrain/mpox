@@ -3,6 +3,8 @@ This part of the workflow prepares sequences for constructing the phylogenetic t
 
 REQUIRED INPUTS:
 
+    metadata    = results/metadata.tsv
+    sequences   = results/sequences.fasta
     include     = path to file of sequences to force include
     exclude     = path to file of sequences to exclude
     reference   = path to reference sequence FASTA for Nextclade alignment
@@ -163,7 +165,6 @@ rule filter:
         """
 
 
-# At this point we merge in private data (iff requested)
 # Only define `add_private_data` rule when the config params are provided
 # so that Snakemake >= 9.12.0 doesn't fail due to optional inputs
 if config.get("private_sequences") and config.get("private_metadata"):

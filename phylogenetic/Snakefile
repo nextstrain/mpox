@@ -2,6 +2,10 @@ from packaging import version
 from augur.__version__ import __version__ as augur_version
 import os
 import sys
+from snakemake.utils import min_version
+
+# Minimum Snakemake version needed for the storage plugins used in remote_files.smk
+min_version("8.0.0")
 
 # The 'exec &> >(tee {log:q})' in each rule makes Python think it's not connected to terminal
 # Setting unbuffered makes it behave as expected
@@ -46,7 +50,9 @@ rule all:
         """
 
 
+include: "../shared/vendored/snakemake/remote_files.smk"
 include: "rules/config.smk"
+include: "rules/merge_inputs.smk"
 include: "rules/prepare_sequences.smk"
 include: "rules/construct_phylogeny.smk"
 include: "rules/annotate_phylogeny.smk"

@@ -10,6 +10,16 @@ Instead, changes appear below grouped by the date they were added to the workflo
 
 ## 2025
 
+* 08 October 2025: phylogenetic - Major update to the definition of inputs. ([#339][])
+    * Configs are now required to include the `inputs` param to define inputs for the workflow
+
+        ```yaml
+        inputs:
+          - name: ncbi
+            metadata: "https://data.nextstrain.org/files/workflows/mpox/metadata.tsv.zst"
+            sequences: "https://data.nextstrain.org/files/workflows/mpox/sequences.fasta.zst"
+        ```
+
 * 02 July 2025: phylogenetic - config schema updates for easier config overlays ([#321][])
     * new required config params
         * `exclude` - path to exclude.txt for `augur filter`
@@ -65,4 +75,5 @@ Instead, changes appear below grouped by the date they were added to the workflo
 [#318]: https://github.com/nextstrain/mpox/pull/318
 [#319]: https://github.com/nextstrain/mpox/pull/319
 [#321]: https://github.com/nextstrain/mpox/pull/321
+[#339]: https://github.com/nextstrain/mpox/pull/339
 [NCBI Datasets mnemonics]: https://www.ncbi.nlm.nih.gov/datasets/docs/v2/reference-docs/command-line/dataformat/tsv/dataformat_tsv_virus-genome/#fields
