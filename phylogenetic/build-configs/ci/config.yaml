@@ -16,7 +16,7 @@ tree_mask: "defaults/tree_mask.tsv"
 
 # Use `accession` as the ID column since `strain` currently contains duplicates¹.
 # ¹ https://github.com/nextstrain/mpox/issues/33
-strain_id_field: "accession"
+strain_id_field: "PPX_accession"
 
 build_name: "hmpxv1"
 auspice_name: "mpox_clade-IIb"
