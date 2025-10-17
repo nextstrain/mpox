@@ -36,7 +36,7 @@ CONTINENT_COUNTRIES = {
         "Saudi Arabia", "Singapore", "South Korea", "Spratly Islands", "Sri Lanka",
         "State of Palestine", "Syria", "Taiwan", "Tajikistan", "Thailand",
         "Timor-Leste", "Turkey", "Turkmenistan", "United Arab Emirates", "Uzbekistan",
-        "Viet Nam", "West Bank", "Yemen",
+        "Viet Name", "West Bank", "Yemen",
     ],
     "Europe": [
         "Albania", "Andorra", "Austria", "Belarus", "Belgium", "Bosnia and Herzegovina",
