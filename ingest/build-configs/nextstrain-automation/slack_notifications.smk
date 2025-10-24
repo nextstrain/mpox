@@ -22,17 +22,17 @@ if not slack_envvars_defined:
 S3_SRC = "s3://nextstrain-data/files/workflows/mpox"
 
 
-rule notify_on_genbank_record_change:
+rule notify_on_input_data_change:
     input:
-        genbank_ndjson="data/ncbi.ndjson",
+        ppx_ndjson="results/ppx.ndjson.zst",
     output:
-        touch("data/notify/genbank-record-change.done"),
+        touch("data/notify/input-data-change.done"),
     params:
         s3_src=S3_SRC,
         vendored_scripts=VENDORED_SCRIPTS,
     shell:
         """
-        {params.vendored_scripts}/notify-on-record-change {input.genbank_ndjson} {params.s3_src:q}/ncbi.ndjson.zst Genbank
+        {params.vendored_scripts}/notify-on-record-change {input.ppx_ndjson} {params.s3_src:q}/ncbi.ndjson.zst Pathoplexus
         """
 
 

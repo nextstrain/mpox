@@ -38,7 +38,7 @@ def _get_all_targets(wildcards):
     if send_slack_notifications:
         all_targets.extend(
             [
-                "data/notify/genbank-record-change.done",
+                "data/notify/input-data-change.done",
                 "data/notify/metadata-diff.done",
             ]
         )
