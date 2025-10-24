@@ -13,16 +13,12 @@ upload:
     dst: 's3://nextstrain-data/files/workflows/mpox'
     # Mapping of files to upload, with key as remote file name and the value
     # the local file path relative to the ingest directory.
-    # .gz/.xz targets will be removed by 28 July 2025
     # to avoid duplicate files with different compressions
     files_to_upload:
-      ncbi.ndjson.zst: data/ncbi.ndjson
-      metadata.tsv.gz: results/metadata.tsv
+      ncbi.ndjson.zst: results/ppx.ndjson.zst
       metadata.tsv.zst: results/metadata.tsv
-      sequences.fasta.xz: results/sequences.fasta
       sequences.fasta.zst: results/sequences.fasta
       nextclade.tsv.zst: results/nextclade.tsv
-      alignment.fasta.xz: results/alignment.fasta
       alignment.fasta.zst: results/alignment.fasta
       translations.zip: results/translations.zip
 
