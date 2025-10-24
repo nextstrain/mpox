@@ -32,7 +32,7 @@ rule notify_on_input_data_change:
         vendored_scripts=VENDORED_SCRIPTS,
     shell:
         """
-        {params.vendored_scripts}/notify-on-record-change {input.ppx_ndjson} {params.s3_src:q}/ncbi.ndjson.zst Pathoplexus
+        {params.vendored_scripts}/notify-on-record-change {input.ppx_ndjson} {params.s3_src:q}/ppx.ndjson.zst Pathoplexus
         """
 
 
