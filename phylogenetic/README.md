@@ -119,7 +119,7 @@ To update, run:
 
 ```bash
 nextstrain build . update_example_data -F \
-    --configfiles build-configs/ci/config.yaml build-configs/chores/config.yaml
+    --configfiles defaults/mpxv/config.yaml build-configs/chores/config.yaml
 ```
 
 ## Data use

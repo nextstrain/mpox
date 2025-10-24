@@ -17,79 +17,6 @@ OUTPUTS:
 
 """
 
-# While the data on s3 is still Genbank, need to use local ingest data option
-use_local_ingest_data = config.get("use_local_ingest_data", True)
-if use_local_ingest_data:
-
-    rule copy:
-        """
-        Copying sequences and metadata from local ingest data
-        """
-        input:
-            sequences="../ingest/results/sequences.fasta",
-            metadata="../ingest/results/metadata.tsv",
-        output:
-            sequences="data/sequences.fasta.zst",
-            metadata="data/metadata.tsv.zst",
-        log:
-            "logs/copy.txt",
-        benchmark:
-            "benchmarks/copy.txt"
-        shell:
-            r"""
-            exec &> >(tee {log:q})
-
-            zstd {input.sequences:q} -o {output.sequences:q}
-            zstd {input.metadata:q} -o {output.metadata:q}
-            """
-
-else:
-
-    rule download:
-        """
-        Downloading sequences and metadata from data.nextstrain.org
-        """
-        output:
-            sequences="data/sequences.fasta.zst",
-            metadata="data/metadata.tsv.zst",
-        params:
-            sequences_url="https://data.nextstrain.org/files/workflows/mpox/sequences.fasta.zst",
-            metadata_url="https://data.nextstrain.org/files/workflows/mpox/metadata.tsv.zst",
-        log:
-            "logs/download.txt",
-        benchmark:
-            "benchmarks/download.txt"
-        shell:
-            r"""
-            exec &> >(tee {log:q})
-
-            curl -fsSL --compressed {params.sequences_url:q} --output {output.sequences:q}
-            curl -fsSL --compressed {params.metadata_url:q} --output {output.metadata:q}
-            """
-
-
-rule decompress:
-    """
-    Decompressing sequences and metadata
-    """
-    input:
-        sequences="data/sequences.fasta.zst",
-        metadata="data/metadata.tsv.zst",
-    output:
-        sequences="data/sequences.fasta",
-        metadata="data/metadata.tsv",
-    log:
-        "logs/decompress.txt",
-    benchmark:
-        "benchmarks/decompress.txt"
-    shell:
-        r"""
-        exec &> >(tee {log:q})
-
-        zstd --decompress --stdout {input.sequences:q} > {output.sequences:q}
-        zstd --decompress --stdout {input.metadata:q} > {output.metadata:q}
-        """
-
 
 rule map_accessions:
     """
@@ -100,7 +27,7 @@ rule map_accessions:
     """
     input:
         accession_list=lambda w: config[w.in_ex_clude],
-        metadata="data/metadata.tsv",
+        metadata="results/metadata.tsv",
     output:
         accession_list=build_dir + "/{build_name}/{in_ex_clude}_ppx.txt",
     wildcard_constraints:
@@ -125,8 +52,8 @@ rule filter:
     Removing strains that do not satisfy certain requirements.
     """
     input:
-        sequences="data/sequences.fasta",
-        metadata="data/metadata.tsv",
+        sequences="results/sequences.fasta",
+        metadata="results/metadata.tsv",
         exclude=build_dir + "/{build_name}/exclude_ppx.txt",
     output:
         sequences=build_dir + "/{build_name}/good_sequences.fasta",
