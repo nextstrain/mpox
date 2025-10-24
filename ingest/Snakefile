@@ -24,7 +24,6 @@ rule all:
     input:
         "results/sequences.fasta",
         "results/metadata.tsv",
-        # "results/ppx.ndjson.zst",
 
 
 include: "rules/curate.smk"
