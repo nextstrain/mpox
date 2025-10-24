@@ -28,6 +28,7 @@ rule map_accessions:
     input:
         accession_list=lambda w: config[w.in_ex_clude],
         metadata="results/metadata.tsv",
+        script="scripts/map_accessions.py",
     output:
         accession_list=build_dir + "/{build_name}/{in_ex_clude}_ppx.txt",
     wildcard_constraints:
@@ -40,7 +41,7 @@ rule map_accessions:
         r"""
         exec &> >(tee {log:q})
 
-        python3 scripts/map_accessions.py \
+        {input.script:q} \
             --input {input.accession_list:q} \
             --metadata {input.metadata:q} \
             --output {output.accession_list:q}
