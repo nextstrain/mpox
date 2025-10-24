@@ -1,7 +1,9 @@
 inputs:
-  - name: ncbi
-    metadata: "https://data.nextstrain.org/files/workflows/mpox/metadata.tsv.zst"
-    sequences: "https://data.nextstrain.org/files/workflows/mpox/sequences.fasta.zst"
+  - name: local
+    # metadata: "https://data.nextstrain.org/files/workflows/mpox/metadata.tsv.zst"
+    # sequences: "https://data.nextstrain.org/files/workflows/mpox/sequences.fasta.zst"
+    metadata: "/Users/cr/code/mpox/ingest/results/metadata.tsv"
+    sequences: "/Users/cr/code/mpox/ingest/results/sequences.fasta"
 
 auspice_config: "defaults/mpxv/auspice_config.json"
 include: "defaults/mpxv/include.txt"
