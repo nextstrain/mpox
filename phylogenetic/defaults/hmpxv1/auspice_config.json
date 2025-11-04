@@ -66,6 +66,11 @@
       "type": "categorical"
     },
     {
+      "key": "restrictedUntil",
+      "title": "Restricted Until",
+      "type": "categorical"
+    },
+    {
       "key": "author",
       "title": "Authors",
       "type": "categorical"
@@ -77,7 +82,7 @@
   "metadata_columns": [
     "strain",
     "PPX_accession",
-    "INSDC_accession",
+    "INSDC_accession_version",
     "restrictedUntil"
   ],
   "display_defaults": {

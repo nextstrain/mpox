@@ -98,7 +98,7 @@
   "metadata_columns": [
     "strain",
     "PPX_accession",
-    "INSDC_accession",
+    "INSDC_accession_version",
     "restrictedUntil"
   ],
   "display_defaults": {
