@@ -15,7 +15,7 @@ upload:
     # the local file path relative to the ingest directory.
     # to avoid duplicate files with different compressions
     files_to_upload:
-      ncbi.ndjson.zst: results/ppx.ndjson.zst
+      ppx.ndjson.zst: results/ppx.ndjson.zst
       metadata.tsv.zst: results/metadata.tsv
       sequences.fasta.zst: results/sequences.fasta
       nextclade.tsv.zst: results/nextclade.tsv
