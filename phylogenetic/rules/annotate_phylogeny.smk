@@ -154,6 +154,7 @@ rule rename_clades:
 
         python scripts/clades_renaming.py \
             --input-node-data {input:q} \
+            --outgroup-clade-name "unassigned" \
             --output-node-data {output.node_data:q}
         """
 

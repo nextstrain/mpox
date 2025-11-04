@@ -1,4 +1,5 @@
-import json, argparse
+import argparse
+import json
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
@@ -14,6 +15,9 @@ if __name__ == "__main__":
         metavar="JSON",
         required=True,
         help="output Auspice JSON",
+    )
+    parser.add_argument(
+        "--outgroup-clade-name", type=str, default="outgroup", help="name for outgroup clade"
     )
     args = parser.parse_args()
     with open(args.input_node_data) as fh:
@@ -33,8 +37,8 @@ if __name__ == "__main__":
         # if old_clade_name.startswith('outbreak'):
         #     outbreak_name = old_clade_name.split()[1]
         #     clade_name = clade[outbreak_name]
-        elif old_clade_name.startswith("outgroup"):
-            clade_name = "outgroup"
+        elif old_clade_name.startswith(args.outgroup_clade_name):
+            clade_name = args.outgroup_clade_name
         else:
             clade_name = "IIb"
             outbreak_name = "hMPXV-1"
