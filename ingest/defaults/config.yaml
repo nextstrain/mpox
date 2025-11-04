@@ -31,6 +31,7 @@ curate:
     dataUseTerms: dataUseTerms
     dataUseTermsRestrictedUntil: restrictedUntil
     dataUseTermsUrl: dataUseTerms__url
+    groupId: Pathoplexus_group_id
     # TODO: There are more fields I should look into porting
   # Standardized strain name regex
   # Currently accepts any characters because we do not have a clear standard for strain names
@@ -95,6 +96,10 @@ curate:
     'dataUseTerms',
     'dataUseTerms__url',
     'restrictedUntil',
+    'displayName',
+    'Pathoplexus_group_id',
+    'Pathoplexus_group_id__url',
+    'submission_database',
   ]
 
 # Params for Nextclade related rules

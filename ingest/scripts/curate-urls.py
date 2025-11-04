@@ -15,6 +15,7 @@ def run(args: argparse.Namespace, records: Iterable[dict]) -> Iterable[dict]:
         ppx_accession = record.get('PPX_accession', None) # unversioned
         ppx_accession_version = record.get('PPX_accession_version', None) # versioned
         insdc_accession_version = record.get('INSDC_accession_version', None) # versioned
+        group_id = record.get('Pathoplexus_group_id', None)
 
         # Add INSDC_accession__url and PPX_accession__url fields to NDJSON records
         record['PPX_accession__url'] = f"https://pathoplexus.org/seq/{ppx_accession}" \
@@ -26,6 +27,10 @@ def run(args: argparse.Namespace, records: Iterable[dict]) -> Iterable[dict]:
         record['INSDC_accession_version__url'] = f"https://www.ncbi.nlm.nih.gov/nuccore/{insdc_accession_version}" \
             if insdc_accession_version \
             else ""
+        record['Pathoplexus_group_id__url'] = f"https://pathoplexus.org/group/{group_id}" \
+            if group_id \
+            else ""
+        record['submission_database'] = "INSDC" if str(group_id) == "1" else "Pathoplexus"
 
         yield record
 

@@ -3,7 +3,7 @@ import sys
 
 rule get_nextclade_dataset:
     output:
-        temp("data/mpxv.zip"),
+        "data/mpxv.zip",
     params:
         dataset_name="MPXV",
     log:
@@ -70,7 +70,7 @@ rule nextclade_metadata:
     input:
         nextclade="results/nextclade.tsv",
     output:
-        nextclade_metadata=temp("results/nextclade_metadata.tsv"),
+        nextclade_metadata="results/nextclade_metadata.tsv",
     params:
         nextclade_id_field=config["nextclade"]["id_field"],
         nextclade_field_map=[

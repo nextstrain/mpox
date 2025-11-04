@@ -2,7 +2,7 @@
 This part of the workflow handles curating the data into standardized
 formats and expects input file
 
-    sequences_ndjson = "data/ncbi.ndjson"
+    sequences_ndjson = "data/ppx_flat.ndjson"
 
 This will produce output files as
 
