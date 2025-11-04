@@ -1,7 +1,7 @@
 {
   "title": "Genomic epidemiology of mpox viruses across clades",
   "maintainers": [
-    {"name": "Nextstrain team", "url": "http://nextstrain.org"}
+    { "name": "Nextstrain team", "url": "http://nextstrain.org" }
   ],
   "data_provenance": [
     {
@@ -76,6 +76,16 @@
       "type": "categorical"
     },
     {
+      "key": "submission_database",
+      "title": "Database of original submission",
+      "type": "categorical"
+    },
+    {
+      "key": "Pathoplexus_group",
+      "title": "Pathoplexus Group",
+      "type": "categorical"
+    },
+    {
       "key": "restrictedUntil",
       "title": "Restricted Until",
       "type": "categorical"
@@ -86,9 +96,7 @@
       "type": "categorical"
     }
   ],
-  "geo_resolutions": [
-    "country"
-  ],
+  "geo_resolutions": ["country"],
   "metadata_columns": [
     "strain",
     "PPX_accession",
@@ -106,6 +114,7 @@
     "clade_membership",
     "lineage",
     "country",
+    "Pathoplexus_group",
     "region",
     "recency",
     "host",

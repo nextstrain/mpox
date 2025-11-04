@@ -27,7 +27,7 @@ def run(args: argparse.Namespace, records: Iterable[dict]) -> Iterable[dict]:
         record['INSDC_accession_version__url'] = f"https://www.ncbi.nlm.nih.gov/nuccore/{insdc_accession_version}" \
             if insdc_accession_version \
             else ""
-        record['Pathoplexus_group_id__url'] = f"https://pathoplexus.org/group/{group_id}" \
+        record['Pathoplexus_group__url'] = f"https://pathoplexus.org/group/{group_id}" \
             if group_id \
             else ""
         record['submission_database'] = "INSDC" if str(group_id) == "1" else "Pathoplexus"

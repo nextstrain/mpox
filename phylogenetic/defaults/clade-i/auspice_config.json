@@ -106,6 +106,16 @@
       "type": "categorical"
     },
     {
+      "key": "submission_database",
+      "title": "Database of original submission",
+      "type": "categorical"
+    },
+    {
+      "key": "Pathoplexus_group",
+      "title": "Pathoplexus Group ID",
+      "type": "categorical"
+    },
+    {
       "key": "restrictedUntil",
       "title": "Restricted Until",
       "type": "categorical"
@@ -130,5 +140,12 @@
     "distance_measure": "div",
     "transmission_lines": false
   },
-  "filters": ["country", "region", "recency", "host", "author"]
+  "filters": [
+    "country",
+    "region",
+    "recency",
+    "host",
+    "author",
+    "Pathoplexus_group"
+  ]
 }
