@@ -32,6 +32,10 @@ Pairwise alignments with [Nextclade](https://clades.nextstrain.org/) against the
 - [data.nextstrain.org/files/workflows/mpox/nextclade.tsv.zst](https://data.nextstrain.org/files/workflows/mpox/nextclade.tsv.zst)
 - [data.nextstrain.org/files/workflows/mpox/translations.zip](https://data.nextstrain.org/files/workflows/mpox/translations.zip)
 
+These files are updated regularly as new sequences become available. For reproducibility, please download and save your own copies of the data files you use in your analyses, as the file contents at these URLs will change over time.
+
+Archived data files from before the Pathoplexus transition (published 05 November 2025) are available at [data.nextstrain.org/files/workflows/mpox/archive/20251105/](https://data.nextstrain.org/files/workflows/mpox/archive/20251105/)
+
 If you are interested in the RESTRICTED USE data, we ask you to obtain those directly from Pathoplexus.
 
 ---

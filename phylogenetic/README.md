@@ -48,8 +48,11 @@ Input sequences and metadata can be retrieved from data.nextstrain.org
 * [sequences.fasta.zst](https://data.nextstrain.org/files/workflows/mpox/sequences.fasta.zst)
 * [metadata.tsv.zst](https://data.nextstrain.org/files/workflows/mpox/metadata.tsv.zst)
 
-The above datasets have been preprocessed and cleaned from GenBank using the
-[ingest/](../ingest/) workflow and are updated at regular intervals.
+The above datasets have been preprocessed and cleaned from Pathoplexus (which includes INSDC data) using the [ingest/](../ingest/) workflow and are updated at regular intervals.
+
+These files are updated regularly as new sequences become available. For reproducibility, please download and save your own copies of the data files you use in your analyses, as the file contents at these URLs will change over time.
+
+Archived data files from before the Pathoplexus transition (published 05 November 2025) are available at [data.nextstrain.org/files/workflows/mpox/archive/20251105/](https://data.nextstrain.org/files/workflows/mpox/archive/20251105/)
 
 Note that these data are generously shared by many labs around the world.
 If you analyze and plan to publish using these data, please contact these labs first.
