@@ -1,5 +1,6 @@
 Chrom	ChromStart	ChromEnd	locus tag	Comment
 chr	0	1500		mask from beginning
+chr	6420	7080		intergenic, problematic in Togo A.2.2 sequences
 chr	133050	133250		indel variation and long homopolymers
 chr	136500	136600		indel variation and long homopolymers
 chr	140050	140250		indel variation and long repetitive elements
