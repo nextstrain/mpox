@@ -179,7 +179,7 @@ def process_records(input_file, output_file):
                             record[key] = ""
                         elif isinstance(value, str) and '\n' in value:
                             record[key] = value.replace('\n', ' ').replace('\r', '')
-                    
+
                     # Replace Viet Nam with Vietnam
                     if record.get('geoLocCountry') == "Viet Nam":
                         record['geoLocCountry'] = "Vietnam"
