@@ -36,7 +36,7 @@ CONTINENT_COUNTRIES = {
         "Saudi Arabia", "Singapore", "South Korea", "Spratly Islands", "Sri Lanka",
         "State of Palestine", "Syria", "Taiwan", "Tajikistan", "Thailand",
         "Timor-Leste", "Turkey", "Turkmenistan", "United Arab Emirates", "Uzbekistan",
-        "Viet Nam", "West Bank", "Yemen",
+        "Viet Name", "West Bank", "Yemen",
     ],
     "Europe": [
         "Albania", "Andorra", "Austria", "Belarus", "Belgium", "Bosnia and Herzegovina",
@@ -179,9 +179,9 @@ def process_records(input_file, output_file):
                             record[key] = ""
                         elif isinstance(value, str) and '\n' in value:
                             record[key] = value.replace('\n', ' ').replace('\r', '')
-                    
-                    # Replace Viet Nam with Vietnam
-                    if record.get('geoLocCountry') == "Viet Nam":
+
+                    # Replace Viet Name with Vietnam
+                    if record.get('geoLocCountry') == "Viet Name":
                         record['geoLocCountry'] = "Vietnam"
 
                     # Write modified record
