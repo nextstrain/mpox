@@ -22,8 +22,8 @@ upload:
       alignment_with_restricted.fasta.zst: results/alignment.fasta
       translations_with_restricted.zip: results/translations.zip
 
-      metadata.tsv.zst: results/metadata_open.tsv
-      sequences.fasta.zst: results/sequences_open.fasta
+      metadata.tsv.zst: results/metadata_open.tsv.zst
+      sequences.fasta.zst: results/sequences_open.fasta.zst
 
     cloudfront_domain: 'data.nextstrain.org'
 
