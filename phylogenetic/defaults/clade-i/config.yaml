@@ -1,7 +1,7 @@
 inputs:
   - name: pathoplexus
-    metadata: "https://data.nextstrain.org/files/workflows/mpox/branch/ppx/metadata.tsv.zst"
-    sequences: "https://data.nextstrain.org/files/workflows/mpox/branch/ppx/sequences.fasta.zst"
+    metadata: "https://data.nextstrain.org/files/workflows/mpox/branch/ppx/metadata_with_restricted.tsv.zst"
+    sequences: "https://data.nextstrain.org/files/workflows/mpox/branch/ppx/sequences_with_restricted.fasta.zst"
 
 reference: "defaults/clade-i/reference.fasta"
 genome_annotation: "defaults/clade-i/genome_annotation.gff3"

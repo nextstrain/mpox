@@ -41,3 +41,21 @@ if "custom_rules" in config:
         # Convert to an absolute path based on the analysis/current directory
         # to avoid this mismatch of expectations.
         include: os.path.join(os.getcwd(), rule_file)
+
+
+rule extract_open_data:
+    input:
+        metadata="results/metadata.tsv",
+        sequences="results/sequences.fasta",
+    output:
+        metadata="results/metadata_open.tsv.zst",
+        sequences="results/sequences_open.fasta.zst",
+    shell:
+        """
+        augur filter --metadata {input.metadata} \
+                     --sequences {input.sequences} \
+                     --metadata-id-columns PPX_accession \
+                     --exclude-where "dataUseTerms=RESTRICTED" \
+                     --output-metadata {output.metadata} \
+                     --output-sequences {output.sequences}
+        """
