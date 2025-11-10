@@ -11,7 +11,9 @@ The third is [`mpox/all-clades`](https://nextstrain.org/mpox/all-clades), which 
 The fourth is [`mpox/clade-I`](https://nextstrain.org/mpox/clade-I), which focuses on clade I sequences and includes as many sequences as possible.
 
 #### Analysis
+
 Our bioinformatic processing workflow can be found at [github.com/nextstrain/mpox](https://github.com/nextstrain/mpox) and includes:
+
 - sequence alignment by [Nextclade](https://docs.nextstrain.org/projects/nextclade/en/stable/user/nextclade-cli/index.html)
 - masking several regions of the genome, including the first 1350 and last 6422 base pairs and multiple repetitive regions of variable length
 - phylogenetic reconstruction using [IQTREE-2](http://www.iqtree.org/)
@@ -19,18 +21,15 @@ Our bioinformatic processing workflow can be found at [github.com/nextstrain/mpo
 - clade assignment via [clade definitions defined here](https://github.com/nextstrain/mpox/blob/-/phylogenetic/defaults/clades.tsv), to label broader MPXV clades I, IIa and IIb and to label hMPXV1 lineages A, A.1, A.1.1, etc. (defined by [mpxv-lineages/lineage-designation](https://github.com/mpxv-lineages/lineage-designation))
 
 #### Underlying data
+
 We source sequence data and metadata from [Pathoplexus](https://pathoplexus.org) which ingests data from INSDC and provides data from INSDC together with data that were submitted directly to Pathoplexus. See our [ingest configuration file](https://github.com/nextstrain/mpox/blob/-/ingest/defaults/config.yaml).
 Curated sequences and metadata are available as flat files at the links below.
 The data in the files provided below is the subset of data from Pathoplexus under the OPEN [data use terms](https://pathoplexus.org/about/terms-of-use/data-use-terms). In the metadata files below, each sequence contains a field specifying the data use terms of this sequence and a link to the data use terms.
 
 Curated sequences and metadata are available as flat files at:
+
 - [data.nextstrain.org/files/workflows/mpox/sequences.fasta.zst](https://data.nextstrain.org/files/workflows/mpox/sequences.fasta.zst)
 - [data.nextstrain.org/files/workflows/mpox/metadata.tsv.zst](https://data.nextstrain.org/files/workflows/mpox/metadata.tsv.zst)
-
-Pairwise alignments with [Nextclade](https://clades.nextstrain.org/) against the [reference sequence MPXV-M5312_HM12_Rivers](https://www.ncbi.nlm.nih.gov/nuccore/NC_063383), Nextclade analysis results, and translated ORFs are available at
-- [data.nextstrain.org/files/workflows/mpox/alignment.fasta.zst](https://data.nextstrain.org/files/workflows/mpox/alignment.fasta.zst)
-- [data.nextstrain.org/files/workflows/mpox/nextclade.tsv.zst](https://data.nextstrain.org/files/workflows/mpox/nextclade.tsv.zst)
-- [data.nextstrain.org/files/workflows/mpox/translations.zip](https://data.nextstrain.org/files/workflows/mpox/translations.zip)
 
 These files are updated regularly as new sequences become available. For reproducibility, please download and save your own copies of the data files you use in your analyses, as the file contents at these URLs will change over time.
 
