@@ -1,0 +1,49 @@
+{
+  "alignment": "tmp/test_alignment.fasta",
+  "generated_by": {
+    "program": "augur",
+    "version": "32.0.0"
+  },
+  "input_tree": "tmp/test_tree.nwk",
+  "nodes": {
+    "CHILD_TIP": {
+      "branch_length": 0.1
+    },
+    "GRANDCHILD1": {
+      "branch_length": 0.1
+    },
+    "GRANDCHILD2": {
+      "branch_length": 0.1
+    },
+    "NODE_0000000": {
+      "branch_length": 0.001
+    },
+    "NODE_0000001": {
+      "branch_length": 0.2
+    },
+    "NODE_0000002": {
+      "branch_length": 0.1
+    },
+    "NODE_0000003": {
+      "branch_length": 0.1
+    },
+    "NODE_0000004": {
+      "branch_length": 0.1
+    },
+    "NODE_0000005": {
+      "branch_length": 0.1
+    },
+    "ROOT": {
+      "branch_length": 0.0
+    },
+    "STABILIZER1": {
+      "branch_length": 0.1
+    },
+    "STABILIZER2": {
+      "branch_length": 0.1
+    },
+    "STABILIZER3": {
+      "branch_length": 0.1
+    }
+  }
+}

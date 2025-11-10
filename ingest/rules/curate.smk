@@ -77,9 +77,6 @@ rule curate:
         r"""
         exec &> >(tee {log:q})
 
-        # TODO
-        # - Curate doesn't handle PPX authors
-
         zstdcat {input.sequences_ndjson:q} \
             | augur curate rename \
                 --field-map {params.field_map:q} \
