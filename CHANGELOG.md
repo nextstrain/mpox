@@ -10,6 +10,10 @@ Instead, changes appear below grouped by the date they were added to the workflo
 
 ## 2025
 
+* 10 November 2025: Transition to Pathoplexus as data source
+  * Ingest workflow updated to pull data from Pathoplexus API instead of directly from INSDC databases.
+  * Phylogenetic workflow updated to take into account changes in metadata and sequence data from Pathoplexus.
+
 * 05 November 2025: Data files archived before transition to Pathoplexus data source.
     * The data files published on 05 November 2025 (prior to the Pathoplexus transition) are available at:
         * https://data.nextstrain.org/files/workflows/mpox/archive/20251105/metadata.tsv.zst
