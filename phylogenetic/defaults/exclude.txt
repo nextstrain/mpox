@@ -126,3 +126,8 @@ PQ368495    # Off the clock, no mutations vs 3y older sequence
 PP748917    # Off the clock, no mutations vs 3y older sequence
 
 OZ261647    # Overdiverged A.2.2 (G.1 Sierra Leone)
+
+PP_004BJJM    # Clade Ia/Ib intermediate -> recombinant or contamination/coinfection
+
+PP_000YWQ   # B.1 with reversions
+PP_0011BTZ  # B.1 with reversions

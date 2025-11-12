@@ -11,7 +11,7 @@ VENDORED_SCRIPTS = f"{str(workflow.current_basedir)}/../../../shared/vendored/sc
 send_slack_notifications = config.get("send_slack_notifications", False)
 
 
-def _get_all_targets(wildcards):
+def _get_all_targets(wildcards) -> list[str]:
     # Default targets are the metadata TSV and sequences FASTA files
     all_targets = ["results/sequences.fasta", "results/metadata.tsv"]
 
@@ -38,7 +38,7 @@ def _get_all_targets(wildcards):
     if send_slack_notifications:
         all_targets.extend(
             [
-                "data/notify/genbank-record-change.done",
+                "data/notify/input-data-change.done",
                 "data/notify/metadata-diff.done",
             ]
         )

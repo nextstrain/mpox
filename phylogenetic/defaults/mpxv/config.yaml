@@ -1,7 +1,10 @@
 inputs:
-  - name: ncbi
-    metadata: "https://data.nextstrain.org/files/workflows/mpox/metadata.tsv.zst"
-    sequences: "https://data.nextstrain.org/files/workflows/mpox/sequences.fasta.zst"
+  - name: pathoplexus
+    metadata: "https://data.nextstrain.org/files/workflows/mpox/branch/ppx/metadata_with_restricted.tsv.zst"
+    sequences: "https://data.nextstrain.org/files/workflows/mpox/branch/ppx/sequences_with_restricted.fasta.zst"
+    # - name: local
+    #   metadata: "/Users/cr/code/mpox/ingest/results/metadata.tsv"
+    #   sequences: "/Users/cr/code/mpox/ingest/results/sequences.fasta"
 
 auspice_config: "defaults/mpxv/auspice_config.json"
 include: "defaults/mpxv/include.txt"
@@ -16,9 +19,7 @@ description: "defaults/description.md"
 clades: "defaults/clades.tsv"
 tree_mask: "defaults/tree_mask.tsv"
 
-# Use `accession` as the ID column since `strain` currently contains duplicates¹.
-# ¹ https://github.com/nextstrain/mpox/issues/33
-strain_id_field: "accession"
+strain_id_field: "PPX_accession"
 
 build_name: "mpxv"
 auspice_name: "mpox_all-clades"

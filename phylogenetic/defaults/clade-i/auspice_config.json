@@ -1,12 +1,16 @@
 {
   "title": "Genomic epidemiology of mpox clade I viruses",
   "maintainers": [
-    {"name": "Nextstrain team", "url": "http://nextstrain.org"}
+    { "name": "Nextstrain team", "url": "http://nextstrain.org" }
   ],
   "data_provenance": [
     {
       "name": "GenBank",
       "url": "https://www.ncbi.nlm.nih.gov/genbank/"
+    },
+    {
+      "name": "Pathoplexus",
+      "url": "https://pathoplexus.org"
     }
   ],
   "build_url": "https://github.com/nextstrain/mpox",
@@ -19,6 +23,11 @@
     {
       "key": "country",
       "title": "Country",
+      "type": "categorical"
+    },
+    {
+      "key": "dataUseTerms",
+      "title": "Data use terms",
       "type": "categorical"
     },
     {
@@ -97,19 +106,32 @@
       "type": "categorical"
     },
     {
+      "key": "submission_database",
+      "title": "Database of original submission",
+      "type": "categorical"
+    },
+    {
+      "key": "Pathoplexus_group",
+      "title": "Pathoplexus Group ID",
+      "type": "categorical"
+    },
+    {
+      "key": "restrictedUntil",
+      "title": "Restricted Until",
+      "type": "categorical"
+    },
+    {
       "key": "date",
       "title": "Collection date",
       "type": "categorical"
     }
   ],
-  "geo_resolutions": [
-    "region",
-    "country",
-    "division",
-    "location"
-  ],
+  "geo_resolutions": ["region", "country", "division", "location"],
   "metadata_columns": [
-    "strain"
+    "strain",
+    "PPX_accession",
+    "INSDC_accession_version",
+    "restrictedUntil"
   ],
   "display_defaults": {
     "color_by": "country",
@@ -123,6 +145,7 @@
     "region",
     "recency",
     "host",
-    "author"
+    "author",
+    "Pathoplexus_group"
   ]
 }

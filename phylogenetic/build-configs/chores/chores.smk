@@ -18,12 +18,13 @@ rule update_example_data:
     params:
         strain_id=config["strain_id_field"],
     shell:
-        """
+        r"""
         augur filter \
             --metadata {input.metadata} \
             --metadata-id-columns {params.strain_id} \
             --sequences {input.sequences} \
-            --include-where strain=MK783032 strain=MK783030 \
+            --include-where PPX_accession_version=PP_000T4L2.1 PPX_accession_version=PP_000T4J6.1 \
+            --exclude-where dataUseTerms=RESTRICTED \
             --group-by clade lineage \
             --subsample-max-sequences 50 \
             --subsample-seed 0 \

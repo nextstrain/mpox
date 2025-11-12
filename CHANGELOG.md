@@ -10,6 +10,20 @@ Instead, changes appear below grouped by the date they were added to the workflo
 
 ## 2025
 
+* 10 November 2025: Transition to Pathoplexus as data source
+  * Ingest workflow updated to pull data from Pathoplexus API instead of directly from INSDC databases.
+  * Phylogenetic workflow updated to take into account changes in metadata and sequence data from Pathoplexus.
+
+* 05 November 2025: Data files archived before transition to Pathoplexus data source.
+    * The data files published on 05 November 2025 (prior to the Pathoplexus transition) are available at:
+        * https://data.nextstrain.org/files/workflows/mpox/archive/20251105/metadata.tsv.zst
+        * https://data.nextstrain.org/files/workflows/mpox/archive/20251105/sequences.fasta.zst
+        * https://data.nextstrain.org/files/workflows/mpox/archive/20251105/alignment.fasta.zst
+        * https://data.nextstrain.org/files/workflows/mpox/archive/20251105/nextclade.tsv.zst
+        * https://data.nextstrain.org/files/workflows/mpox/archive/20251105/translations.zip
+        * https://data.nextstrain.org/files/workflows/mpox/archive/20251105/ncbi.ndjson.zst
+    * After this date, the main data files at https://data.nextstrain.org/files/workflows/mpox/ might contain data from Pathoplexus (which includes INSDC data).
+
 * 08 October 2025: phylogenetic - Major update to the definition of inputs. ([#339][])
     * Configs are now required to include the `inputs` param to define inputs for the workflow
 

@@ -24,7 +24,8 @@ rule tree:
         tree_mask=config["tree_mask"],
     output:
         tree=build_dir + "/{build_name}/tree_raw.nwk",
-    threads: workflow.cores
+    # It's faster to use 4 threads rather than doing a full search - hence hardcoding 4
+    threads: min(workflow.cores, 4)
     log:
         "logs/{build_name}/tree.txt",
     benchmark:
@@ -36,6 +37,7 @@ rule tree:
         augur tree \
             --alignment {input.alignment:q} \
             --exclude-sites {input.tree_mask:q} \
+            --tree-builder-args "-T {threads}" \
             --output {output.tree:q} \
             --nthreads {threads}
         """

@@ -2,7 +2,7 @@
 This part of the workflow handles curating the data into standardized
 formats and expects input file
 
-    sequences_ndjson = "data/ncbi.ndjson"
+    sequences_ndjson = "data/ppx_flat.ndjson"
 
 This will produce output files as
 
@@ -22,16 +22,38 @@ def format_field_map(field_map: dict[str, str]) -> list[str]:
     return [f"{key}={value}" for key, value in field_map.items()]
 
 
+rule generate_continent:
+    input:
+        ndjson="results/ppx_flat.ndjson.zst",
+        script="scripts/generate_continent.py",
+    output:
+        ndjson="results/ppx_flat_continent.ndjson.zst",
+    benchmark:
+        "benchmarks/generate_continent.txt"
+    log:
+        "logs/generate_continent.txt",
+    shell:
+        r"""
+        exec &> >(tee {log:q})
+
+        python {input.script:q} \
+            --input {input.ndjson:q} \
+            --output {output.ndjson:q}
+        """
+
+
 rule curate:
     input:
-        sequences_ndjson="data/ncbi.ndjson",
+        sequences_ndjson="results/ppx_flat_continent.ndjson.zst",
         geolocation_rules=resolve_config_path(
             config["curate"]["local_geolocation_rules"]
         ),
         annotations=resolve_config_path(config["curate"]["annotations"]),
+        urls_script="scripts/curate-urls.py",
     output:
         metadata="data/all_metadata.tsv",
         sequences="results/sequences.fasta",
+        # ndjson="results/curated.ndjson.zst",
     benchmark:
         "benchmarks/curate.txt"
     log:
@@ -42,7 +64,6 @@ rule curate:
         strain_backup_fields=config["curate"]["strain_backup_fields"],
         date_fields=config["curate"]["date_fields"],
         expected_date_formats=config["curate"]["expected_date_formats"],
-        genbank_location_field=config["curate"]["genbank_location_field"],
         articles=config["curate"]["titlecase"]["articles"],
         abbreviations=config["curate"]["titlecase"]["abbreviations"],
         titlecase_fields=config["curate"]["titlecase"]["fields"],
@@ -56,7 +77,7 @@ rule curate:
         r"""
         exec &> >(tee {log:q})
 
-        cat {input.sequences_ndjson:q} \
+        zstdcat {input.sequences_ndjson:q} \
             | augur curate rename \
                 --field-map {params.field_map:q} \
             | augur curate normalize-strings \
@@ -66,8 +87,6 @@ rule curate:
             | augur curate format-dates \
                 --date-fields {params.date_fields:q} \
                 --expected-date-formats {params.expected_date_formats:q} \
-            | augur curate parse-genbank-location \
-                --location-field {params.genbank_location_field:q} \
             | augur curate titlecase \
                 --titlecase-fields {params.titlecase_fields:q} \
                 --articles {params.articles:q} \
@@ -78,6 +97,7 @@ rule curate:
                 --abbr-authors-field {params.abbr_authors_field:q} \
             | augur curate apply-geolocation-rules \
                 --geolocation-rules {input.geolocation_rules:q} \
+            | python {input.urls_script:q} \
             | augur curate apply-record-annotations \
                 --annotations {input.annotations:q} \
                 --id-field {params.annotations_id:q} \
@@ -88,36 +108,9 @@ rule curate:
         """
 
 
-rule add_metadata_columns:
-    """Add columns to metadata
-    Notable columns:
-    - url: URL linking to the NCBI GenBank record ('https://www.ncbi.nlm.nih.gov/nuccore/*').
-    """
-    input:
-        metadata="data/all_metadata.tsv",
-    output:
-        metadata=temp("data/all_metadata_added.tsv"),
-    params:
-        accession=config["curate"]["genbank_accession"],
-    benchmark:
-        "benchmarks/add_metadata_columns.txt"
-    log:
-        "logs/add_metadata_columns.txt",
-    shell:
-        r"""
-        exec &> >(tee {log:q})
-
-        csvtk mutate2 -t \
-          -n url \
-          -e '"https://www.ncbi.nlm.nih.gov/nuccore/" + ${params.accession:q}' \
-          {input.metadata:q} \
-        > {output.metadata:q}
-        """
-
-
 rule subset_metadata:
     input:
-        metadata="data/all_metadata_added.tsv",
+        metadata="data/all_metadata.tsv",
     output:
         subset_metadata="data/subset_metadata.tsv",
     params:
