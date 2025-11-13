@@ -1,10 +1,7 @@
 inputs:
   - name: pathoplexus
-    metadata: "https://data.nextstrain.org/files/workflows/mpox/branch/ppx/metadata_with_restricted.tsv.zst"
-    sequences: "https://data.nextstrain.org/files/workflows/mpox/branch/ppx/sequences_with_restricted.fasta.zst"
-    # - name: local
-    #   metadata: "/Users/cr/code/mpox/ingest/results/metadata.tsv"
-    #   sequences: "/Users/cr/code/mpox/ingest/results/sequences.fasta"
+    metadata: "https://data.nextstrain.org/files/workflows/mpox/metadata_with_restricted.tsv.zst"
+    sequences: "https://data.nextstrain.org/files/workflows/mpox/sequences_with_restricted.fasta.zst"
 
 auspice_config: "defaults/mpxv/auspice_config.json"
 include: "defaults/mpxv/include.txt"

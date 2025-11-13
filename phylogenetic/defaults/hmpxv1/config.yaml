@@ -1,7 +1,7 @@
 inputs:
-  - name: ncbi
-    metadata: "https://data.nextstrain.org/files/workflows/mpox/branch/ppx/metadata_with_restricted.tsv.zst"
-    sequences: "https://data.nextstrain.org/files/workflows/mpox/branch/ppx/sequences_with_restricted.fasta.zst"
+  - name: pathoplexus
+    metadata: "https://data.nextstrain.org/files/workflows/mpox/metadata_with_restricted.tsv.zst"
+    sequences: "https://data.nextstrain.org/files/workflows/mpox/sequences_with_restricted.fasta.zst"
 
 reference: "defaults/reference.fasta"
 genome_annotation: "defaults/genome_annotation.gff3"
