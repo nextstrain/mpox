@@ -48,8 +48,8 @@ rule extract_open_data:
         metadata="results/metadata.tsv",
         sequences="results/sequences.fasta",
     output:
-        metadata="results/metadata_open.tsv.zst",
-        sequences="results/sequences_open.fasta.zst",
+        metadata="results/metadata_open.tsv",
+        sequences="results/sequences_open.fasta",
     shell:
         """
         augur filter --metadata {input.metadata} \
