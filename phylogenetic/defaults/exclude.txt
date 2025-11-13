@@ -131,3 +131,5 @@ PP_004BJJM    # Clade Ia/Ib intermediate -> recombinant or contamination/coinfec
 
 PP_000YWQ   # B.1 with reversions
 PP_0011BTZ  # B.1 with reversions
+
+PP_003416A	# G.1 with many reversions interspersed
