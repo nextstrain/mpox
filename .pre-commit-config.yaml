@@ -1,11 +1,11 @@
 exclude: '\.(tsv|fasta|gb)$|^shared/vendored/|^phylogenetic/rules/config.smk'
 repos:
   - repo: https://github.com/snakemake/snakefmt
-    rev: v0.11.1
+    rev: v0.11.2
     hooks:
       - id: snakefmt
   - repo: https://github.com/rhysd/actionlint
-    rev: v1.7.7
+    rev: v1.7.9
     hooks:
       - id: actionlint
         entry: env SHELLCHECK_OPTS='--exclude=SC2027' actionlint
@@ -16,11 +16,11 @@ repos:
   #       additional_dependencies:
   #         - tomli
   - repo: https://github.com/google/yamlfmt
-    rev: v0.17.2
+    rev: v0.20.0
     hooks:
       - id: yamlfmt
   - repo: https://github.com/pappasam/toml-sort
-    rev: v0.24.2
+    rev: v0.24.3
     hooks:
       - id: toml-sort-fix
   - repo: https://github.com/pre-commit/pre-commit-hooks
