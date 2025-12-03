@@ -70,8 +70,8 @@ rule download:
         sequences="data/sequences.fasta.zst",
         metadata="data/metadata.tsv.zst",
     params:
-        sequences_url="https://lapis.pathoplexus.org/mpox/sample/unalignedNucleotideSequences?downloadAsFile=true&downloadFileBasename=mpox_nuc_2025-03-19T1422&versionStatus=LATEST_VERSION&isRevocation=false&dataFormat=fasta&compression=zstd",
-        metadata_url="https://lapis.pathoplexus.org/mpox/sample/details?downloadAsFile=true&downloadFileBasename=mpox_metadata_2025-03-19T1422&versionStatus=LATEST_VERSION&isRevocation=false&dataFormat=tsv&compression=zstd",
+        metadata_url="https://data.nextstrain.org/files/workflows/mpox/metadata_with_restricted.tsv.zst",
+        sequences_url="https://data.nextstrain.org/files/workflows/mpox/sequences_with_restricted.fasta.zst",
     shell:
         """
         curl -fsSL --compressed {params.sequences_url:q} --output {output.sequences}
@@ -80,7 +80,7 @@ rule download:
 
 
 rule decompress:
-    "Decompressing sequences and metadata"
+    "Decompressing sequences and metadata and strip version from fasta ID"
     input:
         sequences="data/sequences.fasta.zst",
         metadata="data/metadata.tsv.zst",
@@ -103,9 +103,13 @@ rule remove_known_duplicates:
         sequences="data/sequences.fasta",
     output:
         sequences_without_known_duplicates="results/sequences_without_known_duplicates.fasta",
+    params:
+        min_length=config["min_length"],
     shell:
         """
-        seqkit grep -w0 -v -f {input.known_duplicates} {input.sequences} > {output.sequences_without_known_duplicates}
+        seqkit grep -w0 -v -f {input.known_duplicates} {input.sequences} \
+        | seqkit seq -m={params.min_length} \
+        > {output.sequences_without_known_duplicates}
         """
 
 
@@ -123,6 +127,7 @@ rule index:
         """
 
 
+# Temporarily using local dataset path
 rule prealign:
     input:
         sequences="results/sequences_without_known_duplicates.fasta",
@@ -133,70 +138,11 @@ rule prealign:
         """
         nextclade3 run \
             {input.sequences} \
-            -d nextstrain/mpox/all-clades \
+            --input-dataset /Users/cr/code/nextclade_data/data_output/nextstrain/mpox/all-clades/2025-09-09--12-13-13Z \
             --output-fasta /dev/stdout \
             --include-reference \
             -t {output.stats} \
         | sed 's/ |(reverse complement)$//' > {output.alignment}
-        """
-
-
-rule filter_nextclade_results:
-    input:
-        stats="results/prealign_stats.tsv",
-    output:
-        stats="results/prealign_stats_filtered.tsv",
-    shell:
-        """
-        tsv-filter \
-            --header \
-            --lt 'privateNucMutations.totalPrivateSubstitutions':25 \
-            {input.stats} \
-        > {output.stats}
-        """
-
-
-rule join_metadata:
-    input:
-        metadata="data/metadata.tsv",
-        stats=rules.filter_nextclade_results.output.stats,
-    output:
-        metadata="results/metadata.tsv",
-    shell:
-        """
-        tsv-join \
-            --header \
-            --filter-file {input.stats} \
-            --data-fields accession \
-            --key-fields seqName \
-            --append-fields 1-20,'privateNucMutations.totalPrivateSubstitutions' \
-            {input.metadata} \
-        | sed '1s/sampleCollectionDate/date/' \
-        > {output.metadata}
-        """
-
-
-rule exclude_bad:
-    # Removing strains that do not satisfy certain requirements.
-    input:
-        sequences="results/sequences_without_known_duplicates.fasta",
-        metadata="results/metadata.tsv",
-        index="results/index.tsv",
-    output:
-        sequences="results/decent_sequences.fasta",
-        metadata="results/decent_metadata_raw.tsv",
-        log="results/decent_filter.log",
-    shell:
-        """
-        augur filter \
-            --sequences {input.sequences} \
-            --sequence-index {input.index} \
-            --metadata-id-columns accession \
-            --metadata {input.metadata} \
-            --output-sequences {output.sequences} \
-            --output-metadata {output.metadata} \
-            --min-length 150000 \
-            --output-log {output.log}
         """
 
 
@@ -228,6 +174,65 @@ rule deduplicate:
     shell:
         """
         python3 scripts/deduplicate.py {input.sequences} {output}
+        """
+
+
+rule filter_nextclade_results:
+    input:
+        stats="results/prealign_stats.tsv",
+    output:
+        stats="results/prealign_stats_filtered.tsv",
+    shell:
+        """
+        tsv-filter \
+            --header \
+            --lt 'privateNucMutations.totalPrivateSubstitutions':25 \
+            {input.stats} \
+        > {output.stats}
+        """
+
+
+# Maybe don't need to join as ingest already has these annotated?
+rule join_metadata:
+    input:
+        metadata="data/metadata.tsv",
+        stats=rules.filter_nextclade_results.output.stats,
+    output:
+        metadata="results/metadata.tsv",
+    shell:
+        """
+        tsv-join \
+            --header \
+            --filter-file {input.stats} \
+            --data-fields PPX_accession \
+            --key-fields seqName \
+            --append-fields 1-20,'privateNucMutations.totalPrivateSubstitutions' \
+            {input.metadata} \
+        > {output.metadata}
+        """
+
+
+# Kind of unnecessary? We don't actually filter much here
+rule exclude_bad:
+    # Removing strains that do not satisfy certain requirements.
+    input:
+        sequences="results/sequences_without_known_duplicates.fasta",
+        metadata="results/metadata.tsv",
+        index="results/index.tsv",
+    output:
+        sequences="results/decent_sequences.fasta",
+        metadata="results/decent_metadata_raw.tsv",
+        log="results/decent_filter.log",
+    shell:
+        """
+        augur filter \
+            --sequences {input.sequences} \
+            --sequence-index {input.index} \
+            --metadata-id-columns PPX_accession \
+            --metadata {input.metadata} \
+            --output-sequences {output.sequences} \
+            --output-metadata {output.metadata} \
+            --output-log {output.log}
         """
 
 
@@ -284,7 +289,7 @@ rule subsample_b1:
             --sequences {input.sequences} \
             --metadata {input.metadata} \
             --sequence-index {input.index} \
-            --metadata-id-columns accession \
+            --metadata-id-columns PPX_accession \
             --exclude {input.exclude} {input.specific_exclude} {input.deduplicate_exclude} \
             {params.exclude_where} \
             {params.min_date} \
@@ -325,7 +330,7 @@ rule subsample_nonb1:
             --sequences {input.sequences} \
             --metadata {input.metadata} \
             --sequence-index {input.index} \
-            --metadata-id-columns accession \
+            --metadata-id-columns PPX_accession \
             --exclude {input.exclude} {input.specific_exclude} {input.deduplicate_exclude} \
             {params.exclude_where} \
             {params.min_date} \
@@ -361,7 +366,7 @@ rule postsample_exclude:
             --sequences {input.sequences} \
             --metadata {input.metadata} \
             --sequence-index {input.index} \
-            --metadata-id-columns accession \
+            --metadata-id-columns PPX_accession \
             --exclude {input.exclude} \
             --include {input.strains} \
             --output-sequences {output.sequences} \
@@ -473,8 +478,9 @@ else:
             ~/code/pree/rust/target/release/rust_parsimony build \
                 {input.alignment} \
                 --output-file {output.tree} \
-                --num-trees 100 \
-                --spr-trees 32
+                --pruning-threshold 5 \
+                --num-trees 1 \
+                --spr-trees 1
             """
 
 
@@ -534,7 +540,12 @@ rule ancestral:
     params:
         inference="joint",
         translation_template="results/{build_name}/translations/%GENE.fasta",
-        genes=lambda w: " ".join(genes(w)),
+        genes=lambda w: " ".join(
+            filter(
+                lambda g: g not in config[w.build_name].get("genes_to_exclude", []),
+                genes(w)[:10],
+            )
+        ),
     shell:
         """
         augur ancestral \
@@ -608,7 +619,7 @@ rule nice_strain_names:
         """
         python3 scripts/make_nice_strain_names.py \
             --metadata {input.metadata} \
-            --input-columns geoLocCountry accession date \
+            --input-columns country PPX_accession_version date \
             --separator '/' \
             --output-column strain_display \
             --output {output.metadata}
@@ -638,7 +649,7 @@ rule export:
         nt_muts="results/{build_name}/nt_muts.json",
         auspice_config="results/{build_name}/auspice_config.json",
     output:
-        auspice_json="results/nextclade_mpox_{build_name}.json",
+        auspice_json="auspice/nextclade_mpox_{build_name}.json",
     shell:
         """
         augur export v2 \
@@ -648,73 +659,9 @@ rule export:
             --colors {input.colors} \
             --auspice-config {input.auspice_config} \
             --include-root-sequence \
-            --metadata-id-columns accession \
+            --metadata-id-columns PPX_accession \
+            --minify-json \
             --output {output.auspice_json}
-        """
-
-
-rule extra_node_data:
-    input:
-        metadata="results/{build_name}/metadata.tsv",
-        json=rules.export.output.auspice_json,
-    output:
-        json="auspice/nextclade_mpox_{build_name}_pretty.json",
-    run:
-        import pandas as pd
-        import json
-
-        df = pd.read_csv(input.metadata, sep="\t", keep_default_na=False)
-
-        result = {}
-        for index, row in df.iterrows():
-            accession = row["accession"]
-            accessionVersion = row["accessionVersion"]
-            data_use_terms = row["dataUseTerms"]
-            data_use_terms_url = row["dataUseTermsUrl"]
-            insdc_accession = row["insdcAccessionFull"]
-            insdc_accession_url = (
-                f"https://www.ncbi.nlm.nih.gov/nuccore/{insdc_accession}"
-            )
-            url = f"https://pathoplexus.org/seq/{accessionVersion}"
-            result[accession] = {
-                "url": url,
-                "dataUseTerms": {
-                    "value": data_use_terms,
-                    "url": data_use_terms_url,
-                },
-            }
-            if insdc_accession:
-                result[accession]["insdcAccession"] = {
-                    "value": insdc_accession,
-                    "url": insdc_accession_url,
-                }
-
-        with open(input.json) as f:
-            data = json.load(f)
-
-        def update_node_data(node):
-            name = node["name"]
-            if name in result:
-                node["node_attrs"] |= result[name]
-            if "children" in node:
-                for child in node["children"]:
-                    update_node_data(child)
-
-        update_node_data(data["tree"])
-
-        with open(output.json, "w") as f:
-            json.dump(data, f, indent=2)
-
-
-
-rule minify_tree:
-    input:
-        auspice="auspice/nextclade_mpox_{build_name}_pretty.json",
-    output:
-        auspice="auspice/nextclade_mpox_{build_name}.json",
-    shell:
-        """
-        gojq -c '.' {input.auspice} > {output.auspice}
         """
 
 
