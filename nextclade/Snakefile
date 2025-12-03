@@ -582,13 +582,14 @@ rule clades:
 
 rule rename_clades:
     input:
-        "results/{build_name}/clades_raw.json",
+        clades="results/{build_name}/clades_raw.json",
+        script="scripts/clades_renaming.py",
     output:
         node_data="results/{build_name}/clades.json",
     shell:
         """
-        python scripts/clades_renaming.py \
-        --input-node-data {input} \
+        python {input.script} \
+        --input-node-data {input.clades} \
         --output-node-data {output.node_data}
         """
 
