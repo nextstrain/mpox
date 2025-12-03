@@ -177,9 +177,10 @@
   "filters": [
     "clade_membership",
     "lineage",
-    "geoLocCountry",
+    "country",
     "host",
-    "authorAffiliations",
+    "author",
+    "institution",
     "strain_display",
     "strain",
     "date",
