@@ -9,6 +9,10 @@
     {
       "name": "Pathoplexus",
       "url": "https://pathoplexus.org/mpox"
+    },
+    {
+      "name": "Genbank",
+      "url": "https://www.ncbi.nlm.nih.gov/genbank/"
     }
   ],
   "extensions": {

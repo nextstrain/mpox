@@ -478,8 +478,8 @@ else:
             ~/code/pree/rust/target/release/rust_parsimony build \
                 {input.alignment} \
                 --output-file {output.tree} \
-                --pruning-threshold 5 \
-                --num-trees 1 \
+                --pruning-threshold 10 \
+                --num-trees 3 \
                 --spr-trees 1
             """
 
