@@ -186,7 +186,7 @@ rule filter_nextclade_results:
         """
         tsv-filter \
             --header \
-            --lt 'privateNucMutations.totalPrivateSubstitutions':25 \
+            --lt 'privateNucMutations.totalPrivateSubstitutions':40 \
             {input.stats} \
         > {output.stats}
         """

@@ -22,6 +22,6 @@ The reference tree consists of around 1000 sequences with representatives from a
 
 ## Further reading
 
-The lineage system used is defined in [Happi et al. (2022)](https://doi.org/10.1371/journal.pbio.3001769). Lineage definitions are available at [github.com/mpxv-lineages/lineage-designation](https://github.com/nextstrain/mpox/nextclade).
+The lineage system used is defined in [Happi et al. (2022)](https://doi.org/10.1371/journal.pbio.3001769). The sustained outbreak system is described in [Ruis et. al. (2025)](https://www.nature.com/articles/s41591-025-03820-6). Lineage definitions are available at [github.com/mpxv-lineages/lineage-designation](https://github.com/nextstrain/mpox/nextclade).
 
 Read more about Nextclade datasets in Nextclade documentation: https://docs.nextstrain.org/projects/nextclade/en/stable/user/datasets.html

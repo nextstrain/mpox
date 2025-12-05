@@ -3,3 +3,12 @@ PP_000SYZJ # outgroup IIa
 KJ642617 # outgroup IIb
 PP_000T2N0 # outgroup IIb
 reconstructed_ancestral_mpox #reference
+
+PP_000STVX
+PP_000ZHHH
+PP_0010A3H
+PP_0010H64
+PP_0012UCB
+PP_0013BM7
+PP_0013CZG
+PP_002XE2K
