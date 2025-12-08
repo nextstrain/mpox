@@ -6,19 +6,18 @@ if not config:
 TREE_METHOD = "iqtree"
 
 
-build_names = [
+BUILD_NAMES = [
     "lineage-b.1",
     "clade-iib",
     "all-clades",
     "clade-i",
 ]
-# build_names = ["lineage-b.1", "clade-iib", "all-clades"]
-# build_names = ["all-clades"]
+# BUILD_NAMES = ["lineage-b.1", "clade-iib", "all-clades"]
+# BUILD_NAMES = ["all-clades"]
 
-PREALIGN_REFERENCE = "resources/lineage-b.1/reference.fasta"
 PREMASK_BED = "resources/lineage-b.1/mask.bed"
 
-dataset_files = [
+DATASET_FILES = [
     "pathogen.json",
     "sequences.fasta",
     "genome_annotation.gff3",
@@ -49,10 +48,10 @@ def genes(wildcards):
 rule all:
     input:
         datasets=expand(
-            "datasets/{dataset}/{file}", dataset=build_names, file=dataset_files
+            "datasets/{dataset}/{file}", dataset=BUILD_NAMES, file=DATASET_FILES
         ),
-        tests=expand("test_output/{dataset}", dataset=build_names),
-        duplicates=expand("results/{dataset}/duplicates.txt", dataset=build_names),
+        tests=expand("test_output/{dataset}", dataset=BUILD_NAMES),
+        duplicates=expand("results/{dataset}/duplicates.txt", dataset=BUILD_NAMES),
 
 
 rule deploy_to_nextstrain_staging:
@@ -64,59 +63,73 @@ rule deploy_to_nextstrain_staging:
         """
 
 
-rule download:
-    "Downloading ingested sequences and metadata from data.nextstrain.org"
+# rule download:
+#     "Downloading ingested sequences and metadata from data.nextstrain.org"
+#     output:
+#         sequences="data/sequences.fasta.zst",
+#         metadata="data/metadata.tsv.zst",
+#         alignment="data/alignment.fasta.zst",
+#     params:
+#         metadata_url="https://data.nextstrain.org/files/workflows/mpox/metadata_with_restricted.tsv.zst",
+#         sequences_url="https://data.nextstrain.org/files/workflows/mpox/sequences_with_restricted.fasta.zst",
+#         alignment_url="https://data.nextstrain.org/files/workflows/mpox/alignment_with_restricted.fasta.zst",
+#     shell:
+#         """
+#         curl -fsSL {params.sequences_url:q} --output {output.sequences}
+#         curl -fsSL {params.metadata_url:q} --output {output.metadata}
+#         curl -fsSL {params.alignment_url:q} --output {output.alignment}
+#         """
+
+
+rule copy:
     output:
         sequences="data/sequences.fasta.zst",
         metadata="data/metadata.tsv.zst",
-    params:
-        metadata_url="https://data.nextstrain.org/files/workflows/mpox/metadata_with_restricted.tsv.zst",
-        sequences_url="https://data.nextstrain.org/files/workflows/mpox/sequences_with_restricted.fasta.zst",
+        alignment="data/alignment.fasta.zst",
     shell:
         """
-        curl -fsSL --compressed {params.sequences_url:q} --output {output.sequences}
-        curl -fsSL --compressed {params.metadata_url:q} --output {output.metadata}
+        zstd -f ../ingest/results/sequences.fasta -o {output.sequences}
+        zstd -f ../ingest/results/metadata.tsv -o {output.metadata}
+        zstd -f ../ingest/results/alignment.fasta -o {output.alignment}
         """
 
 
-rule decompress:
+rule decompress_metadata:
     "Decompressing sequences and metadata and strip version from fasta ID"
     input:
-        sequences="data/sequences.fasta.zst",
         metadata="data/metadata.tsv.zst",
     output:
-        sequences="data/sequences.fasta",
         metadata="data/metadata.tsv",
     shell:
         """
         zstd --decompress --keep {input.metadata}
-        zstdcat {input.sequences} \
-        | seqkit replace \
-            -p "^([^.]+).*" -r '$1' \
-        > {output.sequences}
         """
 
 
-rule remove_known_duplicates:
+rule decompress_sequences_and_remove_duplicates:
+    "Decompressing sequences and strip version from fasta ID"
     input:
+        sequences="data/{file}.fasta.zst",
         known_duplicates="resources/known_duplicates.txt",
-        sequences="data/sequences.fasta",
     output:
-        sequences_without_known_duplicates="results/sequences_without_known_duplicates.fasta",
+        sequences="data/{file}.fasta",
     params:
         min_length=config["min_length"],
     shell:
         """
-        seqkit grep -w0 -v -f {input.known_duplicates} {input.sequences} \
+        zstdcat {input.sequences} \
+        | seqkit replace \
+            -p "^([^.]+).*" -r '$1' \
+        | seqkit grep -w0 -v -f {input.known_duplicates} \
         | seqkit seq -m={params.min_length} \
-        > {output.sequences_without_known_duplicates}
+        > {output.sequences}
         """
 
 
 rule index:
     "Indexing sequences"
     input:
-        sequences="results/sequences_without_known_duplicates.fasta",
+        sequences="data/sequences.fasta",
     output:
         index="results/index.tsv",
     shell:
@@ -127,28 +140,9 @@ rule index:
         """
 
 
-# Temporarily using local dataset path
-rule prealign:
-    input:
-        sequences="results/sequences_without_known_duplicates.fasta",
-    output:
-        alignment="results/prealigned.fasta",
-        stats="results/prealign_stats.tsv",
-    shell:
-        """
-        nextclade3 run \
-            {input.sequences} \
-            --input-dataset /Users/cr/code/nextclade_data/data_output/nextstrain/mpox/all-clades/2025-09-09--12-13-13Z \
-            --output-fasta /dev/stdout \
-            --include-reference \
-            -t {output.stats} \
-        | sed 's/ |(reverse complement)$//' > {output.alignment}
-        """
-
-
 rule premask:
     input:
-        sequences="results/prealigned.fasta",
+        sequences="data/alignment.fasta",
         mask=PREMASK_BED,
     output:
         "results/premasked.fasta",
@@ -177,52 +171,25 @@ rule deduplicate:
         """
 
 
-rule filter_nextclade_results:
-    input:
-        stats="results/prealign_stats.tsv",
-    output:
-        stats="results/prealign_stats_filtered.tsv",
-    shell:
-        """
-        tsv-filter \
-            --header \
-            --lt 'privateNucMutations.totalPrivateSubstitutions':40 \
-            {input.stats} \
-        > {output.stats}
-        """
-
-
-# Maybe don't need to join as ingest already has these annotated?
-rule join_metadata:
-    input:
-        metadata="data/metadata.tsv",
-        stats=rules.filter_nextclade_results.output.stats,
-    output:
-        metadata="results/metadata.tsv",
-    shell:
-        """
-        tsv-join \
-            --header \
-            --filter-file {input.stats} \
-            --data-fields PPX_accession \
-            --key-fields seqName \
-            --append-fields 1-20,'privateNucMutations.totalPrivateSubstitutions' \
-            {input.metadata} \
-        > {output.metadata}
-        """
-
-
-# Kind of unnecessary? We don't actually filter much here
 rule exclude_bad:
-    # Removing strains that do not satisfy certain requirements.
     input:
-        sequences="results/sequences_without_known_duplicates.fasta",
-        metadata="results/metadata.tsv",
+        sequences="data/sequences.fasta",
+        metadata="data/metadata.tsv",
         index="results/index.tsv",
+        includes=[
+            "resources/include_accessions.txt",
+            expand(
+                "resources/{build_name}/include_{include_type}.txt",
+                build_name=BUILD_NAMES,
+                include_type=["accessions", "recombinants"],
+            ),
+        ],
     output:
         sequences="results/decent_sequences.fasta",
         metadata="results/decent_metadata_raw.tsv",
         log="results/decent_filter.log",
+    params:
+        min_length=config["min_length"],
     shell:
         """
         augur filter \
@@ -230,6 +197,9 @@ rule exclude_bad:
             --sequence-index {input.index} \
             --metadata-id-columns PPX_accession \
             --metadata {input.metadata} \
+            --min-length {params.min_length} \
+            --include {input.includes} \
+            --query "(private_substitutions < 40)" \
             --output-sequences {output.sequences} \
             --output-metadata {output.metadata} \
             --output-log {output.log}
@@ -311,6 +281,7 @@ rule subsample_nonb1:
         exclude="resources/exclude_accessions.txt",
         specific_exclude="resources/{build_name}/exclude_accessions.txt",
         deduplicate_exclude="results/duplicates.txt",
+        build_specific_duplicates="resources/{build_name}/duplicates.txt",
         specific_include="resources/{build_name}/include_accessions.txt",
         include=lambda w: config[w.build_name]["general_include"],
         index="results/index.tsv",
@@ -331,7 +302,7 @@ rule subsample_nonb1:
             --metadata {input.metadata} \
             --sequence-index {input.index} \
             --metadata-id-columns PPX_accession \
-            --exclude {input.exclude} {input.specific_exclude} {input.deduplicate_exclude} \
+            --exclude {input.exclude} {input.specific_exclude} {input.deduplicate_exclude} {input.build_specific_duplicates} \
             {params.exclude_where} \
             {params.min_date} \
             {params.subsampling} \
@@ -413,7 +384,7 @@ rule mask:
         sequences="results/{build_name}/aligned.fasta",
         mask="resources/{build_name}/mask.bed",
     output:
-        "results/{build_name}/masked.fasta",
+        "results/{build_name}/masked_with_dups.fasta",
     shell:
         """
         augur mask \
@@ -430,12 +401,28 @@ rule deduplicate_2:
     Focus for Nextclade is on diversity, not on representativeness
     """
     input:
-        sequences="results/{build_name}/masked.fasta",
+        sequences="results/{build_name}/masked_with_dups.fasta",
     output:
         duplicates="results/{build_name}/duplicates.txt",
     shell:
         """
         python3 scripts/deduplicate.py {input.sequences} {output.duplicates}
+        """
+
+
+rule pre_tree_exclude:
+    input:
+        sequences="results/{build_name}/masked_with_dups.fasta",
+        duplicates="results/{build_name}/duplicates.txt",
+        recombinants="resources/{build_name}/include_recombinants.txt",
+    output:
+        sequences="results/{build_name}/masked.fasta",
+    shell:
+        """
+        seqkit grep -w0 -v -f \
+            <(cat {input.duplicates} {input.recombinants}) \
+            {input.sequences} \
+        > {output.sequences}
         """
 
 
@@ -500,9 +487,28 @@ rule collapse:
         """
 
 
+rule graft_recombinants:
+    input:
+        script="scripts/graft-recombinants.py",
+        tree="results/{build_name}/tree_collapsed.nwk",
+        recombinants="resources/{build_name}/include_recombinants.txt",
+    output:
+        tree="results/{build_name}/tree_grafted.nwk",
+    params:
+        root=lambda w: config[w.build_name]["root"],
+    shell:
+        """
+        python {input.script} \
+            --input-tree {input.tree} \
+            --recombinants {input.recombinants} \
+            --root {params.root} \
+            --output-tree {output.tree}
+        """
+
+
 rule refine:
     input:
-        tree="results/{build_name}/tree_collapsed.nwk",
+        tree="results/{build_name}/tree_grafted.nwk",
         alignment="results/{build_name}/masked.fasta",
         metadata="results/{build_name}/metadata.tsv",
     output:
