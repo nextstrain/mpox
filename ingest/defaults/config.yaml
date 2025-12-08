@@ -121,6 +121,7 @@ nextclade:
     totalMissing: "missing_data"
     totalSubstitutions: "divergence"
     totalNonACGTNs: "nonACGTN"
+    "privateNucMutations.totalPrivateSubstitutions": "private_substitutions"
     qc.missingData.status: "QC_missing_data"
     qc.mixedSites.status: "QC_mixed_sites"
     qc.privateMutations.status: "QC_rare_mutations"
