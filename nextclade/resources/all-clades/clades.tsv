@@ -2,6 +2,9 @@
 clade	gene	site	alt
 unassigned	nuc	179226	T
 
+clade Ib/IIb	nuc	60171	T
+clade Ib/IIb	nuc	122558	A
+
 clade I	nuc	86502	T
 clade I	nuc	133368	A
 
