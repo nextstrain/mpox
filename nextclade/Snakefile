@@ -240,6 +240,7 @@ rule subsample_b1:
         exclude="resources/exclude_accessions.txt",
         specific_exclude="resources/{build_name}/exclude_accessions.txt",
         deduplicate_exclude="results/duplicates.txt",
+        build_specific_duplicates="resources/{build_name}/duplicates.txt",
         specific_include="resources/{build_name}/include_accessions.txt",
         include=lambda w: config[w.build_name]["general_include"],
         index="results/index.tsv",
@@ -260,7 +261,7 @@ rule subsample_b1:
             --metadata {input.metadata} \
             --sequence-index {input.index} \
             --metadata-id-columns PPX_accession \
-            --exclude {input.exclude} {input.specific_exclude} {input.deduplicate_exclude} \
+            --exclude {input.exclude} {input.specific_exclude} {input.deduplicate_exclude} {input.build_specific_duplicates} \
             {params.exclude_where} \
             {params.min_date} \
             {params.subsampling} \
@@ -502,6 +503,7 @@ rule graft_recombinants:
             --input-tree {input.tree} \
             --recombinants {input.recombinants} \
             --root {params.root} \
+            --branch-length 1.0 \
             --output-tree {output.tree}
         """
 
@@ -509,7 +511,7 @@ rule graft_recombinants:
 rule refine:
     input:
         tree="results/{build_name}/tree_grafted.nwk",
-        alignment="results/{build_name}/masked.fasta",
+        alignment="results/{build_name}/masked_with_dups.fasta",
         metadata="results/{build_name}/metadata.tsv",
     output:
         tree="results/{build_name}/tree.nwk",
