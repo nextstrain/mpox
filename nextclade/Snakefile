@@ -63,35 +63,35 @@ rule deploy_to_nextstrain_staging:
         """
 
 
-# rule download:
-#     "Downloading ingested sequences and metadata from data.nextstrain.org"
-#     output:
-#         sequences="data/sequences.fasta.zst",
-#         metadata="data/metadata.tsv.zst",
-#         alignment="data/alignment.fasta.zst",
-#     params:
-#         metadata_url="https://data.nextstrain.org/files/workflows/mpox/metadata_with_restricted.tsv.zst",
-#         sequences_url="https://data.nextstrain.org/files/workflows/mpox/sequences_with_restricted.fasta.zst",
-#         alignment_url="https://data.nextstrain.org/files/workflows/mpox/alignment_with_restricted.fasta.zst",
-#     shell:
-#         """
-#         curl -fsSL {params.sequences_url:q} --output {output.sequences}
-#         curl -fsSL {params.metadata_url:q} --output {output.metadata}
-#         curl -fsSL {params.alignment_url:q} --output {output.alignment}
-#         """
-
-
-rule copy:
+rule download:
+    "Downloading ingested sequences and metadata from data.nextstrain.org"
     output:
         sequences="data/sequences.fasta.zst",
         metadata="data/metadata.tsv.zst",
         alignment="data/alignment.fasta.zst",
+    params:
+        metadata_url="https://data.nextstrain.org/files/workflows/mpox/metadata_with_restricted.tsv.zst",
+        sequences_url="https://data.nextstrain.org/files/workflows/mpox/sequences_with_restricted.fasta.zst",
+        alignment_url="https://data.nextstrain.org/files/workflows/mpox/alignment_with_restricted.fasta.zst",
     shell:
         """
-        zstd -f ../ingest/results/sequences.fasta -o {output.sequences}
-        zstd -f ../ingest/results/metadata.tsv -o {output.metadata}
-        zstd -f ../ingest/results/alignment.fasta -o {output.alignment}
+        curl -fsSL {params.sequences_url:q} --output {output.sequences}
+        curl -fsSL {params.metadata_url:q} --output {output.metadata}
+        curl -fsSL {params.alignment_url:q} --output {output.alignment}
         """
+
+
+# rule copy:
+#     output:
+#         sequences="data/sequences.fasta.zst",
+#         metadata="data/metadata.tsv.zst",
+#         alignment="data/alignment.fasta.zst",
+#     shell:
+#         """
+#         zstd -f ../ingest/results/sequences.fasta -o {output.sequences}
+#         zstd -f ../ingest/results/metadata.tsv -o {output.metadata}
+#         zstd -f ../ingest/results/alignment.fasta -o {output.alignment}
+#         """
 
 
 rule decompress_metadata:
@@ -466,9 +466,9 @@ else:
             ~/code/pree/rust/target/release/rust_parsimony build \
                 {input.alignment} \
                 --output-file {output.tree} \
-                --pruning-threshold 10 \
-                --num-trees 3 \
-                --spr-trees 1
+                --pruning-threshold 30 \
+                --num-trees 20 \
+                --spr-trees 10
             """
 
 
