@@ -179,10 +179,9 @@ rule exclude_bad:
         includes=[
             "resources/include_accessions.txt",
             expand(
-                "resources/{build_name}/include_{include_type}.txt",
-                build_name=BUILD_NAMES,
-                include_type=["accessions", "recombinants"],
+                "resources/{build_name}/include_accessions.txt", build_name=BUILD_NAMES
             ),
+            "resources/all-clades/include_recombinants.txt",
         ],
     output:
         sequences="results/decent_sequences.fasta",
@@ -502,7 +501,7 @@ rule graft_recombinants:
         python {input.script} \
             --input-tree {input.tree} \
             --recombinants {input.recombinants} \
-            --root {params.root} \
+            --root "{params.root}" \
             --branch-length 1.0 \
             --output-tree {output.tree}
         """
@@ -551,7 +550,7 @@ rule ancestral:
         genes=lambda w: " ".join(
             filter(
                 lambda g: g not in config[w.build_name].get("genes_to_exclude", []),
-                genes(w)[:10],
+                genes(w),
             )
         ),
     shell:
