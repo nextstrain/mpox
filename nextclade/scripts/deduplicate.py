@@ -1,17 +1,14 @@
 """
-Standard typer CLI
-
+Standard typer CLI with high-level parallelization
 Called as follows:
-
-python3 scripts/deduplicate.py \\
---sequences {input.sequences} \\
+python3 scripts/deduplicate.py \
+--sequences {input.sequences} \
 --output {output}
-
 """
-
 import itertools
+import multiprocessing
+from functools import partial
 
-import llist
 import typer
 from Bio import SeqIO
 
@@ -21,7 +18,6 @@ def informative_sites(sequence: str) -> int:
     Count number of ACGT characters in a sequence
     """
     return sum([1 for c in sequence if c in "ACGT"])
-
 
 def identical(seq1: str, seq2: str, info_sites: list) -> bool:
     """
@@ -34,7 +30,6 @@ def identical(seq1: str, seq2: str, info_sites: list) -> bool:
         if c1 != c2 and c2 in "ACGT" and c1 in "ACGT":
             return False
     return True
-
 
 def composition_per_site(sequences) -> list:
     """
@@ -49,7 +44,6 @@ def composition_per_site(sequences) -> list:
             # Increment the count for that character
             composition[i][c] += 1
     return composition
-
 
 def mismatch_prob_per_site(composition: list) -> list:
     """
@@ -68,7 +62,6 @@ def mismatch_prob_per_site(composition: list) -> list:
         result.append(prob)
     return result
 
-
 def informative_indexes_sorted_by_entropy(composition: list) -> list:
     """
     List of indexes of informative sites sorted by entropy
@@ -78,14 +71,33 @@ def informative_indexes_sorted_by_entropy(composition: list) -> list:
     site_information = sorted(site_information.items(), key=lambda x: x[1], reverse=True)
     return [x[0] for x in site_information]
 
+def process_batch(batch_indices, all_sequences, info_sites):
+    """
+    Process a batch of ying sequences against all potential duplicates
+    Returns a list of IDs to remove
+    """
+    duplicates = []
 
-def deduplicate(input: str, output: str):
+    for ying_idx in batch_indices:
+        ying_seq = all_sequences[ying_idx]
+
+        # Compare with all sequences that come after this one
+        for yang_idx in range(ying_idx + 1, len(all_sequences)):
+            yang_seq = all_sequences[yang_idx]
+
+            if identical(ying_seq["seq"], yang_seq["seq"], info_sites):
+                print(f"Removing {yang_seq['id']} as identical to {ying_seq['id']}")
+                duplicates.append(yang_seq["id"])
+
+    return duplicates
+
+def deduplicate(input: str, output: str, num_processes: int = 10):
     """
     Deduplicate sequences in a file
-
     Args:
         sequences: path to sequences file
         output: path to output file
+        num_processes: number of cores to use
     """
     with open(input, "r") as f:
         sequences = [
@@ -96,36 +108,36 @@ def deduplicate(input: str, output: str):
             }
             for record in itertools.islice(SeqIO.parse(f, "fasta"), 0, None)
         ]
-
     sequences = sorted(sequences, key=lambda x: x["number_informative_sites"], reverse=True)
-
     composition = composition_per_site(sequences)
-
     info_sites = informative_indexes_sorted_by_entropy(composition)
 
-    dll = llist.dllist(sequences)
+    # Divide work among processes - each process takes a batch of ying sequences
+    num_sequences = len(sequences)
+    batch_size = max(1, num_sequences // (num_processes * 5))  # Smaller batches for better load balancing
 
-    dup_list = []
+    # Create batches of indices
+    batches = []
+    for i in range(0, num_sequences-1, batch_size):  # -1 because the last sequence has nothing to compare against
+        end = min(i + batch_size, num_sequences-1)
+        batches.append(list(range(i, end)))
 
-    ying = dll.first
-    while ying is not None:
-        yang = ying.next
-        while yang is not None:
-            if identical(str(ying.value["seq"]), str(yang.value["seq"]), info_sites):
-                print(f"Removing {yang.value['id']} as identical to {ying.value['id']}")
-                to_remove = yang
-                dup_list.append(yang.value["id"])
-                yang = yang.next
-                dll.remove(to_remove)
-            else:
-                yang = yang.next
-        ying = ying.next
+    # Process batches in parallel
+    pool = multiprocessing.Pool(processes=num_processes)
+    process_func = partial(process_batch, all_sequences=sequences, info_sites=info_sites)
+    results = pool.map(process_func, batches)
 
+    # Clean up
+    pool.close()
+    pool.join()
+
+    # Combine results
+    dup_list = {dup for batch_result in results for dup in batch_result}
+
+    # Write output
     with open(output, "w") as f:
         for dup in dup_list:
             f.write(f"{dup}\n")
 
-
 if __name__ == "__main__":
-    # deduplicate("results/b1/masked.fasta", "data/deduplicated.fasta")
     typer.run(deduplicate)

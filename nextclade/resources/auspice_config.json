@@ -7,7 +7,11 @@
   ],
   "data_provenance": [
     {
-      "name": "GenBank",
+      "name": "Pathoplexus",
+      "url": "https://pathoplexus.org/mpox"
+    },
+    {
+      "name": "Genbank",
       "url": "https://www.ncbi.nlm.nih.gov/genbank/"
     }
   ],
@@ -26,54 +30,28 @@
         }
       ],
       "placement_mask_ranges": [
-        {
-          "begin": 0,
-          "end": 1500
-        },
-        {
-          "begin": 133050,
-          "end": 133250
-        },
-        {
-          "begin": 136500,
-          "end": 136600
-        },
-        {
-          "begin": 140050,
-          "end": 140250
-        },
-        {
-          "begin": 146750,
-          "end": 147000
-        },
-        {
-          "begin": 150500,
-          "end": 150650
-        },
-        {
-          "begin": 169250,
-          "end": 169500
-        },
-        {
-          "begin": 169700,
-          "end": 169800
-        },
-        {
-          "begin": 173150,
-          "end": 173350
-        },
-        {
-          "begin": 179000,
-          "end": 179300
-        },
-        {
-          "begin": 190787,
-          "end": 197209
-        }
+        { "begin": 0, "end": 1500 },
+        { "begin": 6400, "end": 7100 },
+        { "begin": 29750, "end": 29770 },
+        { "begin": 39050, "end": 39090 },
+        { "begin": 107660, "end": 107680 },
+        { "begin": 133050, "end": 133250 },
+        { "begin": 136500, "end": 136600 },
+        { "begin": 140050, "end": 140250 },
+        { "begin": 146750, "end": 147000 },
+        { "begin": 148330, "end": 148360 },
+        { "begin": 150500, "end": 150650 },
+        { "begin": 163190, "end": 163220 },
+        { "begin": 169250, "end": 169500 },
+        { "begin": 169700, "end": 169800 },
+        { "begin": 172070, "end": 172110 },
+        { "begin": 173150, "end": 173350 },
+        { "begin": 179000, "end": 179300 },
+        { "begin": 190787, "end": 197209 }
       ]
     }
   },
-  "build_url": "https://github.com/nextstrain/mpox/nextclade",
+  "build_url": "https://github.com/nextstrain/mpox/tree/master/nextclade",
   "colorings": [
     {
       "key": "outbreak",
@@ -96,23 +74,93 @@
       "type": "categorical"
     },
     {
-      "key": "strain",
-      "title": "Strain name",
-      "type": "categorical"
-    },
-    {
-      "key": "strain_display",
-      "title": "Pretty strain name",
-      "type": "categorical"
-    },
-    {
       "key": "region",
-      "title": "Region",
+      "title": "Continent",
       "type": "categorical"
     },
     {
       "key": "country",
       "title": "Country",
+      "type": "categorical"
+    },
+    {
+      "key": "division",
+      "title": "Admin Division",
+      "type": "categorical"
+    },
+    {
+      "key": "institution",
+      "title": "Author Affiliations",
+      "type": "categorical"
+    },
+    {
+      "key": "totalAmbiguousNucs",
+      "title": "Ambiguous Nucleotides",
+      "type": "continuous"
+    },
+    {
+      "key": "totalInsertions",
+      "title": "Insertions",
+      "type": "continuous"
+    },
+    {
+      "key": "totalDeletions",
+      "title": "Deletions",
+      "type": "continuous"
+    },
+    {
+      "key": "host",
+      "title": "Host",
+      "type": "categorical"
+    },
+    {
+      "key": "length",
+      "title": "Length",
+      "type": "continuous"
+    },
+    {
+      "key": "insdcAccession",
+      "title": "INSDC Accession",
+      "type": "categorical"
+    },
+    {
+      "key": "completeness",
+      "title": "Completeness",
+      "type": "continuous"
+    },
+    {
+      "key": "submission_database",
+      "title": "Database of original submission",
+      "type": "categorical"
+    },
+    {
+      "key": "Pathoplexus_group",
+      "title": "Pathoplexus Group",
+      "type": "categorical"
+    },
+    {
+      "key": "restrictedUntil",
+      "title": "Restricted Until",
+      "type": "categorical"
+    },
+    {
+      "key": "dataUseTerms",
+      "title": "Data use terms",
+      "type": "categorical"
+    },
+    {
+      "key": "recency",
+      "title": "Submission Recency",
+      "type": "categorical"
+    },
+    {
+      "key": "date_released",
+      "title": "Release Date",
+      "type": "categorical"
+    },
+    {
+      "key": "author",
+      "title": "Authors",
       "type": "categorical"
     }
   ],
@@ -123,14 +171,20 @@
     "tip_label": "strain_display",
     "transmission_lines": false
   },
+  "metadata_columns": [
+    "strain",
+    "PPX_accession",
+    "INSDC_accession_version",
+    "restrictedUntil"
+  ],
   "panels": ["tree", "entropy"],
   "filters": [
     "clade_membership",
     "lineage",
     "country",
     "host",
+    "author",
     "institution",
-    "region",
     "strain_display",
     "strain",
     "date",

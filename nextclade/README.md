@@ -36,8 +36,9 @@ nextstrain view auspice/
 ```bash
 cd ~/code
 cp mpox/nextclade/datasets/all-clades/tree.json nextclade_data/data/nextstrain/mpox/all-clades/tree.json
-cp mpox/nextclade/datasets/clade-iib/tree.json nextclade_data/data/nextstrain/mpox/clade_iib/tree.json
-p mpox/nextclade/datasets/lineage-b.1/tree.json nextclade_data/data/nextstrain/mpox/lineage-b.1/tree.json
+cp mpox/nextclade/datasets/clade-iib/tree.json nextclade_data/data/nextstrain/mpox/clade-iib/tree.json
+cp mpox/nextclade/datasets/clade-i/tree.json nextclade_data/data/nextstrain/mpox/clade-i/tree.json
+cp mpox/nextclade/datasets/lineage-b.1/tree.json nextclade_data/data/nextstrain/mpox/lineage-b.1/tree.json
 ```
 
 ## Configuration

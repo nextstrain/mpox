@@ -25,4 +25,6 @@ The reference tree consists of all good quality clade I sequences available with
 
 ## Further reading
 
+The sustained outbreak system is described in [Ruis et. al. (2025)](https://www.nature.com/articles/s41591-025-03820-6). Outbreak definitions are available at [github.com/mpxv-lineages/lineage-designation](https://github.com/nextstrain/mpox/nextclade).
+
 Read more about Nextclade datasets in the Nextclade documentation: https://docs.nextstrain.org/projects/nextclade/en/stable/user/datasets.html

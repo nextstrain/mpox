@@ -1,12 +1,17 @@
 # Nuc coordinates valid for reference DQ011155.1
 clade	gene	site	alt
-outgroup	nuc	113493	G
+unassigned	nuc	113493	G
 
 clade I	nuc	75464	G
 clade I	nuc	165916	T
 
 clade Ia	clade	clade I
 clade Ia	nuc	37498	A
+
+sh2024	clade	clade Ia
+sh2024	nuc	134829	A
+sh2024	nuc	171710	A
+sh2024	nuc	189974	T
 
 clade Ib	clade	clade I
 clade Ib	nuc	91698	A

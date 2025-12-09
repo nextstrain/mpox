@@ -3,14 +3,21 @@ if not config:
     configfile: "config/config.yaml"
 
 
-build_names = ["lineage-b.1", "clade-iib", "all-clades", "clade-i"]
-# build_names = ["lineage-b.1", "clade-iib", "all-clades"]
-# build_names = ["all-clades"]
+TREE_METHOD = "iqtree"
 
-PREALIGN_REFERENCE = "resources/lineage-b.1/reference.fasta"
+
+BUILD_NAMES = [
+    "lineage-b.1",
+    "clade-iib",
+    "all-clades",
+    "clade-i",
+]
+# BUILD_NAMES = ["lineage-b.1", "clade-iib", "all-clades"]
+# BUILD_NAMES = ["all-clades"]
+
 PREMASK_BED = "resources/lineage-b.1/mask.bed"
 
-dataset_files = [
+DATASET_FILES = [
     "pathogen.json",
     "sequences.fasta",
     "genome_annotation.gff3",
@@ -41,9 +48,10 @@ def genes(wildcards):
 rule all:
     input:
         datasets=expand(
-            "datasets/{dataset}/{file}", dataset=build_names, file=dataset_files
+            "datasets/{dataset}/{file}", dataset=BUILD_NAMES, file=DATASET_FILES
         ),
-        tests=expand("test_output/{dataset}", dataset=build_names),
+        tests=expand("test_output/{dataset}", dataset=BUILD_NAMES),
+        duplicates=expand("results/{dataset}/duplicates.txt", dataset=BUILD_NAMES),
 
 
 rule deploy_to_nextstrain_staging:
@@ -60,47 +68,68 @@ rule download:
     output:
         sequences="data/sequences.fasta.zst",
         metadata="data/metadata.tsv.zst",
+        alignment="data/alignment.fasta.zst",
     params:
-        sequences_url="https://data.nextstrain.org/files/workflows/mpox/sequences.fasta.zst",
-        metadata_url="https://data.nextstrain.org/files/workflows/mpox/metadata.tsv.zst",
+        metadata_url="https://data.nextstrain.org/files/workflows/mpox/metadata_with_restricted.tsv.zst",
+        sequences_url="https://data.nextstrain.org/files/workflows/mpox/sequences_with_restricted.fasta.zst",
+        alignment_url="https://data.nextstrain.org/files/workflows/mpox/alignment_with_restricted.fasta.zst",
     shell:
         """
-        curl -fsSL --compressed {params.sequences_url:q} --output {output.sequences}
-        curl -fsSL --compressed {params.metadata_url:q} --output {output.metadata}
+        curl -fsSL {params.sequences_url:q} --output {output.sequences}
+        curl -fsSL {params.metadata_url:q} --output {output.metadata}
+        curl -fsSL {params.alignment_url:q} --output {output.alignment}
         """
 
 
-rule decompress:
-    "Decompressing sequences and metadata"
+# rule copy:
+#     output:
+#         sequences="data/sequences.fasta.zst",
+#         metadata="data/metadata.tsv.zst",
+#         alignment="data/alignment.fasta.zst",
+#     shell:
+#         """
+#         zstd -f ../ingest/results/sequences.fasta -o {output.sequences}
+#         zstd -f ../ingest/results/metadata.tsv -o {output.metadata}
+#         zstd -f ../ingest/results/alignment.fasta -o {output.alignment}
+#         """
+
+
+rule decompress_metadata:
+    "Decompressing sequences and metadata and strip version from fasta ID"
     input:
-        sequences="data/sequences.fasta.zst",
         metadata="data/metadata.tsv.zst",
     output:
-        sequences="data/sequences.fasta",
         metadata="data/metadata.tsv",
     shell:
         """
-        zstd --decompress --stdout {input.sequences:q} > {output.sequences:q}
-        zstd --decompress --stdout {input.metadata:q} > {output.metadata:q}
+        zstd --decompress --keep {input.metadata}
         """
 
 
-rule remove_known_duplicates:
+rule decompress_sequences_and_remove_duplicates:
+    "Decompressing sequences and strip version from fasta ID"
     input:
+        sequences="data/{file}.fasta.zst",
         known_duplicates="resources/known_duplicates.txt",
-        sequences="data/sequences.fasta",
     output:
-        sequences_without_known_duplicates="results/sequences_without_known_duplicates.fasta",
+        sequences="data/{file}.fasta",
+    params:
+        min_length=config["min_length"],
     shell:
         """
-        seqkit grep -w0 -v -f {input.known_duplicates} {input.sequences} > {output.sequences_without_known_duplicates}
+        zstdcat {input.sequences} \
+        | seqkit replace \
+            -p "^([^.]+).*" -r '$1' \
+        | seqkit grep -w0 -v -f {input.known_duplicates} \
+        | seqkit seq -m={params.min_length} \
+        > {output.sequences}
         """
 
 
 rule index:
     "Indexing sequences"
     input:
-        sequences="results/sequences_without_known_duplicates.fasta",
+        sequences="data/sequences.fasta",
     output:
         index="results/index.tsv",
     shell:
@@ -111,60 +140,9 @@ rule index:
         """
 
 
-rule prealign:
-    input:
-        sequences="results/sequences_without_known_duplicates.fasta",
-        reference=PREALIGN_REFERENCE,
-        annotation=annotation_path,
-    output:
-        alignment="results/prealigned.fasta",
-    shell:
-        """
-        nextclade3 run \
-            {input.sequences} \
-            --retry-reverse-complement \
-            --excess-bandwidth 100 \
-            --terminal-bandwidth 300 \
-            --allowed-mismatches 8 \
-            --window-size 40 \
-            --min-seed-cover 0.1 \
-            --input-ref {input.reference} \
-            --gap-alignment-side left \
-            --input-annotation {input.annotation} \
-            --output-fasta /dev/stdout \
-            --include-reference \
-        | sed 's/ |(reverse complement)$//' > {output.alignment}
-        """
-
-
-rule exclude_bad:
-    # Removing strains that do not satisfy certain requirements.
-    input:
-        sequences="results/sequences_without_known_duplicates.fasta",
-        metadata="data/metadata.tsv",
-        index="results/index.tsv",
-    output:
-        sequences="results/decent_sequences.fasta",
-        metadata="results/decent_metadata.tsv",
-        log="results/decent_filter.log",
-    shell:
-        """
-        augur filter \
-            --sequences {input.sequences} \
-            --sequence-index {input.index} \
-            --metadata-id-columns accession \
-            --metadata {input.metadata} \
-            --output-sequences {output.sequences} \
-            --output-metadata {output.metadata} \
-            --min-length 150000 \
-            --query "(QC_rare_mutations == 'good')" \
-            --output-log {output.log}
-        """
-
-
 rule premask:
     input:
-        sequences="results/prealigned.fasta",
+        sequences="data/alignment.fasta",
         mask=PREMASK_BED,
     output:
         "results/premasked.fasta",
@@ -193,13 +171,75 @@ rule deduplicate:
         """
 
 
-rule subsample:
+rule exclude_bad:
+    input:
+        sequences="data/sequences.fasta",
+        metadata="data/metadata.tsv",
+        index="results/index.tsv",
+        includes=[
+            "resources/include_accessions.txt",
+            expand(
+                "resources/{build_name}/include_accessions.txt", build_name=BUILD_NAMES
+            ),
+            "resources/all-clades/include_recombinants.txt",
+        ],
+    output:
+        sequences="results/decent_sequences.fasta",
+        metadata="results/decent_metadata_raw.tsv",
+        log="results/decent_filter.log",
+    params:
+        min_length=config["min_length"],
+    shell:
+        """
+        augur filter \
+            --sequences {input.sequences} \
+            --sequence-index {input.index} \
+            --metadata-id-columns PPX_accession \
+            --metadata {input.metadata} \
+            --min-length {params.min_length} \
+            --include {input.includes} \
+            --query "(private_substitutions < 40)" \
+            --output-sequences {output.sequences} \
+            --output-metadata {output.metadata} \
+            --output-log {output.log}
+        """
+
+
+rule reformat_ambiguous:
+    input:
+        metadata="results/decent_metadata_raw.tsv",
+    output:
+        metadata="results/decent_metadata.tsv",
+    run:
+        import pandas as pd
+
+        df = pd.read_csv(input.metadata, sep="\t", keep_default_na=False)
+
+
+        def replace_ambiguous_date(date):
+            if date == "":
+                return "XXXX-XX-XX"
+            parts = date.split("-")
+            year = parts[0]
+            rest = [p.zfill(2) for p in parts[1:]]
+            while len(rest) < 2:
+                rest.append("XX")
+            return "-".join([year] + rest)
+
+
+        df["date"] = df["date"].apply(replace_ambiguous_date)
+
+        df.to_csv(output.metadata, sep="\t", index=False)
+
+
+rule subsample_b1:
     input:
         sequences="results/decent_sequences.fasta",
         metadata="results/decent_metadata.tsv",
         exclude="resources/exclude_accessions.txt",
         specific_exclude="resources/{build_name}/exclude_accessions.txt",
         deduplicate_exclude="results/duplicates.txt",
+        build_specific_duplicates="resources/{build_name}/duplicates.txt",
         specific_include="resources/{build_name}/include_accessions.txt",
         include=lambda w: config[w.build_name]["general_include"],
         index="results/index.tsv",
@@ -207,26 +247,70 @@ rule subsample:
         sequences="results/{build_name}/filtered_raw.fasta",
         metadata="results/{build_name}/filtered_raw_metadata.tsv",
         log="results/{build_name}/filtered_raw.log",
+        strains="results/{build_name}/strains_b1.txt",
     params:
         min_date=lambda w: config[w.build_name]["min_date"],
         min_length=config["min_length"],
-        exclude_where=lambda w: config[w.build_name]["exclude_where"],
-        subsampling=lambda w: config[w.build_name]["subsampling"],
+        exclude_where=lambda w: config[w.build_name]["exclude_where"]["b1"],
+        subsampling=lambda w: config[w.build_name]["subsampling"]["b1"],
     shell:
         """
         augur filter \
             --sequences {input.sequences} \
             --metadata {input.metadata} \
             --sequence-index {input.index} \
-            --metadata-id-columns accession \
-            --exclude {input.exclude} {input.specific_exclude} {input.deduplicate_exclude} \
+            --metadata-id-columns PPX_accession \
+            --exclude {input.exclude} {input.specific_exclude} {input.deduplicate_exclude} {input.build_specific_duplicates} \
             {params.exclude_where} \
             {params.min_date} \
             {params.subsampling} \
             --include {input.include} {input.specific_include} \
             --probabilistic-sampling \
-            --output {output.sequences} \
+            --output-sequences {output.sequences} \
             --output-metadata {output.metadata} \
+            --output-strains {output.strains} \
+            --min-length {params.min_length} \
+            --output-log {output.log}
+        """
+
+
+rule subsample_nonb1:
+    input:
+        sequences="results/decent_sequences.fasta",
+        metadata="results/decent_metadata.tsv",
+        exclude="resources/exclude_accessions.txt",
+        specific_exclude="resources/{build_name}/exclude_accessions.txt",
+        deduplicate_exclude="results/duplicates.txt",
+        build_specific_duplicates="resources/{build_name}/duplicates.txt",
+        specific_include="resources/{build_name}/include_accessions.txt",
+        include=lambda w: config[w.build_name]["general_include"],
+        index="results/index.tsv",
+    output:
+        sequences="results/{build_name}/filtered_raw_nonb1.fasta",
+        metadata="results/{build_name}/filtered_raw_metadata_nonb1.tsv",
+        strains="results/{build_name}/strains_nonb1.txt",
+        log="results/{build_name}/filtered_raw_nonb1.log",
+    params:
+        min_date=lambda w: config[w.build_name]["min_date"],
+        min_length=config["min_length"],
+        exclude_where=lambda w: config[w.build_name]["exclude_where"]["nonb1"],
+        subsampling=lambda w: config[w.build_name]["subsampling"]["nonb1"],
+    shell:
+        """
+        augur filter \
+            --sequences {input.sequences} \
+            --metadata {input.metadata} \
+            --sequence-index {input.index} \
+            --metadata-id-columns PPX_accession \
+            --exclude {input.exclude} {input.specific_exclude} {input.deduplicate_exclude} {input.build_specific_duplicates} \
+            {params.exclude_where} \
+            {params.min_date} \
+            {params.subsampling} \
+            --include {input.include} {input.specific_include} \
+            --probabilistic-sampling \
+            --output-sequences {output.sequences} \
+            --output-metadata {output.metadata} \
+            --output-strains {output.strains} \
             --min-length {params.min_length} \
             --output-log {output.log}
         """
@@ -234,8 +318,12 @@ rule subsample:
 
 rule postsample_exclude:
     input:
-        sequences="results/{build_name}/filtered_raw.fasta",
-        metadata="results/{build_name}/filtered_raw_metadata.tsv",
+        strains=lambda w: [
+            f"results/{{build_name}}/strains_{sample}.txt"
+            for sample in ["b1", "nonb1"]
+        ],
+        sequences="results/decent_sequences.fasta",
+        metadata="results/decent_metadata.tsv",
         exclude="resources/{build_name}/post_filter_exclude.txt",
         index="results/index.tsv",
     output:
@@ -245,12 +333,14 @@ rule postsample_exclude:
     shell:
         """
         augur filter \
+            --exclude-all \
             --sequences {input.sequences} \
             --metadata {input.metadata} \
             --sequence-index {input.index} \
-            --metadata-id-columns accession \
+            --metadata-id-columns PPX_accession \
             --exclude {input.exclude} \
-            --output {output.sequences} \
+            --include {input.strains} \
+            --output-sequences {output.sequences} \
             --output-metadata {output.metadata} \
             --output-log {output.log}
         """
@@ -294,7 +384,7 @@ rule mask:
         sequences="results/{build_name}/aligned.fasta",
         mask="resources/{build_name}/mask.bed",
     output:
-        "results/{build_name}/masked.fasta",
+        "results/{build_name}/masked_with_dups.fasta",
     shell:
         """
         augur mask \
@@ -304,25 +394,87 @@ rule mask:
         """
 
 
-rule tree:
+rule deduplicate_2:
+    """
+    Remove identical sequences (even if they have differing Ns)
+    Keep those sequences with fewer Ns
+    Focus for Nextclade is on diversity, not on representativeness
+    """
     input:
-        alignment="results/{build_name}/masked.fasta",
+        sequences="results/{build_name}/masked_with_dups.fasta",
     output:
-        tree="results/{build_name}/tree_raw.nwk",
+        duplicates="results/{build_name}/duplicates.txt",
     shell:
         """
-        augur tree \
-            --alignment {input.alignment} \
-            --output {output.tree} \
-            --nthreads 3 \
-            --tree-builder-args '--polytomy --pathogen-force --tree-search EXHAUSTIVE --output-multifurcating-tree --make-consistent'
+        python3 scripts/deduplicate.py {input.sequences} {output.duplicates}
         """
+
+
+rule pre_tree_exclude:
+    input:
+        sequences="results/{build_name}/masked_with_dups.fasta",
+        duplicates="results/{build_name}/duplicates.txt",
+        recombinants="resources/{build_name}/include_recombinants.txt",
+    output:
+        sequences="results/{build_name}/masked.fasta",
+    shell:
+        """
+        seqkit grep -w0 -v -f \
+            <(cat {input.duplicates} {input.recombinants}) \
+            {input.sequences} \
+        > {output.sequences}
+        """
+
+
+if TREE_METHOD == "cmaple":
+
+    rule tree:
+        input:
+            alignment="results/{build_name}/masked.fasta",
+        output:
+            tree="results/{build_name}/masked.fasta.treefile",
+        shell:
+            """
+            cmaple \
+                -aln {input.alignment} \
+                -m JC \
+                -st DNA \
+                --search EXHAUSTIVE \
+                --out-mul-tree \
+                --make-consistent \
+                -nt AUTO \
+                --overwrite
+            """
+
+else:
+
+    rule tree:
+        input:
+            alignment="results/{build_name}/masked.fasta",
+        output:
+            tree="results/{build_name}/masked.fasta.treefile",
+        shell:
+            # """
+            # augur tree \
+            #     --alignment {input.alignment} \
+            #     --tree-builder-args "--polytomy --ninit 2 -n 2 --epsilon 0.05 -T 4 --redo" \
+            #     --nthreads 4 \
+            #     --output {output.tree}
+            # """
+            """
+            ~/code/pree/rust/target/release/rust_parsimony build \
+                {input.alignment} \
+                --output-file {output.tree} \
+                --pruning-threshold 30 \
+                --num-trees 20 \
+                --spr-trees 10
+            """
 
 
 rule collapse:
     input:
         script="scripts/collapse-zero-branches.py",
-        tree="results/{build_name}/tree_raw.nwk",
+        tree=rules.tree.output.tree,
     output:
         tree="results/{build_name}/tree_collapsed.nwk",
     shell:
@@ -335,10 +487,30 @@ rule collapse:
         """
 
 
+rule graft_recombinants:
+    input:
+        script="scripts/graft-recombinants.py",
+        tree="results/{build_name}/tree_collapsed.nwk",
+        recombinants="resources/{build_name}/include_recombinants.txt",
+    output:
+        tree="results/{build_name}/tree_grafted.nwk",
+    params:
+        root=lambda w: config[w.build_name]["root"],
+    shell:
+        """
+        python {input.script} \
+            --input-tree {input.tree} \
+            --recombinants {input.recombinants} \
+            --root "{params.root}" \
+            --branch-length 1.0 \
+            --output-tree {output.tree}
+        """
+
+
 rule refine:
     input:
-        tree="results/{build_name}/tree_collapsed.nwk",
-        alignment="results/{build_name}/masked.fasta",
+        tree="results/{build_name}/tree_grafted.nwk",
+        alignment="results/{build_name}/masked_with_dups.fasta",
         metadata="results/{build_name}/metadata.tsv",
     output:
         tree="results/{build_name}/tree.nwk",
@@ -355,7 +527,8 @@ rule refine:
             --root {params.root} \
             --divergence-unit mutations \
             --keep-polytomies \
-            --output-node-data {output.node_data}
+            --output-node-data {output.node_data} \
+            --seed 42
         """
 
 
@@ -370,10 +543,16 @@ rule ancestral:
         reference="resources/{build_name}/reference.fasta",
     output:
         node_data="results/{build_name}/nt_muts.json",
+        log="results/{build_name}/ancestral.log",
     params:
         inference="joint",
         translation_template="results/{build_name}/translations/%GENE.fasta",
-        genes=lambda w: " ".join(genes(w)),
+        genes=lambda w: " ".join(
+            filter(
+                lambda g: g not in config[w.build_name].get("genes_to_exclude", []),
+                genes(w),
+            )
+        ),
     shell:
         """
         augur ancestral \
@@ -385,7 +564,8 @@ rule ancestral:
             --translations {params.translation_template} \
             --genes {params.genes} \
             --output-node-data {output.node_data} \
-            --inference joint
+            --inference joint \
+            2>&1 > {output.log}
         """
 
 
@@ -409,13 +589,14 @@ rule clades:
 
 rule rename_clades:
     input:
-        "results/{build_name}/clades_raw.json",
+        clades="results/{build_name}/clades_raw.json",
+        script="scripts/clades_renaming.py",
     output:
         node_data="results/{build_name}/clades.json",
     shell:
         """
-        python scripts/clades_renaming.py \
-        --input-node-data {input} \
+        python {input.script} \
+        --input-node-data {input.clades} \
         --output-node-data {output.node_data}
         """
 
@@ -446,7 +627,7 @@ rule nice_strain_names:
         """
         python3 scripts/make_nice_strain_names.py \
             --metadata {input.metadata} \
-            --input-columns country accession date \
+            --input-columns country PPX_accession_version date \
             --separator '/' \
             --output-column strain_display \
             --output {output.metadata}
@@ -476,8 +657,7 @@ rule export:
         nt_muts="results/{build_name}/nt_muts.json",
         auspice_config="results/{build_name}/auspice_config.json",
     output:
-        auspice_json="auspice/nextclade_mpox_{build_name}_pretty.json",
-        root_sequence="auspice/nextclade_mpox_{build_name}_pretty_root-sequence.json",
+        auspice_json="auspice/nextclade_mpox_{build_name}.json",
     shell:
         """
         augur export v2 \
@@ -487,19 +667,9 @@ rule export:
             --colors {input.colors} \
             --auspice-config {input.auspice_config} \
             --include-root-sequence \
-            --metadata-id-columns accession \
+            --metadata-id-columns PPX_accession \
+            --minify-json \
             --output {output.auspice_json}
-        """
-
-
-rule minify_tree:
-    input:
-        auspice="auspice/nextclade_mpox_{build_name}_pretty.json",
-    output:
-        auspice="auspice/nextclade_mpox_{build_name}.json",
-    shell:
-        """
-        gojq -c '.' {input.auspice} > {output.auspice}
         """
 
 
