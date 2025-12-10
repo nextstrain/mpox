@@ -10,6 +10,9 @@ Instead, changes appear below grouped by the date they were added to the workflo
 
 ## 2025
 
+* 10 December 2025: BREAKING CHANGE - the `outbreak` column values have been updated with the latest release of the Nextclade dataset.
+  See [Nextclade release notes](https://github.com/nextstrain/nextclade_data/releases/tag/2025-12-10--14-52-38Z) for details.
+  * phylogenetic workflow's default filter params have been updated to replace outbreak `hMPXV-1` with `sh2017`
 * 10 November 2025: Transition to Pathoplexus as data source
   * Ingest workflow updated to pull data from Pathoplexus API instead of directly from INSDC databases.
   * Phylogenetic workflow updated to take into account changes in metadata and sequence data from Pathoplexus.
