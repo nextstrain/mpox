@@ -30,7 +30,7 @@ if __name__ == "__main__":
 
         # if it starts with clade -> it's a clade
         # if it starts with outbreak -> it's outbreak, need to look up clade
-        # if it starts with lineage -> it's clade IIb, outbreak hMPXV-1
+        # if it starts with lineage -> it's clade IIb, outbreak sh2017
         if old_clade_name.startswith("clade"):
             clade_name = old_clade_name.split()[1]
         # Need to set up clade dictionary for when we have other outbreaks
@@ -41,7 +41,7 @@ if __name__ == "__main__":
             clade_name = args.outgroup_clade_name
         else:
             clade_name = "IIb"
-            outbreak_name = "hMPXV-1"
+            outbreak_name = "sh2017"
             lineage_name = old_clade_name
 
         new_node_data[name] = {
@@ -52,7 +52,7 @@ if __name__ == "__main__":
         if "clade_annotation" in node:
             new_node_data[name]["clade_annotation"] = node["clade_annotation"]
             if node["clade_annotation"] == "A":
-                new_node_data[name]["clade_annotation"] = "hMPXV-1 A"
+                new_node_data[name]["clade_annotation"] = "sh2017 A"
 
     data["nodes"] = new_node_data
     with open(args.output_node_data, "w") as fh:
