@@ -133,3 +133,5 @@ PP_000YWQ   # B.1 with reversions
 PP_0011BTZ  # B.1 with reversions
 
 PP_003416A	# G.1 with many reversions interspersed
+
+PP_004DYJ3  # clade Ib/IIb recombinant that messes up phylogeny
