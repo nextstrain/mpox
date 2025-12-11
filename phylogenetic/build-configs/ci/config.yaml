@@ -34,7 +34,7 @@ subsample:
     --group-by lineage year country
     --sequences-per-group 50
     --exclude-where
-    outbreak!=hMPXV-1
+    outbreak!=sh2017
     clade!=IIb
     lineage=B.1
     lineage=B.1.1
@@ -85,7 +85,7 @@ subsample:
   b1: >-
     --group-by country year
     --subsample-max-sequences 300
-    --exclude-where outbreak!=hMPXV-1 clade!=IIb
+    --exclude-where outbreak!=sh2017 clade!=IIb
 
 ## align
 max_indel: 10000

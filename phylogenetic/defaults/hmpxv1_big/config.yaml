@@ -31,7 +31,7 @@ subsample:
     --group-by year month country
     --subsample-max-sequences 5000
     --exclude-where
-    outbreak!=hMPXV-1
+    outbreak!=sh2017
     clade!=IIb
     lineage=A
     lineage=A.1
