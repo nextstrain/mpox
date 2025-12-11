@@ -3,12 +3,10 @@ import json
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="remove time info",
+        description="Split clade membership into clade, outbreak and lineage",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
-    parser.add_argument(
-        "--input-node-data", type=str, required=True, help="input data"
-    )
+    parser.add_argument("--input-node-data", type=str, required=True, help="input data")
     parser.add_argument(
         "--output-node-data",
         type=str,
@@ -16,9 +14,7 @@ if __name__ == "__main__":
         required=True,
         help="output Auspice JSON",
     )
-    parser.add_argument(
-        "--outgroup-clade-name", type=str, default="outgroup", help="name for outgroup clade"
-    )
+    parser.add_argument("--outgroup-clade-name", type=str, default="outgroup", help="name for outgroup clade")
     args = parser.parse_args()
     with open(args.input_node_data) as fh:
         data = json.load(fh)
@@ -33,12 +29,24 @@ if __name__ == "__main__":
         # if it starts with lineage -> it's clade IIb, outbreak sh2017
         if old_clade_name.startswith("clade"):
             clade_name = old_clade_name.split()[1]
-        # Need to set up clade dictionary for when we have other outbreaks
-        # if old_clade_name.startswith('outbreak'):
-        #     outbreak_name = old_clade_name.split()[1]
-        #     clade_name = clade[outbreak_name]
+            match clade_name:
+                case "Ib":
+                    outbreak_name = "sh2023"
+                case "Ib/IIb":
+                    outbreak_name = "rec2025"
+        elif old_clade_name == "sh2024":
+            clade_name = "Ia"
+            outbreak_name = old_clade_name
+        elif old_clade_name == "sh2017":
+            clade_name = "IIb"
+            outbreak_name = old_clade_name
+            lineage_name = "A"
         elif old_clade_name.startswith(args.outgroup_clade_name):
             clade_name = args.outgroup_clade_name
+        elif old_clade_name.startswith("outgroup"):
+            clade_name = "outgroup"
+        elif old_clade_name.startswith("unassigned"):
+            clade_name = "unassigned"
         else:
             clade_name = "IIb"
             outbreak_name = "sh2017"
@@ -49,11 +57,27 @@ if __name__ == "__main__":
             "outbreak": outbreak_name,
             "lineage": lineage_name,
         }
-        if "clade_annotation" in node:
-            new_node_data[name]["clade_annotation"] = node["clade_annotation"]
-            if node["clade_annotation"] == "A":
-                new_node_data[name]["clade_annotation"] = "sh2017 A"
 
+    new_branch_labels = {}
+
+    for name, node in data["branches"].items():
+        # Rename sh2017 -> sh2017/A
+        # Rename clade Ib -> clade IIb/outbreak sh2023
+        if "labels" in node and "clade" in node["labels"]:
+
+            def make_label(label: str) -> dict:
+                return {"labels": {"clade": label}}
+
+            match node["labels"]["clade"]:
+                case "sh2017":
+                    new_branch_labels[name] = make_label("sh2017/A")
+                case "clade Ib":
+                    new_branch_labels[name] = make_label("clade Ib/sh2023")
+                case "A":
+                    new_branch_labels[name] = make_label("sh2017/A")
+                case _:
+                    new_branch_labels[name] = node
+    data["branches"] = new_branch_labels
     data["nodes"] = new_node_data
     with open(args.output_node_data, "w") as fh:
         json.dump(data, fh)

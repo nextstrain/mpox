@@ -8,6 +8,11 @@ clade I	nuc	133368	A
 clade Ia	clade	clade I
 clade Ia	nuc	35352	A
 
+sh2024	clade	clade Ia
+sh2024	nuc	132431	A
+sh2024	nuc	143630	A
+sh2024	nuc	171897	A
+
 clade Ib	clade	clade I
 clade Ib	nuc	19455	T
 
@@ -21,11 +26,11 @@ clade IIa	nuc	54013	G
 clade IIb	clade	clade II
 clade IIb	nuc	48148	C
 
-A	clade	clade IIb
-A	nuc	48527	A
-A	nuc	19367	T
+sh2017	clade	clade IIb
+sh2017	nuc	19367	T
+sh2017	nuc	48527	A
 
-A.2	clade	A
+A.2	clade	sh2017
 A.2	nuc	34472	T
 
 A.2.1	clade	A.2
@@ -63,11 +68,11 @@ A.2.5	clade	A.2
 A.2.5	nuc	12426	T
 A.2.5	nuc	134107	A
 
-A.3	clade	A
+A.3	clade	sh2017
 A.3	nuc	96841	A
 A.3	nuc	100971	T
 
-A.1	clade	A
+A.1	clade	sh2017
 A.1	nuc	83326	T
 
 A.1.1	clade	A.1
