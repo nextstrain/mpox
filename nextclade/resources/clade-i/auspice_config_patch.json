@@ -5,10 +5,6 @@
     "value": "Nextclade reference tree for Mpox virus (Clade I)"
   },
   {
-    "op": "remove",
-    "path": "/extensions/nextclade/clade_node_attrs"
-  },
-  {
     "op": "replace",
     "path": "/extensions/nextclade/placement_mask_ranges",
     "value": [
