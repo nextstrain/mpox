@@ -33,7 +33,7 @@ if __name__ == "__main__":
                 case "Ib":
                     outbreak_name = "sh2023"
                 case "Ib/IIb":
-                    outbreak_name = "rec2025"
+                    outbreak_name = "recombinant"
         elif old_clade_name == "sh2024":
             clade_name = "Ia"
             outbreak_name = old_clade_name
@@ -52,11 +52,18 @@ if __name__ == "__main__":
             outbreak_name = "sh2017"
             lineage_name = old_clade_name
 
-        new_node_data[name] = {
+        node_data = {
             "clade_membership": clade_name,
             "outbreak": outbreak_name,
             "lineage": lineage_name,
         }
+
+        # Add placement prior for Ib/IIb recombinants
+        # To discourage attachment of short sequences to this clade
+        if clade_name == "Ib/IIb":
+            node_data["placement_prior"] = -11.0
+
+        new_node_data[name] = node_data
 
     new_branch_labels = {}
 
