@@ -33,7 +33,7 @@ if __name__ == "__main__":
                 case "Ib":
                     outbreak_name = "sh2023"
                 case "Ib/IIb":
-                    outbreak_name = "rec2025"
+                    outbreak_name = "recombinant"
         elif old_clade_name == "sh2024":
             clade_name = "Ia"
             outbreak_name = old_clade_name
