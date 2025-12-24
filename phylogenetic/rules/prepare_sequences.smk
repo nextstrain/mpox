@@ -66,7 +66,7 @@ rule filter:
         strain_id=config["strain_id_field"],
         query=config["filter"]["query"],
         exclude_where=lambda w: (
-            ("--exclude-where " + config["filter"]["exclude_where"])
+            f"--exclude-where {config['filter']['exclude_where']!r}"
             if "exclude_where" in config["filter"]
             else ""
         ),
