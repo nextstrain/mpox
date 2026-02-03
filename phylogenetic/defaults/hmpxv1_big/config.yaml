@@ -1,5 +1,8 @@
 inputs:
   - name: pathoplexus
+    # NOTE: These files contain restricted sequences. If you are using these in
+    # your own analysis, please refer to the Pathoplexus Data Use Terms.
+    # <https://pathoplexus.org/about/terms-of-use/restricted-data>
     metadata: "https://data.nextstrain.org/files/workflows/mpox/metadata_with_restricted.tsv.zst"
     sequences: "https://data.nextstrain.org/files/workflows/mpox/sequences_with_restricted.fasta.zst"
 
