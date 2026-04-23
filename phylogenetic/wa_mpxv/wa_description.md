@@ -1,0 +1,3 @@
+This build has been adapted from [`monkeypox nextstrain`](https://github.com/nextstrain/monkeypox) and customized to for the surveillance of monkeypox in Washington state.
+
+We gratefully acknowledge the authors, originating and submitting laboratories of the genetic sequences and metadata for sharing their work. Please note that although data generators have generously shared data in an open fashion, that does not mean there should be free license to publish on this data. Data generators should be cited where possible and collaborations should be sought in some circumstances. Please try to avoid scooping someone else's work. Reach out if uncertain.
