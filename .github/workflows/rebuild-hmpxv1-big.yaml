@@ -54,8 +54,8 @@ jobs:
         nextstrain build \
           --detach \
           --no-download \
-          --cpus 8 \
-          --memory 68gib \
+          --cpus 16 \
+          --memory 28GiB \
           --env GITHUB_RUN_ID \
           --env SLACK_TOKEN \
           --env SLACK_CHANNELS \

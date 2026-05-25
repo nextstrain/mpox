@@ -42,8 +42,8 @@ jobs:
           --aws-batch \
           --detach \
           --no-download \
-          --cpus 32 \
-          --memory 64gib \
+          --cpus 4 \
+          --memory 7GiB \
           --env GITHUB_RUN_ID \
           --env SLACK_TOKEN \
           --env SLACK_CHANNELS \
