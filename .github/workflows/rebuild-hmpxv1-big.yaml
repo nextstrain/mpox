@@ -50,12 +50,16 @@ jobs:
         SLACK_CHANNELS: ${{ inputs.trial_name && vars.TEST_SLACK_CHANNEL || vars.SLACK_CHANNELS }}
         BUILD_DIR: phylogenetic
         BUILD_NAME: hmpxv1_big
+      # Aiming to use c7a.8xlarge instances since previous runs with c7a.4xlarge
+      # failed with OOM error. Note c7a.8xlarge is the largest instance allowed
+      # for the default nextstrain-job-queue. If this needs more memory,
+      # consider adding a separate job queue for larger instances.
       run: |
         nextstrain build \
           --detach \
           --no-download \
-          --cpus 16 \
-          --memory 28GiB \
+          --cpus 32 \
+          --memory 60GiB \
           --env GITHUB_RUN_ID \
           --env SLACK_TOKEN \
           --env SLACK_CHANNELS \
