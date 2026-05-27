@@ -23,7 +23,7 @@ def _get_all_targets(wildcards) -> list[str]:
 
         if not params.get("dst"):
             print(
-                f"Skipping file upload for {target} because the destination was not defined."
+                f"Skipping file upload for {target!r} because the destination was not defined."
             )
         else:
             all_targets.extend(
