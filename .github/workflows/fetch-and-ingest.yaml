@@ -22,7 +22,8 @@ on:
     # delay will lower the error frequency
     # Avoid start of the hour to avoid getting dropped during high load times:
     #   - https://github.com/nextstrain/.github/issues/153
-    - cron: '15 17 * * *'
+    # Only running once a week on Wednesdays to reduce AWS Batch costs
+    - cron: '15 17 * * 3'
 
   repository_dispatch:
     types:
