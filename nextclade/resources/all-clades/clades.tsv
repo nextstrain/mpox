@@ -1,6 +1,7 @@
 # Nuc coordinates valid for reference NC_063383 (MPXV-M5312_HM12_Rivers)
 clade	gene	site	alt
-unassigned	nuc	179226	T
+
+unassigned	nuc	720	C
 
 clade Ib/IIb	nuc	60171	T
 clade Ib/IIb	nuc	122558	A
@@ -22,6 +23,7 @@ clade Ib	nuc	19455	T
 clade II	nuc	86502	G
 clade II	nuc	150970	A
 clade II	nuc	35352	C
+clade II	nuc	103424	T
 
 clade IIa	clade	clade II
 clade IIa	nuc	54013	G

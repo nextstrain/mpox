@@ -466,8 +466,8 @@ else:
                 {input.alignment} \
                 --output-file {output.tree} \
                 --pruning-threshold 30 \
-                --num-trees 20 \
-                --spr-trees 10
+                --num-trees 30 \
+                --spr-trees 5
             """
 
 
@@ -590,14 +590,21 @@ rule clades:
 rule rename_clades:
     input:
         clades="results/{build_name}/clades_raw.json",
+        tree="results/{build_name}/tree.nwk",
         script="scripts/clades_renaming.py",
     output:
         node_data="results/{build_name}/clades.json",
+    params:
+        outgroup_clade_name=lambda w: config[w.build_name].get(
+            "outgroup_clade_name", "unassigned"
+        ),
     shell:
         """
         python {input.script} \
         --input-node-data {input.clades} \
-        --output-node-data {output.node_data}
+        --output-node-data {output.node_data} \
+        --outgroup-clade-name {params.outgroup_clade_name} \
+        --tree-file {input.tree}
         """
 
 

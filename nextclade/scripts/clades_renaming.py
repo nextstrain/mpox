@@ -1,6 +1,8 @@
 import argparse
 import json
 
+from Bio import Phylo
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Split clade membership into clade, outbreak and lineage",
@@ -15,7 +17,12 @@ if __name__ == "__main__":
         help="output Auspice JSON",
     )
     parser.add_argument("--outgroup-clade-name", type=str, default="outgroup", help="name for outgroup clade")
+    parser.add_argument("--tree-file", type=str, help="input tree file (not used)")
     args = parser.parse_args()
+    # get all node names
+    with open (args.tree_file) as fh:
+        tree = Phylo.read(fh, "newick")
+        all_node_names = {clade.name for clade in tree.find_clades() if clade.name is not None}
     with open(args.input_node_data) as fh:
         data = json.load(fh)
     new_node_data = {}
@@ -41,12 +48,8 @@ if __name__ == "__main__":
             clade_name = "IIb"
             outbreak_name = old_clade_name
             lineage_name = "A"
-        elif old_clade_name.startswith(args.outgroup_clade_name):
+        elif old_clade_name.startswith(args.outgroup_clade_name) or old_clade_name == "unassigned" or old_clade_name == "":
             clade_name = args.outgroup_clade_name
-        elif old_clade_name.startswith("outgroup"):
-            clade_name = "outgroup"
-        elif old_clade_name.startswith("unassigned"):
-            clade_name = "unassigned"
         else:
             clade_name = "IIb"
             outbreak_name = "sh2017"
@@ -64,6 +67,13 @@ if __name__ == "__main__":
             node_data["placement_prior"] = -11.0
 
         new_node_data[name] = node_data
+
+    for name in all_node_names - new_node_data.keys():
+        new_node_data[name] = {
+            "clade_membership": args.outgroup_clade_name,
+            "outbreak": "",
+            "lineage": "",
+        }
 
     new_branch_labels = {}
 

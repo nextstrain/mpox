@@ -16,6 +16,7 @@ clade-iib:
     b1: "--subsample-max-sequences 1000 --group-by clade lineage year month country --probabilistic-sampling"
     nonb1: "--sequences-per-group 10 --group-by clade lineage year month country --probabilistic-sampling"
   general_include: "resources/include_accessions.txt"
+  outgroup_clade_name: "outgroup"
 
 clade-i:
   root: "reconstructed_ancestral_mpox"
@@ -36,37 +37,40 @@ clade-i:
     - OPG005
     - OPG015_dup
     - OPG016
+  outgroup_clade_name: "outgroup"
 
 all-clades:
   root: "reconstructed_ancestral_mpox"
   min_date: ""
   exclude_where:
-    b1: "--exclude-where outbreak=hMPXV-1"
-    nonb1: "--exclude-where outbreak!=hMPXV-1"
+    b1: "--exclude-where outbreak=sh2017"
+    nonb1: "--exclude-where outbreak!=sh2017"
   subsampling:
-    b1: "--subsample-max-sequences 500 --group-by clade lineage year country --probabilistic-sampling"
-    nonb1: "--subsample-max-sequences 800 --group-by clade lineage year country --probabilistic-sampling"
+    b1: "--subsample-max-sequences 600 --group-by clade lineage year country --probabilistic-sampling"
+    nonb1: "--subsample-max-sequences 1000 --group-by clade lineage year country --probabilistic-sampling"
   general_include: "resources/include_accessions.txt"
   genes_to_exclude:
     - OPG001_dup
     - OPG002_dup
     - OPG003_dup
     - OPG015_dup
+  outgroup_clade_name: "unassigned"
 
 lineage-b.1:
   root: "ref_in_coord"
   min_date: ""
   exclude_where:
     b1: >-
-      --min-date 2022 --exclude-where outbreak!=hMPXV-1 lineage=A.2 lineage=A.2.1 lineage=A.2.2 lineage=A.2.3 lineage=A.2.4
+      --min-date 2022 --exclude-where outbreak!=sh2017 lineage=A.2 lineage=A.2.1 lineage=A.2.2 lineage=A.2.3 lineage=A.2.4
       lineage=A.2.5 lineage=G.1 lineage=H.1 lineage=H.2 lineage=A lineage=A.1
     nonb1: >-
-      --min-date 2024 --exclude-where outbreak!=hMPXV-1 lineage=A.2 lineage=A.2.1 lineage=A.2.2 lineage=A.2.3 lineage=A.2.4
+      --min-date 2024 --exclude-where outbreak!=sh2017 lineage=A.2 lineage=A.2.1 lineage=A.2.2 lineage=A.2.3 lineage=A.2.4
       lineage=A.2.5 lineage=G.1 lineage=H.1 lineage=H.2 lineage=A lineage=A.1
   subsampling:
     b1: "--subsample-max-sequences 2000 --group-by clade lineage year month country --probabilistic-sampling"
     nonb1: "--subsample-max-sequences 2000 --group-by clade lineage year month country --probabilistic-sampling"
   general_include: "resources/include_accessions.txt"
+  outgroup_clade_name: "outgroup"
 
 ## filter
 min_length: 160000

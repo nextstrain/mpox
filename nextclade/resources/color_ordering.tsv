@@ -217,12 +217,14 @@ region	North America
 ################
 
 
+clade_membership	unassigned
 clade_membership	I
 clade_membership	Ia
 clade_membership	Ib
 clade_membership	II
 clade_membership	IIa
 clade_membership	IIb
+clade_membership	Ib/IIb
 
 ################
 
