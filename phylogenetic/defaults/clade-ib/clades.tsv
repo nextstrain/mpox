@@ -1,0 +1,24 @@
+# Nuc coordinates valid for reference KJ642613.1 (strain Congo_8)
+clade	gene	site	alt
+A	nuc	48419	T
+
+A.1	clade	A
+A.1	nuc	147983	A
+
+A.2	clade	A
+A.2	nuc	63906	A
+
+A.3	clade	A
+A.3	nuc	185697	A
+
+A.4	clade	A
+A.4	nuc	77015	T
+
+A.5	clade	A
+A.5	nuc	151283	T
+
+A.5.1	clade	A.5
+A.5.1	nuc	17572	T
+
+A.6	clade	A
+A.6	nuc	165178	T

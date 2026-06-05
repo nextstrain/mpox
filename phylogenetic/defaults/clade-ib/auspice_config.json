@@ -1,0 +1,156 @@
+{
+  "title": "Genomic epidemiology of mpox clade Ib viruses",
+  "maintainers": [
+    { "name": "Nextstrain team", "url": "http://nextstrain.org" }
+  ],
+  "data_provenance": [
+    {
+      "name": "GenBank",
+      "url": "https://www.ncbi.nlm.nih.gov/genbank/"
+    },
+    {
+      "name": "Pathoplexus",
+      "url": "https://pathoplexus.org"
+    }
+  ],
+  "build_url": "https://github.com/nextstrain/mpox",
+  "colorings": [
+    {
+      "key": "lineage",
+      "title": "Lineage",
+      "type": "categorical"
+    },
+    {
+      "key": "region",
+      "title": "Region",
+      "type": "categorical"
+    },
+    {
+      "key": "country",
+      "title": "Country",
+      "type": "categorical"
+    },
+    {
+      "key": "dataUseTerms",
+      "title": "Data use terms",
+      "type": "categorical"
+    },
+    {
+      "key": "division",
+      "title": "Province",
+      "type": "categorical"
+    },
+    {
+      "key": "location",
+      "title": "Health Zone",
+      "type": "categorical"
+    },
+    {
+      "key": "host",
+      "title": "Host",
+      "type": "categorical"
+    },
+    {
+      "key": "GA_CT_fraction",
+      "title": "G→A or C→T fraction",
+      "type": "continuous"
+    },
+    {
+      "key": "dinuc_context_fraction",
+      "title": "NGA/TCN context of G→A/C→T mutations",
+      "type": "continuous"
+    },
+    {
+      "key": "recency",
+      "title": "Submission Recency",
+      "type": "categorical"
+    },
+    {
+      "key": "date_released",
+      "title": "Release Date",
+      "type": "categorical"
+    },
+    {
+      "key": "sra_accession",
+      "title": "SRA Accession",
+      "type": "categorical"
+    },
+    {
+      "key": "coverage",
+      "title": "Coverage",
+      "type": "continuous"
+    },
+    {
+      "key": "missing_data",
+      "title": "Missing Data",
+      "type": "continuous"
+    },
+    {
+      "key": "nonACGTN",
+      "title": "Non-ACGTN",
+      "type": "continuous"
+    },
+    {
+      "key": "institution",
+      "title": "Institution",
+      "type": "categorical"
+    },
+    {
+      "key": "division",
+      "title": "Division",
+      "type": "categorical"
+    },
+    {
+      "key": "location",
+      "title": "Location",
+      "type": "categorical"
+    },
+    {
+      "key": "author",
+      "title": "Authors",
+      "type": "categorical"
+    },
+    {
+      "key": "submission_database",
+      "title": "Database of original submission",
+      "type": "categorical"
+    },
+    {
+      "key": "Pathoplexus_group",
+      "title": "Pathoplexus Group ID",
+      "type": "categorical"
+    },
+    {
+      "key": "restrictedUntil",
+      "title": "Restricted Until",
+      "type": "categorical"
+    },
+    {
+      "key": "date",
+      "title": "Collection date",
+      "type": "categorical"
+    }
+  ],
+  "geo_resolutions": ["region", "country", "division", "location"],
+  "metadata_columns": [
+    "strain",
+    "PPX_accession",
+    "INSDC_accession_version",
+    "restrictedUntil"
+  ],
+  "display_defaults": {
+    "color_by": "country",
+    "tip_label": "strain",
+    "map_triplicate": true,
+    "distance_measure": "div",
+    "transmission_lines": false
+  },
+  "filters": [
+    "country",
+    "region",
+    "recency",
+    "host",
+    "author",
+    "Pathoplexus_group"
+  ]
+}

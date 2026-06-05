@@ -21,14 +21,16 @@ OUTPUTS:
 
 
 rule ancestral:
-    """
-    Reconstructing ancestral sequences and mutations
-    """
+    """Reconstructing ancestral sequences and mutations"""
     input:
         tree=build_dir + "/{build_name}/tree.nwk",
         alignment=build_dir + "/{build_name}/masked.fasta",
     output:
         node_data=build_dir + "/{build_name}/nt_muts.json",
+    log:
+        "logs/{build_name}/ancestral.txt",
+    benchmark:
+        "benchmarks/{build_name}/ancestral.txt"
     params:
         inference="joint",
         root_sequence=lambda w: (
@@ -36,10 +38,6 @@ rule ancestral:
             if config.get("ancestral_root_seq")
             else ""
         ),
-    log:
-        "logs/{build_name}/ancestral.txt",
-    benchmark:
-        "benchmarks/{build_name}/ancestral.txt"
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -47,6 +45,7 @@ rule ancestral:
         augur ancestral \
             --tree {input.tree:q} \
             --alignment {input.alignment:q} \
+            --keep-ambiguous \
             --inference {params.inference:q} \
             {params.root_sequence} \
             --output-node-data {output.node_data:q}
@@ -55,8 +54,8 @@ rule ancestral:
 
 rule translate:
     """
-    Translating amino acid sequences
-    """
+Translating amino acid sequences
+"""
     input:
         tree=build_dir + "/{build_name}/tree.nwk",
         node_data=build_dir + "/{build_name}/nt_muts.json",
@@ -81,22 +80,23 @@ rule translate:
 
 rule traits:
     """
-    Inferring ancestral traits for {params.columns!s}
-      - increase uncertainty of reconstruction by {params.sampling_bias_correction} to partially account for sampling bias
-    """
+Inferring ancestral traits for {params.columns!s}
+  - increase uncertainty of reconstruction by {params.sampling_bias_correction} to partially account for sampling bias
+
+"""
     input:
         tree=build_dir + "/{build_name}/tree.nwk",
         metadata=build_dir + "/{build_name}/metadata.tsv",
     output:
         node_data=build_dir + "/{build_name}/traits.json",
-    params:
-        columns=config["traits"]["columns"],
-        sampling_bias_correction=config["traits"]["sampling_bias_correction"],
-        strain_id=config["strain_id_field"],
     log:
         "logs/{build_name}/traits.txt",
     benchmark:
         "benchmarks/{build_name}/traits.txt"
+    params:
+        columns=config["traits"]["columns"],
+        sampling_bias_correction=config["traits"]["sampling_bias_correction"],
+        strain_id=config["strain_id_field"],
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -114,8 +114,8 @@ rule traits:
 
 rule clades:
     """
-    Adding internal clade labels
-    """
+Adding internal clade labels
+"""
     input:
         tree=build_dir + "/{build_name}/tree.nwk",
         aa_muts=build_dir + "/{build_name}/aa_muts.json",
@@ -182,18 +182,18 @@ rule mutation_context:
 
 rule recency:
     """
-    Use metadata on submission date to construct submission recency field
-    """
+Use metadata on submission date to construct submission recency field
+"""
     input:
         metadata=build_dir + "/{build_name}/metadata.tsv",
     output:
         node_data=build_dir + "/{build_name}/recency.json",
-    params:
-        strain_id=config["strain_id_field"],
     log:
         "logs/{build_name}/recency.txt",
     benchmark:
         "benchmarks/{build_name}/recency.txt"
+    params:
+        strain_id=config["strain_id_field"],
     shell:
         r"""
         exec &> >(tee {log:q})
