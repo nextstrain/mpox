@@ -1,9 +1,11 @@
 Chrom	ChromStart	ChromEnd	locus tag	Comment
 chr	0	1500		mask from beginning
 chr	6400	7100		very diverse region in clade IIa vs (clade IIb and clade I)
+chr	18105	18110		clade I vs II reference bias in Ugandan sequences
 chr	29750	29770		clade I vs II alignment issues/homopolymers
 chr	39050	39090		clade I vs II alignment issues/homopolymers
 chr	107660	107680		clade I vs II alignment issues/homopolymers
+chr	121319	121321		clade I vs II reference bias in Ugandan sequences
 chr	133050	133250		indel variation and long homopolymers
 chr	136500	136600		indel variation and long homopolymers
 chr	140050	140250		indel variation and long repetitive elements
