@@ -106,11 +106,38 @@ rule decompress_metadata:
         """
 
 
+rule filter_known_duplicates:
+    input:
+        known_duplicates="resources/known_duplicates.txt",
+        includes=[
+            "resources/include_accessions.txt",
+            expand(
+                "resources/{build_name}/include_accessions.txt", build_name=BUILD_NAMES
+            ),
+            "resources/all-clades/include_recombinants.txt",
+        ],
+    output:
+        "results/known_duplicates_to_exclude.txt",
+    run:
+        known_duplicates = {
+            line.strip() for line in open(input.known_duplicates) if line.strip()
+        }
+        includes = set()
+        for path in input.includes:
+            for line in open(path):
+                accession = line.split("#", maxsplit=1)[0].strip()
+                if accession:
+                    includes.add(accession)
+        with open(output[0], "w") as file:
+            for accession in sorted(known_duplicates - includes):
+                print(accession, file=file)
+
+
 rule decompress_sequences_and_remove_duplicates:
     "Decompressing sequences and strip version from fasta ID"
     input:
         sequences="data/{file}.fasta.zst",
-        known_duplicates="resources/known_duplicates.txt",
+        known_duplicates="results/known_duplicates_to_exclude.txt",
     output:
         sequences="data/{file}.fasta",
     params:
@@ -156,18 +183,30 @@ rule premask:
 
 
 rule deduplicate:
-    """
-    Remove identical sequences (even if they have differing Ns)
-    Keep those sequences with fewer Ns
-    Focus for Nextclade is on diversity, not on representativeness
-    """
+    # Remove identical sequences (even if they have differing Ns)
+    # Keep those sequences with fewer Ns
+    # Focus for Nextclade is on diversity, not on representativeness
     input:
         sequences="results/premasked.fasta",
+        includes=[
+            "resources/include_accessions.txt",
+            expand(
+                "resources/{build_name}/include_accessions.txt", build_name=BUILD_NAMES
+            ),
+            "resources/all-clades/include_recombinants.txt",
+        ],
     output:
         "results/duplicates.txt",
+    params:
+        include_options=lambda w, input: " ".join(
+            f"--include {path}" for path in input.includes
+        ),
     shell:
         """
-        python3 scripts/deduplicate.py {input.sequences} {output}
+        python3 scripts/deduplicate.py \
+            {input.sequences} \
+            {output} \
+            {params.include_options}
         """
 
 
@@ -399,11 +438,20 @@ rule deduplicate_2:
     # Focus for Nextclade is on diversity, not on representativeness
     input:
         sequences="results/{build_name}/masked_with_dups.fasta",
+        include=lambda w: config[w.build_name]["general_include"],
+        specific_include="resources/{build_name}/include_accessions.txt",
     output:
         duplicates="results/{build_name}/duplicates.txt",
+    params:
+        include_options=lambda w, input: " ".join(
+            f"--include {path}" for path in [input.include, input.specific_include]
+        ),
     shell:
         """
-        python3 scripts/deduplicate.py {input.sequences} {output.duplicates}
+        python3 scripts/deduplicate.py \
+            {input.sequences} \
+            {output.duplicates} \
+            {params.include_options}
         """
 
 

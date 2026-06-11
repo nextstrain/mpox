@@ -50,6 +50,7 @@ if __name__ == "__main__":
             match clade_name:
                 case "Ib":
                     outbreak_name = "sh2023"
+                    lineage_name = "A"
                 case "Ib/IIb":
                     outbreak_name = "recombinant"
         elif old_clade_name == "sh2024":
@@ -86,17 +87,19 @@ if __name__ == "__main__":
     new_branch_labels = {}
 
     for name, node in data["branches"].items():
-        # Clade Ib is also the root of outbreak sh2023.
         if "labels" in node and "clade" in node["labels"]:
-
-            def make_label(label: str) -> dict:
-                return {"labels": {"clade": label}}
-
-            match node["labels"]["clade"]:
+            label = node["labels"]["clade"]
+            match label:
                 case "clade Ib":
-                    new_branch_labels[name] = make_label("clade Ib/sh2023")
+                    label = "clade Ib/sh2023/A"
                 case _:
-                    new_branch_labels[name] = node
+                    if label.startswith(tuple(f"{outbreak}/" for outbreak in OUTBREAK_CLADES)):
+                        _, lineage_name = split_outbreak_lineage(label)
+                        label = label if lineage_name == "A" else lineage_name
+
+            new_branch_labels[name] = node | {
+                "labels": node["labels"] | {"clade": label}
+            }
     data["branches"] = new_branch_labels
     data["nodes"] = new_node_data
     with open(args.output_node_data, "w") as fh:

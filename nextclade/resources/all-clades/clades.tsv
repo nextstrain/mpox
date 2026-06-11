@@ -20,6 +20,30 @@ sh2024	nuc	171897	A
 clade Ib	clade	clade I
 clade Ib	nuc	19455	T
 
+sh2023/A.1	clade	clade Ib
+sh2023/A.1	nuc	140753	A
+sh2023/A.1	nuc	186208	A
+
+sh2023/A.2	clade	clade Ib
+sh2023/A.2	nuc	138816	A
+sh2023/A.2	nuc	165799	T
+
+sh2023/A.3	clade	clade Ib
+sh2023/A.3	nuc	54739	G
+sh2023/A.3	nuc	128447	T
+
+sh2023/A.4	clade	clade Ib
+sh2023/A.4	nuc	149636	T
+sh2023/A.4	nuc	171609	A
+
+sh2023/A.4.1	clade	sh2023/A.4
+sh2023/A.4.1	nuc	3656	A
+sh2023/A.4.1	nuc	17707	T
+
+sh2023/A.5	clade	clade Ib
+sh2023/A.5	nuc	4301	T
+sh2023/A.5	nuc	127872	A
+
 clade II	nuc	86502	G
 clade II	nuc	150970	A
 clade II	nuc	35352	C
