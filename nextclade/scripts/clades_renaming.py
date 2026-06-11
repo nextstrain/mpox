@@ -3,6 +3,19 @@ import json
 
 from Bio import Phylo
 
+OUTBREAK_CLADES = {
+    "sh2017": "IIb",
+    "sh2023": "Ib",
+}
+
+
+def split_outbreak_lineage(clade_name: str) -> tuple[str, str]:
+    outbreak_name, lineage_name = clade_name.split("/", maxsplit=1)
+    if outbreak_name not in OUTBREAK_CLADES or not lineage_name:
+        raise ValueError(f"Invalid outbreak/lineage clade name: {clade_name}")
+    return outbreak_name, lineage_name
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Split clade membership into clade, outbreak and lineage",
@@ -31,9 +44,7 @@ if __name__ == "__main__":
         outbreak_name = ""
         lineage_name = ""
 
-        # if it starts with clade -> it's a clade
-        # if it starts with outbreak -> it's outbreak, need to look up clade
-        # if it starts with lineage -> it's clade IIb, outbreak hMPXV-1
+        # Namespaced lineages identify both their outbreak and parent clade.
         if old_clade_name.startswith("clade"):
             clade_name = old_clade_name.split()[1]
             match clade_name:
@@ -44,16 +55,13 @@ if __name__ == "__main__":
         elif old_clade_name == "sh2024":
             clade_name = "Ia"
             outbreak_name = old_clade_name
-        elif old_clade_name == "sh2017":
-            clade_name = "IIb"
-            outbreak_name = old_clade_name
-            lineage_name = "A"
+        elif "/" in old_clade_name:
+            outbreak_name, lineage_name = split_outbreak_lineage(old_clade_name)
+            clade_name = OUTBREAK_CLADES[outbreak_name]
         elif old_clade_name.startswith(args.outgroup_clade_name) or old_clade_name == "unassigned" or old_clade_name == "":
             clade_name = args.outgroup_clade_name
         else:
-            clade_name = "IIb"
-            outbreak_name = "sh2017"
-            lineage_name = old_clade_name
+            raise ValueError(f"Unrecognized clade name: {old_clade_name}")
 
         node_data = {
             "clade_membership": clade_name,
@@ -78,20 +86,15 @@ if __name__ == "__main__":
     new_branch_labels = {}
 
     for name, node in data["branches"].items():
-        # Rename sh2017 -> sh2017/A
-        # Rename clade Ib -> clade IIb/outbreak sh2023
+        # Clade Ib is also the root of outbreak sh2023.
         if "labels" in node and "clade" in node["labels"]:
 
             def make_label(label: str) -> dict:
                 return {"labels": {"clade": label}}
 
             match node["labels"]["clade"]:
-                case "sh2017":
-                    new_branch_labels[name] = make_label("sh2017/A")
                 case "clade Ib":
                     new_branch_labels[name] = make_label("clade Ib/sh2023")
-                case "A":
-                    new_branch_labels[name] = make_label("sh2017/A")
                 case _:
                     new_branch_labels[name] = node
     data["branches"] = new_branch_labels
