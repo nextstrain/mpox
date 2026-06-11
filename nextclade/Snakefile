@@ -118,11 +118,11 @@ rule decompress_sequences_and_remove_duplicates:
     shell:
         """
         zstdcat {input.sequences} \
-        | seqkit replace \
-            -p "^([^.]+).*" -r '$1' \
-        | seqkit grep -w0 -v -f {input.known_duplicates} \
-        | seqkit seq -m={params.min_length} \
-        > {output.sequences}
+            | seqkit replace \
+                -p "^([^.]+).*" -r '$1' \
+            | seqkit grep -w0 -v -f {input.known_duplicates} \
+            | seqkit seq -m={params.min_length} \
+                >{output.sequences}
         """
 
 
@@ -228,7 +228,6 @@ rule reformat_ambiguous:
 
 
         df["date"] = df["date"].apply(replace_ambiguous_date)
-
         df.to_csv(output.metadata, sep="\t", index=False)
 
 
@@ -361,21 +360,21 @@ rule align:
     shell:
         """
         cat {input.root} {input.reference} {input.sequences} \
-        | seqkit seq -w0 -i \
-        | seqkit rmdup -n \
-        | nextclade3 run \
-            --retry-reverse-complement \
-            --input-ref {input.reference} \
-            --excess-bandwidth 100 \
-            --terminal-bandwidth 300 \
-            --allowed-mismatches 8 \
-            --window-size 40 \
-            --min-seed-cover 0.1 \
-            --input-annotation {input.annotation} \
-            --gap-alignment-side left \
-            --output-fasta /dev/stdout \
-            --output-translations {params.translation_template} \
-        | seqkit seq -w0 -i > {output.alignment}
+            | seqkit seq -w0 -i \
+            | seqkit rmdup -n \
+            | nextclade3 run \
+                --retry-reverse-complement \
+                --input-ref {input.reference} \
+                --excess-bandwidth 100 \
+                --terminal-bandwidth 300 \
+                --allowed-mismatches 8 \
+                --window-size 40 \
+                --min-seed-cover 0.1 \
+                --input-annotation {input.annotation} \
+                --gap-alignment-side left \
+                --output-fasta /dev/stdout \
+                --output-translations {params.translation_template} \
+            | seqkit seq -w0 -i >{output.alignment}
         """
 
 
@@ -395,11 +394,9 @@ rule mask:
 
 
 rule deduplicate_2:
-    """
-    Remove identical sequences (even if they have differing Ns)
-    Keep those sequences with fewer Ns
-    Focus for Nextclade is on diversity, not on representativeness
-    """
+    # Remove identical sequences (even if they have differing Ns)
+    # Keep those sequences with fewer Ns
+    # Focus for Nextclade is on diversity, not on representativeness
     input:
         sequences="results/{build_name}/masked_with_dups.fasta",
     output:
@@ -422,7 +419,7 @@ rule pre_tree_exclude:
         seqkit grep -w0 -v -f \
             <(cat {input.duplicates} {input.recombinants}) \
             {input.sequences} \
-        > {output.sequences}
+            >{output.sequences}
         """
 
 
@@ -454,20 +451,12 @@ else:
         output:
             tree="results/{build_name}/masked.fasta.treefile",
         shell:
-            # """
-            # augur tree \
-            #     --alignment {input.alignment} \
-            #     --tree-builder-args "--polytomy --ninit 2 -n 2 --epsilon 0.05 -T 4 --redo" \
-            #     --nthreads 4 \
-            #     --output {output.tree}
-            # """
             """
-            ~/code/pree/rust/target/release/rust_parsimony build \
-                {input.alignment} \
-                --output-file {output.tree} \
-                --pruning-threshold 30 \
-                --num-trees 30 \
-                --spr-trees 5
+            augur tree \
+                --alignment {input.alignment} \
+                --tree-builder-args "--polytomy --ninit 2 -n 2 --epsilon 0.05 -T 4 --redo" \
+                --nthreads 4 \
+                --output {output.tree}
             """
 
 
@@ -565,7 +554,7 @@ rule ancestral:
             --genes {params.genes} \
             --output-node-data {output.node_data} \
             --inference joint \
-            2>&1 > {output.log}
+            2>&1 >{output.log}
         """
 
 
@@ -601,10 +590,10 @@ rule rename_clades:
     shell:
         """
         python {input.script} \
-        --input-node-data {input.clades} \
-        --output-node-data {output.node_data} \
-        --outgroup-clade-name {params.outgroup_clade_name} \
-        --tree-file {input.tree}
+            --input-node-data {input.clades} \
+            --output-node-data {output.node_data} \
+            --outgroup-clade-name {params.outgroup_clade_name} \
+            --tree-file {input.tree}
         """
 
 
@@ -649,7 +638,7 @@ rule patch_auspice_config:
         auspice_config="results/{build_name}/auspice_config.json",
     shell:
         """
-        jsonpatch {input.auspice_config} {input.patch_json} > {output.auspice_config}
+        jsonpatch {input.auspice_config} {input.patch_json} >{output.auspice_config}
         """
 
 
