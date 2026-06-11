@@ -16,20 +16,17 @@ OUTPUTS:
 
 
 rule tree:
-    """
-    Building tree
-    """
     input:
         alignment=build_dir + "/{build_name}/masked.fasta",
         tree_mask=config["tree_mask"],
     output:
         tree=build_dir + "/{build_name}/tree_raw.nwk",
-    # It's faster to use 4 threads rather than doing a full search - hence hardcoding 4
-    threads: min(workflow.cores, 4)
     log:
         "logs/{build_name}/tree.txt",
     benchmark:
         "benchmarks/{build_name}/tree.txt"
+    # It's faster to use 4 threads rather than doing a full search - hence hardcoding 4
+    threads: min(workflow.cores, 4)
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -37,7 +34,7 @@ rule tree:
         augur tree \
             --alignment {input.alignment:q} \
             --exclude-sites {input.tree_mask:q} \
-            --tree-builder-args "-T {threads}" \
+            --tree-builder-args "-T {threads} --seqtype DNA" \
             --output {output.tree:q} \
             --nthreads {threads}
         """
@@ -45,23 +42,23 @@ rule tree:
 
 rule fix_tree:
     """
-    Fixing tree
-    """
+Fixing tree
+"""
     input:
         tree=build_dir + "/{build_name}/tree_raw.nwk",
         alignment=build_dir + "/{build_name}/masked.fasta",
     output:
         tree=build_dir + "/{build_name}/tree_fixed.nwk",
+    log:
+        "logs/{build_name}/fix_tree.txt",
+    benchmark:
+        "benchmarks/{build_name}/fix_tree.txt"
     params:
         root=lambda w: (
             ("--root " + config["treefix_root"])
             if config.get("treefix_root", False)
             else ""
         ),
-    log:
-        "logs/{build_name}/fix_tree.txt",
-    benchmark:
-        "benchmarks/{build_name}/fix_tree.txt"
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -75,13 +72,6 @@ rule fix_tree:
 
 
 rule refine:
-    """
-    Refining tree
-        - estimate timetree
-        - use {params.coalescent} coalescent timescale
-        - estimate {params.date_inference} node dates
-        - filter tips more than {params.clock_filter_iqd} IQDs from clock expectation
-    """
     input:
         tree=(
             build_dir + "/{build_name}/tree_fixed.nwk"
@@ -93,6 +83,10 @@ rule refine:
     output:
         tree=build_dir + "/{build_name}/tree.nwk",
         node_data=build_dir + "/{build_name}/branch_lengths.json",
+    log:
+        "logs/{build_name}/refine.txt",
+    benchmark:
+        "benchmarks/{build_name}/refine.txt"
     params:
         coalescent="opt",
         date_inference="marginal",
@@ -110,10 +104,6 @@ rule refine:
         ),
         strain_id=config["strain_id_field"],
         divergence_units=config["divergence_units"],
-    log:
-        "logs/{build_name}/refine.txt",
-    benchmark:
-        "benchmarks/{build_name}/refine.txt"
     shell:
         r"""
         exec &> >(tee {log:q})
