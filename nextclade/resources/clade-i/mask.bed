@@ -4,7 +4,9 @@ chr	6610	6612		artefact in some DRC sequences
 chr	10399	10521		very diverse in clade I
 chr	13867	13869		reverted in some Ib
 chr	18280	18282		homoplasic in Ib
-chr	20570	20580		homoplasic in Ib
+chr	19251	19253		deleted/homoplasic in Ib
+chr	20392	20394		deleted/homoplasic in Ib
+chr	20570	20581		homoplasic in Ib
 chr	31903	31905		homoplasic in Ib
 chr	58388	58490		homoplasic in Ib
 chr	64227	64329		homoplasic in Ib
@@ -20,7 +22,6 @@ chr	159132	159234		homoplasic in Ib
 chr	165586	165688		homoplasic in Ib
 chr	169399	169601		homoplasic in Ib
 chr	177247	177349		homoplasic in Ib
-chr	185990	186092		homoplasic in Ib
 chr	133165	133365		indel variation and long homopolymers
 chr	136612	136712		indel variation and long homopolymers
 chr	140150	140350		indel variation and long repetitive elements
