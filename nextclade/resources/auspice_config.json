@@ -27,6 +27,11 @@
           "name": "lineage",
           "displayName": "Lineage",
           "description": ""
+        },
+        {
+          "name": "outbreakLineage",
+          "displayName": "Outbreak/Lineage",
+          "description": ""
         }
       ],
       "placement_mask_ranges": [
@@ -61,6 +66,11 @@
     {
       "key": "lineage",
       "title": "Lineage",
+      "type": "categorical"
+    },
+    {
+      "key": "outbreakLineage",
+      "title": "Outbreak lineage",
       "type": "categorical"
     },
     {
@@ -181,6 +191,7 @@
   "filters": [
     "clade_membership",
     "lineage",
+    "outbreakLineage",
     "country",
     "host",
     "author",

@@ -68,6 +68,11 @@ if __name__ == "__main__":
             "clade_membership": clade_name,
             "outbreak": outbreak_name,
             "lineage": lineage_name,
+            "outbreakLineage": (
+                f"{outbreak_name}/{lineage_name}"
+                if outbreak_name and lineage_name
+                else ""
+            ),
         }
 
         # Add placement prior for Ib/IIb recombinants
@@ -82,6 +87,7 @@ if __name__ == "__main__":
             "clade_membership": args.outgroup_clade_name,
             "outbreak": "",
             "lineage": "",
+            "outbreakLineage": "",
         }
 
     new_branch_labels = {}

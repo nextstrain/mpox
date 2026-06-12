@@ -267,6 +267,14 @@ rule reformat_ambiguous:
 
 
         df["date"] = df["date"].apply(replace_ambiguous_date)
+        df["outbreakLineage"] = df.apply(
+            lambda row: (
+                f"{row['outbreak']}/{row['lineage']}"
+                if row["outbreak"] and row["lineage"]
+                else ""
+            ),
+            axis=1,
+        )
         df.to_csv(output.metadata, sep="\t", index=False)
 
 
@@ -496,13 +504,20 @@ else:
     rule tree:
         input:
             alignment="results/{build_name}/masked.fasta",
+            constraint_tree=lambda w: config[w.build_name].get("constraint_tree", ""),
         output:
             tree="results/{build_name}/masked.fasta.treefile",
+        params:
+            constraint_option=lambda w: (
+                f"-g {config[w.build_name]['constraint_tree']}"
+                if "constraint_tree" in config[w.build_name]
+                else ""
+            ),
         shell:
             """
             augur tree \
                 --alignment {input.alignment} \
-                --tree-builder-args "--polytomy --ninit 2 -n 2 --epsilon 0.05 -T 4 --redo" \
+                --tree-builder-args "--polytomy --ninit 2 -n 2 --epsilon 0.05 -T 4 --redo {params.constraint_option}" \
                 --nthreads 4 \
                 --output {output.tree}
             """
