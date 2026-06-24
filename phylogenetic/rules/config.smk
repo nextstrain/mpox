@@ -4,28 +4,7 @@ Originally copied from
 <https://github.com/nextstrain/zika/blob/3c17db54698cf7836641308f6aa50d714959992b/phylogenetic/rules/config.smk>
 """
 
-from textwrap import dedent, indent
-from typing import Union
-
-
-def as_list(config_param: Union[list, str]) -> list:
-    if isinstance(config_param, list):
-        return config_param
-
-    if isinstance(config_param, str):
-        return config_param.split()
-
-    raise TypeError(
-        indent(
-            dedent(
-                f"""\
-        'config_param' must be a list or a string.
-        Provided {config_param}, which is {type(config_param)}.
-        """
-            ),
-            "    ",
-        )
-    )
+from typing import Any, Union
 
 
 # Basic config sanity checking in lieu of a proper schema
@@ -34,32 +13,26 @@ if any([k in config for k in ["private_sequences", "private_metadata"]]):
         [k in config for k in ["private_sequences", "private_metadata"]]
     ), "Your config defined one of ['private_sequences', 'private_metadata'] but both must be supplied together"
 
-# Config manipulations to keep workflow backwards compatible with older configs
-if isinstance(config["root"], str):
-    print(
-        "Converting config['root'] from a string to a list; "
-        "consider updating the config param in the config file.",
-        file=sys.stderr,
-    )
-    config["root"] = as_list(config["root"])
 
-if isinstance(config["traits"]["columns"], str):
+def str_to_list_for_backcompat(val: Any, param: str) -> list:
+    if not isinstance(val, str):
+        return val
     print(
-        "Converting config['traits']['columns'] from a string to a list; "
-        "consider updating the config param in the config file.",
+        f"Workflow deprecation warning: Converting `config{param!r}` from a string to a list; "
+        "update the config file to silence this warning",
         file=sys.stderr,
     )
-    config["traits"]["columns"] = as_list(config["traits"]["columns"])
+    return val.split()
 
-if isinstance(config.get("colors", {}).get("ignore_categories"), str):
-    print(
-        "Converting config['colors']['ignore_categories'] from a string to a list; "
-        "consider updating the config param in the config file.",
-        file=sys.stderr,
-    )
-    config["colors"]["ignore_categories"] = as_list(
-        config["colors"]["ignore_categories"]
-    )
+
+config["root"] = str_to_list_for_backcompat(config["root"], "['root']")
+config["traits"]["columns"] = str_to_list_for_backcompat(
+    config["traits"]["columns"], "['traits']['columns']"
+)
+config["colors"]["ignore_categories"] = str_to_list_for_backcompat(
+    config["colors"]["ignore_categories"], "['colors']['ignore_categories']"
+)
+
 
 # Looping over a shallow copy of the dict since we remove disabled subsampling groups
 for name, params in config["subsample"].copy().items():
@@ -103,8 +76,8 @@ assert len(
 ROOT_FLAG = "--root "
 if config.get("treefix_root", "").startswith(ROOT_FLAG):
     print(
-        f"Removing the flag {ROOT_FLAG} from config['treefix_root'] ; "
-        "consider updating the config param in the config file.",
+        f"Workflow deprecation warning: Removing `{ROOT_FLAG!r}` from config['treefix_root'] ; "
+        f"consider removing the unnecessary substring `--root` from the config param in the config file to silence this warning.",
         file=sys.stderr,
     )
     config["treefix_root"] = config["treefix_root"][len(ROOT_FLAG) :]
