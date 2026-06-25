@@ -55,7 +55,25 @@ rule extract_open_data:
         augur filter --metadata {input.metadata} \
                      --sequences {input.sequences} \
                      --metadata-id-columns PPX_accession \
-                     --exclude-where "dataUseTerms=RESTRICTED" \
+                     --include-where "dataUseTerms=OPEN" \
+                     --output-metadata {output.metadata} \
+                     --output-sequences {output.sequences}
+        """
+
+
+rule extract_restricted_data:
+    input:
+        metadata="results/metadata.tsv",
+        sequences="results/sequences.fasta",
+    output:
+        metadata="results/metadata_restricted.tsv",
+        sequences="results/sequences_restricted.fasta",
+    shell:
+        """
+        augur filter --metadata {input.metadata} \
+                     --sequences {input.sequences} \
+                     --metadata-id-columns PPX_accession \
+                     --include-where "dataUseTerms=RESTRICTED" \
                      --output-metadata {output.metadata} \
                      --output-sequences {output.sequences}
         """

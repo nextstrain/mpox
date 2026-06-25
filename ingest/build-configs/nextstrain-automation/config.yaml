@@ -16,14 +16,15 @@ upload:
     # to avoid duplicate files with different compressions
     files_to_upload:
       ppx_with_restricted.ndjson.zst: results/ppx.ndjson.zst
-      metadata_with_restricted.tsv.zst: results/metadata.tsv
-      sequences_with_restricted.fasta.zst: results/sequences.fasta
+
       nextclade_with_restricted.tsv.zst: results/nextclade.tsv
       alignment_with_restricted.fasta.zst: results/alignment.fasta
       translations_with_restricted.zip: results/translations.zip
 
       metadata.tsv.zst: results/metadata_open.tsv
       sequences.fasta.zst: results/sequences_open.fasta
+      metadata_restricted.tsv.zst: results/metadata_restricted.tsv
+      sequences_restricted.tsv.zst: results/sequences_restricted.fasta
 
     cloudfront_domain: 'data.nextstrain.org'
 
