@@ -63,12 +63,12 @@ rule custom_subset_metadata:
         metadata="data/all_metadata_added.tsv",
     output:
         subset_metadata="data/subset_metadata.tsv",
-    params:
-        metadata_fields=",".join(config["curate"]["metadata_columns"]),
-    benchmark:
-        "benchmarks/subset_metadata.txt"
     log:
         "logs/subset_metadata.txt",
+    benchmark:
+        "benchmarks/subset_metadata.txt"
+    params:
+        metadata_fields=",".join(config["curate"]["metadata_columns"]),
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -76,7 +76,7 @@ rule custom_subset_metadata:
         csvtk cut -t -f {params.metadata_fields:q} \
             {input.metadata:q} \
             | csvtk mutate -t -f date_released -n date_submitted \
-            > {output.subset_metadata:q}
+                >{output.subset_metadata:q}
         """
 
 
