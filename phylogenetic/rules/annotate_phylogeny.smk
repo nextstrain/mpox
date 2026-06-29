@@ -29,6 +29,10 @@ rule ancestral:
         alignment=build_dir + "/{build_name}/masked.fasta",
     output:
         node_data=build_dir + "/{build_name}/nt_muts.json",
+    log:
+        "logs/{build_name}/ancestral.txt",
+    benchmark:
+        "benchmarks/{build_name}/ancestral.txt"
     params:
         inference="joint",
         root_sequence=lambda w: (
@@ -36,10 +40,6 @@ rule ancestral:
             if config.get("ancestral_root_seq")
             else ""
         ),
-    log:
-        "logs/{build_name}/ancestral.txt",
-    benchmark:
-        "benchmarks/{build_name}/ancestral.txt"
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -83,20 +83,21 @@ rule traits:
     """
     Inferring ancestral traits for {params.columns!s}
       - increase uncertainty of reconstruction by {params.sampling_bias_correction} to partially account for sampling bias
+
     """
     input:
         tree=build_dir + "/{build_name}/tree.nwk",
         metadata=build_dir + "/{build_name}/metadata.tsv",
     output:
         node_data=build_dir + "/{build_name}/traits.json",
-    params:
-        columns=config["traits"]["columns"],
-        sampling_bias_correction=config["traits"]["sampling_bias_correction"],
-        strain_id=config["strain_id_field"],
     log:
         "logs/{build_name}/traits.txt",
     benchmark:
         "benchmarks/{build_name}/traits.txt"
+    params:
+        columns=config["traits"]["columns"],
+        sampling_bias_correction=config["traits"]["sampling_bias_correction"],
+        strain_id=config["strain_id_field"],
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -188,12 +189,12 @@ rule recency:
         metadata=build_dir + "/{build_name}/metadata.tsv",
     output:
         node_data=build_dir + "/{build_name}/recency.json",
-    params:
-        strain_id=config["strain_id_field"],
     log:
         "logs/{build_name}/recency.txt",
     benchmark:
         "benchmarks/{build_name}/recency.txt"
+    params:
+        strain_id=config["strain_id_field"],
     shell:
         r"""
         exec &> >(tee {log:q})

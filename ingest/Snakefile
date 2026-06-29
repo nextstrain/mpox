@@ -27,7 +27,11 @@ rule all:
 
 
 include: "rules/curate.smk"
+
+
 include: "rules/nextclade.smk"
+
+
 include: "rules/fetch_from_ppx.smk"
 
 
@@ -44,18 +48,18 @@ if "custom_rules" in config:
 
 
 rule extract_open_data:
-    input:
-        metadata="results/metadata.tsv",
-        sequences="results/sequences.fasta",
-    output:
-        metadata="results/metadata_open.tsv",
-        sequences="results/sequences_open.fasta",
-    shell:
-        """
-        augur filter --metadata {input.metadata} \
-                     --sequences {input.sequences} \
-                     --metadata-id-columns PPX_accession \
-                     --exclude-where "dataUseTerms=RESTRICTED" \
-                     --output-metadata {output.metadata} \
-                     --output-sequences {output.sequences}
-        """
+        input:
+            metadata="results/metadata.tsv",
+            sequences="results/sequences.fasta",
+        output:
+            metadata="results/metadata_open.tsv",
+            sequences="results/sequences_open.fasta",
+        shell:
+            """
+            augur filter --metadata {input.metadata} \
+                --sequences {input.sequences} \
+                --metadata-id-columns PPX_accession \
+                --exclude-where "dataUseTerms=RESTRICTED" \
+                --output-metadata {output.metadata} \
+                --output-sequences {output.sequences}
+            """
