@@ -19,6 +19,7 @@ OUTPUTS:
 
 """
 
+tt_binary = "~/Projects_GitHub/TreeTime/treetime_rs/target/release/treetime"
 
 rule ancestral:
     """
@@ -27,56 +28,56 @@ rule ancestral:
     input:
         tree=build_dir + "/{build_name}/tree.nwk",
         alignment=build_dir + "/{build_name}/masked.fasta",
+        annotation = "defaults/genome_annotation.gff3"
     output:
         node_data=build_dir + "/{build_name}/nt_muts.json",
+        annotated_tree=build_dir + "/{build_name}/tree_annotated.nwk",
     params:
-        inference="joint",
-        root_sequence=lambda w: (
-            ("--root-sequence " + config["ancestral_root_seq"])
-            if config.get("ancestral_root_seq")
-            else ""
-        ),
-    log:
-        "logs/{build_name}/ancestral.txt",
+        translations = lambda w:build_dir + f"/{w.build_name}/translations" + "/{cds}.fasta"
     benchmark:
-        "benchmarks/{build_name}/ancestral.txt"
+        "benchmarks/{build_name}/ancestral_new.txt"
+    threads: 1
     shell:
         r"""
         exec &> >(tee {log:q})
 
-        augur ancestral \
+        {tt_binary} ancestral \
+            -j {threads} \
             --tree {input.tree:q} \
+            --quiet \
+            --annotation {input.annotation} \
+            --ignore-missing-alns \
             --alignment {input.alignment:q} \
-            --inference {params.inference:q} \
-            {params.root_sequence} \
-            --output-node-data {output.node_data:q}
+            --translations {params.translations} \
+            --output-augur-node-data {output.node_data:q} \
+            --output-tree-nwk-annotated {output.annotated_tree:q}
         """
 
 
-rule translate:
-    """
-    Translating amino acid sequences
-    """
-    input:
-        tree=build_dir + "/{build_name}/tree.nwk",
-        node_data=build_dir + "/{build_name}/nt_muts.json",
-        genome_annotation=config["genome_annotation"],
-    output:
-        node_data=build_dir + "/{build_name}/aa_muts.json",
-    log:
-        "logs/{build_name}/translate.txt",
-    benchmark:
-        "benchmarks/{build_name}/translate.txt"
-    shell:
-        r"""
-        exec &> >(tee {log:q})
+# rule translate:
+#     """
+#     Translating amino acid sequences
+#     """
+#     input:
+#         tree=build_dir + "/{build_name}/tree.nwk",
+#         node_data=build_dir + "/{build_name}/nt_muts.json",
+#         genome_annotation=config["genome_annotation"],
+#     output:
+#         node_data=build_dir + "/{build_name}/aa_muts.json",
+#     log:
+#         "logs/{build_name}/translate.txt",
+#     benchmark:
+#         "benchmarks/{build_name}/translate.txt"
+#     shell:
+#         r"""
+#         exec &> >(tee {log:q})
 
-        augur translate \
-            --tree {input.tree:q} \
-            --ancestral-sequences {input.node_data:q} \
-            --reference-sequence {input.genome_annotation:q} \
-            --output {output.node_data:q}
-        """
+#         augur translate \
+#             --tree {input.tree:q} \
+#             --ancestral-sequences {input.node_data:q} \
+#             --reference-sequence {input.genome_annotation:q} \
+#             --output {output.node_data:q}
+#         """
 
 
 rule traits:
@@ -118,7 +119,6 @@ rule clades:
     """
     input:
         tree=build_dir + "/{build_name}/tree.nwk",
-        aa_muts=build_dir + "/{build_name}/aa_muts.json",
         nuc_muts=build_dir + "/{build_name}/nt_muts.json",
         clades=config["clades"],
     output:
@@ -133,7 +133,7 @@ rule clades:
 
         augur clades \
             --tree {input.tree:q} \
-            --mutations {input.nuc_muts:q} {input.aa_muts:q} \
+            --mutations {input.nuc_muts:q} \
             --clades {input.clades:q} \
             --output-node-data {output.node_data:q}
         """

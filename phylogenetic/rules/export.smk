@@ -85,7 +85,7 @@ rule export:
         branch_lengths=(
             build_dir + "/{build_name}/branch_lengths.json"
             if config.get("timetree", False)
-            else build_dir + "/{build_name}/branch_lengths_no_time.json"
+            else build_dir + "/{build_name}/branch_lengths.json"
         ),
         traits=(
             build_dir + "/{build_name}/traits.json"
@@ -93,7 +93,6 @@ rule export:
             else []
         ),
         nt_muts=build_dir + "/{build_name}/nt_muts.json",
-        aa_muts=build_dir + "/{build_name}/aa_muts.json",
         clades=build_dir + "/{build_name}/clades.json",
         mutation_context=build_dir + "/{build_name}/mutation_context.json",
         recency=(
@@ -122,7 +121,7 @@ rule export:
             --tree {input.tree:q} \
             --metadata {input.metadata:q} \
             --metadata-id-columns {params.strain_id:q} \
-            --node-data {input.branch_lengths:q} {input.traits:q} {input.nt_muts:q} {input.aa_muts:q} {input.mutation_context:q} {input.clades:q} {input.recency:q} \
+            --node-data {input.branch_lengths:q} {input.traits:q} {input.nt_muts:q} {input.mutation_context:q} {input.clades:q} {input.recency:q} \
             --colors {input.colors:q} \
             --lat-longs {input.lat_longs:q} \
             --description {input.description:q} \

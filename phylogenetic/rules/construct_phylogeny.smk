@@ -37,104 +37,110 @@ rule tree:
         augur tree \
             --alignment {input.alignment:q} \
             --exclude-sites {input.tree_mask:q} \
-            --tree-builder-args "-T {threads}" \
+            --tree-builder-args "-T {threads} --pathogen" \
             --output {output.tree:q} \
             --nthreads {threads}
         """
 
+rule root_tree:
+    input:
+        tree=build_dir + "/{build_name}/tree_raw.nwk",
+    output:
+        tree=build_dir + "/{build_name}/tree_rooted.nwk",
+    run:
+        from Bio import Phylo
+        tree = Phylo.read(input.tree, "newick")
+        tree.root_at_midpoint()
+        Phylo.write(tree, output.tree, "newick")
 
+tt_binary = "~/Projects_GitHub/TreeTime/treetime_rs/target/release/treetime"
 rule fix_tree:
     """
     Fixing tree
     """
     input:
-        tree=build_dir + "/{build_name}/tree_raw.nwk",
+        tree=build_dir + "/{build_name}/tree_rooted.nwk",
         alignment=build_dir + "/{build_name}/masked.fasta",
     output:
-        tree=build_dir + "/{build_name}/tree_fixed.nwk",
-    params:
-        root=lambda w: (
-            ("--root " + config["treefix_root"])
-            if config.get("treefix_root", False)
-            else ""
-        ),
+        tree=build_dir + "/{build_name}/tree.nwk",
+        node_data=build_dir + "/{build_name}/branch_lengths.json",
     log:
         "logs/{build_name}/fix_tree.txt",
     benchmark:
         "benchmarks/{build_name}/fix_tree.txt"
+    threads: 1
     shell:
         r"""
         exec &> >(tee {log:q})
 
-        python3 scripts/fix_tree.py \
-            --alignment {input.alignment:q} \
-            --input-tree {input.tree:q} \
-            {params.root} \
-            --output {output.tree:q}
+        {tt_binary} optimize -j {threads} \
+            --alignment {input.alignment:q} --divergence-units mutations \
+            --tree {input.tree:q} --no-indels \
+            --output-tree-nwk {output.tree:q} --output-augur-node-data {output.node_data:q}
         """
 
 
-rule refine:
-    """
-    Refining tree
-        - estimate timetree
-        - use {params.coalescent} coalescent timescale
-        - estimate {params.date_inference} node dates
-        - filter tips more than {params.clock_filter_iqd} IQDs from clock expectation
-    """
-    input:
-        tree=(
-            build_dir + "/{build_name}/tree_fixed.nwk"
-            if config["fix_tree"]
-            else build_dir + "/{build_name}/tree_raw.nwk"
-        ),
-        alignment=build_dir + "/{build_name}/masked.fasta",
-        metadata=build_dir + "/{build_name}/metadata.tsv",
-    output:
-        tree=build_dir + "/{build_name}/tree.nwk",
-        node_data=build_dir + "/{build_name}/branch_lengths.json",
-    params:
-        coalescent="opt",
-        date_inference="marginal",
-        clock_filter_iqd=0,
-        root=config["root"],
-        clock_rate=(
-            ("--clock-rate " + str(config["clock_rate"]))
-            if "clock_rate" in config
-            else ""
-        ),
-        clock_std_dev=(
-            ("--clock-std-dev " + str(config["clock_std_dev"]))
-            if "clock_std_dev" in config
-            else ""
-        ),
-        strain_id=config["strain_id_field"],
-        divergence_units=config["divergence_units"],
-    log:
-        "logs/{build_name}/refine.txt",
-    benchmark:
-        "benchmarks/{build_name}/refine.txt"
-    shell:
-        r"""
-        exec &> >(tee {log:q})
+# rule refine:
+#     """
+#     Refining tree
+#         - estimate timetree
+#         - use {params.coalescent} coalescent timescale
+#         - estimate {params.date_inference} node dates
+#         - filter tips more than {params.clock_filter_iqd} IQDs from clock expectation
+#     """
+#     input:
+#         tree=(
+#             build_dir + "/{build_name}/tree_fixed.nwk"
+#             if config["fix_tree"]
+#             else build_dir + "/{build_name}/tree_raw.nwk"
+#         ),
+#         alignment=build_dir + "/{build_name}/masked.fasta",
+#         metadata=build_dir + "/{build_name}/metadata.tsv",
+#     output:
+#         tree=build_dir + "/{build_name}/tree.nwk",
+#         node_data=build_dir + "/{build_name}/branch_lengths.json",
+#     params:
+#         coalescent="opt",
+#         date_inference="marginal",
+#         clock_filter_iqd=0,
+#         root=config["root"],
+#         clock_rate=(
+#             ("--clock-rate " + str(config["clock_rate"]))
+#             if "clock_rate" in config
+#             else ""
+#         ),
+#         clock_std_dev=(
+#             ("--clock-std-dev " + str(config["clock_std_dev"]))
+#             if "clock_std_dev" in config
+#             else ""
+#         ),
+#         strain_id=config["strain_id_field"],
+#         divergence_units=config["divergence_units"],
+#     log:
+#         "logs/{build_name}/refine.txt",
+#     benchmark:
+#         "benchmarks/{build_name}/refine.txt"
+#     shell:
+#         r"""
+#         exec &> >(tee {log:q})
 
-        augur refine \
-            --tree {input.tree:q} \
-            --alignment {input.alignment:q} \
-            --metadata {input.metadata:q} \
-            --metadata-id-columns {params.strain_id:q} \
-            --output-tree {output.tree:q} \
-            --timetree \
-            --root {params.root:q} \
-            --precision 3 \
-            --keep-polytomies \
-            --use-fft \
-            {params.clock_rate} \
-            {params.clock_std_dev} \
-            --output-node-data {output.node_data:q} \
-            --coalescent {params.coalescent:q} \
-            --date-inference {params.date_inference:q} \
-            --date-confidence \
-            --divergence-units {params.divergence_units:q} \
-            --clock-filter-iqd {params.clock_filter_iqd:q}
-        """
+#         augur refine \
+#             --tree {input.tree:q} \
+#             --alignment {input.alignment:q} \
+#             --metadata {input.metadata:q} \
+#             --metadata-id-columns {params.strain_id:q} \
+#             --output-tree {output.tree:q} \
+#             --timetree \
+#             --root {params.root:q} \
+#             --precision 3 \
+#             --keep-polytomies \
+#             --use-fft \
+#             {params.clock_rate} \
+#             {params.clock_std_dev} \
+#             --output-node-data {output.node_data:q} \
+#             --coalescent {params.coalescent:q} \
+#             --date-inference {params.date_inference:q} \
+#             --date-confidence \
+#             --divergence-units {params.divergence_units:q} \
+#             --clock-filter-iqd {params.clock_filter_iqd:q}
+#         """

@@ -214,6 +214,7 @@ rule align:
         min_seed_cover=0.1,
         allowed_mismatches=8,
         gap_alignment_side="left",
+        translations = lambda w:build_dir + f"/{w.build_name}/translations" + "/{cds}.fasta"
     threads: workflow.cores
     log:
         "logs/{build_name}/align.txt",
@@ -233,6 +234,7 @@ rule align:
             --min-seed-cover {params.min_seed_cover:q} \
             --allowed-mismatches {params.allowed_mismatches:q} \
             --gap-alignment-side {params.gap_alignment_side:q} \
+            --output-translations {params.translations} \
             --output-fasta - \
             {input.sequences:q} \
             | seqkit seq -i > {output.alignment:q}
