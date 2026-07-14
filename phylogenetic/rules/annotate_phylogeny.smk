@@ -19,13 +19,13 @@ OUTPUTS:
 
 """
 
-tt_binary = "~/Projects_GitHub/TreeTime/treetime_rs/target/release/treetime"
-
 rule ancestral:
     """
     Reconstructing ancestral sequences and mutations
     """
     input:
+        treetime=TREETIME_BINARY,
+        treetime_source=TREETIME_SOURCE,
         tree=build_dir + "/{build_name}/tree.nwk",
         alignment=build_dir + "/{build_name}/masked.fasta",
         annotation = "defaults/genome_annotation.gff3"
@@ -41,7 +41,8 @@ rule ancestral:
         r"""
         exec &> >(tee {log:q})
 
-        {tt_binary} ancestral \
+        cat {input.treetime_source:q} >&2
+        {input.treetime:q} ancestral \
             -j {threads} \
             --tree {input.tree:q} \
             --quiet \
@@ -50,7 +51,8 @@ rule ancestral:
             --alignment {input.alignment:q} \
             --translations {params.translations} \
             --output-augur-node-data {output.node_data:q} \
-            --output-tree-nwk-annotated {output.annotated_tree:q}
+            --output-nwk-style beast \
+            --output-tree-nwk {output.annotated_tree:q}
         """
 
 

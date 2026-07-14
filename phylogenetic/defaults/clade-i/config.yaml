@@ -21,6 +21,9 @@ strain_id_field: "PPX_accession"
 build_name: "clade-i"
 auspice_name: "mpox_clade-I"
 
+treetime:
+  nightly: latest
+
 filter:
   min_date: 1900
   min_length: 170000

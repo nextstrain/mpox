@@ -112,6 +112,58 @@ The build-configs directory contains configs and customizations that override an
 - [ci](build-configs/ci/) - CI build that run the [example build](#example-build) with the [example data](example_data/).
 - [nextstrain-automation](build-configs/nextstrain-automation/) - internal Nextstrain automated builds
 
+### TreeTime executable
+
+Each build config selects a TreeTime executable with the `treetime` mapping. The default fetches the latest release from [neherlab/treetime-nightly](https://github.com/neherlab/treetime-nightly/releases):
+
+```yaml
+treetime:
+  nightly: latest
+```
+
+To reproduce a build with a fixed nightly release, pass an additional config file containing its exact release tag:
+
+```yaml
+treetime:
+  nightly: 1.0.0-nightly.20260714T043012Z+abcdef0
+```
+
+To test a local build, select its executable path instead:
+
+```yaml
+treetime:
+  path: /absolute/path/to/treetime
+```
+
+An arbitrary binary URL can also be fetched:
+
+```yaml
+treetime:
+  url: https://example.org/path/to/treetime
+```
+
+Pass the selector after the build config so that it replaces the default. Use the ambient runtime when selecting a local executable outside the build directory:
+
+```bash
+nextstrain build --ambient . \
+    --configfiles defaults/hmpxv1/config.yaml treetime-local.yaml
+```
+
+The same selectors can override the config through the environment:
+
+```bash
+TREETIME_NIGHTLY=latest nextstrain build --ambient .
+TREETIME_NIGHTLY=1.0.0-nightly.20260714T043012Z+abcdef0 nextstrain build --ambient .
+TREETIME_PATH=/absolute/path/to/treetime nextstrain build --ambient .
+TREETIME_URL=https://example.org/path/to/treetime nextstrain build --ambient .
+```
+
+Set exactly one of `TREETIME_NIGHTLY`, `TREETIME_PATH`, or `TREETIME_URL`. An environment selector overrides the `treetime` mapping. `TREETIME_PATH` is interpreted by the ambient runtime, so it can reference an arbitrary host path.
+
+Every run reports the effective TreeTime source. Local selection reports the full resolved path, URL selection reports the full URL, and nightly selection reports the exact tag and asset URL. A `latest` nightly is resolved and reported before its binary is used.
+
+Nightly and URL binaries are downloaded as part of the workflow and removed after the last rule that uses them. Local binaries are used directly and are never copied or downloaded.
+
 ## Update example data
 
 [Example data](./example_data/) is used by [CI](https://github.com/nextstrain/mpox/actions/workflows/ci.yaml).

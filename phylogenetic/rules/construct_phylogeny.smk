@@ -53,12 +53,13 @@ rule root_tree:
         tree.root_at_midpoint()
         Phylo.write(tree, output.tree, "newick")
 
-tt_binary = "~/Projects_GitHub/TreeTime/treetime_rs/target/release/treetime"
 rule fix_tree:
     """
     Fixing tree
     """
     input:
+        treetime=TREETIME_BINARY,
+        treetime_source=TREETIME_SOURCE,
         tree=build_dir + "/{build_name}/tree_rooted.nwk",
         alignment=build_dir + "/{build_name}/masked.fasta",
     output:
@@ -73,7 +74,8 @@ rule fix_tree:
         r"""
         exec &> >(tee {log:q})
 
-        {tt_binary} optimize -j {threads} \
+        cat {input.treetime_source:q} >&2
+        {input.treetime:q} optimize -j {threads} \
             --alignment {input.alignment:q} --divergence-units mutations \
             --tree {input.tree:q} --no-indels \
             --output-tree-nwk {output.tree:q} --output-augur-node-data {output.node_data:q}

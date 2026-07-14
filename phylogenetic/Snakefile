@@ -52,6 +52,7 @@ rule all:
 
 include: "../shared/vendored/snakemake/remote_files.smk"
 include: "rules/config.smk"
+include: "rules/treetime.smk"
 include: "rules/merge_inputs.smk"
 include: "rules/prepare_sequences.smk"
 include: "rules/construct_phylogeny.smk"

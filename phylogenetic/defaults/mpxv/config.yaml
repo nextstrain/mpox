@@ -21,6 +21,9 @@ strain_id_field: "PPX_accession"
 build_name: "mpxv"
 auspice_name: "mpox_all-clades"
 
+treetime:
+  nightly: latest
+
 filter:
   min_date: 1950
   min_length: 100000

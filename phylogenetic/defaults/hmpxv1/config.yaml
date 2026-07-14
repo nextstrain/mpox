@@ -21,6 +21,9 @@ strain_id_field: "PPX_accession"
 build_name: "hmpxv1"
 auspice_name: "mpox_clade-IIb"
 
+treetime:
+  nightly: latest
+
 filter:
   min_date: 2017
   min_length: 100000
