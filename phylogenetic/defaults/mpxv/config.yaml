@@ -52,7 +52,9 @@ fix_tree: true
 
 ## refine
 timetree: false
-root: "min_dev"
+root:
+  method: "min-dev"
+
 clock_rate: 3e-6
 clock_std_dev: 6e-6
 divergence_units: "mutations-per-site"

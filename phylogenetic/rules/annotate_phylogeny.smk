@@ -26,9 +26,12 @@ rule ancestral:
     input:
         treetime=TREETIME_BINARY,
         treetime_source=TREETIME_SOURCE,
-        tree=build_dir + "/{build_name}/tree.nwk",
+        tree=(build_dir + "/{build_name}/time_tree.nwk"
+            if config.get("timetree", False)
+            else build_dir + "/{build_name}/divergence_tree.nwk"
+        ),
         alignment=build_dir + "/{build_name}/masked.fasta",
-        annotation = "defaults/genome_annotation.gff3"
+        annotation=config["genome_annotation"],
     output:
         node_data=build_dir + "/{build_name}/nt_muts.json",
         annotated_tree=build_dir + "/{build_name}/tree_annotated.nwk",
@@ -88,7 +91,10 @@ rule traits:
       - increase uncertainty of reconstruction by {params.sampling_bias_correction} to partially account for sampling bias
     """
     input:
-        tree=build_dir + "/{build_name}/tree.nwk",
+        tree=(build_dir + "/{build_name}/time_tree.nwk"
+            if config.get("timetree", False)
+            else build_dir + "/{build_name}/divergence_tree.nwk"
+        ),
         metadata=build_dir + "/{build_name}/metadata.tsv",
     output:
         node_data=build_dir + "/{build_name}/traits.json",
@@ -120,7 +126,10 @@ rule clades:
     Adding internal clade labels
     """
     input:
-        tree=build_dir + "/{build_name}/tree.nwk",
+        tree=(build_dir + "/{build_name}/time_tree.nwk"
+            if config.get("timetree", False)
+            else build_dir + "/{build_name}/divergence_tree.nwk"
+        ),
         nuc_muts=build_dir + "/{build_name}/nt_muts.json",
         clades=config["clades"],
     output:
@@ -163,7 +172,10 @@ rule rename_clades:
 
 rule mutation_context:
     input:
-        tree=build_dir + "/{build_name}/tree.nwk",
+        tree=(build_dir + "/{build_name}/time_tree.nwk"
+            if config.get("timetree", False)
+            else build_dir + "/{build_name}/divergence_tree.nwk"
+        ),
         node_data=build_dir + "/{build_name}/nt_muts.json",
     output:
         node_data=build_dir + "/{build_name}/mutation_context.json",

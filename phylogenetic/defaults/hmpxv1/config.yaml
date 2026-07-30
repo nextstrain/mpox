@@ -102,8 +102,8 @@ treefix_root: "PP_000T4L2"
 ## refine
 timetree: true
 root:
-  - PP_000T4L2
-  - PP_000T4J6
+  method: outgroup
+  tips: "PP_000T4L2,PP_000T4J6"
 clock_rate: 5.7e-5
 clock_std_dev: 2e-5
 divergence_units: "mutations"

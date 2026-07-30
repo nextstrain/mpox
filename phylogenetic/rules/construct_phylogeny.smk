@@ -42,16 +42,13 @@ rule tree:
             --nthreads {threads}
         """
 
-rule root_tree:
-    input:
-        tree=build_dir + "/{build_name}/tree_raw.nwk",
-    output:
-        tree=build_dir + "/{build_name}/tree_rooted.nwk",
-    run:
-        from Bio import Phylo
-        tree = Phylo.read(input.tree, "newick")
-        tree.root_at_midpoint()
-        Phylo.write(tree, output.tree, "newick")
+
+def root_mode(wildcards):
+    if "root" in config:
+        if config["root"]["method"] == "outgroup":
+            return f"--reroot-tips {config['root']['tips']}"
+        elif config["root"]["method"] == "min-dev":
+            return "--reroot min-dev"
 
 rule fix_tree:
     """
@@ -60,11 +57,13 @@ rule fix_tree:
     input:
         treetime=TREETIME_BINARY,
         treetime_source=TREETIME_SOURCE,
-        tree=build_dir + "/{build_name}/tree_rooted.nwk",
+        tree=build_dir + "/{build_name}/tree_raw.nwk",
         alignment=build_dir + "/{build_name}/masked.fasta",
     output:
-        tree=build_dir + "/{build_name}/tree.nwk",
-        node_data=build_dir + "/{build_name}/branch_lengths.json",
+        tree=build_dir + "/{build_name}/divergence_tree.nwk",
+        node_data=build_dir + "/{build_name}/divergence_branch_lengths.json",
+    params:
+        root = root_mode
     log:
         "logs/{build_name}/fix_tree.txt",
     benchmark:
@@ -77,10 +76,46 @@ rule fix_tree:
         cat {input.treetime_source:q} >&2
         {input.treetime:q} optimize -j {threads} \
             --alignment {input.alignment:q} --divergence-units mutations \
+            {params.root} \
             --tree {input.tree:q} --no-indels \
             --output-tree-nwk {output.tree:q} --output-augur-node-data {output.node_data:q}
         """
 
+
+rule timetree:
+    input:
+        treetime=TREETIME_BINARY,
+        treetime_source=TREETIME_SOURCE,
+        tree=build_dir + "/{build_name}/divergence_tree.nwk",
+        alignment=build_dir + "/{build_name}/masked.fasta",
+        metadata=build_dir + "/{build_name}/metadata.tsv"
+    output:
+        tree=build_dir + "/{build_name}/time_tree.nwk",
+        node_data=build_dir + "/{build_name}/timetree_branch_lengths.json",
+        auspice_tree=build_dir + "/{build_name}/tree.auspice.json",
+    params:
+        clock_rate = config.get("clock_rate", None),
+        clock_std_dev = config.get("clock_std_dev", None),
+        metadata_id_columns = config["strain_id_field"],
+    shell:
+        r"""
+        exec &> >(tee {log:q})
+
+        cat {input.treetime_source:q} >&2
+        {input.treetime:q} timetree \
+            --tree {input.tree:q} \
+            --alignment {input.alignment:q} \
+            --metadata {input.metadata:q} \
+            --metadata-id-columns {params.metadata_id_columns:q} \
+            --output-tree-nwk {output.tree:q} \
+            --clock-rate {params.clock_rate} \
+            --clock-std-dev {params.clock_std_dev} \
+            --keep-root \
+            --keep-polytomies \
+            --divergence-units mutations --no-indels \
+            --output-augur-node-data {output.node_data:q} \
+            --output-tree-auspice {output.auspice_tree:q}
+        """
 
 # rule refine:
 #     """

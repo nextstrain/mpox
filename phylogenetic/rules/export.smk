@@ -80,12 +80,15 @@ rule export:
     Exporting data files for auspice
     """
     input:
-        tree=build_dir + "/{build_name}/tree.nwk",
+        tree= ( build_dir + "/{build_name}/time_tree.nwk"
+            if config.get("timetree", False)
+            else build_dir + "/{build_name}/divergence_tree.nwk"
+        ),
         metadata=build_dir + "/{build_name}/metadata.tsv",
         branch_lengths=(
-            build_dir + "/{build_name}/branch_lengths.json"
+            build_dir + "/{build_name}/timetree_branch_lengths.json"
             if config.get("timetree", False)
-            else build_dir + "/{build_name}/branch_lengths.json"
+            else build_dir + "/{build_name}/divergence_branch_lengths.json"
         ),
         traits=(
             build_dir + "/{build_name}/traits.json"

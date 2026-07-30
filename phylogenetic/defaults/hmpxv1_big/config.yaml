@@ -60,7 +60,10 @@ treefix_root: "PP_000VYPY"
 
 ## refine
 timetree: true
-root: "PP_000VYPY"
+
+root:
+  method: outgroup
+  tips: "PP_000VYPY"
 clock_rate: 5.7e-5
 clock_std_dev: 2e-5
 divergence_units: "mutations"
