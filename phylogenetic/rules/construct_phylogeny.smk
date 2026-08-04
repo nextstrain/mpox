@@ -55,7 +55,7 @@ Fixing tree
         "benchmarks/{build_name}/fix_tree.txt"
     params:
         root=lambda w: (
-            ("--root " + config["treefix_root"])
+            f"--root {config['treefix_root']!r}"
             if config.get("treefix_root", False)
             else ""
         ),
@@ -93,12 +93,10 @@ rule refine:
         clock_filter_iqd=0,
         root=config["root"],
         clock_rate=(
-            ("--clock-rate " + str(config["clock_rate"]))
-            if "clock_rate" in config
-            else ""
+            f"--clock-rate {config['clock_rate']!r}" if "clock_rate" in config else ""
         ),
         clock_std_dev=(
-            ("--clock-std-dev " + str(config["clock_std_dev"]))
+            f"--clock-std-dev {config['clock_std_dev']!r}"
             if "clock_std_dev" in config
             else ""
         ),
