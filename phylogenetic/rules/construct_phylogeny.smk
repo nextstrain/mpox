@@ -114,11 +114,13 @@ rule timetree:
             --output-tree-nwk {output.tree:q} \
             --clock-rate {params.clock_rate} \
             --clock-std-dev {params.clock_std_dev} \
+            --coalescent-skyline \
             --keep-root \
             --keep-polytomies \
             --divergence-units mutations --no-indels \
             --output-augur-node-data {output.node_data:q} \
-            --output-tree-auspice {output.auspice_tree:q}
+            --output-tree-auspice {output.auspice_tree:q} \
+            --output-coalescent-tsv {build_dir}/{wildcards.build_name}/skyline.tsv
         """
 
 # rule refine:
