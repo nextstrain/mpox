@@ -36,7 +36,8 @@ rule ancestral:
         node_data=build_dir + "/{build_name}/nt_muts.json",
         annotated_tree=build_dir + "/{build_name}/tree_annotated.nwk",
     params:
-        translations = lambda w:build_dir + f"/{w.build_name}/translations" + "/{cds}.fasta"
+        translations = lambda w:build_dir + f"/{w.build_name}/translations" + "/{cds}.fasta",
+        out_translations = lambda w:build_dir + f"/{w.build_name}/translations" + "/{cds}_anc.fasta"
     benchmark:
         "benchmarks/{build_name}/ancestral_new.txt"
     threads: 1
@@ -50,6 +51,7 @@ rule ancestral:
             --tree {input.tree:q} \
             --quiet \
             --annotation {input.annotation} \
+            --output-reconstructed-aa-fasta {params.out_translations} \
             --ignore-missing-alns \
             --alignment {input.alignment:q} \
             --translations {params.translations} \

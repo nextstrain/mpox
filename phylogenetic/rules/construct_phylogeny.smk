@@ -97,12 +97,16 @@ rule timetree:
         clock_rate = config.get("clock_rate", None),
         clock_std_dev = config.get("clock_std_dev", None),
         metadata_id_columns = config["strain_id_field"],
+    benchmark:
+        "benchmarks/{build_name}/timetree.txt"
+    threads: 1
     shell:
         r"""
         exec &> >(tee {log:q})
 
         cat {input.treetime_source:q} >&2
         {input.treetime:q} timetree \
+            -j {threads} \
             --tree {input.tree:q} \
             --alignment {input.alignment:q} \
             --metadata {input.metadata:q} \

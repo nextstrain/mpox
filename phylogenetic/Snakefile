@@ -86,5 +86,6 @@ rule cleanall:
         build_dir,
         auspice_dir,
         "data",
+        ".snakemake"
     shell:
         "rm -rfv {params}"
