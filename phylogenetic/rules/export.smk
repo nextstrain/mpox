@@ -56,12 +56,12 @@ rule colors:
         metadata=build_dir + "/{build_name}/metadata.tsv",
     output:
         colors=build_dir + "/{build_name}/colors.tsv",
-    params:
-        ignore_categories=config.get("colors", {}).get("ignore_categories", []),
     log:
         "logs/{build_name}/colors.txt",
     benchmark:
         "benchmarks/{build_name}/colors.txt"
+    params:
+        ignore_categories=config.get("colors", {}).get("ignore_categories", []),
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -108,12 +108,12 @@ rule export:
     output:
         auspice_json=build_dir + "/{build_name}/tree.json",
         root_sequence=build_dir + "/{build_name}/tree_root-sequence.json",
-    params:
-        strain_id=config["strain_id_field"],
     log:
         "logs/{build_name}/export.txt",
     benchmark:
         "benchmarks/{build_name}/export.txt"
+    params:
+        strain_id=config["strain_id_field"],
     shell:
         r"""
         exec &> >(tee {log:q})

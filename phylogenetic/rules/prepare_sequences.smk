@@ -31,12 +31,12 @@ rule map_accessions:
         script="scripts/map_accessions.py",
     output:
         accession_list=build_dir + "/{build_name}/{in_ex_clude}_ppx.txt",
-    wildcard_constraints:
-        in_ex_clude="(include|exclude)",
     log:
         "logs/{build_name}/map_accessions_{in_ex_clude}.txt",
     benchmark:
         "benchmarks/{build_name}/map_accessions_{in_ex_clude}.txt"
+    wildcard_constraints:
+        in_ex_clude="(include|exclude)",
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -60,6 +60,10 @@ rule filter:
         sequences=build_dir + "/{build_name}/good_sequences.fasta",
         metadata=build_dir + "/{build_name}/good_metadata.tsv",
         log=build_dir + "/{build_name}/good_filter.log",
+    log:
+        "logs/{build_name}/filter.txt",
+    benchmark:
+        "benchmarks/{build_name}/download.txt"
     params:
         min_date=config["filter"]["min_date"],
         min_length=config["filter"]["min_length"],
@@ -70,10 +74,6 @@ rule filter:
             if "exclude_where" in config["filter"]
             else ""
         ),
-    log:
-        "logs/{build_name}/filter.txt",
-    benchmark:
-        "benchmarks/{build_name}/download.txt"
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -135,13 +135,13 @@ rule subsample:
     output:
         strains=build_dir + "/{build_name}/{sample}_strains.txt",
         log=build_dir + "/{build_name}/{sample}_filter.log",
-    params:
-        augur_filter_args=lambda w: config["subsample"][w.sample],
-        strain_id=config["strain_id_field"],
     log:
         "logs/{build_name}/{sample}_subsample.txt",
     benchmark:
         "benchmarks/{build_name}/{sample}_subsample.txt"
+    params:
+        augur_filter_args=lambda w: config["subsample"][w.sample],
+        strain_id=config["strain_id_field"],
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -175,12 +175,12 @@ rule combine_samples:
     output:
         sequences=build_dir + "/{build_name}/filtered.fasta",
         metadata=build_dir + "/{build_name}/metadata.tsv",
-    params:
-        strain_id=config["strain_id_field"],
     log:
         "logs/{build_name}/combine_samples.txt",
     benchmark:
         "benchmarks/{build_name}/combine_samples.txt"
+    params:
+        strain_id=config["strain_id_field"],
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -190,8 +190,7 @@ rule combine_samples:
             --sequences {input.sequences:q} \
             --metadata {input.metadata:q} \
             --exclude-all \
-            --include {input.strains:q} {input.include:q}\
-            --output-sequences {output.sequences:q} \
+            --include {input.strains:q} {input.include:q} --output-sequences {output.sequences:q} \
             --output-metadata {output.metadata:q}
         """
 
@@ -206,6 +205,11 @@ rule align:
         genome_annotation=config["genome_annotation"],
     output:
         alignment=build_dir + "/{build_name}/aligned.fasta",
+    log:
+        "logs/{build_name}/align.txt",
+    benchmark:
+        "benchmarks/{build_name}/align.txt"
+    threads: workflow.cores
     params:
         # Alignment params from all-clades nextclade dataset
         excess_bandwidth=100,
@@ -214,11 +218,6 @@ rule align:
         min_seed_cover=0.1,
         allowed_mismatches=8,
         gap_alignment_side="left",
-    threads: workflow.cores
-    log:
-        "logs/{build_name}/align.txt",
-    benchmark:
-        "benchmarks/{build_name}/align.txt"
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -235,7 +234,7 @@ rule align:
             --gap-alignment-side {params.gap_alignment_side:q} \
             --output-fasta - \
             {input.sequences:q} \
-            | seqkit seq -i > {output.alignment:q}
+            | seqkit seq -i >{output.alignment:q}
         """
 
 
@@ -250,13 +249,13 @@ rule mask:
         mask=config["mask"]["maskfile"],
     output:
         build_dir + "/{build_name}/masked.fasta",
-    params:
-        from_start=config["mask"]["from_beginning"],
-        from_end=config["mask"]["from_end"],
     log:
         "logs/{build_name}/mask.txt",
     benchmark:
         "benchmarks/{build_name}/mask.txt"
+    params:
+        from_start=config["mask"]["from_beginning"],
+        from_end=config["mask"]["from_end"],
     shell:
         r"""
         exec &> >(tee {log:q})
