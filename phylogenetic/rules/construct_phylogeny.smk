@@ -42,8 +42,8 @@ rule tree:
 
 rule fix_tree:
     """
-Fixing tree
-"""
+    Fixing tree
+    """
     input:
         tree=build_dir + "/{build_name}/tree_raw.nwk",
         alignment=build_dir + "/{build_name}/masked.fasta",
