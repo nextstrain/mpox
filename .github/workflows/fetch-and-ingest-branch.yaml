@@ -31,7 +31,7 @@ jobs:
     uses: nextstrain/.github/.github/workflows/pathogen-repo-build.yaml@master
     secrets: inherit
     with:
-      runtime: aws-batch
+      runtime: docker
       env: |
         NEXTSTRAIN_DOCKER_IMAGE: ${{ inputs.image }}
         GITHUB_RUN_ID: ${{ github.run_id }}
@@ -39,11 +39,6 @@ jobs:
         UPLOAD_CONFIG: ${{ needs.set_config_overrides.outputs.upload_config }}
       run: |
         nextstrain build \
-          --aws-batch \
-          --detach \
-          --no-download \
-          --cpus 4 \
-          --memory 7GiB \
           --env GITHUB_RUN_ID \
           --env SLACK_TOKEN \
           --env SLACK_CHANNELS \
