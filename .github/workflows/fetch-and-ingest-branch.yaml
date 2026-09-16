@@ -51,3 +51,7 @@ jobs:
             nextstrain_automation \
               --configfiles build-configs/nextstrain-automation/config.yaml \
               --config trigger_rebuild=False send_slack_notifications=True upload="$UPLOAD_CONFIG"
+      artifact-paths: |
+        ingest/benchmarks/
+        ingest/logs/
+        ingest/.snakemake/log/

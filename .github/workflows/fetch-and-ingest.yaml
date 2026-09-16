@@ -61,3 +61,7 @@ jobs:
           ingest \
             nextstrain_automation \
               --configfiles build-configs/nextstrain-automation/config.yaml \
+      artifact-paths: |
+        ingest/benchmarks/
+        ingest/logs/
+        ingest/.snakemake/log/
