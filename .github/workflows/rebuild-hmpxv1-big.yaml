@@ -48,7 +48,6 @@ jobs:
         CONFIG_OVERRIDES: ${{ needs.set_config_overrides.outputs.config_overrides }}
         GITHUB_RUN_ID: ${{ github.run_id }}
         SLACK_CHANNELS: ${{ inputs.trial_name && vars.TEST_SLACK_CHANNEL || vars.SLACK_CHANNELS }}
-        BUILD_DIR: phylogenetic
         BUILD_NAME: hmpxv1_big
       # Aiming to use c7a.8xlarge instances since previous runs with c7a.4xlarge
       # failed with OOM error. Note c7a.8xlarge is the largest instance allowed
@@ -63,7 +62,7 @@ jobs:
           --env GITHUB_RUN_ID \
           --env SLACK_TOKEN \
           --env SLACK_CHANNELS \
-          . \
+          phylogenetic \
             notify_on_deploy \
-              --configfiles $BUILD_DIR/defaults/$BUILD_NAME/config.yaml $BUILD_DIR/build-configs/nextstrain-automation/config.yaml \
-              $CONFIG_OVERRIDES --directory $BUILD_DIR --snakefile $BUILD_DIR/Snakefile
+              --configfiles defaults/$BUILD_NAME/config.yaml build-configs/nextstrain-automation/config.yaml \
+              $CONFIG_OVERRIDES
