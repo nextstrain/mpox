@@ -254,7 +254,6 @@ rule reformat_ambiguous:
 
         df = pd.read_csv(input.metadata, sep="\t", keep_default_na=False)
 
-
         def replace_ambiguous_date(date):
             if date == "":
                 return "XXXX-XX-XX"
@@ -264,7 +263,6 @@ rule reformat_ambiguous:
             while len(rest) < 2:
                 rest.append("XX")
             return "-".join([year] + rest)
-
 
         df["date"] = df["date"].apply(replace_ambiguous_date)
         df["outbreakLineage"] = df.apply(

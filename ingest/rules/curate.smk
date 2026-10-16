@@ -28,10 +28,10 @@ rule generate_continent:
         script="scripts/generate_continent.py",
     output:
         ndjson="results/ppx_flat_continent.ndjson.zst",
-    benchmark:
-        "benchmarks/generate_continent.txt"
     log:
         "logs/generate_continent.txt",
+    benchmark:
+        "benchmarks/generate_continent.txt"
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -54,10 +54,10 @@ rule curate:
         metadata="data/all_metadata.tsv",
         sequences="results/sequences.fasta",
         # ndjson="results/curated.ndjson.zst",
-    benchmark:
-        "benchmarks/curate.txt"
     log:
         "logs/curate.txt",
+    benchmark:
+        "benchmarks/curate.txt"
     params:
         field_map=format_field_map(config["curate"]["field_map"]),
         strain_regex=config["curate"]["strain_regex"],
@@ -113,16 +113,16 @@ rule subset_metadata:
         metadata="data/all_metadata.tsv",
     output:
         subset_metadata="data/subset_metadata.tsv",
-    params:
-        metadata_fields=",".join(config["curate"]["metadata_columns"]),
-    benchmark:
-        "benchmarks/subset_metadata.txt"
     log:
         "logs/subset_metadata.txt",
+    benchmark:
+        "benchmarks/subset_metadata.txt"
+    params:
+        metadata_fields=",".join(config["curate"]["metadata_columns"]),
     shell:
         r"""
         exec &> >(tee {log:q})
 
         csvtk cut -t -f {params.metadata_fields:q} \
-            {input.metadata:q} > {output.subset_metadata:q}
+            {input.metadata:q} >{output.subset_metadata:q}
         """
