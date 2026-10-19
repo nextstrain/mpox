@@ -17,16 +17,15 @@ rule fetch_ppx_data:
     output:
         ppx_ndjson="results/ppx.ndjson.zst",
         ppx_headers="results/ppx.headers.txt",
+    log:
+        "logs/fetch_ppx_data.txt",
     benchmark:
         "benchmarks/fetch_ppx_data.txt"
     params:
         ppx_api_url="https://backend.pathoplexus.org/mpox/get-released-data?compression=zstd",
-    log:
-        "logs/fetch_ppx_data.txt",
     shell:
         r"""
         exec &> >(tee {log:q})
-
 
         echo "Downloading: {params.ppx_api_url:q}"
         curl {params.ppx_api_url:q} -fS -D {output.ppx_headers:q} -o {output.ppx_ndjson:q}
@@ -52,10 +51,10 @@ rule flatten_ppx_data:
         ppx_ndjson="results/ppx.ndjson.zst",
     output:
         ppx_flat="results/ppx_flat.ndjson.zst",
-    benchmark:
-        "benchmarks/flatten_ppx_data.txt"
     log:
         "logs/flatten_ppx_data.txt",
+    benchmark:
+        "benchmarks/flatten_ppx_data.txt"
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -104,5 +103,5 @@ rule flatten_ppx_data:
               )
             )
           + {{sequence: .unalignedNucleotideSequences.main}}
-        ' | zstd -c > {output.ppx_flat:q}
+        ' | zstd -c >{output.ppx_flat:q}
         """
