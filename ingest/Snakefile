@@ -53,9 +53,9 @@ rule extract_open_data:
     shell:
         """
         augur filter --metadata {input.metadata} \
-                     --sequences {input.sequences} \
-                     --metadata-id-columns PPX_accession \
-                     --exclude-where "dataUseTerms=RESTRICTED" \
-                     --output-metadata {output.metadata} \
-                     --output-sequences {output.sequences}
+            --sequences {input.sequences} \
+            --metadata-id-columns PPX_accession \
+            --exclude-where "dataUseTerms=RESTRICTED" \
+            --output-metadata {output.metadata} \
+            --output-sequences {output.sequences}
         """
