@@ -128,6 +128,7 @@ rule timetree:
             --output-tree-nwk {output.tree:q} \
             {params.clock_rate} \
             {params.clock_std_dev} \
+            --clock-filter {params.clock_filter_iqd:q} \
             --confidence \
             --coalescent skyline \
             --keep-root \
