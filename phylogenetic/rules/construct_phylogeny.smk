@@ -63,7 +63,7 @@ rule fix_tree:
         "logs/{build_name}/fix_tree.txt",
     benchmark:
         "benchmarks/{build_name}/fix_tree.txt"
-    threads: 1
+    threads: 8
     params:
         root=lambda w: (
             ("--outgroup " + config["treefix_root"])
@@ -113,6 +113,7 @@ rule timetree:
         strain_id=config["strain_id_field"],
         divergence_units=config["divergence_units"],
         metadata_id_columns=config["strain_id_field"]
+    threads: 8
     shell:
         r"""
         exec &> >(tee {log:q})

@@ -40,7 +40,7 @@ rule ancestral:
         out_translations = lambda w:build_dir + f"/{w.build_name}/translations_anc" + "/{cds}.fasta"
     benchmark:
         "benchmarks/{build_name}/ancestral_new.txt"
-    threads: 1
+    threads: 8
     shell:
         r"""
         exec &> >(tee {log:q})
