@@ -108,3 +108,5 @@ if config.get("treefix_root", "").startswith(ROOT_FLAG):
         file=sys.stderr,
     )
     config["treefix_root"] = config["treefix_root"][len(ROOT_FLAG) :]
+
+write_config("results/run_config.yaml")

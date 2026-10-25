@@ -91,7 +91,7 @@ Scripts for supporting workflow automation that don’t really belong in any of 
 - [notify-on-job-fail](scripts/notify-on-job-fail) - Send Slack message with details about failed workflow job on GitHub Actions and/or AWS Batch
 - [notify-on-job-start](scripts/notify-on-job-start) - Send Slack message with details about workflow job on GitHub Actions and/or AWS Batch
 - [notify-on-record-change](scripts/notify-on-record-change) - Send Slack message with details about line count changes for a file compared to an S3 object's metadata `recordcount`.
-  If the S3 object's metadata does not have `recordcount`, then will attempt to download S3 object to count lines locally, which only supports `xz` compressed S3 objects.
+  If the S3 object's metadata does not have `recordcount`, then will attempt to download S3 object to count lines locally, which only supports `zst` compressed S3 objects.
 - [notify-slack](scripts/notify-slack) - Send message or file to Slack
 - [s3-object-exists](scripts/s3-object-exists) - Used to prevent 404 errors during S3 file comparisons in the notify-* scripts
 - [trigger](scripts/trigger) - Triggers downstream GitHub Actions via the GitHub API using repository_dispatch events.
@@ -125,6 +125,7 @@ Snakemake workflow functions that are shared across many pathogen workflows that
 
 - [config.smk](snakemake/config.smk) - Shared functions for handling workflow configs.
 - [remote_files.smk](snakemake/remote_files.smk) - Exposes the `path_or_url` function which will use Snakemake's storage plugins to download/upload files to remote providers as needed.
+- [dependencies.py](./snakemake/dependencies.py) - Helper functions for checking dependency versions.
 
 
 ## Software requirements

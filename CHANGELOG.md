@@ -7,6 +7,12 @@ the outputs of the workflows.
 Changes for this project _do not_ currently follow the [Semantic Versioning rules](https://semver.org/spec/v2.0.0.html).
 Instead, changes appear below grouped by the date they were added to the workflow.
 
+## 2026
+
+* 14 October 2026: phylogenetic - support use of cached remote inputs.
+    * See https://github.com/nextstrain/shared/pull/87 for more details.
+* 20 July 2026: phylogenetic - add run_config output
+  * Added write_config function to config.smk to generate the results/run_config.yaml output.
 
 ## 2025
 

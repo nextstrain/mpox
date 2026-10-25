@@ -135,3 +135,26 @@ PP_0011BTZ  # B.1 with reversions
 PP_003416A	# G.1 with many reversions interspersed
 
 PP_004DYJ3  # clade Ib/IIb recombinant that messes up phylogeny
+
+PP_00703Q9  # Pakistani clade I with many artefacts/reversions
+PP_00704T2  # Pakistani clade I with many artefacts/reversions
+PP_00704U0  # Pakistani clade I with many artefacts/reversions
+PP_00705NB  # Pakistani clade I with many artefacts/reversions
+PP_00705P9  # Pakistani clade I with many artefacts/reversions
+PP_00705Q7  # Pakistani clade I with many artefacts/reversions
+PP_00705R5  # Pakistani clade I with many artefacts/reversions
+PP_00705S3  # Pakistani clade I with many artefacts/reversions
+PP_00705T1  # Pakistani clade I with many artefacts/reversions
+PP_00705UZ  # Pakistani clade I with many artefacts/reversions
+PP_00706MC  # Pakistani clade I with many artefacts/reversions
+PP_00706NA  # Pakistani clade I with many artefacts/reversions
+PP_00706P8  # Pakistani clade I with many artefacts/reversions
+PP_00706Q6  # Pakistani clade I with many artefacts/reversions
+PP_00706R4  # Pakistani clade I with many artefacts/reversions
+PP_00706S2  # Pakistani clade I with many artefacts/reversions
+PP_00706T0  # Pakistani clade I with many artefacts/reversions
+PP_00706UY  # Pakistani clade I with many artefacts/reversions
+PP_00706VW  # Pakistani clade I with many artefacts/reversions
+PP_00706WU  # Pakistani clade I with many artefacts/reversions
+PP_00706XS  # Pakistani clade I with many artefacts/reversions
+PP_00706YQ  # Pakistani clade I with many artefacts/reversions

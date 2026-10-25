@@ -50,6 +50,7 @@ rule all:
         """
 
 
+include: "../shared/vendored/snakemake/config.smk"  # Utility functions shared across all workflows.
 include: "../shared/vendored/snakemake/remote_files.smk"
 include: "rules/config.smk"
 include: "rules/treetime.smk"

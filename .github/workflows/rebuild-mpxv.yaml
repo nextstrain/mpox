@@ -42,26 +42,23 @@ jobs:
     uses: nextstrain/.github/.github/workflows/pathogen-repo-build.yaml@master
     secrets: inherit
     with:
-      runtime: aws-batch
+      runtime: docker
       env: |
         NEXTSTRAIN_DOCKER_IMAGE: ${{ inputs.image }}
         CONFIG_OVERRIDES: ${{ needs.set_config_overrides.outputs.config_overrides }}
         GITHUB_RUN_ID: ${{ github.run_id }}
         SLACK_CHANNELS: ${{ inputs.trial_name && vars.TEST_SLACK_CHANNEL || vars.SLACK_CHANNELS }}
-        BUILD_DIR: phylogenetic
         BUILD_NAME: mpxv
-      # Aiming for c7a.2xlarge instances since previous run with c7a.xlarge
-      # failed with OOM error.
       run: |
         nextstrain build \
-          --detach \
-          --no-download \
-          --cpus 8 \
-          --memory 14GiB \
           --env GITHUB_RUN_ID \
           --env SLACK_TOKEN \
           --env SLACK_CHANNELS \
-          . \
+          phylogenetic \
             notify_on_deploy \
-              --configfiles $BUILD_DIR/defaults/$BUILD_NAME/config.yaml $BUILD_DIR/build-configs/nextstrain-automation/config.yaml \
-              $CONFIG_OVERRIDES --directory $BUILD_DIR --snakefile $BUILD_DIR/Snakefile
+              --configfiles defaults/$BUILD_NAME/config.yaml build-configs/nextstrain-automation/config.yaml \
+              $CONFIG_OVERRIDES
+      artifact-paths: |
+        phylogenetic/benchmarks/
+        phylogenetic/logs/
+        phylogenetic/.snakemake/log/

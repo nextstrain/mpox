@@ -11,6 +11,9 @@ on:
       trial_name:
         description: "If set, result will be at nextstrain.org/staging/trial/${trial_name}/${auspice_name}"
         required: false
+      image:
+        description: 'Specific container image to use for build (will override the default of "nextstrain build")'
+        required: false
 
 jobs:
   set_config_overrides:
@@ -41,19 +44,29 @@ jobs:
     with:
       # We can migrate to AWS Batch when/if we need to for more resources,
       # but at the time of writing the clade-I build is small & quick
-      runtime: docker
+      runtime: aws-batch
       env: |
+        NEXTSTRAIN_DOCKER_IMAGE: ${{ inputs.image }}
         CONFIG_OVERRIDES: ${{ needs.set_config_overrides.outputs.config_overrides }}
         GITHUB_RUN_ID: ${{ github.run_id }}
         SLACK_CHANNELS: ${{ inputs.trial_name && vars.TEST_SLACK_CHANNEL || vars.SLACK_CHANNELS }}
-        BUILD_DIR: phylogenetic
         BUILD_NAME: clade-i
+      # Aiming for c7a.4xlarge instances. The scheduled run on 2026-09-16 failed
+      # with OOM error on a GitHub runner with 16 GB memory.
       run: |
         nextstrain build \
+          --detach \
+          --no-download \
+          --cpus 16 \
+          --memory 30GiB \
           --env GITHUB_RUN_ID \
           --env SLACK_TOKEN \
           --env SLACK_CHANNELS \
-          . \
+          phylogenetic \
             notify_on_deploy \
-            --configfiles $BUILD_DIR/defaults/$BUILD_NAME/config.yaml $BUILD_DIR/build-configs/nextstrain-automation/config.yaml \
-            $CONFIG_OVERRIDES --directory $BUILD_DIR --snakefile $BUILD_DIR/Snakefile
+            --configfiles defaults/$BUILD_NAME/config.yaml build-configs/nextstrain-automation/config.yaml \
+            $CONFIG_OVERRIDES
+      artifact-paths: |
+        phylogenetic/benchmarks/
+        phylogenetic/logs/
+        phylogenetic/.snakemake/log/

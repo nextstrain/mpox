@@ -16,20 +16,17 @@ OUTPUTS:
 
 
 rule tree:
-    """
-    Building tree
-    """
     input:
         alignment=build_dir + "/{build_name}/masked.fasta",
         tree_mask=config["tree_mask"],
     output:
         tree=build_dir + "/{build_name}/tree_raw.nwk",
-    # It's faster to use 4 threads rather than doing a full search - hence hardcoding 4
-    threads: min(workflow.cores, 4)
     log:
         "logs/{build_name}/tree.txt",
     benchmark:
         "benchmarks/{build_name}/tree.txt"
+    # It's faster to use 4 threads rather than doing a full search - hence hardcoding 4
+    threads: min(workflow.cores, 4)
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -37,7 +34,7 @@ rule tree:
         augur tree \
             --alignment {input.alignment:q} \
             --exclude-sites {input.tree_mask:q} \
-            --tree-builder-args "-T {threads} --pathogen" \
+            --tree-builder-args "-T {threads} --pathogen --seqtype DNA" \
             --output {output.tree:q} \
             --nthreads {threads}
         """
@@ -62,23 +59,27 @@ rule fix_tree:
     output:
         tree=build_dir + "/{build_name}/divergence_tree.nwk",
         node_data=build_dir + "/{build_name}/divergence_branch_lengths.json",
-    params:
-        root = root_mode
     log:
         "logs/{build_name}/fix_tree.txt",
     benchmark:
         "benchmarks/{build_name}/fix_tree.txt"
     threads: 1
+    params:
+        root=lambda w: (
+            ("--outgroup " + config["treefix_root"])
+            if config.get("treefix_root", False)
+            else "--reroot min-dev"
+        ),
     shell:
         r"""
         exec &> >(tee {log:q})
 
         cat {input.treetime_source:q} >&2
         {input.treetime:q} optimize -j {threads} \
-            --alignment {input.alignment:q} --divergence-units mutations \
+            --alignment {input.alignment:q} \
             {params.root} \
             --tree {input.tree:q} --no-indels \
-            --output-tree-nwk {output.tree:q} --output-augur-node-data {output.node_data:q}
+            --output-tree-nwk {output.tree:q} --output-node-data {output.node_data:q}
         """
 
 
@@ -92,14 +93,26 @@ rule timetree:
     output:
         tree=build_dir + "/{build_name}/time_tree.nwk",
         node_data=build_dir + "/{build_name}/timetree_branch_lengths.json",
-        auspice_tree=build_dir + "/{build_name}/tree.auspice.json",
-    params:
-        clock_rate = config.get("clock_rate", None),
-        clock_std_dev = config.get("clock_std_dev", None),
-        metadata_id_columns = config["strain_id_field"],
+    log:
+        "logs/{build_name}/refine.txt",
     benchmark:
-        "benchmarks/{build_name}/timetree.txt"
-    threads: 1
+        "benchmarks/{build_name}/refine.txt"
+    params:
+        clock_filter_iqd=0,
+        root=config["root"],
+        clock_rate=(
+            ("--clock-rate " + str(config["clock_rate"]))
+            if "clock_rate" in config
+            else ""
+        ),
+        clock_std_dev=(
+            ("--clock-std-dev " + str(config["clock_std_dev"]))
+            if "clock_std_dev" in config
+            else ""
+        ),
+        strain_id=config["strain_id_field"],
+        divergence_units=config["divergence_units"],
+        metadata_id_columns=config["strain_id_field"]
     shell:
         r"""
         exec &> >(tee {log:q})
@@ -112,15 +125,15 @@ rule timetree:
             --metadata {input.metadata:q} \
             --metadata-id-columns {params.metadata_id_columns:q} \
             --output-tree-nwk {output.tree:q} \
-            --clock-rate {params.clock_rate} \
-            --clock-std-dev {params.clock_std_dev} \
-            --coalescent-skyline \
+            {params.clock_rate} \
+            {params.clock_std_dev} \
+            --confidence \
+            --coalescent skyline \
             --keep-root \
             --keep-polytomies \
             --divergence-units mutations --no-indels \
-            --output-augur-node-data {output.node_data:q} \
-            --output-tree-auspice {output.auspice_tree:q} \
-            --output-coalescent-tsv {build_dir}/{wildcards.build_name}/skyline.tsv
+            --output-node-data {output.node_data:q} \
+            --output-coalescent {build_dir}/{wildcards.build_name}/skyline.tsv
         """
 
 # rule refine:

@@ -97,7 +97,7 @@ seed_spacing: 1000
 
 ## treefix
 fix_tree: true
-treefix_root: "PP_000T4L2"
+treefix_root: "PP_000T4L2,PP_000T4J6"
 
 ## refine
 timetree: true

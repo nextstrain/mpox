@@ -44,6 +44,7 @@ if __name__ == "__main__":
                 "clade_membership",
                 "outbreak",
                 "lineage",
+                "outbreakLineage",
             ]:
                 subset_present = [x for x in assignment[name] if x in metadata[name].unique()]
                 assignment[name] = subset_present

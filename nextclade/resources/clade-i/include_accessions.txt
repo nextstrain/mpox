@@ -4,6 +4,20 @@ KJ642617 # outgroup IIb
 PP_000T2N0 # outgroup IIb
 reconstructed_ancestral_mpox #reference
 
+PP_000ZHUV    #reference for sh2023/A
+PP_000SV68    #reference for sh2023/A
+PP_004JQPQ    #reference for sh2023/A.1
+PP_0014F50    #reference for sh2023/A.2
+PP_006VEEV    #reference for sh2023/A.2
+PP_004BJA4    #reference for sh2023/A.3
+PP_0014F18    #reference for sh2023/A.3
+PP_006KNVA    #reference for sh2023/A.4
+PP_004G68A    #reference for sh2023/A.4
+PP_006XGN6    #reference for sh2023/A.4.1
+PP_006WSXE    #reference for sh2023/A.4.1
+PP_001016L     #reference for sh2023/A.5
+PP_006KPSF      #reference for sh2023/A.5
+
 PP_000STVX
 PP_000ZHHH
 PP_0010A3H

@@ -37,7 +37,7 @@ rule ancestral:
         annotated_tree=build_dir + "/{build_name}/tree_annotated.nwk",
     params:
         translations = lambda w:build_dir + f"/{w.build_name}/translations" + "/{cds}.fasta",
-        out_translations = lambda w:build_dir + f"/{w.build_name}/translations" + "/{cds}_anc.fasta"
+        out_translations = lambda w:build_dir + f"/{w.build_name}/translations_anc" + "/{cds}.fasta"
     benchmark:
         "benchmarks/{build_name}/ancestral_new.txt"
     threads: 1
@@ -51,13 +51,12 @@ rule ancestral:
             --tree {input.tree:q} \
             --quiet \
             --annotation {input.annotation} \
-            --output-reconstructed-aa-fasta {params.out_translations} \
-            --ignore-missing-alns \
+            --output-translations {params.out_translations} \
+            --allow-missing-sequences \
             --alignment {input.alignment:q} \
             --translations {params.translations} \
-            --output-augur-node-data {output.node_data:q} \
-            --output-nwk-style beast \
-            --output-tree-nwk {output.annotated_tree:q}
+            --output-node-data {output.node_data:q} \
+            --output-tree-nexus {output.annotated_tree:q}
         """
 
 

@@ -2,15 +2,20 @@
 Shared functions to be used within a Snakemake workflow for handling
 workflow configs.
 """
+from dependencies import set_min_augur_version
+set_min_augur_version("34.1.2")
+
 import os
 import sys
 import yaml
+from augur.config import resolve_filepath
+from augur.validate import load_json_schema_locally, validate_json, ValidateError
 from collections.abc import Callable
 from typing import Optional
 from textwrap import dedent, indent
 
 
-# Set search paths for Augur
+# Set search paths
 if "AUGUR_SEARCH_PATHS" in os.environ:
     print(dedent(f"""\
         Using existing search paths in AUGUR_SEARCH_PATHS:
@@ -18,10 +23,6 @@ if "AUGUR_SEARCH_PATHS" in os.environ:
             {os.environ["AUGUR_SEARCH_PATHS"]!r}
         """), file=sys.stderr)
 else:
-    # Note that this differs from the search paths used in
-    # resolve_config_path().
-    # This is the preferred default moving forwards, and the plan is to
-    # eventually update resolve_config_path() to use AUGUR_SEARCH_PATHS.
     search_paths = [
         # User analysis directory
         Path.cwd(),
@@ -44,29 +45,60 @@ else:
             repo_root,
         ])
 
-    search_paths = [path.resolve() for path in search_paths if path.is_dir()]
+    seen = set()
+    normalized_search_paths = []
+    for path in search_paths:
+        # Skip paths that are not directories
+        if not path.is_dir():
+            continue
 
-    os.environ["AUGUR_SEARCH_PATHS"] = ":".join(map(str, search_paths))
+        # Resolve to absolute paths
+        resolved = path.resolve()
+
+        # Skip duplicate paths (e.g. often the CWD == workflow.basedir)
+        if resolved in seen:
+            continue
+
+        seen.add(resolved)
+        normalized_search_paths.append(resolved)
+
+    os.environ["AUGUR_SEARCH_PATHS"] = ":".join(map(str, normalized_search_paths))
 
 
 class InvalidConfigError(Exception):
     pass
 
 
-def resolve_config_path(path: str, defaults_dir: Optional[str] = None) -> Callable:
+def dump_and_validate(dump_path, schema_path):
+    """
+    Write Snakemake's 'config' variable to a file, then validate it against the
+    schema. Do both in the same function so that the validation output can
+    easily reference the path of the dumped config for inspection.
+    """
+    global config
+
+    write_config(dump_path)
+
+    if "custom_rules" in config:
+        # Assumes the workflow invoking this function accepts "custom_rules" to
+        # define arbitrary Snakemake rules and supporting config.
+        print("WARNING: Skipping config schema validation because custom rules are defined.", file=sys.stderr)
+        return
+
+    try:
+        validator = load_json_schema_locally(schema_path)
+        validate_json(config, validator, dump_path)
+    except ValidateError as e:
+        raise InvalidConfigError(str(e)) from e
+
+
+def resolve_config_path(path: str) -> Callable:
     """
     Resolve a relative *path* given in a configuration value. Will always try to
     resolve *path* after expanding wildcards with Snakemake's `expand` functionality.
 
-    Returns the path for the first existing file, checked in the following order:
-    1. relative to the analysis directory or workdir, usually given by ``--directory`` (``-d``)
-    2. relative to *defaults_dir* if it's provided
-    3. relative to the workflow's ``defaults/`` directory if *defaults_dir* is _not_ provided
-
-    This behaviour allows a default configuration value to point to a default
-    auxiliary file while also letting the file used be overridden either by
-    setting an alternate file path in the configuration or by creating a file
-    with the conventional name in the workflow's analysis directory.
+    Returns the path for the first existing file found relative to directories
+    defined by the AUGUR_SEARCH_PATHS environment variable.
     """
     global workflow
 
@@ -88,31 +120,26 @@ def resolve_config_path(path: str, defaults_dir: Optional[str] = None) -> Callab
                 and that the rule actually uses the wildcard name.
                 """.lstrip("\n").rstrip()).format(path=repr(path), available_wildcards=available_wildcards), " " * 4))
 
-        if os.path.exists(expanded_path):
-            return expanded_path
+        search_paths = [Path(p) for p in os.environ["AUGUR_SEARCH_PATHS"].split(":")]
+        try:
+            return str(resolve_filepath(Path(expanded_path), search_paths))
+        except Exception as error:
+            raise InvalidConfigError(
+                indent(
+                    dedent(f"""
+                        Unable to resolve the config-provided path {path!r},
+                        expanded to {expanded_path!r} after filling in wildcards.
 
-        if defaults_dir:
-            defaults_path = os.path.join(defaults_dir, expanded_path)
-        else:
-            # Special-case defaults/… for backwards compatibility with older
-            # configs.  We could achieve the same behaviour with a symlink
-            # (defaults/defaults → .) but that seems less clear.
-            if path.startswith("defaults/"):
-                defaults_path = os.path.join(workflow.basedir, expanded_path)
-            else:
-                defaults_path = os.path.join(workflow.basedir, "defaults", expanded_path)
+                        """)
+                    + str(error)
+                    + dedent(f"""
 
-        if os.path.exists(defaults_path):
-            return defaults_path
-
-        raise InvalidConfigError(indent(dedent(f"""\
-            Unable to resolve the config-provided path {path!r},
-            expanded to {expanded_path!r} after filling in wildcards.
-            The workflow does not include the default file {defaults_path!r}.
-
-            Hint: Check that the file {expanded_path!r} exists in your analysis
-            directory or remove the config param to use the workflow defaults.
-            """), " " * 4))
+                        Hint: Check that the file {expanded_path!r} exists in your analysis
+                        directory or remove the config param to use the workflow defaults.
+                        """),
+                    " " * 4,
+                )
+            )
 
     return _resolve_config_path
 
