@@ -4,7 +4,7 @@
 | ---------------------- | --------------------------------------------------------------------------------------------------------------------- |
 | authors                | [Cornelius Roemer](https://neherlab.org), [Richard Neher](https://neherlab.org), [Nextstrain](https://nextstrain.org) |
 | data source            | Genbank                                                                                                               |
-| workflow               | [github.com/nextstrain/mpox/nextclade](https://github.com/nextstrain/mpox/nextclade)                                  |
+| workflow               | [github.com/nextstrain/mpox/nextclade](https://github.com/nextstrain/mpox/tree/master/nextclade)                                  |
 | nextclade dataset path | nextstrain/mpox/clade-iib                                                                                             |
 | annotation             | [NC_063383.1](https://www.ncbi.nlm.nih.gov/nuccore/NC_063383)                                                         |
 | clade definitions      | [github.com/mpxv-lineages/lineage-designation](https://github.com/mpxv-lineages/lineage-designation)                  |
@@ -22,6 +22,6 @@ The reference tree consists of around 500 sequences with representatives from al
 
 ## Further reading
 
-The lineage system used is defined in [Happi et al. (2022)](https://doi.org/10.1371/journal.pbio.3001769). Lineage definitions are available at [github.com/mpxv-lineages/lineage-designation](https://github.com/nextstrain/mpox/nextclade).
+The lineage system used is defined in [Happi et al. (2022)](https://doi.org/10.1371/journal.pbio.3001769). Lineage definitions are available at [github.com/mpxv-lineages/lineage-designation](https://github.com/mpxv-lineages/lineage-designation).
 
 Read more about Nextclade datasets in Nextclade documentation: https://docs.nextstrain.org/projects/nextclade/en/stable/user/datasets.html
