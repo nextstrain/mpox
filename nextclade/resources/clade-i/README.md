@@ -4,7 +4,7 @@
 | ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | authors                | [Cornelius Roemer](https://neherlab.org), [Richard Neher](https://neherlab.org), [Nextstrain](https://nextstrain.org)                                                                  |
 | data source            | Genbank                                                                                                                                                                                |
-| workflow               | [github.com/nextstrain/mpox/nextclade](https://github.com/nextstrain/mpox/nextclade)                                                                                                   |
+| workflow               | [github.com/nextstrain/mpox/nextclade](https://github.com/nextstrain/mpox/tree/master/nextclade)                                                                                                   |
 | nextclade dataset path | nextstrain/mpox/clade-i                                                                                                                                                                |
 | reference              | [DQ011155.1](https://www.ncbi.nlm.nih.gov/nuccore/DQ011155.1), isolate `Zaire_1979-005`, an early complete clade I sequence                                                            |
 | annotation             | based on [DQ011155.1](https://www.ncbi.nlm.nih.gov/nuccore/DQ011155.1), but with genes called by modern names (OPGXXX)                                                                 |
@@ -25,6 +25,6 @@ The reference tree consists of all good quality clade I sequences available with
 
 ## Further reading
 
-The sustained outbreak system is described in [Ruis et. al. (2025)](https://www.nature.com/articles/s41591-025-03820-6). Outbreak definitions are available at [github.com/mpxv-lineages/lineage-designation](https://github.com/nextstrain/mpox/nextclade).
+The sustained outbreak system is described in [Ruis et. al. (2025)](https://www.nature.com/articles/s41591-025-03820-6). Outbreak definitions are available at [github.com/mpxv-lineages/lineage-designation](https://github.com/mpxv-lineages/lineage-designation).
 
 Read more about Nextclade datasets in the Nextclade documentation: https://docs.nextstrain.org/projects/nextclade/en/stable/user/datasets.html
