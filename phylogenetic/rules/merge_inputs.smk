@@ -98,7 +98,7 @@ if len(_input_metadata) == 1:
             r"""
             exec &> >(tee {log:q})
 
-            augur read-file {input.metadata:q} > {output.metadata:q}
+            augur read-file {input.metadata:q} >{output.metadata:q}
             """
 
 else:
@@ -114,15 +114,15 @@ else:
                 for name, info in input_sources.items()
                 if info.get("metadata", None)
             },
-        params:
-            metadata=lambda w, input: list(map("=".join, input.items())),
-            id_field=config["strain_id_field"],
         output:
             metadata="results/metadata.tsv",
         log:
             "logs/merge_metadata.txt",
         benchmark:
             "benchmarks/merge_metadata.txt"
+        params:
+            metadata=lambda w, input: list(map("=".join, input.items())),
+            id_field=config["strain_id_field"],
         shell:
             r"""
             exec &> >(tee {log:q})
@@ -154,7 +154,7 @@ if len(_input_sequences) == 1:
             r"""
             exec &> >(tee {log:q})
 
-            augur read-file {input.sequences:q} > {output.sequences:q}
+            augur read-file {input.sequences:q} >{output.sequences:q}
             """
 
 else:
